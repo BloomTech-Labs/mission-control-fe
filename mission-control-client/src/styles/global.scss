@@ -49,6 +49,8 @@ table {
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+  position: relative;
+  min-height: 100%;
 }
 *, *:before, *:after {
   box-sizing: inherit;
