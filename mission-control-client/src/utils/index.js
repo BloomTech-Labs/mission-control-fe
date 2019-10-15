@@ -10,7 +10,7 @@ export function checkType(state, type, i = 0) {
         // if correct, continue
         if (typeof(state[properties[i]]) === type) {
             i += 1;
-            return checkTypes(state, type, i);
+            return checkType(state, type, i);
         }
     }
 
