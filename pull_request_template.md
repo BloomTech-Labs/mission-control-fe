@@ -9,12 +9,12 @@ Please delete options that are not relevant.
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [X] This change requires a documentation update
+- [ ] This change requires a documentation update
 
 ## Change Status
 
 - [ ] Complete, tested, ready to review and merge
-- [X] Complete, but not tested (may need new tests)
+- [ ] Complete, but not tested (may need new tests)
 - [ ] Incomplete/work-in-progress, PR is for discussion/feedback
 
 # How Has This Been Tested?
