@@ -91,10 +91,10 @@ export default function () {
                 email,
                 password
             };
-            console.log("Here is everything being submitted: ", packet);
 
+            const URL = "mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/register";
             // handle input
-            axios.post("get url from Armando", packet)
+            axios.post(URL, packet)
                 .then(res => {
                     console.log(res);
                     setState(defaultState);
