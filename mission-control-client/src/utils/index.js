@@ -14,7 +14,7 @@ export function checkType(state, type, i = 0) {
         }
     }
 
-    if (i === properties.length) {
+    if (i === properties.length - 1) {
         // if the last is incorrect, end checking
         if (typeof(state[properties[i]]) !== type) {
             return false;
