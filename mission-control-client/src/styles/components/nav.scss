@@ -1,0 +1,41 @@
+@import '../variables.scss';
+
+.ui.container.nav-container {
+  margin: 0 !important;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.11);
+  align-items: center;
+  width: 100%;
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+
+    .nav-link {
+      color: black;
+      font-size: 1.2rem;
+      margin: 0;
+
+      &:hover {
+        color: $primary;
+        cursor: pointer;
+      }
+    }
+
+    .register, .logout{
+      margin-left: 3rem;
+      padding: 0.5rem 1rem;;
+      background: $primary;
+      color: white;
+      border-radius: 3px;
+
+      &:hover {
+        background: darken($primary, 5%);
+        color: white;
+      }
+    }
+  }
+}
