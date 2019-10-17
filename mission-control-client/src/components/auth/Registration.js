@@ -89,10 +89,11 @@ export default function () {
                 firstName,
                 lastName,
                 email,
-                password
+                password,
+                role: "abc123"
             };
 
-            const URL = "mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/register";
+            const URL = "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admins/register";
             // handle input
             axios.post(URL, packet)
                 .then(res => {
