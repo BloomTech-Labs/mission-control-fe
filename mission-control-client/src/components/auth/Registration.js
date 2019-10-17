@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import Input from "./Input.js";
 import {Button, Form} from "semantic-ui-react";
 import axios from "axios";
 import validator from "validator";
+import {makeInputs} from "./utils";
 
 
 export default function () {
@@ -42,31 +42,7 @@ export default function () {
 
     const [state, setState] = useState(defaultState);
     
-    function makeInput(property) {
-        function handleChange(e) {
-            setState({
-                ...state,
-                [property]: {
-                    ...state[property],
-                    value: e.target.value 
-                }
-            });
-        }
-        return (
-            <Input 
-                key={property}
-                name={property}
-                value={state[property].value}
-                label={property}
-                type={state[property].type}
-                error={state[property].error}
-                message={state[property].message}
-                handleChange={handleChange}
-            />        
-        )
-    }
-
-    const Inputs = () => Object.keys(state).map(makeInput)
+    const Inputs = () => Object.keys(state).map(property => makeInputs(property, state, setState))
     
     function handleSubmit(e) {
         e.preventDefault();
@@ -89,10 +65,11 @@ export default function () {
                 firstName,
                 lastName,
                 email,
-                password
+                password,
+                role: "abc123"
             };
 
-            const URL = "mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/register";
+            const URL = "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admins/register";
             // handle input
             axios.post(URL, packet)
                 .then(res => {
