@@ -132,6 +132,7 @@ export default function() {
       });
       return;
     }
+
     // if confirmed password does not match password
     if (confirmPassword !== password) {
       setState({
@@ -144,6 +145,7 @@ export default function() {
       return;
     }
   }
+  
   return (
     <Form onSubmit={handleSubmit}>
       {Inputs()}
