@@ -66,14 +66,14 @@ export default function () {
                 lastName,
                 email,
                 password,
-                role: "abc123"
+                roleId: "123abc"
             };
 
             const URL = "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admins/register";
             // handle input
             axios.post(URL, packet)
                 .then(res => {
-                    console.log(res);
+                    localStorage.setItem('token', res.data.token);
                     setState(defaultState);
                 }).catch(err => console.log(err));
         }
