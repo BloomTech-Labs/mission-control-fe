@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import ReactGA from 'react-ga';
 
-/////embedded Google Analytics for web metrics in React
+//embedded Google Analytics for web metrics in React
 ReactGA.initialize('UA-111378465-2');
 ReactGA.pageview(window.location.pathname + window.location.search);
 
