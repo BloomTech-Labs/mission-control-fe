@@ -1,14 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { connect } from 'react-redux'
-import { getPersons } from '../../actions'
+import { connect } from "react-redux";
+import {
+  getProducts,
+  getPersons,
+  getRoles,
+  getProduct,
+  getLambdaRoles,
+  getProjects,
+  getProjectGroups,
+  getProjectGroupMembers,
+  getPeopleGroups
+} from "../../actions";
 
-// Axios GraphQL Config
-import axiosLabsGraphQL from '../../utils/axiosLabsGraphQL';
-
-const Dashboard = (props) => {
-
+const Dashboard = props => {
   useEffect(() => {
-    props.getPersons()
+    const id = "ck16mydh73pkp0a30761xx7fl";
+    props.getProducts();
+    props.getPersons();
+    props.getRoles();
+    props.getLambdaRoles();
+    props.getProduct(id);
+    props.getProjects();
+    props.getProjectGroupMembers();
+    // TODO checkout functions below
+    // props.getPeopleGroups();
+    // props.getProjectGroups()
   }, []);
 
   return (
@@ -19,9 +35,22 @@ const Dashboard = (props) => {
 };
 
 const mapStateToProps = state => {
-  return{
+  return {
     state
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, { getPersons })(Dashboard);
+export default connect(
+  mapStateToProps,
+  {
+    getPersons,
+    getProducts,
+    getRoles,
+    getProduct,
+    getLambdaRoles,
+    getProjects,
+    getProjectGroups,
+    getProjectGroupMembers,
+    getPeopleGroups
+  }
+)(Dashboard);
