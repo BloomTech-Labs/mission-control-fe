@@ -1,4 +1,4 @@
-
+//done
 const persons = `
     query {
         persons {
@@ -12,7 +12,7 @@ const persons = `
         }
     }
 `;
-
+//done
 const person = id => `
     query {
         person(where:{id:"${id}"}) {
@@ -27,6 +27,7 @@ const person = id => `
     }
 `;
 
+// done
 const products = `
     query {
         products {
@@ -36,6 +37,7 @@ const products = `
     }
 `;
 
+// done
 const product = id => `
     query {
         product(where:{id:"${id}"}) {
@@ -45,6 +47,7 @@ const product = id => `
     }
 `;
 
+// TODO NEEDS LOOKING INTO RETURNS UNDEFINED
 const projectGroups = `
     query {
         projectGroups {
@@ -54,6 +57,7 @@ const projectGroups = `
     }
 `;
 
+// TODO NEEDS LOOKING INTO RETURNS UNDEFINED
 const projectGroup = id => `
     query {
         projectGroup(where:{id:"${id}"}) {
@@ -63,6 +67,7 @@ const projectGroup = id => `
     }
 `;
 
+//done
 const roles = `
     query {
         roles {
@@ -73,6 +78,7 @@ const roles = `
     }
 `;
 
+//done
 const role = id => `
     query {
         role(where:{id:"${id}"}) {
@@ -83,6 +89,7 @@ const role = id => `
     }
 `;
 
+// TODO EMPTY DATASET NEEDS WORK
 const peopleGroups = `
     query {
         peopleGroups{
@@ -92,6 +99,7 @@ const peopleGroups = `
     }
 `;
 
+// TODO EMPTY DATASET NEEDS WORK
 const peopleGroup = id => `
     query {
         peopleGroup(where:{id:"${id}"}){
@@ -101,6 +109,7 @@ const peopleGroup = id => `
     }
 `;
 
+//DONE
 const lambdaRoles = `
     query {
         lambdaRoles{
@@ -123,6 +132,7 @@ const lambdaRoles = `
     }
 `;
 
+//DONE
 const lambdaRole = id => `
     query {
         lambdaRole(where:{id:"${id}"}){
@@ -145,6 +155,7 @@ const lambdaRole = id => `
     }
 `;
 
+// done
 const peopleGroupMembers = `
     query {
         peopleGroupMembers{
@@ -166,6 +177,7 @@ const peopleGroupMembers = `
     }
 `;
 
+// done
 const peopleGroupMember = id => `
     query {
         peopleGroupMember(where:{id:"${id}"}){
@@ -187,6 +199,7 @@ const peopleGroupMember = id => `
     }
 `;
 
+// done
 const productRoles = `
     query {
         productRoles{
@@ -214,6 +227,7 @@ const productRoles = `
     }
 `;
 
+// done
 const productRole = id => `
     query {
         productRole(where:{id:"${id}"}){
@@ -241,14 +255,17 @@ const productRole = id => `
     }
 `;
 
+// done
 const projects = `
     query {
         projects{
             id
+            name
         }
     }
 `;
 
+// done
 const project = id => `
     query {
         project(where:{id:"${id}"}){
@@ -264,6 +281,7 @@ const project = id => `
     }
 `;
 
+// done
 const projectGroupMembers = `
     query {
         projectGroupMembers{
@@ -308,6 +326,7 @@ const projectGroupMember = id => `
     }
 `;
 
+// done
 const projectRoles = `
     query {
         projectRoles {
@@ -325,6 +344,7 @@ const projectRoles = `
     }
 `;
 
+// done
 const projectRole = id => `
     query {
         projectRoles(where:{id:"${id}"}) {
