@@ -1,7 +1,8 @@
-// export default combineReducers({
-//     globalStore
-// })
+import { combineReducers } from 'redux'
 
 import { globalStore } from './globalStore'
+import { personStore } from './personStore'
 
-export default globalStore
+export default combineReducers({
+    globalStore, personStore
+})
