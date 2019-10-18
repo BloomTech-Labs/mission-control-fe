@@ -53,7 +53,10 @@ export default function() {
           console.log(res);
           setState(defaultState);
           localStorage.setItem("token", res.data.token);
-          history.push("/dashboard");
+          localStorage.setItem('user', res.data.user.userId);
+          localStorage.setItem("fname", res.data.user.firstName);
+          const user = localStorage.getItem('user')
+          history.push(`/dashboard/${user}`);
         })
         .catch(err => console.log(err));
     }
