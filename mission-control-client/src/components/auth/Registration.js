@@ -1,157 +1,107 @@
-import React, { useState } from "react";
-import { Button, Form } from "semantic-ui-react";
+import React from "react";
 import axios from "axios";
-import { useHistory } from "react-router";
-import validator from "validator";
-import { makeInputs } from "./utils";
+import {Form, Field, withFormik} from "formik";
+import {useHistory} from "react-router-dom";
+import * as Yup from "yup";
+const URL = "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/register";
+// TODO: encrypt password
 
-export default function() {
-  let history = useHistory();
-  let error = false;
-  const defaultState = {
-    firstName: {
-      type: "text",
-      value: "",
-      error,
-      message: "Please, enter first name."
-    },
-    lastName: {
-      type: "text",
-      value: "",
-      error,
-      message: "Please, enter first name"
-    },
-    email: {
-      type: "email",
-      value: "",
-      error,
-      message: "Please, enter valid email"
-    },
-    password: {
-      type: "password",
-      value: "",
-      error,
-      message: "Please, enter password between 8-16 characters"
-    },
-    confirmPassword: {
-      type: "password",
-      value: "",
-      error,
-      message: "Passwords do not match"
-    }
-  };
+function RegistrationForm({
+    errors,
+    touched,
+    values,
+    handleSubmit,
+    status
+}) {
+    const history = useHistory();
+    return (
+        <Form
+            history={history}
+        >
+            <Field 
+                type="text"
+                name="firstName"
+            />
+            {touched.firstName && errors.firstName && (
+                <p className="error">{errors.firstName}</p>
+            )}
+            <Field 
+                type="text"
+                name="lastName"
+            />
+            {touched.lastName && errors.lastName && (
+                <p className="error">{errors.lastName}</p>
+            )}
+            <Field 
+                type="email"
+                name="email"
+            />
+            {touched.email && errors.email && (
+                <p className="error">{errors.email}</p>
+            )}
+            <Field 
+                type="password"
+                name="password"
+            />
+            {touched.password && errors.password && (
+                <p className="error">{errors.password}</p>
+            )}
+            <Field 
+                type="password"
+                name="confirmPassword"
+            />
+            {touched.confirmPassword && errors.password && (
+                <p className="error">{errors.confirmPassword}</p>
+            )}
+            <button type="submit">Submit</button>
+        </Form>      
+    );
+}
 
-  const [state, setState] = useState(defaultState);
-
-  const Inputs = () =>
-    Object.keys(state).map(property => makeInputs(property, state, setState));
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    const firstName = state.firstName.value;
-    const lastName = state.lastName.value;
-    const email = state.email.value;
-    const password = state.password.value;
-    const confirmPassword = state.confirmPassword.value;
-
-    if (
-      firstName.length > 0 &&
-      lastName.length > 0 &&
-      validator.isEmail(email) &&
-      password.length >= 8 &&
-      password.length <= 16 &&
-      confirmPassword === password
-    ) {
-      //TODO: encrypt password
-      const packet = {
+export default withFormik({
+    mapPropsToValues({
+        history,
         firstName,
         lastName,
         email,
         password,
-        roleId: "123abc"
-      };
-
-      const URL =
-        "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/register";
-      // handle input
-      axios
-        .post(URL, packet)
-        .then(res => {
-          setState(defaultState);
-          localStorage.setItem("token", res.data.token);
-          history.push('/dashboard');
-        })
-        .catch(err => console.log(err));
-    }
-
-    // if length of first name is incorrect
-    error = true;
-    if (firstName.length <= 0) {
-      setState({
-        ...state,
-        firstName: {
-          ...state.firstName,
-          error
+        confirmPassword
+    }) {
+        return {
+            firstName: firstName || "",
+            lastName: lastName || "",
+            email: email || "",
+            password: password || "",
+            confirmPassword: confirmPassword || ""
+        };
+    },
+    validationSchema: Yup.object().shape({
+        firstName: Yup.string().required("Please, enter first name."),
+        lastName: Yup.string().required("Please, enter last name."),
+        email: Yup.string().email("Invalid email").required("Please, enter a valid email"),
+        password: Yup.string()
+            .min(8, "Password must be at least 8 characters.")
+            .max(16, "Password cannot be more than 16 characters.")
+            .required("Please, enter a password between 8 and 16 characters."),
+        confirmPassword: Yup.string()
+            .oneOf([Yup.ref("password")], "Passwords must match.").required("Please, confirm password")
+        
+    }),
+    handleSubmit(values, {setStatus, history}) {
+        const packet = {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            password: values.password,
+            roleId: "abc123"
         }
-      });
-      return;
+        axios.post(URL, packet)
+            .then(res => {
+                localStorage.setItem("token", res.data.token);
+                localStorage.setItem("user", res.data.user.userId);
+                localStorage.setItem("fname", res.data.user.firstName);
+                history.push(`/dashboard/${localStorage.getItem("user")}`);
+                // history.push(`/dashboard/${res.data.user.userId}`);
+            })
     }
-
-    // if length of last name is incorrect
-    if (lastName.length <= 0) {
-      setState({
-        ...state,
-        lastName: {
-          ...state.lastName,
-          error
-        }
-      });
-      return;
-    }
-
-    // if not a valid email
-    if (!validator.isEmail(email)) {
-      setState({
-        ...state,
-        email: {
-          ...state.email,
-          error
-        }
-      });
-      return;
-    }
-
-    // if length of password is incorrect
-    if (password.length < 8 || password.length > 16) {
-      setState({
-        ...state,
-        password: {
-          ...state.password,
-          error
-        }
-      });
-      return;
-    }
-
-    // if confirmed password does not match password
-    if (confirmPassword !== password) {
-      setState({
-        ...state,
-        confirmPassword: {
-          ...state.confirmPassword,
-          error
-        }
-      });
-      return;
-    }
-  }
-  
-  return (
-    <Form onSubmit={handleSubmit}>
-      {Inputs()}
-      <Button type="submit" color="blue">
-        Submit
-      </Button>
-    </Form>
-  );
-}
+})(RegistrationForm)
