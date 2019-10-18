@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+
+
 // Axios GraphQL Config
 import axiosLabsGraphQL from '../../utils/axiosLabsGraphQL';
 // Pull in query
