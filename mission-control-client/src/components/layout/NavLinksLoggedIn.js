@@ -1,6 +1,6 @@
 import React from "react";
-import NotificationsNoneSharpIcon from '@material-ui/icons/NotificationsNoneSharp';
 import AvatarMenu from './Avatar';
+import { ReactComponent as Bell } from '../../assets/bell.svg';
 
 const NavLinksLoggedIn = () => {
 
@@ -8,7 +8,7 @@ const NavLinksLoggedIn = () => {
 
   return (
     <>
-      <NotificationsNoneSharpIcon className="bell" />
+      <Bell className="bell"/>
       <p className="logged-in logged-in-link">{`Welcome back, ${name}`}</p>
       <AvatarMenu />
     </>
