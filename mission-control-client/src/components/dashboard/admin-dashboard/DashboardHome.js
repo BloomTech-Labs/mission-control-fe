@@ -1,8 +1,13 @@
 import React from 'react';
+import ProductList from './ProductList';
+import DashboardContent from './DashboardContent';
 
 const DashboardHome = () => {
   return (
-    <h1>Dashboard</h1>
+    <div className="admin-dashboard-container">
+      <ProductList />
+      <DashboardContent />
+    </div>
   )
 }
 
