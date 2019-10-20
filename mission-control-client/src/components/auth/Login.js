@@ -1,40 +1,67 @@
 import React from "react";
 import axios from "axios";
-import {Form, Field, withFormik} from "formik";
-import {useHistory} from "react-router-dom";
+import {withStyles} from "@material-ui/core";
+import {withFormik} from "formik";
+import {useHistory, Link} from "react-router-dom";
+import TextField from "@material-ui/core/TextField";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
 import * as Yup from "yup";
 const URL = "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/login";
 
-function LoginForm({
+const styles = () => ({});
+
+function Form({
+    classes,
     errors,
     touched,
     values,
-    handleSubmit,
-    status
+    handleSubmit
 }) {
     const history = useHistory();
     return (
-        <Form
-            history={history}
-        >
-            <Field 
-                type="email"
-                name="email"
-            />
-            {touched.email && errors.email && (
-                <p className="error">{errors.email}</p>
-            )}
-            <Field 
-                type="password"
-                name="password"
-            />
-            {touched.password && errors.password && (
-                <p className="error">{errors.password}</p>
-            )}
-            <button type="submit">Submit</button>
-        </Form>      
+        <div>
+            <h1>
+                Sign in
+            </h1>
+            <p>
+                Don't have an account? <Link to="/register">Create One</Link>
+            </p>
+            <form
+                history={history}
+                onSubmit={handleSubmit}
+            >
+                <Card>
+                    <CardContent>
+                        <TextField 
+                            type="email"
+                            name="email"
+                        />
+                        {touched.email && errors.email && (
+                            <p className="error">{errors.email}</p>
+                        )}
+                        <TextField 
+                            type="password"
+                            name="password"
+                        />
+                        {touched.password && errors.password && (
+                            <p className="error">{errors.password}</p>
+                        )}
+                        <Button 
+                            color="primary"
+                            type="submit"
+                        >
+                            Submit
+                        </Button>
+                    </CardContent>
+                </Card>
+            </form>
+        </div>
     );
 }
+
+const LoginForm = withStyles(styles)(Form);
 
 export default withFormik({
     mapPropsToValues({
