@@ -5,7 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Avatar from "@material-ui/core/Avatar";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 
- const AvatarMenu = () => {
+const AvatarMenu = () => {
   let history = useHistory();
 
   const avatar = localStorage.getItem("avatar");
@@ -33,22 +33,15 @@ import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
             </Avatar>
           )}
           <Menu {...bindMenu(popupState)}>
-            <MenuItem
-              onClick={logout}
-              style={{fontSize: '1.4rem'}}
-            >
+            <MenuItem style={{ fontSize: "1.4rem" }}>Edit Profile</MenuItem>
+            <MenuItem onClick={logout} style={{ fontSize: "1.4rem" }}>
               Sign Out
-            </MenuItem>
-            <MenuItem
-              style={{fontSize: '1.4rem'}}
-            >
-              Edit Profile
             </MenuItem>
           </Menu>
         </>
       )}
     </PopupState>
   );
-}
+};
 
 export default AvatarMenu;
