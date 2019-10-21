@@ -25,10 +25,10 @@ const DashboardBanner = () => {
       <div className="dashboard-product-projects">
         <p className="dashboard-product-total-projects">Total Projects: 4</p>
         <div className="dashboard-product-project-programs">
-          {programs.map(el => (
-            (el === "ux/ui" && <p className="product-program-avatar program-ux">{el.toUpperCase()}</p>) || 
-            (el === "ds" && <p className="product-program-avatar program-ds">{el.toUpperCase()}</p>) ||
-            (el === "web" && <p className="product-program-avatar program-web">{el.toUpperCase()}</p>)
+          {programs.map((el, i) => (
+            (el === "ux/ui" && <p key={i} className="product-program-avatar program-ux">{el.toUpperCase()}</p>) || 
+            (el === "ds" && <p key={i} className="product-program-avatar program-ds">{el.toUpperCase()}</p>) ||
+            (el === "web" && <p key={i} className="product-program-avatar program-web">{el.toUpperCase()}</p>)
           ))}
         </div>
       </div>
