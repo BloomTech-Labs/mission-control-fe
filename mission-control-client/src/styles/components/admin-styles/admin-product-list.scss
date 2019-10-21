@@ -1,0 +1,42 @@
+@import "../../variables.scss";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+
+.product-list-container {
+  width: 300px;
+  font-family: 'Roboto';
+  font-weight: 500;
+
+  .product-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .product-list-title {
+      color: $secondary;
+      font-size: 18px;
+    }
+    .grade-filter {
+      font-size: 16px;
+    }
+  }
+
+  .MuiFormControl-root {
+    margin-top: 1.6rem;
+    width: 100%;
+    background: white;
+
+    .MuiInputBase-input {
+      font-size: 1.4rem;
+      padding: 1.5rem 1.5rem 1.5rem 0;
+
+      &::placeholder {
+        color: black;
+        opacity: 1;
+      }
+    }
+    .MuiOutlinedInput-notchedOutline {
+      border: 1px solid white;
+    }
+  }
+}

@@ -79,7 +79,9 @@ export default function() {
         .then(res => {
           setState(defaultState);
           localStorage.setItem("token", res.data.token);
-          history.push('/dashboard');
+          localStorage.setItem('user', res.data.user.userId);
+          localStorage.setItem("fname", res.data.user.firstName);
+          history.push(`/dashboard/${localStorage.getItem('user')}`);
         })
         .catch(err => console.log(err));
     }
