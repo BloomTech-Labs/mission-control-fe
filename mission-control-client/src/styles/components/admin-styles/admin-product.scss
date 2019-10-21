@@ -1,0 +1,78 @@
+@import "../../variables.scss";
+
+.products-scroll-container {
+  max-height: 100vh;
+  overflow: auto;
+  direction: rtl;
+  position: relative;
+  right: 21px;
+  padding-left: 16px;
+  width: 321px;
+  margin-top: 3.2rem;
+
+  .product-container {
+    direction: ltr;
+    display: flex;
+    justify-content: space-between;
+    background: $admin-product-background;
+    border-radius: 5px;
+    padding: 3.2rem;
+    border-radius: 5px;
+
+    &:not(:last-child) {
+      margin-bottom: 1.6rem;
+    }
+
+    .product-description {
+      width: 60%;
+
+      .product-title {
+        font-size: 18px;
+        margin-bottom: 16px;
+      }
+
+      .product-desc {
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+
+    .product-metrics-snapshot {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 14px;
+
+      .product-cost-wrapper {
+        display: flex;
+
+        span {
+          margin-left: 5px;
+          color: $primary;
+        }
+      }
+
+      .product-grade-wrapper {
+        display: flex;
+
+        span {
+          margin-left: 5px;
+          color: $nav-link-selected;
+        }
+      }
+    }
+  }
+}
+.products-scroll-container::-webkit-scrollbar {
+  background: rgb(242, 242, 247);
+  width: 6px;
+}
+
+.products-scroll-container::-webkit-scrollbar-thumb {
+  background: rgb(188, 188, 188);
+  border-radius: 10px;
+}
+
+.products-scroll-container::-webkit-scrollbar-track-piece {
+  display: none;
+}

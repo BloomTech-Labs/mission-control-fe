@@ -1,12 +1,7 @@
-.ui.container.footer-container {
-  margin: 0 !important;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+.footer-container {
   display: flex;
   justify-content: space-between;
-  padding: 0 5rem;
+  margin-top: auto;
 
   .footer-feedback {
     display: flex;
