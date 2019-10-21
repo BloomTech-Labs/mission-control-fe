@@ -189,7 +189,7 @@ export default withFormik({
         const packet = {
             email: values.email,
             password: values.password
-        }
+        };
         axios.post(URL, packet)
             .then(res => {
                 localStorage.setItem("token", res.data.token);
