@@ -7,7 +7,6 @@ import ReactGA from 'react-ga';
 import Registration from "./components/auth/Registration.js";
 import Login from "./components/auth/Login.js";
 import Home from "./components/test/Home";
-import Login from "./components/auth/Login";
 import DashboardHome from "./components/dashboard/admin-dashboard/DashboardHome";
 
 //embedded Google Analytics for web metrics in React
