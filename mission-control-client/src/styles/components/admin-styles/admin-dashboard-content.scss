@@ -1,0 +1,84 @@
+@import "../../variables.scss";
+
+.dashboard-content-container {
+  width: 100%;
+  margin-left: 80px;
+
+  .dashboard-banner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: $secondary;
+    color: white;
+    padding: 2.4rem;
+    border-radius: 5px;
+
+    .dashboard-banner-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2.6rem;
+
+      .dashboard-product-cohorts-and-name {
+        p:nth-child(1) {
+          font-size: 15px;
+        }
+        p:nth-child(2) {
+          font-size: 30px;
+          padding-top: 0.5rem;
+        }
+      }
+
+      .dashboard-product-status {
+        padding: 8px 31px;
+        background: white;
+        color: $nav-link-selected;
+        border-radius: 5px;
+        font-size: 15px;
+      }
+    }
+    .dashboard-product-desc {
+      font-size: 15px;
+      line-height: 27.5px;
+      margin-bottom: 2.6rem;
+    }
+    .dashboard-product-projects {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .dashboard-product-total-projects {
+        font-size: 15px;
+        background: white;
+        padding: 14px 9px;
+        color: black;
+        border-radius: 7px;
+      }
+
+      .dashboard-product-project-programs {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+
+        .product-program-avatar {
+          font-size: 12px;
+          padding: 0.5rem 1.5rem;
+          margin-left: 0.75rem;
+          color: black;
+          border-radius: 2.5px;
+          color: white;
+        }
+        .program-ds {
+          background: $primary;
+        }
+        .program-ux {
+          background: $nav-link-selected;
+        }
+        .program-web {
+          background: $accent;
+          color: black;
+        }
+      }
+    }
+  }
+}

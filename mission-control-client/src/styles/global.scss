@@ -3,6 +3,9 @@
    License: none (public domain)
 */
 
+@import './variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Lato:400,400i,700&display=swap');
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -51,7 +54,20 @@ html {
   font-size: 62.5%;
   position: relative;
   min-height: 100%;
+  font-family: "Lato";
 }
 *, *:before, *:after {
   box-sizing: inherit;
+}
+
+// Reset ends here
+
+body {
+  background: rgb(242, 242, 247) !important;
+
+  .site-container {
+    margin: 1.5rem 5rem 3rem;
+    display: flex;
+    flex-direction: column;
+  }
 }
