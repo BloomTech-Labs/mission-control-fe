@@ -4,15 +4,13 @@ import {withStyles} from "@material-ui/core";
 import {withFormik} from "formik";
 import {useHistory, Link} from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
+import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import * as Yup from "yup";
 const URL = "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/login";
 
 const styles = () => ({
-    background: {
-        background: "#E5E5E5"
-    },
     container: {
         position: "absolute",
         width: "1760px",
@@ -37,7 +35,7 @@ const styles = () => ({
         letterSpacing: "0.06em",
         color: "#0051BE"
     },
-    emailInput: {
+    emailTextField: {
         position: "absolute",
         width: "576px",
         height: "77px",
@@ -45,7 +43,7 @@ const styles = () => ({
         top: "518.5px",
         background: "#F4F5F9"
     },
-    passwordInput: {
+    passwordTextField: {
         position: "absolute",
         width: "576px",
         height: "77px",
@@ -81,6 +79,36 @@ const styles = () => ({
         fontSize: "18px",
         lineHeight: "22px",
         color: "#FFFFFF"
+    },
+    emailLabel: {
+        position: "absolute",
+        width: "63px",
+        height: "29px",
+        left: "218.5px",
+        top: "474.5px",
+        fontFamily: "Lato",
+        fontStyle: "normal",
+        fontWeight: "500",
+        fontSize: "24px",
+        lineHeight: "29px",
+        textAlign: "center",
+        letterSpacing: "0.06em",
+        color: "#313131"
+    },
+    passwordLabel: {
+        position: "absolute",
+        width: "112px",
+        height: "29px",
+        left: "217.5px",
+        top: "643.5px",
+        fontFamily: "Lato",
+        fontStyle: "normal",
+        fontWeight: "500",
+        fontSize: "24px",
+        lineHeight: "29px",
+        textAlign: "center",
+        letterSpacing: "0.06em",
+        color: "#313131"
     }
 });
 
@@ -93,7 +121,7 @@ function Form({
 }) {
     const history = useHistory();
     return (
-            <div className={classes.background}>
+            <div>
                 <div className={classes.container}>
                 <h1 className={classes.header}>
                     Sign in
@@ -105,31 +133,35 @@ function Form({
                     history={history}
                     onSubmit={handleSubmit}
                 >
-                        <CardContent>
-                            <TextField
-                                className={classes.emailInput} 
-                                type="email"
-                                name="email"
-                            />
-                            {touched.email && errors.email && (
-                                <p className="error">{errors.email}</p>
-                            )}
-                            <TextField 
-                                className={classes.passwordInput}
-                                type="password"
-                                name="password"
-                            />
-                            {touched.password && errors.password && (
-                                <p className="error">{errors.password}</p>
-                            )}
-                            <Button
-                                className={classes.button} 
-                                color="primary"
-                                type="submit"
-                            >
-                                LOG IN
-                            </Button>
-                        </CardContent>
+                    <Card>
+                        
+                        <label className={classes.emailLabel}>
+                            Email
+                        </label>
+                        <TextField
+                            className={classes.emailTextField} 
+                            type="email"
+                            name="email"
+                            helperText={touched.email ? errors.email : ""}
+                        />
+                        <label className={classes.passwordLabel}>
+                            Password
+                        </label>
+                        <TextField 
+                            className={classes.passwordTextField}
+                            label="Password"
+                            type="password"
+                            name="password"
+                            helperText={touched.password ? errors.password : ""}
+                        />
+                        <Button
+                            className={classes.button} 
+                            color="primary"
+                            type="submit"
+                        >
+                            LOG IN
+                        </Button>
+                    </Card>
                 </form>
             </div>
         </div>
@@ -150,7 +182,7 @@ export default withFormik({
         };
     },
     validationSchema: Yup.object().shape({
-        email: Yup.string().email("Invalid email").required("Please, enter a valid email"),
+        email: Yup.string().required("Please, enter a valid email"),
         password: Yup.string()
             .required("Please, enter password.")
     }),
