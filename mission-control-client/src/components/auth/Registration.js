@@ -167,5 +167,6 @@ export default withFormik({
                 history.push(`/dashboard/${localStorage.getItem("user")}`);
                 // history.push(`/dashboard/${res.data.user.userId}`);
             })
+            .catch(err => console.log(err));
     }
 })(RegistrationForm)
