@@ -172,7 +172,6 @@ const LoginForm = withStyles(styles)(Form);
 
 export default withFormik({
     mapPropsToValues({
-        history,
         email,
         password
     }) {
@@ -186,7 +185,7 @@ export default withFormik({
         password: Yup.string()
             .required("Please, enter password.")
     }),
-    handleSubmit(values, {setStatus, history}) {
+    handleSubmit(values, {props: {history}}) {
         const packet = {
             email: values.email,
             password: values.password
