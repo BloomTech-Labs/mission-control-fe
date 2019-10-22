@@ -121,7 +121,6 @@ const RegistrationForm = withStyles(styles)(Form);
 
 export default withFormik({
     mapPropsToValues({
-        history,
         firstName,
         lastName,
         email,
@@ -151,7 +150,7 @@ export default withFormik({
             .oneOf([Yup.ref("password")], "Passwords must match.")
             .required("Please, confirm password")
     }),
-    handleSubmit(values, {setStatus, history}) {
+    handleSubmit(values, {props :{history}}) {
         const packet = {
             firstName: values.firstName,
             lastName: values.lastName,
