@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Layout from "./components/layout/Layout";
 import "./styles/index.scss";
-import ReactGA from 'react-ga';
 import Registration from "./components/auth/Registration.js";
 import Home from "./components/test/Home";
 import Login from "./components/auth/Login";
 import DashboardHome from "./components/dashboard/admin-dashboard/DashboardHome";
-import { render, fireEvent } from '@testing-library/react';
+import embedAnalytics from './utils/embedAnalytics';
 
-//embedded Google Analytics for web metrics in React
-process.env.NODE_ENV === 'production' ? 
-ReactGA.initialize('UA-111378465-2') && ReactGA.pageview(window.location.pathname + window.location.search)
-: null;
 
 function App() {
+  
+  useEffect(() => {
+    embedAnalytics();
+  }, []);
+
   return (
 
     <Layout>
