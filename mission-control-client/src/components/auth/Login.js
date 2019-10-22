@@ -11,7 +11,6 @@ import * as Yup from "yup";
 import computers from "../../assets/computers.svg";
 const URL =
   "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/login";
-
 const styles = () => ({
   container: {
     position: "absolute",
@@ -121,11 +120,8 @@ const styles = () => ({
     color: "#313131"
   }
 });
-
 function FormShape({ classes, errors, touched, values, handleSubmit, handleChange }) {
-
   const history = useHistory();
-
   return (
     <div style = {{position:'relative'}}>
       <div className={classes.container} style={{ zIndex: "-1" }}>
@@ -178,9 +174,7 @@ function FormShape({ classes, errors, touched, values, handleSubmit, handleChang
     </div>
   );
 }
-
 const LoginForm = withStyles(styles)(FormShape);
-
 export default withFormik({
   mapPropsToValues({ email, password }) {
     return {
@@ -202,7 +196,6 @@ export default withFormik({
       email: values.email,
       password: values.password
     };
-    console.log(values);
     axios.post(URL, packet).then(res => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", res.data.user.userId);
