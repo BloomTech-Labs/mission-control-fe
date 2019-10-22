@@ -10,8 +10,9 @@ import Login from "./components/auth/Login";
 import DashboardHome from "./components/dashboard/admin-dashboard/DashboardHome";
 
 //embedded Google Analytics for web metrics in React
-ReactGA.initialize('UA-111378465-2');
-ReactGA.pageview(window.location.pathname + window.location.search);
+process.env.NODE_ENV === 'production' ? 
+ReactGA.initialize('UA-111378465-2') && ReactGA.pageview(window.location.pathname + window.location.search)
+: null;
 
 function App() {
   return (
