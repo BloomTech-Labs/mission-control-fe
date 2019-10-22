@@ -26,47 +26,51 @@ const styles = () => ({
   form: {
     position: "absolute",
     top: "30%",
-    left: '15%',
+    left: '5%',
     width: '40%',
-    minHeight: '80vh'
+    minHeight: '80vh',
+    border: '0 0',
+    boxShadow: '0 0 0 '
   },
   header: {
     position: "absolute",
     width: "30%",
     height: "4.3rem",
-    left: "0%",
-    top: "10%",
+    left: "5%",
+    top: "5%",
     fontFamily: "Lato",
     fontStyle: "normal",
     fontWeight: "500",
     fontSize: "3.6rem",
     lineHeight: "4.3rem",
-    textAlign: "center",
+    textAlign: "left",
     letterSpacing: "0.06em",
     color: "#0051BE"
   },
   emailTextField: {
-    // position: "absolute",
-    width: "576px",
-    height: "77px",
-    // left: "217.5px",
-    // top: "518.5px",
-    background: "#F4F5F9"
+    position: "absolute",
+    width: "100%",
+    height: "10%",
+    left: "0%",
+    top: "6%",
+    background: "#F4F5F9",
+    borderRadius: '5px'
   },
   passwordTextField: {
-    // position: "absolute",
-    width: "576px",
-    height: "77px",
-    // left: "217.5px",
-    // top: "687.5px",
-    background: "#F4F5F9"
+    position: "absolute",
+    width: "100%",
+    height: "10%",
+    left: "0%",
+    top: "33%",
+    background: "#F4F5F9",
+    borderRadius: '5px'
   },
   dontHave: {
-    // position: "absolute",
-    width: "310px",
-    height: "22px",
-    // left: "218.5px",
-    // top: "404.5px",
+    position: "absolute",
+    width: "50%",
+    height: "auto",
+    left: "5%",
+    top: "16%",
     fontFamily: "Lato",
     fontStyle: "normal",
     fontWeight: "normal",
@@ -76,11 +80,11 @@ const styles = () => ({
     color: "#313131"
   },
   button: {
-    // position: "absolute",
-    width: "152px",
+    position: "absolute",
+    width: "25%",
     height: "48px",
-    // left: "217.5px",
-    // top: "887.5px",
+    left: "0",
+    top: "50%",
     background: "#0051BE",
     borderRadius: "5px",
     fontFamily: "Lato",
@@ -91,11 +95,11 @@ const styles = () => ({
     color: "#FFFFFF"
   },
   emailLabel: {
-    // position: "absolute",
+    position: "absolute",
     width: "63px",
     height: "29px",
-    // left: "218.5px",
-    // top: "474.5px",
+    left: "0",
+    top: "-2%",
     fontFamily: "Lato",
     fontStyle: "normal",
     fontWeight: "500",
@@ -106,11 +110,11 @@ const styles = () => ({
     color: "#313131"
   },
   passwordLabel: {
-    // position: "absolute",
+    position: "absolute",
     width: "112px",
     height: "29px",
-    // left: "217.5px",
-    // top: "643.5px",
+    left: "0",
+    top: "26%",
     fontFamily: "Lato",
     fontStyle: "normal",
     fontWeight: "500",
@@ -133,8 +137,8 @@ function FormShape({ classes, errors, touched, values, handleSubmit, handleChang
         <p className={classes.dontHave}>
           Don't have an account? <Link to="/register">Create One</Link>
         </p>
-        <Form history={history} className = {classes.form}>
-          <Card>
+        <Form history={history} className = {classes.form} >
+          <Card style = {{boxShadow: '0 0 '}}>
             <label className={classes.emailLabel}>Email</label>
             <TextField
               className={classes.emailTextField}
@@ -202,7 +206,6 @@ export default withFormik({
       email: values.email,
       password: values.password
     };
-    console.log(values);
     axios.post(URL, packet).then(res => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", res.data.user.userId);
