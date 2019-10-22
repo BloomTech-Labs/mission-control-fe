@@ -21,9 +21,23 @@
 
       .dashboard-product-cohorts-and-name {
         p:nth-child(1) {
-          font-size: 15px;
+          margin-bottom: 2rem;
+          padding: 0.5rem;
+          text-align: center;
+          font-size: 1.4rem;
+          background: $background;
+          color: black;
+          width: 4em;
+          border-radius: 3px;
+
+          &:hover {
+            cursor: pointer;
+          }
         }
         p:nth-child(2) {
+          font-size: 15px;
+        }
+        p:nth-child(3) {
           font-size: 30px;
           padding-top: 0.5rem;
         }
