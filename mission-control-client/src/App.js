@@ -8,6 +8,7 @@ import Registration from "./components/auth/Registration.js";
 import Home from "./components/test/Home";
 import Login from "./components/auth/Login";
 import DashboardHome from "./components/dashboard/admin-dashboard/DashboardHome";
+import { render, fireEvent } from '@testing-library/react';
 
 //embedded Google Analytics for web metrics in React
 process.env.NODE_ENV === 'production' ? 
