@@ -1,0 +1,156 @@
+.container {
+    position: absolute;
+    width: 90vw;
+    min-height: 95vh;
+    max-height: 95vh;
+    margin: 0 auto;
+    margin-top: 4%;
+    background: #FFFFFF;
+    border-radius: 5px;
+    margin-bottom: 4%;
+    .header {
+        position: absolute;
+        width: 30%;
+        height: 4.3rem;
+        left: 5%;
+        top: 10%;
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 3.6rem;
+        line-height: 4.3rem;
+        text-align: left;
+        letter-spacing: 0.06em;
+        color: #0051BE
+    }
+    .dontHave {
+        position: absolute;
+        width: 50%;
+        height: auto;
+        left: 5%;
+        top: 25%;
+        font-family: Lato;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1.8rem;
+        line-height: 22px;
+        letter-spacing: 0.06em;
+        color: #313131
+    }
+
+    .form {
+        position: absolute;
+        top: 30%;
+        left: 5%;
+        width: 40%;
+        height:60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        // border: 0 0;
+        // box-shadow: 0 0 0 
+        .emailLabel {
+            // position: absolute;
+            width: 63px;
+            height: 29px;
+            // left: 0;
+            // top: -7%;
+            transform: translateY(100%);
+            z-index: 1;
+            font-family: Lato;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 2.4rem;
+            line-height: 29px;
+            text-align: center;
+            letter-spacing: 0.06em;
+            color: #313131
+        }
+
+        .emailTextField {
+            // position: absolute;
+            width: 100%;
+            height: 10%;
+            // left: 0%;
+            // top: 1%;
+            background: #F4F5F9;
+            border-radius: 5px;
+            margin: 0;
+            padding: 0;
+            font-size: 2.4rem;
+        }
+
+        .passwordTextField {
+            // position: absolute;
+            width: 100%;
+            height: 10%;
+            // left: 0%;
+            // top: 33%;
+            background: #F4F5F9;
+            border-radius: 5px
+        }
+
+        .passwordLabel {
+            // position: absolute;
+            width: 112px;
+            height: 29px;
+            // left: 0;
+            // top: 26%;
+            transform: translateY(100%);
+            z-index: 1;
+            font-family: Lato;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 2.4rem;
+            line-height: 29px;
+            text-align: center;
+            letter-spacing: 0.06em;
+            color: #313131;
+        }
+
+        .btn {
+            // position: absolute;
+            width: 25%;
+            height: 48px;
+            margin-top: 30px;
+            // left: 0;
+            // top: 50%;
+            background: #0051BE;
+            border-radius: 5px;
+            font-family: Lato;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 1.8rem;
+            line-height: 22px;
+            color: #FFFFFF
+        }
+    }
+}
+
+.MuiFormControl-root {
+    // margin-top: 1.6rem;
+    background: #F4F5F9;
+
+    .MuiInputBase-input {
+        font-size: 2rem;
+
+        &::placeholder {
+            color: black;
+            opacity: 1;
+            font-size: 2.2rem;
+            margin-bottom: 0;
+        }
+    }
+
+    .MuiInputLabel-formControl {
+        font-size: 2rem;
+
+    }
+}
+
+.MuiInputBase-formControl{
+    margin-bottom: 0;
+    background: #F4F5F9;
+    z-index: 0;
+    border-radius: 5px;
+}
