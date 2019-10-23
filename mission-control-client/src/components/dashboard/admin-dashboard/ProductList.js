@@ -9,24 +9,19 @@ import Product from "./Product";
 import res from "../../../data/projects";
 
 const ProductList = () => {
-  // Create a state object to hold the projects array
   // This data will most likely be passed down as props from DashboardHome
   const [filtered, setFiltered] = useState({ items: res.data.projects });
 
   const handleChange = e => {
-    // If the search param is not an empty string and our data array has length(matchers)
     if (e.target.value !== "" && filtered.items.length) {
       let items = filtered.items;
-      // Filter through the items and return each item.name that matches the search params
       items = items.filter(item => {
         return item.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1;
-      })
-      // Then set the filtered array to state
+      });
       setFiltered({ items: items });
     } else {
-      // If the search params are an empty string and the data array has no matchers, reset array
       setFiltered({ items: res.data.projects });
-    }
+    };
   };
 
   return (
