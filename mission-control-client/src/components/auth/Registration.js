@@ -1,120 +1,76 @@
 import React from "react";
 import axios from "axios";
-import { Form, withFormik } from "formik";
+import { Form, Field, withFormik } from "formik";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import * as Yup from "yup";
-import signup from '../../assets/signup.svg'
+import signup from "../../assets/signup.svg";
 
 const URL =
   "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/register";
 // TODO: encrypt password
 
-const styles = () => ({
-  container: {
-    position: "absolute",
-    width: "1760px",
-    height: "897px",
-    left: "80px",
-    top: "176px",
-    background: "#FFFFFF",
-    borderRadius: "5px"
-  },
-  header: {
-    position: "absolute",
-    width: "136px",
-    height: "43px",
-    left: "217.5px",
-    top: "313.5px",
-    fontFamily: "Lato",
-    fontStyle: "normal",
-    fontWeight: "500",
-    fontSize: "36px",
-    lineHeight: "43px",
-    textAlign: "center",
-    letterSpacing: "0.06em",
-    color: "#0051BE"
-  }
-});
-function FormShape({ classes, errors, touched, values, handleSubmit, handleChange }) {
+function FormShape({ classes, errors, touched }) {
   const history = useHistory();
   return (
-    <div style = {{position:'relative'}}>
+    <div style={{ position: "relative" }}>
       <div className="auth-container">
         <h1 className="auth-header">Sign Up</h1>
-        <p className='dontHave'>Already have an account? Sign In</p>
-        <Form history={history} onSubmit={handleSubmit} className = 'registerForm'>
-        <label htmlFor='firstName'>First Name</label>
-          <TextField
-            type="text"
-            id="firstName"
-            name="firstName"
-            label="First Name"
-            onChange={handleChange}
-            value={values.firstName}
-          />
+        <p className="dontHave">
+          Already have an account? <Link to="/login">Sign In</Link>
+        </p>
+        <Form history={history} className="register-form">
+        <div className = 'names'>
+        <div className = 'first-name'>
+          <label htmlFor="firstName">First Name</label>
+          <Field className = 'register-input' placeholder="First Name . . ." name="firstName" type="text" />
           {touched.firstName && errors.firstName && (
             <p className="error">{errors.firstName}</p>
           )}
-          <label htmlFor='lastName'>Last Name</label>
-          <TextField
-            type="text"
-            id="lastName"
-            name="lastName"
-            label="Last Name"
-            onChange={handleChange}
-            value={values.lastName}
-          />
+          </div>
+          <div className = 'last-name'>
+          <label htmlFor="lastName">Last Name</label>
+          <Field className = 'register-input' placeholder="Last Name" name="lastName" type="text" />
           {touched.lastName && errors.lastName && (
             <p className="error">{errors.lastName}</p>
           )}
-          <label htmlFor='email'>Email</label>
-          <TextField 
-          type="email" 
-          id="email" 
-          name="email" 
-          label="Email" 
-          onChange={handleChange} 
-          value={values.email} 
-          />
+          </div>
+          </div>
+            <div className = 'email'>
+            
+          <label htmlFor="email">Email</label>
+          <Field className = 'register-input' placeholder="Email" type="email" name="email" />
           {touched.email && errors.email && (
             <p className="error">{errors.email}</p>
           )}
-          <label htmlFor='password'>Password</label>
-          <TextField
-            type="password"
-            id="password"
-            name="password"
-            label="Password"
-            onChange={handleChange}
-            value={values.password}
-          />
+          </div>
+          <div className = 'passwords'>
+          <div className = 'password'>
+          <label htmlFor="password">Password</label>
+          <Field className = 'register-input' placeholder="Password" type="password" name='password' />
           {touched.password && errors.password && (
             <p className="error">{errors.password}</p>
           )}
-          <label htmlFor='confirmPassword'>Confirm Password</label>
-          <TextField
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            label="Confirm Password"
-            onChange={handleChange}
-            value={values.confirmPassword}
-          />
+          </div>
+          <div className = 'confirm-password'>
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <Field className = 'register-input' placeholder = 'Confirm Password' type="password" name="confirmPassword" />
           {touched.confirmPassword && errors.password && (
             <p className="error">{errors.confirmPassword}</p>
           )}
+          </div>
+          </div>
           <Button color="primary" type="submit">
             GET STARTED
           </Button>
         </Form>
       </div>
       <img
-      src={signup}
-      alt="group of people working on their laptops"
-      className = 'auth-img'
-    />
+        src={signup}
+        alt="group of people working on their laptops"
+        className="auth-img"
+      />
     </div>
   );
 }
@@ -156,7 +112,7 @@ export default withFormik({
       password: values.password,
       roleId: "abc123"
     };
-    console.log(values)
+    console.log(values);
     axios
       .post(URL, packet)
       .then(res => {
