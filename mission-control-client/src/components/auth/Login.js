@@ -8,125 +8,13 @@ import * as Yup from "yup";
 import computers from "../../assets/computers.svg";
 const URL =
   "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/login";
-<<<<<<< HEAD
 
 
-=======
-const styles = () => ({
-  container: {
-    position: "absolute",
-    width: "90vw",
-    minHeight: "95vh",
-    maxHeight:"95vh",
-    margin:"0 auto",
-    marginTop:"4%",
-    background: "#FFFFFF",
-    borderRadius: "5px"
-  },
-  form: {
-    position: "absolute",
-    top: "30%",
-    left: '15%',
-    width: '40%',
-    minHeight: '80vh'
-  },
-  header: {
-    position: "absolute",
-    width: "30%",
-    height: "4.3rem",
-    left: "0%",
-    top: "10%",
-    fontFamily: "Lato",
-    fontStyle: "normal",
-    fontWeight: "500",
-    fontSize: "3.6rem",
-    lineHeight: "4.3rem",
-    textAlign: "center",
-    letterSpacing: "0.06em",
-    color: "#0051BE"
-  },
-  emailTextField: {
-    // position: "absolute",
-    width: "576px",
-    height: "77px",
-    // left: "217.5px",
-    // top: "518.5px",
-    background: "#F4F5F9"
-  },
-  passwordTextField: {
-    // position: "absolute",
-    width: "576px",
-    height: "77px",
-    // left: "217.5px",
-    // top: "687.5px",
-    background: "#F4F5F9"
-  },
-  dontHave: {
-    // position: "absolute",
-    width: "310px",
-    height: "22px",
-    // left: "218.5px",
-    // top: "404.5px",
-    fontFamily: "Lato",
-    fontStyle: "normal",
-    fontWeight: "normal",
-    fontSize: "1.8rem",
-    lineHeight: "22px",
-    letterSpacing: "0.06em",
-    color: "#313131"
-  },
-  button: {
-    // position: "absolute",
-    width: "152px",
-    height: "48px",
-    // left: "217.5px",
-    // top: "887.5px",
-    background: "#0051BE",
-    borderRadius: "5px",
-    fontFamily: "Lato",
-    fontStyle: "normal",
-    fontWeight: "500",
-    fontSize: "1.8rem",
-    lineHeight: "22px",
-    color: "#FFFFFF"
-  },
-  emailLabel: {
-    // position: "absolute",
-    width: "63px",
-    height: "29px",
-    // left: "218.5px",
-    // top: "474.5px",
-    fontFamily: "Lato",
-    fontStyle: "normal",
-    fontWeight: "500",
-    fontSize: "2.4rem",
-    lineHeight: "29px",
-    textAlign: "center",
-    letterSpacing: "0.06em",
-    color: "#313131"
-  },
-  passwordLabel: {
-    // position: "absolute",
-    width: "112px",
-    height: "29px",
-    // left: "217.5px",
-    // top: "643.5px",
-    fontFamily: "Lato",
-    fontStyle: "normal",
-    fontWeight: "500",
-    fontSize: "2.4rem",
-    lineHeight: "29px",
-    textAlign: "center",
-    letterSpacing: "0.06em",
-    color: "#313131"
-  }
-});
->>>>>>> de4e2fd2f0ccaa66c978c94c13185a8abf9d5eb9
 function FormShape({ classes, errors, touched, values, handleSubmit, handleChange }) {
   const history = useHistory();
   return (
     <div style = {{position:'relative'}}>
-      <div className='container' style={{ zIndex: "-1" }}>
+      <div className='auth-container' style={{ zIndex: "-1" }}>
         <h1 className='header'>Sign in</h1>
         <p className='dontHave'>
           Don't have an account? <Link to="/register">Create One</Link>
@@ -174,11 +62,6 @@ function FormShape({ classes, errors, touched, values, handleSubmit, handleChang
     </div>
   );
 }
-<<<<<<< HEAD
-
-=======
-const LoginForm = withStyles(styles)(FormShape);
->>>>>>> de4e2fd2f0ccaa66c978c94c13185a8abf9d5eb9
 export default withFormik({
   mapPropsToValues({ email, password }) {
     return {
@@ -209,8 +92,4 @@ export default withFormik({
       // history.push(`/dashboard/${res.data.user.userId}`)
     });
   }
-<<<<<<< HEAD
 })(FormShape);
-=======
-})(LoginForm);
->>>>>>> de4e2fd2f0ccaa66c978c94c13185a8abf9d5eb9
