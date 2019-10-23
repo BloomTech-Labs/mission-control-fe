@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
-import { withStyles } from "@material-ui/core";
 import { Form, withFormik } from "formik";
 import { useHistory, Link } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import * as Yup from "yup";
 import computers from "../../assets/computers.svg";
 const URL =
   "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/login";
+<<<<<<< HEAD
+
+
+=======
 const styles = () => ({
   container: {
     position: "absolute",
@@ -120,20 +121,20 @@ const styles = () => ({
     color: "#313131"
   }
 });
+>>>>>>> de4e2fd2f0ccaa66c978c94c13185a8abf9d5eb9
 function FormShape({ classes, errors, touched, values, handleSubmit, handleChange }) {
   const history = useHistory();
   return (
     <div style = {{position:'relative'}}>
-      <div className={classes.container} style={{ zIndex: "-1" }}>
-        <h1 className={classes.header}>Sign in</h1>
-        <p className={classes.dontHave}>
+      <div className='container' style={{ zIndex: "-1" }}>
+        <h1 className='header'>Sign in</h1>
+        <p className='dontHave'>
           Don't have an account? <Link to="/register">Create One</Link>
         </p>
-        <Form history={history} className = {classes.form}>
-          <Card>
-            <label className={classes.emailLabel}>Email</label>
+        <Form history={history} className = 'form' >
+            <label className='emailLabel' htmlFor = 'email'>Email</label>
             <TextField
-              className={classes.emailTextField}
+              className='emailTextField'
               label="Enter Your Email. . ."
               type="email"
               value={values.email}
@@ -141,9 +142,9 @@ function FormShape({ classes, errors, touched, values, handleSubmit, handleChang
               helperText={touched.email ? errors.email : ""}
               onChange={handleChange}
             />
-            <label className={classes.passwordLabel}>Password</label>
+            <label className='passwordLabel' htmlFor = 'password'>Password</label>
             <TextField
-              className={classes.passwordTextField}
+              className='passwordTextField'
               label="Enter Your Password. . ."
               type="password"
               value={values.password}
@@ -151,10 +152,9 @@ function FormShape({ classes, errors, touched, values, handleSubmit, handleChang
               helperText={touched.password ? errors.password : ""}
               onChange={handleChange}
             />
-            <Button className={classes.button} color="primary" type="submit">
+            <Button className='btn' color="primary" type="submit">
               LOG IN
             </Button>
-          </Card>
         </Form>
       </div>
       <img
@@ -174,7 +174,11 @@ function FormShape({ classes, errors, touched, values, handleSubmit, handleChang
     </div>
   );
 }
+<<<<<<< HEAD
+
+=======
 const LoginForm = withStyles(styles)(FormShape);
+>>>>>>> de4e2fd2f0ccaa66c978c94c13185a8abf9d5eb9
 export default withFormik({
   mapPropsToValues({ email, password }) {
     return {
@@ -205,4 +209,8 @@ export default withFormik({
       // history.push(`/dashboard/${res.data.user.userId}`)
     });
   }
+<<<<<<< HEAD
+})(FormShape);
+=======
 })(LoginForm);
+>>>>>>> de4e2fd2f0ccaa66c978c94c13185a8abf9d5eb9
