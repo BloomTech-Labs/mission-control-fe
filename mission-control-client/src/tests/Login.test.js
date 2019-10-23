@@ -62,3 +62,15 @@ test("Login attempt with empty inputs", async () => {
     expect(queryByText('Please, enter password.')).not.toBeNull()
   })
 });
+
+test("Successful login attempt", async () => {
+  const history = createMemoryHistory();
+  const { getByTestId, queryByText } = render(
+    <Router history={history}>
+      <Nav />
+      <Login />
+    </Router>
+  );
+
+  
+})
