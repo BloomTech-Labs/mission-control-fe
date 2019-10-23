@@ -39,8 +39,8 @@
         letter-spacing: 0.06em;
         color: #313131;
     }
-
-    .form {
+    //? login form styles
+    .login-form {
         position: absolute;
         top: 30%;
         left: 5%;
@@ -127,6 +127,10 @@
             line-height: 22px;
             color: #ffffff;
         }
+    };
+    //?registration form styles
+    .registerForm{
+        
     }
 }
 
@@ -136,9 +140,9 @@
     top: 0;
     right: 0;
     margin-top: 4%;
+    // width: 40vw;
     min-height: 95vh;
     max-height: 95vh;
-    width: auto;
 }
 
 .MuiFormControl-root {

@@ -43,8 +43,8 @@ function FormShape({ classes, errors, touched, values, handleSubmit, handleChang
     <div style = {{position:'relative'}}>
       <div className="auth-container">
         <h1 className="auth-header">Sign Up</h1>
-        <p>Already have an account? Sign In</p>
-        <Form history={history} onSubmit={handleSubmit}>
+        <p className='dontHave'>Already have an account? Sign In</p>
+        <Form history={history} onSubmit={handleSubmit} className = 'registerForm'>
         <label htmlFor='firstName'>First Name</label>
           <TextField
             type="text"
