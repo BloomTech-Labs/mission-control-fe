@@ -12,6 +12,7 @@ const URL =
 
 function FormShape({
   classes,
+  status,
   errors,
   touched,
   values,
@@ -21,16 +22,13 @@ function FormShape({
   const history = useHistory();
   return (
     <div style={{ position: "relative" }}>
-      <div className="auth-container" style={{ zIndex: "-1" }}>
+      <div className="auth-container">
         <h1 className="auth-header">Sign in</h1>
         <p className="dontHave">
           Don't have an account? <Link to="/register">Create One</Link>
         </p>
-        <Form history={history} data-testid="login-form" className="login-form">
-          <label
-            className="emailLabel"
-            htmlFor="email"
-          >
+        <Form history={history} className="login-form">
+          <label className="emailLabel" htmlFor="email">
             Email
           </label>
           <TextField
@@ -39,9 +37,8 @@ function FormShape({
             type="email"
             value={values.email}
             name="email"
-            helperText={touched.email ? errors.email : ""}
+            helperText={(touched.email ? errors.email : "") || (status && status)}
             onChange={handleChange}
-            inputProps={{ "data-testid": "email-field" }}
           />
           <label className="passwordLabel" htmlFor="password">
             Password
@@ -52,11 +49,10 @@ function FormShape({
             type="password"
             value={values.password}
             name="password"
-            helperText={touched.password ? errors.password : ""}
+            helperText={(touched.password ? errors.password : "") || (status && status)}
             onChange={handleChange}
-            inputProps={{ "data-testid": "password-field" }}
           />
-          <Button data-testid="submit" className="btn" color="primary" type="submit">
+          <Button className="btn" color="primary" type="submit">
             LOG IN
           </Button>
         </Form>
@@ -64,16 +60,7 @@ function FormShape({
       <img
         src={computers}
         alt="group of people working on their laptops"
-        style={{
-          zIndex: "1",
-          position: "absolute",
-          top: "0",
-          right: "0",
-          marginTop: "4%",
-          minHeight: "95vh",
-          maxHeight: "95vh",
-          width: "auto"
-        }}
+        className="auth-img"
       />
     </div>
   );
@@ -87,11 +74,12 @@ export default withFormik({
   },
   validationSchema: Yup.object().shape({
     email: Yup.string().required("Please, enter a valid email"),
-    password: Yup.string().required("Please, enter password.")
+    password: Yup.string().required("Please, enter password")
   }),
   handleSubmit(
     values,
     {
+      setStatus,
       props: { history }
     }
   ) {
@@ -99,13 +87,16 @@ export default withFormik({
       email: values.email,
       password: values.password
     };
-    axios.post(URL, packet).then(res => {
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", res.data.user.userId);
-      localStorage.setItem("fname", res.data.user.firstName);
-      history.push(`/dashboard/${localStorage.getItem("user")}`);
-      // curious about the difference of security between these two
-      // history.push(`/dashboard/${res.data.user.userId}`)
-    });
+    axios
+      .post(URL, packet)
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", res.data.user.userId);
+        localStorage.setItem("fname", res.data.user.firstName);
+        history.push(`/dashboard/${localStorage.getItem("user")}`);
+        // curious about the difference of security between these two
+        // history.push(`/dashboard/${res.data.user.userId}`)
+      })
+      .catch(err => setStatus(err.response.data.message));
   }
 })(FormShape);
