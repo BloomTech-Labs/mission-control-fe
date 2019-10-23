@@ -86,18 +86,18 @@ export default withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    firstName: Yup.string().required("Please, enter first name."),
-    lastName: Yup.string().required("Please, enter last name."),
+    firstName: Yup.string().required("First name is required"),
+    lastName: Yup.string().required("Last name is required"),
     email: Yup.string()
       .email("Invalid email")
-      .required("Please, enter a valid email"),
+      .required("Email is required"),
     password: Yup.string()
       .min(8, "Password must be at least 8 characters.")
       .max(16, "Password cannot be more than 16 characters.")
-      .required("Please, enter a password between 8 and 16 characters."),
+      .required("Password must be 8 to 16 characters"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password")], "Passwords must match.")
-      .required("Please, confirm password")
+      .required("You must confirm your password")
   }),
   handleSubmit(
     values,
@@ -110,9 +110,9 @@ export default withFormik({
       lastName: values.lastName,
       email: values.email,
       password: values.password,
-      roleId: "abc123"
+      roleId: "123abc"
     };
-    console.log(values);
+    console.log(packet);
     axios
       .post(URL, packet)
       .then(res => {
