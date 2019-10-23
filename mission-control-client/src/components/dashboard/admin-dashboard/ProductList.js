@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
@@ -9,6 +9,21 @@ import Product from "./Product";
 import res from "../../../data/projects";
 
 const ProductList = () => {
+  // This data will most likely be passed down as props from DashboardHome
+  const [filtered, setFiltered] = useState({ items: res.data.projects });
+
+  const handleChange = e => {
+    if (e.target.value !== "" && filtered.items.length) {
+      let items = filtered.items;
+      items = items.filter(item => {
+        return item.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1;
+      });
+      setFiltered({ items: items });
+    } else {
+      setFiltered({ items: res.data.projects });
+    };
+  };
+
   return (
     <div className="product-list-container">
         <div className="product-list-header">
@@ -18,6 +33,7 @@ const ProductList = () => {
         <TextField
           variant="outlined"
           placeholder="Search here"
+          onChange={handleChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -27,7 +43,7 @@ const ProductList = () => {
           }}
         />
         <div className="products-scroll-container">
-          {res.data.projects.map((el, i) => (
+          {filtered.items.map((el, i) => (
             <Product key={i}/>
           ))}
         </div>
