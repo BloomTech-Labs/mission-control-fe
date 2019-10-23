@@ -8,7 +8,6 @@ const NavLinksLoggedIn = () => {
 
   return (
     <>
-      <Bell className="bell"/>
       <p className="logged-in logged-in-link">{`Welcome back, ${name}`}</p>
       <AvatarMenu />
     </>
