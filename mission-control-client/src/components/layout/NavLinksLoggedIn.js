@@ -8,7 +8,7 @@ const NavLinksLoggedIn = () => {
 
   return (
     <>
-      <p className="logged-in logged-in-link">{`Welcome back, ${name}`}</p>
+      <p data-testid="greeting" className="logged-in logged-in-link">{`Welcome back, ${name}`}</p>
       <AvatarMenu />
     </>
   );
