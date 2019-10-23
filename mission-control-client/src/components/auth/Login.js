@@ -14,12 +14,12 @@ function FormShape({ classes, errors, touched, values, handleSubmit, handleChang
   const history = useHistory();
   return (
     <div style = {{position:'relative'}}>
-      <div className='auth-container' style={{ zIndex: "-1" }}>
+      <div className='auth-container'>
         <h1 className='auth-header'>Sign in</h1>
         <p className='dontHave'>
           Don't have an account? <Link to="/register">Create One</Link>
         </p>
-        <Form history={history} className = 'login-form' >
+        <Form history={history} className='login-form'>
             <label className='emailLabel' htmlFor = 'email'>Email</label>
             <TextField
               className='emailTextField'
@@ -48,16 +48,7 @@ function FormShape({ classes, errors, touched, values, handleSubmit, handleChang
       <img
         src={computers}
         alt="group of people working on their laptops"
-        style={{
-          zIndex: "1",
-          position: "absolute",
-          top: "0",
-          right: "0",
-          marginTop:"4%",
-          minHeight: "95vh",
-          maxHeight:"95vh",
-          width:'auto'
-        }}
+        className = 'auth-img'
       />
     </div>
   );
