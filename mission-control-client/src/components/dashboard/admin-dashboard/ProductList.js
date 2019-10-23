@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
+import { Input } from 'semantic-ui-react'
 
 import Product from "./Product";
 
@@ -30,18 +31,14 @@ const ProductList = () => {
           <p className="product-list-title">Products</p>
           <p className="grade-filter">Grade</p>
         </div>
-        <TextField
-          variant="outlined"
+        <span className="admin-product-search-wrapper">
+        <SearchIcon fontSize="large" className="admin-product-search-icon"/>
+        <input
+          className="admin-product-search"
           placeholder="Search here"
           onChange={handleChange}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon fontSize="large" />
-              </InputAdornment>
-            )
-          }}
         />
+        </span>
         <div className="products-scroll-container">
           {filtered.items.map((el, i) => (
             <Product key={i}/>
