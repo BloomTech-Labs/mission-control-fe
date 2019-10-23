@@ -15,11 +15,11 @@ function FormShape({ classes, errors, touched, values, handleSubmit, handleChang
   return (
     <div style = {{position:'relative'}}>
       <div className='auth-container' style={{ zIndex: "-1" }}>
-        <h1 className='header'>Sign in</h1>
+        <h1 className='auth-header'>Sign in</h1>
         <p className='dontHave'>
           Don't have an account? <Link to="/register">Create One</Link>
         </p>
-        <Form history={history} className = 'form' >
+        <Form history={history} className = 'login-form' >
             <label className='emailLabel' htmlFor = 'email'>Email</label>
             <TextField
               className='emailTextField'
