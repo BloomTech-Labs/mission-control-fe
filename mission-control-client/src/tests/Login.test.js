@@ -1,8 +1,8 @@
 import React from "react";
 import Nav from "../components/layout/Nav";
 import Login from "../components/auth/Login";
+import axios from "axios";
 import "@testing-library/jest-dom/extend-expect";
-import '@testing-library/jest-dom/extend-expect'
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { render, cleanup, fireEvent, wait } from "@testing-library/react";
@@ -55,22 +55,39 @@ test("Login attempt with empty inputs", async () => {
     </Router>
   );
 
-  fireEvent.click(getByTestId(/submit/i))
+  const btn = getByTestId(/submit/i);
+
+  fireEvent.click(btn);
 
   await wait(() => {
-    expect(queryByText('Please, enter a valid email')).not.toBeNull()
-    expect(queryByText('Please, enter password.')).not.toBeNull()
-  })
+    expect(queryByText("Please, enter a valid email")).not.toBeNull();
+    expect(queryByText("Please, enter password")).not.toBeNull();
+  });
 });
 
-test("Successful login attempt", async () => {
+test("Login attempt with invalid inputs", async () => {
   const history = createMemoryHistory();
-  const { getByTestId, queryByText } = render(
+  const { container, getByTestId, findAllByText } = render(
     <Router history={history}>
-      <Nav />
       <Login />
     </Router>
   );
 
-  
-})
+  fireEvent.change(getByTestId(/email-field/i), {
+    target: { value: "test@email.com" }
+  });
+  fireEvent.change(getByTestId(/password-field/i), {
+    target: { value: "testing123" }
+  });
+
+  const btn = getByTestId(/submit/i);
+
+  fireEvent.click(btn);
+
+  const warn = await findAllByText("Invalid credentials.");
+
+  expect(container.contains(warn[0])).toBeTruthy();
+  expect(container.contains(warn[1])).toBeTruthy();
+  expect(container.contains(warn[2])).toBeFalsy();
+
+});

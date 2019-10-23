@@ -38,6 +38,7 @@ function FormShape({
             value={values.email}
             name="email"
             helperText={(touched.email ? errors.email : "") || (status && status)}
+            inputProps={{"data-testid": "email-field"}}
             onChange={handleChange}
           />
           <label className="passwordLabel" htmlFor="password">
@@ -51,8 +52,9 @@ function FormShape({
             name="password"
             helperText={(touched.password ? errors.password : "") || (status && status)}
             onChange={handleChange}
+            inputProps={{"data-testid": "password-field"}}
           />
-          <Button className="btn" color="primary" type="submit">
+          <Button className="btn" color="primary" type="submit" data-testid="submit">
             LOG IN
           </Button>
         </Form>
