@@ -4,10 +4,10 @@ import PrivateRoute from "./components/PrivateRoute";
 import Layout from "./components/layout/Layout";
 import "./styles/index.scss";
 import Registration from "./components/auth/Registration.js";
+import Login from './components/auth/Login';
 import Home from "./components/test/Home";
 import DashboardHome from "./components/dashboard/admin-dashboard/DashboardHome";
 import embedAnalytics from './utils/embedAnalytics';
-
 
 function App() {
   
