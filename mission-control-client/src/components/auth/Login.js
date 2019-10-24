@@ -27,7 +27,7 @@ function FormShape({
         <p className="dontHave">
           Don't have an account? <Link to="/register">Create One</Link>
         </p>
-        <Form history={history} className="login-form">
+        <Form data-testid="login-form" history={history} className="login-form">
           <label className="emailLabel" htmlFor="email">
             Email
           </label>
@@ -93,9 +93,10 @@ export default withFormik({
       .post(URL, packet)
       .then(res => {
         localStorage.setItem("token", res.data.token);
+        console.log(localStorage.getItem('token'))
         localStorage.setItem("user", res.data.user.userId);
         localStorage.setItem("fname", res.data.user.firstName);
-        history.push(`/dashboard/${localStorage.getItem("user")}`);
+        // history.push(`/dashboard/${localStorage.getItem("user")}`);
         // curious about the difference of security between these two
         // history.push(`/dashboard/${res.data.user.userId}`)
       })

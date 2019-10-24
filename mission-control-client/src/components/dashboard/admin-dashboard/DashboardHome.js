@@ -5,7 +5,7 @@ import DashboardContent from "./DashboardContent";
 const DashboardHome = () => {
 
   return (
-    <div className="admin-dashboard-container">
+    <div data-testid="dash" className="admin-dashboard-container">
       <ProductList />
       <DashboardContent />
     </div>
