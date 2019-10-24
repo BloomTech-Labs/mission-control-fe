@@ -9,42 +9,32 @@ import Product from "./Product";
 const ProductList = props => {
   console.log(props);
   useEffect(() => {
-    setFiltered({ ...filtered, items: props.products });
+    setFiltered({ products: props.products });
   }, [props]);
 
-  // This data will most likely be passed down as props from DashboardHome
-  const [filtered, setFiltered] = useState({ items: [], filteredItems: [] });
+  const [filtered, setFiltered] = useState({ products: [] });
   console.log(filtered);
 
   const handleChange = e => {
-    console.log(filtered.searchParam);
+    // Create a new variable to hold all available products
+    const products = props.products;
     const re = /^[a-z0-9]+$/i;
-    console.log(e.keyCode);
-    
+    // If search param is not an empty string and is alphaNumeric
     if (e.target.value !== "" && re.test(e.target.value)) {
-      setFiltered({ items: filtered.items.filter(item => {
-        console.log(item);
-        return item.productName.toLowerCase().search(e.target.value.toLowerCase()) !== -1;
-      })})
+      setFiltered({
+        // Filter through variable created above for products that contain search params
+        products: products.filter(item => {
+          return item.productName.toLowerCase().search(e.target.value.toLowerCase()) !== -1;
+        })
+      });
+      // Else if search param is not alphaNumeric and not an empty string
+    } else if (!re.test(e.target.value) && e.target.value !== "") {
+      setFiltered({ products: [] });
+      // Else, if empty string, reset products
     } else {
-      setFiltered({ items: props.products, filteredItems: [] });
+      setFiltered({ products: props.products });
     };
   };
-
-  // const handleChange = e => {
-  //   const re = /^[a-z0-9]+$/i;
-  //   if (e.target.value !== "" && re.test(e.target.value) && filtered.items.length) {
-  //     let items = filtered.items;
-  //     console.log(items);
-  //     items = items.filter(item => {
-  //       console.log(item);
-  //       return item.productName.toLowerCase().search(e.target.value.toLowerCase()) !== -1;
-  //     });
-  //     setFiltered({ items: items });
-  //   } else {
-  //     setFiltered({ items: props.products });
-  //   };
-  // };
 
   return (
     <div className="product-list-container">
@@ -61,7 +51,7 @@ const ProductList = props => {
         />
         </span>
         <div className="products-scroll-container">
-          {filtered.items.length && filtered.items.map((el, i) => (
+          {filtered.products.length && filtered.products.map((el, i) => (
             <Product key={i} el={el} />
           ))}
         </div>

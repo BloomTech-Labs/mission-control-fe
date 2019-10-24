@@ -6,10 +6,8 @@ import DashboardContent from "./DashboardContent";
 
 const DashboardHome = props => {
 
-  console.log(props);
   useEffect(() => {
     getProducts();
-    // Need to connect to the redux store and map products to state, pass in props, and passdown to productlist
   }, []);
 
   return (
