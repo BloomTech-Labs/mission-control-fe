@@ -20,9 +20,9 @@ const DashboardBanner = () => {
           <p>Lambda Labs</p>
           <p>DesignHub</p>
         </div>
-        <div className="dashboard-product-status">
+        {/* <div className="dashboard-product-status">
           <p>In Progress</p>
-        </div>
+        </div> */}
       </div>
       {expanded && (
         <>

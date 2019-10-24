@@ -16,6 +16,7 @@ function FormShape({errors, touched }) {
   return (
     <div style = {{position:'relative'}}>
       <div className='auth-container' >
+
         <h1 className='auth-header'>Sign in</h1>
         <p className='dontHave'>
           Don't have an account? <Link to="/register">Create One</Link>
@@ -86,3 +87,4 @@ export default withFormik({
     });
   }
 })(FormShape);
+
