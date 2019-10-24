@@ -5,6 +5,7 @@ import { createMemoryHistory } from "history";
 import App from "../App";
 import * as rtl from "@testing-library/react";
 afterEach(rtl.cleanup);
+jest.unmock('axios')
 
 describe("App", () => {
   it("renders without crashing", () => {

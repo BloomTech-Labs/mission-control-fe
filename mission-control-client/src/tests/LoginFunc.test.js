@@ -1,11 +1,16 @@
 import React from "react";
 import Nav from "../components/layout/Nav";
 import Login from "../components/auth/Login";
-import axios from "axios";
+import fakeAxios from "axios";
 import "@testing-library/jest-dom/extend-expect";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import { render, cleanup, fireEvent, wait } from "@testing-library/react";
+import {
+  render,
+  cleanup,
+  fireEvent,
+  wait
+} from "@testing-library/react";
 
 afterEach(cleanup);
 
@@ -67,22 +72,41 @@ test("Login attempt with empty inputs", async () => {
 
 test("Login attempt with invalid inputs", async () => {
   const history = createMemoryHistory();
-  const { container, getByTestId, findAllByText } = render(
+
+  const { container, getByTestId, findAllByText, queryAllByText } = render(
     <Router history={history}>
       <Login />
     </Router>
   );
 
+  // mock err
+
+  fakeAxios.post.mockRejectedValueOnce({
+    response: { data: { message: "Invalid credentials." } }
+  });
+
+  // pre-test for err msgs
+
+  const preWarn = queryAllByText("Invalid credentials.");
+
+  expect(preWarn.length).toBe(0);
+
+  // bad inputs
+
   fireEvent.change(getByTestId(/email-field/i), {
-    target: { value: "test@email.com" }
+    target: { value: "test@bademail.com" }
   });
   fireEvent.change(getByTestId(/password-field/i), {
     target: { value: "testing123" }
   });
 
+  // submit
+
   const btn = getByTestId(/submit/i);
 
   fireEvent.click(btn);
+
+  // wait for err msgs and check DOM for two err msgs (one per input)
 
   const warn = await findAllByText("Invalid credentials.");
 
@@ -90,4 +114,7 @@ test("Login attempt with invalid inputs", async () => {
   expect(container.contains(warn[1])).toBeTruthy();
   expect(container.contains(warn[2])).toBeFalsy();
 
+  // confirm that fake axios was called
+
+  expect(fakeAxios.post).toHaveBeenCalledTimes(1);
 });
