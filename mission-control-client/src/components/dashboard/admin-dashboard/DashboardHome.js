@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { getProducts } from '../../../actions/productActions';
+import { connect } from "react-redux";
 import ProductList from "./ProductList";
 import DashboardContent from "./DashboardContent";
 
-const DashboardHome = () => {
+const DashboardHome = props => {
+
+  console.log(props);
+  useEffect(() => {
+    getProducts();
+    // Need to connect to the redux store and map products to state, pass in props, and passdown to productlist
+  }, []);
 
   return (
     <div className="admin-dashboard-container">
-      <ProductList />
+      <ProductList products={props.productStore.products} />
       <DashboardContent />
     </div>
   );
 };
 
-export default DashboardHome;
+const mapStateToProps = state => {
+  return {
+    productStore: state.productStore
+  };
+};
+
+export default connect(mapStateToProps, getProducts)(DashboardHome);

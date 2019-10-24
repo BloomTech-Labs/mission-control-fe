@@ -40,7 +40,6 @@ describe('Nav', () => {
         );
         // Click register button
         await fireEvent.click(getByText('Sign Up'));
-        console.log(history.location.pathname)
         expect(history.location.pathname).toBe('/register');
     });
 
