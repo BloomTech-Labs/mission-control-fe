@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import { Form, Field, withFormik } from "formik";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useHistory, Link } from "react-router-dom";
 import * as Yup from "yup";
@@ -11,7 +10,7 @@ const URL =
   "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/register";
 // TODO: encrypt password
 
-function FormShape({ classes, errors, touched }) {
+function FormShape({ errors, touched }) {
   const history = useHistory();
   return (
     <div style={{ position: "relative" }}>
