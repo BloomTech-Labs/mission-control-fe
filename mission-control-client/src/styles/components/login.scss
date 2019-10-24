@@ -51,7 +51,7 @@
     display: flex;
     flex-direction: column;
     align-items: space-between;
-    // background: #ff9494;
+
     .error {
       font-size: 1.4rem;
       color: #ff9494;
@@ -64,22 +64,6 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      label {
-        font-family: Lato;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 2.4rem;
-      }
-  
-      input {
-        width: 100%;
-        height: 30%;
-        border: none;
-        fill: solid;
-        background: #f4f5f9;
-        border-radius: 5px;
-      }
-
     }
 
     .password{
@@ -87,32 +71,35 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      
-      label {
-        font-family: Lato;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 2.4rem;
+    }
+
+    label {
+      font-family: Lato;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 2.4rem;
+    }
+    
+    input {
+      width: 100%;
+      height: 37%;
+      border: none;
+      fill: solid;
+      background: #f4f5f9;
+      border-radius: 5px;
+      margin-top: 2.5%;
+      padding-left: 1.5%;
+      font-size:1.7rem;
+      &::placeholder{
+        font-size:1.5rem;
+        padding-left: 1.5%;
       }
-      
-      input {
-        width: 100%;
-        height: 30%;
-        border: none;
-        fill: solid;
-        background: #f4f5f9;
-        border-radius: 5px;
-      }
-  
     }
 
     .btn {
-      // position: absolute;
       width: 25%;
-      height: 48px;
+      height: 11%;
       margin-top: 30px;
-      // left: 0;
-      // top: 50%;
       background: #0051be;
       border-radius: 5px;
       font-family: Lato;
