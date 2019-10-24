@@ -21,38 +21,43 @@ function FormShape({errors, touched }) {
           Don't have an account? <Link to="/register">Create One</Link>
         </p>
         <Form history={history} className = 'login-form' >
-        <div className = 'email'>
+          <div className = 'email'>
             <label htmlFor = 'email'>Email</label>
             <Field placeholder ="Enter Your Email. . ." type ="text" name ="email"/>
             {touched.email && errors.email && (
               <p className="error">{errors.email}</p>
             )}
-            </div>
-            <div className = 'password'>
+          </div>
+          <div className = 'password'>
             <label htmlFor = 'password'>Password</label>
             <Field placeholder = 'Password' type="password" name="password"/>
             {touched.password && errors.password && (
               <p className="error">{errors.password}</p>
             )}
-            </div>
+          </div>
+          <div className = 'remember'>
+            <Field component="input" type="checkbox" name = 'remembered' className = 'checkbox'/>
+            <p>Remember me</p>
+          </div>
             <Button className ='btn' color="primary" type="submit">
               LOG IN
             </Button>
         </Form>
-      </div>
+    </div>
       <img
         src={computers}
         alt="group of people working on their laptops"
         className = 'auth-img'
       />
     </div>
-  );
+  );  
 }
 export default withFormik({
-  mapPropsToValues({ email, password }) {
+  mapPropsToValues({ email, password, remembered }) {
     return {
       email: email || "",
-      password: password || ""
+      password: password || "",
+      remembered: remembered || false
     };
   },
   validationSchema: Yup.object().shape({
@@ -67,8 +72,10 @@ export default withFormik({
   ) {
     const packet = {
       email: values.email,
-      password: values.password
+      password: values.password,
+      remembered: values.remembered
     };
+    console.log(values)
     axios.post(URL, packet).then(res => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", res.data.user.userId);

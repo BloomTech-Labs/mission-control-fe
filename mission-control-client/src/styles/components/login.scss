@@ -41,9 +41,24 @@
     color: #313131;
   }
 
+  .error {
+    font-size: 1.4rem;
+    color: #ff9494;
+    font-weight: 700;
+    margin: 1rem 0.5rem;
+  }
+
+  label {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.4rem;
+    color: #313131;
+  }
+
   //? login form styles
   .login-form {
-    height: 55vh;
+    height: 58vh;
     width: 38vw;
     position: absolute;
     top: 30%;
@@ -52,47 +67,60 @@
     flex-direction: column;
     align-items: space-between;
 
-    .error {
-      font-size: 1.4rem;
-      color: #ff9494;
-      font-weight: 700;
-      margin: 1rem 0.2rem;
-    }
-
-    .email{
+    .email {
       height: 33%;
       width: 100%;
       display: flex;
       flex-direction: column;
     }
 
-    .password{
-      height: 30%;
+    .password {
+      height: 33%;
       width: 100%;
       display: flex;
       flex-direction: column;
     }
 
-    label {
-      font-family: Lato;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 2.4rem;
-    }
-    
     input {
       width: 100%;
-      height: 37%;
+      height: 33%;
       border: none;
       fill: solid;
       background: #f4f5f9;
       border-radius: 5px;
       margin-top: 2.5%;
       padding-left: 1.5%;
-      font-size:1.7rem;
-      &::placeholder{
-        font-size:1.5rem;
+      font-size: 1.8rem;
+
+      &::placeholder {
+        font-size: 1.6rem;
         padding-left: 1.5%;
+      }
+    }
+
+    .remember {
+      height: 4.5%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      transform: translateY(-80%);
+      input {
+        margin: 0;
+        padding: 0;
+        width: 5%;
+        height: 100%;
+        border: 1.5px solid #0051be;
+        border-radius: 5px;
+      }
+      p {
+        margin-left: 1%;
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        letter-spacing: 0.06em;
+        color: #313131;
       }
     }
 
@@ -121,19 +149,8 @@
     display: flex;
     flex-direction: column;
     align-items: space-between;
-    .error {
-      font-size: 1.4rem;
-      color: #ff9494;
-      font-weight: 700;
-      margin: 1rem 0.2rem;
-    }
-    label {
-      font-family: Lato;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 2.4rem;
-    }
-    .register-input {
+
+    input {
       height: 40%;
       border: none;
       fill: solid;
@@ -141,47 +158,56 @@
       border-radius: 5px;
       margin-top: 10px;
     }
+
     .names {
       height: 30%;
       width: 100%;
       display: flex;
       justify-content: space-between;
+
       .first-name {
         width: 48.5%;
         display: flex;
         flex-direction: column;
       }
+
       .last-name {
         width: 48.5%;
         display: flex;
         flex-direction: column;
       }
     }
+
     .email {
       width: 100%;
       height: 30%;
       display: flex;
       flex-direction: column;
+
       input {
         width: 100%;
       }
     }
+
     .passwords {
       height: 30%;
       width: 100%;
       display: flex;
       justify-content: space-between;
+
       .password {
         width: 48.5%;
         display: flex;
         flex-direction: column;
       }
+
       .confirm-password {
         width: 48.5%;
         display: flex;
         flex-direction: column;
       }
     }
+
     button {
       position: absolute;
       left: 0;
@@ -208,31 +234,4 @@
   width: auto;
   min-height: 95vh;
   max-height: 95vh;
-}
-
-.MuiFormControl-root {
-  // margin-top: 1.6rem;
-  background: #f4f5f9;
-
-  .MuiInputBase-input {
-    font-size: 2rem;
-
-    &::placeholder {
-      color: black;
-      opacity: 1;
-      font-size: 2.2rem;
-      margin-bottom: 0;
-    }
-  }
-
-  .MuiInputLabel-formControl {
-    font-size: 2rem;
-  }
-}
-
-.MuiInputBase-formControl {
-  margin-bottom: 0;
-  background: #f4f5f9;
-  z-index: 0;
-  border-radius: 5px;
 }
