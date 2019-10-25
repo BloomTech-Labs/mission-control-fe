@@ -8,13 +8,13 @@ const UserTab = props => {
         axios.get(`https://api.github.com/users/${props.user.githubId}`)
             .then(res => setGithubInfo({ image: res.data.avatar_url, bio: res.data.bio }))
             .catch(err => console.log(err));
-    }, []);
+    }, [props.user.githubId]);
 
     console.log(props);
     return (
         <div className='user-tab'>
             <div className='user-tab-image'>
-                <img src={githubInfo.image && githubInfo.image} />
+                <img src={githubInfo.image && githubInfo.image} alt='' />
             </div>
             <div className='user-description'>
                 <h3>{props.user.firstname} {props.user.lastname}</h3>

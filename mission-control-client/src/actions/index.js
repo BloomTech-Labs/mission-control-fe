@@ -72,7 +72,11 @@ export {
   GET_PROJECT_GROUP_MEMBERS_START,
   GET_PROJECT_GROUP_MEMBERS_SUCCESS,
   GET_PROJECT_GROUP_MEMBERS_ERROR,
-  getProjectGroupMembers
+  getProjectGroupMembers,
+  GET_PROJECT_GROUP_MEMBER_START,
+  GET_PROJECT_GROUP_MEMBER_SUCCESS,
+  GET_PROJECT_GROUP_MEMBER_ERROR,
+  getProjectGroupMember,
 } from "./projectActions";
 
 export {
