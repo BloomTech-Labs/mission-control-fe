@@ -40,7 +40,7 @@ const ProductList = props => {
         <span className="admin-product-search-wrapper">
         <SearchIcon fontSize="large" className="admin-product-search-icon"/>
         <input
-          className='admin-product-search'
+          className="admin-product-search"
           placeholder="Search here"
           onChange={handleChange}
         />
