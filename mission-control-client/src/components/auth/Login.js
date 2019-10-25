@@ -11,6 +11,7 @@ const URL =
 
 function FormShape({ errors, touched, status }) {
   const history = useHistory();
+  console.log(errors)
   return (
     <div style={{ position: "relative" }}>
       <div className="auth-container">
@@ -62,15 +63,16 @@ function FormShape({ errors, touched, status }) {
           >
             LOG IN
           </Button>
+
         </Form>
-      </div>
+    </div>
       <img
         src={computers}
         alt="group of people working on their laptops"
         className="auth-img"
       />
     </div>
-  );
+  );  
 }
 export default withFormik({
   mapPropsToValues({ email, password, remembered }) {
