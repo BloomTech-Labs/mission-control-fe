@@ -1,13 +1,43 @@
 import React from "react";
-import Login from "../components/auth/Login";
+import Registration from "../components/auth/Registration";
 import NavLinksLoggedIn from "../components/layout/NavLinksLoggedIn";
-import axios from "axios";
+import axios from 'axios';
 import "@testing-library/jest-dom/extend-expect";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import { render, cleanup } from "@testing-library/react";
+import { render, cleanup, fireEvent, wait } from "@testing-library/react";
 
 afterEach(cleanup);
+
+test("Register attempt with empty inputs", async () => {
+  const history = createMemoryHistory();
+  const { findByTestId, getByTestId } = render(
+    <Router history={history}>
+      <Registration />
+    </Router>
+  );
+
+  const btn = getByTestId(/getstarted/i);
+
+  fireEvent.click(btn);
+
+  await wait(() => {
+    expect(findByTestId(/reg-a/i)).toBeTruthy();
+  });
+  await wait(() => {
+    expect(findByTestId(/reg-b/i)).toBeTruthy();
+  });
+  await wait(() => {
+    expect(findByTestId(/reg-c/i)).toBeTruthy();
+  });
+  await wait(() => {
+    expect(findByTestId(/reg-d/i)).toBeTruthy();
+  });
+  await wait(() => {
+    expect(findByTestId(/reg-e/i)).toBeTruthy();
+  });
+  axios.post.mockClear();
+});
 
 test("Successful login", async () => {
   // setup
@@ -15,11 +45,11 @@ test("Successful login", async () => {
   const history = createMemoryHistory();
   const { findByText } = render(
     <Router history={history}>
-      <Login />
+      <Registration />
     </Router>
   );
 
-  const a = async (URL, packet) => {
+  const r = async (URL, packet) => {
     const res = await axios.post(URL, packet);
     localStorage.setItem("token", res.data.token);
     localStorage.setItem("user", res.data.user.userId);
@@ -28,7 +58,7 @@ test("Successful login", async () => {
     return res.data;
   };
 
-  const testName= "Test"
+  const testName = "Dan";
 
   axios.post.mockImplementationOnce(() =>
     Promise.resolve({
@@ -48,9 +78,12 @@ test("Successful login", async () => {
 
   // run
 
-  const u = await a("testURL", {
-    email: "good@email.com",
-    password: "thisisatest"
+  const u = await r("testURL", {
+    firstName: testName,
+    lastName: "LastName",
+    email: "email@email.com",
+    password: "password",
+    roleId: "123abc"
   });
 
   // expects
@@ -66,6 +99,7 @@ test("Successful login", async () => {
     },
     token: "tkn"
   });
+
   expect(axios.post).toHaveBeenCalledTimes(1);
   expect(window.localStorage.getItem("token")).toEqual("tkn");
   expect(window.localStorage.getItem("fname")).toEqual(testName);
@@ -78,7 +112,7 @@ test("Successful login", async () => {
     </Router>
   );
 
-  const greet = await findByText(/welcome back/i)
-  expect(greet.innerHTML).toMatch(`Welcome back, ${testName}`)
-
+  const greet = await findByText(/welcome back/i);
+  expect(greet.innerHTML).toMatch(`Welcome back, ${testName}`);
+  axios.post.mockClear();
 });
