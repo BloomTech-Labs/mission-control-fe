@@ -58,22 +58,36 @@ test("can enter text in inputs", () => {
   expect(password.getAttribute("value")).toBe("testinginputs");
 });
 
-test('yup validation on touched fields', async () => {
+test("yup validation on touched login fields", async () => {
   const history = createMemoryHistory();
-  const { getByTestId, findByText } = render(
+  const {
+    container,
+    getByPlaceholderText,
+    findByText
+  } = render(
     <Router history={history}>
       <Login />
     </Router>
   );
 
-  const email = getByTestId(/email-field/i);
-  const password = getByTestId(/password-field/i);
-  const head = getByTestId(/signin-head/i);
+  const e = getByPlaceholderText(/Enter Your Email. . ./i);
+  const p = getByPlaceholderText(/password/i);
 
-  fireEvent.focus(email);
-  fireEvent.click(head);
+  // first name field yup validation
 
-  await expect(findByText(/iouhjiojiojo./i)).toBeTruthy();
+  fireEvent.focus(e);
+  fireEvent.blur(e);
 
+  const eBad = await findByText("Email is required");
 
-})
+  expect(container.contains(eBad)).toBeTruthy();
+
+  // last name field yup validation
+
+  fireEvent.focus(p);
+  fireEvent.blur(p);
+
+  const pBad = await findByText("Valid password is required.");
+
+  expect(container.contains(pBad)).toBeTruthy();
+});
