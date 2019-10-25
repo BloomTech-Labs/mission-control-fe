@@ -35,8 +35,8 @@ const DashboardMetrics = props => {
           variant='fullWidth'
           style={{ backgroundColor: 'white' }}
         >
-          <Tab label='Users' />
-          <Tab label='Overview' />
+          <Tab label='Users' style={{ fontSize: '12px' }} />
+          <Tab label='Overview' style={{ fontSize: '12px' }} />
         </Tabs>
 
         <TabPanel value={value} index={0}>
