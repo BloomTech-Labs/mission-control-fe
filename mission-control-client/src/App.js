@@ -5,11 +5,10 @@ import Layout from "./components/layout/Layout";
 import "./styles/index.scss";
 import Registration from "./components/auth/Registration.js";
 import Home from "./components/test/Home";
-// REMINDER: Imported user-dashboard Home component swithc back to below on line 8 before PR
-// import DashboardHome from "./components/dashboard/admin-dashboard/DashboardHome";
-import DashboardHome from "./components/dashboard/user-dashboard/DashboardHome";
+import DashboardHome from "./components/dashboard/admin-dashboard/DashboardHome";
+import UserDashboardHome from "./components/dashboard/user-dashboard/DashboardHome";
 import embedAnalytics from './utils/embedAnalytics';
-import Login from './components/auth/Login'
+import Login from './components/auth/Login';
 
 function App() {
   
@@ -25,6 +24,7 @@ function App() {
         <Route path="/register" component={Registration} />
         <Route path="/login" component={Login} />
         <PrivateRoute path="/dashboard/:id" component={DashboardHome} />
+        <PrivateRoute path="/users/dashboard/:id" component={UserDashboardHome} />
       </Switch>
     </Layout>
   );

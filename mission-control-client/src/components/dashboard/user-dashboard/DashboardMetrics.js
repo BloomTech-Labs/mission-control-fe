@@ -6,10 +6,13 @@ import { Tabs, AppBar, Tab } from '@material-ui/core'
 import UsersTab from './UsersTab';
 import OverviewTab from './OverviewTab';
 
+// Importing data to mock API response
+// This data does not directly mock the return from project group members and we will
+//    have to figure out a way to gather this information... We may have to do a good amount of 
+//      async javascript because it is a GQL server
 import res from '../../../data/projectGroupMemberData';
 
 const DashboardMetrics = props => {
-  console.log(props);
   const [value, setValue] = useState(0);
 
   useEffect(() => {
@@ -17,12 +20,12 @@ const DashboardMetrics = props => {
     // API call returns an error
   }, []);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (e, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <div className='dashboard-metrics-container' style={{ backgroundColor: '#E7EBFF', marginTop: '50px' }}>
+    <div className='dashboard-metrics-container'>
       <AppBar position='static' color='default' style={{ boxShadow: 'none' }}>
         <Tabs
           value={value}
