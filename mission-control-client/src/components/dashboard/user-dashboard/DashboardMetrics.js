@@ -16,7 +16,7 @@ const DashboardMetrics = props => {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    // getProjectGroupMembers();
+    getProjectGroupMembers();
     // API call returns an error
   }, []);
 

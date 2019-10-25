@@ -6,7 +6,8 @@ const UsersTab = ({ props }) => {
     return (
         <div className='users-tab'>
             {props.length && props.map(user => {
-                return <UserTab user={user} />
+                console.log(user);
+                return <UserTab user={user} key={user.id} />
             })}
         </div>
     );
