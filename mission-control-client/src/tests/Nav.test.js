@@ -31,7 +31,7 @@ describe('Nav', () => {
         expect(history.location.pathname).toBe('/login');
     });
 
-    it('directs to the login page when "Sign In" is clicked', async () => {
+    it('directs to the register page when "Sign In" is clicked', async () => {
         const history = createMemoryHistory();
         const { getByText } = rtl.render(
             <Router history={history}>
@@ -40,7 +40,6 @@ describe('Nav', () => {
         );
         // Click register button
         await fireEvent.click(getByText('Sign Up'));
-        console.log(history.location.pathname)
         expect(history.location.pathname).toBe('/register');
     });
 
