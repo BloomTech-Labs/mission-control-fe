@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import signup from "../../assets/signup.svg";
 
 const URL =
-  "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/register";
+  "https://dvtaodzn3c7ga.cloudfront.net/api/auth/admin/register";
 // TODO: encrypt password
 
 function FormShape({ errors, touched }) {
