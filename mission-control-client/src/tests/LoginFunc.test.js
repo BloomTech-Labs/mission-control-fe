@@ -89,7 +89,7 @@ test("Login attempt with invalid inputs", async () => {
   
   const history = createMemoryHistory();
 
-  const { container, getByTestId, findAllByText, queryAllByText } = render(
+  const { container, getByTestId, findAllByText } = render(
     <Router history={history}>
       <Login />
     </Router>
@@ -98,14 +98,8 @@ test("Login attempt with invalid inputs", async () => {
   // mock err
 
   axios.post.mockRejectedValue({
-    response: { data: { message: "Invalid credentials." } }
+    response: { data: { message: "Test for invalid credentials." } }
   });
-
-  // pre-test for err msgs
-
-  const preWarn = queryAllByText("Invalid credentials.");
-
-  expect(preWarn.length).toBe(0);
 
   // bad inputs
 
@@ -124,7 +118,7 @@ test("Login attempt with invalid inputs", async () => {
 
   // wait for err msgs and check DOM for two err msgs (one per input)
 
-  const bad = await findAllByText("Invalid credentials.");
+  const bad = await findAllByText("Test for invalid credentials.");
 
   expect(container.contains(bad[0])).toBeTruthy();
   expect(container.contains(bad[1])).toBeTruthy();
@@ -134,28 +128,8 @@ test("Login attempt with invalid inputs", async () => {
 
   fireEvent.click(btn);
 
-  await findAllByText("Invalid credentials.");
+  await findAllByText("Test for invalid credentials.");
 
   expect(axios.post).toHaveBeenCalledTimes(2);
   axios.post.mockClear();
-});
-
-// NEW TEST
-
-test("Login attempt with empty inputs", async () => {
-  const history = createMemoryHistory();
-  const { getByTestId, queryByText } = render(
-    <Router history={history}>
-      <Login />
-    </Router>
-  );
-
-  const btn = getByTestId(/submit/i);
-
-  fireEvent.click(btn);
-
-  await wait(() => {
-    expect(queryByText("Please, enter a valid email")).not.toBeNull();
-    expect(queryByText("Please, enter password")).not.toBeNull();
-  });
 });
