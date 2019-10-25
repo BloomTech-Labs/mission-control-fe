@@ -9,6 +9,8 @@ const TabPanel = props => {
         component='div'
         role='tabpanel'
         hidden={value !== index}
+        style={{ backgroundColor: '#E7EBFF' }}
+        id={`full-width-tabpanel-${index}`}
       >
         <Box p={3}>{children}</Box>
       </Typography>
