@@ -9,14 +9,12 @@ import computers from "../../assets/computers.svg";
 const URL =
   "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/login";
 
-
 function FormShape({errors, touched }) {
   const history = useHistory();
   console.log(errors)
   return (
     <div style = {{position:'relative'}}>
-      <div className='auth-container' >
-
+      <div className='auth-container'>
         <h1 className='auth-header'>Sign in</h1>
         <p className='dontHave'>
           Don't have an account? <Link to="/register">Create One</Link>
