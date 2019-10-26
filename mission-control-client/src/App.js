@@ -8,7 +8,6 @@ import Login from './components/auth/Login';
 import Home from "./components/test/Home";
 import DashboardHome from "./components/dashboard/admin-dashboard/DashboardHome";
 import embedAnalytics from './utils/embedAnalytics';
-import UserDashboardHome from "./components/dashboard/user-dashboard/DashboardHome";
 
 function App() {
   const location = useLocation();
@@ -25,7 +24,6 @@ function App() {
         <Route path="/register" component={Registration} />
         <Route path="/login" component={Login} />
         <PrivateRoute path="/dashboard/:id" component={DashboardHome} />
-        <PrivateRoute path="/users/dashboard/:id" component={UserDashboardHome} />
       </Switch>
     </Layout>
   );
