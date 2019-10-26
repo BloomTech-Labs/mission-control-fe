@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Layout from "./components/layout/Layout";
 import "./styles/index.scss";
@@ -14,7 +14,7 @@ function App() {
   
   useEffect(() => {
     embedAnalytics();
-  }, []);
+  }, [location]);
 
   return (
 
