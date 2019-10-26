@@ -6,22 +6,28 @@ import { Input } from 'semantic-ui-react'
 
 import Product from "./Product";
 
-// testing with dummy data for products
-import res from "../../../data/projects";
+const ProductList = props => {
+  
+  useEffect(() => {
+    setFiltered({ products: props.products });
+  }, [props]);
 
-const ProductList = () => {
-  // This data will most likely be passed down as props from DashboardHome
-  const [filtered, setFiltered] = useState({ items: res.data.projects });
+  const [filtered, setFiltered] = useState({ products: [] });
 
   const handleChange = e => {
-    if (e.target.value !== "" && filtered.items.length) {
-      let items = filtered.items;
-      items = items.filter(item => {
-        return item.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1;
+    const products = props.products;
+    const re = /^[a-z0-9]+$/i;
+
+    if (e.target.value !== "" && re.test(e.target.value)) {
+      setFiltered({
+        products: products.filter(item => {
+          return item.productName.toLowerCase().search(e.target.value.toLowerCase()) !== -1;
+        })
       });
-      setFiltered({ items: items });
+    } else if (!re.test(e.target.value) && e.target.value !== "") {
+      setFiltered({ products: [] });
     } else {
-      setFiltered({ items: res.data.projects });
+      setFiltered({ products: props.products });
     };
   };
 
@@ -40,8 +46,8 @@ const ProductList = () => {
         />
         </span>
         <div className="products-scroll-container">
-          {filtered.items.map((el, i) => (
-            <Product key={i}/>
+          {filtered.products.length && filtered.products.map((el, i) => (
+            <Product key={i} el={el} />
           ))}
         </div>
       </div>
