@@ -6,6 +6,7 @@ import "./styles/index.scss";
 import Registration from "./components/auth/Registration.js";
 import Login from './components/auth/Login';
 import Home from "./components/test/Home";
+import Bad from './components/layout/Bad';
 import DashboardHome from "./components/dashboard/admin-dashboard/DashboardHome";
 import embedAnalytics from './utils/embedAnalytics';
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/register" component={Registration} />
         <Route path="/login" component={Login} />
         <PrivateRoute path="/dashboard/:id" component={DashboardHome} />
+        <Route component={Bad}/>
       </Switch>
     </Layout>
   );
