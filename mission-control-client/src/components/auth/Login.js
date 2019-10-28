@@ -7,11 +7,10 @@ import * as Yup from "yup";
 import computers from "../../assets/computers.svg";
 
 const URL =
-  "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/login";
+  "https://dvtaodzn3c7ga.cloudfront.net/api/auth/admin/login";
 
 function FormShape({ errors, touched, status }) {
   const history = useHistory();
-  console.log(errors)
   return (
     <div style={{ position: "relative" }}>
       <div className="auth-container">
