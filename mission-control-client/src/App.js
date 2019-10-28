@@ -20,7 +20,7 @@ function App() {
   return (
     <Layout>
       <Switch>
-        <Route path="/" exact component={Home} />
+        <PrivateRoute path="/" exact component={DashboardHome} />
         <Route path="/register" component={Registration} />
         <Route path="/login" component={Login} />
         <PrivateRoute path="/dashboard/:id" component={DashboardHome} />
