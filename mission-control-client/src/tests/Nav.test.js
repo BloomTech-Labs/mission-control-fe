@@ -19,27 +19,27 @@ describe("Nav", () => {
     expect(container.contains(target)).toBeTruthy();
   });
 
-  it('directs to the login page when "Sign In" is clicked', async () => {
-    const history = createMemoryHistory();
-    const { getByText } = rtl.render(
-      <Router history={history}>
-        <Nav />
-      </Router>
-    );
-    // Click login button
-    await fireEvent.click(getByText("Sign In"));
-    expect(history.location.pathname).toBe("/login");
-  });
+    it('directs to the login page when "Sign In" is clicked', async () => {
+        const history = createMemoryHistory();
+        const { getByText } = rtl.render(
+            <Router history={history}>
+                <Nav />
+            </Router>
+        );
+        // Click login button
+        await fireEvent.click(getByText('Sign In'));
+        expect(history.location.pathname).toBe('/login');
+    });
 
-  it('directs to the login page when "Sign In" is clicked', async () => {
-    const history = createMemoryHistory();
-    const { getByText } = rtl.render(
-      <Router history={history}>
-        <Nav />
-      </Router>
-    );
-    // Click register button
-    await fireEvent.click(getByText("Sign Up"));
-    expect(history.location.pathname).toBe("/register");
-  });
+    it('directs to the register page when "Sign Up" is clicked', async () => {
+        const history = createMemoryHistory();
+        const { getByText } = rtl.render(
+            <Router history={history}>
+                <Nav />
+            </Router>
+        );
+        // Click register button
+        await fireEvent.click(getByText('Sign Up'));
+        expect(history.location.pathname).toBe('/register');
+    });
 });
