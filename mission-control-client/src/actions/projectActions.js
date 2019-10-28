@@ -27,12 +27,10 @@ export const GET_PROJECT_GROUP_START = 'GET_PROJECT_GROUP_START';
 export const GET_PROJECT_GROUP_SUCCESS = 'GET_PROJECT_GROUP_SUCCESS';
 export const GET_PROJECT_GROUP_ERROR = 'GET_PROJECT_GROUP_ERROR';
 
-// ? ALL PROJECT GROUP MEMBERS : [yes - AG] : null
 export const GET_PROJECT_GROUP_MEMBERS_START = 'GET_PROJECT_GROUP_MEMBERS_START';
 export const GET_PROJECT_GROUP_MEMBERS_SUCCESS = 'GET_PROJECT_GROUP_MEMBERS_SUCCESS';
 export const GET_PROJECT_GROUP_MEMBERS_ERROR = 'GET_PROJECT_GROUP_MEMBERS_ERROR';
 
-// ? SINGLE PROJECT GROUP MEMBER : [yes - AG] : null
 export const GET_PROJECT_GROUP_MEMBER_START = 'GET_PROJECT_GROUP_MEMBER_START';
 export const GET_PROJECT_GROUP_MEMBER_SUCCESS = 'GET_PROJECT_GROUP_MEMBER_SUCCESS';
 export const GET_PROJECT_GROUP_MEMBER_ERROR = 'GET_PROJECT_GROUP_MEMBER_ERROR';
@@ -111,7 +109,7 @@ export const getProjectGroupMembers = () => {
             .then(res => {
                 const members = res.data;
                 console.log(members)
-                dispatch({ type: GET_PROJECT_GROUP_MEMBERS_SUCCESS })
+                dispatch({ type: GET_PROJECT_GROUP_MEMBERS_SUCCESS, payload: members })
             })
             .catch(err => dispatch({ type: GET_PROJECT_GROUP_MEMBERS_ERROR, payload: err.response }));
     };
@@ -126,7 +124,7 @@ export const getProjectGroupMember = (id) => {
             .then(res => {
                 const member = res.data;
                 console.log(member)
-                dispatch({ type: GET_PROJECT_GROUP_MEMBER_SUCCESS })
+                dispatch({ type: GET_PROJECT_GROUP_MEMBER_SUCCESS, payload: member })
             })
             .catch(err => dispatch({ type: GET_PROJECT_GROUP_MEMBER_ERROR, payload: err.response }));
     };
@@ -141,7 +139,7 @@ export const getProjectRoles = () => {
             .then(res => {
                 const projectRoles = res.data.data.projectRoles;
                 console.log(projectRoles)
-                dispatch({ type: GET_PROJECT_ROLES_SUCCESS })
+                dispatch({ type: GET_PROJECT_ROLES_SUCCESS, payload: projectRoles })
             })
             .catch(err => dispatch({ type: GET_PROJECT_ROLES_ERROR, payload: err.response }));
     };
@@ -155,7 +153,7 @@ export const getProjectRole = id => {
             .then(res => {
                 const projectRole = res.data.data.projectRole;
                 console.log(projectRole)
-                dispatch({ type: GET_PROJECT_ROLE_SUCCESS })
+                dispatch({ type: GET_PROJECT_ROLE_SUCCESS, payload: projectRole })
             })
             .catch(err => dispatch({ type: GET_PROJECT_ROLE_ERROR, payload: err.response }));
     };
