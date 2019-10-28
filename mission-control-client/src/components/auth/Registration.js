@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import signup from "../../assets/signup.svg";
 
 const URL =
-  "https://dvtaodzn3c7ga.cloudfront.net/api/auth/admin/register";
+  "https://dvtaodzn3c7ga.cloudfront.net/api/auth/register";
 // TODO: encrypt password
 
 function FormShape({ errors, touched }) {
@@ -109,18 +109,18 @@ export default withFormik({
       lastName: values.lastName,
       email: values.email,
       password: values.password,
-      roleId: "123abc"
+      roleId: "01"
     };
-    console.log(packet);
     axios
       .post(URL, packet)
       .then(res => {
+        console.log(res)
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", res.data.user.userId);
+        localStorage.setItem("user", res.data.user.id);
         localStorage.setItem("fname", res.data.user.firstName);
         history.push(`/dashboard/${localStorage.getItem("user")}`);
         // history.push(`/dashboard/${res.data.user.userId}`);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err.response.data.message));
   }
 })(FormShape);

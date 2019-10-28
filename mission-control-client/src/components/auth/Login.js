@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import computers from "../../assets/computers.svg";
 
 const URL =
-  "https://dvtaodzn3c7ga.cloudfront.net/api/auth/admin/login";
+  "https://dvtaodzn3c7ga.cloudfront.net/api/auth/login";
 
 function FormShape({ errors, touched, status }) {
   const history = useHistory();
@@ -99,6 +99,7 @@ export default withFormik({
     axios
       .post(URL, packet)
       .then(res => {
+        console.log(res)
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", res.data.user.userId);
         localStorage.setItem("fname", res.data.user.firstName);
