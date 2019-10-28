@@ -11,6 +11,12 @@ import {
     GET_PROJECT_GROUP_START,
     GET_PROJECT_GROUP_SUCCESS,
     GET_PROJECT_GROUP_ERROR,
+    GET_PROJECT_GROUP_MEMBERS_START,
+    GET_PROJECT_GROUP_MEMBERS_SUCCESS,
+    GET_PROJECT_GROUP_MEMBERS_ERROR,
+    GET_PROJECT_GROUP_MEMBER_START,
+    GET_PROJECT_GROUP_MEMBER_SUCCESS,
+    GET_PROJECT_GROUP_MEMBER_ERROR,
     GET_PROJECT_ROLES_START,
     GET_PROJECT_ROLES_SUCCESS,
     GET_PROJECT_ROLES_ERROR,
@@ -25,6 +31,8 @@ const initialState = {
     project: {},
     projectGroups: [],
     projectGroup: {},
+    projectGroupMembers: [],
+    projectGroupMember: {},
     projectRoles: [],
     projectRole: {},
     error: ''
@@ -104,6 +112,40 @@ export const projectStore = (state = initialState, action) => {
                 isLoading: false,
                 error: action.payload
             }
+        case GET_PROJECT_GROUP_MEMBERS_START:
+            return {
+                ...state,
+                isLoading: true,
+            }
+        case GET_PROJECT_GROUP_MEMBERS_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                projectGroupMembers: action.payload
+            }
+        case GET_PROJECT_GROUP_MEMBERS_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            }
+        case GET_PROJECT_GROUP_MEMBER_START:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case GET_PROJECT_GROUP_MEMBER_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                projectGroupMember: action.payload
+            }
+        case GET_PROJECT_GROUP_MEMBER_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                error: action.payload
+            }                                                                                                                        
         case GET_PROJECT_ROLES_START:
             return {
                 ...state,
