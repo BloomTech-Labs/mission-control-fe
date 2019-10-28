@@ -242,7 +242,7 @@ test("yup confirm password matches password", async () => {
 
 test("matching passwords", async () => {
   const history = createMemoryHistory();
-  const { queryByText, getAllByPlaceholderText, getByPlaceholderText, findByText } = render(
+  const { queryByText, getAllByPlaceholderText, getByPlaceholderText } = render(
     <Router history={history}>
       <Registration />
     </Router>

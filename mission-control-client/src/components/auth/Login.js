@@ -9,13 +9,8 @@ import computers from "../../assets/computers.svg";
 const URL =
   "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/login";
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 9c52bd0c840c29c140126fea1e2408c409b6ab64
 function FormShape({ errors, touched, status }) {
   const history = useHistory();
-  console.log(errors)
   return (
     <div style={{ position: "relative" }}>
       <div className="auth-container">
@@ -67,10 +62,6 @@ function FormShape({ errors, touched, status }) {
           >
             LOG IN
           </Button>
-<<<<<<< HEAD
-=======
-
->>>>>>> 9c52bd0c840c29c140126fea1e2408c409b6ab64
         </Form>
     </div>
       <img
@@ -109,11 +100,9 @@ export default withFormik({
       .post(URL, packet)
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", res.data.user.userId);
+        localStorage.setItem("role", res.data.user.role);
         localStorage.setItem("fname", res.data.user.firstName);
-        history.push(`/dashboard/${localStorage.getItem("user")}`);
-        // curious about the difference of security between these two
-        // history.push(`/dashboard/${res.data.user.userId}`)
+        history.push(`/${res.data.user.role}/dashboard`);
       })
       .catch(err => setStatus(err.response.data.message));
   }

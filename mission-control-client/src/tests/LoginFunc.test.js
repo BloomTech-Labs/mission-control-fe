@@ -2,10 +2,9 @@ import React from "react";
 import Login from "../components/auth/Login";
 import NavLinksLoggedIn from "../components/layout/NavLinksLoggedIn";
 import axios from "axios";
-import "@testing-library/jest-dom/extend-expect";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import { render, cleanup, fireEvent, wait } from "@testing-library/react";
+import { render, cleanup, fireEvent } from "@testing-library/react";
 
 afterEach(cleanup);
 
@@ -22,9 +21,9 @@ test("Successful login", async () => {
   const a = async (URL, packet) => {
     const res = await axios.post(URL, packet);
     localStorage.setItem("token", res.data.token);
-    localStorage.setItem("user", res.data.user.userId);
+    localStorage.setItem("role", res.data.user.role);
     localStorage.setItem("fname", res.data.user.firstName);
-    history.push(`/dashboard/${localStorage.getItem("user")}`);
+    history.push(`/${res.data.user.role}/dashboard`);
     return res.data;
   };
 
@@ -39,7 +38,7 @@ test("Successful login", async () => {
           firstName: testName,
           lastName: "LastName",
           email: "email@email.com",
-          role: "God"
+          role: "god"
         },
         token: "tkn"
       }
@@ -62,15 +61,15 @@ test("Successful login", async () => {
       firstName: testName,
       lastName: "LastName",
       email: "email@email.com",
-      role: "God"
+      role: "god"
     },
     token: "tkn"
   });
   expect(axios.post).toHaveBeenCalledTimes(1);
   expect(window.localStorage.getItem("token")).toEqual("tkn");
   expect(window.localStorage.getItem("fname")).toEqual(testName);
-  expect(window.localStorage.getItem("user")).toEqual("id");
-  expect(history.location.pathname).toEqual("/dashboard/id");
+  expect(window.localStorage.getItem("role")).toEqual("god");
+  expect(history.location.pathname).toEqual("/god/dashboard");
 
   render(
     <Router history={history}>
