@@ -9,10 +9,6 @@ import computers from "../../assets/computers.svg";
 const URL =
   "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/login";
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 9c52bd0c840c29c140126fea1e2408c409b6ab64
 function FormShape({ errors, touched, status }) {
   const history = useHistory();
   console.log(errors)
@@ -67,10 +63,6 @@ function FormShape({ errors, touched, status }) {
           >
             LOG IN
           </Button>
-<<<<<<< HEAD
-=======
-
->>>>>>> 9c52bd0c840c29c140126fea1e2408c409b6ab64
         </Form>
     </div>
       <img
