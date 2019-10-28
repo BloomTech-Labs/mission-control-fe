@@ -9,44 +9,68 @@ import computers from "../../assets/computers.svg";
 const URL =
   "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/login";
 
-function FormShape({errors, touched }) {
+
+function FormShape({ errors, touched, status }) {
   const history = useHistory();
   console.log(errors)
   return (
-    <div style = {{position:'relative'}}>
-      <div className='auth-container'>
-        <h1 className='auth-header'>Sign in</h1>
-        <p className='dontHave'>
+    <div style={{ position: "relative" }}>
+      <div className="auth-container">
+        <h1 data-testid="signin-head" className="auth-header">
+          Sign in
+        </h1>
+        <p className="dontHave">
           Don't have an account? <Link to="/register">Create One</Link>
         </p>
-        <Form history={history} className = 'login-form' >
-          <div className = 'email'>
-            <label htmlFor = 'email'>Email</label>
-            <Field placeholder ="Enter Your Email. . ." type ="text" name ="email"/>
-            {touched.email && errors.email && (
+        <Form data-testid="login-form" history={history} className="login-form">
+          <div className="email">
+            <label htmlFor="email">Email</label>
+            <Field
+              data-testid="email-field"
+              placeholder="Enter Your Email. . ."
+              type="text"
+              name="email"
+            />
+            {(touched.email && errors.email && (
               <p className="error">{errors.email}</p>
-            )}
+            )) || (status && <p className="error">{status}</p>)}
           </div>
-          <div className = 'password'>
-            <label htmlFor = 'password'>Password</label>
-            <Field placeholder = 'Password' type="password" name="password"/>
-            {touched.password && errors.password && (
+          <div className="password">
+            <label htmlFor="password">Password</label>
+            <Field
+              data-testid="password-field"
+              placeholder="Password"
+              type="password"
+              name="password"
+            />
+            {(touched.password && errors.password && (
               <p className="error">{errors.password}</p>
-            )}
+            )) || (status && <p className="error">{status}</p>)}
           </div>
-          <div className = 'remember'>
-            <Field component="input" type="checkbox" name = 'remembered' className = 'checkbox'/>
+          <div className="remember">
+            <Field
+              component="input"
+              type="checkbox"
+              name="remembered"
+              className="checkbox"
+            />
             <p>Remember me</p>
           </div>
-            <Button className ='btn' color="primary" type="submit">
-              LOG IN
-            </Button>
+          <Button
+            data-testid="submit"
+            className="btn"
+            color="primary"
+            type="submit"
+          >
+            LOG IN
+          </Button>
+
         </Form>
     </div>
       <img
         src={computers}
         alt="group of people working on their laptops"
-        className = 'auth-img'
+        className="auth-img"
       />
     </div>
   );  
@@ -66,6 +90,7 @@ export default withFormik({
   handleSubmit(
     values,
     {
+      setStatus,
       props: { history }
     }
   ) {
@@ -74,15 +99,16 @@ export default withFormik({
       password: values.password,
       remembered: values.remembered
     };
-    console.log(values)
-    axios.post(URL, packet).then(res => {
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", res.data.user.userId);
-      localStorage.setItem("fname", res.data.user.firstName);
-      history.push(`/dashboard/${localStorage.getItem("user")}`);
-      // curious about the difference of security between these two
-      // history.push(`/dashboard/${res.data.user.userId}`)
-    });
+    axios
+      .post(URL, packet)
+      .then(res => {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", res.data.user.userId);
+        localStorage.setItem("fname", res.data.user.firstName);
+        history.push(`/dashboard/${localStorage.getItem("user")}`);
+        // curious about the difference of security between these two
+        // history.push(`/dashboard/${res.data.user.userId}`)
+      })
+      .catch(err => setStatus(err.response.data.message));
   }
 })(FormShape);
-
