@@ -17,7 +17,6 @@ function App() {
   }, [location]);
 
   return (
-
     <Layout>
       <Switch>
         <Route path="/" exact component={Home} />

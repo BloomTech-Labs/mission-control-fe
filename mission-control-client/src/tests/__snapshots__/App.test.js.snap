@@ -23,12 +23,14 @@ exports[`App renders without crashing 1`] = `
         >
           <a
             class="nav-link"
+            data-testid="signin"
             href="/login"
           >
             Sign In
           </a>
           <a
             class="nav-link signup"
+            data-testid="signup"
             href="/register"
           >
             Sign Up

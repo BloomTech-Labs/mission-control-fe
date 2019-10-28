@@ -11,7 +11,7 @@ const DashboardHome = props => {
   }, []);
 
   return (
-    <div className="admin-dashboard-container">
+    <div data-testid="dash" className="admin-dashboard-container">
       <ProductList products={props.productStore.products} />
       <DashboardContent />
     </div>
