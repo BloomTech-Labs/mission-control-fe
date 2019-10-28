@@ -1,6 +1,7 @@
 import React from "react";
 
-const Product = () => {
+const Product = props => {
+  console.log(props.el.productName);
 
   const text = `Currently, designers who collaborate with one another are seeing that a
   lot of assets, deliverables, design files, feedback, links, etc. get
@@ -12,7 +13,7 @@ const Product = () => {
   return (
     <div className="product-container">
       <div className="product-description">
-        <h3 className="product-title">Design Hub</h3>
+        <h3 className="product-title">{props.el.productName}</h3>
         <p className="product-desc">
           {text.split(' ').slice(0, 10).join(' ') + "..."}
         </p>
