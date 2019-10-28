@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { getProducts } from '../../../actions/productActions';
 import { connect } from "react-redux";
-import ProductList from "./ProductList";
+import ProductList from "../products/ProductList";
 import DashboardContent from "./DashboardContent";
 
 const DashboardHome = props => {
