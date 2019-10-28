@@ -15,24 +15,24 @@ function FormShape({ errors, touched }) {
   return (
     <div style={{ position: "relative" }}>
       <div className="auth-container">
-        <h1 className="auth-header">Sign Up</h1>
+        <h1 data-testid="signup-head" className="auth-header">Sign Up</h1>
         <p className="dontHave">
-          Already have an account? <Link to="/login">Sign In</Link>
+          Already have an account? <Link data-testid="signin cta" to="/login">Sign In</Link>
         </p>
-        <Form history={history} className="register-form">
+        <Form data-testid="signup" history={history} className="register-form">
         <div className = 'names'>
         <div className = 'first-name'>
           <label htmlFor="firstName">First Name</label>
-          <Field className = 'register-input' placeholder="First Name . . ." name="firstName" type="text" />
+          <Field className = 'register-input' placeholder="First Name" name="firstName" type="text" />
           {touched.firstName && errors.firstName && (
-            <p className="error">{errors.firstName}</p>
+            <p data-testid = "reg-a" className="error">{errors.firstName}</p>
           )}
           </div>
           <div className = 'last-name'>
           <label htmlFor="lastName">Last Name</label>
           <Field className = 'register-input' placeholder="Last Name" name="lastName" type="text" />
           {touched.lastName && errors.lastName && (
-            <p className="error">{errors.lastName}</p>
+            <p data-testid = "reg-b" className="error">{errors.lastName}</p>
           )}
           </div>
           </div>
@@ -41,7 +41,7 @@ function FormShape({ errors, touched }) {
           <label htmlFor="email">Email</label>
           <Field className = 'register-input' placeholder="Email" type="email" name="email" />
           {touched.email && errors.email && (
-            <p className="error">{errors.email}</p>
+            <p data-testid = "reg-c" className="error">{errors.email}</p>
           )}
           </div>
           <div className = 'passwords'>
@@ -49,18 +49,18 @@ function FormShape({ errors, touched }) {
           <label htmlFor="password">Password</label>
           <Field className = 'register-input' placeholder="Password" type="password" name='password' />
           {touched.password && errors.password && (
-            <p className="error">{errors.password}</p>
+            <p data-testid = "reg-d" className="error">{errors.password}</p>
           )}
           </div>
           <div className = 'confirm-password'>
           <label htmlFor="confirmPassword">Confirm Password</label>
           <Field className = 'register-input' placeholder = 'Confirm Password' type="password" name="confirmPassword" />
-          {touched.confirmPassword && errors.password && (
-            <p className="error">{errors.confirmPassword}</p>
+          {touched.confirmPassword && (
+            <p data-testid = "reg-e" className="error">{errors.confirmPassword}</p>
           )}
           </div>
           </div>
-          <Button color="primary" type="submit">
+          <Button color="primary" type="submit" data-testid="getstarted">
             GET STARTED
           </Button>
         </Form>
