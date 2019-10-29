@@ -7,8 +7,8 @@ import {
   useHistory
 } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
-import SPrivateRoute from "./utils/S_PrivateRoute";
-import APrivateRoute from "./utils/A_PrivateRoute";
+import StudentPrivateRoute from "./utils/S_PrivateRoute";
+import AdminPrivateRoute from "./utils/A_PrivateRoute";
 import Layout from "./components/layout/Layout";
 import "./styles/index.scss";
 import Registration from "./components/auth/Registration.js";
@@ -45,9 +45,9 @@ function App() {
         </PrivateRoute>
         <Route path="/register" component={Registration} />
         <Route path="/login" component={Login} />
-        <SPrivateRoute path="/student/dashboard" component={UserDash} />
-        <APrivateRoute path="/manager/dashboard" component={AdminDash} />
-        <APrivateRoute path="/admin/dashboard" component={AdminDash} />
+        <StudentPrivateRoute path="/student/dashboard" component={UserDash} />
+        <AdminPrivateRoute path="/manager/dashboard" component={AdminDash} />
+        <AdminPrivateRoute path="/admin/dashboard" component={AdminDash} />
         <Route component={Bad} />
       </Switch>
     </Layout>
