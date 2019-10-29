@@ -2,7 +2,8 @@ import React from "react";
 import App from "../App";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import { cleanup, render, getByText } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
+import encrypt from '../utils/encrypt';
 
 //? redux imports
 import { createStore } from "redux";
@@ -26,7 +27,7 @@ test("home path redirects to login when logged out", () => {
 
 test("home path redirects to dashboard when logged in", () => {
   localStorage.setItem("token", "token");
-  localStorage.setItem("role", "user");
+  localStorage.setItem("role", encrypt('user', process.env.REACT_APP_ROLE_KEY));
 
   const store = createStore(
     reducer,

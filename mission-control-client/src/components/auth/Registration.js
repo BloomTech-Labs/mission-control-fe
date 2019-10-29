@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import { useHistory, Link } from "react-router-dom";
 import * as Yup from "yup";
 import signup from "../../assets/signup.svg";
-import * as crypto from 'crypto-js';
+import encrypt from '../../utils/encrypt';
 
 const URL =
   "https://dvtaodzn3c7ga.cloudfront.net/api/auth/register";
@@ -115,9 +115,9 @@ export default withFormik({
     axios
       .post(URL, packet)
       .then(res => {
-        console.log(res)
+        res.data.user.role = "student";
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("role", crypto.AES.encrypt(res.data.user.role, process.env.REACT_APP_ROLE_KEY).toString());
+        localStorage.setItem("role", encrypt(res.data.user.role, process.env.REACT_APP_ROLE_KEY));
         localStorage.setItem("fname", res.data.user.firstName);
         history.push(`/${res.data.user.role}/dashboard`);
       })
