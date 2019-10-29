@@ -7,8 +7,8 @@ import {
   useHistory
 } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
-import StudentPrivateRoute from "./utils/S_PrivateRoute";
-import AdminPrivateRoute from "./utils/A_PrivateRoute";
+import StudentPrivateRoute from "./utils/StudentPrivateRoute";
+import AdminPrivateRoute from "./utils/AdminPrivateRoute";
 import Layout from "./components/layout/Layout";
 import "./styles/index.scss";
 import Registration from "./components/auth/Registration.js";
