@@ -100,7 +100,6 @@ export default withFormik({
     axios
       .post(URL, packet)
       .then(res => {
-        console.log(res)
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("role", encrypt(res.data.user.role, process.env.REACT_APP_ROLE_KEY));
         localStorage.setItem("fname", res.data.user.firstName);

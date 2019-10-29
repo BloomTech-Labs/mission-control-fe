@@ -1,5 +1,4 @@
 import React from "react";
-import * as crypto from 'crypto-js';
 import { Route, Redirect } from "react-router-dom";
 import decrypt from '../utils/decrypt';
 

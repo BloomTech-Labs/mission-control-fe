@@ -22,10 +22,12 @@ function App() {
     embedAnalytics();
   }, [location]);
 
+  console.log(decrypt())
+
   return (
     <Layout>
       <Switch>
-      {!localStorage.getItem('role') && localStorage.removeItem('token') && history.push('/login')}
+      {(!localStorage.getItem('role') || !["admin", "manager", "student"].includes(decrypt())) && (localStorage.removeItem('token')) && (history.push('/login'))}
         <PrivateRoute path="/" exact>
           {localStorage.getItem("token") ? (
             <Redirect

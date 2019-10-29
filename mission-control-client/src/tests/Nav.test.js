@@ -2,7 +2,7 @@ import React from "react";
 import Nav from "../components/layout/Nav";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
-
+import encrypt from '../utils/encrypt';
 import * as rtl from "@testing-library/react";
 import { fireEvent } from "@testing-library/react";
 afterEach(rtl.cleanup);
@@ -45,7 +45,7 @@ describe("Nav", () => {
 
   it("clicking nav head sends you to dashboard when logged in", () => {
     localStorage.setItem("token", "token");
-    localStorage.setItem("role", "user");
+    localStorage.setItem("role", encrypt('user', process.env.REACT_APP_ROLE_KEY));
 
     const history = createMemoryHistory();
     const { getByText } = rtl.render(
@@ -65,7 +65,7 @@ describe("Nav", () => {
 
   it("clicking nav head sends you to login page when not logged in", () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    localStorage.removeItem("role");
 
     const history = createMemoryHistory();
     const { getByText } = rtl.render(
