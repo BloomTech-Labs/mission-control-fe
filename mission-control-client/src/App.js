@@ -7,11 +7,7 @@ import Registration from "./components/auth/Registration.js";
 import Login from "./components/auth/Login";
 import Bad from "./components/layout/Bad";
 import DashboardHome from "./components/dashboard/admin-dashboard/DashboardHome";
-<<<<<<< HEAD
-import embedAnalytics from './utils/embedAnalytics';
-=======
 import embedAnalytics from "./utils/embedAnalytics";
->>>>>>> 7a13e4d44e3c135d305215e8071f133a6f26ce0e
 
 function App() {
   const location = useLocation();
