@@ -14,6 +14,8 @@ const ProductList = props => {
 
   const [filtered, setFiltered] = useState({ products: [] });
 
+  console.log(filtered)
+
   const handleChange = e => {
     const products = props.products;
     const re = /^[a-z0-9]+$/i;

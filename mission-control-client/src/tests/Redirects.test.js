@@ -2,7 +2,8 @@ import React from "react";
 import App from "../App";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import { cleanup, render, getByText } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
+import encrypt from '../utils/encrypt';
 
 //? redux imports
 import { createStore } from "redux";
@@ -26,7 +27,7 @@ test("home path redirects to login when logged out", () => {
 
 test("home path redirects to dashboard when logged in", () => {
   localStorage.setItem("token", "token");
-  localStorage.setItem("user", "user");
+  localStorage.setItem("role", encrypt('user', process.env.REACT_APP_ROLE_KEY));
 
   const store = createStore(
     reducer,
@@ -41,9 +42,9 @@ test("home path redirects to dashboard when logged in", () => {
     </Provider>
   );
 
-  expect(history.location.pathname).toBe("/dashboard/user");
+  expect(history.location.pathname).toBe("/user/dashboard");
   localStorage.removeItem("token");
-  localStorage.removeItem("user");
+  localStorage.removeItem("role");
 });
 
 test('bad path routes to 404', () => {
