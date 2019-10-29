@@ -41,7 +41,7 @@ test("home path redirects to dashboard when logged in", () => {
     </Provider>
   );
 
-  expect(history.location.pathname).toBe("user/dashbard");
+  expect(history.location.pathname).toBe("/user/dashboard");
   localStorage.removeItem("token");
   localStorage.removeItem("role");
 });
