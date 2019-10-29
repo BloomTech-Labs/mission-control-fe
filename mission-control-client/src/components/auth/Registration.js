@@ -1,39 +1,38 @@
 import React from "react";
 import axios from "axios";
 import { Form, Field, withFormik } from "formik";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useHistory, Link } from "react-router-dom";
 import * as Yup from "yup";
 import signup from "../../assets/signup.svg";
 
 const URL =
-  "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/register";
+  "https://dvtaodzn3c7ga.cloudfront.net/api/auth/register";
 // TODO: encrypt password
 
-function FormShape({ classes, errors, touched }) {
+function FormShape({ errors, touched }) {
   const history = useHistory();
   return (
     <div style={{ position: "relative" }}>
       <div className="auth-container">
-        <h1 className="auth-header">Sign Up</h1>
+        <h1 data-testid="signup-head" className="auth-header">Sign Up</h1>
         <p className="dontHave">
-          Already have an account? <Link to="/login">Sign In</Link>
+          Already have an account? <Link data-testid="signin cta" to="/login">Sign In</Link>
         </p>
-        <Form history={history} className="register-form">
+        <Form data-testid="signup" history={history} className="register-form">
         <div className = 'names'>
         <div className = 'first-name'>
           <label htmlFor="firstName">First Name</label>
-          <Field className = 'register-input' placeholder="First Name . . ." name="firstName" type="text" />
+          <Field className = 'register-input' placeholder="First Name" name="firstName" type="text" />
           {touched.firstName && errors.firstName && (
-            <p className="error">{errors.firstName}</p>
+            <p data-testid = "reg-a" className="error">{errors.firstName}</p>
           )}
           </div>
           <div className = 'last-name'>
           <label htmlFor="lastName">Last Name</label>
           <Field className = 'register-input' placeholder="Last Name" name="lastName" type="text" />
           {touched.lastName && errors.lastName && (
-            <p className="error">{errors.lastName}</p>
+            <p data-testid = "reg-b" className="error">{errors.lastName}</p>
           )}
           </div>
           </div>
@@ -42,7 +41,7 @@ function FormShape({ classes, errors, touched }) {
           <label htmlFor="email">Email</label>
           <Field className = 'register-input' placeholder="Email" type="email" name="email" />
           {touched.email && errors.email && (
-            <p className="error">{errors.email}</p>
+            <p data-testid = "reg-c" className="error">{errors.email}</p>
           )}
           </div>
           <div className = 'passwords'>
@@ -50,18 +49,18 @@ function FormShape({ classes, errors, touched }) {
           <label htmlFor="password">Password</label>
           <Field className = 'register-input' placeholder="Password" type="password" name='password' />
           {touched.password && errors.password && (
-            <p className="error">{errors.password}</p>
+            <p data-testid = "reg-d" className="error">{errors.password}</p>
           )}
           </div>
           <div className = 'confirm-password'>
           <label htmlFor="confirmPassword">Confirm Password</label>
           <Field className = 'register-input' placeholder = 'Confirm Password' type="password" name="confirmPassword" />
-          {touched.confirmPassword && errors.password && (
-            <p className="error">{errors.confirmPassword}</p>
+          {touched.confirmPassword && (
+            <p data-testid = "reg-e" className="error">{errors.confirmPassword}</p>
           )}
           </div>
           </div>
-          <Button color="primary" type="submit">
+          <Button color="primary" type="submit" data-testid="getstarted">
             GET STARTED
           </Button>
         </Form>
@@ -86,18 +85,18 @@ export default withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    firstName: Yup.string().required("Please, enter first name."),
-    lastName: Yup.string().required("Please, enter last name."),
+    firstName: Yup.string().required("First name is required"),
+    lastName: Yup.string().required("Last name is required"),
     email: Yup.string()
       .email("Invalid email")
-      .required("Please, enter a valid email"),
+      .required("Email is required"),
     password: Yup.string()
       .min(8, "Password must be at least 8 characters.")
       .max(16, "Password cannot be more than 16 characters.")
-      .required("Please, enter a password between 8 and 16 characters."),
+      .required("Password must be 8 to 16 characters"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password")], "Passwords must match.")
-      .required("Please, confirm password")
+      .required("You must confirm your password")
   }),
   handleSubmit(
     values,
@@ -110,18 +109,18 @@ export default withFormik({
       lastName: values.lastName,
       email: values.email,
       password: values.password,
-      roleId: "abc123"
+      roleId: "01"
     };
-    console.log(values);
     axios
       .post(URL, packet)
       .then(res => {
+        console.log(res)
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", res.data.user.userId);
+        localStorage.setItem("user", res.data.user.id);
         localStorage.setItem("fname", res.data.user.firstName);
         history.push(`/dashboard/${localStorage.getItem("user")}`);
         // history.push(`/dashboard/${res.data.user.userId}`);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err.response.data.message));
   }
 })(FormShape);

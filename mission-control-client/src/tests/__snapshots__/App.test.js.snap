@@ -12,32 +12,128 @@ exports[`App renders without crashing 1`] = `
         <div
           class="nav-logo"
         >
-          <p
+          <a
             class="nav-head"
+            href="/login"
           >
             MISSION CONTROL
-          </p>
+          </a>
         </div>
         <div
           class="nav-links"
         >
           <a
-            class="nav-link"
+            aria-current="page"
+            class="nav-link selected"
+            data-testid="signin"
             href="/login"
           >
             Sign In
           </a>
           <a
             class="nav-link signup"
+            data-testid="signup"
             href="/register"
           >
             Sign Up
           </a>
         </div>
       </div>
-      <h1>
-        Home
-      </h1>
+      <div
+        style="position: relative;"
+      >
+        <div
+          class="auth-container"
+        >
+          <h1
+            class="auth-header"
+            data-testid="signin-head"
+          >
+            Sign in
+          </h1>
+          <p
+            class="dontHave"
+          >
+            Don't have an account? 
+            <a
+              href="/register"
+            >
+              Create One
+            </a>
+          </p>
+          <form
+            class="login-form"
+            data-testid="login-form"
+            history="[object Object]"
+          >
+            <div
+              class="email"
+            >
+              <label
+                for="email"
+              >
+                Email
+              </label>
+              <input
+                data-testid="email-field"
+                name="email"
+                placeholder="Enter Your Email. . ."
+                type="text"
+                value=""
+              />
+            </div>
+            <div
+              class="password"
+            >
+              <label
+                for="password"
+              >
+                Password
+              </label>
+              <input
+                data-testid="password-field"
+                name="password"
+                placeholder="Password"
+                type="password"
+                value=""
+              />
+            </div>
+            <div
+              class="remember"
+            >
+              <input
+                class="checkbox"
+                name="remembered"
+                type="checkbox"
+                value=""
+              />
+              <p>
+                Remember me
+              </p>
+            </div>
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-text btn MuiButton-textPrimary"
+              data-testid="submit"
+              tabindex="0"
+              type="submit"
+            >
+              <span
+                class="MuiButton-label"
+              >
+                LOG IN
+              </span>
+              <span
+                class="MuiTouchRipple-root"
+              />
+            </button>
+          </form>
+        </div>
+        <img
+          alt="group of people working on their laptops"
+          class="auth-img"
+          src="computers.svg"
+        />
+      </div>
     </div>
   </div>
 </body>
