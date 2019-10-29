@@ -2,10 +2,9 @@ import React from "react";
 import Login from "../components/auth/Login";
 import NavLinksLoggedIn from "../components/layout/NavLinksLoggedIn";
 import axios from "axios";
-import "@testing-library/jest-dom/extend-expect";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
-import { render, cleanup, fireEvent, wait } from "@testing-library/react";
+import { render, cleanup, fireEvent } from "@testing-library/react";
 
 afterEach(cleanup);
 
