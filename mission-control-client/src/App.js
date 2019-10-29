@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Switch, Route, useLocation, Redirect } from "react-router-dom";
+import { Switch, Route, useLocation, Redirect, useHistory } from "react-router-dom";
 import PrivateRoute from "./utils/PrivateRoute";
 import SPrivateRoute from "./utils/S_PrivateRoute";
 import APrivateRoute from "./utils/A_PrivateRoute";
@@ -16,6 +16,7 @@ import decrypt from './utils/decrypt';
 function App() {
 
   const location = useLocation();
+  const history = useHistory();
 
   useEffect(() => {
     embedAnalytics();
@@ -24,6 +25,7 @@ function App() {
   return (
     <Layout>
       <Switch>
+      {!localStorage.getItem('role') && localStorage.removeItem('token') && history.push('/login')}
         <PrivateRoute path="/" exact>
           {localStorage.getItem("token") ? (
             <Redirect
