@@ -2,7 +2,6 @@ import React from "react";
 import Registration from "../components/auth/Registration";
 import NavLinksLoggedIn from "../components/layout/NavLinksLoggedIn";
 import axios from 'axios';
-import "@testing-library/jest-dom/extend-expect";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { render, cleanup, fireEvent, wait } from "@testing-library/react";

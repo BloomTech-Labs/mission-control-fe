@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation, Redirect } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Layout from "./components/layout/Layout";
 import "./styles/index.scss";
 import Registration from "./components/auth/Registration.js";
-import Login from './components/auth/Login';
-import Home from "./components/test/Home";
+import Login from "./components/auth/Login";
+import Bad from "./components/layout/Bad";
 import DashboardHome from "./components/dashboard/admin-dashboard/DashboardHome";
-import embedAnalytics from './utils/embedAnalytics';
+import embedAnalytics from "./utils/embedAnalytics";
 
 function App() {
   const location = useLocation();
@@ -19,10 +19,19 @@ function App() {
   return (
     <Layout>
       <Switch>
-        <Route path="/" exact component={Home} />
+        <PrivateRoute path="/" exact>
+          {localStorage.getItem("token") ? (
+            <Redirect
+              to={{ pathname: `/dashboard/${localStorage.getItem("user")}` }}
+            />
+          ) : (
+            <Redirect to="/login" />
+          )}
+        </PrivateRoute>
         <Route path="/register" component={Registration} />
         <Route path="/login" component={Login} />
-        <PrivateRoute path="/dashboard/:id" component={DashboardHome} />
+        <PrivateRoute path={`/dashboard/${localStorage.getItem('user')}`}component={DashboardHome} />
+        <Route component={Bad} />
       </Switch>
     </Layout>
   );
