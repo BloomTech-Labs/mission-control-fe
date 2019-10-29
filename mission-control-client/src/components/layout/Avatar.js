@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Avatar from "@material-ui/core/Avatar";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
+import Edit from '../user_settings/EditProfile'
 
 const AvatarMenu = () => {
   let history = useHistory();
@@ -14,6 +15,16 @@ const AvatarMenu = () => {
   const logout = () => {
     localStorage.removeItem("token");
     history.push("/login");
+  };
+
+  const [open, setOpen] = useState(false)
+
+  const handleOpen = () => {
+      setOpen(true)
+  };
+
+  const handleClose = () => {
+      setOpen(false)
   };
 
   return (
@@ -33,7 +44,8 @@ const AvatarMenu = () => {
             </Avatar>
           )}
           <Menu {...bindMenu(popupState)}>
-            <MenuItem style={{ fontSize: "1.4rem" }}>Edit Profile</MenuItem>
+            <MenuItem style={{ fontSize: "1.4rem" }} onClick = {handleOpen}>Edit Profile</MenuItem>
+            <Edit open = { open } handleClose = { handleClose } />
             <MenuItem onClick={logout} style={{ fontSize: "1.4rem" }}>
               Sign Out
             </MenuItem>
