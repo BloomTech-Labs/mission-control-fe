@@ -54,13 +54,13 @@ describe("Nav", () => {
       </Router>
     );
 
-    expect(history.location.pathname).not.toBe("user/dashboard");
+    expect(history.location.pathname).not.toBe("/user/dashboard");
 
     const head = getByText(/mission control/i);
 
     fireEvent.click(head);
 
-    expect(history.location.pathname).toBe("user/dashboard");
+    expect(history.location.pathname).toBe("/user/dashboard");
   });
 
   it("clicking nav head sends you to login page when not logged in", () => {
