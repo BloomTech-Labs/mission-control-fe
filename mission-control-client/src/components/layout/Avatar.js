@@ -29,7 +29,7 @@ const AvatarMenu = () => {
           )}
           {!localStorage.getItem("avatar") && (
             <Avatar {...bindTrigger(popupState)} className="logged-in avatar">
-              {name[0]}
+              {name ? name[0] : "U"}
             </Avatar>
           )}
           <Menu {...bindMenu(popupState)}>

@@ -1,88 +1,112 @@
 import React from "react";
 import axios from "axios";
-import { Form, withFormik } from "formik";
+import { Form, Field, withFormik } from "formik";
 import { useHistory, Link } from "react-router-dom";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import * as Yup from "yup";
 import computers from "../../assets/computers.svg";
 
 const URL =
-  "http://mission-control-be-dev.us-east-1.elasticbeanstalk.com/api/auth/admin/login";
+  "https://dvtaodzn3c7ga.cloudfront.net/api/auth/login";
 
-function FormShape({ classes, errors, touched, values, handleSubmit, handleChange }) {
+function FormShape({ errors, touched, status }) {
   const history = useHistory();
   return (
-    <div style = {{position:'relative'}}>
-      <div className='auth-container' >
-
-        <h1 className='auth-header'>Sign in</h1>
-        <p className='dontHave'>
+    <div style={{ position: "relative" }}>
+      <div className="auth-container">
+        <h1 data-testid="signin-head" className="auth-header">
+          Sign in
+        </h1>
+        <p className="dontHave">
           Don't have an account? <Link to="/register">Create One</Link>
         </p>
-        <Form history={history} className = 'login-form' >
-            <label className='emailLabel' htmlFor = 'email'>Email</label>
-            <TextField
-              className='emailTextField'
-              label="Enter Your Email. . ."
-              type="email"
-              value={values.email}
+        <Form data-testid="login-form" history={history} className="login-form">
+          <div className="email">
+            <label htmlFor="email">Email</label>
+            <Field
+              data-testid="email-field"
+              placeholder="Enter Your Email. . ."
+              type="text"
               name="email"
-              helperText={touched.email ? errors.email : ""}
-              onChange={handleChange}
             />
-            <label className='passwordLabel' htmlFor = 'password'>Password</label>
-            <TextField
-              className='passwordTextField'
-              label="Enter Your Password. . ."
+            {(touched.email && errors.email && (
+              <p className="error">{errors.email}</p>
+            )) || (status && <p className="error">{status}</p>)}
+          </div>
+          <div className="password">
+            <label htmlFor="password">Password</label>
+            <Field
+              data-testid="password-field"
+              placeholder="Password"
               type="password"
-              value={values.password}
               name="password"
-              helperText={touched.password ? errors.password : ""}
-              onChange={handleChange}
             />
-            <Button className='btn' color="primary" type="submit">
-              LOG IN
-            </Button>
+            {(touched.password && errors.password && (
+              <p className="error">{errors.password}</p>
+            )) || (status && <p className="error">{status}</p>)}
+          </div>
+          <div className="remember">
+            <Field
+              component="input"
+              type="checkbox"
+              name="remembered"
+              className="checkbox"
+            />
+            <p>Remember me</p>
+          </div>
+          <Button
+            data-testid="submit"
+            className="btn"
+            color="primary"
+            type="submit"
+          >
+            LOG IN
+          </Button>
         </Form>
-      </div>
+    </div>
       <img
         src={computers}
         alt="group of people working on their laptops"
-        className = 'auth-img'
+        className="auth-img"
       />
     </div>
-  );
+  );  
 }
 export default withFormik({
-  mapPropsToValues({ email, password }) {
+  mapPropsToValues({ email, password, remembered }) {
     return {
       email: email || "",
-      password: password || ""
+      password: password || "",
+      remembered: remembered || false
     };
   },
   validationSchema: Yup.object().shape({
-    email: Yup.string().required("Please, enter a valid email"),
-    password: Yup.string().required("Please, enter password.")
+    email: Yup.string().required("Email is required"),
+    password: Yup.string().required("Valid password is required.")
   }),
   handleSubmit(
     values,
     {
+      setStatus,
       props: { history }
     }
   ) {
     const packet = {
       email: values.email,
-      password: values.password
+      password: values.password,
+      remembered: values.remembered
     };
-    axios.post(URL, packet).then(res => {
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("user", res.data.user.userId);
-      localStorage.setItem("fname", res.data.user.firstName);
-      history.push(`/dashboard/${localStorage.getItem("user")}`);
-      // curious about the difference of security between these two
-      // history.push(`/dashboard/${res.data.user.userId}`)
-    });
+    axios
+      .post(URL, packet)
+      .then(res => {
+        console.log(res)
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", res.data.user.userId);
+        localStorage.setItem("fname", res.data.user.firstName);
+        history.push(`/dashboard/${localStorage.getItem("user")}`);
+        // curious about the difference of security between these two
+        // history.push(`/dashboard/${res.data.user.userId}`)
+      })
+      .catch(err => setStatus(err.response.data.message));
   }
 })(FormShape);
-
