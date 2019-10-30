@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-
 import Product from "./Product";
 
 const ProductList = props => {
@@ -11,7 +10,13 @@ const ProductList = props => {
 
   const [filtered, setFiltered] = useState({ products: [] });
 
-  console.log(filtered);
+  const [active, setActive] = useState(0);
+
+  const setActiveProduct = i => {
+    setActive(i);
+  };
+
+  console.log(filtered)
 
   const handleChange = e => {
     const products = props.products;
@@ -52,7 +57,15 @@ const ProductList = props => {
       </span>
       <div className="products-scroll-container">
         {filtered.products.length &&
-          filtered.products.map((el, i) => <Product key={i} el={el} />)}
+          filtered.products.map((el, i) => (
+            <Product
+              active={active}
+              setActiveProduct={setActiveProduct}
+              key={i}
+              el={el}
+              i={i}
+            />
+          ))}
       </div>
     </div>
   );

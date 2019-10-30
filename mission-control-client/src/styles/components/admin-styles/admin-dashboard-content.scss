@@ -2,7 +2,7 @@
 
 .dashboard-content-container {
   width: 100%;
-  margin-left: 80px;
+  padding-left: 80px;
 
   .dashboard-banner-container {
     display: flex;
@@ -10,36 +10,41 @@
     justify-content: space-between;
     background: $secondary;
     color: white;
-    padding: 2.4rem;
     border-radius: 5px;
+    padding: 2rem;
 
     .dashboard-banner-head {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 2.6rem;
 
-      .dashboard-product-cohorts-and-name {
-        p:nth-child(1) {
-          margin-bottom: 2rem;
-          padding: 0.5rem;
-          text-align: center;
-          font-size: 1.4rem;
-          background: $background;
+      p {
+        font-size: 30px;
+        padding-bottom: 2rem;
+      }
+
+      .dashboard-product-project-programs {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        font-weight: bold;
+
+        .product-program-avatar {
+          font-size: 12px;
+          padding: 0.5rem 1.5rem;
+          margin-left: 0.75rem;
+          border-radius: 2.5px;
+          color: white;
+        }
+        .program-ds {
+          background: $primary;
+        }
+        .program-ux {
+          background: $nav-link-selected;
+        }
+        .program-web {
+          background: $accent;
           color: black;
-          width: 4em;
-          border-radius: 3px;
-
-          &:hover {
-            cursor: pointer;
-          }
-        }
-        p:nth-child(2) {
-          font-size: 15px;
-        }
-        p:nth-child(3) {
-          font-size: 30px;
-          padding-top: 0.5rem;
         }
       }
 
@@ -64,33 +69,9 @@
       .dashboard-product-total-projects {
         font-size: 15px;
         background: white;
-        padding: 14px 9px;
+        padding: 7px;
         color: black;
-        border-radius: 7px;
-      }
-
-      .dashboard-product-project-programs {
-        display: flex;
-        align-items: center;
-        font-size: 15px;
-
-        .product-program-avatar {
-          font-size: 12px;
-          padding: 0.5rem 1.5rem;
-          margin-left: 0.75rem;
-          border-radius: 2.5px;
-          color: white;
-        }
-        .program-ds {
-          background: $primary;
-        }
-        .program-ux {
-          background: $nav-link-selected;
-        }
-        .program-web {
-          background: $accent;
-          color: black;
-        }
+        border-radius: 5px;
       }
     }
   }
