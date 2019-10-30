@@ -5,6 +5,8 @@ import { useHistory, Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import * as Yup from "yup";
 import computers from "../../assets/computers.svg";
+import { loginSuccess } from '../../actions'
+import { connect } from 'react-redux'
 
 const URL =
   "https://dvtaodzn3c7ga.cloudfront.net/api/auth/login";
@@ -72,7 +74,7 @@ function FormShape({ errors, touched, status }) {
     </div>
   );  
 }
-export default withFormik({
+const FormikLogin = withFormik({
   mapPropsToValues({ email, password, remembered }) {
     return {
       email: email || "",
@@ -88,7 +90,7 @@ export default withFormik({
     values,
     {
       setStatus,
-      props: { history }
+      props: { history, loginSuccess }
     }
   ) {
     const packet = {
@@ -104,9 +106,18 @@ export default withFormik({
         localStorage.setItem("user", res.data.user.userId);
         localStorage.setItem("fname", res.data.user.firstName);
         history.push(`/dashboard/${localStorage.getItem("user")}`);
+        loginSuccess(res.data.user);
         // curious about the difference of security between these two
         // history.push(`/dashboard/${res.data.user.userId}`)
       })
       .catch(err => setStatus(err.response.data.message));
   }
 })(FormShape);
+
+const mapStateToProps = state => {
+  return {
+    ...state
+  }
+}
+
+export default connect(mapStateToProps, {loginSuccess})(FormikLogin)

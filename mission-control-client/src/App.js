@@ -8,6 +8,7 @@ import Login from "./components/auth/Login";
 import Bad from "./components/layout/Bad";
 import DashboardHome from "./components/dashboard/admin-dashboard/DashboardHome";
 import embedAnalytics from "./utils/embedAnalytics";
+import EditProfile from "./components/user_settings/EditProfile";
 
 function App() {
   const location = useLocation();
@@ -30,7 +31,8 @@ function App() {
         </PrivateRoute>
         <Route path="/register" component={Registration} />
         <Route path="/login" component={Login} />
-        <PrivateRoute path={`/dashboard/${localStorage.getItem('user')}`}component={DashboardHome} />
+        <PrivateRoute path={`/dashboard/${localStorage.getItem('user')}`} component={DashboardHome} />
+        <PrivateRoute path={`/profile/${localStorage.getItem('user')}/edit`} component={EditProfile} />
         <Route component={Bad} />
       </Switch>
     </Layout>

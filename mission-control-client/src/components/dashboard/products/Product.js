@@ -1,7 +1,6 @@
 import React from "react";
 
 const Product = props => {
-  console.log(props.el.productName);
 
   const text = `Currently, designers who collaborate with one another are seeing that a
   lot of assets, deliverables, design files, feedback, links, etc. get
