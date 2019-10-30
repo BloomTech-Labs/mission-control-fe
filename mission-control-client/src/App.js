@@ -27,8 +27,6 @@ function App() {
     embedAnalytics();
   }, [location]);
 
-  console.log(decrypt());
-
   return (
     <Layout>
       <Switch>

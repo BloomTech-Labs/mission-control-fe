@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
-import TextField from "@material-ui/core/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-import { Input } from 'semantic-ui-react'
+import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
 import Product from "./Product";
 
 const ProductList = props => {
-  
   useEffect(() => {
     setFiltered({ products: props.products });
   }, [props]);
 
   const [filtered, setFiltered] = useState({ products: [] });
 
-  console.log(filtered)
+  console.log(filtered);
 
   const handleChange = e => {
     const products = props.products;
@@ -23,36 +20,41 @@ const ProductList = props => {
     if (e.target.value !== "" && re.test(e.target.value)) {
       setFiltered({
         products: products.filter(item => {
-          return item.productName.toLowerCase().search(e.target.value.toLowerCase()) !== -1;
+          return (
+            item.productName
+              .toLowerCase()
+              .search(e.target.value.toLowerCase()) !== -1
+          );
         })
       });
     } else if (!re.test(e.target.value) && e.target.value !== "") {
       setFiltered({ products: [] });
     } else {
       setFiltered({ products: props.products });
-    };
+    }
   };
 
   return (
     <div className="product-list-container">
-        <div className="product-list-header">
-          <p className="product-list-title">Products</p>
-          <p className="grade-filter">Grade</p>
+      <div className="product-list-header">
+        <p className="product-list-title">Products</p>
+        <div className="add-product-icon">
+          <AddCircleOutlineIcon fontSize="large" />
         </div>
-        <span className="admin-product-search-wrapper">
-        <SearchIcon fontSize="large" className="admin-product-search-icon"/>
+      </div>
+      <span className="admin-product-search-wrapper">
+        <SearchIcon fontSize="large" className="admin-product-search-icon" />
         <input
           className="admin-product-search"
           placeholder="Search here"
           onChange={handleChange}
         />
-        </span>
-        <div className="products-scroll-container">
-          {filtered.products.length && filtered.products.map((el, i) => (
-            <Product key={i} el={el} />
-          ))}
-        </div>
+      </span>
+      <div className="products-scroll-container">
+        {filtered.products.length &&
+          filtered.products.map((el, i) => <Product key={i} el={el} />)}
       </div>
+    </div>
   );
 };
 
