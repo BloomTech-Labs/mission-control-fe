@@ -19,6 +19,26 @@
     padding: 3.2rem;
     border-radius: 5px;
 
+  @media (max-width: 320px) {
+      width: 95%;
+    }
+    
+  @media (max-width: 320px) {
+      width: 95%;
+    }
+    
+  @media (max-width: 760px) {
+      width: 95%;
+    }
+
+  @media (max-width: 1024px) {
+      width: 95%;
+    }
+
+  @media (max-width: 1300px) {
+      width: 95%;
+    }
+
     &:not(:last-child) {
       margin-bottom: 1.6rem;
     }

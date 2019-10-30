@@ -5,7 +5,7 @@
   margin-left: 80px;
 
   .dashboard-banner-container {
-    display: flex;
+    display:flex;
     flex-direction: column;
     justify-content: space-between;
     background: $secondary;
@@ -14,12 +14,13 @@
     border-radius: 5px;
 
     .dashboard-banner-head {
-      display: flex;
+     display:flex;
       justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 2.6rem;
 
       .dashboard-product-cohorts-and-name {
+
         p:nth-child(1) {
           margin-bottom: 2rem;
           padding: 0.5rem;
@@ -29,14 +30,34 @@
           color: black;
           width: 4em;
           border-radius: 3px;
+        
+@mixin mobile {
+  @media (min-width: #{$mobile-width}) and (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
 
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+       
           &:hover {
             cursor: pointer;
           }
         }
+
         p:nth-child(2) {
           font-size: 15px;
         }
+
         p:nth-child(3) {
           font-size: 30px;
           padding-top: 0.5rem;
@@ -61,6 +82,7 @@
       justify-content: space-between;
       align-items: center;
 
+      
       .dashboard-product-total-projects {
         font-size: 15px;
         background: white;
@@ -73,8 +95,8 @@
         display: flex;
         align-items: center;
         font-size: 15px;
-
-        .product-program-avatar {
+        
+        .product-program-avatar { 
           font-size: 12px;
           padding: 0.5rem 1.5rem;
           margin-left: 0.75rem;

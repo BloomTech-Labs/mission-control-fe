@@ -2,7 +2,7 @@
   position: absolute;
   width: 92.4vw;
   min-height: 95vh;
-  max-height: 95vh;
+  max-height: 90vh;
   margin: 0 auto;
   margin-top: 4%;
   background: #ffffff;
@@ -10,8 +10,10 @@
   margin-bottom: 4%;
   z-index: 1;
 
+    }
+
   .auth-header {
-    position: absolute;
+    position: relative;
     width: 30%;
     height: 4.3rem;
     left: 5%;
@@ -24,6 +26,12 @@
     text-align: left;
     letter-spacing: 0.06em;
     color: #0051be;
+
+    @media (max-width: 600px)
+    {
+       font-size: 1.2rem;
+    }
+   
   }
 
   .dontHave {
@@ -39,6 +47,15 @@
     line-height: 22px;
     letter-spacing: 0.06em;
     color: #313131;
+
+    @media (max-width: 300px)
+    {
+       font-size: 1.2rem;
+    }
+    @media (max-width: 404px)
+    {
+       font-size: 1.2rem;
+    }
   }
 
   .error {
@@ -46,6 +63,10 @@
     color: #ff9494;
     font-weight: 700;
     margin: 1rem 0.5rem;
+    @media (max-width: 600px)
+    {
+       font-size: 1.2rem;
+    }
   }
 
   label {
@@ -54,6 +75,10 @@
     font-weight: 500;
     font-size: 2.4rem;
     color: #313131;
+    @media (max-width: 600px)
+    {
+       font-size: 1.2rem;
+    }
   }
 
   //? login form styles
@@ -72,6 +97,12 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+
+      @media (max-width: 600px)
+      {
+         font-size: 1.2rem;
+      }
+  
     }
 
     .password {
@@ -79,6 +110,12 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+
+      @media (max-width: 600px)
+      {
+         font-size: 1.2rem;
+      }
+  
     }
 
     input {
@@ -96,6 +133,12 @@
         font-size: 1.6rem;
         padding-left: 1.5%;
       }
+
+      @media (max-width: 600px)
+      {
+         font-size: 1.2rem;
+      }
+
     }
 
     .remember {
@@ -111,7 +154,14 @@
         height: 100%;
         border: 1.5px solid #0051be;
         border-radius: 5px;
+
+        @media (max-width: 600px)
+        {
+           font-size: 1.2rem;
+        }
+  
       }
+
       p {
         margin-left: 1%;
         font-family: Lato;
@@ -136,6 +186,12 @@
       font-size: 1.8rem;
       line-height: 22px;
       color: #ffffff;
+
+      @media (max-width: 600px)
+      {
+         font-size: 1.2rem;
+      }
+
     }
   }
 
@@ -157,6 +213,12 @@
       background: #f4f5f9;
       border-radius: 5px;
       margin-top: 10px;
+
+      @media (max-width: 600px)
+      {
+         font-size: 1.2rem;
+      }
+
     }
 
     .names {
@@ -183,6 +245,11 @@
       height: 30%;
       display: flex;
       flex-direction: column;
+
+      @media (max-width: 600px)
+      {
+         font-size: 1.2rem;
+      }
 
       input {
         width: 100%;
@@ -214,16 +281,20 @@
       bottom: -3%;
       padding: 1.2rem;
       background: #0051be;
-      border-radius: 5px;
+      border-radius: px;
       color: #ffffff;
       font-family: Lato;
       font-style: normal;
       font-weight: 500;
       font-size: 1.8rem;
-      line-height: 22px;
+      line-height: 20px;
+
+      @media (max-width: 600px)
+      {
+         font-size: 1.2rem;
+      }
     }
   }
-}
 
 .auth-img {
   z-index: 1;
@@ -234,4 +305,23 @@
   width: auto;
   min-height: 95vh;
   max-height: 95vh;
+
+  @media (max-width: 320px) {
+    width: 95%;
+    visibility: hidden;
+  }
+
+@media (max-width: 650px) {
+    width: 95%;
+    visibility: hidden;
+  }
+@media (max-width: 900px) {
+    width: 95%;
+    visibility: hidden;
+  }
+@media (max-width: 1024px) {
+    width: 95%;
+    visibility: hidden;
+  }
+
 }
