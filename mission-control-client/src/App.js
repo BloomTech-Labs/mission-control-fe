@@ -33,6 +33,9 @@ function App() {
         <Route path="/login" component={Login} />
         <PrivateRoute path={`/dashboard/${localStorage.getItem('user')}`} component={DashboardHome} />
         <PrivateRoute path={`/profile/${localStorage.getItem('user')}/edit`} component={EditProfile} />
+        <PrivateRoute path={`/profile/${localStorage.getItem('user')}/edit/password`} component={EditProfile} />
+        <PrivateRoute path={`/profile/${localStorage.getItem('user')}/edit/email`} component={EditProfile} />
+        <PrivateRoute path={`/profile/${localStorage.getItem('user')}/edit/promotions`} component={EditProfile} />
         <Route component={Bad} />
       </Switch>
     </Layout>

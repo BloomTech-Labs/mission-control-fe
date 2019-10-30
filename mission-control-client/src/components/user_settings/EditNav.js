@@ -1,13 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const EditNav = () => {
     return (
         <div className = 'edit-nav'> 
         <h2>Settings</h2>
             <ul className = 'edit-options'>
-                <li>Change My Email</li>
-                <li>Change My Password</li>
-                <li>Promote Workspace Users</li>
+                <li>
+                    <Link to = {`/profile/${localStorage.getItem('user')}/edit/email`}>Update Email</Link>
+                </li>
+                <li>
+                    <Link to = {`/profile/${localStorage.getItem('user')}/edit/password`}>Update Password</Link>
+                </li>
+                <li>
+                    <Link to = {`/profile/${localStorage.getItem('user')}/edit/promotions`}>Promote Workspace Users</Link>
+                </li>
             </ul>
         </div>
     )
