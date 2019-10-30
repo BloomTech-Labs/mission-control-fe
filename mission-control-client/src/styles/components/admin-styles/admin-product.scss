@@ -28,37 +28,35 @@
 
       .product-title {
         font-size: 18px;
-        margin-bottom: 16px;
-      }
-
-      .product-desc {
-        font-size: 14px;
-        font-weight: 400;
+        font-weight: bold;
       }
     }
 
-    .product-metrics-snapshot {
+    .product-programs {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       font-size: 14px;
 
-      .product-cost-wrapper {
-        display: flex;
-
-        span {
-          margin-left: 5px;
-          color: $primary;
-        }
+      .product-program-avatar {
+        font-size: 12px;
+        padding: 0.5rem 1.5rem;
+        margin-left: 0.75rem;
+        border-radius: 2.5px;
+        color: white;
+        text-align: center;
       }
-
-      .product-grade-wrapper {
-        display: flex;
-
-        span {
-          margin-left: 5px;
-          color: $nav-link-selected;
-        }
+      .program-ds {
+        background: $primary;
+      }
+      .program-ux {
+        background: $nav-link-selected;
+        margin-bottom: 1rem;
+      }
+      .program-web {
+        background: $accent;
+        margin-bottom: 1rem;
+        color: black;
       }
     }
   }
