@@ -14,5 +14,33 @@
         height:80%;
         display: flex;
         justify-content: space-between;
+        .edit-nav{
+            width: 20%;
+            height: 80%;
+            margin: auto 0;
+            background: $admin-product-background;
+            position: relative;
+            h2{
+                position: absolute;
+                top:3%;
+                left: 50%;
+
+            }
+            .edit-options{
+                width:60%;
+                height:75%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                border-radius: 5px;
+                margin: 0 auto;
+                li{
+                    font-size:1.7rem;
+                    list-style: none;
+                    padding: 5% 2%;
+        
+                }
+            }
+        }
     }
 }
