@@ -1,3 +1,5 @@
+import { loginSuccess } from "./loginActions";
+
 export {
   GET_PRODUCTS_START,
   GET_PRODUCTS_SUCCESS,
@@ -89,3 +91,8 @@ export {
   GET_LAMBDA_ROLES_ERROR,
   getLambdaRoles
 } from "./roleActions";
+
+export {
+  loginSuccess,
+  LOGIN_SUCCESS
+} from './loginActions'
