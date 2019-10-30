@@ -10,6 +10,10 @@
   width: 321px;
   margin-top: 3.2rem;
 
+  #product-active {
+    background: $gray-accent;
+  }
+
   .product-container {
     direction: ltr;
     display: flex;
@@ -18,6 +22,7 @@
     border-radius: 5px;
     padding: 3.2rem;
     border-radius: 5px;
+    cursor: pointer;
 
     &:not(:last-child) {
       margin-bottom: 1.6rem;
@@ -25,9 +30,24 @@
 
     .product-description {
       width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
       .product-title {
         font-size: 18px;
+        font-weight: bold;
+      }
+
+      .product-status-completed {
+        color: $secondary;
+        font-size: 1.6rem;
+        font-weight: bold;
+      }
+
+      .product-status-not-completed {
+        color: $primary;
+        font-size: 1.6rem;
         font-weight: bold;
       }
     }
@@ -43,20 +63,16 @@
         padding: 0.5rem 1.5rem;
         margin-left: 0.75rem;
         border-radius: 2.5px;
-        color: white;
+        color: $nav-link-selected;
         text-align: center;
-      }
-      .program-ds {
-        background: $primary;
+        background: $background;
+        font-weight: bold;
       }
       .program-ux {
-        background: $nav-link-selected;
         margin-bottom: 1rem;
       }
       .program-web {
-        background: $accent;
         margin-bottom: 1rem;
-        color: black;
       }
     }
   }
@@ -69,8 +85,4 @@
 .products-scroll-container::-webkit-scrollbar-thumb {
   background: rgb(188, 188, 188);
   border-radius: 10px;
-}
-
-.products-scroll-container::-webkit-scrollbar-track-piece {
-  display: none;
 }

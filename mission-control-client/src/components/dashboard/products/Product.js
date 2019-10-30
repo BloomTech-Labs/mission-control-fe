@@ -4,15 +4,21 @@ const Product = props => {
   const programs = ["web", "ux/ui", "ds"];
 
   return (
-    <div className="product-container">
+    <div
+      onClick={() => props.setActiveProduct(props.i)}
+      id={
+        props.active === props.i
+          ? "product-active" : undefined
+      }
+      className="product-container"
+    >
       <div className="product-description">
         <h3 className="product-title">{props.el.productName}</h3>
-
-        {/* Description to use in future releases */}
-
-        {/* <p className="product-desc">
-          {text.split(' ').slice(0, 10).join(' ') + "..."}
-        </p> */}
+        {props.i % 2 === 0 ? (
+          <p className="product-status-completed">Completed</p>
+        ) : (
+          <p className="product-status-not-completed">Not Completed</p>
+        )}
       </div>
       <div className="product-programs">
         {programs.map(
