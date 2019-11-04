@@ -8,7 +8,7 @@ import signup from "../../assets/signup.svg";
 import encrypt from '../../utils/encrypt';
 
 const URL =
-  "https://dvtaodzn3c7ga.cloudfront.net/api/auth/register";
+  "https://dw0z95u459ou2.cloudfront.net/api/auth/register";
 // TODO: encrypt password
 
 function FormShape({ errors, touched }) {
