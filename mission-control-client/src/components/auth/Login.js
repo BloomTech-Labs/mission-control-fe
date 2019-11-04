@@ -8,7 +8,7 @@ import computers from "../../assets/computers.svg";
 import encrypt from '../../utils/encrypt';
 
 const URL =
-  "https://dvtaodzn3c7ga.cloudfront.net/api/auth/login";
+  "https://dw0z95u459ou2.cloudfront.net/api/auth/login";
 
 function FormShape({ errors, touched, status }) {
   const history = useHistory();
