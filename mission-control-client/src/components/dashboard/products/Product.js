@@ -13,8 +13,8 @@ const Product = props => {
       className="product-container"
     >
       <div className="product-description">
-        <h3 className="product-title">{props.el.productName}</h3>
-        {props.i % 2 === 0 ? (
+        <h3 className="product-title">{props.el.name}</h3>
+        {props.i.split('').pop() % 2 === 0 ? (
           <p className="product-status-completed">Completed</p>
         ) : (
           <p className="product-status-not-completed">Not Completed</p>

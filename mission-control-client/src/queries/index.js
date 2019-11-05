@@ -32,7 +32,7 @@ const products = `
     query {
         products {
             id
-            productName
+            name
         }
     }
 `;

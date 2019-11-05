@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const axiosLabsGraphQL = axios.create({
-  baseURL: "https://cr0ydt7cm4.execute-api.us-east-1.amazonaws.com/dev/",
+  baseURL: "http://pma-n-publi-11bvc0q971mnj-2025074476.us-east-1.elb.amazonaws.com/",
   headers: {
-     'x-api-key': "83oxHzYXTq5dHDUbh43TX1fUjxcq4wrr6zavVVR8" 
+     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTcyODgzOTUxLCJleHAiOjE1NzM0ODg3NTF9.9QKq5sKaQLlOVzw5vOAlfnC_4W7M34VGAz9jdlV1fD0" 
   }
 });
 
