@@ -4,19 +4,24 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Product from "./Product";
 
 const ProductList = props => {
+  console.log(props)
   useEffect(() => {
     setFiltered({ products: props.products });
   }, [props]);
 
   const [filtered, setFiltered] = useState({ products: [] });
 
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(null);
+
+  useEffect(() => {
+    if(filtered.products.length > 0) {
+      setActive(filtered.products[0].id)
+    }
+  }, [filtered.products])
 
   const setActiveProduct = i => {
     setActive(i);
   };
-
-  console.log(filtered)
 
   const handleChange = e => {
     const products = props.products;
@@ -63,7 +68,7 @@ const ProductList = props => {
               setActiveProduct={setActiveProduct}
               key={i}
               el={el}
-              i={i}
+              i={el.id}
             />
           ))}
       </div>
