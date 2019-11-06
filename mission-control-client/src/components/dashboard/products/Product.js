@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 const Product = props => {
   const programs = ["web", "ux/ui", "ds"];
 
   return (
     <div
-      onClick={() => props.setActiveProduct({id: props.i, name: props.el.name})}
+      onClick={() => props.setActiveProduct(props.el)}
       id={
         props.active.id && props.active.id === props.i
           ? "product-active" : undefined

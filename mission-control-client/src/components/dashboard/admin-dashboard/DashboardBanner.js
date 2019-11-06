@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 const DashboardBanner = props => {
   const programs = ["web", "ux/ui", "ds"];
 
-  console.log(props.activeProductStore)
+  console.log(props)
 
   return (
     <div className="dashboard-banner-container">
@@ -35,7 +35,7 @@ const DashboardBanner = props => {
         </div> */}
       </div>
       <div className="dashboard-product-projects">
-        <p className="dashboard-product-total-projects">Total Projects: 4</p>
+        <p className="dashboard-product-total-projects">Total Projects: {props.activeProductStore.active && props.activeProductStore.active.projects.length}</p>
       </div>
     </div>
   );

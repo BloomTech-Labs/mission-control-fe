@@ -50,7 +50,6 @@ export const getProjects = () => {
             .post('', { query: projects })
             .then(res => {
                 const projects = res.data.data.projects;
-                console.log(projects)
                 dispatch({ type: GET_PROJECTS_SUCCESS, payload: projects })
             })
             .catch(err => dispatch({ type: GET_PROJECTS_ERROR, payload: err.response }));
