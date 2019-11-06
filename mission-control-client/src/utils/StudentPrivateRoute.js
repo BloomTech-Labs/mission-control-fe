@@ -1,5 +1,5 @@
 import React from "react";
-import decrypt from '../utils/decrypt';
+import decrypt from './decrypt';
 import { Route, Redirect } from "react-router-dom";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {

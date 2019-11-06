@@ -1,26 +1,44 @@
 import React from "react";
 
 const Product = props => {
-  console.log(props.el.productName);
-
-  const text = `Currently, designers who collaborate with one another are seeing that a
-  lot of assets, deliverables, design files, feedback, links, etc. get
-  lost due to the abundance of links in Google documents and Google Drive,
-  as well as Slack. Design teams can not easily and efficiently
-  collaborate and keep track of their work this way. DesignHub is meant to
-  solve this.`
+  const programs = ["web", "ux/ui", "ds"];
 
   return (
-    <div className="product-container">
+    <div
+      onClick={() => props.setActiveProduct(props.i)}
+      id={
+        props.active === props.i
+          ? "product-active" : undefined
+      }
+      className="product-container"
+    >
       <div className="product-description">
-        <h3 className="product-title">{props.el.productName}</h3>
-        <p className="product-desc">
-          {text.split(' ').slice(0, 10).join(' ') + "..."}
-        </p>
+        <h3 className="product-title">{props.el.name}</h3>
+        {props.i.split('').pop() % 2 === 0 ? (
+          <p className="product-status-completed">Completed</p>
+        ) : (
+          <p className="product-status-not-completed">Not Completed</p>
+        )}
       </div>
-      <div className="product-metrics-snapshot">
-        <div className="product-cost-wrapper"><p className="product-cost-snapshot">Cost:</p><span>$8.32</span></div>
-        <div className="product-grade-wrapper"><p className="product-grade-snapshot">Grade:</p><span>B+</span></div>
+      <div className="product-programs">
+        {programs.map(
+          (el, i) =>
+            (el === "ux/ui" && (
+              <p key={i} className="product-program-avatar program-ux">
+                {el.toUpperCase()}
+              </p>
+            )) ||
+            (el === "ds" && (
+              <p key={i} className="product-program-avatar program-ds">
+                {el.toUpperCase()}
+              </p>
+            )) ||
+            (el === "web" && (
+              <p key={i} className="product-program-avatar program-web">
+                {el.toUpperCase()}
+              </p>
+            ))
+        )}
       </div>
     </div>
   );
