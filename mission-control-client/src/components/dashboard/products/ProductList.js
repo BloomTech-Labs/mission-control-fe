@@ -7,6 +7,8 @@ import { setActiveProduct } from '../../../actions/activeProductActions';
 
 const ProductList = props => {
 
+  console.log(props)
+
   useEffect(() => {
     setFiltered({ products: props.products });
 

@@ -33,6 +33,12 @@ const products = `
         products {
             id
             name
+            projects {
+              id
+              name
+              start
+              end
+            }
         }
     }
 `;
