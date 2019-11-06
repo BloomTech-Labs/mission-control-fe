@@ -10,6 +10,10 @@
   width: 321px;
   margin-top: 3.2rem;
 
+  #product-active {
+    background: $gray-accent;
+  }
+
   .product-container {
     direction: ltr;
     display: flex;
@@ -18,6 +22,7 @@
     border-radius: 5px;
     padding: 3.2rem;
     border-radius: 5px;
+    cursor: pointer;
 
     &:not(:last-child) {
       margin-bottom: 1.6rem;
@@ -25,40 +30,49 @@
 
     .product-description {
       width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
       .product-title {
         font-size: 18px;
-        margin-bottom: 16px;
+        font-weight: bold;
       }
 
-      .product-desc {
-        font-size: 14px;
-        font-weight: 400;
+      .product-status-completed {
+        color: $secondary;
+        font-size: 1.6rem;
+        font-weight: bold;
+      }
+
+      .product-status-not-completed {
+        color: $primary;
+        font-size: 1.6rem;
+        font-weight: bold;
       }
     }
 
-    .product-metrics-snapshot {
+    .product-programs {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       font-size: 14px;
 
-      .product-cost-wrapper {
-        display: flex;
-
-        span {
-          margin-left: 5px;
-          color: $primary;
-        }
+      .product-program-avatar {
+        font-size: 12px;
+        padding: 0.5rem 1.5rem;
+        margin-left: 0.75rem;
+        border-radius: 2.5px;
+        color: $nav-link-selected;
+        text-align: center;
+        background: $background;
+        font-weight: bold;
       }
-
-      .product-grade-wrapper {
-        display: flex;
-
-        span {
-          margin-left: 5px;
-          color: $nav-link-selected;
-        }
+      .program-ux {
+        margin-bottom: 1rem;
+      }
+      .program-web {
+        margin-bottom: 1rem;
       }
     }
   }
@@ -71,8 +85,4 @@
 .products-scroll-container::-webkit-scrollbar-thumb {
   background: rgb(188, 188, 188);
   border-radius: 10px;
-}
-
-.products-scroll-container::-webkit-scrollbar-track-piece {
-  display: none;
 }
