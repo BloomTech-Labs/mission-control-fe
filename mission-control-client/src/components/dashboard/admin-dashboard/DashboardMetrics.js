@@ -1,7 +1,11 @@
 import React from "react";
 import DashboardProject from "../admin-dashboard/DashboardProject";
+import { connect } from 'react-redux';
 
-const DashboardMetrics = () => {
+const DashboardMetrics = props => {
+
+  console.log(props)
+  
   return (
     <div className="admin-projects-container">
       <div className="admin-projects-head">
@@ -9,11 +13,19 @@ const DashboardMetrics = () => {
       </div>
       <div className="admin-projects-content-container">
         <div className="admin-projects-content-spacer">
-          <DashboardProject />
+          {props.activeProductStore.active && props.activeProductStore.active.projects.map((el, i) => (
+            <DashboardProject key={i} el={el}/>
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default DashboardMetrics;
+const mapStateToProps = state => {
+  return {
+    activeProductStore: state.activeProductStore
+  };
+};
+
+export default connect(mapStateToProps, null)(DashboardMetrics);

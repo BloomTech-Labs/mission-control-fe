@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ProductList from "../products/ProductList";
+import ProjectList from "../projects/ProjectList";
 import { connect } from 'react-redux';
 import { getProducts } from '../../../actions/productActions';
 import DashboardContent from "./DashboardContent";
@@ -12,7 +12,7 @@ const DashboardHome = props => {
 
   return (
     <div className="admin-dashboard-container">
-      <ProductList products={props.productStore.products} />
+      <ProjectList products={props.productStore.products} />
       <DashboardContent />
     </div>
   );

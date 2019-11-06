@@ -1,6 +1,6 @@
 import React from "react";
 
-const Product = props => {
+const Project = props => {
   const programs = ["web", "ux/ui", "ds"];
 
   return (
@@ -44,4 +44,4 @@ const Product = props => {
   );
 };
 
-export default Product;
+export default Project;
