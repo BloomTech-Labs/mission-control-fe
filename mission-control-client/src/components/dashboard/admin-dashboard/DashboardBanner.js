@@ -1,12 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const DashboardBanner = () => {
+const DashboardBanner = props => {
   const programs = ["web", "ux/ui", "ds"];
+
+  console.log(props.activeProductStore)
 
   return (
     <div className="dashboard-banner-container">
       <div className="dashboard-banner-head">
-          <p>DesignHub</p>
+          <p>{props.activeProductStore.active ? props.activeProductStore.active.name : "Loading..."}</p>
           <div className="dashboard-product-project-programs">
             {programs.map(
               (el, i) =>
@@ -38,4 +41,10 @@ const DashboardBanner = () => {
   );
 };
 
-export default DashboardBanner;
+const mapStateToProps = state => {
+  return {
+    activeProductStore: state.activeProductStore
+  }
+}
+
+export default connect(mapStateToProps, {})(DashboardBanner);

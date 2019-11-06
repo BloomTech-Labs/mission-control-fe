@@ -2,36 +2,37 @@ import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Product from "./Product";
+import { connect } from "react-redux";
+import { setActiveProduct } from '../../../actions/activeProductActions';
 
 const ProductList = props => {
-  console.log(props)
+
   useEffect(() => {
     setFiltered({ products: props.products });
-  }, [props]);
+
+    if(filtered.products.length > 0) {
+      props.setActiveProduct(filtered.products[0])
+    } else {
+      props.setActiveProduct(props.products[0])
+    }
+  }, [props.products]);
 
   const [filtered, setFiltered] = useState({ products: [] });
 
-  const [active, setActive] = useState(null);
 
-  useEffect(() => {
-    if(filtered.products.length > 0) {
-      setActive(filtered.products[0].id)
-    }
-  }, [filtered.products])
-
-  const setActiveProduct = i => {
-    setActive(i);
+  const setProductHandler = el => {
+    props.setActiveProduct(el);
   };
 
   const handleChange = e => {
     const products = props.products;
-    const re = /^[a-z0-9]+$/i;
+    const re = /^[a-z0-9\s]+$/i;
 
-    if (e.target.value !== "" && re.test(e.target.value)) {
+    if (e.target.value !== "" && re.test(e.target.value) && products.length > 0) {
       setFiltered({
         products: products.filter(item => {
           return (
-            item.productName
+            item.name
               .toLowerCase()
               .search(e.target.value.toLowerCase()) !== -1
           );
@@ -64,8 +65,8 @@ const ProductList = props => {
         {filtered.products.length &&
           filtered.products.map((el, i) => (
             <Product
-              active={active}
-              setActiveProduct={setActiveProduct}
+              active={props.activeProductStore.active}
+              setActiveProduct={setProductHandler}
               key={i}
               el={el}
               i={el.id}
@@ -76,4 +77,10 @@ const ProductList = props => {
   );
 };
 
-export default ProductList;
+const mapStateToProps = state => {
+  return {
+    activeProductStore: state.activeProductStore
+  }
+}
+
+export default connect(mapStateToProps, { setActiveProduct })(ProductList);

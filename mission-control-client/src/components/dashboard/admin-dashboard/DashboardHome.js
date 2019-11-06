@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
 import { getProducts } from '../../../actions/productActions';
+import { getProjects } from '../../../actions/projectActions';
 import { connect } from "react-redux";
 import ProductList from "../products/ProductList";
 import DashboardContent from "./DashboardContent";
 
 const DashboardHome = props => {
 
+  console.log(props)
+
   useEffect(() => {
-    getProducts();
+    props.getProducts();
+    props.getProjects();
   }, []);
 
   return (
@@ -24,4 +28,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, getProducts)(DashboardHome);
+export default connect(mapStateToProps, { getProducts, getProjects })(DashboardHome);
