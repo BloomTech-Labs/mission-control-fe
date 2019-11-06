@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { getProducts } from '../../../actions/productActions';
+import { getProjects } from '../../../actions/projectActions';
 import { connect } from "react-redux";
 import ProductList from "../products/ProductList";
 import DashboardContent from "./DashboardContent";
@@ -7,12 +8,12 @@ import DashboardContent from "./DashboardContent";
 const DashboardHome = props => {
 
   useEffect(() => {
-    getProducts();
+    props.getProducts();
   }, []);
 
   return (
     <div data-testid="dash" className="admin-dashboard-container">
-      <ProductList products={props.productStore.products} />
+      <ProductList  products={props.productStore.products} />
       <DashboardContent />
     </div>
   );
@@ -20,8 +21,9 @@ const DashboardHome = props => {
 
 const mapStateToProps = state => {
   return {
-    productStore: state.productStore
+    productStore: state.productStore,
+    projectStore: state.projectStore
   };
 };
 
-export default connect(mapStateToProps, getProducts)(DashboardHome);
+export default connect(mapStateToProps, { getProducts, getProjects })(DashboardHome);

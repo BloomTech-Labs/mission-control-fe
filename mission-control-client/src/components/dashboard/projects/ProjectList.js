@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import Product from "./Product";
+import Project from "./Project";
 import { connect } from "react-redux";
 import { setActiveProduct } from '../../../actions/activeProductActions';
 
-const ProductList = props => {
+const ProjectList = props => {
 
   console.log(props)
 
@@ -50,7 +50,7 @@ const ProductList = props => {
   return (
     <div className="product-list-container">
       <div className="product-list-header">
-        <p className="product-list-title">Products</p>
+        <p className="product-list-title">Projects</p>
         <div className="add-product-icon">
           <AddCircleOutlineIcon fontSize="large" />
         </div>
@@ -66,7 +66,7 @@ const ProductList = props => {
       <div className="products-scroll-container">
         {filtered.products.length &&
           filtered.products.map((el, i) => (
-            <Product
+            <Project
               active={props.activeProductStore.active}
               setActiveProduct={setProductHandler}
               key={i}
@@ -85,4 +85,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { setActiveProduct })(ProductList);
+export default connect(mapStateToProps, { setActiveProduct })(ProjectList);
