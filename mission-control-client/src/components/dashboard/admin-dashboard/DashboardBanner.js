@@ -11,7 +11,7 @@ const DashboardBanner = props => {
       <div className="dashboard-banner-head">
           <p>{props.activeProductStore.active ? props.activeProductStore.active.name : "Loading..."}</p>
           <div className="dashboard-product-project-programs">
-            {programs.map(
+            {/* {programs.map(
               (el, i) =>
                 (el === "ux/ui" && (
                   <p key={i} className="product-program-avatar program-ux">
@@ -28,7 +28,7 @@ const DashboardBanner = props => {
                     {el.toUpperCase()}
                   </p>
                 ))
-            )}
+            )} */}
           </div>
         {/* <div className="dashboard-product-status">
           <p>In Progress</p>

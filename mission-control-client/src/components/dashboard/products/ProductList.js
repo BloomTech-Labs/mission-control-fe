@@ -3,24 +3,20 @@ import SearchIcon from "@material-ui/icons/Search";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Product from "./Product";
 import { connect } from "react-redux";
-import { setActiveProduct } from '../../../actions/activeProductActions';
+import { setActiveProduct } from "../../../actions/activeProductActions";
 
 const ProductList = props => {
-
-  console.log(props)
-
   useEffect(() => {
     setFiltered({ products: props.products });
 
-    if(filtered.products.length > 0) {
-      props.setActiveProduct(filtered.products[0])
+    if (filtered.products.length > 0) {
+      props.setActiveProduct(filtered.products[0]);
     } else {
-      props.setActiveProduct(props.products[0])
+      props.setActiveProduct(props.products[0]);
     }
   }, [props.products]);
 
   const [filtered, setFiltered] = useState({ products: [] });
-
 
   const setProductHandler = el => {
     props.setActiveProduct(el);
@@ -30,13 +26,15 @@ const ProductList = props => {
     const products = props.products;
     const re = /^[a-z0-9\s]+$/i;
 
-    if (e.target.value !== "" && re.test(e.target.value) && products.length > 0) {
+    if (
+      e.target.value !== "" &&
+      re.test(e.target.value) &&
+      products.length > 0
+    ) {
       setFiltered({
         products: products.filter(item => {
           return (
-            item.name
-              .toLowerCase()
-              .search(e.target.value.toLowerCase()) !== -1
+            item.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1
           );
         })
       });
@@ -51,9 +49,9 @@ const ProductList = props => {
     <div className="product-list-container">
       <div className="product-list-header">
         <p className="product-list-title">Products</p>
-        <div className="add-product-icon">
+        {/* <div className="add-product-icon">
           <AddCircleOutlineIcon fontSize="large" />
-        </div>
+        </div> */}
       </div>
       <span className="admin-product-search-wrapper">
         <SearchIcon fontSize="large" className="admin-product-search-icon" />
@@ -63,9 +61,9 @@ const ProductList = props => {
           onChange={handleChange}
         />
       </span>
-      <div className="products-scroll-container">
-        {filtered.products.length &&
-          filtered.products.map((el, i) => (
+      {filtered.products.length ? (
+        <div className="products-scroll-container">
+          {filtered.products.map((el, i) => (
             <Product
               active={props.activeProductStore.active}
               setActiveProduct={setProductHandler}
@@ -74,7 +72,10 @@ const ProductList = props => {
               i={el.id}
             />
           ))}
-      </div>
+        </div>
+      ) : (
+        <p className="products-no-products">No products</p>
+      )}
     </div>
   );
 };
@@ -82,7 +83,10 @@ const ProductList = props => {
 const mapStateToProps = state => {
   return {
     activeProductStore: state.activeProductStore
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, { setActiveProduct })(ProductList);
+export default connect(
+  mapStateToProps,
+  { setActiveProduct }
+)(ProductList);

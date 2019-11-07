@@ -22,8 +22,7 @@ const DashboardHome = props => {
 const mapStateToProps = state => {
   return {
     productStore: state.productStore,
-    projectStore: state.projectStore
   };
 };
 
-export default connect(mapStateToProps, { getProducts, getProjects })(DashboardHome);
+export default connect(mapStateToProps, { getProducts })(DashboardHome);
