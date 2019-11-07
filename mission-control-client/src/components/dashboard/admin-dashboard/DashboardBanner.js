@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 
 const DashboardBanner = props => {
-  const programs = ["web", "ux/ui", "ds"];
 
   return (
     <div className="dashboard-banner-container">
