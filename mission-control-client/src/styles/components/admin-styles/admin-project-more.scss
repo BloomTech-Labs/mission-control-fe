@@ -6,12 +6,13 @@
   display: flex;
   flex-direction: column;
 
-  .admin-project-more-overview {
+  .admin-project-more-null {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 2rem;
+  }
 
-    .admin-project-more-null {
-      font-size: 2rem;
-      font-weight: bold;
-    }
+  .admin-project-more-overview {
 
     .admin-project-more-overview-content {
       margin-top: 3rem;
