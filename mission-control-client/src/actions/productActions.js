@@ -29,6 +29,7 @@ export const getProducts = () => {
         axiosLabsGraphQL
             .post('', { query: products })
             .then(res => {
+                console.log(res)
                 const products = res.data.data.products;
                 dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products })
             })
