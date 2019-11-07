@@ -27,12 +27,14 @@ export const activeProductStore = (state = initialState, action) => {
     case SET_ACTIVE_PROJECT_SUCCESS:
       return {
         ...state,
-        project: action.payload
+        project: action.payload,
+        isLoading: false
       }
     case SET_ACTIVE_PROJECT_FAILURE:
       return {
         ...state,
-        err: action.payload
+        err: action.payload,
+        isLoading: false
       }
     default:
       return state;

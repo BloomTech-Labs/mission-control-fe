@@ -113,7 +113,7 @@ const ProjectMore = props => {
               <Card className={classes.card} key={i}>
                   <CardContent className={classes.content}>
                     <p className="admin-project-more-team-name">
-                      {el.person.firstname} {el.person.lastname}
+                      {`${el.person.firstname} ${el.person.lastname}`}
                     </p>
                     <p className="admin-project-more-team-email">{el.person.email}</p>
                     {el.person.githubId && <p className="admin-project-more-team-gh">{<GitHubIcon style={{marginRight: "0.5rem"}}/>} {el.person.githubId}</p>}
