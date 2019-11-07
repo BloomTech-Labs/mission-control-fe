@@ -5,9 +5,28 @@
   flex-direction: column;
 
   .admin-project-more-overview {
-  
     .admin-project-more-overview-head {
       font-size: 4rem;
+    }
+
+    .product-program-avatar {
+      font-size: 12px;
+      padding: 0.5rem 1.5rem;
+      margin-left: 0.75rem;
+      color: black;
+      border-radius: 2.5px;
+      color: white;
+      width: max-content;
+    }
+    .program-ds {
+      background: $primary;
+    }
+    .program-ux {
+      background: $nav-link-selected;
+    }
+    .program-web {
+      background: $accent;
+      color: black;
     }
   }
 }

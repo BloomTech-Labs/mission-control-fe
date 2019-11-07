@@ -33,7 +33,6 @@ export const setActiveProject = id => {
         })
       )
       .catch(err => {
-        console.log(err);
         dispatch({ type: SET_ACTIVE_PROJECT_FAILURE, payload: err.response });
       });
   };
