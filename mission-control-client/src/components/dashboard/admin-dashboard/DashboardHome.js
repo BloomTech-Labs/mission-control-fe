@@ -7,7 +7,7 @@ import DashboardContent from "./DashboardContent";
 const DashboardHome = props => {
 
   useEffect(() => {
-    getProducts();
+    props.getProducts();
   }, []);
 
   return (
@@ -24,4 +24,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, getProducts)(DashboardHome);
+export default connect(mapStateToProps, { getProducts })(DashboardHome);

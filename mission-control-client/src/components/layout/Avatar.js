@@ -43,7 +43,7 @@ const AvatarMenu = () => {
             </Avatar>
           )}
           <Menu {...bindMenu(popupState)}>
-            <Link to={`/profile/${localStorage.getItem('user')}/edit`} className="nav-head">
+            <Link to={`/profile/${localStorage.getItem('user')}/edit/email`} className="nav-head">
               <MenuItem style={{ fontSize: "1.4rem" }} onClick = {handleOpen}>Edit Profile</MenuItem>
             </Link>
             <MenuItem onClick={logout} style={{ fontSize: "1.4rem" }}>
