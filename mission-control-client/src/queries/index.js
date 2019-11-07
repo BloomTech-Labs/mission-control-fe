@@ -1,4 +1,4 @@
-//done
+//Done
 const persons = `
     query {
         persons {
@@ -12,7 +12,7 @@ const persons = `
         }
     }
 `;
-//done
+//Done
 const person = id => `
     query {
         person(where:{id:"${id}"}) {
@@ -27,33 +27,41 @@ const person = id => `
     }
 `;
 
-// done
+// Done
 const products = `
     query {
         products {
             id
             name
             projects {
-              id
-              name
-              start
-              end
+                id
+                name
+                start
+                end
             }
         }
     }
 `;
 
-// done
+// Done
 const product = id => `
     query {
         product(where:{id:"${id}"}) {
             id
-            productName
+            name
+            projects {
+                id
+                name
+                start
+                end
+            }
         }
     }
 `;
 
-// TODO NEEDS LOOKING INTO RETURNS UNDEFINED
+// TODO
+// ProjectGroups is not a type on the new API
+// Will need to build a custom query to fetch something similar
 const projectGroups = `
     query {
         projectGroups {
@@ -63,28 +71,18 @@ const projectGroups = `
     }
 `;
 
-// TODO NEEDS LOOKING INTO RETURNS UNDEFINED
-const projectGroup = id => `
-    query {
-        projectGroup(where:{id:"${id}"}) {
-            id
-            name
-        }
-    }
-`;
-
-//done
+//Done
 const roles = `
     query {
         roles {
             id
-            roleName
+            name
             type
         }
     }
 `;
 
-//done
+//Done
 const role = id => `
     query {
         role(where:{id:"${id}"}) {
@@ -95,7 +93,9 @@ const role = id => `
     }
 `;
 
-// TODO EMPTY DATASET NEEDS WORK
+// TODO
+// PeopleGroups is not a type on the new API
+// Will need to build a custom query to fetch something similar
 const peopleGroups = `
     query {
         peopleGroups{
@@ -105,22 +105,12 @@ const peopleGroups = `
     }
 `;
 
-// TODO EMPTY DATASET NEEDS WORK
-const peopleGroup = id => `
-    query {
-        peopleGroup(where:{id:"${id}"}){
-        id
-            name
-        }
-    }
-`;
-
-//DONE
+//Done
 const lambdaRoles = `
-    query {
-        lambdaRoles{
-            id
-            person{
+query {
+    lambdaRoles {
+        id
+        person {
             id
             firstname
             githubId
@@ -128,40 +118,41 @@ const lambdaRoles = `
             program
             slackId
             timezone
-            }
-            role{
-                id
-                roleName
-                type
-            }
+        }
+        role {
+            id
+            name
+            type
         }
     }
-`;
+}`;
 
-//DONE
+//Done
 const lambdaRole = id => `
     query {
         lambdaRole(where:{id:"${id}"}){
             id
-            person{
-            id
-            firstname
-            githubId
-            lastname
-            program
-            slackId
-            timezone
-            }
-            role{
+            person {
                 id
-                roleName
+                firstname
+                githubId
+                lastname
+                program
+                slackId
+                timezone
+            }
+            role {
+                id
+                name
                 type
             }
         }
     }
 `;
 
-// done
+// TODO
+// PeopleGroupMembers is not a type on the new API
+// Will need to build a custom query to fetch something similar
 const peopleGroupMembers = `
     query {
         peopleGroupMembers{
@@ -183,57 +174,35 @@ const peopleGroupMembers = `
     }
 `;
 
-// done
-const peopleGroupMember = id => `
-    query {
-        peopleGroupMember(where:{id:"${id}"}){
-            person {
-            id
-            email
-            firstname
-            githubId
-            lastname
-            program
-            slackId
-            timezone
-            }
-            peopleGroup{
-                id
-                name
-            }
-        }
-    }
-`;
-
-// done
+// Done
 const productRoles = `
     query {
         productRoles{
             id
             person {
-            id
-            email
-            firstname
-            githubId
-            lastname
-            program
-            slackId
-            timezone
+                id
+                email
+                firstname
+                githubId
+                lastname
+                program
+                slackId
+                timezone
             }
             product {
                 id
-                productName
+                name
             }
             role {
                 id
-                roleName
+                name
                 type
             }
         }
     }
 `;
 
-// done
+// Done
 const productRole = id => `
     query {
         productRole(where:{id:"${id}"}){
@@ -250,49 +219,52 @@ const productRole = id => `
             }
             product {
                 id
-                productName
+                name
             }
             role {
                 id
-                roleName
+                name
                 type
             }
         }
     }
 `;
 
-// done
+// Done
 const projects = `
     query {
-      projects {
-        id
-        name
-        product {
-          id
-        }
-        start
-        end
-      }
-    }
-`;
-
-// done
-const project = id => `
-    query {
-        project(where:{id:"${id}"}){
-        id
-            end
+        projects{
+            id
             name
             start
+            end
             product {
                 id
-                productName
+                name
             }
         }
     }
 `;
 
-// done
+// Done
+const project = id => `
+    query {
+        project(where:{id:"${id}"}){
+            id
+            end
+            name
+            start
+            product {
+                id
+                name
+            }
+        }
+    }
+`;
+
+// TODO
+// PeopleGroupMembers is not a type on the new API
+// Will need to build a custom query to fetch something similar
 const projectGroupMembers = `
     query {
         projectGroupMembers{
@@ -315,10 +287,21 @@ const projectGroupMembers = `
     }
 `;
 
-const projectGroupMember = id => `
+// Done
+const projectRoles = `
     query {
-        projectGroupMember(where:{id:"${id}"}) {
+        projectRoles {
             id
+            person {
+                id
+                email
+                firstname
+                githubId
+                lastname
+                program
+                slackId
+                timezone    
+            }
             project {
                 id
                 end
@@ -326,36 +309,19 @@ const projectGroupMember = id => `
                 start
                 product {
                     id
-                    productName
+                    name
                 }
             }
-            projectGroup {
+            role {
                 id
                 name
+                type
             }
         }
     }
 `;
 
-// done
-const projectRoles = `
-    query {
-        projectRoles {
-            id
-            person {
-                email
-            }
-            project{
-                name
-            }
-            role {
-                roleName
-            }
-        }
-    }
-`;
-
-// done
+// Done
 const projectRole = id => `
     query {
         projectRoles(where:{id:"${id}"}) {
@@ -376,13 +342,13 @@ const projectRole = id => `
                 start
                 product {
                     id
-                    productName
+                    name
                 }
             }
             role {
                 id
                 type
-                roleName
+                name
             }
         }
     }
@@ -390,59 +356,55 @@ const projectRole = id => `
 
 // Commented out exports are to be built into a full-CRUD release canvas
 export {
-  persons,
-  person,
-  // createPerson,
-  // updatePerson,
-  // deletePerson,
-  products,
-  product,
-  // createProduct,
-  // updateProduct,
-  // deleteProduct,
-  projectGroups,
-  projectGroup,
-  // createProjectGroup,
-  // updateProjectGroup,
-  // deleteProjectGroup,
-  roles,
-  role,
-  // createRole,
-  // updateRole,
-  // deleteRole,
-  peopleGroups,
-  peopleGroup,
-  // createPeopleGroup,
-  // updatePeopleGroup,
-  // deletePeopleGroup,
-  lambdaRoles,
-  lambdaRole,
-  // createLambdaRole,
-  // updateLambdaRole,
-  // deleteLambdaRole,
-  peopleGroupMembers,
-  peopleGroupMember,
-  // createPeopleGroupMember,
-  // updatePeopleGroupMember,
-  // deletePeopleGroupMember,
-  productRoles,
-  productRole,
-  // createProductRole,
-  // updateProductRole,
-  // deleteProductRole,
-  projects,
-  project,
-  // createProject,
-  // updateProject,
-  // deleteProject,
-  projectGroupMembers,
-  projectGroupMember,
-  // createProjectGroupMember,
-  // updateProjectGroupMember,
-  // deleteProjectGroupMember,
-  projectRoles,
-  projectRole
-  // createProjectRole,
-  // updateProjectRole,
-  // deleteProjectRole,
+    persons,
+    person,
+    // createPerson,
+    // updatePerson,
+    // deletePerson,
+    products,
+    product,
+    // createProduct,
+    // updateProduct,
+    // deleteProduct,
+    projectGroups,
+    // createProjectGroup,
+    // updateProjectGroup,
+    // deleteProjectGroup,
+    roles,
+    role,
+    // createRole,
+    // updateRole,
+    // deleteRole,
+    peopleGroups,
+    // createPeopleGroup,
+    // updatePeopleGroup,
+    // deletePeopleGroup,
+    lambdaRoles,
+    lambdaRole,
+    // createLambdaRole,
+    // updateLambdaRole,
+    // deleteLambdaRole,
+    peopleGroupMembers,
+    // createPeopleGroupMember,
+    // updatePeopleGroupMember,
+    // deletePeopleGroupMember,
+    productRoles,
+    productRole,
+    // createProductRole,
+    // updateProductRole,
+    // deleteProductRole,
+    projects,
+    project,
+    // createProject,
+    // updateProject,
+    // deleteProject,
+    projectGroupMembers,
+    // createProjectGroupMember,
+    // updateProjectGroupMember,
+    // deleteProjectGroupMember,
+    projectRoles,
+    projectRole,
+    // createProjectRole,
+    // updateProjectRole,
+    // deleteProjectRole,
 };
