@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import signup from "../../assets/signup.svg";
 
 const URL =
-  "https://dvtaodzn3c7ga.cloudfront.net/api/auth/register";
+  "https://dw0z95u459ou2.cloudfront.net/api/auth/register";
 // TODO: encrypt password
 
 function FormShape({ errors, touched }) {
@@ -121,6 +121,6 @@ export default withFormik({
         history.push(`/dashboard/${localStorage.getItem("user")}`);
         // history.push(`/dashboard/${res.data.user.userId}`);
       })
-      .catch(err => console.log(err.response.data.message));
+      .catch(err => console.log(err));
   }
 })(FormShape);

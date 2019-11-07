@@ -8,8 +8,7 @@ import computers from "../../assets/computers.svg";
 import { loginSuccess } from '../../actions'
 import { connect } from 'react-redux'
 
-const URL =
-  "https://dvtaodzn3c7ga.cloudfront.net/api/auth/login";
+const URL = "https://dw0z95u459ou2.cloudfront.net/api/auth/login" ;
 
 function FormShape({ errors, touched, status }) {
   const history = useHistory();
