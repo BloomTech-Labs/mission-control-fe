@@ -3,36 +3,36 @@ import SearchIcon from "@material-ui/icons/Search";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Project from "./Project";
 import { connect } from "react-redux";
-import { setActiveProduct } from '../../../actions/activeProductActions';
+import { setActiveProject } from '../../../actions/activeProjectActions';
 
 const ProjectList = props => {
 
   console.log(props)
 
   useEffect(() => {
-    setFiltered({ products: props.products });
+    setFiltered({ projects: props.projects });
 
-    if(filtered.products.length > 0) {
-      props.setActiveProduct(filtered.products[0])
+    if(filtered.projects.length > 0) {
+      props.setActiveProject(filtered.projects[0])
     } else {
-      props.setActiveProduct(props.products[0])
+      props.setActiveProject(props.projects[0])
     }
-  }, [props.products]);
+  }, [props.projects]);
 
-  const [filtered, setFiltered] = useState({ products: [] });
+  const [filtered, setFiltered] = useState({ projects: [] });
 
 
-  const setProductHandler = el => {
-    props.setActiveProduct(el);
+  const setProjectHandler = el => {
+    props.setActiveProject(el);
   };
 
   const handleChange = e => {
-    const products = props.products;
+    const projects = props.projects;
     const re = /^[a-z0-9\s]+$/i;
 
-    if (e.target.value !== "" && re.test(e.target.value) && products.length > 0) {
+    if (e.target.value !== "" && re.test(e.target.value) && projects.length > 0) {
       setFiltered({
-        products: products.filter(item => {
+        projects: projects.filter(item => {
           return (
             item.name
               .toLowerCase()
@@ -41,9 +41,9 @@ const ProjectList = props => {
         })
       });
     } else if (!re.test(e.target.value) && e.target.value !== "") {
-      setFiltered({ products: [] });
+      setFiltered({ projects: [] });
     } else {
-      setFiltered({ products: props.products });
+      setFiltered({ projects: props.projects });
     }
   };
 
@@ -64,11 +64,11 @@ const ProjectList = props => {
         />
       </span>
       <div className="products-scroll-container">
-        {filtered.products.length &&
-          filtered.products.map((el, i) => (
+        {filtered.projects.length &&
+          filtered.projects.map((el, i) => (
             <Project
-              active={props.activeProductStore.active}
-              setActiveProduct={setProductHandler}
+              active={props.activeProjectStore.active}
+              setActiveProduct={setProjectHandler}
               key={i}
               el={el}
               i={el.id}
@@ -81,8 +81,8 @@ const ProjectList = props => {
 
 const mapStateToProps = state => {
   return {
-    activeProductStore: state.activeProductStore
+    activeProjectStore: state.activeProjecStore
   }
 }
 
-export default connect(mapStateToProps, { setActiveProduct })(ProjectList);
+export default connect(mapStateToProps, { setActiveProject })(ProjectList);
