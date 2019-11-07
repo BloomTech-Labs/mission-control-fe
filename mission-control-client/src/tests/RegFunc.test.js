@@ -51,9 +51,9 @@ test("Successful login", async () => {
   const r = async (URL, packet) => {
     const res = await axios.post(URL, packet);
     localStorage.setItem("token", res.data.token);
-    localStorage.setItem("user", res.data.user.userId);
+    localStorage.setItem("role", res.data.user.role);
     localStorage.setItem("fname", res.data.user.firstName);
-    history.push(`/dashboard/${localStorage.getItem("user")}`);
+    history.push(`/${res.data.user.role}/dashboard`);
     return res.data;
   };
 
@@ -68,7 +68,7 @@ test("Successful login", async () => {
           firstName: testName,
           lastName: "LastName",
           email: "email@email.com",
-          role: "God"
+          role: "god"
         },
         token: "tkn"
       }
@@ -94,7 +94,7 @@ test("Successful login", async () => {
       firstName: testName,
       lastName: "LastName",
       email: "email@email.com",
-      role: "God"
+      role: "god"
     },
     token: "tkn"
   });
@@ -102,8 +102,8 @@ test("Successful login", async () => {
   expect(axios.post).toHaveBeenCalledTimes(1);
   expect(window.localStorage.getItem("token")).toEqual("tkn");
   expect(window.localStorage.getItem("fname")).toEqual(testName);
-  expect(window.localStorage.getItem("user")).toEqual("id");
-  expect(history.location.pathname).toEqual("/dashboard/id");
+  expect(window.localStorage.getItem("role")).toEqual("god");
+  expect(history.location.pathname).toEqual("/god/dashboard");
 
   render(
     <Router history={history}>

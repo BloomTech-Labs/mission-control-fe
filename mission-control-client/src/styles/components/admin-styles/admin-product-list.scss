@@ -16,8 +16,9 @@
       color: $secondary;
       font-size: 18px;
     }
-    .grade-filter {
-      font-size: 16px;
+
+    .add-product-icon {
+      cursor: pointer;
     }
   }
 
@@ -42,11 +43,18 @@
       font-family: "Roboto";
       font-weight: 500;
       outline: none;
-  
+
       &::placeholder {
         color: black;
         opacity: 1;
       }
     }
+  }
+
+  .products-no-products {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 4rem;
+    width: 321px;
   }
 }

@@ -1,0 +1,66 @@
+@import "../../variables.scss";
+
+.admin-projects-container {
+  margin-top: 3rem;
+
+  .admin-projects-head {
+    display: flex;
+    justify-content: center;
+    background: white;
+    border-bottom: 2px solid rgba(171, 171, 171, 0.75);
+    border-radius: 5px;
+
+    .admin-projects-title {
+      color: #272727;
+      font-size: 2.4rem;
+      padding: 3rem 0;
+      border-bottom: 5px solid $nav-link-selected;
+      border-radius: 2px;
+    }
+  }
+  .admin-projects-content-container {
+    background: rgb(226, 229, 255);
+    padding: 2rem 2rem;
+    display: flex;
+    justify-content: center;
+    flex-flow: wrap;
+
+    .admin-projects-empty {
+      text-align: center;
+      font-size: 2.4rem;
+      font-weight: bold;
+      margin: 5rem;
+    }
+
+    .admin-dashboard-project {
+      margin: 1rem;
+      padding: 2rem;
+      height: 200px;
+      width: 200px;
+      font-size: 1.6rem;
+      background: white;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      &:hover {
+        background: $gray-accent;
+      }
+
+      .admin-dashboard-project-name {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .admin-project-in-progress {
+        color: $primary;
+      }
+      .admin-project-completed {
+        color: $secondary;
+      }
+    }
+  }
+}
