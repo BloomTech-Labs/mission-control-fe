@@ -5,8 +5,22 @@
   flex-direction: column;
 
   .admin-project-more-overview {
+
     .admin-project-more-overview-head {
-      font-size: 4rem;
+      font-size: 5rem;
+    }
+
+    .admin-project-more-overview-content {
+      margin-top: 5rem;
+
+      .admin-project-more-overview-product {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+      .admin-project-more-overview-project {
+        font-size: 4rem;
+        font-weight: bold;
+      }
     }
 
     .product-program-avatar {
