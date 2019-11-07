@@ -8,7 +8,8 @@ const Product = props => {
       onClick={() => props.setActiveProduct(props.el)}
       id={
         props.active.id && props.active.id === props.i
-          ? "product-active" : undefined
+          ? "product-active"
+          : undefined
       }
       className="product-container"
     >
