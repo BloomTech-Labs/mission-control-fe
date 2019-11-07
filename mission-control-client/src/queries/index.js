@@ -354,6 +354,29 @@ const projectRole = id => `
     }
 `;
 
+const projectRoleByEmail = email => `
+    query {
+        projectRoles( where: { person: { email: "${email}" } }) {
+            project {
+                name
+                start
+                end
+                product {
+                  name  
+                }
+                person {
+                    firstname
+                    lastname
+                    program
+                    timezone
+                    githubId
+                    slackId
+                }
+            }
+        }
+    }
+`;
+
 // Commented out exports are to be built into a full-CRUD release canvas
 export {
     persons,
@@ -407,4 +430,5 @@ export {
     // createProjectRole,
     // updateProjectRole,
     // deleteProjectRole,
+    projectRoleByEmail
 };
