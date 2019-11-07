@@ -38,7 +38,7 @@ const initialState = {
     projectGroupMember: {},
     projectRoles: [],
     projectRole: {},
-    projectRoleByEmail: {},
+    projectRoleByEmail: [],
     error: ''
 };
 

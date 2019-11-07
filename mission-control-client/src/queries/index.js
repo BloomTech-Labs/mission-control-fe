@@ -364,14 +364,18 @@ const projectRoleByEmail = email => `
                 product {
                   name  
                 }
-                person {
-                    firstname
-                    lastname
-                    program
-                    timezone
-                    githubId
-                    slackId
-                }
+            }
+            person {
+                firstname
+                lastname
+                program
+                timezone
+                githubId
+                slackId
+            }
+            role {
+                name
+                type
             }
         }
     }
