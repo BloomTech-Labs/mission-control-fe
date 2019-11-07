@@ -27,4 +27,4 @@ function mapStateToProps(state) {
     return state;
 }
 
-export default connect(mapStateToProps, {})(ProjectDetails);
+export default connect(mapStateToProps, null)(ProjectDetails);
