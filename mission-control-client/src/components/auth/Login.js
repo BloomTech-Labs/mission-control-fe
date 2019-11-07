@@ -89,7 +89,7 @@ const FormikLogin = withFormik({
     values,
     {
       setStatus,
-      props: { history, loginSuccess }
+      props: { history }
     }
   ) {
     const packet = {
