@@ -1,0 +1,45 @@
+.roles-container{
+    width: 90vw;
+    height:82vh;
+    margin: 2vh auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    h2{
+        font-size:3rem;
+        padding: 1rem;
+    }
+    .users-container{
+        height: 80%; 
+        .user{
+            width:100%;
+            display: flex;
+            align-items: center;
+            padding: 2.2rem;
+            margin: 1rem 0;
+            background: $background;
+            h3{
+                font-weight: 600;
+                font-size:1.6rem;
+            }
+            span{
+                margin-left:2rem;
+            }
+            p{
+                font-size:1.6rem;
+                margin-left: 2rem;
+            }
+            button{
+                margin-left:2rem;
+                border:none;
+                background: $secondary;
+                padding:1rem;
+                fill: $secondary;
+                border-radius:5px;
+                color: $accent;
+            }
+
+        }
+        
+    }
+}
