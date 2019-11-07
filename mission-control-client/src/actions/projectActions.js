@@ -138,6 +138,7 @@ export const getProjectRole = id => {
 };
 
 export const getProjectRoleByEmail = email => {
+    console.log(email);
     return dispatch => {
         dispatch({ type: GET_PROJECT_ROLE_BY_EMAIL_START });
         axiosLabsGraphQL
