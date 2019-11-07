@@ -3,21 +3,21 @@ import SearchIcon from "@material-ui/icons/Search";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Project from "./Project";
 import { connect } from "react-redux";
-import { setActiveProject } from '../../../actions/activeProjectActions';
+// import { setActiveProject } from '../../../actions/activeProjectActions';
 
 const ProjectList = props => {
 
   console.log(props)
 
-  useEffect(() => {
-    setFiltered({ projects: props.projects });
+  // useEffect(() => {
+  //   setFiltered({ projects: props.projects });
 
-    if(filtered.projects.length > 0) {
-      props.setActiveProject(filtered.projects[0])
-    } else {
-      props.setActiveProject(props.projects[0])
-    }
-  }, [props.projects]);
+  //   if(filtered.projects.length > 0) {
+  //     props.setActiveProject(filtered.projects[0])
+  //   } else {
+  //     props.setActiveProject(props.projects[0])
+  //   }
+  // }, [props.projects]);
 
   const [filtered, setFiltered] = useState({ projects: [] });
 
@@ -85,4 +85,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { setActiveProject })(ProjectList);
+export default connect(mapStateToProps, {/*  setActiveProject  */})(ProjectList);
