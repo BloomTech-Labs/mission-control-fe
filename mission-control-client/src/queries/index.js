@@ -49,7 +49,7 @@ const product = id => `
         product(where:{id:"${id}"}) {
             id
             name
-            projetcs {
+            projects {
                 id
                 name
                 start
