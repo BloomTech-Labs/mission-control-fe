@@ -4,8 +4,6 @@ import { connect } from "react-redux";
 const DashboardBanner = props => {
   const programs = ["web", "ux/ui", "ds"];
 
-  console.log(props)
-
   return (
     <div className="dashboard-banner-container">
       <div className="dashboard-banner-head">
