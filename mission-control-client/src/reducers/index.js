@@ -5,7 +5,7 @@ import { personStore } from './personStore'
 import { productStore } from './productStore'
 import { projectStore } from './projectStore'
 import { activeProductStore } from './activeProductStore';
-import { activeProjetStore } from "./activeProjectStore";
+import { activeProjectStore } from "./activeProjectStore";
 
 export default combineReducers({
     globalStore, 
