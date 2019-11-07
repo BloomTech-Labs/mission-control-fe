@@ -6,19 +6,26 @@ import {
   Redirect,
   useHistory
 } from "react-router-dom";
-import PrivateRoute from "./utils/PrivateRoute";
-import StudentPrivateRoute from "./utils/StudentPrivateRoute";
-import AdminPrivateRoute from "./utils/AdminPrivateRoute";
+
+// components
 import Layout from "./components/layout/Layout";
-import "./styles/index.scss";
 import Registration from "./components/auth/Registration.js";
 import Login from "./components/auth/Login";
 import Bad from "./components/layout/Bad";
 import AdminDash from "./components/dashboard/admin-dashboard/DashboardHome";
 import UserDash from "./components/dashboard/user-dashboard/DashboardHome";
-import embedAnalytics from "./utils/embedAnalytics";
 import EditProfile from "./components/user_settings/EditProfile";
+import UserPromotions from './components/user_settings/UserPromotions'
+
+//utils
+import AdminPrivateRoute from "./utils/AdminPrivateRoute";
+import PrivateRoute from "./utils/PrivateRoute";
+import StudentPrivateRoute from "./utils/StudentPrivateRoute";
+import embedAnalytics from "./utils/embedAnalytics";
 import decrypt from "./utils/decrypt";
+
+//styles
+import "./styles/index.scss";
 
 function App() {
   const location = useLocation();
@@ -44,12 +51,12 @@ function App() {
         </PrivateRoute>
         <Route path="/register" component={Registration} />
         <Route path="/login" component={Login} />
-        <PrivateRoute path={`/profile/${localStorage.getItem('user')}/edit/password`} component={EditProfile} />
-        <PrivateRoute path={`/profile/${localStorage.getItem('user')}/edit/email`} component={EditProfile} />
-        <AdminPrivateRoute path={`/profile/${localStorage.getItem('user')}/edit/promotions`} component={EditProfile} />
+        <PrivateRoute path={`/profile/${localStorage.getItem('fname')}/edit/password`} component={EditProfile} />
+        <PrivateRoute path={`/profile/${localStorage.getItem('fname')}/edit/email`} component={EditProfile} />
         <StudentPrivateRoute path="/student/dashboard" component={UserDash} />
         <AdminPrivateRoute path="/manager/dashboard" component={AdminDash} />
         <AdminPrivateRoute path="/admin/dashboard" component={AdminDash} />
+        <AdminPrivateRoute path={`/admin/${localStorage.getItem('fname')}/edit/promotions`} component={UserPromotions} />
         <Route component={Bad} />
       </Switch>
     </Layout>

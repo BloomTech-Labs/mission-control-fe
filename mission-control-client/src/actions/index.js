@@ -91,3 +91,10 @@ export {
   loginSuccess,
   LOGIN_SUCCESS
 } from './loginActions'
+
+export {
+  GET_USERS_START,
+  GET_USERS_SUCCESS,
+  GET_USERS_ERROR,
+  getUsers
+} from './settingsActions'

@@ -12,9 +12,6 @@ const EditNav = () => {
                 <li>
                     <Link to = {`/profile/${localStorage.getItem('user')}/edit/password`}>Update Password</Link>
                 </li>
-                <li>
-                    <Link to = {`/profile/${localStorage.getItem('user')}/edit/promotions`}>Promote Workspace Users</Link>
-                </li>
             </ul>
         </div>
     )
