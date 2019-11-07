@@ -42,7 +42,6 @@ export const GET_PROJECT_ROLE_START = 'GET_PROJECT_ROLE_START';
 export const GET_PROJECT_ROLE_SUCCESS = 'GET_PROJECT_ROLE_SUCCESS';
 export const GET_PROJECT_ROLE_ERROR = 'GET_PROJECT_ROLE_ERROR';
 
-
 export const GET_PROJECT_ROLE_BY_EMAIL_START = 'GET_PROJECT_ROLE_BY_EMAIL_START';
 export const GET_PROJECT_ROLE_BY_EMAIL_SUCCESS = 'GET_PROJECT_ROLE_BY_EMAIL_SUCCESS';
 export const GET_PROJECT_ROLE_BY_EMAIL_ERROR = 'GET_PROJECT_ROLE_BY_EMAIL_ERROR';
@@ -90,7 +89,6 @@ export const getProjectGroups = () => {
             .catch(err => dispatch({ type: GET_PROJECT_GROUPS_ERROR, payload: err.response }));
     };
 };
-
 
 // TODO
 // ProjectGroupMembers is not a type on the new API
