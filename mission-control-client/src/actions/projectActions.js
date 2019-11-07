@@ -4,8 +4,6 @@ import {
     projects,
     project,
     projectGroups,
-    projectGroup,
-    projectGroupMember,
     projectGroupMembers,
     projectRoles,
     projectRole,
@@ -85,20 +83,6 @@ export const getProjectGroups = () => {
     };
 };
 
-// TODO NEEDS LOOKING INTO RETURNS UNDEFINED
-export const getProjectGroup = id => {
-    return dispatch => {
-        dispatch({ type: GET_PROJECT_GROUP_START });
-        axiosLabsGraphQL
-            .post('', { query: projectGroup(id) })
-            .then(res => {
-                const projectGroup = res.data.data.projectGroup;
-                console.log(projectGroup)
-                dispatch({ type: GET_PROJECT_GROUP_SUCCESS, payload: projectGroup })
-            })
-            .catch(err => dispatch({ type: GET_PROJECT_GROUP_ERROR, payload: err.response }));
-    };
-};
 
 // TODO NEEDS LOOKING INTO RETURNS UNDEFINED
 export const getProjectGroupMembers = () => {
@@ -114,22 +98,6 @@ export const getProjectGroupMembers = () => {
             .catch(err => dispatch({ type: GET_PROJECT_GROUP_MEMBERS_ERROR, payload: err.response }));
     };
 };
-
-// TODO NEEDS LOOKING INTO RETURNS UNDEFINED
-export const getProjectGroupMember = (id) => {
-    return dispatch => {
-        dispatch({ type: GET_PROJECT_GROUP_MEMBER_START });
-        axiosLabsGraphQL
-            .post('', { query: projectGroupMember(id) })
-            .then(res => {
-                const member = res.data;
-                console.log(member)
-                dispatch({ type: GET_PROJECT_GROUP_MEMBER_SUCCESS, payload: member })
-            })
-            .catch(err => dispatch({ type: GET_PROJECT_GROUP_MEMBER_ERROR, payload: err.response }));
-    };
-};
-
 
 export const getProjectRoles = () => {
     return dispatch => {
