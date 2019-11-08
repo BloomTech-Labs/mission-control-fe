@@ -104,5 +104,9 @@ export {
   GET_MC_ROLES_START,
   GET_MC_ROLES_SUCCESS,
   GET_MC_ROLES_ERROR,
-  getMCRoles
+  getMCRoles,
+  UPDATE_MC_ROLES_START,
+  UPDATE_MC_ROLES_SUCCESS,
+  UPDATE_MC_ROLES_ERROR,
+  updateMCRoles
 } from './settingsActions'

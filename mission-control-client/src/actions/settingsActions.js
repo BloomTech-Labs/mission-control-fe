@@ -27,3 +27,20 @@ export const getMCRoles = () => {
             .catch( err => dispatch({type: GET_MC_ROLES_ERROR, payload: err.response}) )
     }
 }
+
+export const UPDATE_MC_ROLES_START = 'UPDATE_MC_ROLES_START'
+export const UPDATE_MC_ROLES_SUCCESS = 'UPDATE_MC_ROLES_SUCCESS'
+export const UPDATE_MC_ROLES_ERROR = 'UPDATE_MC_ROLES_ERROR'
+
+export const updateMCRoles = (values) => {
+    console.log(values)
+    return dispatch => {
+        dispatch({type: UPDATE_MC_ROLES_START})
+        axiosWithAuth()
+            .put('https://dw0z95u459ou2.cloudfront.net/api/users', values)
+            .then( res => {
+                dispatch({type: UPDATE_MC_ROLES_SUCCESS, payload:res.data.updateUser})
+            })
+            .catch( err => dispatch({type: UPDATE_MC_ROLES_ERROR, payload: err.response}) )
+    }
+}
