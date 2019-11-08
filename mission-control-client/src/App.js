@@ -13,6 +13,7 @@ import Layout from "./components/layout/Layout";
 import "./styles/index.scss";
 import Registration from "./components/auth/Registration.js";
 import Login from "./components/auth/Login";
+import ProjectMore from "./components/dashboard/admin-dashboard/ProjectMore";
 import Bad from "./components/layout/Bad";
 import AdminDash from "./components/dashboard/admin-dashboard/DashboardHome";
 import UserDash from "./components/dashboard/user-dashboard/DashboardHome";
@@ -45,7 +46,8 @@ function App() {
         <Route path="/login" component={Login} />
         <StudentPrivateRoute path="/student/dashboard" component={UserDash} />
         <AdminPrivateRoute path="/manager/dashboard" component={AdminDash} />
-        <AdminPrivateRoute path="/admin/dashboard" component={AdminDash} />
+        <AdminPrivateRoute exact path="/admin/dashboard" component={AdminDash} />
+        <AdminPrivateRoute path="/admin/dashboard/:id" component={ProjectMore} />
         <Route component={Bad} />
       </Switch>
     </Layout>
