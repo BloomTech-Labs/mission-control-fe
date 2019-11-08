@@ -10,7 +10,8 @@ const UserPromotions = props => {
 
     const { users, roles } = props
 
-    // const [ className, setClassName ] = useState('hide')
+    const [values, setValues] = useState('')
+    const [filtered, setFiltered] = useState([])
 
     useEffect(() => {
         if(!users.length){
@@ -31,10 +32,23 @@ const UserPromotions = props => {
     //     setClassName('')
     // }
 
+    const handleChange = (e) =>{
+        setValues(e.target.value)
+        setFiltered(()=> {
+            return users.filter((user) => {
+                const usersName = `${user.firstName}  ${user.lastName}`.split(' ')
+                const regex = /^[a-z\s]+$/i;
+                
+            })
+        })
+    }
+
+
     return (
         <div className = 'roles-container'>
             <h2>Promote User Roles</h2>
             <div className = 'users-container '>
+            <input value = {values} type = 'text' placeholder='Search. . .' onChange = {(e) => handleChange(e)}/>
                 { !props.isLoading ? 
                     users.map( user => { 
                         return (
