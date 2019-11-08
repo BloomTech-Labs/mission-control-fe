@@ -45,7 +45,7 @@ function App() {
         <Route path="/register" component={Registration} />
         <Route path="/login" component={Login} />
         <StudentPrivateRoute path="/student/dashboard" component={UserDash} />
-        <AdminPrivateRoute path="/manager/dashboard" component={AdminDash} />
+        <AdminPrivateRoute exact path="/manager/dashboard" component={AdminDash} />
         <AdminPrivateRoute exact path="/admin/dashboard" component={AdminDash} />
         <AdminPrivateRoute path="/admin/dashboard/:id" component={ProjectMore} />
         <Route component={Bad} />
