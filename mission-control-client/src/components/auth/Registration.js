@@ -122,6 +122,6 @@ export default withFormik({
         localStorage.setItem("email", res.data.user.email);
         history.push(`/${res.data.user.role}/dashboard`);
       })
-      .catch(err => console.log(err.response.data.message));
+      .catch(err => console.log(err));
   }
 })(FormShape);
