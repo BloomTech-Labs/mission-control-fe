@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Product from "./Product";
 import { connect } from "react-redux";
 import { setActiveProduct } from "../../../actions/activeProductActions";

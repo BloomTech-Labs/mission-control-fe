@@ -262,6 +262,39 @@ const project = id => `
     }
 `;
 
+const fullProjectDetailsById = id => `
+query
+{
+  projects(where: { id: "${id}"}) {
+    id
+    name
+    product {
+      id
+      name
+    }
+    start
+    end
+  }
+}
+`;
+
+const peopleByProjectId = id => `
+query {
+  projectRoles (where: { project: {id: "${id}" } } )  {
+    person {
+    	id
+    	firstname
+    	lastname
+    	timezone
+    	program
+    	email
+    	githubId
+    	slackId
+    }
+  }
+}
+`;
+
 // TODO
 // PeopleGroupMembers is not a type on the new API
 // Will need to build a custom query to fetch something similar
@@ -383,56 +416,58 @@ const projectRoleByEmail = email => `
 
 // Commented out exports are to be built into a full-CRUD release canvas
 export {
-    persons,
-    person,
-    // createPerson,
-    // updatePerson,
-    // deletePerson,
-    products,
-    product,
-    // createProduct,
-    // updateProduct,
-    // deleteProduct,
-    projectGroups,
-    // createProjectGroup,
-    // updateProjectGroup,
-    // deleteProjectGroup,
-    roles,
-    role,
-    // createRole,
-    // updateRole,
-    // deleteRole,
-    peopleGroups,
-    // createPeopleGroup,
-    // updatePeopleGroup,
-    // deletePeopleGroup,
-    lambdaRoles,
-    lambdaRole,
-    // createLambdaRole,
-    // updateLambdaRole,
-    // deleteLambdaRole,
-    peopleGroupMembers,
-    // createPeopleGroupMember,
-    // updatePeopleGroupMember,
-    // deletePeopleGroupMember,
-    productRoles,
-    productRole,
-    // createProductRole,
-    // updateProductRole,
-    // deleteProductRole,
-    projects,
-    project,
-    // createProject,
-    // updateProject,
-    // deleteProject,
-    projectGroupMembers,
-    // createProjectGroupMember,
-    // updateProjectGroupMember,
-    // deleteProjectGroupMember,
-    projectRoles,
-    projectRole,
-    // createProjectRole,
-    // updateProjectRole,
-    // deleteProjectRole,
-    projectRoleByEmail
+  persons,
+  person,
+  // createPerson,
+  // updatePerson,
+  // deletePerson,
+  products,
+  product,
+  // createProduct,
+  // updateProduct,
+  // deleteProduct,
+  projectGroups,
+  // createProjectGroup,
+  // updateProjectGroup,
+  // deleteProjectGroup,
+  roles,
+  role,
+  // createRole,
+  // updateRole,
+  // deleteRole,
+  peopleGroups,
+  // createPeopleGroup,
+  // updatePeopleGroup,
+  // deletePeopleGroup,
+  lambdaRoles,
+  lambdaRole,
+  // createLambdaRole,
+  // updateLambdaRole,
+  // deleteLambdaRole,
+  peopleGroupMembers,
+  // createPeopleGroupMember,
+  // updatePeopleGroupMember,
+  // deletePeopleGroupMember,
+  productRoles,
+  productRole,
+  // createProductRole,
+  // updateProductRole,
+  // deleteProductRole,
+  projects,
+  project,
+  // createProject,
+  // updateProject,
+  // deleteProject,
+  projectGroupMembers,
+  // createProjectGroupMember,
+  // updateProjectGroupMember,
+  // deleteProjectGroupMember,
+  projectRoles,
+  projectRole,
+  fullProjectDetailsById,
+  peopleByProjectId,
+  projectRoleByEmail
+  // createProjectRole,
+  // updateProjectRole,
+  // deleteProjectRole,
 };
