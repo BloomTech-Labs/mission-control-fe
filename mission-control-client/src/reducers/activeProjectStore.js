@@ -2,7 +2,7 @@ import { SET_ACTIVE_PROJECT } from '../actions/activeProjectActions';
 
 const initialState = {
   active: null
-}
+};
 
 export const activeProjectStore = (state = initialState, action) => {
   switch(action.type) {
