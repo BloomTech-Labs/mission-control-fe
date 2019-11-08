@@ -43,5 +43,4 @@ const mapStateToProps = state => {
     activeProductStore: state.activeProductStore
   }
 }
-
 export default connect(mapStateToProps, {})(DashboardBanner);
