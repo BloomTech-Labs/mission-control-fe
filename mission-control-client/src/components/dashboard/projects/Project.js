@@ -1,6 +1,7 @@
 import React from "react";
 
 const Project = props => {
+  console.log(props);
   const programs = ["web", "ux/ui", "ds"];
 
   return (
@@ -8,7 +9,7 @@ const Project = props => {
       onClick={() => props.setActiveProject(props.el.project)}
       id={
         props.active.id && props.active.id === props.i
-          ? "product-active" : undefined
+          ? "product-active" : 'active-project'
       }
       className="product-container"
     >
