@@ -19,7 +19,6 @@ const ProjectList = props => {
     }
   }, [props.projectStore]);
 
-
   const setProjectHandler = el => {
     props.setActiveProject(el);
   };
