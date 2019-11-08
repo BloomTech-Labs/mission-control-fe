@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import Project from "./Project";
 import { connect } from "react-redux";
 import { setActiveProject } from '../../../actions/activeProjectActions';
 
 const ProjectList = props => {
-
-  console.log(props)
+  const [filtered, setFiltered] = useState({ projects: [] });
 
   useEffect(() => {
-    setFiltered({ projects: props.projects });
-
-    if(filtered.projects.length > 0) {
-      props.setActiveProject(filtered.projects[0])
-    } else {
-      props.setActiveProject(props.projects[0])
+    if(props.projectStore.projectRoleByEmail.length) {
+      setFiltered({ projects: props.projectStore.projectRoleByEmail });
+      props.setActiveProject(props.projectStore.projectRoleByEmail[0].project);
+      if(filtered.projects.length > 0) {
+        props.setActiveProject(filtered.projects[0]);
+      } else {
+        props.setActiveProject(props.projectStore.projectRoleByEmail[0].project);
+      }
     }
-  }, [props.projects]);
-
-  const [filtered, setFiltered] = useState({ projects: [] });
+  }, [props.projectStore]);
 
 
   const setProjectHandler = el => {
@@ -27,14 +25,14 @@ const ProjectList = props => {
   };
 
   const handleChange = e => {
-    const projects = props.projects;
+    const projects = props.projectStore.projectRoleByEmail;
     const re = /^[a-z0-9\s]+$/i;
 
     if (e.target.value !== "" && re.test(e.target.value) && projects.length > 0) {
       setFiltered({
         projects: projects.filter(item => {
           return (
-            item.name
+            item.project.name
               .toLowerCase()
               .search(e.target.value.toLowerCase()) !== -1
           );
@@ -43,7 +41,7 @@ const ProjectList = props => {
     } else if (!re.test(e.target.value) && e.target.value !== "") {
       setFiltered({ projects: [] });
     } else {
-      setFiltered({ projects: props.projects });
+      setFiltered({ projects: projects });
     }
   };
 
@@ -51,9 +49,6 @@ const ProjectList = props => {
     <div className="product-list-container">
       <div className="product-list-header">
         <p className="product-list-title">Projects</p>
-        <div className="add-product-icon">
-          <AddCircleOutlineIcon fontSize="large" />
-        </div>
       </div>
       <span className="admin-product-search-wrapper">
         <SearchIcon fontSize="large" className="admin-product-search-icon" />
@@ -64,16 +59,19 @@ const ProjectList = props => {
         />
       </span>
       <div className="products-scroll-container">
-        {filtered.projects.length &&
+        {filtered.projects.length ?
           filtered.projects.map((el, i) => (
             <Project
               active={props.activeProjectStore.active}
               setActiveProduct={setProjectHandler}
               key={i}
               el={el}
-              i={el.id}
+              i={el.project.id}
             />
-          ))}
+          ))
+          :
+          <p className="products-no-products">No projects</p>
+        }
       </div>
     </div>
   );
@@ -81,7 +79,8 @@ const ProjectList = props => {
 
 const mapStateToProps = state => {
   return {
-    activeProjectStore: state.activeProjecStore
+    activeProjectStore: state.activeProjectStore,
+    projectStore: state.projectStore
   }
 }
 
