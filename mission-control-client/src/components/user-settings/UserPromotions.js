@@ -34,13 +34,19 @@ const UserPromotions = props => {
 
     const handleChange = (e) =>{
         setValues(e.target.value)
-        setFiltered(()=> {
-            return users.filter((user) => {
-                const usersName = `${user.firstName}  ${user.lastName}`.split(' ')
-                const regex = /^[a-z\s]+$/i;
-                
+        if(e.target.value === ''){
+            return setFiltered([])
+        }else{
+            setFiltered(()=> {
+                return users.filter((user) => {
+                    // const firstNameValue = values.split
+                    const usersName = `${user.firstName}  ${user.lastName}`.split(' ')
+                    if (values.toLowerCase() === usersName[0].toLowerCase().slice(0, values.length ) || values.toLowerCase() === usersName[2].toLowerCase().slice(0, values.length )){
+                        return user 
+                    }
+                })
             })
-        })
+        }
     }
 
 
@@ -49,8 +55,28 @@ const UserPromotions = props => {
             <h2>Promote User Roles</h2>
             <div className = 'users-container '>
             <input value = {values} type = 'text' placeholder='Search. . .' onChange = {(e) => handleChange(e)}/>
-                { !props.isLoading ? 
-                    users.map( user => { 
+                { props.isLoading  ? 
+                    <ClipLoader
+                    sizeUnit={"px"}
+                    size={60}
+                    color={'#ab004c'}
+                 /> 
+                    : filtered.length > 0 ?
+                        filtered.map( user => { 
+                            return (
+                            <div 
+                            className = 'user' 
+                            key = {user.userId} 
+                            // onMouseEnter = {(e) => showBtn(e)} 
+                            // onMouseLeave = {(e) => hideBtn(e)} 
+                            ref = {container} >
+                                <h3>{`${user.firstName} ${user.lastName}`}</h3>
+                                <span>-</span>
+                                <p>{user.role.charAt(0).toUpperCase() + user.role.substring(1)}</p>
+                                <UserModal user = { user } roles = { roles } />
+                            </div>)
+                    })
+                    : users.map( user => { 
                         return (
                             <div 
                             className = 'user' 
@@ -64,11 +90,6 @@ const UserPromotions = props => {
                                 <UserModal user = { user } roles = { roles } />
                             </div>)
                     }) 
-                : <ClipLoader
-                    sizeUnit={"px"}
-                    size={60}
-                    color={'#ab004c'}
-                 />
                 }
             </div>
         </div>
