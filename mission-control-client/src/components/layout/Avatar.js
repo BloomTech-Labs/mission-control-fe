@@ -63,9 +63,5 @@ const AvatarMenu = () => {
   );
 };
 
-const mapStateToProps = state => {
-  return{
-    userRole: state
-  }
-}
+
 export default AvatarMenu;
