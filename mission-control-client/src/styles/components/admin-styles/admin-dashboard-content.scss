@@ -11,18 +11,14 @@
     background: $secondary;
     color: white;
     border-radius: 5px;
-    padding: 2rem;
+    padding: 3rem;
 
     .dashboard-banner-head {
+      font-size: 30px;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-
-      p {
-        font-size: 30px;
-        padding-bottom: 2rem;
-      }
-
+      
       .dashboard-product-project-programs {
         display: flex;
         align-items: center;
@@ -49,11 +45,11 @@
       }
 
       .dashboard-product-status {
-        padding: 8px 31px;
+        font-size: 15px;
+        padding: 4px 15px;
         background: white;
         color: $nav-link-selected;
         border-radius: 5px;
-        font-size: 15px;
       }
     }
     .dashboard-product-desc {
