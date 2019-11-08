@@ -10,21 +10,29 @@ const UserModal = props => {
     const [selected, setSelected] = useState(user)
     const [formUsed, setFormUsed] = useState(false)
 
+    const [filtered, setFiltered] = useState([])
+
+    //iterates over an array of roles
     const findRoleName = (rolesArr, roleId) => {
         const roleObj = rolesArr.find(arr => arr.id === roleId)
+        //returns name of role when matching id's are found
         return roleObj.name
     }
 
     const handleChange = (e) => {
+      //finding roleName for use in confirmation message
         let roleName = findRoleName(roles, e.target.value)
         setSelected({...selected, 
             roleId: e.target.value,
             role: roleName
         })
+        //setting form used to true to prevent error from occuring
+          //a confirmation message is trying to run before any change occurs 
         setFormUsed(true)
     }
 
     const handleSubmit = (e) => {
+      e.preventDefault();
         const packet = {
             id: selected.userId,
             firstName: selected.firstName,
@@ -32,7 +40,6 @@ const UserModal = props => {
             email: selected.email,
             roleId: selected.roleId,
         }
-        e.preventDefault();
         props.updateMCRoles(packet)
     }
 
@@ -69,13 +76,13 @@ const UserModal = props => {
                 type = 'button'
                 className="button"
                 onClick={() => {
-                  console.log("modal closed");
                   close();
                 }}
                 >
                 Cancel
               </button>
                 <Popup trigger={<button className={`button`} type = 'button'>Confirm Changes</button>} modal>
+                {/* waiting until form has been used so that selected.role is a valid property */}
                     { formUsed ? <h2>Are you sure you want to update {user.firstName} {user.lastName}'s Role To {selected.role.charAt(0).toUpperCase() + selected.role.substring(1)}</h2> : null }
                     <button
                     type='submit'
