@@ -2,13 +2,17 @@ import {
     GET_USERS_START,
     GET_USERS_SUCCESS,
     GET_USERS_ERROR,
+    GET_MC_ROLES_START,
+    GET_MC_ROLES_SUCCESS,
+    GET_MC_ROLES_ERROR
 } from '../actions'
 
 const initialState = {
     missionControlUsers: [],
     isLoading: '',
     error:'',
-    currentSelected: []
+    currentSelected: [],
+    MCRoles: []
 }
 
 export const settingsStore = ( state = initialState, action) =>{
@@ -25,6 +29,23 @@ export const settingsStore = ( state = initialState, action) =>{
                 missionControlUsers: action.payload
             }
         case GET_USERS_ERROR:
+            return{
+                ...state,
+                isLoading:false,
+                error: action.payload
+            }
+        case GET_MC_ROLES_START:
+            return{
+                ...state,
+                isLoading:true
+            }
+        case GET_MC_ROLES_SUCCESS:
+            return{
+                ...state,
+                isLoading:false,
+                MCRoles: action.payload
+            }
+        case GET_MC_ROLES_ERROR:
             return{
                 ...state,
                 isLoading:false,

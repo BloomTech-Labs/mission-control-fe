@@ -13,3 +13,17 @@ export const getUsers = () => {
             .catch( err => dispatch({type: GET_USERS_ERROR, payload: err.response}) )
     }
 }
+
+export const GET_MC_ROLES_START = 'GET_MC_ROLES_START'
+export const GET_MC_ROLES_SUCCESS = 'GET_MC_ROLES_SUCCESS'
+export const GET_MC_ROLES_ERROR = 'GET_MC_ROLES_ERROR'
+
+export const getMCRoles = () => {
+    return dispatch => {
+        dispatch({type: GET_MC_ROLES_START})
+        axiosWithAuth()
+            .get('https://dw0z95u459ou2.cloudfront.net/api/users/roles')
+            .then( res => dispatch({type: GET_MC_ROLES_SUCCESS, payload:res.data.roles}))
+            .catch( err => dispatch({type: GET_MC_ROLES_ERROR, payload: err.response}) )
+    }
+}
