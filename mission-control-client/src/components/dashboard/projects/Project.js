@@ -5,7 +5,7 @@ const Project = props => {
 
   return (
     <div
-      onClick={() => props.setActiveProduct(props.el)}
+      onClick={() => props.setActiveProject(props.el.project)}
       id={
         props.active.id && props.active.id === props.i
           ? "product-active" : undefined
@@ -13,8 +13,8 @@ const Project = props => {
       className="product-container"
     >
       <div className="product-description">
-        <h3 className="product-title">{props.el.name}</h3>
-        {props.i.split('').pop() % 2 === 0 ? (
+        <h3 className="product-title">{props.active.name}</h3>
+        {new Date(props.active.end) > new Date() ? (
           <p className="product-status-completed">Completed</p>
         ) : (
           <p className="product-status-not-completed">Not Completed</p>

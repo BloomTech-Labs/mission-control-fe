@@ -391,6 +391,7 @@ const projectRoleByEmail = email => `
     query {
         projectRoles( where: { person: { email: "${email}" } }) {
             project {
+                id
                 name
                 start
                 end
