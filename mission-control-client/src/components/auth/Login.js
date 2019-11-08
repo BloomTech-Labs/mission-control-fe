@@ -101,14 +101,15 @@ const FormikLogin = withFormik({
     axios
       .post(URL, packet)
       .then(res => {
-        console.log(res)
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("role", encrypt(res.data.user.role, process.env.REACT_APP_ROLE_KEY || process.env.ROLE_KEY));
         localStorage.setItem("fname", res.data.user.firstName);
         localStorage.setItem("email", res.data.user.email);
         history.push(`/${res.data.user.role}/dashboard`);
       })
-      .catch(err => setStatus(err.response));
+      .catch(err => {
+        setStatus(err.response.data.message)
+      });
   }
 })(FormShape);
 

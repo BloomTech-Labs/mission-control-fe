@@ -48,8 +48,8 @@ const AvatarMenu = () => {
             </Link> */}
             {
               decrypt() === 'admin' ?
-              <Link to={`/admin/${localStorage.getItem('fname')}/edit/promotions`} className="nav-head">
-                <MenuItem style={{ fontSize: "1.4rem" }} onClick = {handleOpen}>Promote Users</MenuItem>
+              <Link style={{ textDecoration: "none"}} to={`/admin/${localStorage.getItem('fname')}/edit/promotions`} className="nav-head">
+                <MenuItem style={{ fontSize: "1.4rem", color: "black" }} onClick = {handleOpen}>Promote Users</MenuItem>
               </Link>
               : null
             }
