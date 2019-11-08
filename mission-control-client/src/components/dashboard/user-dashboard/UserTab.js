@@ -10,7 +10,6 @@ const UserTab = props => {
             .catch(err => console.log(err));
     }, [props.user.githubId]);
 
-    console.log(props);
     return (
         <div className='user-tab'>
             <div className='user-tab-image'>
