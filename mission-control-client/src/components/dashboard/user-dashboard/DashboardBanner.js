@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 const DashboardBanner = props => {
@@ -30,8 +30,12 @@ const DashboardBanner = props => {
           )}
         </div>
         <div className="dashboard-product-status">
-          <p>In Progress</p>
-        </div> 
+          {props.activeProjectStore.active && new Date(props.activeProjectStore.active.end) > new Date() ? (
+            <p className="product-status-completed">Completed</p>
+          ) : (
+            <p className="product-status-not-completed">Not Completed</p>
+          )}
+        </div>
       </div>
       <div className="dashboard-product-projects">
       </div>
@@ -41,7 +45,9 @@ const DashboardBanner = props => {
 
 const mapStateToProps = state => {
   return {
-    activeProjectStore: state.activeProjectStore
+    activeProjectStore: state.activeProjectStore,
+    project: state.activeProductStore.project
   }
-}
-export default connect(mapStateToProps, null)(DashboardBanner);
+};
+
+export default connect(mapStateToProps, {})(DashboardBanner);

@@ -3,8 +3,10 @@ import SearchIcon from "@material-ui/icons/Search";
 import Project from "./Project";
 import { connect } from "react-redux";
 import { setActiveProject } from '../../../actions/activeProjectActions';
+import { setActiveProject as setActiveProjectII } from "../../../actions/activeProductActions";
 
 const ProjectList = props => {
+  console.log(props);
   const [filtered, setFiltered] = useState({ projects: [] });
 
   useEffect(() => {
@@ -16,6 +18,13 @@ const ProjectList = props => {
       } else {
         props.setActiveProject(props.projectStore.projectRoleByEmail[0].project);
       }
+    }
+  }, [props.projectStore]);
+
+  useEffect(() =>{
+    if (props.activeProjectStore.active) {
+      console.log('true')
+      props.setActiveProjectII(props.activeProjectStore.active.id);
     }
   }, [props.projectStore]);
 
@@ -62,7 +71,7 @@ const ProjectList = props => {
           filtered.projects.map((el, i) => (
             <Project
               active={props.activeProjectStore.active}
-              setActiveProduct={setProjectHandler}
+              setActiveProject={setProjectHandler}
               key={i}
               el={el}
               i={el.project.id}
@@ -83,4 +92,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { setActiveProject })(ProjectList);
+export default connect(mapStateToProps, { setActiveProject, setActiveProjectII })(ProjectList);
