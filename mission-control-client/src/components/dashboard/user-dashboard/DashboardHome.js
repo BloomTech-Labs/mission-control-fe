@@ -5,7 +5,6 @@ import { getProjectRoleByEmail } from '../../../actions/projectActions';
 import DashboardContent from "./DashboardContent";
 
 const DashboardHome = props => {
-  console.log(props);
   useEffect(() => {
     const email = localStorage.getItem("email");
     email && props.getProjectRoleByEmail(email);
@@ -13,7 +12,7 @@ const DashboardHome = props => {
 
   return (
     <div className="admin-dashboard-container">
-      <ProjectList products={props.productStore.products} />
+      <ProjectList />
       <DashboardContent />
     </div>
   );

@@ -66,7 +66,6 @@ export const getProject = id => {
             .post('', { query: project(id) })
             .then(res => {
                 const project = res.data.data.project;
-                console.log(project)
                 dispatch({ type: GET_PROJECT_SUCCESS, payload: project })
             })
             .catch(err => dispatch({ type: GET_PROJECT_ERROR, payload: err.response }));
@@ -83,7 +82,6 @@ export const getProjectGroups = () => {
             .post('', { query: projectGroups })
             .then(res => {
                 const projectGroups = res;
-                console.log(projectGroups)
                 dispatch({ type: GET_PROJECT_GROUPS_SUCCESS, payload: projectGroups })
             })
             .catch(err => dispatch({ type: GET_PROJECT_GROUPS_ERROR, payload: err.response }));
@@ -100,7 +98,6 @@ export const getProjectGroupMembers = () => {
             .post('', { query: projectGroupMembers })
             .then(res => {
                 const members = res.data;
-                console.log(members)
                 dispatch({ type: GET_PROJECT_GROUP_MEMBERS_SUCCESS, payload: members })
             })
             .catch(err => dispatch({ type: GET_PROJECT_GROUP_MEMBERS_ERROR, payload: err.response }));
@@ -114,7 +111,6 @@ export const getProjectRoles = () => {
             .post('', { query: projectRoles })
             .then(res => {
                 const projectRoles = res.data.data.projectRoles;
-                console.log(projectRoles)
                 dispatch({ type: GET_PROJECT_ROLES_SUCCESS, payload: projectRoles })
             })
             .catch(err => dispatch({ type: GET_PROJECT_ROLES_ERROR, payload: err.response }));
@@ -128,7 +124,6 @@ export const getProjectRole = id => {
             .post('', { query: projectRole(id) })
             .then(res => {
                 const projectRole = res.data.data.projectRole;
-                console.log(projectRole)
                 dispatch({ type: GET_PROJECT_ROLE_SUCCESS, payload: projectRole })
             })
             .catch(err => dispatch({ type: GET_PROJECT_ROLE_ERROR, payload: err.response }));
@@ -136,7 +131,6 @@ export const getProjectRole = id => {
 };
 
 export const getProjectRoleByEmail = email => {
-    console.log(email);
     return dispatch => {
         dispatch({ type: GET_PROJECT_ROLE_BY_EMAIL_START });
         axiosLabsGraphQL
