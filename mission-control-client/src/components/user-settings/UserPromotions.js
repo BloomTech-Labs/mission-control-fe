@@ -33,15 +33,17 @@ const UserPromotions = props => {
     // }
 
     const handleChange = (e) =>{
+        e.persist();
         setValues(e.target.value)
         if(e.target.value === ''){
-            return setFiltered([])
+            setFiltered([])
         }else{
             setFiltered(()=> {
                 return users.filter((user) => {
-                    // const firstNameValue = values.split
                     const usersName = `${user.firstName}  ${user.lastName}`.split(' ')
-                    if (values.toLowerCase() === usersName[0].toLowerCase().slice(0, values.length ) || values.toLowerCase() === usersName[2].toLowerCase().slice(0, values.length )){
+                    if (e.target.value.toLowerCase() === usersName[0].toLowerCase().slice(0, e.target.value.length ) || e.target.value.toLowerCase() === usersName[2].toLowerCase().slice(0, e.target.value )){
+                        console.log(values.toLowerCase())
+                        console.log(usersName[0].toLowerCase().slice(0, values.length ))
                         return user 
                     }
                 })
@@ -54,7 +56,7 @@ const UserPromotions = props => {
         <div className = 'roles-container'>
             <h2>Promote User Roles</h2>
             <div className = 'users-container '>
-            <input value = {values} type = 'text' placeholder='Search. . .' onChange = {(e) => handleChange(e)}/>
+            <input name = 'user' value = {values} type = 'text' placeholder='Name. . .' onChange = {(e) => handleChange(e)}/>
                 { props.isLoading  ? 
                     <ClipLoader
                     sizeUnit={"px"}
@@ -67,8 +69,6 @@ const UserPromotions = props => {
                             <div 
                             className = 'user' 
                             key = {user.userId} 
-                            // onMouseEnter = {(e) => showBtn(e)} 
-                            // onMouseLeave = {(e) => hideBtn(e)} 
                             ref = {container} >
                                 <h3>{`${user.firstName} ${user.lastName}`}</h3>
                                 <span>-</span>
@@ -81,8 +81,6 @@ const UserPromotions = props => {
                             <div 
                             className = 'user' 
                             key = {user.userId} 
-                            // onMouseEnter = {(e) => showBtn(e)} 
-                            // onMouseLeave = {(e) => hideBtn(e)} 
                             ref = {container} >
                                 <h3>{`${user.firstName} ${user.lastName}`}</h3>
                                 <span>-</span>
