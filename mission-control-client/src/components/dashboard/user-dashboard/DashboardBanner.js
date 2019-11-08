@@ -1,23 +1,47 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 
-const DashboardBanner = () => {
-  const [expanded, setExpanded] = useState(true);
-
+const DashboardBanner = props => {
   const programs = ["web", "ux/ui", "ds"];
 
   return (
     <div className="dashboard-banner-container">
       <div className="dashboard-banner-head">
-        <div className="user-dashboard-product-cohorts-and-name">
-          <p>Lambda Labs</p>
-          <p>DesignHub</p>
+        <p>{props.activeProductStore.active ? props.activeProductStore.active.name : "Loading..."}</p>
+        <div className="dashboard-product-project-programs">
+          {programs.map(
+            (el, i) =>
+              (el === "ux/ui" && (
+                <p key={i} className="product-program-avatar program-ux">
+                  {el.toUpperCase()}
+                </p>
+              )) ||
+              (el === "ds" && (
+                <p key={i} className="product-program-avatar program-ds">
+                  {el.toUpperCase()}
+                </p>
+              )) ||
+              (el === "web" && (
+                <p key={i} className="product-program-avatar program-web">
+                  {el.toUpperCase()}
+                </p>
+              ))
+          )}
         </div>
-        {/* <div className="dashboard-product-status">
+        <div className="dashboard-product-status">
           <p>In Progress</p>
-        </div> */}
+        </div> 
+      </div>
+      <div className="dashboard-product-projects">
       </div>
     </div>
   );
 };
 
-export default DashboardBanner;
+const mapStateToProps = state => {
+  return {
+    activeProductStore: state.activeProductStore
+  }
+}
+
+export default connect(mapStateToProps, {})(DashboardBanner);
