@@ -4,9 +4,7 @@ import {
     persons,
     person,
     peopleGroups,
-    peopleGroup,
     peopleGroupMembers,
-    peopleGroupMember,
 } from '../queries'
 
 export const GET_PERSONS_START = 'GET_PERSONS_START'
@@ -66,26 +64,10 @@ export const getPeopleGroups = () => {
     }
 }
 
-// TODO EMPTY DATASET NEEDS WORK - NEEDS TO BE TESTED
+// CAN BE DELETED WHEN CLEANING UP CODE
 export const GET_PEOPLE_GROUP_START = 'GET_PEOPLE_GROUP_START'
 export const GET_PEOPLE_GROUP_SUCCESS = 'GET_PEOPLE_GROUP_SUCCESS'
 export const GET_PEOPLE_GROUP_ERROR = 'GET_PEOPLE_GROUP_ERROR'
-
-export const getPeopleGroup = (id) => {
-    return dispatch => {
-        dispatch({type: GET_PEOPLE_GROUPS_START})
-        axiosLabsGraphQL
-            .post('', {query: peopleGroup(id)})
-            .then(res => {
-                console.log(res)
-                dispatch({type: GET_PEOPLE_GROUPS_SUCCESS, payload: res.data})
-            })
-            .catch( err => {
-                console.log(err)
-                dispatch({type: GET_PEOPLE_GROUPS_ERROR, payload: err.response})
-            })
-    }
-}
 
 export const GET_PEOPLE_GROUP_MEMBERS_START = 'GET_PEOPLE_GROUP_MEMBERS_START';
 export const GET_PEOPLE_GROUP_MEMBERS_SUCCESS = 'GET_PEOPLE_GROUP_MEMBERS_SUCCESS';
@@ -108,23 +90,7 @@ export const getPeopleGroupMembers = () => {
     };
 };
 
+// CAN BE DELETED WHEN CLEANING UP CODE
 export const GET_PEOPLE_GROUP_MEMBER_START = 'GET_PEOPLE_GROUP_MEMBER_START';
 export const GET_PEOPLE_GROUP_MEMBER_SUCCESS = 'GET_PEOPLE_GROUP_MEMBER_SUCCESS';
 export const GET_PEOPLE_GROUP_MEMBER_ERROR = 'GET_PEOPLE_GROUP_MEMBER_ERROR';
-
-export const getPeopleGroupMember = id => {
-    return dispatch => {
-        dispatch({type: GET_PEOPLE_GROUP_MEMBER_START})
-        axiosLabsGraphQL
-            .post('', {query: peopleGroupMember(id)})
-            .then(res => {
-                const peopleGroupMember = res.data.data.peopleGroupMember;
-                console.log(peopleGroupMember)
-                dispatch({type: GET_PEOPLE_GROUP_MEMBER_SUCCESS, payload: peopleGroupMember})
-            })
-            .catch( err => {
-                console.log(err)
-                dispatch({type: GET_PEOPLE_GROUP_MEMBER_ERROR, payload: err.response})
-            });
-    };
-};
