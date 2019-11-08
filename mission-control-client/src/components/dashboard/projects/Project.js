@@ -1,21 +1,20 @@
 import React from "react";
 
 const Project = props => {
-  console.log(props);
   const programs = ["web", "ux/ui", "ds"];
 
   return (
     <div
-      onClick={() => props.setActiveProject(props.el.project)}
+      onClick={() => props.setActiveProject(props.el)}
       id={
-        props.active.id && props.active.id === props.i
+        props.active && props.active.project.project.id === props.i
           ? "product-active" : 'active-project'
       }
       className="product-container"
     >
       <div className="product-description">
-        <h3 className="product-title">{props.active.name}</h3>
-        {new Date(props.active.end) > new Date() ? (
+        <h3 className="product-title">{props.active && props.active.project.project.name}</h3>
+        {new Date(props.active && props.active.project.project.end) > new Date() ? (
           <p className="product-status-completed">Completed</p>
         ) : (
           <p className="product-status-not-completed">Not Completed</p>

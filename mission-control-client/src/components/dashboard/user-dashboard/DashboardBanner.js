@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 const DashboardBanner = props => {
-  console.log(props);
+
   const programs = ["web", "ux/ui", "ds"];
 
   return (
     <div className="dashboard-banner-container">
       <div className="dashboard-banner-head">
-        <p>{props.activeProjectStore.active ? props.activeProjectStore.active.name : "Loading..."}</p>
+        <p>{props.activeProjectStore.active ? props.activeProjectStore.active.project.project.name : "Loading..."}</p>
         <div className="dashboard-product-project-programs">
           {programs.map(
             (el, i) =>
@@ -30,7 +30,7 @@ const DashboardBanner = props => {
           )}
         </div>
         <div className="dashboard-product-status">
-          {props.activeProjectStore.active && new Date(props.activeProjectStore.active.end) > new Date() ? (
+          {props.activeProjectStore.active && new Date(props.activeProjectStore.active.project.project.end) > new Date() ? (
             <p className="product-status-completed">Completed</p>
           ) : (
             <p className="product-status-not-completed">Not Completed</p>
