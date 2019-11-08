@@ -14,7 +14,7 @@ const Project = props => {
     >
       <div className="product-description">
         <h3 className="product-title">{props.active.name}</h3>
-        {props.active.end ? (
+        {new Date(props.active.end) > new Date() ? (
           <p className="product-status-completed">Completed</p>
         ) : (
           <p className="product-status-not-completed">Not Completed</p>
