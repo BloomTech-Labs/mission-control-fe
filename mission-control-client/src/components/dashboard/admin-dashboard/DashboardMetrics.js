@@ -3,7 +3,6 @@ import DashboardProject from "../admin-dashboard/DashboardProject";
 import { connect } from "react-redux";
 
 const DashboardMetrics = props => {
-  console.log(props);
 
   return (
     <div className="admin-projects-container">

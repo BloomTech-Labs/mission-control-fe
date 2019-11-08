@@ -11,6 +11,7 @@ import {
 import Layout from "./components/layout/Layout";
 import Registration from "./components/auth/Registration.js";
 import Login from "./components/auth/Login";
+import ProjectMore from "./components/dashboard/admin-dashboard/ProjectMore";
 import Bad from "./components/layout/Bad";
 import AdminDash from "./components/dashboard/admin-dashboard/DashboardHome";
 import UserDash from "./components/dashboard/user-dashboard/DashboardHome";
@@ -54,9 +55,10 @@ function App() {
         <PrivateRoute path={`/profile/${localStorage.getItem('fname')}/edit/password`} component={EditProfile} />
         <PrivateRoute path={`/profile/${localStorage.getItem('fname')}/edit/email`} component={EditProfile} />
         <StudentPrivateRoute path="/student/dashboard" component={UserDash} />
-        <AdminPrivateRoute path="/manager/dashboard" component={AdminDash} />
-        <AdminPrivateRoute path="/admin/dashboard" component={AdminDash} />
+        <AdminPrivateRoute exact path="/manager/dashboard" component={AdminDash} />
+        <AdminPrivateRoute exact path="/admin/dashboard" component={AdminDash} />
         <AdminPrivateRoute path={`/admin/${localStorage.getItem('fname')}/edit/promotions`} component={UserPromotions} />
+        <AdminPrivateRoute path="/admin/dashboard/:id" component={ProjectMore} />
         <Route component={Bad} />
       </Switch>
     </Layout>
