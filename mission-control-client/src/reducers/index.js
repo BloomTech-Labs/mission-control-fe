@@ -6,6 +6,7 @@ import { productStore } from './productStore'
 import { projectStore } from './projectStore'
 import { activeProductStore } from './activeProductStore';
 import { activeProjectStore } from "./activeProjectStore";
+import { settingsStore } from './settingsStore'
 
 export default combineReducers({
     globalStore, 
@@ -13,5 +14,6 @@ export default combineReducers({
     productStore, 
     projectStore, 
     activeProductStore,
-    activeProjectStore
+    activeProjectStore,
+    settingsStore
 })

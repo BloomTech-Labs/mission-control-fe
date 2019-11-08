@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import * as Yup from "yup";
 import computers from "../../assets/computers.svg";
 import encrypt from '../../utils/encrypt';
+import { connect } from 'react-redux'
 
 const URL =
   "https://dw0z95u459ou2.cloudfront.net/api/auth/login";
@@ -73,7 +74,7 @@ function FormShape({ errors, touched, status }) {
     </div>
   );  
 }
-export default withFormik({
+const FormikLogin = withFormik({
   mapPropsToValues({ email, password, remembered }) {
     return {
       email: email || "",
@@ -100,12 +101,21 @@ export default withFormik({
     axios
       .post(URL, packet)
       .then(res => {
+        console.log(res)
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("role", encrypt(res.data.user.role, process.env.REACT_APP_ROLE_KEY || process.env.ROLE_KEY));
         localStorage.setItem("fname", res.data.user.firstName);
         localStorage.setItem("email", res.data.user.email);
         history.push(`/${res.data.user.role}/dashboard`);
       })
-      .catch(err => setStatus(err.response.data.message));
+      .catch(err => setStatus(err.response));
   }
 })(FormShape);
+
+const mapStateToProps = state => {
+  return {
+    ...state
+  }
+}
+
+export default connect(mapStateToProps, {})(FormikLogin)
