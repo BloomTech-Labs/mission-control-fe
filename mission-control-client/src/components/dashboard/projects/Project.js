@@ -5,7 +5,7 @@ const Project = props => {
 
   return (
     <div
-      onClick={() => props.setActiveProduct(props.el.project)}
+      onClick={() => props.setActiveProject(props.el.project)}
       id={
         props.active.id && props.active.id === props.i
           ? "product-active" : undefined
