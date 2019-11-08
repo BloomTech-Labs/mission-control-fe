@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import Popup from "reactjs-popup";
+import { connect } from 'react-redux'
+import { updateMCRoles } from '../../actions'
 
 const UserModal = props => {
 
     const { user, roles } = props
 
     const [selected, setSelected] = useState(user)
+    const [formUsed, setFormUsed] = useState(false)
 
     const findRoleName = (rolesArr, roleId) => {
         const roleObj = rolesArr.find(arr => arr.id === roleId)
@@ -18,14 +21,19 @@ const UserModal = props => {
             roleId: e.target.value,
             role: roleName
         })
-        console.log(selected)
+        setFormUsed(true)
     }
 
     const handleSubmit = (e) => {
+        const packet = {
+            id: selected.userId,
+            firstName: selected.firstName,
+            lastName: selected.lastName,
+            email: selected.email,
+            roleId: selected.roleId,
+        }
         e.preventDefault();
-        delete selected.email
-        delete selected.role
-        console.log(selected)
+        props.updateMCRoles(packet)
     }
 
     return(
@@ -58,6 +66,7 @@ const UserModal = props => {
                 </p>
               <div className="actions">
               <button
+                type = 'button'
                 className="button"
                 onClick={() => {
                   console.log("modal closed");
@@ -66,8 +75,8 @@ const UserModal = props => {
                 >
                 Cancel
               </button>
-                <Popup trigger={<button className={`button`}>Confirm Changes</button>} modal>
-                    <h2>Are you sure you want to update {user.firstName} {user.lastName}'s Role To {selected.role.charAt(0).toUpperCase() + selected.role.substring(1)}</h2>
+                <Popup trigger={<button className={`button`} type = 'button'>Confirm Changes</button>} modal>
+                    { formUsed ? <h2>Are you sure you want to update {user.firstName} {user.lastName}'s Role To {selected.role.charAt(0).toUpperCase() + selected.role.substring(1)}</h2> : null }
                     <button
                     type='submit'
                     className="button"
@@ -87,4 +96,8 @@ const UserModal = props => {
     )
 }
 
-export default UserModal
+const mapStateToProps = state => {
+    return state
+}
+
+export default connect(mapStateToProps, { updateMCRoles })(UserModal)
