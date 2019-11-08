@@ -15,8 +15,8 @@ import ProjectMore from "./components/dashboard/admin-dashboard/ProjectMore";
 import Bad from "./components/layout/Bad";
 import AdminDash from "./components/dashboard/admin-dashboard/DashboardHome";
 import UserDash from "./components/dashboard/user-dashboard/DashboardHome";
-import EditProfile from "./components/user_settings/EditProfile";
-import UserPromotions from './components/user_settings/UserPromotions'
+import EditProfile from "./components/user-settings/EditProfile";
+import UserPromotions from './components/user-settings/UserPromotions'
 
 //utils
 import AdminPrivateRoute from "./utils/AdminPrivateRoute";

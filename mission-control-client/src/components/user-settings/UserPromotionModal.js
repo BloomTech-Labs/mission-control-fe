@@ -10,8 +10,6 @@ const UserModal = props => {
     const [selected, setSelected] = useState(user)
     const [formUsed, setFormUsed] = useState(false)
 
-    const [filtered, setFiltered] = useState([])
-
     //iterates over an array of roles
     const findRoleName = (rolesArr, roleId) => {
         const roleObj = rolesArr.find(arr => arr.id === roleId)

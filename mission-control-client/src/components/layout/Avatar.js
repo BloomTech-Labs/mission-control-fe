@@ -43,9 +43,9 @@ const AvatarMenu = () => {
             </Avatar>
           )}
           <Menu {...bindMenu(popupState)}>
-            <Link to={`/profile/${localStorage.getItem('fname')}/edit/email`} className="nav-head">
+            {/* <Link to={`/profile/${localStorage.getItem('fname')}/edit/email`} className="nav-head">
               <MenuItem style={{ fontSize: "1.4rem" }} onClick = {handleOpen}>Edit Profile</MenuItem>
-            </Link>
+            </Link> */}
             {
               decrypt() === 'admin' ?
               <Link to={`/admin/${localStorage.getItem('fname')}/edit/promotions`} className="nav-head">
