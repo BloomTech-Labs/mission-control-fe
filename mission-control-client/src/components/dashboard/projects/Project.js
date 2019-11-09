@@ -3,6 +3,8 @@ import React from "react";
 const Project = props => {
   const programs = ["web", "ux/ui", "ds"];
 
+  console.log(props)
+
   return (
     <div
       onClick={() => props.setActiveProject(props.el)}
@@ -13,8 +15,8 @@ const Project = props => {
       className="product-container"
     >
       <div className="product-description">
-        <h3 className="product-title">{props.active && props.active.project.project.name}</h3>
-        {new Date(props.active && props.active.project.project.end) > new Date() ? (
+        <h3 className="product-title">{props.el && props.el.project.name}</h3>
+        {new Date(props.el && props.el.project.end) > new Date() ? (
           <p className="product-status-completed">Completed</p>
         ) : (
           <p className="product-status-not-completed">Not Completed</p>
