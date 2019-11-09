@@ -6,7 +6,6 @@ import { setActiveProject } from "../../../actions/activeProjectActions";
 
 const ProjectList = props => {
   const [filtered, setFiltered] = useState({ projects: [] });
-  console.log(filtered)
 
   useEffect(() => {
     if (props.projectStore.projectRoleByEmail.length) {
@@ -45,13 +44,9 @@ const ProjectList = props => {
     } else if (!re.test(e.target.value) && e.target.value !== "") {
       setFiltered({ projects: [] });
     } else {
-      console.log(projects);
       setFiltered({ projects: projects });
     }
   };
-
-  console.log(props);
-  console.log(filtered)
 
   return (
     <div className="product-list-container">

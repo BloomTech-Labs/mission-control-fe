@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 const DashboardBanner = props => {
-  console.log(props);
 
   const [programs, setPrograms] = useState([]);
 
