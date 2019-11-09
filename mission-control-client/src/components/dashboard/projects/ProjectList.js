@@ -6,12 +6,13 @@ import { setActiveProject } from "../../../actions/activeProjectActions";
 
 const ProjectList = props => {
   const [filtered, setFiltered] = useState({ projects: [] });
+  console.log(filtered)
 
   useEffect(() => {
     if (props.projectStore.projectRoleByEmail.length) {
       setFiltered({ projects: props.projectStore.projectRoleByEmail });
       if (filtered.projects.length > 0) {
-        props.setActiveProject(filtered.project[0]);
+        props.setActiveProject(filtered.projects[0]);
       } else {
         props.setActiveProject(props.projectStore.projectRoleByEmail[0]);
       }

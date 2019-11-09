@@ -108,6 +108,7 @@ const FormikLogin = withFormik({
         history.push(`/${res.data.user.role}/dashboard`);
       })
       .catch(err => {
+        console.log(err.response.data.message)
         setStatus(err.response.data.message)
       });
   }
