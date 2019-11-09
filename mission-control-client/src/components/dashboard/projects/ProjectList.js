@@ -18,12 +18,6 @@ const ProjectList = props => {
     }
   }, [props.projectStore.projectRoleByEmail]);
 
-  // useEffect(() => {
-  //   if (props.activeProjectStore.active) {
-  //     setFiltered({ projects: props.activeProjectStore.active});
-  //   }
-  // }, [props.activeProjectStore.active]);
-
   const setProjectHandler = el => {
     console.log(el);
     props.setActiveProject(el);
@@ -56,6 +50,7 @@ const ProjectList = props => {
   };
 
   console.log(props);
+  console.log(filtered)
 
   return (
     <div className="product-list-container">
