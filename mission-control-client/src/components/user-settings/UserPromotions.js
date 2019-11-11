@@ -64,9 +64,12 @@ const UserPromotions = props => {
 
     return (
         <div className = 'roles-container'>
-            <h2>Promote User Roles</h2>
+            <h2 className = 'promotion-heading'>PROMOTE USER ROLES</h2>
             <div className = 'users-container '>
-            <input name = 'user' value = {values} type = 'text' placeholder='Name. . .' onChange = {(e) => handleChange(e)}/>
+            <div className = 'search'>
+                <label htmlFor = 'user'>Search</label>
+                <input name = 'user' value = {values} type = 'text' placeholder='Name. . .' onChange = {(e) => handleChange(e)}/>
+            </div>
                 {/* render loader until get request to users is complete */}
                 { props.isLoading  ? 
                     <ClipLoader

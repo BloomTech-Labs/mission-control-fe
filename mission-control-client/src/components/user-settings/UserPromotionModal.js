@@ -61,7 +61,7 @@ const UserModal = props => {
             </a>
             <div className="header"> Update {`${user.firstName} ${user.lastName}'s`} Role </div>
             <div className="content">
-              <p className="modal-text">Current Role: {user.role.charAt(0).toUpperCase() + user.role.substring(1)}</p>
+              <p className="modal-text">Current Role: <span className = 'current-role'>{user.role.charAt(0).toUpperCase() + user.role.substring(1)}</span></p>
               <form onSubmit = {handleSubmit}>
                 <p className="modal-text">New Role: 
                     <select onChange={handleChange}>
@@ -80,32 +80,32 @@ const UserModal = props => {
                         }
                     </select>
                 </p>
-                {!err ? '' : err}
-              <div className="actions">
-              <button
+                <div className="actions">
+                <button
                 type = 'button'
-                className="button"
+                className="button close-btn"
                 onClick={() => {
                   close();
                 }}
                 >
                 Cancel
-              </button>
+                </button>
+                {!err ? '' : err}
               {/* waiting until form has been used so that selected.role is a valid property */}
               { formUsed && !err ? 
-                <Popup trigger={<button className={`button`} type = 'button'>Confirm Changes</button>} modal>
-                      <h2>
+                <Popup trigger={<button className={`button  confirm-btn`} type = 'button'>Confirm Changes</button>} modal>
+                      <p className = 'confirmation-message'>
                       Are you sure you want to update {user.firstName} {user.lastName}'s Role To {selected.role.charAt(0).toUpperCase() + selected.role.substring(1)}
-                      </h2> 
+                      </p> 
                       <button
                       type='submit'
-                      className="button"
+                      className="button confirm-btn"
                       onClick={handleSubmit}
                       >
                         Confirm
                       </button>
                       <button
-                      className="button"
+                      className="button close-btn"
                       onClick={() => close()}>
                         Cancel
                       </button>
