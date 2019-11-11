@@ -1,0 +1,88 @@
+@import "../../variables.scss";
+
+.projects-scroll-container {
+  max-height: 100vh;
+  overflow: auto;
+  direction: rtl;
+  position: relative;
+  right: 21px;
+  padding-left: 16px;
+  width: 321px;
+  margin-top: 3.2rem;
+
+  #project-active {
+    background: $gray-accent;
+  }
+
+  .project-container {
+    direction: ltr;
+    display: flex;
+    justify-content: space-between;
+    background: $user-project-background;
+    border-radius: 5px;
+    padding: 3.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-bottom: 1.6rem;
+    }
+
+    .project-description {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .project-title {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .project-status-completed {
+        color: $secondary;
+        font-size: 1.6rem;
+        font-weight: bold;
+      }
+
+      .project-status-not-completed {
+        color: $primary;
+        font-size: 1.6rem;
+        font-weight: bold;
+      }
+    }
+
+    .project-programs {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      font-size: 14px;
+
+      .project-program-avatar {
+        font-size: 12px;
+        padding: 0.5rem 1.5rem;
+        margin-left: 0.75rem;
+        border-radius: 2.5px;
+        color: $nav-link-selected;
+        text-align: center;
+        background: $background;
+        font-weight: bold;
+      }
+      .program-ux {
+        margin-bottom: 1rem;
+      }
+      .program-web {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+.projects-scroll-container::-webkit-scrollbar {
+  background: rgb(242, 242, 247);
+  width: 6px;
+}
+
+.projects-scroll-container::-webkit-scrollbar-thumb {
+  background: rgb(188, 188, 188);
+  border-radius: 10px;
+}

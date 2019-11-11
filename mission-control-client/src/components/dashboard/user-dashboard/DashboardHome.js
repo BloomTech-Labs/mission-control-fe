@@ -11,7 +11,7 @@ const DashboardHome = props => {
   }, []);
 
   return (
-    <div className="admin-dashboard-container">
+    <div className="user-dashboard-container">
       <ProjectList />
       <DashboardContent />
     </div>
@@ -20,8 +20,7 @@ const DashboardHome = props => {
 
 const mapStateToProps = state => {
   return {
-    productStore: state.productStore,
-    projectStore: state.projectStore
+    state: state
   };
 };
 
