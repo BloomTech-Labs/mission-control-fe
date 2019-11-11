@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { Form, Field, withFormik } from "formik";
 import Button from "@material-ui/core/Button";
@@ -13,15 +13,10 @@ const URL =
   "https://dw0z95u459ou2.cloudfront.net/api/auth/register";
 // TODO: encrypt password
 
-function FormShape({ errors, touched }) {
-
-  const [loading, setLoading] = useState(false)
-
-  const setLoad = (bool) => {
-    return setLoading(bool)
-  }
+function FormShape({ errors, touched, isSubmitting }) {
 
   const history = useHistory();
+
   return (
     <div style={{ position: "relative" }}>
       <div className="auth-container">
@@ -29,7 +24,7 @@ function FormShape({ errors, touched }) {
         <p className="dontHave">
           Already have an account? <Link data-testid="signin cta" to="/login">Sign In</Link>
         </p>
-        <Form data-testid="signup" history={history} setLoad={setLoad} className="register-form">
+        <Form data-testid="signup" history={history} className="register-form">
         <div className = 'names'>
         <div className = 'first-name'>
           <label htmlFor="firstName">First Name</label>
@@ -71,14 +66,13 @@ function FormShape({ errors, touched }) {
           </div>
           </div>
           <Button color="primary" type="submit" data-testid="getstarted">
-            { loading ? 
-              <ClipLoader
-              sizeUnit={"px"}
-              size={20}
-              color={'#ffffff'}
-           /> 
-           : 'GET STARTED'
-          }
+          {isSubmitting ?
+            <ClipLoader
+                  sizeUnit={"px"}
+                  size={30}
+                  color={'#E5E5E5'}
+               />
+          : 'LOG IN'}
           </Button>
         </Form>
       </div>
@@ -118,7 +112,8 @@ export default withFormik({
   handleSubmit(
     values,
     {
-      props: { history, setLoad }
+      setSubmitting,
+      props: { history }
     }
   ) {
     const packet = {
@@ -129,11 +124,12 @@ export default withFormik({
       roleId: "01"
     };
     // setLoad(true)
-    console.log(setLoad)
+    setSubmitting(true)
     axios
       .post(URL, packet)
       .then(res => {
         // setLoad(false)
+        setSubmitting(false)
         res.data.user.role = "student";
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("role", encrypt(res.data.user.role, process.env.REACT_APP_ROLE_KEY));
@@ -142,7 +138,8 @@ export default withFormik({
         history.push(`/${res.data.user.role}/dashboard`);
       })
       .catch(err => {
-        // setLoad(false)
+        // setLoad(false)        
+        setSubmitting(false)
         console.log(err)
       });
   }
