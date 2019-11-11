@@ -7,12 +7,16 @@ import * as Yup from "yup";
 import computers from "../../assets/computers.svg";
 import encrypt from '../../utils/encrypt';
 import { connect } from 'react-redux'
+import { css } from '@emotion/core';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const URL =
   "https://dw0z95u459ou2.cloudfront.net/api/auth/login";
 
-function FormShape({ errors, touched, status }) {
+function FormShape({ errors, touched, status, isSubmitting }) {
+
   const history = useHistory();
+
   return (
     <div style={{ position: "relative" }}>
       <div className="auth-container">
@@ -62,7 +66,13 @@ function FormShape({ errors, touched, status }) {
             color="primary"
             type="submit"
           >
-            LOG IN
+            {isSubmitting ?
+              <ClipLoader
+                    sizeUnit={"px"}
+                    size={30}
+                    color={'#E5E5E5'}
+                 />
+            : 'LOG IN'}
           </Button>
         </Form>
     </div>
@@ -90,6 +100,7 @@ const FormikLogin = withFormik({
     values,
     {
       setStatus,
+      setSubmitting,
       props: { history }
     }
   ) {
@@ -98,9 +109,11 @@ const FormikLogin = withFormik({
       password: values.password,
       remembered: values.remembered
     };
+    setSubmitting(true)
     axios
       .post(URL, packet)
-      .then(res => {
+      .then(res => {        
+        setSubmitting(false)
         localStorage.setItem("email", res.data.user.email);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("role", encrypt(res.data.user.role, process.env.REACT_APP_ROLE_KEY || process.env.ROLE_KEY));
@@ -108,7 +121,7 @@ const FormikLogin = withFormik({
         history.push(`/${res.data.user.role}/dashboard`);
       })
       .catch(err => {
-        console.log(err)
+        setSubmitting(false)
         setStatus(err.response.data.message)
       });
   }
