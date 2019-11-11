@@ -40,11 +40,17 @@ const UserPromotions = props => {
         }else{
             setFiltered(()=> {
                 return users.filter((user) => {
-                    const usersName = `${user.firstName}  ${user.lastName}`.split(' ')
-                    if (e.target.value.toLowerCase() === usersName[0].toLowerCase().slice(0, e.target.value.length ) || e.target.value.toLowerCase() === usersName[2].toLowerCase().slice(0, e.target.value )){
-                        console.log(values.toLowerCase())
-                        console.log(usersName[0].toLowerCase().slice(0, values.length ))
-                        return user 
+                    let lowerCased = e.target.value.toLowerCase()
+                    const usersName = `${user.firstName} ${user.lastName}`.split(' ')
+                    if(e.target.value.split(' ').length === 1){
+                        if (lowerCased === usersName[0].toLowerCase().slice(0, e.target.value.length ) || lowerCased === usersName[1].toLowerCase().slice(0, e.target.value.length )){
+                                return user
+                        }
+                    }else if(e.target.value.split(' ').length > 1){
+                        if(lowerCased === usersName.join(' ').toLowerCase().slice(0, e.target.value.length)){
+                            console.log('here')
+                            return user 
+                        }
                     }
                 })
             })
