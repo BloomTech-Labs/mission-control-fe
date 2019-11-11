@@ -13,7 +13,7 @@ const DashboardMetrics = props => {
   };
 
   return (
-    <div className='dashboard-metrics-container'>
+    <div className='dashboard-metrics-container' style={{ marginTop: '5rem' }}>
       <AppBar position='static' color='default' style={{ boxShadow: 'none' }}>
         <Tabs
           value={value}
