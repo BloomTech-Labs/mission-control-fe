@@ -2,24 +2,24 @@ import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import Project from "./Project";
 import { connect } from "react-redux";
-import { setActiveProject } from '../../../actions/activeProjectActions';
+import { setActiveProject } from "../../../actions/activeProjectActions";
 
 const ProjectList = props => {
   const [filtered, setFiltered] = useState({ projects: [] });
 
   useEffect(() => {
-    if(props.projectStore.projectRoleByEmail.length) {
+    if (props.projectStore.projectRoleByEmail.length) {
       setFiltered({ projects: props.projectStore.projectRoleByEmail });
-      props.setActiveProject(props.projectStore.projectRoleByEmail[0].project);
-      if(filtered.projects.length > 0) {
+      if (filtered.projects.length > 0) {
         props.setActiveProject(filtered.projects[0]);
       } else {
-        props.setActiveProject(props.projectStore.projectRoleByEmail[0].project);
+        props.setActiveProject(props.projectStore.projectRoleByEmail[0]);
       }
     }
-  }, [props.projectStore]);
+  }, [props.projectStore.projectRoleByEmail]);
 
   const setProjectHandler = el => {
+    console.log(el);
     props.setActiveProject(el);
   };
 
@@ -27,7 +27,11 @@ const ProjectList = props => {
     const projects = props.projectStore.projectRoleByEmail;
     const re = /^[a-z0-9\s]+$/i;
 
-    if (e.target.value !== "" && re.test(e.target.value) && projects.length > 0) {
+    if (
+      e.target.value !== "" &&
+      re.test(e.target.value) &&
+      projects.length > 0
+    ) {
       setFiltered({
         projects: projects.filter(item => {
           return (
@@ -58,19 +62,19 @@ const ProjectList = props => {
         />
       </span>
       <div className="products-scroll-container">
-        {filtered.projects.length ?
+        {filtered.projects && filtered.projects.length ? (
           filtered.projects.map((el, i) => (
             <Project
               active={props.activeProjectStore.active}
-              setActiveProduct={setProjectHandler}
+              setActiveProject={setProjectHandler}
               key={i}
               el={el}
               i={el.project.id}
             />
           ))
-          :
+        ) : (
           <p className="products-no-products">No projects</p>
-        }
+        )}
       </div>
     </div>
   );
@@ -80,7 +84,10 @@ const mapStateToProps = state => {
   return {
     activeProjectStore: state.activeProjectStore,
     projectStore: state.projectStore
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, { setActiveProject })(ProjectList);
+export default connect(
+  mapStateToProps,
+  { setActiveProject }
+)(ProjectList);

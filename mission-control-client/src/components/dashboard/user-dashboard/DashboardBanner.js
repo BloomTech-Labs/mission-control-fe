@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 const DashboardBanner = props => {
-  const programs = ["web", "ux/ui", "ds"];
+
+  const [programs, setPrograms] = useState([]);
+
+  useEffect(() => {
+    if (props.activeProjectStore.active) {
+      const temp = [];
+      props.activeProjectStore.active.people.map(el => {
+        if (el.person.program) {
+          temp.push(el.person.program.toLowerCase());
+        }
+      });
+      setPrograms(temp);
+    }
+  }, [props.activeProjectStore]);
 
   return (
     <div className="dashboard-banner-container">
       <div className="dashboard-banner-head">
-        <p>{props.activeProductStore.active ? props.activeProductStore.active.name : "Loading..."}</p>
+        <p>
+          {props.activeProjectStore.active
+            ? props.activeProjectStore.active.project.project.name
+            : "Loading..."}
+        </p>
         <div className="dashboard-product-project-programs">
-          {programs.map(
+          {[...new Set(programs)].map(
             (el, i) =>
               (el === "ux/ui" && (
                 <p key={i} className="product-program-avatar program-ux">
@@ -29,18 +46,27 @@ const DashboardBanner = props => {
           )}
         </div>
         <div className="dashboard-product-status">
-          <p>In Progress</p>
-        </div> 
+          {props.activeProjectStore.active &&
+          new Date(props.activeProjectStore.active.project.project.end) >
+            new Date() ? (
+            <p className="product-status-completed">Completed</p>
+          ) : (
+            <p className="product-status-not-completed">Not Completed</p>
+          )}
+        </div>
       </div>
-      <div className="dashboard-product-projects">
-      </div>
+      <div className="dashboard-product-projects"></div>
     </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    activeProductStore: state.activeProductStore
-  }
-}
-export default connect(mapStateToProps, null)(DashboardBanner);
+    activeProjectStore: state.activeProjectStore
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(DashboardBanner);
