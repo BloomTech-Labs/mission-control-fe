@@ -9,6 +9,7 @@ const UserModal = props => {
 
     const [selected, setSelected] = useState(user)
     const [formUsed, setFormUsed] = useState(false)
+    const [err, setErr] = useState('Please Select An Option')
 
     //iterates over an array of roles
     const findRoleName = (rolesArr, roleId) => {
@@ -18,27 +19,36 @@ const UserModal = props => {
     }
 
     const handleChange = (e) => {
+      //setting form used to true to prevent error from occuring
+      console.log(e.target.value)
+      setFormUsed(true)
+      
       //finding roleName for use in confirmation message
+      if(e.target.value !== 'Select Your Role'){
         let roleName = findRoleName(roles, e.target.value)
         setSelected({...selected, 
             roleId: e.target.value,
             role: roleName
         })
-        //setting form used to true to prevent error from occuring
-          //a confirmation message is trying to run before any change occurs 
-        setFormUsed(true)
+        setErr('')
+      }else if(e.target.value === 'Select Your Role'){
+        //a confirmation message is trying to run before any change occurs 
+          setErr('Please Select An Option')
+        }
     }
 
     const handleSubmit = (e) => {
       e.preventDefault();
-        const packet = {
-            id: selected.userId,
-            firstName: selected.firstName,
-            lastName: selected.lastName,
-            email: selected.email,
-            roleId: selected.roleId,
-        }
-        props.updateMCRoles(packet)
+      if(formUsed){
+          const packet = {
+              id: selected.userId,
+              firstName: selected.firstName,
+              lastName: selected.lastName,
+              email: selected.email,
+              roleId: selected.roleId,
+          }
+          props.updateMCRoles(packet)
+      }
     }
 
     return(
@@ -55,6 +65,7 @@ const UserModal = props => {
               <form onSubmit = {handleSubmit}>
                 <p>New Role: 
                     <select onChange={handleChange}>
+                    <option defaultValue=''>Select Your Role</option>
                         {
                             roles.map(role => { 
                                 return (
@@ -69,6 +80,7 @@ const UserModal = props => {
                         }
                     </select>
                 </p>
+                {!err ? '' : err}
               <div className="actions">
               <button
                 type = 'button'
@@ -79,18 +91,27 @@ const UserModal = props => {
                 >
                 Cancel
               </button>
+              {/* waiting until form has been used so that selected.role is a valid property */}
+              { formUsed && !err ? 
                 <Popup trigger={<button className={`button`} type = 'button'>Confirm Changes</button>} modal>
-                {/* waiting until form has been used so that selected.role is a valid property */}
-                    { formUsed ? <h2>Are you sure you want to update {user.firstName} {user.lastName}'s Role To {selected.role.charAt(0).toUpperCase() + selected.role.substring(1)}</h2> : null }
-                    <button
-                    type='submit'
-                    className="button"
-                    onClick={handleSubmit}
-                    >Confirm</button>
-                    <button
-                    className="button"
-                    onClick={() => close()}>Cancel</button>
-                </Popup>
+                      <h2>
+                      Are you sure you want to update {user.firstName} {user.lastName}'s Role To {selected.role.charAt(0).toUpperCase() + selected.role.substring(1)}
+                      </h2> 
+                      <button
+                      type='submit'
+                      className="button"
+                      onClick={handleSubmit}
+                      >
+                        Confirm
+                      </button>
+                      <button
+                      className="button"
+                      onClick={() => close()}>
+                        Cancel
+                      </button>
+                      
+                      </Popup>
+                      : null}
                 </div>
                 </form> 
             </div>
