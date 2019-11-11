@@ -19,7 +19,6 @@ const ProjectList = props => {
   }, [props.projectStore.projectRoleByEmail]);
 
   const setProjectHandler = el => {
-    console.log(el);
     props.setActiveProject(el);
   };
 

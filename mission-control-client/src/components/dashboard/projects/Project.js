@@ -1,7 +1,8 @@
 import React from "react";
 
 const Project = props => {
-  const programs = ["web", "ux/ui", "ds"];
+
+  console.log(props)
 
   return (
     <div
@@ -13,31 +14,11 @@ const Project = props => {
       className="product-container"
     >
       <div className="product-description">
-        <h3 className="product-title">{props.el && props.el.project.name}</h3>
+        <h3 style={{marginBottom: "2rem"}} className="product-title">{props.el && props.el.project.product.name}</h3>
         {new Date(props.el && props.el.project.end) > new Date() ? (
           <p className="product-status-completed">Completed</p>
         ) : (
           <p className="product-status-not-completed">Not Completed</p>
-        )}
-      </div>
-      <div className="product-programs">
-        {programs.map(
-          (el, i) =>
-            (el === "ux/ui" && (
-              <p key={i} className="product-program-avatar program-ux">
-                {el.toUpperCase()}
-              </p>
-            )) ||
-            (el === "ds" && (
-              <p key={i} className="product-program-avatar program-ds">
-                {el.toUpperCase()}
-              </p>
-            )) ||
-            (el === "web" && (
-              <p key={i} className="product-program-avatar program-web">
-                {el.toUpperCase()}
-              </p>
-            ))
         )}
       </div>
     </div>
