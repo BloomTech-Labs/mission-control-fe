@@ -77,7 +77,9 @@ export {
   GET_PROJECT_ROLE_BY_EMAIL_START,
   GET_PROJECT_ROLE_BY_EMAIL_SUCCESS,
   GET_PROJECT_ROLE_BY_EMAIL_ERROR,
-  getProjectRoleByEmail
+  getProjectRoleByEmail,
+  resetProjects,
+  RESET_PROJECTS
 } from "./projectActions";
 
 export {

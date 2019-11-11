@@ -51,9 +51,9 @@ const UserModal = props => {
             </a>
             <div className="header"> Update {`${user.firstName} ${user.lastName}'s`} Role </div>
             <div className="content">
-              <p>Current Role: {user.role.charAt(0).toUpperCase() + user.role.substring(1)}</p>
+              <p className="modal-text">Current Role: {user.role.charAt(0).toUpperCase() + user.role.substring(1)}</p>
               <form onSubmit = {handleSubmit}>
-                <p>New Role: 
+                <p className="modal-text">New Role: 
                     <select onChange={handleChange}>
                         {
                             roles.map(role => { 
