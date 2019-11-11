@@ -22,17 +22,9 @@ function ProjectDetails(props) {
                 project // should be changed to projectDetails
             }
         } = active;
-    const projectRoleOfUser = `${person.firstname} ${person.lastname}'s ${role.type}: ${role.name}`; // should be camel-cased
-    const startDate = new Date(project.start).toString().substring(0, 15);
-    const endDate = new Date(project.end).toString().substring(0, 15);
-
-    console.log("start date: ", startDate);
-    console.log("end date: ", endDate);
-    console.log("user role: ", projectRoleOfUser);
-    console.log("Line 33: here is people: ", people);
-    console.log("Line 34: here is person: ", person);
-    console.log("Line 35: here is role: ", role);
-    console.log("Line 36: here is project: ", project);
+        const projectRoleOfUser = `${person.firstname} ${person.lastname}'s ${role.type}: ${role.name}`; // should be camel-cased
+        const startDate = new Date(project.start).toString().substring(0, 15);
+        const endDate = new Date(project.end).toString().substring(0, 15);
         
         return (
             <div>
