@@ -51,7 +51,7 @@ const UserPromotions = props => {
                         // if the user has entered a first and last name
                     }else if(e.target.value.split(' ').length > 1){
                         //return the user if the input value matches up with either the first name and last name
-                        if(lowerCased === usersName.join(' ').toLowerCase().slice(0, e.target.value.length)){
+                        if(lowerCased === usersName.join(' ').toLowerCase().slice(0, e.target.value.length).trim()){
                             return user 
                         }
                     }
