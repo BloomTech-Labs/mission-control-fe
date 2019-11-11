@@ -58,10 +58,14 @@
               .modal > .content {
                 width: 100%;
                 padding: 10px 5px;
+
+                .modal-text {
+                  padding: 1rem 0;
+                }
               }
               .modal > .actions {
                 width: 100%;
-                padding: 10px 5px;
+                padding: 5px 5px;
                 margin: auto;
                 text-align: center;
               }

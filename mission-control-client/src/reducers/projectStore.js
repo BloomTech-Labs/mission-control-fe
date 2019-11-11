@@ -25,7 +25,8 @@ import {
     GET_PROJECT_ROLE_ERROR,
     GET_PROJECT_ROLE_BY_EMAIL_START,
     GET_PROJECT_ROLE_BY_EMAIL_SUCCESS,
-    GET_PROJECT_ROLE_BY_EMAIL_ERROR,  
+    GET_PROJECT_ROLE_BY_EMAIL_ERROR, 
+    RESET_PROJECTS 
 } from '../actions'
 
 const initialState = {
@@ -204,6 +205,11 @@ export const projectStore = (state = initialState, action) => {
                 isLoading: false,
                 error: action.payload
             }
+        case RESET_PROJECTS:
+          return {
+            ...state,
+            projectRoleByEmail: action.payload
+          }
         default:
             return state;
     }
