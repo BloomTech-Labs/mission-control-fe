@@ -8,33 +8,33 @@ const Project = props => {
       onClick={() => props.setActiveProject(props.el)}
       id={
         props.active && props.active.project.project.id === props.i
-          ? "product-active" : 'active-project'
+          ? "project-active" : 'active-project'
       }
-      className="product-container"
+      className="project-container"
     >
-      <div className="product-description">
-        <h3 className="product-title">{props.el && props.el.project.name}</h3>
+      <div className="project-description">
+        <h3 className="project-title">{props.el && props.el.project.name}</h3>
         {new Date(props.el && props.el.project.end) > new Date() ? (
-          <p className="product-status-completed">Completed</p>
+          <p className="project-status-completed">Completed</p>
         ) : (
-          <p className="product-status-not-completed">Not Completed</p>
+          <p className="project-status-not-completed">Not Completed</p>
         )}
       </div>
-      <div className="product-programs">
+      <div className="project-programs">
         {programs.map(
           (el, i) =>
             (el === "ux/ui" && (
-              <p key={i} className="product-program-avatar program-ux">
+              <p key={i} className="project-program-avatar program-ux">
                 {el.toUpperCase()}
               </p>
             )) ||
             (el === "ds" && (
-              <p key={i} className="product-program-avatar program-ds">
+              <p key={i} className="project-program-avatar program-ds">
                 {el.toUpperCase()}
               </p>
             )) ||
             (el === "web" && (
-              <p key={i} className="product-program-avatar program-web">
+              <p key={i} className="project-program-avatar program-web">
                 {el.toUpperCase()}
               </p>
             ))

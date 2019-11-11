@@ -19,7 +19,6 @@ const ProjectList = props => {
   }, [props.projectStore.projectRoleByEmail]);
 
   const setProjectHandler = el => {
-    console.log(el);
     props.setActiveProject(el);
   };
 
@@ -49,19 +48,19 @@ const ProjectList = props => {
   };
 
   return (
-    <div className="product-list-container">
-      <div className="product-list-header">
-        <p className="product-list-title">Projects</p>
+    <div className="project-list-container">
+      <div className="project-list-header">
+        <p className="project-list-title">Projects</p>
       </div>
-      <span className="admin-product-search-wrapper">
-        <SearchIcon fontSize="large" className="admin-product-search-icon" />
+      <span className="user-project-search-wrapper">
+        <SearchIcon fontSize="large" className="user-project-search-icon" />
         <input
-          className="admin-product-search"
+          className="user-project-search"
           placeholder="Search here"
           onChange={handleChange}
         />
       </span>
-      <div className="products-scroll-container">
+      <div className="projects-scroll-container">
         {filtered.projects && filtered.projects.length ? (
           filtered.projects.map((el, i) => (
             <Project
@@ -73,7 +72,7 @@ const ProjectList = props => {
             />
           ))
         ) : (
-          <p className="products-no-products">No projects</p>
+          <p className="projects-no-projects">No projects</p>
         )}
       </div>
     </div>
