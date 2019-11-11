@@ -47,7 +47,7 @@ const DashboardBanner = props => {
         </div>
         <div className="dashboard-product-status">
           {props.activeProjectStore.active &&
-          new Date(props.activeProjectStore.active.project.project.end) >
+          new Date(props.activeProjectStore.active.project.project.end) <
             new Date() ? (
             <p className="product-status-completed">Completed</p>
           ) : (
