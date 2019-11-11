@@ -12,6 +12,7 @@ const UserPromotions = props => {
 
     const [values, setValues] = useState('')
     const [filtered, setFiltered] = useState([])
+    const [searching, setSearching] = useState(false)
 
     useEffect(() => {
         if(!users.length){
@@ -22,38 +23,41 @@ const UserPromotions = props => {
     
     const container = useRef(null)
 
-    // const hideBtn = (e) => {
-    //     console.log(e.target)
-    //     setClassName('hide')
-    // }
-
-    // const showBtn = (e) => {
-    //     console.log(e.target)
-    //     setClassName('')
-    // }
 
     const handleChange = (e) =>{
         e.persist();
         setValues(e.target.value)
+        // if the search bar has an empty string reset filtered list to empty array and set searching to false
         if(e.target.value === ''){
-            setFiltered([])
+            setFiltered([])            
+            setSearching(false)
         }else{
             setFiltered(()=> {
                 return users.filter((user) => {
-                    let lowerCased = e.target.value.toLowerCase()
+                    // lower casing the input values to deep equality comparison
+                    let lowerCased = e.target.value.toLowerCase().trim()
+
+                    // grabbing the users first and last name from user object and setting moving the names into an array 
                     const usersName = `${user.firstName} ${user.lastName}`.split(' ')
+
+                    // if the user has only entered either a last name or a first name
                     if(e.target.value.split(' ').length === 1){
+
+                        //return the user if the input value matches up with either the first name or last name
                         if (lowerCased === usersName[0].toLowerCase().slice(0, e.target.value.length ) || lowerCased === usersName[1].toLowerCase().slice(0, e.target.value.length )){
                                 return user
                         }
+
+                        // if the user has entered a first and last name
                     }else if(e.target.value.split(' ').length > 1){
+                        //return the user if the input value matches up with either the first name and last name
                         if(lowerCased === usersName.join(' ').toLowerCase().slice(0, e.target.value.length)){
-                            console.log('here')
                             return user 
                         }
                     }
                 })
             })
+            setSearching(true)
         }
     }
 
@@ -63,13 +67,17 @@ const UserPromotions = props => {
             <h2>Promote User Roles</h2>
             <div className = 'users-container '>
             <input name = 'user' value = {values} type = 'text' placeholder='Name. . .' onChange = {(e) => handleChange(e)}/>
+                {/* render loader until get request to users is complete */}
                 { props.isLoading  ? 
                     <ClipLoader
                     sizeUnit={"px"}
                     size={60}
                     color={'#ab004c'}
                  /> 
-                    : filtered.length > 0 ?
+                    // if the user is using the search bar render the filtered list 
+                    : searching ?
+                        // if the filtered list contains user objects render the user objects
+                        filtered.length > 0 ?
                         filtered.map( user => { 
                             return (
                             <div 
@@ -80,9 +88,13 @@ const UserPromotions = props => {
                                 <span>-</span>
                                 <p>{user.role.charAt(0).toUpperCase() + user.role.substring(1)}</p>
                                 <UserModal user = { user } roles = { roles } />
-                            </div>)
+                            </div>
+                            )
                     })
-                    : users.map( user => { 
+                    // if user is using the search bar and there isnt any matches render the message below 
+                    : <p className = 'no-users'>No Users Found</p>
+                    // if user is not using the search bar render the entire user list
+                : users.map( user => { 
                         return (
                             <div 
                             className = 'user' 
