@@ -47,6 +47,8 @@ export const GET_PROJECT_ROLE_BY_EMAIL_START = 'GET_PROJECT_ROLE_BY_EMAIL_ST
 export const GET_PROJECT_ROLE_BY_EMAIL_SUCCESS = 'GET_PROJECT_ROLE_BY_EMAIL_SUCCESS';
 export const GET_PROJECT_ROLE_BY_EMAIL_ERROR = 'GET_PROJECT_ROLE_BY_EMAIL_ERROR';
 
+export const RESET_PROJECTS = 'RESET_PROJECTS';
+
 export const getProjects = () => {
     return dispatch => {
         dispatch({ type: GET_PROJECTS_START });
@@ -145,4 +147,10 @@ export const getProjectRoleByEmail = email => {
             });
     };
 };
+
+export const resetProjects = empty => {
+  return dispatch => {
+    dispatch({type: RESET_PROJECTS, payload: empty})
+  }
+}
 
