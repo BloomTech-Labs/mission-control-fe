@@ -8,10 +8,15 @@ const NavLinksLoggedIn = () => {
 
   return (
     <>
-      <p data-testid="greeting" className="logged-in logged-in-link">{`Welcome back, ${name ? name : 'User'}`}</p>
-      <AvatarMenu />
+        <p 
+          data-testid="greeting" 
+          className="logged-in logged-in-link"
+        >
+            {`Welcome back, ${name ? name : 'User'}`}
+        </p>
+        <AvatarMenu />
     </>
   );
-};
+}
 
 export default NavLinksLoggedIn;

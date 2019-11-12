@@ -36,12 +36,15 @@ const DashboardMetrics = props => {
       </AppBar>
     </div>
   )
-};
+}
 
 const mapStateToProps = state => {
   return {
     activeProjectStore: state.activeProjectStore
-  }
+  };
 }
 
-export default connect(mapStateToProps, null)(DashboardMetrics);
+export default connect(
+    mapStateToProps, 
+    null
+)(DashboardMetrics);

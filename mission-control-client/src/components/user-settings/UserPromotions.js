@@ -123,4 +123,7 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { getUsers, getMCRoles })(UserPromotions)
+export default connect(
+    mapStateToProps, 
+    { getUsers, getMCRoles }
+)(UserPromotions);

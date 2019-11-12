@@ -24,4 +24,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {})(DashboardBanner);
+export default connect(
+    mapStateToProps, 
+    null
+)(DashboardBanner);

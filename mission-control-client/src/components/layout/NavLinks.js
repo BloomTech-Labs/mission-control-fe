@@ -6,7 +6,8 @@ import NavLinksLoggedOut from './NavLinksLoggedOut';
 const NavLinks = () => {
 
   const location = useLocation();
-
+  
+  // ?
   const [token, setToken] = useState('');
 
   useEffect(() => {
@@ -15,7 +16,7 @@ const NavLinks = () => {
 
   return (
     <>
-    {token ? <NavLinksLoggedIn /> : <NavLinksLoggedOut />}
+        {token ? <NavLinksLoggedIn /> : <NavLinksLoggedOut />}
     </>
   );
 };

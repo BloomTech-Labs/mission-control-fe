@@ -42,7 +42,7 @@ const ProductList = props => {
     } else {
       setFiltered({ products: props.products });
     }
-  };
+  }
 
   return (
     <div className="product-list-container">
@@ -77,15 +77,15 @@ const ProductList = props => {
       )}
     </div>
   );
-};
+}
 
 const mapStateToProps = state => {
   return {
     activeProductStore: state.activeProductStore
   };
-};
+}
 
 export default connect(
-  mapStateToProps,
-  { setActiveProduct }
+    mapStateToProps,
+    { setActiveProduct }
 )(ProductList);

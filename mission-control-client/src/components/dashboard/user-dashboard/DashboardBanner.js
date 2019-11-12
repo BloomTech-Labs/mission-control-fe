@@ -65,15 +65,15 @@ const DashboardBanner = props => {
       <div className="dashboard-product-projects"></div>
     </div>
   );
-};
+}
 
 const mapStateToProps = state => {
   return {
     activeProjectStore: state.activeProjectStore
   };
-};
+}
 
 export default connect(
-  mapStateToProps,
-  {}
+    mapStateToProps,
+    null 
 )(DashboardBanner);

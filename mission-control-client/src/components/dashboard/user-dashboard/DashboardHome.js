@@ -7,6 +7,15 @@ import DashboardContent from "./DashboardContent";
 const DashboardHome = props => {
   useEffect(() => {
     const email = localStorage.getItem("email");
+    /*
+     * if (email) {
+     *     props.getProjectRoleByEmail(email);
+     * }
+     * 
+     * if (!email) {
+     *     history.push("/login");
+     * }
+     */
     email && props.getProjectRoleByEmail(email);
   }, []);
 
@@ -19,10 +28,14 @@ const DashboardHome = props => {
 };
 
 const mapStateToProps = state => {
+    // needs to be refactored
   return {
     state: state
   };
-};
+}
 
-export default connect(mapStateToProps, {getProjectRoleByEmail})(DashboardHome);
+export default connect(
+    mapStateToProps, 
+    {getProjectRoleByEmail}
+)(DashboardHome);
 

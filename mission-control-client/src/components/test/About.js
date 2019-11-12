@@ -6,6 +6,6 @@ const About = ({ children }) => {
       <h1>About</h1>
     </>
   );
-};
+}
 
 export default About;

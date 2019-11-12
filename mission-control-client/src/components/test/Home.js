@@ -6,6 +6,6 @@ const Home = ({ children }) => {
       <h1>Home</h1>
     </>
   );
-};
+}
 
 export default Home;

@@ -52,13 +52,16 @@ const EditForm = withFormik({
         console.log(values, props)
         props.resetForm()
     }
-})(FormShape)
+})(FormShape);
 
 const mapStateToProps = state => {
-    return{
+    return {
         ...state
-    }
+    };
 }
 
 
-export default connect(mapStateToProps, {})(EditForm)
+export default connect(
+    mapStateToProps, 
+    null
+)(EditForm);

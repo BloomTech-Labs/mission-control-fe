@@ -8,7 +8,7 @@ const Project = props => {
     <div
       onClick={() => props.setActiveProject(props.el)}
       id={
-        props.active && props.active.project.project.id === props.i
+        props.active && (props.active.project.project.id === props.i)
           ? "project-active" : 'active-project'
       }
       className="project-container"

@@ -25,4 +25,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getProducts })(DashboardHome);
+export default connect(
+    mapStateToProps, 
+    { getProducts }
+)(DashboardHome);

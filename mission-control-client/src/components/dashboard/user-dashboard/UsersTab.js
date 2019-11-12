@@ -71,6 +71,6 @@ const UsersTab = props => {
               )}
         </div>
     );
-};
+}
 
 export default UsersTab;

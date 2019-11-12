@@ -22,7 +22,10 @@ const Edit = props => {
 const mapStateToProps = state => {
     return {
         ...state
-    }
+    };
 }
 
-export default connect(mapStateToProps, {})(Edit)
+export default connect(
+    mapStateToProps, 
+    null
+)(Edit);

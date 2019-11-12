@@ -32,13 +32,14 @@ const Dashboard = props => {
       <h1>Dashboard</h1>
     </>
   );
-};
+}
 
 const mapStateToProps = state => {
-  return {
-    state
-  };
-};
+    // needs refactored
+    return {
+        state
+    };
+}
 
 export default connect(
   mapStateToProps,

@@ -77,16 +77,16 @@ const ProjectList = props => {
       </div>
     </div>
   );
-};
+}
 
 const mapStateToProps = state => {
   return {
     activeProjectStore: state.activeProjectStore,
     projectStore: state.projectStore
   };
-};
+}
 
 export default connect(
-  mapStateToProps,
-  { setActiveProject }
+    mapStateToProps,
+    { setActiveProject }
 )(ProjectList);

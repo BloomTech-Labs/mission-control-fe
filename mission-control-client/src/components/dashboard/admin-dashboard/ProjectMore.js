@@ -162,16 +162,16 @@ const ProjectMore = props => {
       )}
     </>
   );
-};
+}
 
 const mapStateToProps = state => {
   return {
     project: state.activeProductStore.project,
     isLoading: state.activeProductStore.isLoading
   };
-};
+}
 
 export default connect(
-  mapStateToProps,
-  { setActiveProject }
+    mapStateToProps,
+    { setActiveProject }
 )(ProjectMore);

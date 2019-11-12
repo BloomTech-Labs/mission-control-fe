@@ -123,7 +123,11 @@ const UserModal = props => {
 }
 
 const mapStateToProps = state => {
+    // needs refactored
     return state
 }
 
-export default connect(mapStateToProps, { updateMCRoles })(UserModal)
+export default connect(
+    mapStateToProps, 
+    { updateMCRoles }
+)(UserModal);
