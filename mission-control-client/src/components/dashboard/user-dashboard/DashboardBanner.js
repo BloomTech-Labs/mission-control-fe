@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 const DashboardBanner = props => {
+  console.log(props);
 
   const [programs, setPrograms] = useState([]);
 
@@ -20,11 +21,17 @@ const DashboardBanner = props => {
   return (
     <div className="dashboard-banner-container">
       <div className="dashboard-banner-head">
-        <p>
-          {props.activeProjectStore.active
-            ? props.activeProjectStore.active.project.project.name
-            : "Loading..."}
-        </p>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <p>
+            {props.activeProjectStore.active
+              ? props.activeProjectStore.active.project.project.name
+              : "Loading..."}
+          </p>
+          <p style={{ fontSize: "2rem", marginTop: "1rem" }}>
+            {props.activeProjectStore.active &&
+              props.activeProjectStore.active.project.project.product.name}
+          </p>
+        </div>
         <div className="dashboard-product-project-programs">
           {[...new Set(programs)].map(
             (el, i) =>
