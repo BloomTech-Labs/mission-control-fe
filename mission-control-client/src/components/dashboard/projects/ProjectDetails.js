@@ -15,14 +15,13 @@ import CardContent from "@material-ui/core/CardContent";
 const useStyles = makeStyles({
     card: {
         width: "90%",
-        maxWidth: 300,
         display: "flex",
         margin: "3rem"
     },
     content: {
         display: "flex",
         flexDirection: "column",
-        fontSize: "1.5rem"
+        fontSize: "1.6rem"
     }
 });
 
@@ -32,7 +31,7 @@ function ProjectDetails(props) {
 
     const styles = {
         headers: {
-            fontSize: "2.5rem",
+            fontSize: "2.4rem",
             marginBottom: "1rem"
         }
     };
@@ -51,23 +50,25 @@ function ProjectDetails(props) {
         const endDate = new Date(project.end).toString().substring(0, 15);
         
         return (
-            <Card
-                className={classes.card}
-            >
-                <CardContent className={classes.content}>
-                    <h1 style={styles.headers}>
-                        {project.product.name}
-                    </h1>
-                    <h3>{projectRoleOfUser}</h3>
-                    <p>Project start date: {startDate}</p>
-                    <p>Deadline: {endDate} </p>
-                    {
-                        new Date(project.end) < new Date() 
-                        ? <p style={{fontWeight: "bold"}}>Completed</p>
-                        : <p style={{fontWeight: "bold"}}>Not Completed</p>
-                    }
-                </CardContent>
-            </Card>       
+            <div style={{display: "flex", justifyContent: "center"}}>
+                <Card
+                    className={classes.card}
+                >
+                    <CardContent className={classes.content}>
+                        <h1 style={styles.headers}>
+                            {project.product.name}
+                        </h1>
+                        <h3>{projectRoleOfUser}</h3>
+                        <p>Project start date: {startDate}</p>
+                        <p>Deadline: {endDate} </p>
+                        {
+                            new Date(project.end) < new Date() 
+                            ? <p style={{fontWeight: "bold"}}>Completed</p>
+                            : <p style={{fontWeight: "bold"}}>Not Completed</p>
+                        }
+                    </CardContent>
+                </Card>       
+            </div>
         );
     }
     
