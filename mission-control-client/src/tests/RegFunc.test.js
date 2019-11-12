@@ -1,19 +1,27 @@
 import React from "react";
 import Registration from "../components/auth/Registration";
 import NavLinksLoggedIn from "../components/layout/NavLinksLoggedIn";
-import axios from 'axios';
+import axios from "axios";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { render, cleanup, fireEvent, wait } from "@testing-library/react";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import reducer from "../reducers/index";
+
+const store = createStore(reducer, applyMiddleware(thunk));
 
 afterEach(cleanup);
 
 test("Register attempt with empty inputs", async () => {
   const history = createMemoryHistory();
   const { findByTestId, getByTestId } = render(
-    <Router history={history}>
-      <Registration />
-    </Router>
+    <Provider store={store}>
+      <Router history={history}>
+        <Registration />
+      </Router>
+    </Provider>
   );
 
   const btn = getByTestId(/getstarted/i);
@@ -43,9 +51,11 @@ test("Successful login", async () => {
 
   const history = createMemoryHistory();
   const { findByText } = render(
-    <Router history={history}>
-      <Registration />
-    </Router>
+    <Provider store={store}>
+      <Router history={history}>
+        <Registration />
+      </Router>
+    </Provider>
   );
 
   const r = async (URL, packet) => {
@@ -106,9 +116,11 @@ test("Successful login", async () => {
   expect(history.location.pathname).toEqual("/god/dashboard");
 
   render(
-    <Router history={history}>
-      <NavLinksLoggedIn />
-    </Router>
+    <Provider store={store}>
+      <Router history={history}>
+        <NavLinksLoggedIn />
+      </Router>
+    </Provider>
   );
 
   const greet = await findByText(/welcome back/i);
