@@ -3,15 +3,23 @@ import Login from "../components/auth/Login";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { render, cleanup, fireEvent } from "@testing-library/react";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import reducer from "../reducers/index";
+
+const store = createStore(reducer, applyMiddleware(thunk));
 
 afterEach(cleanup);
 
 test("Login page renders empty inputs", () => {
   const history = createMemoryHistory();
   const { getByTestId } = render(
-    <Router history={history}>
-      <Login />
-    </Router>
+    <Provider store={store}>
+      <Router history={history}>
+        <Login />
+      </Router>
+    </Provider>
   );
 
   const email = getByTestId(/email-field/i);
@@ -24,9 +32,11 @@ test("Login page renders empty inputs", () => {
 test("sign up CTA works", () => {
   const history = createMemoryHistory();
   const { getByText } = render(
-    <Router history={history}>
-      <Login />
-    </Router>
+    <Provider store={store}>
+      <Router history={history}>
+        <Login />
+      </Router>
+    </Provider>
   );
 
   fireEvent.click(getByText(/create one/i));
@@ -37,19 +47,21 @@ test("sign up CTA works", () => {
 test("can enter text in inputs", () => {
   const history = createMemoryHistory();
   const { getByTestId } = render(
-    <Router history={history}>
-      <Login />
-    </Router>
+    <Provider store={store}>
+      <Router history={history}>
+        <Login />
+      </Router>
+    </Provider>
   );
 
   const email = getByTestId(/email-field/i);
   const password = getByTestId(/password-field/i);
 
-  fireEvent.change((email), {
+  fireEvent.change(email, {
     target: { value: "test@input.com" }
   });
 
-  fireEvent.change((password), {
+  fireEvent.change(password, {
     target: { value: "testinginputs" }
   });
 
@@ -59,14 +71,12 @@ test("can enter text in inputs", () => {
 
 test("yup validation on touched login fields", async () => {
   const history = createMemoryHistory();
-  const {
-    container,
-    getByPlaceholderText,
-    findByText
-  } = render(
-    <Router history={history}>
-      <Login />
-    </Router>
+  const { container, getByPlaceholderText, findByText } = render(
+    <Provider store={store}>
+      <Router history={history}>
+        <Login />
+      </Router>
+    </Provider>
   );
 
   const e = getByPlaceholderText(/Enter Your Email. . ./i);

@@ -5,6 +5,12 @@ import axios from "axios";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { render, cleanup, fireEvent } from "@testing-library/react";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import reducer from "../reducers/index";
+
+const store = createStore(reducer, applyMiddleware(thunk));
 
 afterEach(cleanup);
 
@@ -13,9 +19,11 @@ test("Successful login", async () => {
 
   const history = createMemoryHistory();
   const { findByText } = render(
-    <Router history={history}>
-      <Login />
-    </Router>
+    <Provider store={store}>
+      <Router history={history}>
+        <Login />
+      </Router>
+    </Provider>
   );
 
   const a = async (URL, packet) => {
@@ -72,9 +80,11 @@ test("Successful login", async () => {
   expect(history.location.pathname).toEqual("/god/dashboard");
 
   render(
-    <Router history={history}>
-      <NavLinksLoggedIn />
-    </Router>
+    <Provider store={store}>
+      <Router history={history}>
+        <NavLinksLoggedIn />
+      </Router>
+    </Provider>
   );
 
   const greet = await findByText(/welcome back/i);
@@ -85,13 +95,14 @@ test("Successful login", async () => {
 // NEW TEST
 
 test("Login attempt with invalid inputs", async () => {
-  
   const history = createMemoryHistory();
 
   const { container, getByTestId, findAllByText } = render(
-    <Router history={history}>
-      <Login />
-    </Router>
+    <Provider store={store}>
+      <Router history={history}>
+        <Login />
+      </Router>
+    </Provider>
   );
 
   // mock err
