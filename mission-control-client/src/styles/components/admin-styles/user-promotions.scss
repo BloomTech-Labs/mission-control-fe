@@ -5,9 +5,35 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    h2{
-        font-size:3rem;
-        padding: 1rem;
+    .promotion-heading{
+        font-size:3.2rem;
+        font-weight:550;
+    }
+    .search{
+      width: 35%;
+      height: 16%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-left: 1rem;
+      label{
+        font-family: Lato;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 2rem;
+        margin-bottom: .8rem;
+        color: #313131;
+        
+      }
+      input{
+        width: 65%;
+        height:80%;
+        font-size: 1.8rem;
+        border: none;
+        fill: solid;
+        background: #ffffff;
+        border-radius: 5px;
+      }
     }
     .users-container{
         height: 80%; 
@@ -33,34 +59,45 @@
             }
             button{
                 margin-left:2rem;
+                font-size: 1.4rem;
+                font-weight: 600;
                 border:none;
-                background: $secondary;
+                background: rgba(darken($background, 10%), .5);
                 padding:1rem;
-                fill: $secondary;
                 border-radius:5px;
-                color: $accent;
+                color: $secondary;
                 cursor: pointer;
+                &:hover{
+                  background: rgba(darken($background, 30%), .5);
+                }
             }
             .hide{
                 display: none;
             }
             //? modal styling
+            .popup-content{
+              border-radius: 5px;
+              border: none;
+            }
             .modal {
-                font-size: 12px;
+                font-size: 1.6rem;
+                border: none;
               }
               .modal > .header {
                 width: 100%;
-                border-bottom: 1px solid gray;
-                font-size: 18px;
+                font-size: 2.4rem;
                 text-align: center;
-                padding: 5px;
+                padding: 2rem 0;
               }
               .modal > .content {
                 width: 100%;
-                padding: 10px 5px;
+                padding: 2rem;
+                font-size: 1.8rem;
 
                 .modal-text {
-                  padding: 1rem 0;
+                  padding: 2rem 0;
+                  font-size: 1.8rem;
+                  font-weight:800;
                 }
               }
               .modal > .actions {
@@ -77,12 +114,56 @@
                 line-height: 20px;
                 right: -10px;
                 top: -10px;
-                font-size: 24px;
+                font-size: 2.4rem;
                 background: #ffffff;
-                border-radius: 18px;
-                border: 1px solid #cfcece;
+                border-radius: 50%;
+                color: $primary;
+                border: 2px solid $primary;
+              }
+              .current-role{
+                margin-left: 1rem;
+              }
+              select{
+                border: none;
+                border-radius: 5px;
+                padding: .3rem;
+                background: $gray-accent;
+                margin-left: 1rem; 
+                font-size: 1.7rem;
+              }
+              .confirmation-message{
+                  padding: 2rem 0;
+                  font-size: 1.8rem;
+                  .new-role{
+                    color: #ff9494;
+                    font-weight:900;
+                  }
+              }
+              .close-btn{
+                background: $primary;
+                color: $admin-product-background;
+                width: 15%;
+                &:hover{
+                  background: lighten($primary, 10%);
+                }
+              }
+              .confirm-btn{
+                background: $secondary;
+                color: $admin-product-background;
+                width: 25%;
+                &:hover{
+                  background: lighten($secondary, 10%);
+                }
+              }
+              .confirm-btn, .close-btn{
+                margin: 2rem;
               }
         }
         
     }
+}
+.no-users{
+  font-size:2.8rem;
+  margin: 3.5rem;
+  font-weight: 800;
 }
