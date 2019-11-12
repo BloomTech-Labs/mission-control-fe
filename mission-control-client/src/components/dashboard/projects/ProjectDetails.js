@@ -11,24 +11,31 @@ import CardContent from "@material-ui/core/CardContent";
 // section lead
 // engineering manager
 // ux manager
-// developers
 
 const useStyles = makeStyles({
     card: {
-        width: 300,
+        width: "90%",
         maxWidth: 300,
         display: "flex",
         margin: "3rem"
     },
     content: {
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
+        fontSize: "1.5rem"
     }
 });
 
 function ProjectDetails(props) {
     const { active } = props.activeProjectStore;
     const classes = useStyles();
+
+    const styles = {
+        headers: {
+            fontSize: "2.5rem",
+            marginBottom: "1rem"
+        }
+    };
 
     if(active) {
         const { 
@@ -48,18 +55,17 @@ function ProjectDetails(props) {
                 className={classes.card}
             >
                 <CardContent className={classes.content}>
-                <h1>
-                    Product Name: {project.product.name}
-                </h1>
-                <h2>Cohort: {project.name}</h2>
-                <h3>{projectRoleOfUser}</h3>
-                <p>Project start date: {startDate}</p>
-                <p>Deadline: {endDate} </p>
-                {
-                    new Date(project.end) > new Date() 
-                    ? <p>Completed</p>
-                    : <p>In Progress</p>
-                }
+                    <h1 style={styles.headers}>
+                        {project.product.name}
+                    </h1>
+                    <h3>{projectRoleOfUser}</h3>
+                    <p>Project start date: {startDate}</p>
+                    <p>Deadline: {endDate} </p>
+                    {
+                        new Date(project.end) < new Date() 
+                        ? <p style={{fontWeight: "bold"}}>Completed</p>
+                        : <p style={{fontWeight: "bold"}}>Not Completed</p>
+                    }
                 </CardContent>
             </Card>       
         );
