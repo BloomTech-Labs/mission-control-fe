@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 
 const DashboardBanner = props => {
 
+  console.log(props)
+
   return (
     <div className="dashboard-banner-container">
       <div className="dashboard-banner-head">
+        {/* <p>{props.activeProductStore.active && props.activeProductStore.active.product.name}</p> */}
           <p>{props.activeProductStore.active ? props.activeProductStore.active.name : "Loading..."}</p>
       </div>
       <div className="dashboard-product-projects">
