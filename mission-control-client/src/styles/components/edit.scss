@@ -1,0 +1,88 @@
+.edit-profile-container{
+    height: 85vh;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left:3%;
+    .edit-header{
+        height:10%;
+        font-size:2rem;
+        margin-top:4%;
+    }
+    .nav-form-container{
+        width:100%;
+        height:80%;
+        display: flex;
+        justify-content: space-between;
+        .edit-nav{
+            width: 20%;
+            height: 100%;
+            margin: auto 0;
+            background: $admin-product-background;
+            position: relative;
+            h2{
+                position: absolute;
+                top:3%;
+                text-align: center;
+                width: 100%;
+                font-size: 1.8rem;
+                font-weight:700;
+            }
+            .edit-options{
+                width:90%;
+                height:80%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                border-radius: 5px;
+                margin: 0 auto;
+                padding-top: 4%;
+                li{
+                    font-size:1.6rem;
+                    list-style: none;
+                    padding: 3% 2%;
+                }
+            }
+        }
+        .update-form-container{
+            width:80%;
+            height: 100%;
+            margin: 0 auto;
+            .update-form{
+                width:75%;
+                height:100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                margin: 0 auto;
+                border-radius: 5px;
+                padding: 5%;
+                background: $admin-product-background;
+                h3{
+                    width: 100%;
+                    text-align:center;
+                    font-size: 1.8rem;
+                    height: 10%;
+                }
+                .inputs{
+                    height:50%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content:space-between;
+                    align-items: center;
+                    input{
+                        height:20%;
+                        border:none;
+                        border-radius: 5px;
+                        fill: solid;
+                        background: #f4f5f9;
+                        font-size:1.8rem;
+                        background: #f4f5f9;
+                        width:85%;
+                    }
+                }
+            }
+        }
+    }
+}
