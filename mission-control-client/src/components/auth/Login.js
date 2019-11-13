@@ -111,7 +111,7 @@ const FormikLogin = withFormik({
     };
     setSubmitting(true)
     axios
-      .post(`${URL}//api/auth/login`, packet)
+      .post(`${URL}/api/auth/login`, packet)
       .then(res => {        
         setSubmitting(false)
         localStorage.setItem("email", res.data.user.email);
