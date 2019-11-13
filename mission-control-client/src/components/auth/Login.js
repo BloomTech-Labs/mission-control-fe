@@ -10,8 +10,8 @@ import { connect } from 'react-redux'
 import { css } from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
 
-const URL =
-  "https://dw0z95u459ou2.cloudfront.net/api/auth/login";
+// be endpoint
+const URL = process.env.REACT_APP_MISSION_CONTROL_ENDPOINT || 'http://localhost:5000'
 
 function FormShape({ errors, touched, status, isSubmitting }) {
 
@@ -111,7 +111,7 @@ const FormikLogin = withFormik({
     };
     setSubmitting(true)
     axios
-      .post(URL, packet)
+      .post(`${URL}/api/auth/login`, packet)
       .then(res => {        
         setSubmitting(false)
         localStorage.setItem("email", res.data.user.email);
