@@ -1,0 +1,36 @@
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+
+  .footer-feedback {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    height: max-content;
+
+    &:hover {
+      cursor: pointer;
+      color: $primary;
+    }
+
+    .footer-chat-icon{
+      position: relative;
+      top: 2px;
+    }
+  }
+
+  .footer-misc {
+    display: flex;
+
+    p:nth-child(2) {
+      margin-left: 3rem;
+    }
+
+    .footer-github-icon {
+      position: relative;
+      bottom: 4px;
+      margin-left: 3rem;
+    }
+  }
+}
