@@ -4,7 +4,7 @@ export const GET_USERS_START = 'GET_USERS_START'
 export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS'
 export const GET_USERS_ERROR = 'GET_USERS_ERROR'
 
-const URL = process.env.MISSON_CONTROL_ENDPOINT || 'http://localhost:5000'
+const URL = process.env.REACT_APP_MISSION_CONTROL_ENDPOINT || 'http://localhost:5000'
 
 export const getUsers = () => {
     return dispatch => {
