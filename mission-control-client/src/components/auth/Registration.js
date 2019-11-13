@@ -9,10 +9,12 @@ import encrypt from '../../utils/encrypt';
 import { css } from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
 
-const URL =
-  "https://dw0z95u459ou2.cloudfront.net/api/auth/register";
+// be endpoint
+const URL = process.env.MISSON_CONTROL_ENDPOINT || 'http://localhost:5000'
+
 // TODO: encrypt password
 
+// "https://dw0z95u459ou2.cloudfront.net";
 function FormShape({ errors, touched, isSubmitting }) {
 
   const history = useHistory();
@@ -126,7 +128,7 @@ export default withFormik({
     // setLoad(true)
     setSubmitting(true)
     axios
-      .post(URL, packet)
+      .post(`${URL}//api/auth/register`, packet)
       .then(res => {
         // setLoad(false)
         setSubmitting(false)
