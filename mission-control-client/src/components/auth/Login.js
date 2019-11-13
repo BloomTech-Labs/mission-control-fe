@@ -11,7 +11,7 @@ import { css } from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 // be endpoint
-const URL = process.env.REACT_APP_MISSON_CONTROL_ENDPOINT || 'http://localhost:5000'
+const URL = process.env.REACT_APP_MISSION_CONTROL_ENDPOINT || 'http://localhost:5000'
 
 function FormShape({ errors, touched, status, isSubmitting }) {
 
