@@ -128,7 +128,7 @@ export default withFormik({
     // setLoad(true)
     setSubmitting(true)
     axios
-      .post(`${URL}//api/auth/register`, packet)
+      .post(`${URL}/api/auth/register`, packet)
       .then(res => {
         // setLoad(false)
         setSubmitting(false)
