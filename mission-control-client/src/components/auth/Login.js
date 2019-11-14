@@ -110,6 +110,7 @@ const FormikLogin = withFormik({
       remembered: values.remembered
     };
     setSubmitting(true)
+    console.log(`${URL}/api/auth/login`)
     axios
       .post(`${URL}/api/auth/login`, packet)
       .then(res => {        

@@ -8,15 +8,20 @@ import ClipLoader from "react-spinners/ClipLoader";
 import CardContent from "@material-ui/core/CardContent";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import { FaSlack } from "react-icons/fa";
+import ProductList from '../products/ProductList'
+import { getProducts } from '../../../actions/productActions';
 
 const useStyles = makeStyles({
   card: {
-    width: 300,
-    maxWidth: 300,
+    width: '25%',
+    maxWidth: '25%',
     display: "flex",
-    margin: "3rem"
+    margin: "3rem 3rem 3rem 0",
+    padding:'1.5rem'
   },
   content: {
+    width:"100%",
+    height: "100%",
     display: "flex",
     flexDirection: "column"
   }
@@ -31,6 +36,7 @@ const ProjectMore = props => {
 
   useEffect(() => {
     props.setActiveProject(id);
+    props.getProducts(); 
   }, []);
 
   useEffect(() => {
@@ -44,9 +50,10 @@ const ProjectMore = props => {
   }, [props.project]);
 
   return (
-    <>
-      {props.isLoading ? (
-        <div className="admin-project-more-loader"><ClipLoader /></div>
+    <div className = 'more-page-container'>
+    <ProductList products={props.productStore.products} />
+    {props.isLoading ? (
+      <div className="admin-project-more-loader"><ClipLoader /></div>
       ) : (
         <div className="admin-project-more-container">
           <div className="admin-project-more-overview">
@@ -107,7 +114,7 @@ const ProjectMore = props => {
               </>
             )}
           </div>
-          <div>
+          <div className = 'team-container'>
             <h1 className="admin-project-more-team-head">Team</h1>
             <div className="admin-project-more-team">
               {props.project && props.project.people.length > 0 ? (
@@ -160,18 +167,19 @@ const ProjectMore = props => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
     project: state.activeProductStore.project,
-    isLoading: state.activeProductStore.isLoading
+    isLoading: state.activeProductStore.isLoading,
+    productStore: state.productStore,
   };
 };
 
 export default connect(
   mapStateToProps,
-  { setActiveProject }
+  { setActiveProject, getProducts }
 )(ProjectMore);
