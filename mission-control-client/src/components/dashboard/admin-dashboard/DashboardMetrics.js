@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 import DashboardProject from "../admin-dashboard/DashboardProject";
 import { connect } from "react-redux";
 
 const DashboardMetrics = props => {
-
+  
   return (
     <div className="admin-projects-container">
       <div className="admin-projects-head">
