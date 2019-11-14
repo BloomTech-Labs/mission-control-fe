@@ -26,13 +26,21 @@ const useStyles = makeStyles({
 });
 
 function ProjectDetails(props) {
-    const { active } = props.activeProjectStore;
+    const { active } = props;
+    console.log("line 30: project details props: ", props)
     const classes = useStyles();
 
     const styles = {
         headers: {
             fontSize: "2.4rem",
             marginBottom: "1rem"
+        },
+        container: {
+            display: "flex",
+            justifyContent: "center"
+        },
+        completion: {
+            fontWeight: "bold"
         }
     };
 
@@ -50,7 +58,7 @@ function ProjectDetails(props) {
         const endDate = new Date(project.end).toString().substring(0, 15);
         
         return (
-            <div style={{display: "flex", justifyContent: "center"}}>
+            <div style={styles.container}>
                 <Card
                     className={classes.card}
                 >
@@ -63,8 +71,8 @@ function ProjectDetails(props) {
                         <p>Deadline: {endDate} </p>
                         {
                             new Date(project.end) < new Date() 
-                            ? <p style={{fontWeight: "bold"}}>Completed</p>
-                            : <p style={{fontWeight: "bold"}}>Not Completed</p>
+                            ? <p style={styles.completion}>Completed</p>
+                            : <p style={styles.completion}>Not Completed</p>
                         }
                     </CardContent>
                 </Card>       
@@ -83,8 +91,8 @@ function ProjectDetails(props) {
 
 function mapStateToProps(state) {
     return {
-        activeProjectStore: state.activeProjectStore
+        active: state.activeProjectStore.active
     };
 }
 
-export default connect(mapStateToProps, null)(ProjectDetails);
+export default connect(mapStateToProps)(ProjectDetails);
