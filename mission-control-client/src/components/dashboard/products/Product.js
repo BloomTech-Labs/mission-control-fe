@@ -1,7 +1,6 @@
 import React from "react";
 
 const Product = props => {
-  const programs = ["web", "ux/ui", "ds"];
 
   return (
     <div

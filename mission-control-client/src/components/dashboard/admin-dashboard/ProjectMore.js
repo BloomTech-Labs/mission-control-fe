@@ -34,39 +34,46 @@ const ProjectMore = props => {
 
   const [programs, setPrograms] = useState([]);
 
+  const { setActiveProject, 
+          getProducts, 
+          project, 
+          productStore, 
+          isLoading
+        } = props
+
   useEffect(() => {
-    props.setActiveProject(id);
-    props.getProducts(); 
+    setActiveProject(id);
+    getProducts(); 
   }, []);
 
   useEffect(() => {
-    if (props.project) {
+    if (project) {
       const temp = [];
-      props.project.people.map(el => {
+      project.people.map(el => {
         if (el.person.program) temp.push(el.person.program.toLowerCase());
       });
       setPrograms(temp);
     }
-  }, [props.project]);
+  }, [project]);
 
   return (
     <div className = 'more-page-container'>
-    <ProductList products={props.productStore.products} />
-    {props.isLoading ? (
+    <ProductList products={productStore.products} />
+    {isLoading ? (
       <div className="admin-project-more-loader"><ClipLoader /></div>
       ) : (
         <div className="admin-project-more-container">
           <div className="admin-project-more-overview">
-            {props.project && props.project.project.length > 0 && (
+            {project && project.project.length > 0 && (
               <>
                 <div className="admin-project-more-overview-content">
                   <p className="admin-project-more-overview-product">
-                    {props.project.project[0].product.name}
+                    {project.project[0].product.name}
                   </p>
                   <p className="admin-project-more-overview-project">
-                    {props.project.project[0].name}
+                    {project.project[0].name}
                   </p>
-                  {new Date(props.project.project[0].end) > new Date() ? (
+                  {new Date(project.project[0].end) > new Date() ? (
                     <p className="admin-project-more-overview-status">
                       In Progress
                     </p>
@@ -117,8 +124,8 @@ const ProjectMore = props => {
           <div className = 'team-container'>
             <h1 className="admin-project-more-team-head">Team</h1>
             <div className="admin-project-more-team">
-              {props.project && props.project.people.length > 0 ? (
-                props.project.people.map((el, i) => (
+              {project && project.people.length > 0 ? (
+                project.people.map((el, i) => (
                   <Card className={classes.card} key={i}>
                     <CardContent className={classes.content}>
                       <p className="admin-project-more-team-name">
