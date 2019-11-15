@@ -1,6 +1,6 @@
 # Mission Control
 
-You can find the deployed project at https://www.use-mission-control.com.
+You can find the deployed project at https://use-mission-control.com.
 
 ## Contributors
 
