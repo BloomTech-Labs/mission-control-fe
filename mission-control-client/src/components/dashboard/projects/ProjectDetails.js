@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 
 function ProjectDetails(props) {
     const { active } = props;
-    console.log("line 30: project details props: ", props)
+    console.log("props in project details: ", props);
     const classes = useStyles();
 
     const styles = {
@@ -47,11 +47,9 @@ function ProjectDetails(props) {
     if(active) {
         const { 
             people, 
-            project: {
-                person,
-                role,
-                project // should be changed to projectDetails
-            }
+            project,
+            person,
+            role
         } = active;
         const projectRoleOfUser = `${person.firstname} ${person.lastname}'s ${role.type}: ${role.name}`; // should be camel-cased
         const startDate = new Date(project.start).toString().substring(0, 15);
@@ -95,4 +93,6 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(ProjectDetails);
+export default connect(
+    mapStateToProps
+)(ProjectDetails);

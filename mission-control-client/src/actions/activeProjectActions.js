@@ -12,8 +12,8 @@ export const setActiveProject = el => {
       .post("", { query: peopleByProjectId(el.project.id) })
       .then(res => {
         const projectDetails = {
-          people: res.data.data.projectRoles,
-          project: el
+            ...el,
+            people: res.data.data.projectRoles
         };
         dispatch({ type: SET_ACTIVE_PROJECT_SUCCESS, payload: projectDetails });
       })

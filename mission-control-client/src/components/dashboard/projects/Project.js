@@ -1,14 +1,13 @@
 import React from "react";
 
 const Project = props => {
-  console.log(props);
-  const programs = ["web", "ux/ui", "ds"];
+    const programs = ["web", "ux/ui", "ds"];
 
   return (
     <div
       onClick={() => props.setActiveProject(props.el)}
       id={
-        props.active && props.active.project.project.id === props.i
+        props.active && props.active.project.id === props.i
           ? "project-active" : 'active-project'
       }
       className="project-container"
