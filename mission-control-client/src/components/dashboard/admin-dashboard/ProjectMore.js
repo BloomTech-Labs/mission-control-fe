@@ -58,7 +58,7 @@ const ProjectMore = props => {
 
   return (
     <div className = 'more-page-container'>
-    <ProductList products={productStore.products} />
+      <ProductList products={productStore.products} />
     {isLoading ? (
       <div className="admin-project-more-loader"><ClipLoader /></div>
       ) : (
