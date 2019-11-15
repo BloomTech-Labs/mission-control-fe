@@ -27,7 +27,6 @@ const useStyles = makeStyles({
 
 function ProjectDetails(props) {
     const { active } = props;
-    console.log("props in project details: ", props);
     const classes = useStyles();
 
     const styles = {
