@@ -11,12 +11,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @include responsive(mobile) {
+        margin-left: -10px;
+      }
   
       .project-list-title {
         color: $secondary;
         font-size: 18px;
       }
-  
     }
   
     .user-project-search-wrapper {
@@ -24,6 +27,11 @@
       margin-top: 1.6rem;
       align-items: center;
       background: white;
+
+      @include responsive(mobile) {
+        margin-left: -10px;
+        width: 60%;
+      }
   
       .user-project-search-icon {
         position: relative;
@@ -53,6 +61,11 @@
       font-size: 2rem;
       margin-top: 4rem;
       width: 321px;
+      
+    }
+    @include responsive(mobile) {
+      margin-left: 10px;
+      width: 200px;
     }
   }
   

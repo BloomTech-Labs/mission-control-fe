@@ -123,6 +123,7 @@ const FormikLogin = withFormik({
       .catch(err => {
         setSubmitting(false)
         setStatus(err.response.data.message)
+        // setStatus('Error')
       });
   }
 })(FormShape);
