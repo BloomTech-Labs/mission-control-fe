@@ -4,6 +4,15 @@
   width: 100%;
   margin-left: 80px;
 
+  @include responsive(mobile) {
+    margin-left: -100px;
+    width: 70%;
+  }
+
+  @include responsive(tab-port) {
+    padding-left: 20px;
+  }
+
   .dashboard-banner-container {
     display: flex;
     flex-direction: column;
@@ -13,6 +22,10 @@
     padding: 2.4rem;
     border-radius: 5px;
 
+    @include responsive(mobile) {
+      padding: 1rem;
+    }
+
     .dashboard-banner-head {
       display: flex;
       justify-content: space-between;
@@ -20,21 +33,7 @@
       margin-bottom: 2.6rem;
 
       .user-dashboard-product-cohorts-and-name {
-        // Hidable information on admin dashboard
-        // p:nth-child(1) {
-        //   margin-bottom: 2rem;
-        //   padding: 0.5rem;
-        //   text-align: center;
-        //   font-size: 1.4rem;
-        //   background: $background;
-        //   color: black;
-        //   width: 4em;
-        //   border-radius: 3px;
-
-        //   &:hover {
-        //     cursor: pointer;
-        //   }
-        // }
+      
         p:nth-child(1) {
           font-size: 1.5rem;
         }
@@ -50,6 +49,20 @@
         color: $nav-link-selected;
         border-radius: 5px;
         font-size: 15px;
+
+        @include responsive(mobile) {
+          font-size: 10px;
+          padding: 3px 8px;
+          
+        }
+      }
+
+      @include responsive(mobile) {
+        padding: 8px 20px;
+        display: flex;
+        flex-direction: column;
+        padding: 3px 4px;
+      
       }
     }
     .dashboard-product-desc {
@@ -58,9 +71,11 @@
       margin-bottom: 2.6rem;
     }
     .dashboard-product-projects {
+
       display: flex;
       justify-content: space-between;
       align-items: center;
+
 
       .dashboard-product-total-projects {
         font-size: 15px;

@@ -103,10 +103,8 @@
     .remember {
 
       @include responsive(mobile) {
-        
         flex-wrap: nowrap;
-        text-align: right;
-       
+        text-align: right;  
       }
 
       height: 7%;
@@ -115,7 +113,6 @@
       input {
 
         @include responsive(mobile) {
-        
          width: 14%;
         height: 60%;
         }
@@ -176,7 +173,6 @@
     }
 
     .names {
-
       @include responsive(mobile) {
         flex-direction: row;
         width: 220%;
@@ -213,7 +209,6 @@
     }
 
     .passwords {
-
       @include responsive(mobile) {
         flex-direction: row;
         width: 220%;
@@ -255,8 +250,7 @@
   }
 }
 
-.auth-img {
-  
+.auth-img { 
   @include responsive(tab-port) {
     visibility: hidden;
   }
