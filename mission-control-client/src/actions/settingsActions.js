@@ -4,11 +4,13 @@ export const GET_USERS_START = 'GET_USERS_START'
 export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS'
 export const GET_USERS_ERROR = 'GET_USERS_ERROR'
 
+const URL = process.env.REACT_APP_MISSION_CONTROL_ENDPOINT || 'http://localhost:5000'
+
 export const getUsers = () => {
     return dispatch => {
         dispatch({type: GET_USERS_START})
         axiosWithAuth()
-            .get('https://dw0z95u459ou2.cloudfront.net/api/users')
+            .get(`${URL}/api/users`)
             .then( res => dispatch({type: GET_USERS_SUCCESS, payload:res.data.users}))
             .catch( err => dispatch({type: GET_USERS_ERROR, payload: err.response}) )
     }
@@ -22,7 +24,7 @@ export const getMCRoles = () => {
     return dispatch => {
         dispatch({type: GET_MC_ROLES_START})
         axiosWithAuth()
-            .get('https://dw0z95u459ou2.cloudfront.net/api/users/roles')
+            .get(`${URL}/api/users/roles`)
             .then( res => dispatch({type: GET_MC_ROLES_SUCCESS, payload:res.data.roles}))
             .catch( err => dispatch({type: GET_MC_ROLES_ERROR, payload: err.response}) )
     }
@@ -37,7 +39,7 @@ export const updateMCRoles = (values) => {
     return dispatch => {
         dispatch({type: UPDATE_MC_ROLES_START})
         axiosWithAuth()
-            .put('https://dw0z95u459ou2.cloudfront.net/api/users', values)
+            .put(`${URL}/api/users`, values)
             .then( res => {
                 dispatch({type: UPDATE_MC_ROLES_SUCCESS, payload:res.data.updateUser})
             })
