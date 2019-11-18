@@ -1,160 +1,129 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
+# Mission Control
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
+You can find the deployed project at https://use-mission-control.com.
 
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
+## Contributors
 
-# 1️⃣ Title of project goes here
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
-
-## 4️⃣ Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
+|                                       Dan Bergelt (https://github.com/danbergelt)                                        |                                       Alex Gordon (https://github.com/agordon1123)                                        |                                       Jose Restrepo (https://github.com/Artyk77)                                        |                                       Zach Overhulser (https://github.com/zoverlvx)                                        |                                       Armando Roman (https://github.com/armandoroman1016)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+|                      [<img src="https://avatars1.githubusercontent.com/u/50968952?s=460&v=4" width = "200" />](https://avatars1.githubusercontent.com/u/50968952?s=460&v=4)                       |                      [<img src="https://avatars1.githubusercontent.com/u/48846394?s=400&v=4" width = "200" />](https://avatars1.githubusercontent.com/u/48846394?s=400&v=4)                       |                      [<img src="https://avatars2.githubusercontent.com/u/48263350?s=400&v=4" width = "200" />](https://avatars2.githubusercontent.com/u/48263350?s=400&v=4)                       |                      [<img src="https://avatars1.githubusercontent.com/u/19368091?s=400&v=4" width = "200" />](https://avatars1.githubusercontent.com/u/19368091?s=400&v=4)                       |                      [<img src="https://avatars3.githubusercontent.com/u/51098659?s=400&v=4" width = "200" />](https://avatars3.githubusercontent.com/u/51098659?s=400&v=4)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/danbergelt)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/agordon1123)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Artyk77)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/zoverlvx)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/armandoroman1016)             |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/danbergelt/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/agordon1123) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/arturorestrep0/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/zoverlvx/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/armando-roman-64a53a188/) |
 
 <br>
 <br>
-
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+[Trello Board](https://trello.com/b/qIsV0OQN/labs17-mission-control)
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+[Product Canvas](https://www.notion.so/Mission-Control-3d160a20e5374bccaec96576398d54ba)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+[UX Design files](https://www.figma.com/file/7ULC015ThVU7TmGqYU3WBn/Mission-Control-Lambda-Dashboard?node-id=0%3A1)
 
-🚫 Replace lorem ipsum with a description of your project
+Mission Control is a system that provisions, tracks, monitors and controls all of the IT resources (virtual, physical, non-physical and logical) for every product built and maintained by your organization. It allows you to keep tabs on deadlines, team members, costs, and everything you need to push your product across the finish line.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+When operating at scale, it's easy to get lost in a sea of information. Mission Control provides the clarity and centralization you need to assess your team's productivity and make executive decisions. Mission Control is a one-stop-shop that allows you to get the information you need and focus on what matters most - execution.
 
 
-### 4️⃣ Key Features
+### Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
+-    Not just for products - we also track your projects, allowing for a top-level view of your organization
+-    For admins - the ability to view every single product and project in your organization w/ related KPIs
+-    For users - the ability to see the projects that they themselves are attached to, allowing for a seamless and lightweight environment
+-    Simple user promotion - admins can promote and demote other users in a snap
+-    Sync with your data - simply sign up with your work email address, and your data will sync automatically with your database
 
-## 1️⃣ Tech Stack
+## Tech Stack
 
 ### Front end built using:
 
-#### _Front end framework goes here_
+#### React/Redux
 
-🚫 Why did you choose this framework?
+-    React is a fantastic choice for building dynamic, interactive UIs. Mission Control is a complex website with a nested component structure, and has demanding relationships with multiple APIs. React allows us to meet the platform's needs efficiently, and helps keep everything organized behind the scenes.
+-    As a manager, you need to be able to access a variety of different views, all of which contain different data. This calls for advanced state management. Redux's elegance, scalability, and inherent opinionated nature is perfect for applications that have advanced state requirements, and abstracts away the mess of local state.
+-    React/Redux as a pair is a fantastic combination that not only allows for portable, reusable UI components, but also allows for infinitely scalable state, and the ability to shuttle data around the application seamlessly. It is THE enterprise solution.
 
--    point one
--    point two
--    point three
--    point four
+#### Sass/SCSS
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+-    Nested CSS is a must when styling your application. SCSS not only allows us as developers to write CSS quickly, but also creates an intuitive flow for later revisions. Add in variables, mixins, and functions, and CSS (arguably) is elevated to a production level.
 
-#### Front end deployed to `🚫insert service here`
+#### Material UI
 
-#### [Back end](🚫link to back end repo here) built using:
+-    Material UI is a fantastic resource for advanced UI components such as popovers, avatars, and tabs. We took advantage of Material UI for a wide variety of components, which greatly sped up up our development time. Material UI also offers a fantastic icon library, which we took advantage of throughout the application.
 
-#### 🚫 back end framework goes here
+#### Axios
 
--    point one
--    point two
--    point three
+-    Axios is the industry-standard library for HTTP requests in Javascript. It provides a simple, readable syntax, and also allowed our team to make advanced queries, such as concurrent requests that required parallel resolution. Additionally, this application makes requests to several APIs, one of which is REST, the other of which is GraphQL. Axios provides functionality for both types of requests, all in one library. 
 
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+#### React Router
+
+-    Single page applications have special needs, particularly when it comes to routing the user from page-to-page. React router allows for the easy transport of the site's users whilst retaining SPA functionality. And with the new React Router hooks, we can do all of this inside of the functional programming paradigm.
+
+#### Formik/Yup
+
+-    Forms in React are not much fun - they require (at least) local state management, and as the forms scale, that process only gets messier. Formik (with the validation library Yup) abstract away the difficulties of writing forms in React, and allow us to focus on core application functionality.
+
+#### Front end deployed to AWS Amplify
+
+#### [Back end](https://github.com/Lambda-School-Labs/mission-control-be) built using:
+
+#### Node/Express/Postgres - deployed to AWS Elastic Beanstalk
+
+-    Mission Control uses an external API to manage key business data, so our internal API demands were scaled down. Thus, in the interest of focusing on the user experience, we spun up a lightweight Node/Express API to handle authentication and role management within the site itself.
+-    We feel that Postgres is the top choice for relational databases, considering it's stability and scalability. It's also very easy to work with, so working with the database is always quick and easy.
+-    The full application is deployed to AWS (Amplify for the FE, Elastic Beanstalk on the BE with an AWS RDS). With the full app bundled together in one suite, dev ops becomes a breeze, and we can take full advantage of all of AWS's various products. 
+
+#### Knex.js
+
+-    Knex allows us to make SQL queries to our database quickly and easily. It integrates seamlessly into Node, and also allows us to seed our database when testing on local environments.
+
+#### Validator and JWT
+
+-    Auth is a tricky subject, but luckily there are plenty of open-source libraries and best-practices out there to learn from. For string validation, we used Validator. This library allows us to sanitize our database and ensure that only clean data touches our application. We used JWT (JSON Web Tokens) to create protected access to our API and provide a resouce for the front end to shield certain views.
 
 # APIs
 
-## 2️⃣ Authentication API here
+## Authentication
 
-🚫Replace text below with a description of the API
+This API allows users to register + log in to Mission Control. It also assigns users roles (student, manager, admin) that all have varying levels of access on the front end and back end. Admins have the ability to promote/demote other users as well, so the role assignments are variable.
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+## Product Management API - https://api.use-mission-control.com/, https://github.com/Lambda-School-Labs/product-management-api
 
-## 2️⃣ Payment API here
+Built with GraphQL and Prisma, the Product Management API is the foundation of Mission Control. It contains products, projects, organizational roles, team members, and KPIs regarding your company's data. It requires a Bearer token for full access, which can be obtained by running `prisma token` in the context of that API's repository. More details on that API can be found at the Github link above, or by contacting Bernie Durfee(https://github.com/berniedurfee).
 
-🚫Replace text below with a description of the API
 
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
-
-# 3️⃣ Environment Variables
+# Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-🚫These are just examples, replace them with the specifics for your app
+    *  REACT_APP_ROLE_KEY - this is the encryption key for the user's role (determines what dashboard they have access to). Choose a secure key (can be anything you want), and set up as a variable in your local application. The production key can be found in the AWS Amplify application
+    *  REACT_APP_MISSION_CONTROL_ENDPOINT - can be found in the AWS Amplify application. This is the authentication API
 
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
+# Testing
 
-# 5️⃣ Content Licenses
+#### Jest
 
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
+-    Embedded directly into Create React App, Jest provides all the tools one needs to run FE unit AND integration tests. Jest can be thought of as the lens through which an application's tests are viewed and ran. It is a stable base for other testing libraries to build off of.
 
-| Image Filename | Source / Creator | License                                                                      |
-| -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
+#### React Testing Library
 
-# 4️⃣ Testing
+-    React Testing Library is a fantastic testing resource which was built with one guiding principle in mind - your tests should resemble user behavior as closely as possible. Thus, React Testing Library is DOM-focused, and does not bother with implementation details. Instead, it allowed us to test website behavior, and verify that certain information is displayed when it should be. With React Testing Library, the focus is placed where it should be - the shipped product.
 
-🚫Document what you used for testing and why
+# Installation Instructions
 
-# 4️⃣ Installation Instructions
-
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+Clone this repo into your local, and run `yarn` to install your dependencies. 
 
 ## Other Scripts
 
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+    * build - `yarn build`
+    * start - `yarn start`
+    * test - `yarn test`
 
 # Contributing
 
@@ -194,4 +163,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/Lambda-School-Labs/mission-control-be) for details on the backend of our project.
