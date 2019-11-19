@@ -55,7 +55,25 @@ html {
   position: relative;
   min-height: 100%;
   font-family: "Lato";
+
+@include responsive(tab-land) {
+  font-size: 56.25%;
 }
+
+@include responsive(tab-port) {
+  font-size: 50%;
+}
+
+@include responsive(mobile) {
+  font-size: 43.75%;
+}
+
+@include responsive(big-desktop) {
+  font-size: 75%;
+}
+
+}
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
