@@ -142,7 +142,6 @@ export default withFormik({
       .catch(err => {
         // setLoad(false)        
         setSubmitting(false)
-        console.log(err)
       });
   }
 })(FormShape);
