@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
 import { getProducts } from '../../../actions/productActions';
-import { getProjects } from '../../../actions/projectActions';
+// import { getProjects } from '../../../actions/projectActions';
 import { connect } from "react-redux";
 import ProductList from "../products/ProductList";
 import DashboardContent from "./DashboardContent";
 
 const DashboardHome = props => {
 
+  const { getProducts } = props
+
   useEffect(() => {
-    props.getProducts();
+    getProducts();
   }, []);
 
   return (

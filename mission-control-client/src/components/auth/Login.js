@@ -7,7 +7,6 @@ import * as Yup from "yup";
 import computers from "../../assets/computers.svg";
 import encrypt from '../../utils/encrypt';
 import { connect } from 'react-redux'
-import { css } from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 // be endpoint
@@ -110,7 +109,7 @@ const FormikLogin = withFormik({
       remembered: values.remembered
     };
     setSubmitting(true)
-    console.log(`${URL}/api/auth/login`)
+  
     axios
       .post(`${URL}/api/auth/login`, packet)
       .then(res => {        

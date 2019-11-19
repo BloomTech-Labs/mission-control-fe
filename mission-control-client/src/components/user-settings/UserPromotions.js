@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import { getUsers, getMCRoles } from '../../actions'
-import { css } from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
 import UserModal from './UserPromotionModal'
 import ProductList from '../dashboard/products/ProductList'
@@ -13,13 +12,13 @@ const UserPromotions = props => {
 
     const { users, roles } = props
 
-    const [values, setValues] = useState('')
+    const [ values, setValues] = useState('')
 
-    const [filtered, setFiltered] = useState([])
+    const [ filtered, setFiltered] = useState([])
     
-    const [searching, setSearching] = useState(false)
+    const [ searching, setSearching] = useState(false)
 
-    const [ filteredRoles, setFilteredRoles ] = useState(false)
+    const [ filteredRole, setFilteredRole ] = useState('all')
 
     useEffect(() => {
         if(!users.length){
@@ -35,11 +34,13 @@ const UserPromotions = props => {
     const handleChange = (e) =>{
         e.persist();
         setValues(e.target.value)
-        // if the search bar has an empty string reset filtered list to empty array and set searching to false
-        if(e.target.value === '' && !filteredRoles){
-            setFiltered([])            
+        if( filteredRole !== 'all' && e.target.value === '' ){
+            setFiltered( users.filter((user) => user.role === filteredRole))
+        // if the search bar has an empty string, reset filtered list to empty array and set searching to false
+        }else if(e.target.value === '' && filteredRole === 'all'){
+            setFiltered(users)            
             setSearching(false)
-        }else if(!filteredRoles){
+        }else if(filteredRole === 'all'){
             setFiltered(()=> {
                 return users.filter((user) => {
                     // lower casing the input values to deep equality comparison
@@ -66,9 +67,9 @@ const UserPromotions = props => {
                 })
             })
             setSearching(true)
-        }else if(filteredRoles){
+        }else if(filteredRole !== 'all' ){
             setFiltered(()=> {
-                return filtered.filter((user) => {
+                return users.filter((user) => {
                     // lower casing the input values to deep equality comparison
                     let lowerCased = e.target.value.toLowerCase().trim()
 
@@ -76,17 +77,19 @@ const UserPromotions = props => {
                     const usersName = `${user.firstName} ${user.lastName}`.split(' ')
 
                     // if the user has only entered either a last name or a first name
-                    if(e.target.value.split(' ').length === 1){
+                    if(e.target.value.split(' ').length <= 1){
 
-                        //return the user if the input value matches up with either the first name or last name
-                        if (lowerCased === usersName[0].toLowerCase().slice(0, e.target.value.length ) || lowerCased === usersName[1].toLowerCase().slice(0, e.target.value.length )){
+
+                        //return the user if the input value matches up with either the first name or last name, and the users role matches the filtered role
+                        if ((lowerCased === usersName[0].toLowerCase().slice(0, e.target.value.length ) || lowerCased === usersName[1].toLowerCase().slice(0, e.target.value.length)) && user.role === filteredRole){
                                 return user
                         }
 
                         // if the user has entered a first and last name
                     }else if(e.target.value.split(' ').length > 1){
+                        
                         //return the user if the input value matches up with either the first name and last name
-                        if(lowerCased === usersName.join(' ').toLowerCase().slice(0, e.target.value.length).trim()){
+                        if(lowerCased === usersName.join(' ').toLowerCase().slice(0, e.target.value.length).trim() && user.role === filteredRole){
                             return user 
                         }
                     }
@@ -98,13 +101,18 @@ const UserPromotions = props => {
 
     const handleSelection = (e) => {
         if(e.target.value === 'all'){
-            setFilteredRoles(false)
+            setFilteredRole(e.target.value)
             setFiltered(users)
         }else{
-            setFilteredRoles(true)
+            setFilteredRole(e.target.value)
             setFiltered(users.filter(user => user.role === e.target.value))
         }
     }
+
+    // useEffect(() => {
+    //     console.log('filtered', filtered)
+    //     console.log('filteredRole', filteredRole)
+    // })
 
     return (
         <div className = 'roles-container'>

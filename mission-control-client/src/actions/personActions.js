@@ -38,7 +38,7 @@ export const getPerson = (id) => {
             })
             .catch( err => {
                 dispatch({type: GET_PERSON_ERROR, payload: err.response})
-                console.log(err)
+            
             })
     }
 }
@@ -54,11 +54,11 @@ export const getPeopleGroups = () => {
         axiosLabsGraphQL
             .post('', {query: peopleGroups})
             .then(res => {
-                console.log(res)
+               
                 dispatch({type: GET_PEOPLE_GROUP_SUCCESS, payload: res.data})
             })
             .catch( err => {
-                console.log(err)
+            
                 dispatch({type: GET_PEOPLE_GROUP_ERROR, payload: err.response})
             })
     }
@@ -80,11 +80,11 @@ export const getPeopleGroupMembers = () => {
             .post('', {query: peopleGroupMembers})
             .then(res => {
                 const peopleGroupMembers = res.data.data.peopleGroupMembers;
-                console.log(peopleGroupMembers)
+            
                 dispatch({type: GET_PEOPLE_GROUP_MEMBERS_SUCCESS, payload: peopleGroupMembers})
             })
             .catch( err => {
-                console.log(err)
+               
                 dispatch({type: GET_PEOPLE_GROUP_MEMBERS_ERROR, payload: err.response})
             });
     };
