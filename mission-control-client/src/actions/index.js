@@ -1,5 +1,3 @@
-import { loginSuccess } from "./loginActions";
-
 export {
   GET_PRODUCTS_START,
   GET_PRODUCTS_SUCCESS,

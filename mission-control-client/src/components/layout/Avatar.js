@@ -32,6 +32,7 @@ const AvatarMenu = ({ resetProjects }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
       {popupState => (
