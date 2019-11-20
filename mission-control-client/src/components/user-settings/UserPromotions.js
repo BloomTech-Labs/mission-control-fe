@@ -136,7 +136,7 @@ const UserPromotions = props => {
                                     name = 'roleId'
                                     value = {role.name}
                                     onChange = {(e) => handleSelection(e)} 
-                                    key={role.id}>{`${role.name.charAt(0).toUpperCase() + role.name.substring(1)}'s Only`}
+                                    key={role.id}>{`${role.name.charAt(0).toUpperCase() + role.name.substring(1)}s`}
                                     </option>
                                     )
                             })
