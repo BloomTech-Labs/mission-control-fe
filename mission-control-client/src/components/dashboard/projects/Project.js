@@ -1,8 +1,8 @@
 import React from "react";
 
 const Project = props => {
-  console.log(props);
-  const programs = ["web", "ux/ui", "ds"];
+
+  // const programs = ["web", "ux/ui", "ds"];
 
   return (
     <div
