@@ -20,7 +20,6 @@ const UserModal = props => {
 
     const handleChange = (e) => {
       //setting form used to true to prevent error from occuring
-      console.log(e.target.value)
       setFormUsed(true)
       
       //finding roleName for use in confirmation message
