@@ -49,7 +49,6 @@ const EditForm = withFormik({
         // password: Yup.string().required()
     }),
     handleSubmit(values, props){
-        console.log(values, props)
         props.resetForm()
     }
 })(FormShape)
