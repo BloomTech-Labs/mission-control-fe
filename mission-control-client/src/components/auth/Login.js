@@ -10,6 +10,8 @@ import { connect } from 'react-redux'
 import { css } from '@emotion/core';
 import ClipLoader from 'react-spinners/ClipLoader';
 
+// Test users
+import users from '../../utils/Users'
 // be endpoint
 const URL = process.env.REACT_APP_MISSION_CONTROL_ENDPOINT || 'http://localhost:5000'
 
@@ -103,23 +105,15 @@ const FormikLogin = withFormik({
       props: { history }
     }
   ) {
-    const packet = {
-      email: values.email,
-      password: values.password,
-      remembered: values.remembered
-    };
-    axios
-      .post(`${URL}/api/auth/login`, packet)
-      .then(res => {        
-        localStorage.setItem("email", res.data.user.email);
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("role", encrypt(res.data.user.role, process.env.REACT_APP_ROLE_KEY || process.env.ROLE_KEY));
-        localStorage.setItem("fname", res.data.user.firstName);
-        history.push(`/${res.data.user.role}/dashboard`);
-      })
-      .catch(err => {
-        setStatus(err.response.data.message)
-      });
+    users.forEach(user => {
+      if (user.email === values.email && user.password === values.password){
+        localStorage.setItem("email", user.email);
+        localStorage.setItem("role", user.role);
+        localStorage.setItem("fname", user.fname);
+        localStorage.setItem("token", user.token);
+        history.push(`/${user.role}/dashboard`);
+      }
+    })
   }
 })(FormShape);
 
