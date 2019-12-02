@@ -100,7 +100,6 @@ const FormikLogin = withFormik({
     values,
     {
       setStatus,
-      setSubmitting,
       props: { history }
     }
   ) {
@@ -109,11 +108,9 @@ const FormikLogin = withFormik({
       password: values.password,
       remembered: values.remembered
     };
-    setSubmitting(true)
     axios
       .post(`${URL}/api/auth/login`, packet)
       .then(res => {        
-        setSubmitting(false)
         localStorage.setItem("email", res.data.user.email);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("role", encrypt(res.data.user.role, process.env.REACT_APP_ROLE_KEY || process.env.ROLE_KEY));
@@ -121,7 +118,6 @@ const FormikLogin = withFormik({
         history.push(`/${res.data.user.role}/dashboard`);
       })
       .catch(err => {
-        setSubmitting(false)
         setStatus(err.response.data.message)
       });
   }
