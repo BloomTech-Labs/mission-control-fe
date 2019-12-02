@@ -18,7 +18,7 @@ const AvatarMenu = ({ resetProjects }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     resetProjects([]);
-    history.push("/login");
+    history.push("/");
   };
 
   const [open, setOpen] = useState(false);
