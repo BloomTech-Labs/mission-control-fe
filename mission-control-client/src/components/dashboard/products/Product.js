@@ -16,6 +16,10 @@ const Product = props => {
       <div className="product-description">
         <h3 className="product-title">{props.el.name}</h3>
       </div>
+      <div>
+        <button>edit</button>
+        <button>delete</button>
+      </div>
     </div>
   );
 };
