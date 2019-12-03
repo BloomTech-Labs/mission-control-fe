@@ -15,8 +15,8 @@ const createProduct = gql`
 //Edit
 
 const updateProduct = gql`
-  mutation EditProductMutation($name: String!, $where: ID!) {
-    updateProduct(where: { id: $where }, data: { name: $name }) {
+  mutation EditProductMutation($name: String!, $id: ID!) {
+    updateProduct(where: { id: $id }, data: { name: $name }) {
       id
       name
     }
@@ -26,8 +26,8 @@ const updateProduct = gql`
 //Delete
 
 const deleteProduct = gql`
-  mutation DeleteProductMutation($where: ID!) {
-    deleteProduct(where: { id: $where }) {
+  mutation DeleteProductMutation($id: ID!) {
+    deleteProduct(where: { id: $id }) {
       id
       name
     }
@@ -37,8 +37,40 @@ const deleteProduct = gql`
 //Project CRUD
 //Add
 
-const addProject = gql``;
+const addProject = gql`
+  mutation AddProjectMutation($name: String!, $id: ID!) {
+    createProject(data: { name: $name, product: { connect: { id: $id } } }) {
+      id
+      name
+    }
+  }
+`;
 
 //Edit
 
+const updateProject = gql`
+  mutation EditProjectMutation(
+    $name: String!
+    $productId: ID!
+    $projectId: ID!
+  ) {
+    updateProject(
+      where: { id: $projectId }
+      data: { name: $name, product: { connect: { id: $id } } }
+    ) {
+      id
+      name
+    }
+  }
+`;
+
 //Delete
+
+const deleteProject = gql`
+  mutation DeleteProjectMutation($id: ID!) {
+    deleteProject(where: { id: $id }) {
+      id
+      name
+    }
+  }
+`;

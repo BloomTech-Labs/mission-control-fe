@@ -18,7 +18,9 @@ const Nav = () => {
           MISSION CONTROL
         </Link>
       </div>
-      <div className="nav-links">{/* <NavLinks /> */}</div>
+      <div className="nav-links">
+        <NavLinks />
+      </div>
     </div>
   );
 };
