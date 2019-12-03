@@ -50,7 +50,7 @@ const AvatarMenu = ({ resetProjects }) => {
             {/* <Link to={`/profile/${localStorage.getItem('fname')}/edit/email`} className="nav-head">
               <MenuItem style={{ fontSize: "1.4rem" }} onClick = {handleOpen}>Edit Profile</MenuItem>
             </Link> */}
-            {decrypt() === "admin" ? (
+            {localStorage.getItem("role") === "admin" ? (
               <Link
                 style={{ textDecoration: "none" }}
                 to={`/admin/${localStorage.getItem("fname")}/edit/promotions`}
@@ -74,7 +74,4 @@ const AvatarMenu = ({ resetProjects }) => {
   );
 };
 
-export default connect(
-  null,
-  { resetProjects }
-)(AvatarMenu);
+export default connect(null, { resetProjects })(AvatarMenu);

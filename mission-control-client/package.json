@@ -12,9 +12,12 @@
   "dependencies": {
     "@material-ui/core": "^4.5.1",
     "@material-ui/icons": "^4.5.1",
+    "@urql/exchange-graphcache": "^1.2.2",
     "axios": "^0.19.0",
     "crypto-js": "^3.1.9-1",
     "formik": "^1.5.8",
+    "graphql": "^14.5.8",
+    "graphql-tag": "^2.10.1",
     "material-ui-popup-state": "^1.4.1",
     "node-sass": "^4.12.0",
     "react": "^16.10.2",
@@ -30,6 +33,7 @@
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.1",
+    "urql": "^1.6.3",
     "yup": "^0.27.0"
   },
   "scripts": {
