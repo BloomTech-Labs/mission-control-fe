@@ -9,36 +9,16 @@ import encrypt from "../../utils/encrypt";
 import { connect } from "react-redux";
 import { css } from "@emotion/core";
 import ClipLoader from "react-spinners/ClipLoader";
-import { useQuery } from "urql";
-import gql from "graphql-tag";
 
 // Test users
 import users from "../../utils/Users";
+
 // be endpoint
 const URL =
   process.env.REACT_APP_MISSION_CONTROL_ENDPOINT || "http://localhost:5000";
 
-export const NEW_QUERY = gql`
-  query {
-    products {
-      id
-      name
-      projects {
-        id
-        name
-        start
-        end
-      }
-    }
-  }
-`;
-
 function FormShape({ errors, touched, status, isSubmitting }) {
   const history = useHistory();
-
-  const [result] = useQuery({ query: NEW_QUERY });
-  const { data, fetching, error } = result;
-  console.log(data, fetching, error);
 
   return (
     <div style={{ position: "relative" }}>
