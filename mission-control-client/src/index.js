@@ -9,11 +9,15 @@ import { Provider } from "react-redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 import reducer from "./reducers/index";
-import { Provider as UrqlProvider, Client, defaultExchanges } from "urql";
+import { Provider as UrqlProvider, Client, dedupExchange, fetchExchange } from "urql";
+import { cacheExchange } from '@urql/exchange-graphcache';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
+
+
+const cache = cacheExchange({});
 
 const client = new Client({
   url: "https://api-dev.use-mission-control.com/",
@@ -26,7 +30,7 @@ const client = new Client({
       }
     };
   },
-  exchanges: defaultExchanges
+  exchanges: [ dedupExchange, cache, fetchExchange ]
 });
 
 ReactDOM.render(
