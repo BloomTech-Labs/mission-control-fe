@@ -88,7 +88,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { setActiveProject }
-)(ProjectList);
+export default connect(mapStateToProps, { setActiveProject })(ProjectList);
