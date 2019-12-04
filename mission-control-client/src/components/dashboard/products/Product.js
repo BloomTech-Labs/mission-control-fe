@@ -66,13 +66,6 @@ const Product = props => {
         <h3 className="product-title">{props.el.name}</h3>
       </div>
       <div>
-<<<<<<< HEAD
-        {/* <button>edit</button> */}
-        {/* <button>delete</button> */}
-        {/* {console.log(props.active)} */}
-        <UpdateProduct index={props.active.id} product={props.active} />
-        <DeleteProduct index={props.active.id} product={props.active} />
-=======
         
         {isEditing ?   
           <div>
@@ -95,7 +88,6 @@ const Product = props => {
         <button onClick={delBtn} value={props.el.id}>
           delete
         </button>
->>>>>>> 2a9d9cb2998a9545121ab7caa3f1cf69ad9040eb
       </div>
     </div>
   );
