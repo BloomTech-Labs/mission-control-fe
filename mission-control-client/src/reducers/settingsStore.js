@@ -1,3 +1,7 @@
+/* This store is for the the data coming in from the mission control users dB
+    here you can find all roles and all users in the database  */
+
+
 import {
     GET_USERS_START,
     GET_USERS_SUCCESS,
@@ -65,7 +69,6 @@ export const settingsStore = ( state = initialState, action) =>{
                 isLoading:false,
                 missionControlUsers: state.missionControlUsers.map( user => {
                         if(user.userId === action.payload.id){
-                            console.log('here')
                             return {
                                 ...user, role: action.payload.role
                             }
