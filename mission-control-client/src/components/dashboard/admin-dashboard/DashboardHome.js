@@ -12,9 +12,8 @@ const DashboardHome = props => {
   const [results] = useQuery({query:productsU})
   const { data, fetching, error } = results;
   
-
   useEffect(() => {
-    props.getProducts();
+    getProducts();
   }, []);
 
   if(!data){
