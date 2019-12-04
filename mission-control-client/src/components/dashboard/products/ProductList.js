@@ -4,47 +4,22 @@ import AddProduct from "./AddProduct";
 import Product from "./Product";
 import { connect } from "react-redux";
 import { setActiveProduct } from "../../../actions/activeProductActions";
-import { useHistory, useLocation } from 'react-router-dom' 
-import { set } from "react-ga";
 
 const ProductList = props => {
-
-  // getting the current location and splitting into array to check for current location later
-  const location = useLocation().pathname.split('/')
-
-  const history = useHistory()
-
   useEffect(() => {
-
     setFiltered({ products: props.products });
-    // if the user has matching products in the search bar and if there isn't already a product currently active
-    if (filtered.products.length > 0 && !props.activeProductStore.active) {
+
+    if (filtered.products.length > 0) {
       props.setActiveProduct(filtered.products[0]);
-
-    // if there is already an active product in the store render that product until user has clicked on that card
-    // ! important for use on any other route other then the default dashboard
-    } else if (props.activeProductStore.active){
-      return
-
-    //if the user hasn't selected any current product render the first product by default
-    }else{
+    } else {
       props.setActiveProduct(props.products[0]);
     }
-
-  }, [props.products, props.activeProductStore.active]);
+  }, [props.products]);
 
   const [filtered, setFiltered] = useState({ products: [] });
 
   const setProductHandler = el => {
-    // if the user isn't on the dashboard view and a product is selected set the active product then push the user to the dashboard
-    if(location[location.length - 1] !== 'dashboard'){
-      props.setActiveProduct(el) 
-      history.push(`/admin/dashboard`)
-
-      // if the user is on the dashboard just set the active product to the card selected
-    }else{
-      props.setActiveProduct(el);
-    }
+    props.setActiveProduct(el);
   };
 
   const handleChange = e => {
