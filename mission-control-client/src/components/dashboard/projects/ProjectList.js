@@ -7,23 +7,25 @@ import { setActiveProject } from "../../../actions/activeProjectActions";
 const ProjectList = props => {
   const [filtered, setFiltered] = useState({ projects: [] });
 
+  const { projectStore, setActiveProject, activeProjectStore } = props
+
   useEffect(() => {
-    if (props.projectStore.projectRoleByEmail.length) {
-      setFiltered({ projects: props.projectStore.projectRoleByEmail });
+    if (projectStore.projectRoleByEmail.length) {
+      setFiltered({ projects: projectStore.projectRoleByEmail });
       if (filtered.projects.length > 0) {
-        props.setActiveProject(filtered.projects[0]);
+        setActiveProject(filtered.projects[0]);
       } else {
-        props.setActiveProject(props.projectStore.projectRoleByEmail[0]);
+        setActiveProject(projectStore.projectRoleByEmail[0]);
       }
     }
-  }, [props.projectStore.projectRoleByEmail]);
+  }, [projectStore.projectRoleByEmail]);
 
   const setProjectHandler = el => {
-    props.setActiveProject(el);
+    setActiveProject(el);
   };
 
   const handleChange = e => {
-    const projects = props.projectStore.projectRoleByEmail;
+    const projects = projectStore.projectRoleByEmail;
     const re = /^[a-z0-9\s]+$/i;
 
     if (
@@ -64,7 +66,7 @@ const ProjectList = props => {
         {filtered.projects && filtered.projects.length ? (
           filtered.projects.map((el, i) => (
             <Project
-              active={props.activeProjectStore.active}
+              active={activeProjectStore.active}
               setActiveProject={setProjectHandler}
               key={i}
               el={el}

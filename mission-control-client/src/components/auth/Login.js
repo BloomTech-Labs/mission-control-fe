@@ -5,6 +5,7 @@ import { useHistory, Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import * as Yup from "yup";
 import computers from "../../assets/computers.svg";
+
 import encrypt from "../../utils/encrypt";
 import { connect } from "react-redux";
 import { css } from "@emotion/core";
@@ -12,6 +13,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 // Test users
 import users from "../../utils/Users";
+
 
 // be endpoint
 const URL =
@@ -99,6 +101,7 @@ const FormikLogin = withFormik({
     email: Yup.string().required("Email is required"),
     password: Yup.string().required("Valid password is required.")
   }),
+
   handleSubmit(values, { setStatus, props: { history } }) {
     users.forEach(user => {
       if (user.email === values.email && user.password === values.password) {
@@ -109,6 +112,7 @@ const FormikLogin = withFormik({
         history.push(`/${user.role}/dashboard`);
       }
     });
+
   }
 })(FormShape);
 
