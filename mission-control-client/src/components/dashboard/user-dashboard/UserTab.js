@@ -9,7 +9,7 @@ const UserTab = props => {
     useEffect(() => {
         axios.get(`https://api.github.com/users/${props.user.githubId}`)
             .then(res => setGithubInfo({ image: res.data.avatar_url, bio: res.data.bio }))
-            .catch(err => console.log(err));
+            .catch(err => err);
     }, [props.user.githubId]);
 
     return (

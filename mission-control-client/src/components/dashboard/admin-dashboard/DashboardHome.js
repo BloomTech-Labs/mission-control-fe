@@ -6,8 +6,9 @@ import ProductList from "../products/ProductList";
 import DashboardContent from "./DashboardContent";
 
 const DashboardHome = props => {
+
   useEffect(() => {
-    props.getProducts();
+    getProducts();
   }, []);
 
   return (
