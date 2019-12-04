@@ -1,6 +1,4 @@
 import axiosLabsGraphQL from "../utils/axiosLabsGraphQL";
-import gql from "graphql-tag";
-import { useMutation } from "urql";
 
 import { products, product, productRoles, productRole } from "../queries";
 import { createProduct, updateProduct, deleteProduct } from "../mutations";
@@ -93,8 +91,11 @@ export const getProductRole = () => {
   };
 };
 
-export const addProduct = () => {
-  console.log("Add Product Called in Actions");
+export const addProduct = data => {
+  //   console.log("Add Product Called in Actions", data);
+  return dispatch => {
+    dispatch({ type: ADD_PRODUCT_SUCCESS, payload: data });
+  };
 };
 
 export const editProduct = () => {
