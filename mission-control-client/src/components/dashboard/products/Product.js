@@ -18,13 +18,13 @@ const Product = props => {
         .then(res => {
           // console.log("ERR?", res);
           if (res.data.deleteProduct) {
-            props.removeProduct(res.data.deleteProduct);
+            props.removeProduct(res.data.deleteProduct, "OK");
           } else {
-            props.removeProduct(res.error.message);
+            props.removeProduct(res.error.message, "ERR");
           }
         })
         .catch(err => {
-          console.log("ERR", err);
+          // console.log("DelERR", err);
         });
     },
     [executeDeleteMutation]
