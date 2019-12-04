@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
-import AddProduct from './AddProduct';
+import AddProduct from "./AddProduct";
 import Product from "./Product";
 import { connect } from "react-redux";
 import { setActiveProduct } from "../../../actions/activeProductActions";
@@ -88,7 +88,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { setActiveProduct }
-)(ProductList);
+export default connect(mapStateToProps, { setActiveProduct })(ProductList);
