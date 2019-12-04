@@ -102,6 +102,15 @@ export const editProduct = () => {
   console.log("Edit Product Called in Actions");
 };
 
-export const removeProduct = () => {
-  console.log("Delete Product Called in Actions");
+export const removeProduct = data => {
+  //   console.log("Delete Product Called in Actions",data);
+  if (data.search("violate")) {
+    return dispatch => {
+      dispatch({ type: DELETE_PRODUCT_ERROR, payload: data });
+    };
+  } else {
+    return dispatch => {
+      dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: data });
+    };
+  }
 };

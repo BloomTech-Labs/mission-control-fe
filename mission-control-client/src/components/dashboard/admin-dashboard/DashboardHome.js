@@ -11,10 +11,13 @@ const DashboardHome = props => {
   }, []);
 
   return (
-    <div data-testid="dash" className="admin-dashboard-container">
-      <ProductList products={props.productStore.products} />
-      <DashboardContent />
-    </div>
+    <>
+      <p className="warning">{props.productStore.error}</p>
+      <div data-testid="dash" className="admin-dashboard-container">
+        <ProductList products={props.productStore.products} />
+        <DashboardContent />
+      </div>
+    </>
   );
 };
 

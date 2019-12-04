@@ -152,10 +152,20 @@ export const productStore = (state = initialState, action) => {
         isLoading: true
       };
     case DELETE_PRODUCT_SUCCESS:
+      const newDelProds = [...state.products];
+      let index = "";
+      newDelProds.forEach((i, x) => {
+        if (i.id === action.payload.id) {
+          index = x;
+        }
+      });
+      newDelProds.splice(index, 1);
       return {
-        ...state
+        ...state,
+        products: newDelProds
       };
     case DELETE_PRODUCT_ERROR:
+      console.log("DATA ERROR", action.payload);
       return {
         ...state,
         isLoading: false,
