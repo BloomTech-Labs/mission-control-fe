@@ -9,6 +9,7 @@ import UpdateProduct from './UpdateProduct';
 import DeleteProduct from './DeleteProduct';
 
 const Product = props => {
+
   const programs = ["web", "ux/ui", "ds"];
 // console.log(props);
   // adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
@@ -50,6 +51,7 @@ const Product = props => {
                 console.log(error);
             });
     }, [executeUpdateMutation, name, props.active.id]);
+
 
 
   return (
