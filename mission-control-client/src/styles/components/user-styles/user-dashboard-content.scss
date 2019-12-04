@@ -1,138 +1,153 @@
-// @import "../../variables.scss";
+@import "../../variables.scss";
 
-// .dashboard-content-container {
-//   width: 100%;
-//   margin-left: 80px;
+.dashboard-content-container {
+  width: 100%;
+  margin-left: 80px;
 
-//   .dashboard-banner-container {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-between;
-//     background: $secondary;
-//     color: white;
-//     padding: 2.4rem;
-//     border-radius: 5px;
+  @include responsive(mobile) {
+    margin-left: -100px;
+    width: 70%;
+  }
 
-//     .dashboard-banner-head {
-//       display: flex;
-//       justify-content: space-between;
-//       align-items: flex-start;
-//       margin-bottom: 2.6rem;
+  @include responsive(tab-port) {
+    padding-left: 20px;
+  }
 
-//       .user-dashboard-product-cohorts-and-name {
-//         // Hidable information on admin dashboard
-//         // p:nth-child(1) {
-//         //   margin-bottom: 2rem;
-//         //   padding: 0.5rem;
-//         //   text-align: center;
-//         //   font-size: 1.4rem;
-//         //   background: $background;
-//         //   color: black;
-//         //   width: 4em;
-//         //   border-radius: 3px;
+  .dashboard-banner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: $secondary;
+    color: white;
+    padding: 2.4rem;
+    border-radius: 5px;
 
-//         //   &:hover {
-//         //     cursor: pointer;
-//         //   }
-//         // }
-//         p:nth-child(1) {
-//           font-size: 1.5rem;
-//         }
-//         p:nth-child(2) {
-//           font-size: 3rem;
-//           padding-top: 0.5rem;
-//         }
-//       }
+    @include responsive(mobile) {
+      padding: 1rem;
+    }
 
-//       .dashboard-product-status {
-//         padding: 8px 31px;
-//         background: white;
-//         color: $nav-link-selected;
-//         border-radius: 5px;
-//         font-size: 15px;
-//       }
-//     }
-//     .dashboard-product-desc {
-//       font-size: 15px;
-//       line-height: 27.5px;
-//       margin-bottom: 2.6rem;
-//     }
-//     .dashboard-product-projects {
-//       display: flex;
-//       justify-content: space-between;
-//       align-items: center;
+    .dashboard-banner-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2.6rem;
 
-//       .dashboard-product-total-projects {
-//         font-size: 15px;
-//         background: white;
-//         padding: 14px 9px;
-//         color: black;
-//         border-radius: 7px;
-//       }
+      .user-dashboard-product-cohorts-and-name {
+      
+        p:nth-child(1) {
+          font-size: 1.5rem;
+        }
+        p:nth-child(2) {
+          font-size: 3rem;
+          padding-top: 0.5rem;
+        }
+      }
 
-//       .dashboard-product-project-programs {
-//         display: flex;
-//         align-items: center;
-//         font-size: 15px;
+      .dashboard-product-status {
+        padding: 8px 31px;
+        background: white;
+        color: $nav-link-selected;
+        border-radius: 5px;
+        font-size: 15px;
 
-//         .product-program-avatar {
-//           font-size: 12px;
-//           padding: 0.5rem 1.5rem;
-//           margin-left: 0.75rem;
-//           color: black;
-//           border-radius: 2.5px;
-//           color: white;
-//         }
-//         .program-ds {
-//           background: $primary;
-//         }
-//         .program-ux {
-//           background: $nav-link-selected;
-//         }
-//         .program-web {
-//           background: $accent;
-//           color: black;
-//         }
-//       }
-//     }
-//   }
-//   .dashboard-metrics-container {
-//     background-color: #E7EBFF;
-//     margin-top: 5rem;
-//     .users-tab {
-//       display: flex; 
-//       flex-wrap: wrap;
-//       justify-content: space-evenly;
-//       .user-tab {
-//         border-radius: .5rem; 
-//         width: 45%; 
-//         min-height: 10rem; 
-//         margin: 1rem; 
-//         background-color: white; 
-//         display: flex; 
-//         justify-content: space-evenly; 
-//         padding: 2rem;
-//         .user-tab-image {
-//           img {
-//             max-width: 8rem; 
-//             border-radius: 4rem;
-//           }
-//         }
-//         .user-description {
-//           width: 75%; 
-//           text-align: center;
-//           h3 {
-//             font-size: 1.8rem;
-//             font-weight: 500;
-//           }
-//           p {
-//             font-size: 1.4rem;
-//           }
-//           .user-program {
-//             margin-bottom: 1.6rem;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
+        @include responsive(mobile) {
+          font-size: 10px;
+          padding: 3px 8px;
+          
+        }
+      }
+
+      @include responsive(mobile) {
+        padding: 8px 20px;
+        display: flex;
+        flex-direction: column;
+        padding: 3px 4px;
+      
+      }
+    }
+    .dashboard-product-desc {
+      font-size: 15px;
+      line-height: 27.5px;
+      margin-bottom: 2.6rem;
+    }
+    .dashboard-product-projects {
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+
+      .dashboard-product-total-projects {
+        font-size: 15px;
+        background: white;
+        padding: 14px 9px;
+        color: black;
+        border-radius: 7px;
+      }
+
+      .dashboard-product-project-programs {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+
+        .product-program-avatar {
+          font-size: 12px;
+          padding: 0.5rem 1.5rem;
+          margin-left: 0.75rem;
+          color: black;
+          border-radius: 2.5px;
+          color: white;
+        }
+        .program-ds {
+          background: $primary;
+        }
+        .program-ux {
+          background: $nav-link-selected;
+        }
+        .program-web {
+          background: $accent;
+          color: black;
+        }
+      }
+    }
+  }
+  .dashboard-metrics-container {
+    background-color: #E7EBFF;
+    margin-top: 5rem;
+    .users-tab {
+      display: flex; 
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      .user-tab {
+        border-radius: .5rem; 
+        width: 45%; 
+        min-height: 10rem; 
+        margin: 1rem; 
+        background-color: white; 
+        display: flex; 
+        justify-content: space-evenly; 
+        padding: 2rem;
+        .user-tab-image {
+          img {
+            max-width: 8rem; 
+            border-radius: 4rem;
+          }
+        }
+        .user-description {
+          width: 75%; 
+          text-align: center;
+          h3 {
+            font-size: 1.8rem;
+            font-weight: 500;
+          }
+          p {
+            font-size: 1.4rem;
+          }
+          .user-program {
+            margin-bottom: 1.6rem;
+          }
+        }
+      }
+    }
+  }
+}

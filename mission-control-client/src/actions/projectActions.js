@@ -1,5 +1,5 @@
 import axiosLabsGraphQL from '../utils/axiosLabsGraphQL'
-import { peopleByProjectId } from "../queries";
+// import { peopleByProjectId } from "../queries";
 
 import {
     projects,

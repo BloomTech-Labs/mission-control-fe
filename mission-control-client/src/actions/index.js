@@ -1,5 +1,3 @@
-import { loginSuccess } from "./loginActions";
-
 export {
   GET_PRODUCTS_START,
   GET_PRODUCTS_SUCCESS,
@@ -17,6 +15,15 @@ export {
   GET_PRODUCT_ROLE_SUCCESS,
   GET_PRODUCT_ROLE_ERROR,
   getProductRole,
+  ADD_PRODUCT_START,
+  ADD_PRODUCT_SUCCESS,
+  ADD_PRODUCT_ERROR,
+  UPDATE_PRODUCT_START,
+  UPDATE_PRODUCT_SUCCESS,
+  UPDATE_PRODUCT_ERROR,
+  DELETE_PRODUCT_START,
+  DELETE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_ERROR
 } from "./productActions";
 
 export {
@@ -40,7 +47,7 @@ export {
   GET_PEOPLE_GROUP_MEMBERS_ERROR,
   GET_PEOPLE_GROUP_MEMBER_START,
   GET_PEOPLE_GROUP_MEMBER_SUCCESS,
-  GET_PEOPLE_GROUP_MEMBER_ERROR,
+  GET_PEOPLE_GROUP_MEMBER_ERROR
 } from "./personActions";
 
 export {
@@ -93,10 +100,7 @@ export {
   getLambdaRoles
 } from "./roleActions";
 
-export {
-  loginSuccess,
-  LOGIN_SUCCESS
-} from './loginActions'
+export { loginSuccess, LOGIN_SUCCESS } from "./loginActions";
 
 export {
   GET_USERS_START,
@@ -111,4 +115,4 @@ export {
   UPDATE_MC_ROLES_SUCCESS,
   UPDATE_MC_ROLES_ERROR,
   updateMCRoles
-} from './settingsActions'
+} from "./settingsActions";

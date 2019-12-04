@@ -17,8 +17,10 @@ const AvatarMenu = ({ resetProjects }) => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
+    localStorage.removeItem("fname");
+    // localStorage.removeItem("role");
     resetProjects([]);
-    history.push("/login");
+    history.push("/");
   };
 
   const [open, setOpen] = useState(false);
@@ -30,6 +32,7 @@ const AvatarMenu = ({ resetProjects }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
       {popupState => (
@@ -50,7 +53,7 @@ const AvatarMenu = ({ resetProjects }) => {
             {/* <Link to={`/profile/${localStorage.getItem('fname')}/edit/email`} className="nav-head">
               <MenuItem style={{ fontSize: "1.4rem" }} onClick = {handleOpen}>Edit Profile</MenuItem>
             </Link> */}
-            {decrypt() === "admin" ? (
+            {localStorage.getItem("role") === "admin" ? (
               <Link
                 style={{ textDecoration: "none" }}
                 to={`/admin/${localStorage.getItem("fname")}/edit/promotions`}
@@ -74,7 +77,4 @@ const AvatarMenu = ({ resetProjects }) => {
   );
 };
 
-export default connect(
-  null,
-  { resetProjects }
-)(AvatarMenu);
+export default connect(null, { resetProjects })(AvatarMenu);

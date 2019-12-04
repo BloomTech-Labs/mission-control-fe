@@ -1,0 +1,14 @@
+@mixin responsive ($breakpoint) {
+    @if $breakpoint == mobile {
+        @media only screen and (max-width: 600px) { @content };
+    }
+    @if $breakpoint == tab-port {
+        @media only screen and (max-width: 1212px) { @content };
+     }
+     @if $breakpoint == tab-land {
+         @media only screen and (max-width: 1365px) { @content };
+     }
+     @if $breakpoint == big-desktop {
+         @media only screen and (min-width: 1800px) { @content };
+     }
+}
