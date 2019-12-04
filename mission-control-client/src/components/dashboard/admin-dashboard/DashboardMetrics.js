@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import AddProject from "../projects/AddProject";
 
 const DashboardMetrics = props => {
+
   return (
     <div className="admin-projects-container">
       <div className="admin-projects-head">
