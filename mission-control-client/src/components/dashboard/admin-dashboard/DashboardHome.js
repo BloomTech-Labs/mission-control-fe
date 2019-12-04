@@ -5,17 +5,28 @@ import { connect } from "react-redux";
 import ProductList from "../products/ProductList";
 import DashboardContent from "./DashboardContent";
 
-const DashboardHome = props => {
+import { productsU } from '../../../queries';
+import { useQuery } from 'urql';
 
+const DashboardHome = props => {
+  const [results] = useQuery({query:productsU})
+  const { data, fetching, error } = results;
+  
   useEffect(() => {
     getProducts();
   }, []);
 
+  if(!data){
+    return <h2>Loading...</h2>
+  }
   return (
     <>
-      <p className="warning">{props.productStore.error}</p>
+      {/* {data.products.map(product => {
+        return <p>{product.name}</p>
+      })} */}
+      <p className="warning">{error}</p>
       <div data-testid="dash" className="admin-dashboard-container">
-        <ProductList products={props.productStore.products} />
+        <ProductList products={data.products} />
         <DashboardContent />
       </div>
     </>
