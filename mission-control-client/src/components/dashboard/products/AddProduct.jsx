@@ -1,48 +1,51 @@
-import React, {useState, useCallback } from 'react';
+import React, { useState, useCallback } from "react";
+import { connect } from "react-redux";
+import { useMutation } from "urql";
 
-import gql from 'graphql-tag';
-import { useMutation } from 'urql';
-
-const POST_PRODUCT = gql `
-    mutation PostProduct($name: String!) {
-        createProduct(data: {name: $name}) {
-            id
-            name
-        }
-    }
-`
+import { addProduct } from "../../../actions/productActions";
+import {
+  createProduct,
+  updateProduct,
+  deleteProduct
+} from "../../../mutations";
 
 const CreateProduct = props => {
-    const [ name, setName ] = useState('');
+  const [name, setName] = useState("");
 
-    // adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
-    const [state, executeMutation] = useMutation(POST_PRODUCT)
+  // adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
+  const [state, executeMutation] = useMutation(createProduct);
 
-    const submit = useCallback(() => {
-        executeMutation({name})
-        console.log(name)
-        console.log(state)
-    }, [executeMutation, name])
+  const submit = useCallback(() => {
+    executeMutation({ name })
+      .then(res => {
+        // console.log(res.data.createProduct);
+        props.addProduct(res.data.createProduct);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [executeMutation, name]);
 
-    return (
-        <div>
-            <div>
-            <input 
-                type="text"
-                onChange={e => setName(e.target.value)}
-                placeholder="name of product"
-            />
-            </div>
-            <button     
-                disabled={state.fetching}
-                onClick={submit}>
-                Submit
-            </button>
-        </div>
-    )
+  return (
+    <div>
+      <div>
+        <input
+          type="text"
+          onChange={e => setName(e.target.value)}
+          placeholder="name of product"
+        />
+      </div>
+      <button disabled={state.fetching} onClick={submit}>
+        Submit
+      </button>
+    </div>
+  );
+};
 
+const mapStateToProps = state => {
+  return {
+    activeProductStore: state.activeProductStore
+  };
+};
 
-}
-
-
-export default CreateProduct;
+export default connect(mapStateToProps, { addProduct })(CreateProduct);

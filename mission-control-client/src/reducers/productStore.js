@@ -111,8 +111,19 @@ export const productStore = (state = initialState, action) => {
         isLoading: true
       };
     case ADD_PRODUCT_SUCCESS:
+      const newProds = [...state.products];
+      const newItem = {
+        id: action.payload.id,
+        name: action.payload.name,
+        projects: []
+      };
+      newProds.push(newItem);
+      console.log("New List", newProds);
       return {
-        ...state
+        ...state,
+        isLoading: false,
+        products: newProds,
+        error: ""
       };
     case ADD_PRODUCT_ERROR:
       return {
