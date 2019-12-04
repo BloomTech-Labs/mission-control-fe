@@ -86,11 +86,4 @@ const deleteProject = gql`
   }
 `;
 
-export {
-  createProduct,
-  updateProduct,
-  deleteProduct,
-  addProject,
-  updateProject,
-  deleteProject
-};
+
