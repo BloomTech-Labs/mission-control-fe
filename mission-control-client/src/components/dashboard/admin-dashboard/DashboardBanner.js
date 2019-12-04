@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 const DashboardBanner = props => {
 
-  console.log(props)
+  // console.log(props)
 
   return (
     <div className="dashboard-banner-container">

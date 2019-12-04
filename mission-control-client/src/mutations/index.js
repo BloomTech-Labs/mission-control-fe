@@ -1,5 +1,16 @@
 import gql from "graphql-tag";
 
+// export
+
+export {
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  addProject,
+  updateProject,
+  deleteProject
+}
+
 //Product CRUD
 //Add
 

@@ -1,5 +1,8 @@
 import React from "react";
 
+import UpdateProduct from './UpdateProduct';
+import DeleteProduct from './DeleteProduct';
+
 const Product = props => {
   const programs = ["web", "ux/ui", "ds"];
 
@@ -17,8 +20,11 @@ const Product = props => {
         <h3 className="product-title">{props.el.name}</h3>
       </div>
       <div>
-        <button>edit</button>
-        <button>delete</button>
+        {/* <button>edit</button> */}
+        {/* <button>delete</button> */}
+        {/* {console.log(props.active)} */}
+        <UpdateProduct index={props.active.id} product={props.active} />
+        <DeleteProduct index={props.active.id} product={props.active} />
       </div>
     </div>
   );
