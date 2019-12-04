@@ -92,7 +92,21 @@ export const getProductRole = () => {
 };
 
 export const addProduct = data => {
-    //   console.log("Add Product Called in Actions", data);
+
+  //   console.log("Add Product Called in Actions", data);
+  return dispatch => {
+    dispatch({ type: ADD_PRODUCT_SUCCESS, payload: data });
+  };
+};
+
+export const editProduct = () => {
+  console.log("Edit Product Called in Actions");
+};
+
+export const removeProduct = (data, status) => {
+  // console.log("Delete Product Called in Actions", data);
+  if (status === "ERR") {
+
     return dispatch => {
         dispatch({ type: ADD_PRODUCT_SUCCESS, payload: data });
     };
