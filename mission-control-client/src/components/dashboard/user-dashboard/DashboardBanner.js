@@ -20,11 +20,17 @@ const DashboardBanner = props => {
   return (
     <div className="dashboard-banner-container">
       <div className="dashboard-banner-head">
-        <p>
-          {props.activeProjectStore.active
-            ? props.activeProjectStore.active.project.project.name
-            : "Loading..."}
-        </p>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <p>
+            {props.activeProjectStore.active
+              ? props.activeProjectStore.active.project.project.name
+              : "Loading..."}
+          </p>
+          <p style={{ fontSize: "2rem", marginTop: "1rem" }}>
+            {props.activeProjectStore.active &&
+              props.activeProjectStore.active.project.project.product.name}
+          </p>
+        </div>
         <div className="dashboard-product-project-programs">
           {[...new Set(programs)].map(
             (el, i) =>
@@ -47,7 +53,7 @@ const DashboardBanner = props => {
         </div>
         <div className="dashboard-product-status">
           {props.activeProjectStore.active &&
-          new Date(props.activeProjectStore.active.project.project.end) >
+          new Date(props.activeProjectStore.active.project.project.end) <
             new Date() ? (
             <p className="product-status-completed">Completed</p>
           ) : (

@@ -39,26 +39,27 @@ function App() {
   return (
     <Layout>
       <Switch>
-        {(!localStorage.getItem("role") ||
+        {/* {(!localStorage.getItem("role") ||
           !["admin", "manager", "student"].includes(decrypt())) &&
           localStorage.removeItem("token") &&
-          history.push("/login")}
-        <PrivateRoute path="/" exact>
+          history.push("/login")} */}
+        {/* <PrivateRoute path="/" exact>
           {localStorage.getItem("token") ? (
             <Redirect to={{ pathname: `${decrypt()}/dashboard` }} />
           ) : (
             <Redirect to="/login" />
           )}
-        </PrivateRoute>
-        <Route path="/register" component={Registration} />
-        <Route path="/login" component={Login} />
-        <PrivateRoute path={`/profile/${localStorage.getItem('fname')}/edit/password`} component={EditProfile} />
-        <PrivateRoute path={`/profile/${localStorage.getItem('fname')}/edit/email`} component={EditProfile} />
-        <StudentPrivateRoute path="/student/dashboard" component={UserDash} />
-        <AdminPrivateRoute exact path="/manager/dashboard" component={AdminDash} />
-        <AdminPrivateRoute exact path="/admin/dashboard" component={AdminDash} />
-        <AdminPrivateRoute path={`/admin/${localStorage.getItem('fname')}/edit/promotions`} component={UserPromotions} />
-        <AdminPrivateRoute path="/admin/dashboard/:id" component={ProjectMore} />
+        </PrivateRoute> */}
+        {/* OKTA will be taking over user access and control */}
+        {/* <Route path="/register" component={Registration} /> */}
+        <Route path="/" exact component={Login} />
+        <Route path={`/profile/${localStorage.getItem('fname')}/edit/password`} component={EditProfile} />
+        <Route path={`/profile/${localStorage.getItem('fname')}/edit/email`} component={EditProfile} />
+        <Route path="/student/dashboard" component={UserDash} />
+        <Route exact path="/manager/dashboard" component={AdminDash} />
+        <Route exact path="/admin/dashboard" component={AdminDash} />
+        <Route path={`/admin/${localStorage.getItem('fname')}/edit/promotions`} component={UserPromotions} />
+        <Route path="/admin/dashboard/:id" component={ProjectMore} />
         <Route component={Bad} />
       </Switch>
     </Layout>

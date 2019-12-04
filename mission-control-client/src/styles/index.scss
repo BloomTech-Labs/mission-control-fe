@@ -1,3 +1,4 @@
+@import "./mediaqueries.scss";
 @import "./global.scss";
 @import "./components/bad.scss";
 @import "./components/login.scss";
@@ -12,3 +13,7 @@
 @import "./components/admin-styles/admin-project-more.scss";
 @import './components/edit.scss';
 @import './components/admin-styles/user-promotions.scss';
+@import './components/user-styles/user-dashboard.scss';
+@import './components/user-styles/users-tab.scss';
+@import './components/user-styles/user-project-list.scss';
+@import './components/user-styles/user-project.scss';

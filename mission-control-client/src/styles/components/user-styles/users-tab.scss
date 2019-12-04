@@ -1,0 +1,57 @@
+@import "../../variables.scss";
+
+  .user-project-more-team {
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+
+    .user-project-more-team-name {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .user-project-more-team-email {
+      font-size: 1.25rem;
+      color: $nav-link;
+      margin-bottom: 4rem;
+    }
+
+    .user-project-more-team-gh {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+    }
+
+    .user-project-more-team-slack {
+      margin: 1rem 0;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .user-project-more-team-timezone {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    .project-program-avatar {
+      font-size: 12px;
+      padding: 0.5rem 1.5rem;
+      margin-right: 0.75rem;
+      color: black;
+      border-radius: 2.5px;
+      color: white;
+      width: max-content;
+      margin-top: 1rem;
+    }
+    .program-ds {
+      background: $primary;
+    }
+    .program-ux {
+      background: $nav-link-selected;
+    }
+    .program-web {
+      background: $accent;
+      color: black;
+    }
+  }

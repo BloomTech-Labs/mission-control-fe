@@ -1,24 +1,29 @@
 @import "../../variables.scss";
 
-.products-scroll-container {
+.projects-scroll-container {
   max-height: 100vh;
   overflow: auto;
   direction: rtl;
   position: relative;
   right: 21px;
   padding-left: 16px;
-  width: 321px;
+  width: 310px;
   margin-top: 3.2rem;
 
-  #product-active {
+  @include responsive(mobile) {
+    margin-left: 10px;
+    width: 70%;
+  }
+
+  #project-active {
     background: $gray-accent;
   }
 
-  .product-container {
+  .project-container {
     direction: ltr;
     display: flex;
     justify-content: space-between;
-    background: $admin-product-background;
+    background: $user-project-background;
     border-radius: 5px;
     padding: 3.2rem;
     border-radius: 5px;
@@ -28,37 +33,37 @@
       margin-bottom: 1.6rem;
     }
 
-    .product-description {
-      width: 60%;
+    .project-description {
+      width: 40%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
 
-      .product-title {
+      .project-title {
         font-size: 18px;
-        font-weight: bold;
-      }
-    
-      .product-status-completed {
-        color: $secondary;
-        font-size: 1.6rem;
         font-weight: bold;   
       }
 
-      .product-status-not-completed {
+      .project-status-completed {
+        color: $secondary;
+        font-size: 1.6rem;
+        font-weight: bold;
+      }
+
+      .project-status-not-completed {
         color: $primary;
         font-size: 1.6rem;
         font-weight: bold;
       }
     }
 
-    .product-programs {
+    .project-programs {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       font-size: 14px;
 
-      .product-program-avatar {
+      .project-program-avatar {
         font-size: 12px;
         padding: 0.5rem 1.5rem;
         margin-left: 0.75rem;
@@ -77,12 +82,14 @@
     }
   }
 }
-.products-scroll-container::-webkit-scrollbar {
+.projects-scroll-container::-webkit-scrollbar {
   background: rgb(242, 242, 247);
-  width: 6px;
+  height:10px;
+  width: 10px;
 }
 
-.products-scroll-container::-webkit-scrollbar-thumb {
+.projects-scroll-container::-webkit-scrollbar-thumb {
   background: rgb(188, 188, 188);
+  height:55px;
   border-radius: 10px;
 }

@@ -7,24 +7,25 @@ import { setActiveProject } from "../../../actions/activeProjectActions";
 const ProjectList = props => {
   const [filtered, setFiltered] = useState({ projects: [] });
 
+  const { projectStore, setActiveProject, activeProjectStore } = props
+
   useEffect(() => {
-    if (props.projectStore.projectRoleByEmail.length) {
-      setFiltered({ projects: props.projectStore.projectRoleByEmail });
+    if (projectStore.projectRoleByEmail.length) {
+      setFiltered({ projects: projectStore.projectRoleByEmail });
       if (filtered.projects.length > 0) {
-        props.setActiveProject(filtered.projects[0]);
+        setActiveProject(filtered.projects[0]);
       } else {
-        props.setActiveProject(props.projectStore.projectRoleByEmail[0]);
+        setActiveProject(projectStore.projectRoleByEmail[0]);
       }
     }
-  }, [props.projectStore.projectRoleByEmail]);
+  }, [projectStore.projectRoleByEmail]);
 
   const setProjectHandler = el => {
-    console.log(el);
-    props.setActiveProject(el);
+    setActiveProject(el);
   };
 
   const handleChange = e => {
-    const projects = props.projectStore.projectRoleByEmail;
+    const projects = projectStore.projectRoleByEmail;
     const re = /^[a-z0-9\s]+$/i;
 
     if (
@@ -49,23 +50,23 @@ const ProjectList = props => {
   };
 
   return (
-    <div className="product-list-container">
-      <div className="product-list-header">
-        <p className="product-list-title">Projects</p>
+    <div className="project-list-container">
+      <div className="project-list-header">
+        <p className="project-list-title">Projects</p>
       </div>
-      <span className="admin-product-search-wrapper">
-        <SearchIcon fontSize="large" className="admin-product-search-icon" />
+      <span className="user-project-search-wrapper">
+        <SearchIcon fontSize="large" className="user-project-search-icon" />
         <input
-          className="admin-product-search"
+          className="user-project-search"
           placeholder="Search here"
           onChange={handleChange}
         />
       </span>
-      <div className="products-scroll-container">
+      <div className="projects-scroll-container">
         {filtered.projects && filtered.projects.length ? (
           filtered.projects.map((el, i) => (
             <Project
-              active={props.activeProjectStore.active}
+              active={activeProjectStore.active}
               setActiveProject={setProjectHandler}
               key={i}
               el={el}
@@ -73,7 +74,7 @@ const ProjectList = props => {
             />
           ))
         ) : (
-          <p className="products-no-products">No projects</p>
+          <p className="projects-no-projects">No projects</p>
         )}
       </div>
     </div>
