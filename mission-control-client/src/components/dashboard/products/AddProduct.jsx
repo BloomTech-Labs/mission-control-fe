@@ -3,11 +3,7 @@ import { connect } from "react-redux";
 import { useMutation } from "urql";
 
 import { addProduct } from "../../../actions/productActions";
-import {
-  createProduct,
-  updateProduct,
-  deleteProduct
-} from "../../../mutations";
+import { createProduct } from "../../../mutations";
 
 const CreateProduct = props => {
   const [name, setName] = useState("");
