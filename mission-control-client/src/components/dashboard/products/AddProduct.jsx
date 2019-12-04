@@ -1,28 +1,26 @@
+// React and react Hooks
 import React, {useState, useCallback } from 'react';
 
-import gql from 'graphql-tag';
+// GraphQl URQL and Hooks
 import { useMutation } from 'urql';
 
-const POST_PRODUCT = gql `
-    mutation PostProduct($name: String!) {
-        createProduct(data: {name: $name}) {
-            id
-            name
-        }
-    }
-`
+// importing mutation definition for adding a new product
+import { createProduct } from '../../../mutations';
 
+// Component - CreateProduct
 const CreateProduct = props => {
     const [ name, setName ] = useState('');
 
     // adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
-    const [state, executeMutation] = useMutation(POST_PRODUCT)
+    const [state, executeMutation] = useMutation(createProduct)
 
     const submit = useCallback(() => {
         executeMutation({name})
-        console.log(name)
-        console.log(state)
     }, [executeMutation, name])
+
+    if (state.error) {
+        return <p>"Sorry, already added."</p>
+    }
 
     return (
         <div>
