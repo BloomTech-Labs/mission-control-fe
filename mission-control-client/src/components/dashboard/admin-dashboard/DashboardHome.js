@@ -11,9 +11,10 @@ import { useQuery } from 'urql';
 const DashboardHome = props => {
   const [results] = useQuery({query:productsU})
   const { data, fetching, error } = results;
-  
+
+
   useEffect(() => {
-    getProducts();
+    props.getProducts();
   }, []);
 
   if(!data){
