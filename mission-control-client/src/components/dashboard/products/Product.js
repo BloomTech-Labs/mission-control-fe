@@ -5,6 +5,9 @@ import { editProduct, removeProduct } from "../../../actions/productActions";
 import { updateProduct, deleteProduct } from "../../../mutations";
 import { setActiveProduct } from '../../../actions/activeProductActions';
 
+import UpdateProduct from './UpdateProduct';
+import DeleteProduct from './DeleteProduct';
+
 const Product = props => {
 
   const programs = ["web", "ux/ui", "ds"];
