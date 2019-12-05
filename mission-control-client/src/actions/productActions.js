@@ -32,87 +32,88 @@ export const DELETE_PRODUCT_SUCCESS = "DELETE_PRODUCT_SUCCESS";
 export const DELETE_PRODUCT_ERROR = "DELETE_PRODUCT_ERROR";
 
 export const getProducts = () => {
-    return dispatch => {
-        dispatch({ type: GET_PRODUCTS_START });
-        axiosLabsGraphQL
-            .post("", { query: products })
-            .then(res => {
-                const products = res.data.data.products;
-                dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products });
-            })
-            .catch(err =>
-                dispatch({ type: GET_PRODUCTS_ERROR, payload: err.response })
-            );
-    };
+  return dispatch => {
+    dispatch({ type: GET_PRODUCTS_START });
+    axiosLabsGraphQL
+      .post("", { query: products })
+      .then(res => {
+        const products = res.data.data.products;
+        dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products });
+      })
+      .catch(err =>
+        dispatch({ type: GET_PRODUCTS_ERROR, payload: err.response })
+      );
+  };
 };
 
 export const getProduct = id => {
-    return dispatch => {
-        dispatch({ type: GET_PRODUCT_START });
-        axiosLabsGraphQL
-            .post("", { query: product(id) })
-            .then(res => {
-                const product = res.data.data.product;
-                dispatch({ type: GET_PRODUCT_SUCCESS, payload: product });
-            })
-            .catch(err =>
-                dispatch({ type: GET_PRODUCT_ERROR, payload: err.response })
-            );
-    };
+  return dispatch => {
+    dispatch({ type: GET_PRODUCT_START });
+    axiosLabsGraphQL
+      .post("", { query: product(id) })
+      .then(res => {
+        const product = res.data.data.product;
+        dispatch({ type: GET_PRODUCT_SUCCESS, payload: product });
+      })
+      .catch(err =>
+        dispatch({ type: GET_PRODUCT_ERROR, payload: err.response })
+      );
+  };
 };
 
 export const getProductRoles = () => {
-    return dispatch => {
-        dispatch({ type: GET_PRODUCT_ROLES_START });
-        axiosLabsGraphQL
-            .post("", { query: productRoles })
-            .then(res => {
-                const productRoles = res.data.data.productRoles;
-                dispatch({ type: GET_PRODUCT_ROLES_SUCCESS, payload: productRoles });
-            })
-            .catch(err =>
-                dispatch({ type: GET_PRODUCT_ROLES_ERROR, payload: err.response })
-            );
-    };
+  return dispatch => {
+    dispatch({ type: GET_PRODUCT_ROLES_START });
+    axiosLabsGraphQL
+      .post("", { query: productRoles })
+      .then(res => {
+        const productRoles = res.data.data.productRoles;
+        dispatch({ type: GET_PRODUCT_ROLES_SUCCESS, payload: productRoles });
+      })
+      .catch(err =>
+        dispatch({ type: GET_PRODUCT_ROLES_ERROR, payload: err.response })
+      );
+  };
 };
 
 export const getProductRole = () => {
-    return dispatch => {
-        dispatch({ type: GET_PRODUCT_ROLE_START });
-        axiosLabsGraphQL
-            .post("", { query: productRole })
-            .then(res => {
-                const productRole = res.data.data.productRole;
-                dispatch({ type: GET_PRODUCT_ROLE_SUCCESS, payload: productRole });
-            })
-            .catch(err =>
-                dispatch({ type: GET_PRODUCT_ROLE_ERROR, payload: err.response })
-            );
-    };
+  return dispatch => {
+    dispatch({ type: GET_PRODUCT_ROLE_START });
+    axiosLabsGraphQL
+      .post("", { query: productRole })
+      .then(res => {
+        const productRole = res.data.data.productRole;
+        dispatch({ type: GET_PRODUCT_ROLE_SUCCESS, payload: productRole });
+      })
+      .catch(err =>
+        dispatch({ type: GET_PRODUCT_ROLE_ERROR, payload: err.response })
+      );
+  };
 };
 
 export const addProduct = data => {
-    //   console.log("Add Product Called in Actions", data);
-    return dispatch => {
-        dispatch({ type: ADD_PRODUCT_SUCCESS, payload: data });
-    };
-};
-export const editProduct = (data) => {
-    console.log("Edit Product Called in Actions AKA update", data);
-    return dispatch => {
-        dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: data })
-    };
+  //   console.log("Add Product Called in Actions", data);
+  return dispatch => {
+    dispatch({ type: ADD_PRODUCT_SUCCESS, payload: data });
+  };
 };
 
-export const removeProduct = data => {
-    //   console.log("Delete Product Called in Actions",data);
-    if (data.search("violate")) {
-        return dispatch => {
-            dispatch({ type: DELETE_PRODUCT_ERROR, payload: data });
-        };
-    } else {
-        return dispatch => {
-            dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: data });
-        };
-    }
+export const editProduct = data => {
+  console.log("Edit Product Called in Actions AKA update", data);
+  return dispatch => {
+    dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: data });
+  };
+};
+
+export const removeProduct = (data, status) => {
+  //   console.log("Delete Product Called in Actions",data);
+  if (status === "ERR") {
+    return dispatch => {
+      dispatch({ type: DELETE_PRODUCT_ERROR, payload: data });
+    };
+  } else {
+    return dispatch => {
+      dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: data });
+    };
+  }
 };
