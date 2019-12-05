@@ -4,6 +4,7 @@ import { setActiveProject } from "../../../actions/activeProductActions";
 import { useHistory } from "react-router-dom";
 
 const DashboardProject = props => {
+  console.log(props)
   const history = useHistory();
 
   const handleClick = () => {
@@ -16,8 +17,7 @@ const DashboardProject = props => {
       <div onClick={handleClick} className="admin-dashboard-project">
         <div className="admin-dashboard-project-names">
           <p className="admin-dashboard-project-name">
-            {props.activeProductStore.active &&
-              props.activeProductStore.active.name}
+              {props.product.name}
           </p>
           <p>{props.el.name.toUpperCase()}</p>
         </div>
