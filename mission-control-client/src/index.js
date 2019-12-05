@@ -30,19 +30,44 @@ const cache = cacheExchange({
           }, data => {
             if (data !== null) {
                 data.products.unshift(createProduct)
-                // data.products.count++
                 return data
             } else {
               return null
             }
           })
       },
-      // deleteProduct: ({ deleteProduct }, _args, cache) => {
-      //   console.log(cache)
-      //   cache.updateQuery({ query: productsU, requestPolicy: 'cache-and-network' }, data => {
-      //     return data
-      //   })
-      // }
+      deleteProduct: ({ deleteProduct }, _args, cache) => {
+        cache.updateQuery({ query: productsU, requestPolicy: 'cache-and-network' }, data => {
+          const index = data.products.indexOf(deleteProduct)
+          data.products.splice(index,1)
+          return data
+        })
+      },
+      createProject: ({ createProject }, _args, cache) => {
+        const productId = _args.data.product.connect.id
+        const newCreateProject = {...createProject, start:null, end:null}
+
+        console.log("createProject info: ", createProject)
+        // console.log("_args info: ", _args)
+        // console.log("cache info: ", cache)
+        cache.updateQuery({ query: productsU
+          }, data => {
+            console.log("data: ", data)
+            console.log("productId variable: ", productId)
+            if (data !== null) {
+              data.products.map(product => {
+                if(product.id === productId){
+                  console.log("product.id", product.id)
+                  console.log('Projects from a product', data.products[0].projects)
+                    return product.projects.push(newCreateProject)
+                }
+              })
+              return data
+            } else {
+              return null
+            }
+          })
+      },
     },
   }
 });

@@ -13,7 +13,7 @@ const DashboardHome = props => {
   const { data, fetching, error } = results;
   
   useEffect(() => {
-    props.getProducts();
+    // props.getProducts();
   }, []);
 
   if(!data){
@@ -27,7 +27,7 @@ const DashboardHome = props => {
       <p className="warning">{error}</p>
       <div data-testid="dash" className="admin-dashboard-container">
         <ProductList products={data.products} />
-        <DashboardContent />
+        <DashboardContent products={data.products} />
       </div>
     </>
   );
