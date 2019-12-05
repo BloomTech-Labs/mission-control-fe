@@ -30,19 +30,32 @@ const cache = cacheExchange({
           }, data => {
             if (data !== null) {
                 data.products.unshift(createProduct)
-                // data.products.count++
                 return data
             } else {
               return null
             }
           })
       },
-      // deleteProduct: ({ deleteProduct }, _args, cache) => {
-      //   console.log(cache)
-      //   cache.updateQuery({ query: productsU, requestPolicy: 'cache-and-network' }, data => {
-      //     return data
-      //   })
-      // }
+      deleteProduct: ({ deleteProduct }, _args, cache) => {
+        cache.updateQuery({ query: productsU, requestPolicy: 'cache-and-network' }, data => {
+          const index = data.products.indexOf(deleteProduct)
+          data.products.splice(index,1)
+          return data
+        })
+      },
+      // createProject: ({ createProject }, _args, cache) => {
+      //   // const variables = {first: dynPageNum, skip: 0, orderBy: 'createdAt_DESC'}
+      //     cache.updateQuery({ query: productsU, 
+      //       // variables
+      //     }, data => {
+      //       if (data !== null) {
+      //           data.projects.unshift(createProject)
+      //           return data
+      //       } else {
+      //         return null
+      //       }
+      //     })
+      // },
     },
   }
 });
