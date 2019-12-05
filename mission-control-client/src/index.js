@@ -37,6 +37,12 @@ const cache = cacheExchange({
             }
           })
       },
+      // deleteProduct: ({ deleteProduct }, _args, cache) => {
+      //   console.log(cache)
+      //   cache.updateQuery({ query: productsU, requestPolicy: 'cache-and-network' }, data => {
+      //     return data
+      //   })
+      // }
     },
   }
 });
