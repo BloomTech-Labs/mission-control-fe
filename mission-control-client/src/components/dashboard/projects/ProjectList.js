@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { setActiveProject } from "../../../actions/activeProjectActions";
 
 const ProjectList = props => {
+  console.log("from projectlist", props)
   const [filtered, setFiltered] = useState({ projects: [] });
 
   const { projectStore, setActiveProject, activeProjectStore } = props
