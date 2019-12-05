@@ -43,8 +43,8 @@ function App() {
 
   return (
     <Layout>
-      <Security issuer='https://dev-947415.okta.com/oauth2/default'
-                clientId='0oa1sum11uqYEHMzC357'
+      <Security issuer='https://dev-173777.okta.com/oauth2/default'
+                clientId='0oa23ze1sdfwtoKNQ357'
                 redirectUri={window.location.origin + '/implicit/callback'}
                 onAuthRequired={onAuthRequired}
                 pkce={true} >
@@ -63,7 +63,7 @@ function App() {
           {/* OKTA will be taking over user access and control */}
           {/* <Route path="/register" component={Registration} /> */}
           {/* <Route path="/" exact component={Login} /> */}
-          <Route path='/login' render={() => <Login baseUrl='https://dev-947415.okta.com' />} />
+          <Route path='/login' render={() => <Login baseUrl='https://dev-173777.okta.com' />} />
           <Route exact={true} path="/">
             {localStorage.getItem("okta-token-storage") ? (
             <Redirect to={{ pathname: `/admin/dashboard` }} />
@@ -78,6 +78,7 @@ function App() {
           <Route exact path="/admin/dashboard" component={AdminDash} />
           <Route path={`/admin/${localStorage.getItem('fname')}/edit/promotions`} component={UserPromotions} />
           <Route path="/admin/dashboard/:id" component={ProjectMore} />
+          {/* OKTA Signin Widget route */}
           <Route path='/implicit/callback' component={ImplicitCallback} />
           <Route component={Bad} />
         </Switch>
