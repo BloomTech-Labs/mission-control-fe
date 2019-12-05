@@ -7,8 +7,9 @@ export {
     // createPerson,
     // updatePerson,
     // deletePerson,
-    products,
     productsU,
+    products,
+    productU,
     product,
     // createProduct,
     // updateProduct,
@@ -40,6 +41,7 @@ export {
     // createProductRole,
     // updateProductRole,
     // deleteProductRole,
+    projectsU,
     projects,
     project,
     // createProject,
@@ -103,6 +105,7 @@ const productsU = gql `
         }
     }
 `;
+
 const products = `
     query {
         products {
@@ -144,6 +147,21 @@ export const FEED_QUERY = gql `
 //  end unrelated sample query 
 
 // Done
+const productU = gql `
+    query productQuery($id:ID!) {
+        product(where:{id:$id}) {
+            id
+            name
+            projects {
+                id
+                name
+                start
+                end
+            }
+        }
+    }
+`;
+
 const product = id => `
     query {
         product(where:{id:"${id}"}) {
@@ -331,6 +349,20 @@ const productRole = id => `
 `;
 
 // Done
+const projectsU = gql `
+    {
+        projects{
+            id
+            name
+            start
+            end
+            product {
+                id
+                name
+            }
+        }
+    }
+`;
 const projects = `
     query {
         projects{
