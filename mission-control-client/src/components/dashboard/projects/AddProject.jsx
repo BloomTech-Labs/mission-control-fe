@@ -7,20 +7,14 @@ import { addProject } from "../../../mutations";
 
 const AddProject = props => {
   const [name, setName] = useState("");
-  // adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
+  const {id} = props.currId
+  // JS adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
   const [state, executeMutation] = useMutation(addProject);
 
   const submit = useCallback(() => {
     console.log("ID", props);
-    // executeMutation({ name })
-    //   .then(res => {
-    //     // console.log(res.data.createProduct);
-    //     props.addProduct(res.data.createProduct);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
-  }, [executeMutation, name]);
+    executeMutation({ name, id })
+  }, [executeMutation, name, id]);
 
   return (
     <div>
