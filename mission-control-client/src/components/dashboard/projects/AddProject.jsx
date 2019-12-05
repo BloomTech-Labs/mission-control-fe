@@ -2,25 +2,24 @@ import React, { useState, useCallback } from "react";
 import { connect } from "react-redux";
 import { useMutation } from "urql";
 
-import { addProduct } from "../../../actions/productActions";
-import { createProduct } from "../../../mutations";
+// import { addProject } from "../../../actions/productActions";
+import { addProject } from "../../../mutations";
 
-// Component - CreateProduct
-const CreateProduct = props => {
-const [name, setName] = useState("");
-
+const AddProject = props => {
+  const [name, setName] = useState("");
   // adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
-const [state, executeMutation] = useMutation(createProduct);
+  const [state, executeMutation] = useMutation(addProject);
 
-const submit = useCallback(() => {
-    executeMutation({ name })
-        .then(res => {
-        // console.log(res.data.createProduct);
-        props.addProduct(res.data.createProduct);
-        })
-        .catch(err => {
-        console.log(err);
-        });
+  const submit = useCallback(() => {
+    console.log("ID", props);
+    // executeMutation({ name })
+    //   .then(res => {
+    //     // console.log(res.data.createProduct);
+    //     props.addProduct(res.data.createProduct);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   }, [executeMutation, name]);
 
   return (
@@ -29,7 +28,7 @@ const submit = useCallback(() => {
         <input
           type="text"
           onChange={e => setName(e.target.value)}
-          placeholder="name of product"
+          placeholder="name of project"
         />
       </div>
       <button disabled={state.fetching} onClick={submit}>
@@ -45,4 +44,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { addProduct })(CreateProduct);
+export default connect(mapStateToProps, {})(AddProject);

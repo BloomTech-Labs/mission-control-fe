@@ -5,6 +5,9 @@ import { editProduct, removeProduct } from "../../../actions/productActions";
 import { updateProduct, deleteProduct } from "../../../mutations";
 import { setActiveProduct } from '../../../actions/activeProductActions';
 
+import UpdateProduct from './UpdateProduct';
+import DeleteProduct from './DeleteProduct';
+
 const Product = props => {
   const programs = ["web", "ux/ui", "ds"];
 // console.log(props);
@@ -21,13 +24,13 @@ const Product = props => {
         .then(res => {
           // console.log("ERR?", res);
           if (res.data.deleteProduct) {
-            props.removeProduct(res.data.deleteProduct);
+            props.removeProduct(res.data.deleteProduct, "OK");
           } else {
-            props.removeProduct(res.error.message);
+            props.removeProduct(res.error.message, "ERR");
           }
         })
         .catch(err => {
-          console.log("ERR", err);
+          // console.log("DelERR", err);
         });
     },
     [executeDeleteMutation]
