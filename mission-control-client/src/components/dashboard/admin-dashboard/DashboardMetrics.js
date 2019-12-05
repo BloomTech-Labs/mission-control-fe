@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import AddProject from "../projects/AddProject";
 
 const DashboardMetrics = props => {
-  console.log("Props from dashmetrics", props)
+  // console.log("Props from dashmetrics", props)
   return (
     <div className="admin-projects-container">
       <div className="admin-projects-head">
@@ -13,9 +13,14 @@ const DashboardMetrics = props => {
       </div>
       <div className="admin-projects-content-container">
         {props.activeProductStore.active &&
-          props.activeProductStore.active.projects.map((el, i) => (
-            <DashboardProject key={i} el={el} />
-          ))}
+          props.products.map(product => {
+            if(props.activeProductStore.active.id === product.id){
+              return props.activeProductStore.active.projects.map((el, i) => (
+                <DashboardProject product={product} key={i} el={el} />
+              ))
+            }
+          })
+}
         {props.activeProductStore.active &&
           props.activeProductStore.active.projects.length === 0 && (
             <p className="admin-projects-empty">No projects</p>

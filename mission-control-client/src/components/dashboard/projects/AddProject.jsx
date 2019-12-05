@@ -12,7 +12,7 @@ const AddProject = props => {
   const [state, executeMutation] = useMutation(addProject);
 
   const submit = useCallback(() => {
-    console.log("ID", props);
+    // console.log("ID", props);
     executeMutation({ name, id })
   }, [executeMutation, name, id]);
 

@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { setActiveProduct } from "../../../actions/activeProductActions";
 
 const ProductList = props => {
+  // console.log("from productList", props.activeProductStore)
   useEffect(() => {
     setFiltered({ products: props.products });
 
