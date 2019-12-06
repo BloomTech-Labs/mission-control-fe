@@ -3,19 +3,19 @@ import { connect } from "react-redux";
 import { useMutation } from "urql";
 import { editProduct, removeProduct } from "../../../actions/productActions";
 import { updateProduct, deleteProduct } from "../../../mutations";
-import { setActiveProduct } from '../../../actions/activeProductActions';
+import { setActiveProduct } from "../../../actions/activeProductActions";
 
-import UpdateProduct from './UpdateProduct';
-import DeleteProduct from './DeleteProduct';
+import UpdateProduct from "./UpdateProduct";
+import DeleteProduct from "./DeleteProduct";
 
 const Product = props => {
   const programs = ["web", "ux/ui", "ds"];
-// console.log(props);
+  console.log("PROD", props);
   // adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
   const [updateState, executeUpdateMutation] = useMutation(updateProduct);
   const [DeleteState, executeDeleteMutation] = useMutation(deleteProduct);
-  const[name, setName]=useState("");
-  const [isEditing, setIsEditing]=useState(false);
+  const [name, setName] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
 
   const delBtn = useCallback(
     e => {
@@ -38,19 +38,23 @@ const Product = props => {
 
   const editBtn = useCallback(
     e => {
-        executeUpdateMutation({ id: props.active.id, name: name })
-            .then(res => {
-              console.log(res, props.active.id, name);
-              if(!res.data){
-                console.log("whoops");
-              }else{}
-                props.editProduct(res.data.name);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }, [executeUpdateMutation, name, props.active.id]);
-
+      e.persist();
+      const editId = e.target.value;
+      executeUpdateMutation({ id: editId, name: name })
+        .then(res => {
+          console.log(res, e.target.value, name);
+          if (!res.data) {
+            console.log("whoops");
+          } else {
+          }
+          props.editProduct(res.data.name);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    [executeUpdateMutation, name, props.active.id]
+  );
 
   return (
     <div
@@ -66,25 +70,29 @@ const Product = props => {
         <h3 className="product-title">{props.el.name}</h3>
       </div>
       <div>
-        
-        {isEditing ?   
+        {isEditing ? (
           <div>
-          <input type="text" onChange={(e)=>setName(e.target.value)} />
-          <button onClick={() => {
-            setIsEditing(!isEditing);
-            editBtn();
-          }}
-          >✅</button>
-          
+            <input type="text" onChange={e => setName(e.target.value)} />
+            <button
+              value={props.el.id}
+              onClick={e => {
+                setIsEditing(!isEditing);
+                editBtn(e);
+              }}
+            >
+              ✅
+            </button>
           </div>
-      
-      :
-      <button onClick={() => {
-        setIsEditing(!isEditing);
-      }}
-      >edit</button>
-      }
-      
+        ) : (
+          <button
+            onClick={() => {
+              setIsEditing(!isEditing);
+            }}
+          >
+            edit
+          </button>
+        )}
+
         <button onClick={delBtn} value={props.el.id}>
           delete
         </button>
