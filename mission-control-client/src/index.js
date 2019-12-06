@@ -9,10 +9,15 @@ import { Provider } from "react-redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 import reducer from "./reducers/index";
-import { Provider as UrqlProvider, Client, dedupExchange, fetchExchange } from "urql";
-import { cacheExchange } from '@urql/exchange-graphcache';
+import {
+  Provider as UrqlProvider,
+  Client,
+  dedupExchange,
+  fetchExchange
+} from "urql";
+import { cacheExchange } from "@urql/exchange-graphcache";
 
-import { productsU } from '../src/queries';
+import { productsU } from "../src/queries";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -21,27 +26,34 @@ const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 // const dynPageNum = 5;
 
 const cache = cacheExchange({
-  updates:{
+  updates: {
     Mutation: {
       createProduct: ({ createProduct }, _args, cache) => {
         // const variables = {first: dynPageNum, skip: 0, orderBy: 'createdAt_DESC'}
-          cache.updateQuery({ query: productsU, 
+        cache.updateQuery(
+          {
+            query: productsU
             // variables
-          }, data => {
+          },
+          data => {
             if (data !== null) {
-                data.products.unshift(createProduct)
-                return data
+              data.products.unshift(createProduct);
+              return data;
             } else {
-              return null
+              return null;
             }
-          })
+          }
+        );
       },
       deleteProduct: ({ deleteProduct }, _args, cache) => {
-        cache.updateQuery({ query: productsU, requestPolicy: 'cache-and-network' }, data => {
-          const index = data.products.indexOf(deleteProduct)
-          data.products.splice(index,1)
-          return data
-        })
+        cache.updateQuery(
+          { query: productsU, requestPolicy: "cache-and-network" },
+          data => {
+            const index = data.products.indexOf(deleteProduct);
+            data.products.splice(index, 1);
+            return data;
+          }
+        );
       },
       createProject: ({ createProject }, _args, cache) => {
         const productId = _args.data.product.connect.id
@@ -81,19 +93,17 @@ const cache = cacheExchange({
   }
 });
 
-
 const client = new Client({
   url: "https://api-dev.use-mission-control.com/",
   fetchOptions: () => {
     // const token = getToken();
     return {
       headers: {
-        Authorization:
-        process.env.REACT_APP_JWT_TOKEN
+        Authorization: process.env.REACT_APP_JWT_TOKEN
       }
     };
   },
-  exchanges: [ dedupExchange, cache, fetchExchange ]
+  exchanges: [dedupExchange, cache, fetchExchange]
 });
 
 ReactDOM.render(
