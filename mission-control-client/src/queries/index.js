@@ -1,5 +1,5 @@
 // Commented out exports are to be built into a full-CRUD release canvas
-import gql from 'graphql-tag'
+import gql from "graphql-tag";
 
 export {
     persons,
@@ -91,19 +91,22 @@ const person = id => `
 `;
 
 // Done
-const productsU = gql `
-    {
-        products {
-            id
-            name
-            projects {
-                id
-                name
-                start
-                end
-            }
-        }
+const productsU = gql`
+  query {
+    __typename
+    products {
+      __typename
+      id
+      name
+      projects {
+        __typename
+        id
+        name
+        start
+        end
+      }
     }
+  }
 `;
 
 const products = `
@@ -121,45 +124,45 @@ const products = `
     }
 `;
 ///  sample query, unrelated
-export const FEED_QUERY = gql `
-    query FeedQuery($first: Int, $skip: Int, $orderBy: LinkOrderByInput) {
-        feed(first: $first, skip: $skip, orderBy: $orderBy) {
-            count
-            links {
-                id
-                createdAt
-                url
-                description
-                postedBy {
-                    id
-                    name
-                }
-                votes {
-                    id
-                    user {
-                        id
-                    }
-                }
-            }
+export const FEED_QUERY = gql`
+  query FeedQuery($first: Int, $skip: Int, $orderBy: LinkOrderByInput) {
+    feed(first: $first, skip: $skip, orderBy: $orderBy) {
+      count
+      links {
+        id
+        createdAt
+        url
+        description
+        postedBy {
+          id
+          name
         }
+        votes {
+          id
+          user {
+            id
+          }
+        }
+      }
     }
+
 `
     //  end unrelated sample query 
 
 // Done
-const productU = gql `
-    query productQuery($id:ID!) {
-        product(where:{id:$id}) {
-            id
-            name
-            projects {
-                id
-                name
-                start
-                end
-            }
-        }
+const productU = gql`
+  query productQuery($id: ID!) {
+    product(where: { id: $id }) {
+      id
+      name
+      projects {
+        id
+        name
+        start
+        end
+      }
     }
+  }
 `;
 
 const product = id => `
@@ -349,19 +352,19 @@ const productRole = id => `
 `;
 
 // Done
-const projectsU = gql `
-    {
-        projects{
-            id
-            name
-            start
-            end
-            product {
-                id
-                name
-            }
-        }
+const projectsU = gql`
+  {
+    projects {
+      id
+      name
+      start
+      end
+      product {
+        id
+        name
+      }
     }
+  }
 `;
 const projects = `
     query {
