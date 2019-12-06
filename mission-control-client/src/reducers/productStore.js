@@ -19,7 +19,9 @@ import {
   UPDATE_PRODUCT_ERROR,
   DELETE_PRODUCT_START,
   DELETE_PRODUCT_SUCCESS,
-  DELETE_PRODUCT_ERROR
+  DELETE_PRODUCT_ERROR,
+  DELETE_PROJECT_SUCCESS,
+  DELETE_PROJECT_ERROR
 } from "../actions";
 
 const initialState = {
@@ -165,7 +167,34 @@ export const productStore = (state = initialState, action) => {
         products: newDelProds
       };
     case DELETE_PRODUCT_ERROR:
-      console.log("DATA ERROR", action.payload);
+      // console.log("DATA ERROR", action.payload);
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload
+      };
+    case DELETE_PROJECT_SUCCESS:
+      console.log("STUFF", state.products, action.payload);
+      const newDelProjs = [...state.products];
+      let prodIndex,
+        projIndex = "";
+      newDelProjs.forEach((prod, i) => {
+        prod.projects.forEach((proj, x) => {
+          if (proj.id === action.payload.id) {
+            projIndex = x;
+            prodIndex = i;
+          }
+        });
+      });
+      console.log(projIndex, prodIndex, newDelProjs[prodIndex].projects);
+
+      newDelProjs[prodIndex].projects.splice(projIndex, 1);
+      return {
+        ...state,
+        products: newDelProjs
+      };
+    case DELETE_PROJECT_ERROR:
+      //   console.log("PROJECT DATA ERROR", action.payload);
       return {
         ...state,
         isLoading: false,
