@@ -11,7 +11,7 @@ import { useQuery } from 'urql';
 const DashboardHome = props => {
   const [results] = useQuery({query:productsU})
   const { data, fetching, error } = results;
-  console.log("data", data);
+  // console.log("data", data);
   // useEffect(() => {
   //   props.getProducts();
   // }, []);
@@ -39,4 +39,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getProducts })(DashboardHome);
+export default connect(mapStateToProps)(DashboardHome);

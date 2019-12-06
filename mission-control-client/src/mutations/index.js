@@ -67,7 +67,7 @@ const updateProject = gql`
   ) {
     updateProject(
       where: { id: $projectId }
-      data: { name: $name, product: { connect: { id: $id } } }
+      data: { name: $name, product: { connect: { id: $productId } } }
     ) {
       id
       name

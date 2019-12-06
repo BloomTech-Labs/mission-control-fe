@@ -8,12 +8,13 @@ import { useMutation } from 'urql'
 import { deleteProject, updateProject } from '../../../mutations';
 
 const DashboardProject = props => {
-  console.log(props)
+  // console.log("props",props)
   const history = useHistory();
 
   const handleClick = () => {
     props.setActiveProject(props.el.id);
     history.push(`/admin/dashboard/${props.el.id}`);
+    console.log('props.el', props.el.id);
   };
 
               // const [updateState, executeUpdateMutation] = useMutation(updateProject);
