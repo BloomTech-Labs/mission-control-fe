@@ -3,12 +3,13 @@ import { connect } from "react-redux";
 import { setActiveProject } from "../../../actions/activeProductActions";
 import { useHistory } from "react-router-dom";
 
-
-import { useMutation } from 'urql'
-import { deleteProject, updateProject } from '../../../mutations';
+import { useMutation } from "urql";
+import { deleteProject, updateProject } from "../../../mutations";
 
 const DashboardProject = props => {
+
   // console.log("props",props)
+
   const history = useHistory();
 
   const handleClick = () => {
@@ -17,32 +18,46 @@ const DashboardProject = props => {
     console.log('props.el', props.el.id);
   };
 
-              // const [updateState, executeUpdateMutation] = useMutation(updateProject);
-              const [DeleteState, executeDeleteMutation] = useMutation(deleteProject);
-              const [update, executeUpdateMutation] = useMutation(updateProject);
-              const[name, setName]=useState("");
-              const [isEditing, setIsEditing]=useState(false);
+  // const [updateState, executeUpdateMutation] = useMutation(updateProject);
+  const [DeleteState, executeDeleteMutation] = useMutation(deleteProject);
+  const [update, executeUpdateMutation] = useMutation(updateProject);
+  const [name, setName] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
 
-              const delBtn = useCallback(
-                  e => {
-                    const delId = e.target.value;
-                    executeDeleteMutation({ id: delId })
-                  },
-                  [executeDeleteMutation]
-                );
+  const delBtn = useCallback(
+    e => {
+      const delId = e.target.value;
+      executeDeleteMutation({ id: delId });
+    },
+    [executeDeleteMutation]
+  );
 
-            const editBtn = useCallback(
-                () => {
-                executeUpdateMutation({  name: name, productId:props.activeProductStore.active.id , projectId: props.el.id })
-            }, [executeUpdateMutation, name, props.activeProductStore.active.id, props.el.id ]);
+  const editBtn = useCallback(() => {
+    // console.log(
+    //   "EditOPs",
+    //   name,
+    //   props.activeProductStore.active.id,
+    //   props.el.id
+    // );
+    executeUpdateMutation({
+      name: name,
+      productId: props.activeProductStore.active.id,
+      projectId: props.el.id
+    }).then(res => {
+      console.log(res);
+    });
+  }, [
+    executeUpdateMutation,
+    name,
+    props.activeProductStore.active.id,
+    props.el.id
+  ]);
 
   return (
     <>
       <div className="admin-dashboard-project">
-        <div onClick={handleClick}  className="admin-dashboard-project-names">
-          <p className="admin-dashboard-project-name">
-              {props.product.name}
-          </p>
+        <div onClick={handleClick} className="admin-dashboard-project-names">
+          <p className="admin-dashboard-project-name">{props.product.name}</p>
           <p>{props.el.name.toUpperCase()}</p>
         </div>
         {new Date(props.el.end) > new Date() ? (
@@ -50,41 +65,38 @@ const DashboardProject = props => {
         ) : (
           <p className="admin-project-completed">Completed</p>
         )}
-        {isEditing ? 
-        <>
-          <input 
-            onChange={e=>setName(e.target.value)}
-            type="text"
-            placeholder="Input name change..."
-          />
-          <button
-            onClick={() => {
-              setIsEditing(!isEditing)
-              editBtn()
-            }}
-            value={props.el.id}
-          >
-            ✅
-          </button>
-        </>
-        :
-        <>
-          <button
-          onClick={() => {
-            setIsEditing(!isEditing)
-          }}
-          value={props.el.id}
-        >
-          Edit
-        </button>
-        <button
-          onClick={delBtn}
-          value={props.el.id}
-        >
-          Delete
-        </button>
-        </>
-        }
+        {isEditing ? (
+          <>
+            <input
+              onChange={e => setName(e.target.value)}
+              type="text"
+              placeholder="Input name change..."
+            />
+            <button
+              onClick={() => {
+                setIsEditing(!isEditing);
+                editBtn();
+              }}
+              value={props.el.id}
+            >
+              ✅
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={() => {
+                setIsEditing(!isEditing);
+              }}
+              value={props.el.id}
+            >
+              Edit
+            </button>
+            <button onClick={delBtn} value={props.el.id}>
+              Delete
+            </button>
+          </>
+        )}
       </div>
     </>
   );
@@ -96,7 +108,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { setActiveProject }
-)(DashboardProject);
+export default connect(mapStateToProps, { setActiveProject })(DashboardProject);

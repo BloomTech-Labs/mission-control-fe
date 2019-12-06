@@ -9,7 +9,7 @@ export {
   addProject,
   updateProject,
   deleteProject
-}
+};
 
 //Product CRUD
 //Add
@@ -85,5 +85,3 @@ const deleteProject = gql`
     }
   }
 `;
-
-
