@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 const DashboardBanner = props => {
-
+console.log("i broked it", props);
   return (
     <div className="dashboard-banner-container">
       <div className="dashboard-banner-head">
