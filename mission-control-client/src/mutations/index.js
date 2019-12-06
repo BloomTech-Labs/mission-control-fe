@@ -9,7 +9,7 @@ export {
   addProject,
   updateProject,
   deleteProject
-}
+};
 
 //Product CRUD
 //Add
@@ -39,6 +39,7 @@ const updateProduct = gql`
 const deleteProduct = gql`
   mutation DeleteProductMutation($id: ID!) {
     deleteProduct(where: { id: $id }) {
+      __typename
       id
       name
     }
@@ -80,10 +81,9 @@ const updateProject = gql`
 const deleteProject = gql`
   mutation DeleteProjectMutation($id: ID!) {
     deleteProject(where: { id: $id }) {
+      __typename
       id
       name
     }
   }
 `;
-
-
