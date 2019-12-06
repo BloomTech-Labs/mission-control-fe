@@ -81,6 +81,7 @@ const updateProject = gql`
 const deleteProject = gql`
   mutation DeleteProjectMutation($id: ID!) {
     deleteProject(where: { id: $id }) {
+      __typename
       id
       name
     }

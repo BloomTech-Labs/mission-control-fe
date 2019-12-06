@@ -17,7 +17,7 @@ import {
 } from "urql";
 import { cacheExchange } from "@urql/exchange-graphcache";
 
-import { productsU } from "../src/queries";
+import { productsU, projectsU, products } from "../src/queries";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -56,40 +56,45 @@ const cache = cacheExchange({
         );
       },
       createProject: ({ createProject }, _args, cache) => {
-        const productId = _args.data.product.connect.id
-        const newCreateProject = {...createProject, start:null, end:null}
-        cache.updateQuery({ query: productsU
-          }, data => {
-            if (data !== null) {
-              data.products.map(product => {
-                if(product.id === productId){
-                    return product.projects.push(newCreateProject)
-                }
-              })
-              return data
-            } else {
-              return null
-            }
-          })
+        const productId = _args.data.product.connect.id;
+        const newCreateProject = { ...createProject, start: null, end: null };
+        cache.updateQuery({ query: productsU }, data => {
+          if (data !== null) {
+            data.products.map(product => {
+              if (product.id === productId) {
+                return product.projects.push(newCreateProject);
+              }
+            });
+            return data;
+          } else {
+            return null;
+          }
+        });
       },
-      deleteProject: ({ deleteProject}, _args, cache,info) => {
-        // const productId = _args.where.id;
-        console.log('args', _args.where.id);
-        cache.updateQuery({ query: productsU, requestPolicy: 'cache-and-network'}, data => {
-          console.log( 'data',data);
-          console.log('cache', cache);
-          // if(data !== null){
-          //   data.products.map(product => {
-          //     if(product.id === productId){
-          //       // const index = product.projects.indexOf(deleteProject)
-          //       // data.products.splice(index,1)
-                // return data
-            //   }
-            // })
-          // }
-        })
+      deleteProject: ({ deleteProject }, _args, cache, info) => {
+        // console.log("args", _args);
+        // console.log("cache", cache);
+        // console.log(info);
+        const productId = _args.where.id;
+        cache.updateQuery({ query: products }, data => {
+          // consol e.log("data", data);
+          if (data !== null) {
+            data.products.map(product => {
+              let index = null;
+              product.projects.map((proj, i) => {
+                if (proj.id === productId) {
+                  index = i;
+                }
+              });
+              if (index) {
+                product.projects.splice(index, 1);
+              }
+            });
+          }
+          return data;
+        });
       }
-    },
+    }
   }
 });
 
