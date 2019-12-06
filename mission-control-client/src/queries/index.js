@@ -59,7 +59,7 @@ export {
     // createProjectRole,
     // updateProjectRole,
     // deleteProjectRole,
-  };
+};
 
 //Done
 const persons = `
@@ -143,8 +143,8 @@ export const FEED_QUERY = gql `
             }
         }
     }
-` 
-//  end unrelated sample query 
+`
+    //  end unrelated sample query 
 
 // Done
 const productU = gql `
@@ -546,5 +546,3 @@ const projectRoleByEmail = email => `
         }
     }
 `;
-
-
