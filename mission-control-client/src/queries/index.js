@@ -105,6 +105,7 @@ const productsU = gql `
         }
     }
 `;
+
 const products = `
     query {
         products {
@@ -146,9 +147,9 @@ export const FEED_QUERY = gql `
 //  end unrelated sample query 
 
 // Done
-const productU = id => gql `
-    {
-        product(where:{id:"${id}"}) {
+const productU = gql `
+    query productQuery($id:ID!) {
+        product(where:{id:$id}) {
             id
             name
             projects {
