@@ -46,19 +46,11 @@ const cache = cacheExchange({
       createProject: ({ createProject }, _args, cache) => {
         const productId = _args.data.product.connect.id
         const newCreateProject = {...createProject, start:null, end:null}
-
-        console.log("createProject info: ", createProject)
-        // console.log("_args info: ", _args)
-        // console.log("cache info: ", cache)
         cache.updateQuery({ query: productsU
           }, data => {
-            console.log("data: ", data)
-            console.log("productId variable: ", productId)
             if (data !== null) {
               data.products.map(product => {
                 if(product.id === productId){
-                  console.log("product.id", product.id)
-                  console.log('Projects from a product', data.products[0].projects)
                     return product.projects.push(newCreateProject)
                 }
               })
@@ -68,6 +60,23 @@ const cache = cacheExchange({
             }
           })
       },
+      deleteProject: ({ deleteProject}, _args, cache,info) => {
+        // const productId = _args.where.id;
+        console.log('args', _args.where.id);
+        cache.updateQuery({ query: productsU, requestPolicy: 'cache-and-network'}, data => {
+          console.log( 'data',data);
+          console.log('cache', cache);
+          // if(data !== null){
+          //   data.products.map(product => {
+          //     if(product.id === productId){
+          //       // const index = product.projects.indexOf(deleteProject)
+          //       // data.products.splice(index,1)
+                // return data
+            //   }
+            // })
+          // }
+        })
+      }
     },
   }
 });

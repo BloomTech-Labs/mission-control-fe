@@ -1,9 +1,12 @@
-import React from "react";
+import React ,{ useState} from "react";
 import DashboardProject from "../admin-dashboard/DashboardProject";
 import { connect } from "react-redux";
 import AddProject from "../projects/AddProject";
 
+
 const DashboardMetrics = props => {
+//need to set what is the active product
+const [active, setActive]=useState({});
   // console.log("Props from dashmetrics", props)
   return (
     <div className="admin-projects-container">
@@ -15,10 +18,15 @@ const DashboardMetrics = props => {
         {props.activeProductStore.active &&
           props.products.map(product => {
             if(props.activeProductStore.active.id === product.id){
-              return props.activeProductStore.active.projects.map((el, i) => (
+              return product.projects.map((el, i) => (
                 <DashboardProject product={product} key={i} el={el} />
               ))
             }
+            {/* {
+              props.products.map(product => {
+                return props.
+              })
+            } */}
           })
 }
         {props.activeProductStore.active &&
