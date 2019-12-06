@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { connect } from "react-redux";
 import { setActiveProject } from "../../../actions/activeProductActions";
+import { removeProject } from "../../../actions/productActions";
 import { useHistory } from "react-router-dom";
 
 import { useMutation } from "urql";
@@ -24,7 +25,14 @@ const DashboardProject = props => {
   const delBtn = useCallback(
     e => {
       const delId = e.target.value;
-      executeDeleteMutation({ id: delId });
+      executeDeleteMutation({ id: delId }).then(res => {
+        console.log("ERR?", res);
+        // if (res.data.deleteProject) {
+        //   props.removeProject(res.data.deleteProject, "OK");
+        // } else {
+        //   props.removeProject(res.error.message, "ERR");
+        // }
+      });
     },
     [executeDeleteMutation]
   );
@@ -105,4 +113,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { setActiveProject })(DashboardProject);
+export default connect(mapStateToProps, { setActiveProject, removeProject })(
+  DashboardProject
+);

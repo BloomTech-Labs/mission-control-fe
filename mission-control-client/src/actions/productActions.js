@@ -31,6 +31,9 @@ export const DELETE_PRODUCT_START = "DELETE_PRODUCT_START";
 export const DELETE_PRODUCT_SUCCESS = "DELETE_PRODUCT_SUCCESS";
 export const DELETE_PRODUCT_ERROR = "DELETE_PRODUCT_ERROR";
 
+export const DELETE_PROJECT_SUCCESS = "DELETE_PROJECT_SUCCESS";
+export const DELETE_PROJECT_ERROR = "DELETE_PROJECT_ERROR";
+
 export const getProducts = () => {
   return dispatch => {
     dispatch({ type: GET_PRODUCTS_START });
@@ -114,6 +117,19 @@ export const removeProduct = (data, status) => {
   } else {
     return dispatch => {
       dispatch({ type: DELETE_PRODUCT_SUCCESS, payload: data });
+    };
+  }
+};
+
+export const removeProject = (data, status) => {
+  //   console.log("Delete Product Called in Actions",data);
+  if (status === "ERR") {
+    return dispatch => {
+      dispatch({ type: DELETE_PROJECT_ERROR, payload: data });
+    };
+  } else {
+    return dispatch => {
+      dispatch({ type: DELETE_PROJECT_SUCCESS, payload: data });
     };
   }
 };

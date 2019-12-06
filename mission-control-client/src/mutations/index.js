@@ -39,6 +39,7 @@ const updateProduct = gql`
 const deleteProduct = gql`
   mutation DeleteProductMutation($id: ID!) {
     deleteProduct(where: { id: $id }) {
+      __typename
       id
       name
     }
