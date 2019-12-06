@@ -14,13 +14,6 @@ const [state, executeMutation] = useMutation(createProduct);
 
 const submit = useCallback(() => {
     executeMutation({ name })
-        .then(res => {
-        // console.log(res.data.createProduct);
-        props.addProduct(res.data.createProduct);
-        })
-        .catch(err => {
-        console.log(err);
-        });
   }, [executeMutation, name]);
 
   return (
@@ -39,10 +32,10 @@ const submit = useCallback(() => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    activeProductStore: state.activeProductStore
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     activeProductStore: state.activeProductStore
+//   };
+// };
 
-export default connect(mapStateToProps, { addProduct })(CreateProduct);
+export default CreateProduct;

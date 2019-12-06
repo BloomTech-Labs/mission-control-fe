@@ -27,7 +27,7 @@ const DashboardHome = props => {
       <p className="warning">{error}</p>
       <div data-testid="dash" className="admin-dashboard-container">
         <ProductList products={data.products} />
-        <DashboardContent />
+        <DashboardContent products={data.products} />
       </div>
     </>
   );
