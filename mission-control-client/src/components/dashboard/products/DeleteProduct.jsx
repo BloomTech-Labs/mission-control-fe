@@ -4,7 +4,7 @@ import React, { useState, useCallback } from 'react';
 import { useMutation } from 'urql';
 
 // importing mutation definition for adding a new product
-import { deleteProduct } from '../../../mutations';
+import { deleteProduct, deleteProject } from '../../../mutations';
 
 // Component - UpdateProduct
 const DeleteProduct = ({index}) => {
