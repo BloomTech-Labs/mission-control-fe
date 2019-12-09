@@ -17,7 +17,6 @@ const DashboardHome = props => {
   //   props.getProducts();
   // }, []);
 
-
   if (!data) {
     return <h2>Loading...</h2>;
   }
