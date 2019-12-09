@@ -44,7 +44,7 @@ function App() {
   return (
     <Layout>
       <Security issuer='https://dev-173777.okta.com/oauth2/default'
-                clientId='0oa23ze1sdfwtoKNQ357'
+                clientId='0oa25nnb3plbDjQZJ357'
                 redirectUri={window.location.origin + '/implicit/callback'}
                 onAuthRequired={onAuthRequired}
                 pkce={true} >
