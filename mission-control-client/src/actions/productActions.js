@@ -102,7 +102,7 @@ export const addProduct = data => {
 };
 
 export const editProduct = data => {
-  console.log("Edit Product Called in Actions AKA update", data);
+  // console.log("Edit Product Called in Actions AKA update", data);
   return dispatch => {
     dispatch({ type: UPDATE_PRODUCT_SUCCESS, payload: data });
   };
