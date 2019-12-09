@@ -35,7 +35,6 @@ export const UPDATE_MC_ROLES_SUCCESS = 'UPDATE_MC_ROLES_SUCCESS'
 export const UPDATE_MC_ROLES_ERROR = 'UPDATE_MC_ROLES_ERROR'
 
 export const updateMCRoles = (values) => {
-    console.log(values)
     return dispatch => {
         dispatch({type: UPDATE_MC_ROLES_START})
         axiosWithAuth()

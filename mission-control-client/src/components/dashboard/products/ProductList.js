@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
+import AddProduct from "./AddProduct";
 import Product from "./Product";
 import { connect } from "react-redux";
 import { setActiveProduct } from "../../../actions/activeProductActions";
 
 const ProductList = props => {
+  // console.log("from productList", props.activeProductStore)
   useEffect(() => {
     setFiltered({ products: props.products });
 
@@ -48,6 +50,8 @@ const ProductList = props => {
     <div className="product-list-container">
       <div className="product-list-header">
         <p className="product-list-title">Products</p>
+        <AddProduct />
+
         {/* <div className="add-product-icon">
           <AddCircleOutlineIcon fontSize="large" />
         </div> */}
@@ -85,7 +89,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { setActiveProduct }
-)(ProductList);
+export default connect(mapStateToProps, { setActiveProduct })(ProductList);
