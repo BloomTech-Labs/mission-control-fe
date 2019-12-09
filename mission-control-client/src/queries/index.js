@@ -91,22 +91,19 @@ const person = id => `
 `;
 
 // Done
-const productsU = gql `
-  query {
-    __typename
-    products {
-      __typename
-      id
-      name
-      projects {
-        __typename
-        id
-        name
-        start
-        end
-      }
+const productsU = gql`
+    query {
+        products {
+            id
+            name
+            projects {
+                id
+                name
+                start
+                end
+            }
+        }
     }
-  }
 `;
 
 const products = `
