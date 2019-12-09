@@ -61,7 +61,10 @@ const Product = props => {
           console.log(error);
         });
     },
-    [executeUpdateMutation, name, props.active.id]
+    [executeUpdateMutation,
+       name,
+        props.active.id
+      ]
   );
   let error = "";
 
