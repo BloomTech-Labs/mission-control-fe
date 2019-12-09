@@ -35,7 +35,7 @@ const cache = cacheExchange({
           },
           data => {
             if (data !== null) {
-              data.products.unshift(createProduct);
+              data.products.push(createProduct);
               return data;
             } else {
               return null;
