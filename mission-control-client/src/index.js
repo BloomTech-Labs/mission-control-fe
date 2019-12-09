@@ -81,7 +81,7 @@ const cache = cacheExchange({
         // console.log("cache", cache);
         // console.log(info);
         const productId = _args.where.id;
-        cache.updateQuery({ query: products }, data => {
+        cache.updateQuery({ query: productsU }, data => {
           // consol e.log("data", data);
           if (data !== null) {
             data.products.map(product => {
@@ -92,7 +92,10 @@ const cache = cacheExchange({
                 }
               });
               if (index) {
+                // console.log("index: ", index)
                 product.projects.splice(index, 1);
+              }else{
+                product.projects.splice(0,1)
               }
             });
           }

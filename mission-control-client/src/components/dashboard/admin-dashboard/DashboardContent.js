@@ -10,7 +10,7 @@ const DashboardContent = (props) => {
     <div className="dashboard-content-container">
       <DashboardBanner />
        {/* //testing out the dealy */}
-      <PracticeMetrics products={props.products} />
+      {/* <PracticeMetrics products={props.products} /> */}
 
       <DashboardMetrics products={props.products}/>
     </div>
