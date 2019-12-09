@@ -16,7 +16,7 @@ const ProductList = props => {
 
     if (filtered.products.length > 0) {
       const activeElement = filterloop(filtered.products)
-      props.setActiveProduct(filtered.products[activeElement]);
+      props.setActiveProduct(filtered.products[activeElement || 0]);
     } else {
       props.setActiveProduct(props.products[0]);
     }
@@ -33,9 +33,8 @@ const ProductList = props => {
 
   const setProductHandler = el => {
     // console.log("prop function setActiveProduct:", props.setActiveProduct, "element: ", el)
-    setActive(el)
     props.setActiveProduct(el);
-
+    setActive(el)
   };
 
   const handleChange = e => {
