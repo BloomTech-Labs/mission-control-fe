@@ -28,8 +28,9 @@ import decrypt from "./utils/decrypt";
 
 //styles
 import "./styles/index.scss";
+import { func } from "prop-types";
 
-function App() {
+function App(props) {
   const location = useLocation();
   const history = useHistory();
 
@@ -41,10 +42,16 @@ function App() {
     history.push('/')
   }
 
+  let i = 1;
+  function pushFunc(){
+    history.push('/login')
+    i++
+  }
+
   return (
-    <Layout>
+    // <Layout>
       <Security issuer='https://dev-173777.okta.com/oauth2/default'
-                clientId='0oa25nnb3plbDjQZJ357'
+                clientId='0oa23ze1sdfwtoKNQ357'
                 redirectUri={window.location.origin + '/implicit/callback'}
                 onAuthRequired={onAuthRequired}
                 pkce={true} >
@@ -65,10 +72,11 @@ function App() {
           {/* <Route path="/" exact component={Login} /> */}
           <Route path='/login' render={() => <Login baseUrl='https://dev-173777.okta.com' />} />
           <Route exact={true} path="/">
-            {localStorage.getItem("okta-token-storage") ? (
-            <Redirect to={{ pathname: `/admin/dashboard` }} />
-          ) : (
-            <Redirect to="/login" />
+            {localStorage.getItem("okta-token-storage") ? 
+            <Redirect push to="/admin/dashboard" />
+          :  (
+            console.log("FROM LINE 78", Date.now()),
+            <Redirect push to="/login" />
           )}
           </Route>
           <Route path={`/profile/${localStorage.getItem('fname')}/edit/password`} component={EditProfile} />
@@ -83,7 +91,7 @@ function App() {
           <Route component={Bad} />
         </Switch>
       </Security>
-    </Layout>
+    // </Layout>
   );
 }
 
