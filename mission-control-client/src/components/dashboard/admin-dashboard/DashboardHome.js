@@ -5,20 +5,21 @@ import { connect } from "react-redux";
 import ProductList from "../products/ProductList";
 import DashboardContent from "./DashboardContent";
 
-import { productsU } from '../../../queries';
-import { useQuery } from 'urql';
+import { productsU } from "../../../queries";
+import { useQuery } from "urql";
 
 const DashboardHome = props => {
-  const [results] = useQuery({query:productsU})
+  const [results] = useQuery({ query: productsU });
   const { data, fetching, error } = results;
 
+  // console.log("data", data);
+  // useEffect(() => {
+  //   props.getProducts();
+  // }, []);
 
-  useEffect(() => {
-    // props.getProducts();
-  }, []);
 
-  if(!data){
-    return <h2>Loading...</h2>
+  if (!data) {
+    return <h2>Loading...</h2>;
   }
   return (
     <>
@@ -40,4 +41,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getProducts })(DashboardHome);
+export default connect(mapStateToProps)(DashboardHome);
