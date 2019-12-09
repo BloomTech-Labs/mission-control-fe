@@ -17,9 +17,15 @@ const Product = props => {
   const [name, setName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
+  const warning = message => {
+    const err = document.querySelector(".warning");
+    err.textContent = message;
+  };
   const delBtn = useCallback(
     e => {
       const delId = e.target.value;
+      const err = document.querySelector(".warning");
+      err.textContent = "";
       executeDeleteMutation({ id: delId })
         .then(res => {
           // console.log("ERR?", res);
@@ -40,6 +46,8 @@ const Product = props => {
     e => {
       e.persist();
       const editId = e.target.value;
+      const err = document.querySelector(".warning");
+      err.textContent = "";
       executeUpdateMutation({ id: editId, name: name })
         .then(res => {
           console.log(res, e.target.value, name);
@@ -55,6 +63,7 @@ const Product = props => {
     },
     [executeUpdateMutation, name, props.active.id]
   );
+  let error = "";
 
   return (
     <div
@@ -92,10 +101,20 @@ const Product = props => {
             edit
           </button>
         )}
-
-        <button onClick={delBtn} value={props.el.id}>
-          delete
-        </button>
+        {!props.el.projects.length ? (
+          <button onClick={delBtn} value={props.el.id}>
+            delete
+          </button>
+        ) : (
+          <button
+            onClick={() =>
+              warning("Products with associated projects cannot be deleted")
+            }
+            value={props.el.id}
+          >
+            delete
+          </button>
+        )}
       </div>
     </div>
   );
