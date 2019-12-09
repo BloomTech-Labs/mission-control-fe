@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import ReactDOM from "react-dom";
 import App from "./App";
 
@@ -49,8 +49,13 @@ const cache = cacheExchange({
         cache.updateQuery(
           { query: productsU, requestPolicy: "cache-and-network" },
           data => {
-            const index = data.products.indexOf(deleteProduct);
-            data.products.splice(index, 1);
+            let prodIndex = null;
+            data.products.map((product, i) => {
+              if (product.id === deleteProduct.id) {
+                prodIndex = i;
+              }
+            });
+            data.products.splice(prodIndex, 1);
             return data;
           }
         );
@@ -118,7 +123,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <UrqlProvider value={client}>
-        <App />
+        <App/>
       </UrqlProvider>
     </Router>
   </Provider>,
