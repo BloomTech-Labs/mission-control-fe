@@ -6,21 +6,36 @@ import { connect } from "react-redux";
 import { setActiveProduct } from "../../../actions/activeProductActions";
 
 const ProductList = props => {
+  const [filtered, setFiltered] = useState({ products: [] });
+  const [active, setActive] = useState("");
   // console.log("from productList", props.activeProductStore)
   useEffect(() => {
     setFiltered({ products: props.products });
+    // console.log("active id:", active)
+
 
     if (filtered.products.length > 0) {
-      props.setActiveProduct(filtered.products[0]);
+      const activeElement = filterloop(filtered.products)
+      props.setActiveProduct(filtered.products[activeElement]);
     } else {
       props.setActiveProduct(props.products[0]);
     }
   }, [props.products]);
 
-  const [filtered, setFiltered] = useState({ products: [] });
+
+  const filterloop = (arr) => {
+    for(let i=0; i<arr.length; i++) {
+      if(active.id === arr[i].id){
+        return i
+      }
+    }
+  }
 
   const setProductHandler = el => {
+    // console.log("prop function setActiveProduct:", props.setActiveProduct, "element: ", el)
+    setActive(el)
     props.setActiveProduct(el);
+
   };
 
   const handleChange = e => {
