@@ -7,13 +7,16 @@ import { createProduct } from "../../../mutations";
 
 // Component - CreateProduct
 const CreateProduct = props => {
-const [name, setName] = useState("");
+  const [name, setName] = useState("");
 
   // adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
-const [state, executeMutation] = useMutation(createProduct);
+  const [state, executeMutation] = useMutation(createProduct);
 
-const submit = useCallback(() => {
-    executeMutation({ name })
+  const submit = useCallback(() => {
+    const err = document.querySelector(".warning");
+    err.textContent = "";
+    setName("");
+    executeMutation({ name });
   }, [executeMutation, name]);
 
   return (
@@ -21,6 +24,7 @@ const submit = useCallback(() => {
       <div>
         <input
           type="text"
+          value={name}
           onChange={e => setName(e.target.value)}
           placeholder="name of product"
         />
