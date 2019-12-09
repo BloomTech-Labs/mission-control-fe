@@ -11,7 +11,7 @@ const ProductList = props => {
   // console.log("from productList", props.activeProductStore)
   useEffect(() => {
     setFiltered({ products: props.products });
-    console.log("active id:", active)
+    // console.log("active id:", active)
 
 
     if (filtered.products.length > 0) {
@@ -25,9 +25,6 @@ const ProductList = props => {
 
   const filterloop = (arr) => {
     for(let i=0; i<arr.length; i++) {
-      console.log("index:", i)
-      console.log("*Active ID: ", active.id)
-      console.log("**Array ID: ", arr[i].id)
       if(active.id === arr[i].id){
         return i
       }
