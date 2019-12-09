@@ -108,7 +108,7 @@ function App(props) {
           <Route component={Bad} />
         </Switch>
       </Security>
-    // </Layout>
+     </Layout>
   );
 }
 
