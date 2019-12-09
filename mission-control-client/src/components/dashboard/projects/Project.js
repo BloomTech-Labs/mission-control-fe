@@ -3,7 +3,7 @@ import React from "react";
 const Project = props => {
 
   // const programs = ["web", "ux/ui", "ds"];
-
+// console.log("the props",props);
   return (
     <div
       onClick={() => props.setActiveProject(props.el)}
