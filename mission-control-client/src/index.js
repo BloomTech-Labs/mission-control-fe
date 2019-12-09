@@ -49,8 +49,13 @@ const cache = cacheExchange({
         cache.updateQuery(
           { query: productsU, requestPolicy: "cache-and-network" },
           data => {
-            const index = data.products.indexOf(deleteProduct);
-            data.products.splice(index, 1);
+            let prodIndex = null;
+            data.products.map((product, i) => {
+              if (product.id === deleteProduct.id) {
+                prodIndex = i;
+              }
+            });
+            data.products.splice(prodIndex, 1);
             return data;
           }
         );
