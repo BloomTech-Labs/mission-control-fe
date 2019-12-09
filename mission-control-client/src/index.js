@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route} from "react-router-dom";
 import ReactDOM from "react-dom";
 import App from "./App";
 
@@ -115,7 +115,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <UrqlProvider value={client}>
-        <App />
+        <App/>
       </UrqlProvider>
     </Router>
   </Provider>,
