@@ -68,6 +68,11 @@ const cache = cacheExchange({
             }
           })
       },
+      deleteProject: ({ deleteProject }, _args, cache) => {
+        cache.updateQuery({ query: productsU}, data => {
+          console.log(data)
+        })
+      }
     },
   }
 });

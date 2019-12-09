@@ -15,7 +15,7 @@ const DashboardMetrics = props => {
         {props.activeProductStore.active &&
           props.products.map(product => {
             if(props.activeProductStore.active.id === product.id){
-              return props.activeProductStore.active.projects.map((el, i) => (
+              return product.projects.map((el, i) => (
                 <DashboardProject product={product} key={i} el={el} />
               ))
             }
