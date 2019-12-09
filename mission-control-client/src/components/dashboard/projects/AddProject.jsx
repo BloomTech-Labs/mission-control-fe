@@ -13,7 +13,9 @@ const AddProject = props => {
 
   const submit = useCallback(() => {
     // console.log("ID", props);
-    executeMutation({ name, id })
+    setName("");
+    executeMutation({ name, id });
+    
   }, [executeMutation, name, id]);
 
   return (
@@ -21,6 +23,7 @@ const AddProject = props => {
       <div>
         <input
           type="text"
+          value={name}
           onChange={e => setName(e.target.value)}
           placeholder="name of project"
         />

@@ -6,7 +6,6 @@ import App from "./App";
 //? redux imports
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
-import logger from "redux-logger";
 import thunk from "redux-thunk";
 import reducer from "./reducers/index";
 import {
@@ -16,7 +15,6 @@ import {
   fetchExchange
 } from "urql";
 import { cacheExchange } from "@urql/exchange-graphcache";
-
 import { productsU, projectsU, products } from "../src/queries";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -37,7 +35,7 @@ const cache = cacheExchange({
           },
           data => {
             if (data !== null) {
-              data.products.unshift(createProduct);
+              data.products.push(createProduct);
               return data;
             } else {
               return null;

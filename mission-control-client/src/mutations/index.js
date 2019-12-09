@@ -1,20 +1,20 @@
 import gql from "graphql-tag";
 
 // export
-
-export {
-  createProduct,
-  updateProduct,
-  deleteProduct,
-  addProject,
-  updateProject,
-  deleteProject
-};
+//commented out and moved to the bottom to remove excess of random worthless errors due to being used before defined
+// export {
+//     createProduct,
+//     updateProduct,
+//     deleteProduct,
+//     addProject,
+//     updateProject,
+//     deleteProject
+// };
 
 //Product CRUD
 //Add
 
-const createProduct = gql`
+const createProduct = gql `
   mutation AddProductMutation($name: String!) {
     createProduct(data: { name: $name }) {
       id
@@ -25,7 +25,7 @@ const createProduct = gql`
 
 //Edit
 
-const updateProduct = gql`
+const updateProduct = gql `
   mutation EditProductMutation($name: String!, $id: ID!) {
     updateProduct(where: { id: $id }, data: { name: $name }) {
       id
@@ -36,7 +36,7 @@ const updateProduct = gql`
 
 //Delete
 
-const deleteProduct = gql`
+const deleteProduct = gql `
   mutation DeleteProductMutation($id: ID!) {
     deleteProduct(where: { id: $id }) {
       __typename
@@ -49,7 +49,7 @@ const deleteProduct = gql`
 //Project CRUD
 //Add
 
-const addProject = gql`
+const addProject = gql `
   mutation AddProjectMutation($name: String!, $id: ID!) {
     createProject(data: { name: $name, product: { connect: { id: $id } } }) {
       id
@@ -60,7 +60,7 @@ const addProject = gql`
 
 //Edit
 
-const updateProject = gql`
+const updateProject = gql `
   mutation EditProjectMutation(
     $name: String!
     $productId: ID!
@@ -78,7 +78,7 @@ const updateProject = gql`
 
 //Delete
 
-const deleteProject = gql`
+const deleteProject = gql `
   mutation DeleteProjectMutation($id: ID!) {
     deleteProject(where: { id: $id }) {
       __typename
@@ -87,3 +87,13 @@ const deleteProject = gql`
     }
   }
 `;
+
+
+export {
+    createProduct,
+    updateProduct,
+    deleteProduct,
+    addProject,
+    updateProject,
+    deleteProject
+};
