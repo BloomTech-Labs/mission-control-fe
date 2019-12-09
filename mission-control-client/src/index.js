@@ -87,7 +87,7 @@ const cache = cacheExchange({
                 }
               });
               if (index) {
-                console.log("index: ", index)
+                // console.log("index: ", index)
                 product.projects.splice(index, 1);
               }else{
                 product.projects.splice(0,1)
