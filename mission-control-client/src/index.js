@@ -86,7 +86,7 @@ const cache = cacheExchange({
         // console.log(info);
         const productId = _args.where.id;
         cache.updateQuery({ query: productsU }, data => {
-          // consol e.log("data", data);
+          // console.log("data", data);
           if (data !== null) {
             data.products.map(product => {
               let index = null;

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { setActiveProject } from "../../../actions/activeProductActions";
 import { removeProject } from "../../../actions/productActions";
 import { useHistory } from "react-router-dom";
-
+import { warning } from "../../../utils/warning";
 import { useMutation } from "urql";
 import { deleteProject, updateProject } from "../../../mutations";
 
@@ -27,25 +27,22 @@ const DashboardProject = props => {
   const delBtn = useCallback(
     e => {
       const delId = e.target.value;
+      warning("");
       executeDeleteMutation({ id: delId }).then(res => {
-        console.log("ERR?", res);
-        // if (res.data.deleteProject) {
-        //   props.removeProject(res.data.deleteProject, "OK");
-        // } else {
-        //   props.removeProject(res.error.message, "ERR");
-        // }
+        // console.log("ERR?", res);
+        if (res.data.deleteProject) {
+          // props.removeProject(res.data.deleteProject, "OK");
+        } else {
+          warning("Projects with assigned roles cannot be deleted");
+          // props.removeProject(res.error.message, "ERR");
+        }
       });
     },
     [executeDeleteMutation]
   );
 
   const editBtn = useCallback(() => {
-    // console.log(
-    //   "EditOPs",
-    //   name,
-    //   props.activeProductStore.active.id,
-    //   props.el.id
-    // );
+    warning("");
     executeUpdateMutation({
       name: name,
       productId: props.activeProductStore.active.id,
