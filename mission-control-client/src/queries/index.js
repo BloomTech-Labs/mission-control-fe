@@ -93,13 +93,10 @@ const person = id => `
 // Done
 const productsU = gql`
     query {
-        __typename
         products {
-            __typename
             id
             name
             projects {
-                __typename
                 id
                 name
                 start
@@ -109,7 +106,7 @@ const productsU = gql`
     }
 `;
 
-const products = gql`
+const products = `
     query {
         products {
             id
