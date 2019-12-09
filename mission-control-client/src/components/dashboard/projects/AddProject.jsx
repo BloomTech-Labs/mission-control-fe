@@ -15,6 +15,7 @@ const AddProject = props => {
     // console.log("ID", props);
     setName("");
     executeMutation({ name, id });
+
   }, [executeMutation, name, id]);
 
   return (
