@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import ReactDOM from "react-dom";
 import App from "./App";
 
@@ -50,13 +50,17 @@ const cache = cacheExchange({
           { query: productsU, requestPolicy: "cache-and-network" },
           data => {
             let prodIndex = null;
-            data.products.map((product, i) => {
-              if (product.id === deleteProduct.id) {
-                prodIndex = i;
-              }
-            });
-            data.products.splice(prodIndex, 1);
-            return data;
+            if (data !== null) {
+              data.products.map((product, i) => {
+                if (product.id === deleteProduct.id) {
+                  prodIndex = i;
+                }
+              });
+              data.products.splice(prodIndex, 1);
+              return data;
+            } else {
+              console.log("deleteProduct Data Error", data);
+            }
           }
         );
       },
@@ -94,8 +98,8 @@ const cache = cacheExchange({
               if (index) {
                 // console.log("index: ", index)
                 product.projects.splice(index, 1);
-              }else{
-                product.projects.splice(0,1)
+              } else {
+                product.projects.splice(0, 1);
               }
             });
           }
@@ -123,7 +127,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <UrqlProvider value={client}>
-        <App/>
+        <App />
       </UrqlProvider>
     </Router>
   </Provider>,
