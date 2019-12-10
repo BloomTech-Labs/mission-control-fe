@@ -6,7 +6,7 @@ import { addProject } from "../../../mutations";
 
 const AddProject = props => {
   const [name, setName] = useState("");
-  const {id} = props.currId
+  const { id } = props.currId;
   // JS adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
   const [state, executeMutation] = useMutation(addProject);
 
@@ -14,7 +14,7 @@ const AddProject = props => {
     // console.log("ID", props);
     setName("");
     executeMutation({ name, id });
-    
+
   }, [executeMutation, name, id]);
 
   return (
