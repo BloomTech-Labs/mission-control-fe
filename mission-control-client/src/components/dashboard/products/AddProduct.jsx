@@ -2,7 +2,6 @@ import React, { useState, useCallback } from "react";
 import { connect } from "react-redux";
 import { useMutation } from "urql";
 
-import { addProduct } from "../../../actions/productActions";
 import { createProduct } from "../../../mutations";
 
 // Component - CreateProduct
@@ -14,7 +13,7 @@ const CreateProduct = props => {
 
   const submit = useCallback(() => {
     const err = document.querySelector(".warning");
-    err.textContent = "";
+    err.textContent = "";//got erro here when removing attatchment to redux
     setName("");
     executeMutation({ name });
   }, [executeMutation, name]);
@@ -36,10 +35,11 @@ const CreateProduct = props => {
   );
 };
 
-// const mapStateToProps = state => {
-//   return {
-//     activeProductStore: state.activeProductStore
-//   };
-// };
+//still using redux to determine active product/project-when removing the below connect and mapStateToProps err.textcontent errored out the page
+const mapStateToProps = state => {
+  return {
+    activeProductStore: state.activeProductStore
+  };
+};
 
-export default CreateProduct;
+export default connect(mapStateToProps)(CreateProduct);
