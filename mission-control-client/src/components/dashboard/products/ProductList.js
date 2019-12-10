@@ -6,11 +6,14 @@ import { connect } from "react-redux";
 import { setActiveProduct } from "../../../actions/activeProductActions";
 
 const ProductList = props => {
+  console.log(props.products)
+  // console.log(props.products.sort((a , b) => (a.name.toUpperCase() > b.name.toUpperCase()) ? 1: -1))
   const [filtered, setFiltered] = useState({ products: [] });
   const [active, setActive] = useState("");
   // console.log("from productList", props.activeProductStore)
   useEffect(() => {
-    setFiltered({ products: props.products });
+    //  set Filtered State data; alphabetical rendering.
+    setFiltered({ products: props.products.sort((a , b) => (a.name.toUpperCase() > b.name.toUpperCase()) ? 1: -1) });
     // console.log("active id:", active)
 
 
