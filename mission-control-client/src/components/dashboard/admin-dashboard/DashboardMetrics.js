@@ -5,7 +5,7 @@ import AddProject from "../projects/AddProject";
 
 
 const DashboardMetrics = props => {
-//need to set what is the active product
+//need to set what is the active product so that we can remove redux completely - eventualy
 // const [active, setActive]=useState({});
   console.log("Props from dashmetrics", props)
   return (
@@ -25,11 +25,6 @@ const DashboardMetrics = props => {
                 <DashboardProject product={product} key={i} el={el} />
               ));
             }
-            {/* {
-              props.products.map(product => {
-                return props.
-              })
-            } */}
           })
 }
 
@@ -42,10 +37,11 @@ const DashboardMetrics = props => {
   );
 };
 
+//need to remove the need for this below if we arent using redux
 const mapStateToProps = state => {
   return {
     activeProductStore: state.activeProductStore
   };
 };
 
-export default connect(mapStateToProps, null)(DashboardMetrics);
+export default connect(mapStateToProps)(DashboardMetrics);
