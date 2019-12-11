@@ -6,7 +6,7 @@ import AddProject from "../projects/AddProject";
 
 const DashboardMetrics = props => {
 //need to set what is the active product
-const [active, setActive]=useState({});
+// const [active, setActive]=useState({});
   // console.log("Props from dashmetrics", props)
   return (
     <div className="admin-projects-container">

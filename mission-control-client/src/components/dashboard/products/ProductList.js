@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { setActiveProduct } from "../../../actions/activeProductActions";
 
 const ProductList = props => {
-  console.log(props.products)
+  // console.log(props.products)
   // console.log(props.products.sort((a , b) => (a.name.toUpperCase() > b.name.toUpperCase()) ? 1: -1))
   const [filtered, setFiltered] = useState({ products: [] });
   const [active, setActive] = useState("");
@@ -18,14 +18,17 @@ const ProductList = props => {
 
 
     if (filtered.products.length > 0) {
+      // Locate active Product element
       const activeElement = filterloop(filtered.products)
+      // Pass active Product element to redux state.
       props.setActiveProduct(filtered.products[activeElement || 0]);
     } else {
+      // default active product to be element 0 within product array.
       props.setActiveProduct(props.products[0]);
     }
   }, [props.products]);
 
-
+// Function to locate active element index within an array
   const filterloop = (arr) => {
     for(let i=0; i<arr.length; i++) {
       if(active.id === arr[i].id){
