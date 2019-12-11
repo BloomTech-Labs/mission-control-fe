@@ -1,7 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { connect } from "react-redux";
 import { setActiveProject } from "../../../actions/activeProductActions";
-import { removeProject } from "../../../actions/productActions";
 import { useHistory } from "react-router-dom";
 import { warning } from "../../../utils/warning";
 import { useMutation } from "urql";
@@ -20,6 +19,7 @@ const DashboardProject = props => {
 
   const history = useHistory();
 
+  // references setting active project on second div tag of return below
   const handleClick = () => {
     props.setActiveProject(props.el.id);
     history.push(`/admin/dashboard/${props.el.id}`);
@@ -27,8 +27,11 @@ const DashboardProject = props => {
   };
 
   // const [updateState, executeUpdateMutation] = useMutation(updateProject);
+  //below is graphql delete state. mutation brought from mutations line 81
   const [DeleteState, executeDeleteMutation] = useMutation(deleteProject);
+  // below is graphql update state. mutation brought from mutations line 52
   const [update, executeUpdateMutation] = useMutation(updateProject);
+  //below is state for this component to be used in the update form
   const [name, setName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
@@ -40,6 +43,7 @@ const DashboardProject = props => {
       const delId = e.target.value;
       warning("");
       executeDeleteMutation({ id: delId }).then(res => {
+
         // console.log("ERR?", res);
         if (res.data.deleteProject) {
           // props.removeProject(res.data.deleteProject, "OK");
@@ -47,13 +51,16 @@ const DashboardProject = props => {
           warning("Projects with assigned roles cannot be deleted");
           // props.removeProject(res.error.message, "ERR");
         }
+
       });
     },
     [executeDeleteMutation]
   );
 
   const editBtn = useCallback(() => {
+
     warning("");
+
     executeUpdateMutation({
       name: name,
       productId: props.activeProductStore.active.id,
@@ -129,6 +136,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { setActiveProject, removeProject })(
+export default connect(mapStateToProps, 
+  { 
+    setActiveProject,
+     })(
   DashboardProject
 );

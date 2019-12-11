@@ -53,10 +53,11 @@ const DashboardMetrics = props => {
   );
 };
 
+//need to remove the need for this below if we arent using redux
 const mapStateToProps = state => {
   return {
     activeProductStore: state.activeProductStore
   };
 };
 
-export default connect(mapStateToProps, null)(DashboardMetrics);
+export default connect(mapStateToProps)(DashboardMetrics);

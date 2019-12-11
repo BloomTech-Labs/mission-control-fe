@@ -2,7 +2,6 @@ import React, { useState, useCallback } from "react";
 import { connect } from "react-redux";
 import { useMutation } from "urql";
 
-// import { addProject } from "../../../actions/productActions";
 import { addProject } from "../../../mutations";
 
 const AddProject = props => {
@@ -34,7 +33,7 @@ const AddProject = props => {
     </div>
   );
 };
-
+//currently still using redux to help determine active product/project at this time
 const mapStateToProps = state => {
   return {
     activeProductStore: state.activeProductStore

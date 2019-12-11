@@ -14,7 +14,7 @@ const submit = useCallback(() => {
     // console.log(index)
     executeMutation({where:{id:index}})
     console.log(state)
-}, [executeMutation])
+}, [executeMutation,index, state])
 
     return (
         <div>   
