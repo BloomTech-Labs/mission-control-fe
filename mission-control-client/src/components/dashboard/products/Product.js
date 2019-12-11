@@ -9,7 +9,7 @@ import UpdateProduct from "./UpdateProduct";
 import DeleteProduct from "./DeleteProduct";
 
 const Product = props => {
-  console.log("** props.el **", props.el)
+  // console.log("** props.el **", props.el)
 
   const programs = ["web", "ux/ui", "ds"];
   // console.log("PROD", props);
