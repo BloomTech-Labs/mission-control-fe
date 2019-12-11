@@ -4,6 +4,7 @@ import { useMutation } from "urql";
 import { editProduct, removeProduct } from "../../../actions/productActions";
 import { updateProduct, deleteProduct } from "../../../mutations";
 import { setActiveProduct } from "../../../actions/activeProductActions";
+import { warning } from "../../../utils/warning";
 
 import UpdateProduct from "./UpdateProduct";
 import DeleteProduct from "./DeleteProduct";
@@ -19,22 +20,17 @@ const Product = props => {
   const [name, setName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
-  const warning = message => {
-    const err = document.querySelector(".warning");
-    err.textContent = message;
-  };
   const delBtn = useCallback(
     e => {
       const delId = e.target.value;
-      const err = document.querySelector(".warning");
-      err.textContent = "";
+      warning("");
       executeDeleteMutation({ id: delId })
         .then(res => {
           // console.log("ERR?", res);
           if (res.data.deleteProduct) {
-            props.removeProduct(res.data.deleteProduct, "OK");
+            // props.removeProduct(res.data.deleteProduct, "OK");
           } else {
-            props.removeProduct(res.error.message, "ERR");
+            // props.removeProduct(res.error.message, "ERR");
           }
         })
         .catch(err => {
@@ -48,25 +44,17 @@ const Product = props => {
     e => {
       e.persist();
       const editId = e.target.value;
-      const err = document.querySelector(".warning");
-      err.textContent = "";
+      warning("");
       executeUpdateMutation({ id: editId, name: name })
         .then(res => {
           // console.log(res, e.target.value, name);
-          if (!res.data) {
-            console.log("whoops");
-          } else {
-          }
           props.editProduct(res.data.name);
         })
         .catch(error => {
           console.log(error);
         });
     },
-    [executeUpdateMutation,
-       name,
-        props.active.id
-      ]
+    [executeUpdateMutation, name, props.active.id]
   );
   let error = "";
 
