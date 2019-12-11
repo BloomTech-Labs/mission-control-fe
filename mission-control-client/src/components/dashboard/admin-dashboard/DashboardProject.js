@@ -7,7 +7,6 @@ import { useMutation } from "urql";
 import { deleteProject, updateProject } from "../../../mutations";
 
 const DashboardProject = props => {
-  console.log("props", props);
   let allowDelete = true;
   if (props.projects) {
     props.projects.projectRoles.forEach(role => {
@@ -23,15 +22,10 @@ const DashboardProject = props => {
   const handleClick = () => {
     props.setActiveProject(props.el.id);
     history.push(`/admin/dashboard/${props.el.id}`);
-    console.log("props.el", props.el.id);
   };
 
-  // const [updateState, executeUpdateMutation] = useMutation(updateProject);
-  //below is graphql delete state. mutation brought from mutations line 81
   const [DeleteState, executeDeleteMutation] = useMutation(deleteProject);
-  // below is graphql update state. mutation brought from mutations line 52
   const [update, executeUpdateMutation] = useMutation(updateProject);
-  //below is state for this component to be used in the update form
   const [name, setName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
@@ -45,13 +39,7 @@ const DashboardProject = props => {
       warning("");
       executeDeleteMutation({ id: delId }).then(res => {
 
-        // console.log("ERR?", res);
-        if (res.data.deleteProject) {
-          // props.removeProject(res.data.deleteProject, "OK");
-        } else {
-          warning("Projects with assigned roles cannot be deleted");
-          // props.removeProject(res.error.message, "ERR");
-        }
+        if (!res.data.deleteProject) warning("Projects with assigned roles cannot be deleted");
 
       });
     },
@@ -59,23 +47,18 @@ const DashboardProject = props => {
   );
 
   const editBtn = useCallback(() => {
-
     warning("");
-
     executeUpdateMutation({
       name: name,
       productId: props.activeProductStore.active.id,
       projectId: props.el.id
-    }).then(res => {
-      console.log(res);
-    });
+    })
   }, [
     executeUpdateMutation,
     name,
     props.activeProductStore.active.id,
     props.el.id
   ]);
-  // console.log(allowDelete);
   return (
     <>
       <div className="admin-dashboard-project">

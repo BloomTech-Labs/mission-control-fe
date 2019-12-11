@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import DashboardProject from "../admin-dashboard/DashboardProject";
 import { connect } from "react-redux";
 import AddProject from "../projects/AddProject";
@@ -10,11 +10,6 @@ const DashboardMetrics = props => {
   const [results] = useQuery({ query: projectRolesU });
   const { data, fetching, error } = results;
 
-  // console.log("DATA",data);
-  // need to set what is the active product
-  // const [active, setActive]=useState({});
-
-  // console.log("Props from dashmetrics", props);
 
   return (
     <div className="admin-projects-container">
@@ -36,13 +31,6 @@ const DashboardMetrics = props => {
                   projects={data}
                 />
               ));
-            }
-            {
-              /* {
-              props.products.map(product => {
-                return props.
-              })
-            } */
             }
           })}
 
