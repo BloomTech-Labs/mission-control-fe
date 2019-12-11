@@ -12,11 +12,10 @@ const CreateProduct = props => {
   const [state, executeMutation] = useMutation(createProduct);
 
   const submit = useCallback(() => {
-    const err = document.querySelector(".warning");
     if(!name){
-      err.textContent = "Must include a product value before submitting.";
+      warning("Must include a product value before submitting.");
     } else {
-      err.textContent = "";
+      warning("")
       executeMutation({ name });
       setName("");
     }  
