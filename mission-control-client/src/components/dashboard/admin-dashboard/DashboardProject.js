@@ -27,6 +27,7 @@ const DashboardProject = props => {
   const delBtn = useCallback(
     e => {
       const delId = e.target.value;
+      console.log("delId: ", delId)
       executeDeleteMutation({ id: delId }).then(res => {
         console.log("ERR?", res);
         // if (res.data.deleteProject) {
