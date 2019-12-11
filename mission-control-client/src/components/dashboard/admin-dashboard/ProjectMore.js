@@ -8,15 +8,20 @@ import ClipLoader from "react-spinners/ClipLoader";
 import CardContent from "@material-ui/core/CardContent";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import { FaSlack } from "react-icons/fa";
+import ProductList from '../products/ProductList'
+import { getProducts } from '../../../actions/productActions';
 
 const useStyles = makeStyles({
   card: {
-    width: 300,
-    maxWidth: 300,
+    width: '25%',
+    maxWidth: '25%',
     display: "flex",
-    margin: "3rem"
+    margin: "3rem 3rem 3rem 0",
+    padding:'1.5rem'
   },
   content: {
+    width:"100%",
+    height: "100%",
     display: "flex",
     flexDirection: "column"
   }
@@ -29,37 +34,46 @@ const ProjectMore = props => {
 
   const [programs, setPrograms] = useState([]);
 
+  const { setActiveProject, 
+          getProducts, 
+          project, 
+          productStore, 
+          isLoading
+        } = props
+
   useEffect(() => {
-    props.setActiveProject(id);
+    setActiveProject(id);
+    getProducts(); 
   }, []);
 
   useEffect(() => {
-    if (props.project) {
+    if (project) {
       const temp = [];
-      props.project.people.map(el => {
+      project.people.map(el => {
         if (el.person.program) temp.push(el.person.program.toLowerCase());
       });
       setPrograms(temp);
     }
-  }, [props.project]);
+  }, [project]);
 
   return (
-    <>
-      {props.isLoading ? (
-        <div className="admin-project-more-loader"><ClipLoader /></div>
+    <div className = 'more-page-container'>
+      <ProductList products={productStore.products} />
+    {isLoading ? (
+      <div className="admin-project-more-loader"><ClipLoader /></div>
       ) : (
         <div className="admin-project-more-container">
           <div className="admin-project-more-overview">
-            {props.project && props.project.project.length > 0 && (
+            {project && project.project.length > 0 && (
               <>
                 <div className="admin-project-more-overview-content">
                   <p className="admin-project-more-overview-product">
-                    {props.project.project[0].product.name}
+                    {project.project[0].product.name}
                   </p>
                   <p className="admin-project-more-overview-project">
-                    {props.project.project[0].name}
+                    {project.project[0].name}
                   </p>
-                  {new Date(props.project.project[0].end) > new Date() ? (
+                  {new Date(project.project[0].end) > new Date() ? (
                     <p className="admin-project-more-overview-status">
                       In Progress
                     </p>
@@ -107,11 +121,11 @@ const ProjectMore = props => {
               </>
             )}
           </div>
-          <div>
+          <div className = 'team-container'>
             <h1 className="admin-project-more-team-head">Team</h1>
             <div className="admin-project-more-team">
-              {props.project && props.project.people.length > 0 ? (
-                props.project.people.map((el, i) => (
+              {project && project.people.length > 0 ? (
+                project.people.map((el, i) => (
                   <Card className={classes.card} key={i}>
                     <CardContent className={classes.content}>
                       <p className="admin-project-more-team-name">
@@ -160,18 +174,19 @@ const ProjectMore = props => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
     project: state.activeProductStore.project,
-    isLoading: state.activeProductStore.isLoading
+    isLoading: state.activeProductStore.isLoading,
+    productStore: state.productStore,
   };
 };
 
 export default connect(
   mapStateToProps,
-  { setActiveProject }
+  { setActiveProject, getProducts }
 )(ProjectMore);

@@ -1,24 +1,43 @@
 import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
+import AddProduct from "./AddProduct";
 import Product from "./Product";
 import { connect } from "react-redux";
 import { setActiveProduct } from "../../../actions/activeProductActions";
 
 const ProductList = props => {
+  console.log(props.products)
+  // console.log(props.products.sort((a , b) => (a.name.toUpperCase() > b.name.toUpperCase()) ? 1: -1))
+  const [filtered, setFiltered] = useState({ products: [] });
+  const [active, setActive] = useState("");
+  // console.log("from productList", props.activeProductStore)
   useEffect(() => {
-    setFiltered({ products: props.products });
+    //  set Filtered State data; alphabetical rendering.
+    setFiltered({ products: props.products.sort((a , b) => (a.name.toUpperCase() > b.name.toUpperCase()) ? 1: -1) });
+    // console.log("active id:", active)
+
 
     if (filtered.products.length > 0) {
-      props.setActiveProduct(filtered.products[0]);
+      const activeElement = filterloop(filtered.products)
+      props.setActiveProduct(filtered.products[activeElement || 0]);
     } else {
       props.setActiveProduct(props.products[0]);
     }
   }, [props.products]);
 
-  const [filtered, setFiltered] = useState({ products: [] });
+
+  const filterloop = (arr) => {
+    for(let i=0; i<arr.length; i++) {
+      if(active.id === arr[i].id){
+        return i
+      }
+    }
+  }
 
   const setProductHandler = el => {
+    // console.log("prop function setActiveProduct:", props.setActiveProduct, "element: ", el)
     props.setActiveProduct(el);
+    setActive(el)
   };
 
   const handleChange = e => {
@@ -48,6 +67,8 @@ const ProductList = props => {
     <div className="product-list-container">
       <div className="product-list-header">
         <p className="product-list-title">Products</p>
+        <AddProduct />
+
         {/* <div className="add-product-icon">
           <AddCircleOutlineIcon fontSize="large" />
         </div> */}
@@ -85,7 +106,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { setActiveProduct }
-)(ProductList);
+export default connect(mapStateToProps, { setActiveProduct })(ProductList);
