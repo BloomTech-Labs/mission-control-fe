@@ -82,7 +82,9 @@ const Product = props => {
                 editBtn(e);
               }}
             >
-              ✅
+              <span role="img" aria-label="Checkmark">
+                ✅
+              </span>
             </button>
           </div>
         ) : (
