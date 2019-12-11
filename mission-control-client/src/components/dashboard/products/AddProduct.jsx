@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { connect } from "react-redux";
 import { useMutation } from "urql";
-
+import { warning } from "../../../utils/warning";
 import { createProduct } from "../../../mutations";
 
 // Component - CreateProduct
@@ -12,8 +12,7 @@ const CreateProduct = props => {
   const [state, executeMutation] = useMutation(createProduct);
 
   const submit = useCallback(() => {
-    const err = document.querySelector(".warning");
-    err.textContent = "";//got erro here when removing attatchment to redux
+    warning("");
     setName("");
     executeMutation({ name });
   }, [executeMutation, name]);
