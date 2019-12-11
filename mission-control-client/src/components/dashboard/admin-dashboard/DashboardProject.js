@@ -8,7 +8,15 @@ import { useMutation } from "urql";
 import { deleteProject, updateProject } from "../../../mutations";
 
 const DashboardProject = props => {
-  // console.log("props",props)
+  console.log("props", props);
+  let allowDelete = true;
+  if (props.projects) {
+    props.projects.projectRoles.forEach(role => {
+      if (role.project.id === props.el.id) {
+        allowDelete = false;
+      }
+    });
+  }
 
   const history = useHistory();
 
@@ -23,6 +31,9 @@ const DashboardProject = props => {
   const [update, executeUpdateMutation] = useMutation(updateProject);
   const [name, setName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+
+  const noDelBtn = () =>
+    warning("Projects with assigned roles cannot be deleted");
 
   const delBtn = useCallback(
     e => {
@@ -56,7 +67,7 @@ const DashboardProject = props => {
     props.activeProductStore.active.id,
     props.el.id
   ]);
-
+  // console.log(allowDelete);
   return (
     <>
       <div className="admin-dashboard-project">
@@ -96,9 +107,15 @@ const DashboardProject = props => {
             >
               Edit
             </button>
-            <button onClick={delBtn} value={props.el.id}>
-              Delete
-            </button>
+            {allowDelete ? (
+              <button onClick={delBtn} value={props.el.id}>
+                Delete
+              </button>
+            ) : (
+              <button onClick={noDelBtn} value={props.el.id}>
+                Delete
+              </button>
+            )}
           </>
         )}
       </div>
