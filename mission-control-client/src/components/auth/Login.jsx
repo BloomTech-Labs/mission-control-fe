@@ -44,7 +44,7 @@ export default withAuth(class Login extends Component {
   render() {
     if (this.state.authenticated === null) return null;
     return this.state.authenticated ?
-      <Redirect push to='/implicit/callback'/> :
+      <Redirect push to='/'/> :
       <SignInWidget
         baseUrl={this.props.baseUrl}
         onSuccess={this.onSuccess}
