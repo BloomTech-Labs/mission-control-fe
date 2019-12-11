@@ -28,7 +28,6 @@ import decrypt from "./utils/decrypt";
 
 //styles
 import "./styles/index.scss";
-import { func } from "prop-types";
 
 function App(props) {
   const location = useLocation();
@@ -42,11 +41,6 @@ function App(props) {
     history.push("/");
   }
 
-  let i = 1;
-  function pushFunc(){
-    history.push('/login')
-    i++
-  }
 
   return (
     <Layout>
@@ -74,8 +68,6 @@ function App(props) {
             )}
           </PrivateRoute> */}
           {/* OKTA will be taking over user access and control */}
-          {/* <Route path="/register" component={Registration} /> */}
-          {/* <Route path="/" exact component={Login} /> */}
           <Route
             path="/login"
             render={() => <Login baseUrl="https://dev-173777.okta.com" />}
