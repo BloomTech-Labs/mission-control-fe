@@ -48,10 +48,6 @@ const Product = props => {
       executeUpdateMutation({ id: editId, name: name })
         .then(res => {
           // console.log(res, e.target.value, name);
-          if (!res.data) {
-            console.log("whoops");
-          } else {
-          }
           props.editProduct(res.data.name);
         })
         .catch(error => {
