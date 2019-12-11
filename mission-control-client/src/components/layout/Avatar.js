@@ -4,7 +4,6 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Avatar from "@material-ui/core/Avatar";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
-import decrypt from "../../utils/decrypt";
 import { connect } from "react-redux";
 import { resetProjects } from "../../actions/index";
 

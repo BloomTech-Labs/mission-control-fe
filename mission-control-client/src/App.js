@@ -20,15 +20,13 @@ import EditProfile from "./components/user-settings/EditProfile";
 import UserPromotions from "./components/user-settings/UserPromotions";
 
 //utils
-import AdminPrivateRoute from "./utils/AdminPrivateRoute";
-import PrivateRoute from "./utils/PrivateRoute";
-import StudentPrivateRoute from "./utils/StudentPrivateRoute";
+// import AdminPrivateRoute from "./utils/AdminPrivateRoute";
+// import PrivateRoute from "./utils/PrivateRoute";
+// import StudentPrivateRoute from "./utils/StudentPrivateRoute";
 import embedAnalytics from "./utils/embedAnalytics";
-import decrypt from "./utils/decrypt";
 
 //styles
 import "./styles/index.scss";
-import { func } from "prop-types";
 
 function App(props) {
   const location = useLocation();
@@ -42,15 +40,8 @@ function App(props) {
     history.push("/");
   }
 
-  let i = 1;
-  function pushFunc(){
-    history.push('/login')
-    i++
-  }
-
   return (
     <Layout>
-
       <Security
         issuer="https://dev-173777.okta.com/oauth2/default"
         //AWS
@@ -81,12 +72,12 @@ function App(props) {
             render={() => <Login baseUrl="https://dev-173777.okta.com" />}
           />
           <Route exact={true} path="/">
-            {localStorage.getItem("okta-token-storage") ? 
-            <Redirect push to="/admin/dashboard" />
-          :  (
-            console.log("FROM LINE 78", Date.now()),
-            <Redirect push to="/login" />
-          )}
+            {localStorage.getItem("okta-token-storage") ? (
+              <Redirect push to="/admin/dashboard" />
+            ) : (
+              (console.log("FROM LINE 78", Date.now()),
+              (<Redirect push to="/login" />))
+            )}
           </Route>
           <Route
             path={`/profile/${localStorage.getItem("fname")}/edit/password`}
@@ -109,7 +100,7 @@ function App(props) {
           <Route component={Bad} />
         </Switch>
       </Security>
-     </Layout>
+    </Layout>
   );
 }
 
