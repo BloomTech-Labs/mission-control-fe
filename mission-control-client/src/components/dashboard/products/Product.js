@@ -1,18 +1,10 @@
 import React, { useState, useCallback } from "react";
-import { connect } from "react-redux";
 import { useMutation } from "urql";
-import { editProduct, removeProduct } from "../../../actions/productActions";
 import { updateProduct, deleteProduct } from "../../../mutations";
-import { setActiveProduct } from "../../../actions/activeProductActions";
 import { warning } from "../../../utils/warning";
 
-import UpdateProduct from "./UpdateProduct";
-import DeleteProduct from "./DeleteProduct";
-
 const Product = props => {
-  // console.log("** props.el **", props.el)
 
-  const programs = ["web", "ux/ui", "ds"];
   // console.log("PROD", props);
   // adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
   const [updateState, executeUpdateMutation] = useMutation(updateProduct);
@@ -25,17 +17,6 @@ const Product = props => {
       const delId = e.target.value;
       warning("");
       executeDeleteMutation({ id: delId })
-        .then(res => {
-          // console.log("ERR?", res);
-          if (res.data.deleteProduct) {
-            // props.removeProduct(res.data.deleteProduct, "OK");
-          } else {
-            // props.removeProduct(res.error.message, "ERR");
-          }
-        })
-        .catch(err => {
-          // console.log("DelERR", err);
-        });
     },
     [executeDeleteMutation]
   );
@@ -46,17 +27,9 @@ const Product = props => {
       const editId = e.target.value;
       warning("");
       executeUpdateMutation({ id: editId, name: name })
-        .then(res => {
-          // console.log(res, e.target.value, name);
-          props.editProduct(res.data.name);
-        })
-        .catch(error => {
-          console.log(error);
-        });
     },
     [executeUpdateMutation, name, props.active.id]
   );
-  let error = "";
 
   return (
     <div
@@ -113,12 +86,5 @@ const Product = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    state: state
-  };
-};
 
-export default connect(mapStateToProps, { editProduct, removeProduct })(
-  Product
-);
+export default Product;
