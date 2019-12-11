@@ -14,9 +14,13 @@ const CreateProduct = props => {
 
   const submit = useCallback(() => {
     const err = document.querySelector(".warning");
-    err.textContent = "";
-    setName("");
-    executeMutation({ name });
+    if(!name){
+      err.textContent = "Must include a product value before submitting.";
+    } else {
+      err.textContent = "";
+      executeMutation({ name });
+      setName("");
+    }  
   }, [executeMutation, name]);
 
   return (
