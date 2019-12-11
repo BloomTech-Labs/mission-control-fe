@@ -4,6 +4,8 @@ import {makeStyles} from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
+
+
 // project name
 // project start date
 // project end date
@@ -48,7 +50,7 @@ function ProjectDetails(props) {
         const projectRoleOfUser = `${person.firstname} ${person.lastname}'s ${role.type}: ${role.name}`; // should be camel-cased
         const startDate = new Date(project.start).toString().substring(0, 15);
         const endDate = new Date(project.end).toString().substring(0, 15);
-        
+
         return (
             <div style={{display: "flex", justifyContent: "center"}}>
                 <Card

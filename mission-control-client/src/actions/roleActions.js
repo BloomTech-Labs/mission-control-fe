@@ -35,7 +35,7 @@ export const getRole = (id) => {
         axiosLabsGraphQL
             .post('', {query: role(id)})
             .then(res => {
-                console.log(res)
+               
                 dispatch({type:GET_ROLES_SUCCESS, payload: res})
             })
             .catch( err => dispatch({type: GET_ROLES_ERROR, payload: err.response}))
@@ -58,7 +58,7 @@ export const getLambdaRoles = () => {
             })
             .catch( err => {
                 dispatch({type: GET_LAMBDA_ROLES_ERROR, payload: err.response})
-                console.log(err)
+               
             })
     }
 }
@@ -77,7 +77,7 @@ export const getLambdaRole = (id) => {
             })
             .catch( err => {
                 dispatch({type: GET_LAMBDA_ROLE_ERROR, payload: err.response})
-                console.log(err)
+                
             })
     }
 }
