@@ -121,33 +121,6 @@ const products = `
         }
     }
 `;
-// sample query, unrelated
-
-export const FEED_QUERY = gql`
-  query FeedQuery($first: Int, $skip: Int, $orderBy: LinkOrderByInput) {
-    feed(first: $first, skip: $skip, orderBy: $orderBy) {
-      count
-      links {
-        id
-        createdAt
-        url
-        description
-        postedBy {
-          id
-          name
-        }
-        votes {
-          id
-          user {
-            id
-          }
-        }
-      }
-    }
-  }
-`;
-
-//  end unrelated sample query
 
 // Done
 const productU = gql`
