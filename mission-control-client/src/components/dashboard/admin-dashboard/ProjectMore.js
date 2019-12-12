@@ -45,7 +45,7 @@ const ProjectMore = props => {
   useEffect(() => {
     setActiveProject(id);
     getProducts();
-  });
+  }, [getProducts, id, setActiveProject]);
 
   useEffect(() => {
     if (project) {
@@ -56,7 +56,7 @@ const ProjectMore = props => {
       setPrograms(temp);
     }
   }, [project]);
-
+  console.log("Props", props);
   return (
     <div className="more-page-container">
       <ProductList products={productStore.products} />
