@@ -12,8 +12,7 @@
 
 const res = {
     "data": {
-        "projects": [
-            {
+        "projects": [{
                 "id": "ck16r63qy3rhg0a308gtdjm47",
                 "name": "Cryptolytic"
             },

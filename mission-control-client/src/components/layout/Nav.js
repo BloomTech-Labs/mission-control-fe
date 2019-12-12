@@ -1,5 +1,4 @@
 import React from "react";
-import decrypt from "../../utils/decrypt";
 import { Link } from "react-router-dom";
 import NavLinks from "./NavLinks";
 
@@ -18,7 +17,9 @@ const Nav = () => {
           MISSION CONTROL
         </Link>
       </div>
-      <div className="nav-links"><NavLinks /></div>
+      <div className="nav-links">
+        <NavLinks />
+      </div>
     </div>
   );
 };

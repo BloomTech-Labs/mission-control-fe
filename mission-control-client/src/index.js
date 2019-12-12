@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import ReactDOM from "react-dom";
 import App from "./App";
 
@@ -15,7 +15,7 @@ import {
   fetchExchange
 } from "urql";
 import { cacheExchange } from "@urql/exchange-graphcache";
-import { productsU, projectsU, products } from "../src/queries";
+import { productsU } from "../src/queries";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -49,7 +49,7 @@ const cache = cacheExchange({
           data => {
             let prodIndex = null;
             if (data !== null) {
-              data.products.map((product, i) => {
+              data.products.forEach((product, i) => {
                 if (product.id === deleteProduct.id) {
                   prodIndex = i;
                 }
@@ -67,7 +67,7 @@ const cache = cacheExchange({
         const newCreateProject = { ...createProject, start: null, end: null };
         cache.updateQuery({ query: productsU }, data => {
           if (data !== null) {
-            data.products.map(product => {
+            data.products.forEach(product => {
               if (product.id === productId) {
                 return product.projects.push(newCreateProject);
               }
@@ -86,9 +86,9 @@ const cache = cacheExchange({
         cache.updateQuery({ query: productsU }, data => {
           // console.log("data", data);
           if (data !== null) {
-            data.products.map(product => {
+            data.products.forEach(product => {
               let index = null;
-              product.projects.map((proj, i) => {
+              product.projects.forEach((proj, i) => {
                 if (proj.id === productId) {
                   index = i;
                 }
