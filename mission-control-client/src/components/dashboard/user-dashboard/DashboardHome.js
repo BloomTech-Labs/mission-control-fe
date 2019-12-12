@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import ProjectList from "../projects/ProjectList";
-import { connect } from 'react-redux';
-import { getProjectRoleByEmail } from '../../../actions/projectActions';
+import { connect } from "react-redux";
+import { getProjectRoleByEmail } from "../../../actions/projectActions";
 import DashboardContent from "./DashboardContent";
 
 const DashboardHome = props => {
   useEffect(() => {
     const email = localStorage.getItem("email");
     email && props.getProjectRoleByEmail(email);
-  }, []);
+  });
 
   return (
     <div className="user-dashboard-container">
@@ -24,5 +24,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {getProjectRoleByEmail})(DashboardHome);
-
+export default connect(mapStateToProps, { getProjectRoleByEmail })(
+  DashboardHome
+);
