@@ -28,7 +28,6 @@ import decrypt from "./utils/decrypt";
 
 //styles
 import "./styles/index.scss";
-import { func } from "prop-types";
 
 function App(props) {
   const location = useLocation();
@@ -42,21 +41,15 @@ function App(props) {
     history.push("/");
   }
 
-  let i = 1;
-  function pushFunc(){
-    history.push('/login')
-    i++
-  }
-
   return (
     <Layout>
 
       <Security
         issuer="https://dev-173777.okta.com/oauth2/default"
         //AWS
-        clientId="0oa25nnb3plbDjQZJ357"
+        // clientId="0oa25nnb3plbDjQZJ357"
         //LocaL
-        // clientId="0oa23ze1sdfwtoKNQ357"
+        clientId="0oa23ze1sdfwtoKNQ357"
         redirectUri={window.location.origin + "/implicit/callback"}
         onAuthRequired={onAuthRequired}
         pkce={true}
@@ -84,7 +77,6 @@ function App(props) {
             {localStorage.getItem("okta-token-storage") ? 
             <Redirect push to="/admin/dashboard" />
           :  (
-            console.log("FROM LINE 78", Date.now()),
             <Redirect push to="/login" />
           )}
           </Route>
