@@ -42,6 +42,7 @@ function App(props) {
     <Layout>
       <Security
 <<<<<<< HEAD
+<<<<<<< HEAD
         issuer="https://dev-173777.okta.com/oauth2/default"
         //AWS
         // clientId="0oa25nnb3plbDjQZJ357"
@@ -51,6 +52,10 @@ function App(props) {
         issuer={`${process.env.REACT_APP_OKTA_SERVER}`  || `${process.env.OKTA_SERVER}`}
         clientId={`${process.env.REACT_APP_OKTA_CLIENT}` || `${process.env.OKTA_CLIENT}`}
 >>>>>>> 460e8fb9c0a87c6e5465ffeb20d4ca03ca0719ce
+=======
+        issuer={`${process.env.REACT_APP_OKTA_SERVER}`}
+        clientId={`${process.env.REACT_APP_OKTA_CLIENT}`}
+>>>>>>> 5e3703c350826b9f99b16d44dce3a5ef98625178
         redirectUri={window.location.origin + "/implicit/callback"}
         onAuthRequired={onAuthRequired}
         pkce={true}
@@ -70,7 +75,7 @@ function App(props) {
           {/* OKTA will be taking over user access and control */}
           <Route
             path="/login"
-            render={() => <Login baseUrl={`${process.env.REACT_APP_OKTA_URL}` || `${process.env.OKTA_URL}`} />}
+            render={() => <Login baseUrl={`${process.env.REACT_APP_OKTA_URL}`} />}
           />
           <Route exact={true} path="/">
             {localStorage.getItem("okta-token-storage") ? 
