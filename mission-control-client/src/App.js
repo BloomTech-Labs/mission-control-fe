@@ -16,8 +16,6 @@ import ProjectMore from "./components/dashboard/admin-dashboard/ProjectMore";
 import Bad from "./components/layout/Bad";
 import AdminDash from "./components/dashboard/admin-dashboard/DashboardHome";
 import UserDash from "./components/dashboard/user-dashboard/DashboardHome";
-import EditProfile from "./components/user-settings/EditProfile";
-import UserPromotions from "./components/user-settings/UserPromotions";
 
 //utils
 // import AdminPrivateRoute from "./utils/AdminPrivateRoute";
@@ -39,8 +37,6 @@ function App(props) {
   function onAuthRequired({ history }) {
     history.push("/");
   }
-
-
 
   return (
     <Layout>
@@ -79,21 +75,9 @@ function App(props) {
               (<Redirect push to="/login" />))
             )}
           </Route>
-          <Route
-            path={`/profile/${localStorage.getItem("fname")}/edit/password`}
-            component={EditProfile}
-          />
-          <Route
-            path={`/profile/${localStorage.getItem("fname")}/edit/email`}
-            component={EditProfile}
-          />
           <Route path="/student/dashboard" component={UserDash} />
           <Route exact path="/manager/dashboard" component={AdminDash} />
           <Route exact path="/admin/dashboard" component={AdminDash} />
-          <Route
-            path={`/admin/${localStorage.getItem("fname")}/edit/promotions`}
-            component={UserPromotions}
-          />
           <Route path="/admin/dashboard/:id" component={ProjectMore} />
           {/* OKTA Signin Widget route */}
           <Route path="/implicit/callback" component={ImplicitCallback} />

@@ -38,9 +38,8 @@ const DashboardProject = props => {
 
       warning("");
       executeDeleteMutation({ id: delId }).then(res => {
-
-        if (!res.data.deleteProject) warning("Projects with assigned roles cannot be deleted");
-
+        if (!res.data.deleteProject)
+          warning("Projects with assigned roles cannot be deleted");
       });
     },
     [executeDeleteMutation]
@@ -52,7 +51,7 @@ const DashboardProject = props => {
       name: name,
       productId: props.activeProductStore.active.id,
       projectId: props.el.id
-    })
+    });
   }, [
     executeUpdateMutation,
     name,
@@ -120,9 +119,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, 
-  { 
-    setActiveProject,
-     })(
-  DashboardProject
-);
+export default connect(mapStateToProps, {
+  setActiveProject
+})(DashboardProject);
