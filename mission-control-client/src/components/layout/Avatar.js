@@ -4,25 +4,20 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Avatar from "@material-ui/core/Avatar";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
-import { connect } from "react-redux";
-import { resetProjects } from "../../actions/index";
 
-const AvatarMenu = ({ resetProjects }) => {
+const AvatarMenu = (props) => {
   let history = useHistory();
 
   const avatar = localStorage.getItem("avatar");
-  const name = localStorage.getItem("fname");
+  const userToken = JSON.parse(localStorage.getItem("okta-token-storage"));
+  const name = userToken.idToken.claims.name;
+
 
   const logout = () => {
-    resetProjects([]);
+    localStorage.clear();
     history.push("/");
   };
 
-  // const [open, setOpen] = useState(false);
-
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
 
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
@@ -65,4 +60,4 @@ const AvatarMenu = ({ resetProjects }) => {
   );
 };
 
-export default connect(null, { resetProjects })(AvatarMenu);
+export default AvatarMenu;
