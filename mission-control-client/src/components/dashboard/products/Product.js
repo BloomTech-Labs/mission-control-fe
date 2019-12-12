@@ -4,7 +4,7 @@ import { updateProduct, deleteProduct } from "../../../mutations";
 import { warning } from "../../../utils/warning";
 
 const Product = props => {
-  console.log("PROD", props);
+  // console.log("PROD", props);
   // adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
   const [updateState, executeUpdateMutation] = useMutation(updateProduct);
   const [DeleteState, executeDeleteMutation] = useMutation(deleteProduct);
