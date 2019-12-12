@@ -8,7 +8,7 @@ import { projectRolesU } from "../../../queries";
 const DashboardMetrics = props => {
   const [results] = useQuery({ query: projectRolesU });
   const { data, fetching, error } = results;
-
+  // console.log("Props", props);
   return (
     <div className="admin-projects-container">
       <div className="admin-projects-head">
@@ -19,9 +19,9 @@ const DashboardMetrics = props => {
       </div>
       <div className="admin-projects-content-container">
         {props.activeProductStore.active &&
-          props.products.forEach(product => {
+          props.products.map(product => {
             if (props.activeProductStore.active.id === product.id) {
-              return product.projects.forEach((el, i) => (
+              return product.projects.map((el, i) => (
                 <DashboardProject
                   product={product}
                   key={i}
