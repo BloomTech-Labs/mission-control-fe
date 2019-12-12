@@ -45,7 +45,7 @@ const ProjectMore = props => {
   useEffect(() => {
     setActiveProject(id);
     getProducts();
-  });
+  },[]);
 
   useEffect(() => {
     if (project) {
