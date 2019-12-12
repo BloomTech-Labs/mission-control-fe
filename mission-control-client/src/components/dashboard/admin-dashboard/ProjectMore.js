@@ -8,19 +8,19 @@ import ClipLoader from "react-spinners/ClipLoader";
 import CardContent from "@material-ui/core/CardContent";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import { FaSlack } from "react-icons/fa";
-import ProductList from '../products/ProductList'
-import { getProducts } from '../../../actions/productActions';
+import ProductList from "../products/ProductList";
+import { getProducts } from "../../../actions/productActions";
 
 const useStyles = makeStyles({
   card: {
-    width: '25%',
-    maxWidth: '25%',
+    width: "25%",
+    maxWidth: "25%",
     display: "flex",
     margin: "3rem 3rem 3rem 0",
-    padding:'1.5rem'
+    padding: "1.5rem"
   },
   content: {
-    width:"100%",
+    width: "100%",
     height: "100%",
     display: "flex",
     flexDirection: "column"
@@ -34,22 +34,23 @@ const ProjectMore = props => {
 
   const [programs, setPrograms] = useState([]);
 
-  const { setActiveProject, 
-          getProducts, 
-          project, 
-          productStore, 
-          isLoading
-        } = props
+  const {
+    setActiveProject,
+    getProducts,
+    project,
+    productStore,
+    isLoading
+  } = props;
 
   useEffect(() => {
     setActiveProject(id);
-    getProducts(); 
-  }, []);
+    getProducts();
+  });
 
   useEffect(() => {
     if (project) {
       const temp = [];
-      project.people.map(el => {
+      project.people.forEach(el => {
         if (el.person.program) temp.push(el.person.program.toLowerCase());
       });
       setPrograms(temp);
@@ -57,10 +58,12 @@ const ProjectMore = props => {
   }, [project]);
 
   return (
-    <div className = 'more-page-container'>
+    <div className="more-page-container">
       <ProductList products={productStore.products} />
-    {isLoading ? (
-      <div className="admin-project-more-loader"><ClipLoader /></div>
+      {isLoading ? (
+        <div className="admin-project-more-loader">
+          <ClipLoader />
+        </div>
       ) : (
         <div className="admin-project-more-container">
           <div className="admin-project-more-overview">
@@ -121,7 +124,7 @@ const ProjectMore = props => {
               </>
             )}
           </div>
-          <div className = 'team-container'>
+          <div className="team-container">
             <h1 className="admin-project-more-team-head">Team</h1>
             <div className="admin-project-more-team">
               {project && project.people.length > 0 ? (
@@ -182,11 +185,10 @@ const mapStateToProps = state => {
   return {
     project: state.activeProductStore.project,
     isLoading: state.activeProductStore.isLoading,
-    productStore: state.productStore,
+    productStore: state.productStore
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { setActiveProject, getProducts }
-)(ProjectMore);
+export default connect(mapStateToProps, { setActiveProject, getProducts })(
+  ProjectMore
+);
