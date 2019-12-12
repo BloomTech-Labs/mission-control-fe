@@ -41,8 +41,8 @@ function App(props) {
   return (
     <Layout>
       <Security
-        issuer={`${process.env.REACT_APP_OKTA_SERVER}`  || `${process.env.OKTA_SERVER}`}
-        clientId={`${process.env.REACT_APP_OKTA_CLIENT}` || `${process.env.OKTA_CLIENT}`}
+        issuer={`${process.env.REACT_APP_OKTA_SERVER}`}
+        clientId={`${process.env.REACT_APP_OKTA_CLIENT}`}
         redirectUri={window.location.origin + "/implicit/callback"}
         onAuthRequired={onAuthRequired}
         pkce={true}
@@ -62,7 +62,7 @@ function App(props) {
           {/* OKTA will be taking over user access and control */}
           <Route
             path="/login"
-            render={() => <Login baseUrl={`${process.env.REACT_APP_OKTA_URL}` || `${process.env.OKTA_URL}`} />}
+            render={() => <Login baseUrl={`${process.env.REACT_APP_OKTA_URL}`} />}
           />
           <Route exact={true} path="/">
             {localStorage.getItem("okta-token-storage") ? 
