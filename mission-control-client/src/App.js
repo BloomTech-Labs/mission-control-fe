@@ -40,6 +40,8 @@ function App(props) {
     history.push("/");
   }
 
+
+
   return (
     <Layout>
       <Security
@@ -65,8 +67,6 @@ function App(props) {
             )}
           </PrivateRoute> */}
           {/* OKTA will be taking over user access and control */}
-          {/* <Route path="/register" component={Registration} /> */}
-          {/* <Route path="/" exact component={Login} /> */}
           <Route
             path="/login"
             render={() => <Login baseUrl="https://dev-173777.okta.com" />}

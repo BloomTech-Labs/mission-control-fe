@@ -6,15 +6,11 @@ import { connect } from "react-redux";
 import { setActiveProduct } from "../../../actions/activeProductActions";
 
 const ProductList = props => {
-  // console.log(props.products)
-  // console.log(props.products.sort((a , b) => (a.name.toUpperCase() > b.name.toUpperCase()) ? 1: -1))
   const [filtered, setFiltered] = useState({ products: [] });
   const [active, setActive] = useState("");
-  // console.log("from productList", props.activeProductStore)
   useEffect(() => {
     //  set Filtered State data; alphabetical rendering.
     setFiltered({ products: props.products.sort((a , b) => (a.name.toUpperCase() > b.name.toUpperCase()) ? 1: -1) });
-    // console.log("active id:", active)
 
 
     if (filtered.products.length > 0) {
@@ -38,7 +34,6 @@ const ProductList = props => {
   }
 
   const setProductHandler = el => {
-    // console.log("prop function setActiveProduct:", props.setActiveProduct, "element: ", el)
     props.setActiveProduct(el);
     setActive(el)
   };
@@ -72,9 +67,6 @@ const ProductList = props => {
         <p className="product-list-title">Products</p>
         <AddProduct />
 
-        {/* <div className="add-product-icon">
-          <AddCircleOutlineIcon fontSize="large" />
-        </div> */}
       </div>
       <span className="admin-product-search-wrapper">
         <SearchIcon fontSize="large" className="admin-product-search-icon" />
