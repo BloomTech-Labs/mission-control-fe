@@ -42,9 +42,6 @@ function App(props) {
     <Layout>
       <Security
         issuer={`${process.env.REACT_APP_OKTA_SERVER}`  || `${process.env.OKTA_SERVER}`}
-        //AWS
-        // clientId="0oa25nnb3plbDjQZJ357"
-        //LocaL
         clientId={`${process.env.REACT_APP_OKTA_CLIENT}` || `${process.env.OKTA_CLIENT}`}
         redirectUri={window.location.origin + "/implicit/callback"}
         onAuthRequired={onAuthRequired}
