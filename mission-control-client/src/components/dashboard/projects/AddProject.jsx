@@ -1,7 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { connect } from "react-redux";
 import { useMutation } from "urql";
-
 import { addProject } from "../../../mutations";
 
 const AddProject = props => {
@@ -11,7 +9,6 @@ const AddProject = props => {
   const [state, executeMutation] = useMutation(addProject);
 
   const submit = useCallback(() => {
-    // console.log("ID", props);
     setName("");
     executeMutation({ name, id });
 
@@ -33,11 +30,5 @@ const AddProject = props => {
     </div>
   );
 };
-//currently still using redux to help determine active product/project at this time
-const mapStateToProps = state => {
-  return {
-    activeProductStore: state.activeProductStore
-  };
-};
 
-export default connect(mapStateToProps, {})(AddProject);
+export default AddProject;
