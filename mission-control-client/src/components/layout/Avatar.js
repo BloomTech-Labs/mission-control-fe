@@ -7,22 +7,14 @@ import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { connect } from "react-redux";
 import { resetProjects } from "../../actions/index";
 
-const AvatarMenu = ({ resetProjects }) => {
+const AvatarMenu = ({ name }) => {
   let history = useHistory();
-
   const avatar = localStorage.getItem("avatar");
-  const name = localStorage.getItem("fname");
 
   const logout = () => {
-    resetProjects([]);
+    localStorage.clear()
     history.push("/");
   };
-
-  // const [open, setOpen] = useState(false);
-
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
 
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
