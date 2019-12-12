@@ -41,11 +41,11 @@ function App(props) {
   return (
     <Layout>
       <Security
-        issuer="https://dev-173777.okta.com/oauth2/default"
+        issuer={`${process.env.REACT_APP_OKTA_SERVER}`  || `${process.env.OKTA_SERVER}`}
         //AWS
         // clientId="0oa25nnb3plbDjQZJ357"
         //LocaL
-        clientId="0oa23ze1sdfwtoKNQ357"
+        clientId={`${process.env.REACT_APP_OKTA_CLIENT}` || `${process.env.OKTA_CLIENT}`}
         redirectUri={window.location.origin + "/implicit/callback"}
         onAuthRequired={onAuthRequired}
         pkce={true}
@@ -65,7 +65,7 @@ function App(props) {
           {/* OKTA will be taking over user access and control */}
           <Route
             path="/login"
-            render={() => <Login baseUrl="https://dev-173777.okta.com" />}
+            render={() => <Login baseUrl={`${process.env.REACT_APP_OKTA_URL}` || `${process.env.OKTA_URL}`} />}
           />
           <Route exact={true} path="/">
             {localStorage.getItem("okta-token-storage") ? 
