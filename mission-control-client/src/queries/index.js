@@ -1,65 +1,4 @@
-// Commented out exports are to be built into a full-CRUD release canvas
 import gql from "graphql-tag";
-//***move the export to the bottom before handing off once complete to remove radom errors that don't really effect the flow
-export {
-    persons,
-    person,
-    // createPerson,
-    // updatePerson,
-    // deletePerson,
-    productsU,
-    products,
-    productU,
-    product,
-    // createProduct,
-    // updateProduct,
-    // deleteProduct,
-    projectGroups,
-    // createProjectGroup,
-    // updateProjectGroup,
-    // deleteProjectGroup,
-    roles,
-    role,
-    // createRole,
-    // updateRole,
-    // deleteRole,
-    peopleGroups,
-    // createPeopleGroup,
-    // updatePeopleGroup,
-    // deletePeopleGroup,
-    lambdaRoles,
-    lambdaRole,
-    // createLambdaRole,
-    // updateLambdaRole,
-    // deleteLambdaRole,
-    peopleGroupMembers,
-    // createPeopleGroupMember,
-    // updatePeopleGroupMember,
-    // deletePeopleGroupMember,
-    productRoles,
-    productRole,
-    // createProductRole,
-    // updateProductRole,
-    // deleteProductRole,
-    projectsU,
-    projects,
-    project,
-    // createProject,
-    // updateProject,
-    // deleteProject,
-    projectGroupMembers,
-    // createProjectGroupMember,
-    // updateProjectGroupMember,
-    // deleteProjectGroupMember,
-    projectRoles,
-    projectRole,
-    fullProjectDetailsById,
-    peopleByProjectId,
-    projectRoleByEmail
-    // createProjectRole,
-    // updateProjectRole,
-    // deleteProjectRole,
-};
 
 //Done
 const persons = `
@@ -92,18 +31,18 @@ const person = id => `
 
 // Done
 const productsU = gql`
-    query {
-        products {
-            id
-            name
-            projects {
-                id
-                name
-                start
-                end
-            }
-        }
+  query {
+    products {
+      id
+      name
+      projects {
+        id
+        name
+        start
+        end
+      }
     }
+  }
 `;
 
 const products = `
@@ -120,36 +59,9 @@ const products = `
         }
     }
 `;
-// sample query, unrelated
-
-export const FEED_QUERY = gql `
-  query FeedQuery($first: Int, $skip: Int, $orderBy: LinkOrderByInput) {
-    feed(first: $first, skip: $skip, orderBy: $orderBy) {
-      count
-      links {
-        id
-        createdAt
-        url
-        description
-        postedBy {
-          id
-          name
-        }
-        votes {
-          id
-          user {
-            id
-          }
-        }
-      }
-    }
-  }
-`;
-
-//  end unrelated sample query
 
 // Done
-const productU = gql `
+const productU = gql`
   query productQuery($id: ID!) {
     product(where: { id: $id }) {
       id
@@ -351,7 +263,7 @@ const productRole = id => `
 `;
 
 // Done
-const projectsU = gql `
+const projectsU = gql`
   {
     projects {
       id
@@ -454,6 +366,17 @@ const projectGroupMembers = `
     }
 `;
 
+const projectRolesU = gql`
+  query {
+    projectRoles {
+      id
+      project {
+        id
+      }
+    }
+  }
+`;
+
 // Done
 const projectRoles = `
     query {
@@ -548,3 +471,65 @@ const projectRoleByEmail = email => `
         }
     }
 `;
+
+// Commented out exports are to be built into a full-CRUD release canvas
+export {
+  persons,
+  person,
+  // createPerson,
+  // updatePerson,
+  // deletePerson,
+  productsU,
+  products,
+  productU,
+  product,
+  // createProduct,
+  // updateProduct,
+  // deleteProduct,
+  projectGroups,
+  // createProjectGroup,
+  // updateProjectGroup,
+  // deleteProjectGroup,
+  roles,
+  role,
+  // createRole,
+  // updateRole,
+  // deleteRole,
+  peopleGroups,
+  // createPeopleGroup,
+  // updatePeopleGroup,
+  // deletePeopleGroup,
+  lambdaRoles,
+  lambdaRole,
+  // createLambdaRole,
+  // updateLambdaRole,
+  // deleteLambdaRole,
+  peopleGroupMembers,
+  // createPeopleGroupMember,
+  // updatePeopleGroupMember,
+  // deletePeopleGroupMember,
+  productRoles,
+  productRole,
+  // createProductRole,
+  // updateProductRole,
+  // deleteProductRole,
+  projectsU,
+  projects,
+  project,
+  // createProject,
+  // updateProject,
+  // deleteProject,
+  projectGroupMembers,
+  // createProjectGroupMember,
+  // updateProjectGroupMember,
+  // deleteProjectGroupMember,
+  projectRolesU,
+  projectRoles,
+  projectRole,
+  fullProjectDetailsById,
+  peopleByProjectId,
+  projectRoleByEmail
+  // createProjectRole,
+  // updateProjectRole,
+  // deleteProjectRole,
+};
