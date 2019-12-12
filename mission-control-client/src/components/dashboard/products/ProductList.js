@@ -10,12 +10,15 @@ const ProductList = props => {
   const [active, setActive] = useState("");
   useEffect(() => {
     //  set Filtered State data; alphabetical rendering.
-    setFiltered({ products: props.products.sort((a , b) => (a.name.toUpperCase() > b.name.toUpperCase()) ? 1: -1) });
-
+    setFiltered({
+      products: props.products.sort((a, b) =>
+        a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1
+      )
+    });
 
     if (filtered.products.length > 0) {
       // Locate active Product element
-      const activeElement = filterloop(filtered.products)
+      const activeElement = filterloop(filtered.products);
       // Pass active Product element to redux state.
       props.setActiveProduct(filtered.products[activeElement || 0]);
     } else {
@@ -24,18 +27,18 @@ const ProductList = props => {
     }
   }, [props.products]);
 
-// Function to locate active element index within an array
-  const filterloop = (arr) => {
-    for(let i=0; i<arr.length; i++) {
-      if(active.id === arr[i].id){
-        return i
+  // Function to locate active element index within an array
+  const filterloop = arr => {
+    for (let i = 0; i < arr.length; i++) {
+      if (active.id === arr[i].id) {
+        return i;
       }
     }
-  }
+  };
 
   const setProductHandler = el => {
     props.setActiveProduct(el);
-    setActive(el)
+    setActive(el);
   };
 
   const handleChange = e => {
@@ -66,7 +69,6 @@ const ProductList = props => {
       <div className="product-list-header">
         <p className="product-list-title">Products</p>
         <AddProduct />
-
       </div>
       <span className="admin-product-search-wrapper">
         <SearchIcon fontSize="large" className="admin-product-search-icon" />

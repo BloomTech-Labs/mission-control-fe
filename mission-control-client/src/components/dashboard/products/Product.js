@@ -4,7 +4,6 @@ import { updateProduct, deleteProduct } from "../../../mutations";
 import { warning } from "../../../utils/warning";
 
 const Product = props => {
-
   // console.log("PROD", props);
   // adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
   const [updateState, executeUpdateMutation] = useMutation(updateProduct);
@@ -16,7 +15,7 @@ const Product = props => {
     e => {
       const delId = e.target.value;
       warning("");
-      executeDeleteMutation({ id: delId })
+      executeDeleteMutation({ id: delId });
     },
     [executeDeleteMutation]
   );
@@ -26,7 +25,7 @@ const Product = props => {
       e.persist();
       const editId = e.target.value;
       warning("");
-      executeUpdateMutation({ id: editId, name: name })
+      executeUpdateMutation({ id: editId, name: name });
     },
     [executeUpdateMutation, name, props.active.id]
   );
@@ -85,6 +84,5 @@ const Product = props => {
     </div>
   );
 };
-
 
 export default Product;

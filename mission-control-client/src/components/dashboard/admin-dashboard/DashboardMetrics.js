@@ -6,11 +6,9 @@ import { useQuery } from "urql";
 import { projectRolesU } from "../../../queries";
 
 const DashboardMetrics = props => {
-
   const [results] = useQuery({ query: projectRolesU });
   const { data, fetching, error } = results;
-
-
+  // console.log("Props", props);
   return (
     <div className="admin-projects-container">
       <div className="admin-projects-head">
