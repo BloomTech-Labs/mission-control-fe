@@ -5,10 +5,10 @@ import { connect } from "react-redux";
 import { setActiveProject } from "../../../actions/activeProjectActions";
 
 const ProjectList = props => {
-  console.log("from projectlist", props)
+  console.log("from projectlist", props);
   const [filtered, setFiltered] = useState({ projects: [] });
 
-  const { projectStore, setActiveProject, activeProjectStore } = props
+  const { projectStore, setActiveProject, activeProjectStore } = props;
 
   useEffect(() => {
     if (projectStore.projectRoleByEmail.length) {
@@ -19,7 +19,7 @@ const ProjectList = props => {
         setActiveProject(projectStore.projectRoleByEmail[0]);
       }
     }
-  }, [projectStore.projectRoleByEmail]);
+  }, [projectStore.projectRoleByEmail, filtered.projects, setActiveProject]);
 
   const setProjectHandler = el => {
     setActiveProject(el);

@@ -5,17 +5,9 @@ import NavLinksLoggedOut from './NavLinksLoggedOut';
 
 const NavLinks = () => {
 
-  const location = useLocation();
-
-  const [token, setToken] = useState('');
-
-  useEffect(() => {
-    setToken(localStorage.getItem('token'));
-  }, [location])
-
   return (
     <>
-    {token ? <NavLinksLoggedIn /> : <NavLinksLoggedOut />}
+    {localStorage.getItem('okta-token-storage') ? <NavLinksLoggedIn /> : <NavLinksLoggedOut />}
     </>
   );
 };
