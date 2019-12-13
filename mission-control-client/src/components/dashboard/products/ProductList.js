@@ -6,21 +6,39 @@ import { connect } from "react-redux";
 import { setActiveProduct } from "../../../actions/activeProductActions";
 
 const ProductList = props => {
-  // console.log("from productList", props.activeProductStore)
+  const [filtered, setFiltered] = useState({ products: [] });
+  const [active, setActive] = useState("");
   useEffect(() => {
-    setFiltered({ products: props.products });
+    //  set Filtered State data; alphabetical rendering.
+    setFiltered({
+      products: props.products.sort((a, b) =>
+        a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1
+      )
+    });
 
     if (filtered.products.length > 0) {
-      props.setActiveProduct(filtered.products[0]);
+      // Locate active Product element
+      const activeElement = filterloop(filtered.products);
+      // Pass active Product element to redux state.
+      props.setActiveProduct(filtered.products[activeElement || 0]);
     } else {
+      // default active product to be element 0 within product array.
       props.setActiveProduct(props.products[0]);
     }
   }, [props.products]);
 
-  const [filtered, setFiltered] = useState({ products: [] });
+  // Function to locate active element index within an array
+  const filterloop = arr => {
+    for (let i = 0; i < arr.length; i++) {
+      if (active.id === arr[i].id) {
+        return i;
+      }
+    }
+  };
 
   const setProductHandler = el => {
     props.setActiveProduct(el);
+    setActive(el);
   };
 
   const handleChange = e => {
@@ -51,10 +69,6 @@ const ProductList = props => {
       <div className="product-list-header">
         <p className="product-list-title">Products</p>
         <AddProduct />
-
-        {/* <div className="add-product-icon">
-          <AddCircleOutlineIcon fontSize="large" />
-        </div> */}
       </div>
       <span className="admin-product-search-wrapper">
         <SearchIcon fontSize="large" className="admin-product-search-icon" />

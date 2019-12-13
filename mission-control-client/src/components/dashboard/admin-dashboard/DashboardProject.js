@@ -1,58 +1,56 @@
 import React, { useState, useCallback } from "react";
 import { connect } from "react-redux";
 import { setActiveProject } from "../../../actions/activeProductActions";
-import { removeProject } from "../../../actions/productActions";
 import { useHistory } from "react-router-dom";
-
+import { warning } from "../../../utils/warning";
 import { useMutation } from "urql";
 import { deleteProject, updateProject } from "../../../mutations";
 
 const DashboardProject = props => {
-
-  console.log("props",props)
+  let allowDelete = true;
+  if (props.projects) {
+    props.projects.projectRoles.forEach(role => {
+      if (role.project.id === props.el.id) {
+        allowDelete = false;
+      }
+    });
+  }
 
   const history = useHistory();
 
+  // references setting active project on second div tag of return below
   const handleClick = () => {
     props.setActiveProject(props.el.id);
     history.push(`/admin/dashboard/${props.el.id}`);
-    console.log('props.el:', props.el.id);
   };
 
-  // const [updateState, executeUpdateMutation] = useMutation(updateProject);
   const [DeleteState, executeDeleteMutation] = useMutation(deleteProject);
   const [update, executeUpdateMutation] = useMutation(updateProject);
   const [name, setName] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
+  const noDelBtn = () =>
+    warning("Projects with assigned roles cannot be deleted");
+
   const delBtn = useCallback(
     e => {
       const delId = e.target.value;
+
+      warning("");
       executeDeleteMutation({ id: delId }).then(res => {
-        console.log("ERR?", res);
-        // if (res.data.deleteProject) {
-        //   props.removeProject(res.data.deleteProject, "OK");
-        // } else {
-        //   props.removeProject(res.error.message, "ERR");
-        // }
+        if (!res.data.deleteProject)
+          warning("Projects with assigned roles cannot be deleted");
       });
     },
     [executeDeleteMutation]
   );
 
   const editBtn = useCallback(() => {
-    // console.log(
-    //   "EditOPs",
-    //   name,
-    //   props.activeProductStore.active.id,
-    //   props.el.id
-    // );
+    warning("");
     executeUpdateMutation({
       name: name,
       productId: props.activeProductStore.active.id,
       projectId: props.el.id
-    }).then(res => {
-      console.log(res);
     });
   }, [
     executeUpdateMutation,
@@ -60,7 +58,6 @@ const DashboardProject = props => {
     props.activeProductStore.active.id,
     props.el.id
   ]);
-
   return (
     <>
       <div className="admin-dashboard-project">
@@ -100,9 +97,15 @@ const DashboardProject = props => {
             >
               Edit
             </button>
-            <button onClick={delBtn} value={props.el.id}>
-              Delete
-            </button>
+            {allowDelete ? (
+              <button onClick={delBtn} value={props.el.id}>
+                Delete
+              </button>
+            ) : (
+              <button onClick={noDelBtn} value={props.el.id}>
+                Delete
+              </button>
+            )}
           </>
         )}
       </div>
@@ -116,6 +119,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { setActiveProject, removeProject })(
-  DashboardProject
-);
+export default connect(mapStateToProps, {
+  setActiveProject
+})(DashboardProject);

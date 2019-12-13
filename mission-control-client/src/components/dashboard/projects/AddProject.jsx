@@ -1,19 +1,22 @@
 import React, { useState, useCallback } from "react";
-import { connect } from "react-redux";
 import { useMutation } from "urql";
-
-// import { addProject } from "../../../actions/productActions";
+import { warning } from "../../../utils/warning";
 import { addProject } from "../../../mutations";
 
 const AddProject = props => {
   const [name, setName] = useState("");
-  const {id} = props.currId
+  const { id } = props.currId;
   // JS adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
   const [state, executeMutation] = useMutation(addProject);
 
   const submit = useCallback(() => {
-    // console.log("ID", props);
-    executeMutation({ name, id })
+    if(!name){
+      warning("Must include a PROJECT value before submitting.");
+    }else {
+      warning("")
+      executeMutation({ name, id });
+      setName("");
+    }
   }, [executeMutation, name, id]);
 
   return (
@@ -21,6 +24,7 @@ const AddProject = props => {
       <div>
         <input
           type="text"
+          value={name}
           onChange={e => setName(e.target.value)}
           placeholder="name of project"
         />
@@ -32,10 +36,4 @@ const AddProject = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    activeProductStore: state.activeProductStore
-  };
-};
-
-export default connect(mapStateToProps, {})(AddProject);
+export default AddProject;

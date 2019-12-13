@@ -10,30 +10,31 @@ export const SET_ACTIVE_PROJECT_SUCCESS = "SET_ACTIVE_PROJECT_SUCCESS";
 export const SET_ACTIVE_PROJECT_FAILURE = "SET_ACTIVE_PROJECT_FAILURE";
 
 export const setActiveProduct = el => {
-  return dispatch => {
-    dispatch({ type: SET_ACTIVE_PRODUCT, payload: el });
-  };
+    return dispatch => {
+        dispatch({ type: SET_ACTIVE_PRODUCT, payload: el });
+    };
 };
 
+//set this to directly pull the query (graphql) instead of using axios
 export const setActiveProject = id => {
-  return dispatch => {
-    dispatch({ type: SET_ACTIVE_PROJECT_START });
-    axios
-      .all([
-        axiosLabsGraphQL.post("", { query: fullProjectDetailsById(id) }),
-        axiosLabsGraphQL.post("", { query: peopleByProjectId(id) })
-      ])
-      .then(
-        axios.spread((res, res2) => {
-          const project = {
-            project: res.data.data.projects,
-            people: res2.data.data.projectRoles
-          }
-          dispatch({ type: SET_ACTIVE_PROJECT_SUCCESS, payload: project });
-        })
-      )
-      .catch(err => {
-        dispatch({ type: SET_ACTIVE_PROJECT_FAILURE, payload: err.response });
-      });
-  };
+    return dispatch => {
+      dispatch({ type: SET_ACTIVE_PROJECT_START });
+      axios
+        .all([
+          axiosLabsGraphQL.post("", { query: fullProjectDetailsById(id) }),
+          axiosLabsGraphQL.post("", { query: peopleByProjectId(id) })
+        ])
+        .then(
+          axios.spread((res, res2) => {
+            const project = {
+              project: res.data.data.projects,
+              people: res2.data.data.projectRoles
+            }
+            dispatch({ type: SET_ACTIVE_PROJECT_SUCCESS, payload: project });
+          })
+        )
+        .catch(err => {
+          dispatch({ type: SET_ACTIVE_PROJECT_FAILURE, payload: err.response });
+        });
+    };
 };

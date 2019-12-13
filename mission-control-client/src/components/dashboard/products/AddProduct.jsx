@@ -1,19 +1,24 @@
 import React, { useState, useCallback } from "react";
 import { connect } from "react-redux";
 import { useMutation } from "urql";
-
-import { addProduct } from "../../../actions/productActions";
+import { warning } from "../../../utils/warning";
 import { createProduct } from "../../../mutations";
 
 // Component - CreateProduct
 const CreateProduct = props => {
-const [name, setName] = useState("");
+  const [name, setName] = useState("");
 
   // adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
-const [state, executeMutation] = useMutation(createProduct);
+  const [state, executeMutation] = useMutation(createProduct);
 
-const submit = useCallback(() => {
-    executeMutation({ name })
+  const submit = useCallback(() => {
+    if(!name){
+      warning("Must include a product value before submitting.");
+    } else {
+      warning("")
+      executeMutation({ name });
+      setName("");
+    }  
   }, [executeMutation, name]);
 
   return (
@@ -21,6 +26,7 @@ const submit = useCallback(() => {
       <div>
         <input
           type="text"
+          value={name}
           onChange={e => setName(e.target.value)}
           placeholder="name of product"
         />
@@ -32,10 +38,11 @@ const submit = useCallback(() => {
   );
 };
 
-// const mapStateToProps = state => {
-//   return {
-//     activeProductStore: state.activeProductStore
-//   };
-// };
+//still using redux to determine active product/project-when removing the below connect and mapStateToProps err.textcontent errored out the page
+const mapStateToProps = state => {
+  return {
+    activeProductStore: state.activeProductStore
+  };
+};
 
-export default CreateProduct;
+export default connect(mapStateToProps)(CreateProduct);

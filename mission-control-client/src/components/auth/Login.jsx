@@ -30,7 +30,7 @@ export default withAuth(class Login extends Component {
       return this.props.auth.redirect({
         sessionToken: res.session.token
       });
-   } else {
+  } else {
     // The user can be in another authentication state that requires further action.
     // For more information about these states, see:
     //   https://github.com/okta/okta-signin-widget#rendereloptions-success-error
@@ -44,7 +44,7 @@ export default withAuth(class Login extends Component {
   render() {
     if (this.state.authenticated === null) return null;
     return this.state.authenticated ?
-      <Redirect to={{ pathname: '/' }}/> :
+      <Redirect push to='/'/> :
       <SignInWidget
         baseUrl={this.props.baseUrl}
         onSuccess={this.onSuccess}

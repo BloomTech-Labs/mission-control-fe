@@ -1,15 +1,9 @@
 import React, { useState, useCallback } from "react";
-import { connect } from "react-redux";
 import { useMutation } from "urql";
-import { editProduct, removeProduct } from "../../../actions/productActions";
 import { updateProduct, deleteProduct } from "../../../mutations";
-import { setActiveProduct } from "../../../actions/activeProductActions";
-
-import UpdateProduct from "./UpdateProduct";
-import DeleteProduct from "./DeleteProduct";
+import { warning } from "../../../utils/warning";
 
 const Product = props => {
-  const programs = ["web", "ux/ui", "ds"];
   // console.log("PROD", props);
   // adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
   const [updateState, executeUpdateMutation] = useMutation(updateProduct);
@@ -20,18 +14,8 @@ const Product = props => {
   const delBtn = useCallback(
     e => {
       const delId = e.target.value;
-      executeDeleteMutation({ id: delId })
-        .then(res => {
-          // console.log("ERR?", res);
-          if (res.data.deleteProduct) {
-            props.removeProduct(res.data.deleteProduct, "OK");
-          } else {
-            props.removeProduct(res.error.message, "ERR");
-          }
-        })
-        .catch(err => {
-          // console.log("DelERR", err);
-        });
+      warning("");
+      executeDeleteMutation({ id: delId });
     },
     [executeDeleteMutation]
   );
@@ -40,18 +24,8 @@ const Product = props => {
     e => {
       e.persist();
       const editId = e.target.value;
-      executeUpdateMutation({ id: editId, name: name })
-        .then(res => {
-          console.log(res, e.target.value, name);
-          if (!res.data) {
-            console.log("whoops");
-          } else {
-          }
-          props.editProduct(res.data.name);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      warning("");
+      executeUpdateMutation({ id: editId, name: name });
     },
     [executeUpdateMutation, name, props.active.id]
   );
@@ -92,21 +66,23 @@ const Product = props => {
             edit
           </button>
         )}
-
-        <button onClick={delBtn} value={props.el.id}>
-          delete
-        </button>
+        {!props.el.projects.length ? (
+          <button onClick={delBtn} value={props.el.id}>
+            delete
+          </button>
+        ) : (
+          <button
+            onClick={() =>
+              warning("Products with associated projects cannot be deleted")
+            }
+            value={props.el.id}
+          >
+            delete
+          </button>
+        )}
       </div>
     </div>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    state: state
-  };
-};
-
-export default connect(mapStateToProps, { editProduct, removeProduct })(
-  Product
-);
+export default Product;

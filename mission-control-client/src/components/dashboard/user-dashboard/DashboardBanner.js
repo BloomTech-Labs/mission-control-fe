@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 const DashboardBanner = props => {
-
   const [programs, setPrograms] = useState([]);
 
   useEffect(() => {
     if (props.activeProjectStore.active) {
       const temp = [];
-      props.activeProjectStore.active.people.map(el => {
+      props.activeProjectStore.active.people.forEach(el => {
         if (el.person.program) {
           temp.push(el.person.program.toLowerCase());
         }
@@ -72,7 +71,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  {}
-)(DashboardBanner);
+export default connect(mapStateToProps, {})(DashboardBanner);

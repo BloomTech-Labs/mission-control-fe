@@ -15,7 +15,7 @@ import {
   fetchExchange
 } from "urql";
 import { cacheExchange } from "@urql/exchange-graphcache";
-import { productsU, projectsU, products } from "../src/queries";
+import { productsU } from "../src/queries";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -47,9 +47,18 @@ const cache = cacheExchange({
         cache.updateQuery(
           { query: productsU, requestPolicy: "cache-and-network" },
           data => {
-            const index = data.products.indexOf(deleteProduct);
-            data.products.splice(index, 1);
-            return data;
+            let prodIndex = null;
+            if (data !== null) {
+              data.products.forEach((product, i) => {
+                if (product.id === deleteProduct.id) {
+                  prodIndex = i;
+                }
+              });
+              data.products.splice(prodIndex, 1);
+              return data;
+            } else {
+              console.log("deleteProduct Data Error", data);
+            }
           }
         );
       },
@@ -58,7 +67,7 @@ const cache = cacheExchange({
         const newCreateProject = { ...createProject, start: null, end: null };
         cache.updateQuery({ query: productsU }, data => {
           if (data !== null) {
-            data.products.map(product => {
+            data.products.forEach(product => {
               if (product.id === productId) {
                 return product.projects.push(newCreateProject);
               }
@@ -74,18 +83,21 @@ const cache = cacheExchange({
         // console.log("cache", cache);
         // console.log(info);
         const productId = _args.where.id;
-        cache.updateQuery({ query: products }, data => {
-          // consol e.log("data", data);
+        cache.updateQuery({ query: productsU }, data => {
+          // console.log("data", data);
           if (data !== null) {
-            data.products.map(product => {
+            data.products.forEach(product => {
               let index = null;
-              product.projects.map((proj, i) => {
+              product.projects.forEach((proj, i) => {
                 if (proj.id === productId) {
                   index = i;
                 }
               });
               if (index) {
+                // console.log("index: ", index)
                 product.projects.splice(index, 1);
+              } else {
+                product.projects.splice(0, 1);
               }
             });
           }
