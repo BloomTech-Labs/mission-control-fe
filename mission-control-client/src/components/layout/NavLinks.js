@@ -5,10 +5,9 @@ import NavLinksLoggedOut from './NavLinksLoggedOut';
 
 const NavLinks = () => {
 
-
   return (
     <>
-    {localStorage.getItem("okta-token-storage") ? <NavLinksLoggedIn /> : <NavLinksLoggedOut />}
+    {localStorage.getItem('okta-token-storage') ? <NavLinksLoggedIn /> : <NavLinksLoggedOut />}
     </>
   );
 };

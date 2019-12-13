@@ -5,19 +5,14 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Avatar from "@material-ui/core/Avatar";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 
-const AvatarMenu = (props) => {
+const AvatarMenu = ({ name }) => {
   let history = useHistory();
-
   const avatar = localStorage.getItem("avatar");
-  const userToken = JSON.parse(localStorage.getItem("okta-token-storage"));
-  const name = userToken.idToken.claims.name;
-
 
   const logout = () => {
-    localStorage.clear();
+    localStorage.clear()
     history.push("/");
   };
-
 
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
