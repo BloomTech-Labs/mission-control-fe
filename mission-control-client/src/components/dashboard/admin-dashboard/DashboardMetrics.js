@@ -21,7 +21,8 @@ const DashboardMetrics = props => {
         {props.activeProductStore.active &&
           props.products.map(product => {
             if (props.activeProductStore.active.id === product.id) {
-              return product.projects.map((el, i) => (
+              const sortedProjects = product.projects.sort((a,b) => (a.name.toUpperCase() > b.name.toUpperCase())? 1:-1)
+              return sortedProjects.map((el, i) => (
                 <DashboardProject
                   product={product}
                   key={i}
