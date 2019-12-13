@@ -5,11 +5,11 @@ import DashboardContent from "./DashboardContent";
 import { productsU } from "../../../queries"; // brings in the data from the grapql query
 import { useQuery } from "urql"; //comes default from urql
 
-const DashboardHome = props => {
+const DashboardHome = () => {
   const [results] = useQuery({ query: productsU });
   const { data, fetching, error } = results;
 
-  if (fetching) {
+  if (fetching || !data) {
     return <h2>Loading...</h2>;
   }
   return (
