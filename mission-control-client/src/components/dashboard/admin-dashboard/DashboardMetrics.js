@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import DashboardProject from "../admin-dashboard/DashboardProject";
 import { connect } from "react-redux";
 import AddProject from "../projects/AddProject";
@@ -6,16 +6,9 @@ import { useQuery } from "urql";
 import { projectRolesU } from "../../../queries";
 
 const DashboardMetrics = props => {
-
   const [results] = useQuery({ query: projectRolesU });
   const { data, fetching, error } = results;
-
-  // console.log("DATA",data);
-  // need to set what is the active product
-  // const [active, setActive]=useState({});
-
-  // console.log("Props from dashmetrics", props);
-
+  // console.log("Props", props);
   return (
     <div className="admin-projects-container">
       <div className="admin-projects-head">
@@ -28,7 +21,8 @@ const DashboardMetrics = props => {
         {props.activeProductStore.active &&
           props.products.map(product => {
             if (props.activeProductStore.active.id === product.id) {
-              return product.projects.map((el, i) => (
+              const sortedProjects = product.projects.sort((a,b) => (a.name.toUpperCase() > b.name.toUpperCase())? 1:-1)
+              return sortedProjects.map((el, i) => (
                 <DashboardProject
                   product={product}
                   key={i}
@@ -36,13 +30,6 @@ const DashboardMetrics = props => {
                   projects={data}
                 />
               ));
-            }
-            {
-              /* {
-              props.products.map(product => {
-                return props.
-              })
-            } */
             }
           })}
 
