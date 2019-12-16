@@ -1,12 +1,16 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import { connect } from "react-redux";
 import { setActiveProject } from "../../../actions/activeProductActions";
 import { useHistory } from "react-router-dom";
 import { warning } from "../../../utils/warning";
 import { useMutation } from "urql";
 import { deleteProject, updateProject } from "../../../mutations";
+// Context
+import {ProductContext} from '../../../context/ProductContext'
 
 const DashboardProject = props => {
+  // context
+  const {productState} = useContext(ProductContext)
   let allowDelete = true;
   if (props.projects) {
     props.projects.projectRoles.forEach(role => {
@@ -49,13 +53,13 @@ const DashboardProject = props => {
     warning("");
     executeUpdateMutation({
       name: name,
-      productId: props.activeProductStore.active.id,
+      productId: productState.active.id,
       projectId: props.el.id
     });
   }, [
     executeUpdateMutation,
     name,
-    props.activeProductStore.active.id,
+    productState.active.id,
     props.el.id
   ]);
   return (
@@ -119,6 +123,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
+export default connect((mapStateToProps), {
   setActiveProject
 })(DashboardProject);
