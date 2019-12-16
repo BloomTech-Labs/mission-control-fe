@@ -8,7 +8,8 @@ import { useQuery } from "urql"; //comes default from urql
 const DashboardHome = () => {
   const [results] = useQuery({ query: productsU });
   const { data, fetching, error } = results;
-  if (fetching) {
+
+  if (fetching || !data) {
     return <h2>Loading...</h2>;
   }
   return (

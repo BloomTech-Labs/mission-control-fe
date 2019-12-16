@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useMutation } from "urql";
+import { warning } from "../../../utils/warning";
 import { addProject } from "../../../mutations";
 
 const AddProject = props => {
@@ -9,9 +10,13 @@ const AddProject = props => {
   const [state, executeMutation] = useMutation(addProject);
 
   const submit = useCallback(() => {
-    setName("");
-    executeMutation({ name, id });
-
+    if(!name){
+      warning("Must include a PROJECT value before submitting.");
+    }else {
+      warning("")
+      executeMutation({ name, id });
+      setName("");
+    }
   }, [executeMutation, name, id]);
 
   return (
