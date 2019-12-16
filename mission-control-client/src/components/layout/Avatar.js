@@ -10,7 +10,7 @@ const AvatarMenu = ({ name }) => {
   const avatar = localStorage.getItem("avatar");
 
   const logout = () => {
-    localStorage.clear()
+    localStorage.clear();
     history.push("/");
   };
 
