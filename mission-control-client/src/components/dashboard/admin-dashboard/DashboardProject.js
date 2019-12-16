@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useContext } from "react";
 import { connect } from "react-redux";
-import { setActiveProject } from "../../../actions/activeProductActions";
+import { setActiveProject } from "../../../actions/activeProjectActions";
 import { useHistory } from "react-router-dom";
 import { warning } from "../../../utils/warning";
 import { useMutation } from "urql";
@@ -9,8 +9,9 @@ import { deleteProject, updateProject } from "../../../mutations";
 import {ProductContext} from '../../../context/ProductContext'
 
 const DashboardProject = props => {
-  // context
-  const {productState} = useContext(ProductContext)
+  // Context
+  const { productState } = useContext(ProductContext)
+
   let allowDelete = true;
   if (props.projects) {
     props.projects.projectRoles.forEach(role => {

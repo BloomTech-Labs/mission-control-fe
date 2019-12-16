@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import DashboardProject from "../admin-dashboard/DashboardProject";
-import { connect } from "react-redux";
 import AddProject from "../projects/AddProject";
 import { useQuery } from "urql";
 import { projectRolesU } from "../../../queries";
@@ -45,12 +44,4 @@ const DashboardMetrics = props => {
   );
 };
 
-//need to remove the need for this below if we arent using redux
-// const mapStateToProps = state => {
-//   return {
-//     activeProductStore: state.activeProductStore
-//   };
-// };
-
 export default DashboardMetrics
-// export default connect(mapStateToProps)(DashboardMetrics);
