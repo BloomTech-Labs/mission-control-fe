@@ -25,87 +25,87 @@ const initialState = {
   user: {}
 };
 
-export const globalStore = (state = initialState, action) => {
-  switch (action.type) {
-    case GET_ROLE_START:
-      return {
-        ...state,
-        isLoading: true
-      };
-    case GET_ROLE_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        role: action.payload,
-        error: ""
-      };
-    case GET_ROLE_ERROR:
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload
-      };
-    case GET_ROLES_START:
-      return {
-        ...state,
-        isLoading: true
-      };
-    case GET_ROLES_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        roles: action.payload,
-        error: ""
-      };
-    case GET_ROLES_ERROR:
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload
-      };
-    case GET_LAMBDA_ROLES_START:
-      return {
-        ...state,
-        isLoading: true
-      };
-    case GET_LAMBDA_ROLES_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        lambdaRoles: action.payload,
-        error: ""
-      };
-    case GET_LAMBDA_ROLES_ERROR:
-      return {
-        ...state,
-        isLoading: false,
-        error: action.payload
-      };
-    case GET_LAMBDA_ROLE_START:
-      return {
-        ...state,
-        isLoading: true,
-        lambdaRole: action.payload
-      };
-    case GET_LAMBDA_ROLE_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        lambdaRole: action.payload,
-        error: ""
-      };
-    case GET_LAMBDA_ROLE_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-        isLoading: false
-      };
-    case LOGIN_SUCCESS:
-      return {
-        ...state,
-        user: action.payload
-      };
-    default:
-      return state;
-  }
-};
+// export const globalStore = (state = initialState, action) => {
+//   switch (action.type) {
+//     case GET_ROLE_START:
+//       return {
+//         ...state,
+//         isLoading: true
+//       };
+//     case GET_ROLE_SUCCESS:
+//       return {
+//         ...state,
+//         isLoading: false,
+//         role: action.payload,
+//         error: ""
+//       };
+//     case GET_ROLE_ERROR:
+//       return {
+//         ...state,
+//         isLoading: false,
+//         error: action.payload
+//       };
+//     case GET_ROLES_START:
+//       return {
+//         ...state,
+//         isLoading: true
+//       };
+//     case GET_ROLES_SUCCESS:
+//       return {
+//         ...state,
+//         isLoading: false,
+//         roles: action.payload,
+//         error: ""
+//       };
+//     case GET_ROLES_ERROR:
+//       return {
+//         ...state,
+//         isLoading: false,
+//         error: action.payload
+//       };
+//     case GET_LAMBDA_ROLES_START:
+//       return {
+//         ...state,
+//         isLoading: true
+//       };
+//     case GET_LAMBDA_ROLES_SUCCESS:
+//       return {
+//         ...state,
+//         isLoading: false,
+//         lambdaRoles: action.payload,
+//         error: ""
+//       };
+//     case GET_LAMBDA_ROLES_ERROR:
+//       return {
+//         ...state,
+//         isLoading: false,
+//         error: action.payload
+//       };
+//     case GET_LAMBDA_ROLE_START:
+//       return {
+//         ...state,
+//         isLoading: true,
+//         lambdaRole: action.payload
+//       };
+//     case GET_LAMBDA_ROLE_SUCCESS:
+//       return {
+//         ...state,
+//         isLoading: false,
+//         lambdaRole: action.payload,
+//         error: ""
+//       };
+//     case GET_LAMBDA_ROLE_ERROR:
+//       return {
+//         ...state,
+//         error: action.payload,
+//         isLoading: false
+//       };
+//     case LOGIN_SUCCESS:
+//       return {
+//         ...state,
+//         user: action.payload
+//       };
+//     default:
+//       return state;
+//   }
+// };
