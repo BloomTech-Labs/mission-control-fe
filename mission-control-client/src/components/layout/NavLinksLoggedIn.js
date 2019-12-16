@@ -1,14 +1,11 @@
 import React from "react";
 import AvatarMenu from "./Avatar";
-import { useHistory } from 'react-router-dom';
-
-
+import {useHistory} from 'react-router-dom'
 const NavLinksLoggedIn = () => {
-  const [userToken, setUserToken] = React.useState(JSON.parse(localStorage.getItem("okta-token-storage")));
+  const [userToken] = React.useState(JSON.parse(localStorage.getItem("okta-token-storage")));
   const [user, setUser] = React.useState();
   const history = useHistory()
-  // const {name} = userToken.idToken.claims;
-
+  
   React.useEffect( () => {
     if(!userToken.idToken){
       history.push("/")
@@ -18,8 +15,7 @@ const NavLinksLoggedIn = () => {
     }
   }, [userToken])
 
-  if(!user) return <h1>Loading....</h1>
-
+  if(!user) return <h1>Loading...</h1>
   return (
     <>
       <p
