@@ -34,11 +34,13 @@ const DashboardHome = () => {
   return (
     <>
       <ProductContext.Provider value={{productState, setActiveProduct}}>
-        <p className="warning">{error}&nbsp;</p>
-        <div data-testid="dash" className="admin-dashboard-container">
-          <ProductList products={data.products} />
-          <DashboardContent products={data.products} />
-        </div>
+
+          <p className="warning">{error}&nbsp;</p>
+          <div data-testid="dash" className="admin-dashboard-container">
+            <ProductList products={data.products} />
+            <DashboardContent products={data.products} />
+          </div>
+        
       </ProductContext.Provider>
     </>
   );

@@ -13,7 +13,7 @@ const ProductList = props => {
 
   // Context
   const {productState, setActiveProduct} = useContext(ProductContext)
-
+  console.log("PRODUCT STATE", productState)
   useEffect(() => {
     //  set Filtered State data; alphabetical rendering.
     setFiltered({
@@ -42,10 +42,10 @@ const ProductList = props => {
     }
   };
 
-  const setProductHandler = el => {
-    setActiveProduct(el);
+  const setProductHandler = async el => {
+    await setActiveProduct(el);
     setActive(el);
-    console.log("FROM PRODUCT HANDLER",el)
+    // console.log(productState)
   };
 
   const handleChange = e => {
