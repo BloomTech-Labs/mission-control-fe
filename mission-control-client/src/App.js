@@ -3,10 +3,9 @@ import {
   Switch,
   Route,
   useLocation,
-  Redirect,
-  useHistory
+  Redirect
 } from "react-router-dom";
-import { Security, SecureRoute, ImplicitCallback } from "@okta/okta-react";
+import { Security, ImplicitCallback } from "@okta/okta-react";
 
 // components
 import Layout from "./components/layout/Layout";
@@ -26,9 +25,8 @@ import embedAnalytics from "./utils/embedAnalytics";
 //styles
 import "./styles/index.scss";
 
-function App(props) {
+function App() {
   const location = useLocation();
-  const history = useHistory();
 
   useEffect(() => {
     embedAnalytics();
