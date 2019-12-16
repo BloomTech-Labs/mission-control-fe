@@ -1,29 +1,29 @@
-import {
-  GET_ROLES_START,
-  GET_ROLES_SUCCESS,
-  GET_ROLES_ERROR,
-  GET_ROLE_START,
-  GET_ROLE_SUCCESS,
-  GET_ROLE_ERROR,
-  GET_LAMBDA_ROLES_START,
-  GET_LAMBDA_ROLES_SUCCESS,
-  GET_LAMBDA_ROLES_ERROR,
-  GET_LAMBDA_ROLE_START,
-  GET_LAMBDA_ROLE_SUCCESS,
-  GET_LAMBDA_ROLE_ERROR
-} from "../actions/roleActions.js";
+// import {
+//   GET_ROLES_START,
+//   GET_ROLES_SUCCESS,
+//   GET_ROLES_ERROR,
+//   GET_ROLE_START,
+//   GET_ROLE_SUCCESS,
+//   GET_ROLE_ERROR,
+//   GET_LAMBDA_ROLES_START,
+//   GET_LAMBDA_ROLES_SUCCESS,
+//   GET_LAMBDA_ROLES_ERROR,
+//   GET_LAMBDA_ROLE_START,
+//   GET_LAMBDA_ROLE_SUCCESS,
+//   GET_LAMBDA_ROLE_ERROR
+// } from "../actions/roleActions.js";
 
-import { LOGIN_SUCCESS } from "../actions";
+// import { LOGIN_SUCCESS } from "../actions";
 
-const initialState = {
-  isLoading: false,
-  error: "",
-  roles: [],
-  role: {},
-  lambdaRoles: [],
-  lambdaRole: {},
-  user: {}
-};
+// const initialState = {
+//   isLoading: false,
+//   error: "",
+//   roles: [],
+//   role: {},
+//   lambdaRoles: [],
+//   lambdaRole: {},
+//   user: {}
+// };
 
 // export const globalStore = (state = initialState, action) => {
 //   switch (action.type) {
