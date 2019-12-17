@@ -6,12 +6,8 @@ const Nav = () => {
   return (
     <div className="nav-container">
       <div className="nav-logo">
-        <Link
-          to={
-            localStorage.getItem("token")
-              ? `/${localStorage.getItem("role")}/dashboard`
-              : "/login"
-          }
+        <Link 
+          to={localStorage.getItem("token") ? `/${localStorage.getItem("role")}/dashboard` : "/login"}
           className="nav-head"
         >
           MISSION CONTROL
