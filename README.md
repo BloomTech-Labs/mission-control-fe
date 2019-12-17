@@ -81,12 +81,13 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 #### Formik/Yup
 
--    Forms in React are not much fun - they require (at least) local state management, and as the forms scale, that process only gets messier. Formik (with the validation library Yup) abstract away the difficulties of writing forms in React, and allow us to focus on core application functionality.
+-    no longer being used in this release- OKTA takes over for the forms where Formik/yup was used
 
 ### OKTA
 
 -   Formik/yup was removed to Implement OKTA token login process.
--   OKTA  is a two way handshake that sends and recieves info to then give back a otoken
+-   OKTA  is a two way handshake that sends and recieves info to then give back a token
+-   This is the token used to determine dashboard role rendering 
 
 #### Front end deployed to AWS Amplify
 -[Labs18 Deployed Front end](https://labs-18.use-mission-control.com/manager/dashboard/)
@@ -105,19 +106,16 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 -    Knex allows us to make SQL queries to our database quickly and easily. It integrates seamlessly into Node, and also allows us to seed our database when testing on local environments.
 
-#### Validator and JWT
+####  JWT
 
--    Auth is a tricky subject, but luckily there are plenty of open-source libraries and best-practices out there to learn from. For string validation, we used Validator. This library allows us to sanitize our database and ensure that only clean data touches our application. We used JWT (JSON Web Tokens) to create protected access to our API and provide a resouce for the front end to shield certain views.
+-    Previously this was used to authenticate and determine user role rendering but when we instituted OKTA; now the only thing using this jwt is the backend to make sure we can use prisma to access the DB. you'll need this in your .env file for secure environment settings (REACT_APP_JWT_TOKEN)
 
 # APIs
 
-## Authentication
-
-This API allows users to register + log in to Mission Control. It also assigns users roles (student, manager, admin) that all have varying levels of access on the front end and back end. Admins have the ability to promote/demote other users as well, so the role assignments are variable.
 
 ## Product Management API - https://api.use-mission-control.com/, https://github.com/Lambda-School-Labs/product-management-api
 
-Built with GraphQL and Prisma, the Product Management API is the foundation of Mission Control. It contains products, projects, organizational roles, team members, and KPIs regarding your company's data. It requires a Bearer token for full access, which can be obtained by running `prisma token` in the context of that API's repository. More details on that API can be found at the Github link above, or by contacting Bernie Durfee(https://github.com/berniedurfee).
+Built with GraphQL and Prisma, the Product Management API is the foundation of Mission Control. It contains products, projects, organizational roles, team members, and KPIs regarding your company's data. It requires a Bearer token for full access, which can be obtained by running `prisma token` in the context of that API's repository. More details on that API can be found at the Github link above, or by contacting Bernie Durfee(https://github.com/berniedurfee). You can reference JWT section in the Environment variables section.
 
 
 # Environment Variables
@@ -125,7 +123,15 @@ Built with GraphQL and Prisma, the Product Management API is the foundation of M
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
     *  REACT_APP_ROLE_KEY - this is the encryption key for the user's role (determines what dashboard they have access to). Choose a secure key (can be anything you want), and set up as a variable in your local application. The production key can be found in the AWS Amplify application
+    *   REACT_APP_LABS_API_KEY - key to be sent when hitting the api_url
+    *   REACT_APP_LABS_API_URL - accesses the AWS backend
     *  REACT_APP_MISSION_CONTROL_ENDPOINT - can be found in the AWS Amplify application. This is the authentication API
+    *   REACT_APP_MISSION_CONTROL_BE_DEV - localhost for backend?
+
+    *   REACT_APP_JWT_TOKEN - this allows access to the Product management api by sending this token in the header
+    *   REACT_APP_OKTA_URL - okta url
+    *   REACT_APP_OKTA_SERVER - server url for the auth route with OKTA
+    *   REACT_APP_OKTA_CLIENT - id of client using okta
 
 # Testing
 
