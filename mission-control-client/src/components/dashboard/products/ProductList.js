@@ -13,8 +13,8 @@ const ProductList = props => {
 
   // Context
   const {productState, setActiveProduct} = useContext(ProductContext)
-  console.log("PRODUCT STATE", productState)
-  useEffect(() => {
+
+  useEffect(() => { 
     //  set Filtered State data; alphabetical rendering.
     setFiltered({
       products: props.products.sort((a, b) =>
