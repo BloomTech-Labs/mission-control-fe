@@ -5,11 +5,11 @@ You can find the deployed project at https://use-mission-control.com.
 ## Contributors
 
 
-|                                       Dan Bergelt (https://github.com/danbergelt)                                        |                                       Alex Gordon (https://github.com/agordon1123)                                        |                                       Jose Restrepo (https://github.com/Artyk77)                                        |                                       Zach Overhulser (https://github.com/zoverlvx)                                        |                                       Armando Roman (https://github.com/armandoroman1016)                                        |
+|                                       Dan Bergelt (https://github.com/danbergelt)                                        |                                       Alex Gordon (https://github.com/agordon1123)                                        |                                       Jose Restrepo (https://github.com/Artyk77)                                        |                                       Zach Overhulser (https://github.com/zoverlvx)                                        |                                       Armando Roman (https://github.com/armandoroman1016)                                        |                                       Jacob Broadhead  (https://github.com/jacobbroadhead)                                       |                                       Bethany Surber (https://github.com/surberb)                                       |                                       Steve Rollins  (http://github.com/greenhornsr)                                       |                                       Kyle Guerrero  (https://github.com/AceMouty)                                       |                                       Sara Alkamri  (https://github.com/Sara-Alkhamri)                                       |                                       Jason Sonnichsen (https://github.com/H4rliquinn)                                       |                                       Joshua Shockley  (http://github.com/joshua-shockley)                                       |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://avatars1.githubusercontent.com/u/50968952?s=460&v=4" width = "200" />](https://avatars1.githubusercontent.com/u/50968952?s=460&v=4)                       |                      [<img src="https://avatars1.githubusercontent.com/u/48846394?s=400&v=4" width = "200" />](https://avatars1.githubusercontent.com/u/48846394?s=400&v=4)                       |                      [<img src="https://avatars2.githubusercontent.com/u/48263350?s=400&v=4" width = "200" />](https://avatars2.githubusercontent.com/u/48263350?s=400&v=4)                       |                      [<img src="https://avatars1.githubusercontent.com/u/19368091?s=400&v=4" width = "200" />](https://avatars1.githubusercontent.com/u/19368091?s=400&v=4)                       |                      [<img src="https://avatars3.githubusercontent.com/u/51098659?s=400&v=4" width = "200" />](https://avatars3.githubusercontent.com/u/51098659?s=400&v=4)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/danbergelt)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/agordon1123)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Artyk77)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/zoverlvx)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/armandoroman1016)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/danbergelt/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/agordon1123) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/arturorestrep0/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/zoverlvx/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/armando-roman-64a53a188/) |
+|                      [<img src="https://avatars1.githubusercontent.com/u/50968952?s=460&v=4" width = "200" />](https://avatars1.githubusercontent.com/u/50968952?s=460&v=4)                       |                      [<img src="https://avatars1.githubusercontent.com/u/48846394?s=400&v=4" width = "200" />](https://avatars1.githubusercontent.com/u/48846394?s=400&v=4)                       |                      [<img src="https://avatars2.githubusercontent.com/u/48263350?s=400&v=4" width = "200" />](https://avatars2.githubusercontent.com/u/48263350?s=400&v=4)                       |                      [<img src="https://avatars1.githubusercontent.com/u/19368091?s=400&v=4" width = "200" />](https://avatars1.githubusercontent.com/u/19368091?s=400&v=4)                       |                      [<img src="https://avatars3.githubusercontent.com/u/51098659?s=400&v=4" width = "200" />](https://avatars3.githubusercontent.com/u/51098659?s=400&v=4)                       |--                      [<img src="https://avatars3.githubusercontent.com/u/51098659?s=400&v=4" width = "200" />](https://avatars3.githubusercontent.com/u/52585690?v=4)                       |                     [<img src="https://avatars1.githubusercontent.com/u/50968952?s=460&v=4" width = "200" />](https://avatars3.githubusercontent.com/u/52721611?v=4)                       |                      [<img src="https://avatars1.githubusercontent.com/u/48846394?s=400&v=4" width = "200" />](https://avatars2.githubusercontent.com/u/22282953?v=4)                       |                      [<img src="https://avatars2.githubusercontent.com/u/48263350?s=400&v=4" width = "200" />](https://avatars2.githubusercontent.com/u/45374681?v=4)                       |                      [<img src="https://avatars1.githubusercontent.com/u/19368091?s=400&v=4" width = "200" />](https://avatars1.githubusercontent.com/u/43711240?v=4)                       |                      [<img src="https://avatars3.githubusercontent.com/u/51098659?s=400&v=4" width = "200" />](https://avatars1.githubusercontent.com/u/29213563?v=4)                       |                     [<img src="https://avatars1.githubusercontent.com/u/50968952?s=460&v=4" width = "200" />](https://avatars3.githubusercontent.com/u/52477380?v=4)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/danbergelt)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/agordon1123)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Artyk77)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/zoverlvx)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/armandoroman1016)             |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jacobbroadhead)                                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/surberb)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/greenhornsr)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AceMouty)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Sara-Alkhamri)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/H4rliquinn)             |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/joshua-shockley)                 |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/danbergelt/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/agordon1123) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/arturorestrep0/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/zoverlvx/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/armando-roman-64a53a188/) |-- [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](www.linkedin.com/in/j-broadhead) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/bee) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/steven-rollins-17202b28) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.google.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.google.com) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/joshuawdshockley/) |
 
 <br>
 <br>
@@ -20,11 +20,16 @@ You can find the deployed project at https://use-mission-control.com.
 
 ## Project Overview
 
-[Trello Board](https://trello.com/b/qIsV0OQN/labs17-mission-control)
+[Trello Board labs17](https://trello.com/b/qIsV0OQN/labs17-mission-control)
+
+[Trello Board labs18](https://trello.com/b/xVzVLa95/mission-control)
 
 [Product Canvas](https://www.notion.so/Mission-Control-3d160a20e5374bccaec96576398d54ba)
 
-[UX Design files](https://www.figma.com/file/7ULC015ThVU7TmGqYU3WBn/Mission-Control-Lambda-Dashboard?node-id=0%3A1)
+
+[UX Design files labs17](https://www.figma.com/file/7ULC015ThVU7TmGqYU3WBn/Mission-Control-Lambda-Dashboard?node-id=0%3A1)
+
+[US Design files labs18](https://www.figma.com/file/UC22eIUl3DWgQyHrJh72FD/Labs18_Mission-Control-Bethany-and-Jacob?node-id=196%3A368)
 
 Mission Control is a system that provisions, tracks, monitors and controls all of the IT resources (virtual, physical, non-physical and logical) for every product built and maintained by your organization. It allows you to keep tabs on deadlines, team members, costs, and everything you need to push your product across the finish line.
 
@@ -49,6 +54,11 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 -    As a manager, you need to be able to access a variety of different views, all of which contain different data. This calls for advanced state management. Redux's elegance, scalability, and inherent opinionated nature is perfect for applications that have advanced state requirements, and abstracts away the mess of local state.
 -    React/Redux as a pair is a fantastic combination that not only allows for portable, reusable UI components, but also allows for infinitely scalable state, and the ability to shuttle data around the application seamlessly. It is THE enterprise solution.
 
+### LABS18 - Removed Redux to Initiate Context State Management
+
+-   After reviewing and consolidating; Labs18 felt that Redux was just to much Technical Debt for the scale the project is currently so we decided to work on removing it to utilize Context state management.
+
+
 #### Sass/SCSS
 
 -    Nested CSS is a must when styling your application. SCSS not only allows us as developers to write CSS quickly, but also creates an intuitive flow for later revisions. Add in variables, mixins, and functions, and CSS (arguably) is elevated to a production level.
@@ -61,6 +71,10 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 -    Axios is the industry-standard library for HTTP requests in Javascript. It provides a simple, readable syntax, and also allowed our team to make advanced queries, such as concurrent requests that required parallel resolution. Additionally, this application makes requests to several APIs, one of which is REST, the other of which is GraphQL. Axios provides functionality for both types of requests, all in one library. 
 
+### GraphQL (LABS18)
+
+- GraphQL takes over more functions and that allows for the Cache functionality to take over for watching for changes in state and facilitates a better re-render process
+
 #### React Router
 
 -    Single page applications have special needs, particularly when it comes to routing the user from page-to-page. React router allows for the easy transport of the site's users whilst retaining SPA functionality. And with the new React Router hooks, we can do all of this inside of the functional programming paradigm.
@@ -69,7 +83,15 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 -    Forms in React are not much fun - they require (at least) local state management, and as the forms scale, that process only gets messier. Formik (with the validation library Yup) abstract away the difficulties of writing forms in React, and allow us to focus on core application functionality.
 
+### OKTA
+
+-   Formik/yup was removed to Implement OKTA token login process.
+-   OKTA  is a two way handshake that sends and recieves info to then give back a otoken
+
 #### Front end deployed to AWS Amplify
+-[Labs18 Deployed Front end](https://labs-18.use-mission-control.com/manager/dashboard/)
+
+-[Front end Github](https://github.com/Lambda-School-Labs/mission-control-fe)
 
 #### [Back end](https://github.com/Lambda-School-Labs/mission-control-be) built using:
 
