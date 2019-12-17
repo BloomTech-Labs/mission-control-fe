@@ -1,11 +1,19 @@
-import React, { useEffect, useContext } from "react";
+
+import React, { useEffect, useState, useContext, useCallback } from "react";
+import { setActiveProject } from "../../../actions/activeProductActions";
+
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import { FaSlack } from "react-icons/fa";
-import { ProductContext } from '../../../context/ProductContext';
+
+import ProductList from "../products/ProductList";
+import { productsU, projectDetailsByIdU } from "../../../queries"; // brings in the data from the grapql query
+import { useQuery } from "urql"; //comes default from urql
+import { ProductContext } from "../../../context/ProductContext";
+
 
 const useStyles = makeStyles({
   card: {
@@ -23,9 +31,19 @@ const useStyles = makeStyles({
   }
 });
 
-const ProjectMore = () => {
-  // const [results] = useQuery({ query: productsU });
-  // const { data, fetching, error } = results;
+const ProjectMore = props => {
+  //Context
+  const { productState } = useContext(ProductContext);
+  console.log("ProductState", productState);
+
+  const [results, executeQuery] = useQuery({ query: productsU });
+  const { data, fetching, error } = results;
+
+
+  const [results2, executeQuery2] = useQuery({
+    query: projectDetailsByIdU,
+    variables: { id: "ck2mbpslp02300786pme0knbZ" }
+  });
 
   const classes = useStyles();
 
@@ -37,24 +55,61 @@ const ProjectMore = () => {
     setSelectedProject(id);
   }, [id, setSelectedProject]);
 
+  let projData;
+  if (results2.data) {
+    projData = results2.data.projectRoles;
+  }
+
+  useEffect(() => {
+    if (projData) {
+      const temp = [];
+      projData.forEach(el => {
+        if (el.person.program) temp.push(el.person.program.toLowerCase());
+      });
+      setPrograms(temp);
+    }
+  }, [projData]);
+
+  const ProjCB = useCallback(() => {
+    if (productState.active) {
+      executeQuery2({
+        query: projectDetailsByIdU,
+        variables: { id: productState.active.id },
+        pause: true
+      });
+      console.log("Innerdata", productState.active.id);
+    }
+  }, [executeQuery2]);
+
+  useEffect(() => {
+    ProjCB();
+  }, [productState.active]);
+
+  console.log("NEWData", results.data);
+  // console.log("Props", props);
+
 
   if (!productState) {
     return <h2>Loading...</h2>;
   }
+
+
+  console.log("DATA", projData);
+
   return (
     <div className="more-page-container">
       <div className="admin-project-more-container">
         <div className="admin-project-more-overview">
-          {productState.active && productState.active.projects.length > 0 && (
+          {projData && projData.length > 0 && (
             <>
               <div className="admin-project-more-overview-content">
                 <p className="admin-project-more-overview-product">
-                  {productState.active.projects[0].name}
+                  {projData[0].project.product.name}
                 </p>
                 <p className="admin-project-more-overview-project">
-                  {productState.active.projects[0].name}
+                  {projData[0].project.name}
                 </p>
-                {new Date(productState.active.projects[0].end) > new Date() ? (
+                {new Date(projData[0].project.end) > new Date() ? (
                   <p className="admin-project-more-overview-status">
                     In Progress
                   </p>
@@ -70,8 +125,8 @@ const ProjectMore = () => {
         <div className="team-container">
           <h1 className="admin-project-more-team-head">Team</h1>
           <div className="admin-project-more-team">
-            {productState.project && productState.project.people.length > 0 ? (
-              productState.project.people.map((el, i) => (
+            {projData && projData.length > 0 ? (
+              projData.map((el, i) => (
                 <Card className={classes.card} key={i}>
                   <CardContent className={classes.content}>
                     <p className="admin-project-more-team-name">
