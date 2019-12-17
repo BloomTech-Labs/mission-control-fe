@@ -4,8 +4,7 @@ import AddProduct from "./AddProduct";
 import Product from "./Product";
 // Context to be used
 import {ProductContext} from '../../../context/ProductContext'
-// import { connect } from "react-redux";
-// import { setActiveProduct } from "../../../actions/activeProductActions";
+
 
 const ProductList = props => {
   const [filtered, setFiltered] = useState({ products: [] });
@@ -13,7 +12,7 @@ const ProductList = props => {
 
   // Context
   const {productState, setActiveProduct} = useContext(ProductContext)
-
+  
   useEffect(() => { 
     //  set Filtered State data; alphabetical rendering.
     setFiltered({
@@ -45,7 +44,10 @@ const ProductList = props => {
   const setProductHandler = async el => {
     await setActiveProduct(el);
     setActive(el);
+<<<<<<< HEAD
     console.log("FROM PRODUCT HANDLER", productState)
+=======
+>>>>>>> 395d5e59091273bfe71d5e9e8d7fa74fcaed14c1
   };
 
   const handleChange = e => {
@@ -104,5 +106,8 @@ const ProductList = props => {
   );
 };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 395d5e59091273bfe71d5e9e8d7fa74fcaed14c1
 export default ProductList
