@@ -7,6 +7,7 @@ import { useMutation } from "urql";
 import { deleteProject, updateProject } from "../../../mutations";
 
 const DashboardProject = props => {
+  // console.log(props.el.id)
   let allowDelete = true;
   if (props.projects) {
     props.projects.projectRoles.forEach(role => {
