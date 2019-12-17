@@ -1,32 +1,22 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useContext } from "react";
+// Context
+import { ProductContext } from "../../../context/ProductContext";
 
-const DashboardBanner = props => {
+const DashboardBanner = () => {
+  const { productState } = useContext(ProductContext);
   return (
     <div className="dashboard-banner-container">
       <div className="dashboard-banner-head">
-        {/* <p>{props.activeProductStore.active && props.activeProductStore.active.product.name}</p> */}
-        <p>
-          {props.activeProductStore.active
-            ? props.activeProductStore.active.name
-            : "Loading..."}
-        </p>
+        <p>{productState.active ? productState.active.name : "Loading..."}</p>
       </div>
       <div className="dashboard-product-projects">
         <p className="dashboard-product-total-projects">
           Total Projects:{" "}
-          {props.activeProductStore.active &&
-            props.activeProductStore.active.projects.length}
+          {productState.active && productState.active.projects.length}
         </p>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    activeProductStore: state.activeProductStore
-  };
-};
-
-export default connect(mapStateToProps, {})(DashboardBanner);
+export default DashboardBanner;

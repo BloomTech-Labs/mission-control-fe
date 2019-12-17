@@ -308,25 +308,25 @@ const project = id => gql`
     }
 `;
 
-const projectDetailsById = id => `
-query {
-    projectRoles (where: { project: {id: "${id}" } } )  {
+const projectDetailsByIdU = gql`
+  query ProjectDetails($id: ID!) {
+    projectRoles(where: { project: { id: $id } }) {
       person {
-          id
-          firstname
-          lastname
-          timezone
-          program
-          email
-          githubId
-          slackId
+        id
+        firstname
+        lastname
+        timezone
+        program
+        email
+        githubId
+        slackId
       }
-      project{
+      project {
         id
         name
         start
         end
-        product{
+        product {
           id
           name
         }
@@ -553,6 +553,7 @@ export {
   projectRolesU,
   projectRoles,
   projectRole,
+  projectDetailsByIdU,
   fullProjectDetailsById,
   peopleByProjectId,
   projectRoleByEmail
