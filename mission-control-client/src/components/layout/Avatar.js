@@ -5,14 +5,14 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Avatar from "@material-ui/core/Avatar";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import { connect } from "react-redux";
-import { resetProjects } from "../../actions/index";
+// import { resetProjects } from "../../actions/index";
 
 const AvatarMenu = ({ name }) => {
   let history = useHistory();
   const avatar = localStorage.getItem("avatar");
 
   const logout = () => {
-    localStorage.clear()
+    localStorage.clear();
     history.push("/");
   };
 
@@ -56,5 +56,5 @@ const AvatarMenu = ({ name }) => {
     </PopupState>
   );
 };
-
-export default connect(null, { resetProjects })(AvatarMenu);
+//resetProjects
+export default connect(null, {})(AvatarMenu);
