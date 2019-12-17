@@ -1,6 +1,4 @@
 import React, { useState, useCallback, useContext } from "react";
-import { connect } from "react-redux";
-import { setActiveProject } from "../../../actions/activeProjectActions";
 import { useHistory } from "react-router-dom";
 import { warning } from "../../../utils/warning";
 import { useMutation } from "urql";
