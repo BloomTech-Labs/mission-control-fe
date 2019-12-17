@@ -7,10 +7,12 @@ export const SET_ACTIVE_PROJECT_FAILURE = "SET_ACTIVE_PROJECT_FAILURE";
 
 export const setActiveProject = el => {
   return dispatch => {
+    console.log("FROM PROJECT ACTIONS")
     dispatch({ type: SET_ACTIVE_PROJECT });
     axiosLabsGraphQL
       .post("", { query: peopleByProjectId(el.project.id) })
       .then(res => {
+        console.log("FROM THEN IN PROJECT ACTIONS")
         const projectDetails = {
           people: res.data.data.projectRoles,
           project: el
