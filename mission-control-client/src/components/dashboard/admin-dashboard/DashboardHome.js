@@ -14,6 +14,7 @@ const DashboardHome = () => {
   }
   return (
     <>
+    
       <p className="warning">{error}&nbsp;</p>
       <div data-testid="dash" className="admin-dashboard-container">
         <ProductList products={data.products} />
