@@ -3,11 +3,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-//? redux imports
-import { createStore, applyMiddleware, compose } from "redux";
-import { Provider } from "react-redux";
-import thunk from "redux-thunk";
-import reducer from "./reducers/index";
 import {
   Provider as UrqlProvider,
   Client,
@@ -17,17 +12,10 @@ import {
 import { cacheExchange } from "@urql/exchange-graphcache";
 import { productsU } from "../src/queries";
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
-
-// const dynPageNum = 5;
-
 const cache = cacheExchange({
   updates: {
     Mutation: {
       createProduct: ({ createProduct }, _args, cache) => {
-        // const variables = {first: dynPageNum, skip: 0, orderBy: 'createdAt_DESC'}
         cache.updateQuery(
           {
             query: productsU
@@ -122,12 +110,10 @@ const client = new Client({
 });
 
 ReactDOM.render(
-  <Provider store={store}>
     <Router>
       <UrqlProvider value={client}>
         <App />
       </UrqlProvider>
-    </Router>
-  </Provider>,
+    </Router>,
   document.getElementById("root")
 );

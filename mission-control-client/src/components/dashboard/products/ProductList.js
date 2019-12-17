@@ -44,10 +44,6 @@ const ProductList = props => {
   const setProductHandler = async el => {
     await setActiveProduct(el);
     setActive(el);
-<<<<<<< HEAD
-    console.log("FROM PRODUCT HANDLER", productState)
-=======
->>>>>>> 395d5e59091273bfe71d5e9e8d7fa74fcaed14c1
   };
 
   const handleChange = e => {
@@ -106,8 +102,4 @@ const ProductList = props => {
   );
 };
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 395d5e59091273bfe71d5e9e8d7fa74fcaed14c1
 export default ProductList
