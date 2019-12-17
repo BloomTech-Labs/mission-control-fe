@@ -28,7 +28,6 @@ const DashboardProject = props => {
     // props.setActiveProject(props.el.id);
     await setSelectedProject(props.el.id)
     history.push(`/admin/dashboard/${props.el.id}`);
-    console.log("FROM HANDLE CLICK", props.el.id)
   };
 
   const [DeleteState, executeDeleteMutation] = useMutation(deleteProject);

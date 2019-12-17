@@ -64,10 +64,10 @@ const DashboardHome = () => {
       
           <p className="warning">{error}&nbsp;</p>
           <div data-testid="dash" className="admin-dashboard-container">
-            <ProductContextProvider>
+            {/* <ProductContextProvider> */}
               <ProductList products={data.products} />
               <DashboardContent products={data.products} />
-            </ProductContextProvider>
+            {/* </ProductContextProvider> */}
           </div>
       {/* </ProductContext.Provider> */}
     </>

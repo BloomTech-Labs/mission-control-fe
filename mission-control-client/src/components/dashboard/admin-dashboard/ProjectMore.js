@@ -1,15 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
-import { setActiveProject } from "../../../actions/activeProductActions";
+import React, { useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import { FaSlack } from "react-icons/fa";
-import ProductList from "../products/ProductList";
-import { productsU } from "../../../queries"; // brings in the data from the grapql query
-import { useQuery } from "urql"; //comes default from urql
 import { ProductContext } from '../../../context/ProductContext';
 
 const useStyles = makeStyles({
@@ -28,57 +23,38 @@ const useStyles = makeStyles({
   }
 });
 
-const ProjectMore = props => {
-  const [results] = useQuery({ query: productsU });
-  const { data, fetching, error } = results;
+const ProjectMore = () => {
+  // const [results] = useQuery({ query: productsU });
+  // const { data, fetching, error } = results;
 
   const classes = useStyles();
 
   const { id } = useParams();
 
-  const [programs, setPrograms] = useState([]);
-
-  const { setActiveProject, project } = props;
-
-  const productInfoContext = useContext(ProductContext)
-  console.log("From ProjectMore - Context", productInfoContext)
-  console.log("From ProjectMore - Props", props)
+  const { productState, setSelectedProject} = useContext(ProductContext)
 
   useEffect(() => {
-    setActiveProject(id);
-  }, [id, setActiveProject]);
+    setSelectedProject(id);
+  }, [id, setSelectedProject]);
 
-  useEffect(() => {
-    if (project) {
-      const temp = [];
-      project.people.forEach(el => {
-        if (el.person.program) temp.push(el.person.program.toLowerCase());
-      });
-      setPrograms(temp);
-    }
-  }, [project]);
-  // console.log("Props", props);
 
-  if (fetching || !data) {
+  if (!productState) {
     return <h2>Loading...</h2>;
   }
-  // console.log("DATA", data);
   return (
     <div className="more-page-container">
-      {data && <ProductList products={data.products} />}
-
       <div className="admin-project-more-container">
         <div className="admin-project-more-overview">
-          {project && project.project.length > 0 && (
+          {productState.active && productState.active.projects.length > 0 && (
             <>
               <div className="admin-project-more-overview-content">
                 <p className="admin-project-more-overview-product">
-                  {project.project[0].product.name}
+                  {productState.active.projects[0].name}
                 </p>
                 <p className="admin-project-more-overview-project">
-                  {project.project[0].name}
+                  {productState.active.projects[0].name}
                 </p>
-                {new Date(project.project[0].end) > new Date() ? (
+                {new Date(productState.active.projects[0].end) > new Date() ? (
                   <p className="admin-project-more-overview-status">
                     In Progress
                   </p>
@@ -87,41 +63,6 @@ const ProjectMore = props => {
                     Completed
                   </p>
                 )}
-                <div className="admin-project-more-overview-programs">
-                  {programs.length ? (
-                    [...new Set(programs)].map(
-                      (el, i) =>
-                        (el === "ux/ui" && (
-                          <p
-                            key={i}
-                            className="product-program-avatar program-ux"
-                          >
-                            {el.toUpperCase()}
-                          </p>
-                        )) ||
-                        (el === "ds" && (
-                          <p
-                            key={i}
-                            className="product-program-avatar program-ds"
-                          >
-                            {el.toUpperCase()}
-                          </p>
-                        )) ||
-                        (el === "web" && (
-                          <p
-                            key={i}
-                            className="product-program-avatar program-web"
-                          >
-                            {el.toUpperCase()}
-                          </p>
-                        ))
-                    )
-                  ) : (
-                    <p className="admin-project-more-null">
-                      No programs specified on this project
-                    </p>
-                  )}
-                </div>
               </div>
             </>
           )}
@@ -129,8 +70,8 @@ const ProjectMore = props => {
         <div className="team-container">
           <h1 className="admin-project-more-team-head">Team</h1>
           <div className="admin-project-more-team">
-            {project && project.people.length > 0 ? (
-              project.people.map((el, i) => (
+            {productState.project && productState.project.people.length > 0 ? (
+              productState.project.people.map((el, i) => (
                 <Card className={classes.card} key={i}>
                   <CardContent className={classes.content}>
                     <p className="admin-project-more-team-name">
@@ -182,12 +123,4 @@ const ProjectMore = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    project: state.activeProductStore.project
-    // isLoading: state.activeProductStore.isLoading
-    // productStore: state.productStore
-  };
-};
-
-export default connect(mapStateToProps, { setActiveProject })(ProjectMore);
+export default ProjectMore
