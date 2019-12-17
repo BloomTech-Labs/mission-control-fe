@@ -1,11 +1,10 @@
 import React, { useState, useCallback } from "react";
-import { connect } from "react-redux";
 import { useMutation } from "urql";
 import { warning } from "../../../utils/warning";
 import { createProduct } from "../../../mutations";
 
 // Component - CreateProduct
-const CreateProduct = props => {
+const CreateProduct = () => {
   const [name, setName] = useState("");
 
   // adding useMutation HOOK which accepts the new mutation and returns the current state of the mutation and an executeMutation function as an array.
@@ -38,11 +37,4 @@ const CreateProduct = props => {
   );
 };
 
-//still using redux to determine active product/project-when removing the below connect and mapStateToProps err.textcontent errored out the page
-const mapStateToProps = state => {
-  return {
-    activeProductStore: state.activeProductStore
-  };
-};
-
-export default connect(mapStateToProps)(CreateProduct);
+export default CreateProduct

@@ -11,6 +11,7 @@ export const SET_ACTIVE_PROJECT_FAILURE = "SET_ACTIVE_PROJECT_FAILURE";
 
 export const setActiveProduct = el => {
     return dispatch => {
+        console.log("FROM PRODUCT ACTIONS")
         dispatch({ type: SET_ACTIVE_PRODUCT, payload: el });
     };
 };
@@ -30,6 +31,7 @@ export const setActiveProject = id => {
               project: res.data.data.projects,
               people: res2.data.data.projectRoles
             }
+            console.log("FROM THEN IN PRODUCT ACTIONS")
             dispatch({ type: SET_ACTIVE_PROJECT_SUCCESS, payload: project });
           })
         )

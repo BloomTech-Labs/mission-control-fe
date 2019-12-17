@@ -1,16 +1,19 @@
+
 import React, { useEffect, useState, useContext, useCallback } from "react";
 import { setActiveProject } from "../../../actions/activeProductActions";
+
 import { useParams } from "react-router-dom";
-import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import { FaSlack } from "react-icons/fa";
+
 import ProductList from "../products/ProductList";
 import { productsU, projectDetailsByIdU } from "../../../queries"; // brings in the data from the grapql query
 import { useQuery } from "urql"; //comes default from urql
 import { ProductContext } from "../../../context/ProductContext";
+
 
 const useStyles = makeStyles({
   card: {
@@ -36,6 +39,7 @@ const ProjectMore = props => {
   const [results, executeQuery] = useQuery({ query: productsU });
   const { data, fetching, error } = results;
 
+
   const [results2, executeQuery2] = useQuery({
     query: projectDetailsByIdU,
     variables: { id: "ck2mbpslp02300786pme0knbZ" }
@@ -45,13 +49,11 @@ const ProjectMore = props => {
 
   const { id } = useParams();
 
-  const [programs, setPrograms] = useState([]);
-
-  const { setActiveProject, project } = props;
+  const { productState, setSelectedProject} = useContext(ProductContext)
 
   useEffect(() => {
-    setActiveProject(id);
-  }, [id, setActiveProject]);
+    setSelectedProject(id);
+  }, [id, setSelectedProject]);
 
   let projData;
   if (results2.data) {
@@ -86,15 +88,16 @@ const ProjectMore = props => {
   console.log("NEWData", results.data);
   // console.log("Props", props);
 
-  if (fetching || !data) {
+
+  if (!productState) {
     return <h2>Loading...</h2>;
   }
 
+
   console.log("DATA", projData);
+
   return (
     <div className="more-page-container">
-      {data && <ProductList products={data.products} />}
-
       <div className="admin-project-more-container">
         <div className="admin-project-more-overview">
           {projData && projData.length > 0 && (
@@ -115,41 +118,6 @@ const ProjectMore = props => {
                     Completed
                   </p>
                 )}
-                <div className="admin-project-more-overview-programs">
-                  {programs.length ? (
-                    [...new Set(programs)].map(
-                      (el, i) =>
-                        (el === "ux/ui" && (
-                          <p
-                            key={i}
-                            className="product-program-avatar program-ux"
-                          >
-                            {el.toUpperCase()}
-                          </p>
-                        )) ||
-                        (el === "ds" && (
-                          <p
-                            key={i}
-                            className="product-program-avatar program-ds"
-                          >
-                            {el.toUpperCase()}
-                          </p>
-                        )) ||
-                        (el === "web" && (
-                          <p
-                            key={i}
-                            className="product-program-avatar program-web"
-                          >
-                            {el.toUpperCase()}
-                          </p>
-                        ))
-                    )
-                  ) : (
-                    <p className="admin-project-more-null">
-                      No programs specified on this project
-                    </p>
-                  )}
-                </div>
               </div>
             </>
           )}
@@ -210,12 +178,4 @@ const ProjectMore = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    project: state.activeProductStore.project
-    // isLoading: state.activeProductStore.isLoading
-    // productStore: state.productStore
-  };
-};
-
-export default connect(mapStateToProps, { setActiveProject })(ProjectMore);
+export default ProjectMore
