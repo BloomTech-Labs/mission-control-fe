@@ -45,7 +45,6 @@ const ProductList = props => {
   const setProductHandler = async el => {
     await setActiveProduct(el);
     setActive(el);
-    // console.log(productState)
   };
 
   const handleChange = e => {
