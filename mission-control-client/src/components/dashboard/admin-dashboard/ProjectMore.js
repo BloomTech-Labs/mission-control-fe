@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { setActiveProject } from "../../../actions/activeProductActions";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
@@ -10,6 +10,8 @@ import { FaSlack } from "react-icons/fa";
 import ProductList from "../products/ProductList";
 import { productsU } from "../../../queries"; // brings in the data from the grapql query
 import { useQuery } from "urql"; //comes default from urql
+// Context
+import { ProductContext } from '../../../context/ProductContext'
 
 const useStyles = makeStyles({
   card: {
@@ -28,6 +30,9 @@ const useStyles = makeStyles({
 });
 
 const ProjectMore = props => {
+  // Context
+  const {setSelectedProject, productState} = useContext(ProductContext)
+  console.log("CONSOLE LOG FROM PROJECT MORE",productState)
   const [results] = useQuery({ query: productsU });
   const { data, fetching, error } = results;
 
@@ -37,43 +42,45 @@ const ProjectMore = props => {
 
   const [programs, setPrograms] = useState([]);
 
-  const { setActiveProject, project } = props;
+  // const { setActiveProject, project } = props;
 
   useEffect(() => {
-    setActiveProject(id);
-  }, [id, setActiveProject]);
+    setSelectedProject(id);
+  }, [id, setSelectedProject]);
 
   useEffect(() => {
-    if (project) {
+    if (productState.project) {
+      console.log("FROM PROJECT MORE USE EFFECT", productState)
       const temp = [];
-      project.people.forEach(el => {
+      productState.project.people.forEach(el => {
         if (el.person.program) temp.push(el.person.program.toLowerCase());
       });
       setPrograms(temp);
     }
-  }, [project]);
+  }, [productState]);
   // console.log("Props", props);
 
-  if (fetching || !data) {
+  if (fetching || !data || !productState) {
     return <h2>Loading...</h2>;
   }
-  // console.log("DATA", data);
+
+  console.log("DATA", data);
   return (
     <div className="more-page-container">
       {data && <ProductList products={data.products} />}
 
       <div className="admin-project-more-container">
         <div className="admin-project-more-overview">
-          {project && project.project.length > 0 && (
+          {productState.project && productState.project.project.length > 0 && (
             <>
               <div className="admin-project-more-overview-content">
                 <p className="admin-project-more-overview-product">
-                  {project.project[0].product.name}
+                  {productState.project.project[0].product.name}
                 </p>
                 <p className="admin-project-more-overview-project">
-                  {project.project[0].name}
+                  {productState.project.project[0].name}
                 </p>
-                {new Date(project.project[0].end) > new Date() ? (
+                {new Date(productState.project.project[0].start) > new Date() ? (
                   <p className="admin-project-more-overview-status">
                     In Progress
                   </p>
@@ -124,8 +131,8 @@ const ProjectMore = props => {
         <div className="team-container">
           <h1 className="admin-project-more-team-head">Team</h1>
           <div className="admin-project-more-team">
-            {project && project.people.length > 0 ? (
-              project.people.map((el, i) => (
+            {productState.project && productState.project.people.length > 0 ? (
+              productState.project.people.map((el, i) => (
                 <Card className={classes.card} key={i}>
                   <CardContent className={classes.content}>
                     <p className="admin-project-more-team-name">

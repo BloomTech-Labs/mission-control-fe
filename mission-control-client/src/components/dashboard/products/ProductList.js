@@ -45,7 +45,7 @@ const ProductList = props => {
   const setProductHandler = async el => {
     await setActiveProduct(el);
     setActive(el);
-    // console.log(productState)
+    console.log("FROM PRODUCT HANDLER", productState)
   };
 
   const handleChange = e => {
@@ -104,10 +104,5 @@ const ProductList = props => {
   );
 };
 
-// const mapStateToProps = state => {
-//   return {
-//     activeProductStore: state.activeProductStore
-//   };
-// };
+
 export default ProductList
-// export default connect(mapStateToProps, { setActiveProduct })(ProductList);
