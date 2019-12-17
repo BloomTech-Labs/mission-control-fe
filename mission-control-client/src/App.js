@@ -10,6 +10,7 @@ import { Security, ImplicitCallback } from "@okta/okta-react";
 import Layout from "./components/layout/Layout";
 // Context
 import {ProductContext} from './context/ProductContext'
+import ProductContextProvider from './context/ProductContextProvider';
 // AXIOS
 import axiosLabsGraphQL from "./utils/axiosLabsGraphQL";
 import axios from "axios";
@@ -35,41 +36,41 @@ import "./styles/index.scss";
 function App() {
   
     // State for context
-    const [productState, setProductState] = React.useState(
-      {
-        isLoading: false,
-        err: null,
-        active: null,
-        project: null
-      }
-    )
+    // const [productState, setProductState] = React.useState(
+    //   {
+    //     isLoading: false,
+    //     err: null,
+    //     active: null,
+    //     project: null
+    //   }
+    // )
   
-    // Product Context fn's
-    const setActiveProduct = el => {
-      setProductState({...productState, active: el})
-    }
+    // // Product Context fn's
+    // const setActiveProduct = el => {
+    //   setProductState({...productState, active: el})
+    // }
   
-    const setSelectedProject = id => {
-      axios
-          .all([
-            axiosLabsGraphQL.post("", { query: fullProjectDetailsById(id) }),
-            axiosLabsGraphQL.post("", { query: peopleByProjectId(id) })
-          ])
-          .then(
-            axios.spread((res, res2) => {
-              const project = {
-                project: res.data.data.projects,
-                people: res2.data.data.projectRoles
-              }
-              // dispatch({ type: SET_ACTIVE_PROJECT_SUCCESS, payload: project });
-              setProductState({...productState, project: project})
-            })
-          )
-          .catch(err => {
-            // dispatch({ type: SET_ACTIVE_PROJECT_FAILURE, payload: err.response });
-            console.log(err)
-          });
-    }
+    // const setSelectedProject = id => {
+    //   axios
+    //       .all([
+    //         axiosLabsGraphQL.post("", { query: fullProjectDetailsById(id) }),
+    //         axiosLabsGraphQL.post("", { query: peopleByProjectId(id) })
+    //       ])
+    //       .then(
+    //         axios.spread((res, res2) => {
+    //           const project = {
+    //             project: res.data.data.projects,
+    //             people: res2.data.data.projectRoles
+    //           }
+    //           // dispatch({ type: SET_ACTIVE_PROJECT_SUCCESS, payload: project });
+    //           setProductState({...productState, project: project})
+    //         })
+    //       )
+    //       .catch(err => {
+    //         // dispatch({ type: SET_ACTIVE_PROJECT_FAILURE, payload: err.response });
+    //         console.log(err)
+    //       });
+    // }
 
 
   const location = useLocation();
@@ -83,7 +84,7 @@ function App() {
   }
 
   return (
-    <ProductContext.Provider value={{productState, setActiveProduct, setSelectedProject}}>
+    // <ProductContext.Provider value={{productState, setActiveProduct, setSelectedProject}}>
       <Layout>
         <Security
           issuer={`${process.env.REACT_APP_OKTA_SERVER}`}
@@ -119,14 +120,16 @@ function App() {
             <Route path="/student/dashboard" component={UserDash} />
             <Route exact path="/manager/dashboard" component={AdminDash} />
             <Route exact path="/admin/dashboard" component={AdminDash} />
-            <Route path="/admin/dashboard/:id" component={ProjectMore} />
+            <ProductContextProvider>
+              <Route path="/admin/dashboard/:id" component={ProjectMore} />
+            </ProductContextProvider>
             {/* OKTA Signin Widget route */}
             <Route path="/implicit/callback" component={ImplicitCallback} />
             <Route component={Bad} />
           </Switch>
         </Security>
       </Layout>
-    </ProductContext.Provider>
+    // </ProductContext.Provider>
   );
 }
 

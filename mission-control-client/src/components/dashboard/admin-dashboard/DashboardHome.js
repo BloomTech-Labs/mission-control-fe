@@ -3,6 +3,7 @@ import ProductList from "../products/ProductList";
 import DashboardContent from "./DashboardContent";
 // Context API
 // import { ProductContext } from '../../../context/ProductContext'
+import ProductContextProvider from '../../../context/ProductContextProvider';
 // Axios
 import axiosLabsGraphQL from "../../../utils/axiosLabsGraphQL";
 import axios from "axios";
@@ -60,13 +61,14 @@ const DashboardHome = () => {
   return (
     <>
       {/* <ProductContext.Provider value={{productState, setActiveProduct, setSelectedProject}}> */}
-
+      
           <p className="warning">{error}&nbsp;</p>
           <div data-testid="dash" className="admin-dashboard-container">
-            <ProductList products={data.products} />
-            <DashboardContent products={data.products} />
+            <ProductContextProvider>
+              <ProductList products={data.products} />
+              <DashboardContent products={data.products} />
+            </ProductContextProvider>
           </div>
-        
       {/* </ProductContext.Provider> */}
     </>
   );

@@ -13,7 +13,7 @@ const ProductList = props => {
 
   // Context
   const {productState, setActiveProduct} = useContext(ProductContext)
-
+  
   useEffect(() => { 
     //  set Filtered State data; alphabetical rendering.
     setFiltered({

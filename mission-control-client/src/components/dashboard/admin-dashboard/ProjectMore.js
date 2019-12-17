@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { setActiveProject } from "../../../actions/activeProductActions";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
@@ -10,6 +10,7 @@ import { FaSlack } from "react-icons/fa";
 import ProductList from "../products/ProductList";
 import { productsU } from "../../../queries"; // brings in the data from the grapql query
 import { useQuery } from "urql"; //comes default from urql
+import { ProductContext } from '../../../context/ProductContext';
 
 const useStyles = makeStyles({
   card: {
@@ -38,6 +39,10 @@ const ProjectMore = props => {
   const [programs, setPrograms] = useState([]);
 
   const { setActiveProject, project } = props;
+
+  const productInfoContext = useContext(ProductContext)
+  console.log("From ProjectMore - Context", productInfoContext)
+  console.log("From ProjectMore - Props", props)
 
   useEffect(() => {
     setActiveProject(id);
