@@ -308,6 +308,33 @@ const project = id => `
     }
 `;
 
+const projectDetailsByIdU = gql`
+  query ProjectDetails($id: ID!) {
+    projectRoles(where: { project: { id: $id } }) {
+      person {
+        id
+        firstname
+        lastname
+        timezone
+        program
+        email
+        githubId
+        slackId
+      }
+      project {
+        id
+        name
+        start
+        end
+        product {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
+
 const fullProjectDetailsById = id => `
 query
 {
@@ -526,6 +553,7 @@ export {
   projectRolesU,
   projectRoles,
   projectRole,
+  projectDetailsByIdU,
   fullProjectDetailsById,
   peopleByProjectId,
   projectRoleByEmail
