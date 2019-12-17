@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
+
 // Context
 import { ProductContext } from "../../../context/ProductContext";
 
 const DashboardBanner = () => {
   const { productState } = useContext(ProductContext);
+
   return (
     <div className="dashboard-banner-container">
       <div className="dashboard-banner-head">

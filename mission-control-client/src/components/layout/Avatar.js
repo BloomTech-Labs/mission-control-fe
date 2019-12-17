@@ -4,8 +4,6 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Avatar from "@material-ui/core/Avatar";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
-import { connect } from "react-redux";
-// import { resetProjects } from "../../actions/index";
 
 const AvatarMenu = ({ name }) => {
   let history = useHistory();
@@ -57,4 +55,4 @@ const AvatarMenu = ({ name }) => {
   );
 };
 //resetProjects
-export default connect(null, {})(AvatarMenu);
+export default AvatarMenu
