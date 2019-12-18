@@ -50,11 +50,11 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 ### Front end built using:🔨
 
-#### React/Redux
+#### React/Redux 🚫
 
 -    REACT/REDUX is great for managing state and was utilized in the first phase. 
 
-### LABS18 - Removed Redux to Initiate Context State Management
+### LABS18 - Removed Redux to Initiate Context State Management 👍🏽
 
 -   After reviewing and consolidating; Labs18 felt that Redux was just to much Technical Debt for the scale the project is currently so we decided to work on removing it to utilize Context state management.
 
@@ -67,7 +67,7 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 -    Material UI is a fantastic resource for advanced UI components such as popovers, avatars, and tabs. We took advantage of Material UI for a wide variety of components, which greatly sped up up our development time. Material UI also offers a fantastic icon library, which we took advantage of throughout the application.
 
-#### Axios
+#### Axios 🚫
 
 -    Axios was removed in favor of utilizing urql
 
@@ -80,7 +80,7 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 -    Single page applications have special needs, particularly when it comes to routing the user from page-to-page. React router allows for the easy transport of the site's users whilst retaining SPA functionality. And with the new React Router hooks, we can do all of this inside of the functional programming paradigm.
 
-#### Formik/Yup
+#### Formik/Yup 🚫
 
 -    no longer being used in this release- OKTA takes over for the forms where Formik/yup was used
 
@@ -97,15 +97,6 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 #### [Back end](https://github.com/Lambda-School-Labs/mission-control-be) built using:
 
-#### Node/Express/Postgres - deployed to AWS Elastic Beanstalk 🥜
-
--    Mission Control uses an external API to manage key business data, so our internal API demands were scaled down. Thus, in the interest of focusing on the user experience, we spun up a lightweight Node/Express API to handle authentication and role management within the site itself.
--    We feel that Postgres is the top choice for relational databases, considering it's stability and scalability. It's also very easy to work with, so working with the database is always quick and easy.
--    The full application is deployed to AWS (Amplify for the FE, Elastic Beanstalk on the BE with an AWS RDS). With the full app bundled together in one suite, dev ops becomes a breeze, and we can take full advantage of all of AWS's various products. 
-
-#### Knex.js
-
--    Knex allows us to make SQL queries to our database quickly and easily. It integrates seamlessly into Node, and also allows us to seed our database when testing on local environments.
 
 ####  JWT 🍄
 
