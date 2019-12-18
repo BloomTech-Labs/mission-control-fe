@@ -1,19 +1,15 @@
-
-import React, { useEffect, useState, useContext, useCallback } from "react";
-import { setActiveProject } from "../../../actions/activeProductActions";
-
+import React, { useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import { FaSlack } from "react-icons/fa";
 
-import ProductList from "../products/ProductList";
-import { productsU, projectDetailsByIdU } from "../../../queries"; // brings in the data from the grapql query
+import { projectDetailsByIdU } from "../../../queries"; // brings in the data from the grapql query
 import { useQuery } from "urql"; //comes default from urql
 import { ProductContext } from "../../../context/ProductContext";
-
 
 const useStyles = makeStyles({
   card: {
@@ -32,69 +28,32 @@ const useStyles = makeStyles({
 });
 
 const ProjectMore = props => {
-  //Context
-  const { productState } = useContext(ProductContext);
-  console.log("ProductState", productState);
-
-  const [results, executeQuery] = useQuery({ query: productsU });
-  const { data, fetching, error } = results;
-
+  // console.log("Props", props);
 
   const [results2, executeQuery2] = useQuery({
     query: projectDetailsByIdU,
-    variables: { id: "ck2mbpslp02300786pme0knbZ" }
+    variables: props.match.params
   });
 
+  // console.log("RES", results2);
   const classes = useStyles();
 
   const { id } = useParams();
 
-  const { productState, setSelectedProject} = useContext(ProductContext)
+  const { productState, setSelectedProject } = useContext(ProductContext);
 
   useEffect(() => {
     setSelectedProject(id);
-  }, [id, setSelectedProject]);
+  }, [id]);
 
   let projData;
   if (results2.data) {
     projData = results2.data.projectRoles;
   }
 
-  useEffect(() => {
-    if (projData) {
-      const temp = [];
-      projData.forEach(el => {
-        if (el.person.program) temp.push(el.person.program.toLowerCase());
-      });
-      setPrograms(temp);
-    }
-  }, [projData]);
-
-  const ProjCB = useCallback(() => {
-    if (productState.active) {
-      executeQuery2({
-        query: projectDetailsByIdU,
-        variables: { id: productState.active.id },
-        pause: true
-      });
-      console.log("Innerdata", productState.active.id);
-    }
-  }, [executeQuery2]);
-
-  useEffect(() => {
-    ProjCB();
-  }, [productState.active]);
-
-  console.log("NEWData", results.data);
-  // console.log("Props", props);
-
-
   if (!productState) {
     return <h2>Loading...</h2>;
   }
-
-
-  console.log("DATA", projData);
 
   return (
     <div className="more-page-container">
@@ -178,4 +137,4 @@ const ProjectMore = props => {
   );
 };
 
-export default ProjectMore
+export default ProjectMore;
