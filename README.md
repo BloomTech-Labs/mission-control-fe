@@ -1,4 +1,5 @@
-# Mission Control
+![Rocket.svg](mission-control-client/src/assets/Rocket.svg)
+# Mission Control 
 
 You can find the deployed project at https://use-mission-control.com.
 
@@ -37,7 +38,7 @@ Mission Control is a system that provisions, tracks, monitors and controls all o
 When operating at scale, it's easy to get lost in a sea of information. Mission Control provides the clarity and centralization you need to assess your team's productivity and make executive decisions. Mission Control is a one-stop-shop that allows you to get the information you need and focus on what matters most - execution.
 
 
-### Key Features
+### Key Features - 🍆
 
 -    Not just for products - we also track your projects, allowing for a top-level view of your organization
 -    For admins - the ability to view every single product and project in your organization w/ related KPIs
@@ -47,7 +48,7 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 ## Tech Stack
 
-### Front end built using:
+### Front end built using:🔨
 
 #### React/Redux
 
@@ -70,7 +71,7 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 -    Axios was removed in favor of utilizing urql
 
-### GraphQL (LABS18)
+### GraphQL URQL(LABS18)🤓
 
 - GraphQL takes over more functions and that allows for the Cache functionality to take over for watching for changes in state and facilitates a better re-render process. 
 - GraphQL can still work on top of a REST setup if need be.
@@ -96,7 +97,7 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 #### [Back end](https://github.com/Lambda-School-Labs/mission-control-be) built using:
 
-#### Node/Express/Postgres - deployed to AWS Elastic Beanstalk
+#### Node/Express/Postgres - deployed to AWS Elastic Beanstalk 🥜
 
 -    Mission Control uses an external API to manage key business data, so our internal API demands were scaled down. Thus, in the interest of focusing on the user experience, we spun up a lightweight Node/Express API to handle authentication and role management within the site itself.
 -    We feel that Postgres is the top choice for relational databases, considering it's stability and scalability. It's also very easy to work with, so working with the database is always quick and easy.
@@ -106,9 +107,9 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 -    Knex allows us to make SQL queries to our database quickly and easily. It integrates seamlessly into Node, and also allows us to seed our database when testing on local environments.
 
-####  JWT
+####  JWT 🍄
 
--    Previously this was used to authenticate and determine user role rendering but when we instituted OKTA; now the only thing using this jwt is the backend to make sure we can use prisma to access the DB. you'll need this in your .env file for secure environment settings (REACT_APP_JWT_TOKEN)
+-    Previously this was used to authenticate and determine user role rendering but when we instituted OKTA; now the only thing using this jwt is the backend to make sure we can use prisma to access the DB. you'll need this in your .env file for secure environment settings (REACT_APP_JWT_TOKEN) 
 
 # APIs
 
@@ -132,7 +133,7 @@ In order for the app to function correctly, the user must set up their own envir
 
 #### Jest
 
--    Embedded directly into Create React App, Jest provides all the tools one needs to run FE unit AND integration tests. Jest can be thought of as the lens through which an application's tests are viewed and ran. It is a stable base for other testing libraries to build off of.
+-    Embedded directly into Create React App, Jest provides all the tools one needs to run FE unit AND integration tests. Jest can be thought of as the lens through which an application's tests are viewed and ran. It is a stable base for other testing libraries to build off of.🐒
 
 #### React Testing Library
 
@@ -148,7 +149,7 @@ Clone this repo into your local, and run `yarn` to install your dependencies.
     * start - `yarn start`
     * test - `yarn test`
 
-# If you made it this far... way to go...Contributing
+# Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
@@ -160,7 +161,7 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
  - Check first to see if your issue has already been reported.
  - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
  - Create a live example of the problem.
- - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
+ - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.🐒
 
 ### Feature Requests
 
