@@ -1,9 +1,7 @@
-# Mission Out of Control
+# Mission Control
 
 You can find the deployed project at https://use-mission-control.com.
 
-Abandon All Hope, Ye Who Enter Here
-This is undoubtedly the most ugly program in the distribution. It was one of the first "serious" programs ported, and still has a lot of historical baggage
 
 ## Contributors
 
@@ -70,7 +68,7 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 #### Axios
 
--    Axios is the industry-standard library for HTTP requests in Javascript. It provides a simple, readable syntax, and also allowed our team to make advanced queries, such as concurrent requests that required parallel resolution. Additionally, this application makes requests to several APIs, one of which is REST, the other of which is GraphQL. Axios provides functionality for both types of requests, all in one library. 
+-    Axios was removed in favor of utilizing urql
 
 ### GraphQL (LABS18)
 
@@ -124,11 +122,6 @@ Built with GraphQL and Prisma, the Product Management API is the foundation of M
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-    *  REACT_APP_ROLE_KEY - this is the encryption key for the user's role (determines what dashboard they have access to). Choose a secure key (can be anything you want), and set up as a variable in your local application. The production key can be found in the AWS Amplify application
-    *   REACT_APP_LABS_API_KEY - key to be sent when hitting the api_url
-    *   REACT_APP_LABS_API_URL - accesses the AWS backend
-    *  REACT_APP_MISSION_CONTROL_ENDPOINT - can be found in the AWS Amplify application. This is the authentication API
-    *   REACT_APP_MISSION_CONTROL_BE_DEV - localhost for backend?
 
     *   REACT_APP_JWT_TOKEN - this allows access to the Product management api by sending this token in the header
     *   REACT_APP_OKTA_URL - okta url
@@ -155,7 +148,7 @@ Clone this repo into your local, and run `yarn` to install your dependencies.
     * start - `yarn start`
     * test - `yarn test`
 
-# Contributing
+# If you made it this far... way to go...Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
