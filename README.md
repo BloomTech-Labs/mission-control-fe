@@ -2,6 +2,9 @@
 
 You can find the deployed project at https://use-mission-control.com.
 
+Abandon All Hope, Ye Who Enter Here
+This is undoubtedly the most ugly program in the distribution. It was one of the first "serious" programs ported, and still has a lot of historical baggage
+
 ## Contributors
 
 
