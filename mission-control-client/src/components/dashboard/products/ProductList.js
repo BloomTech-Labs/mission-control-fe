@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import AddProduct from "./AddProduct";
 import Product from "./Product";
-import { connect } from "react-redux";
-import { setActiveProduct } from "../../../actions/activeProductActions";
+// Context to be used
+import {ProductContext} from '../../../context/ProductContext'
+
 
 const ProductList = props => {
   const [filtered, setFiltered] = useState({ products: [] });
   const [active, setActive] = useState("");
-  useEffect(() => {
+
+  // Context
+  const {productState, setActiveProduct} = useContext(ProductContext)
+  
+  useEffect(() => { 
     //  set Filtered State data; alphabetical rendering.
     setFiltered({
       products: props.products.sort((a, b) =>
@@ -20,10 +25,10 @@ const ProductList = props => {
       // Locate active Product element
       const activeElement = filterloop(filtered.products);
       // Pass active Product element to redux state.
-      props.setActiveProduct(filtered.products[activeElement || 0]);
+      setActiveProduct(filtered.products[activeElement || 0]);
     } else {
       // default active product to be element 0 within product array.
-      props.setActiveProduct(props.products[0]);
+      setActiveProduct(props.products[0]);
     }
   }, [props.products]);
 
@@ -36,8 +41,8 @@ const ProductList = props => {
     }
   };
 
-  const setProductHandler = el => {
-    props.setActiveProduct(el);
+  const setProductHandler = async el => {
+    await setActiveProduct(el);
     setActive(el);
   };
 
@@ -82,7 +87,7 @@ const ProductList = props => {
         <div className="products-scroll-container">
           {filtered.products.map((el, i) => (
             <Product
-              active={props.activeProductStore.active}
+              active={productState.active}
               setActiveProduct={setProductHandler}
               key={i}
               el={el}
@@ -97,10 +102,4 @@ const ProductList = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    activeProductStore: state.activeProductStore
-  };
-};
-
-export default connect(mapStateToProps, { setActiveProduct })(ProductList);
+export default ProductList
