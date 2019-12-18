@@ -38,7 +38,7 @@ Mission Control is a system that provisions, tracks, monitors and controls all o
 When operating at scale, it's easy to get lost in a sea of information. Mission Control provides the clarity and centralization you need to assess your team's productivity and make executive decisions. Mission Control is a one-stop-shop that allows you to get the information you need and focus on what matters most - execution.
 
 
-### Key Features - 🍆
+### Key Features - 
 
 -    Not just for products - we also track your projects, allowing for a top-level view of your organization
 -    For admins - the ability to view every single product and project in your organization w/ related KPIs
@@ -48,13 +48,13 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 ## Tech Stack
 
-### Front end built using:🔨
+### Front end built using:
 
-#### React/Redux 🚫
+#### React/Redux 
 
 -    REACT/REDUX is great for managing state and was utilized in the first phase. 
 
-### LABS18 - Removed Redux to Initiate Context State Management 👍🏽
+### LABS18 - Removed Redux to Initiate Context State Management 
 
 -   After reviewing and consolidating; Labs18 felt that Redux was just to much Technical Debt for the scale the project is currently so we decided to work on removing it to utilize Context state management.
 
@@ -67,11 +67,11 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 -    Material UI is a fantastic resource for advanced UI components such as popovers, avatars, and tabs. We took advantage of Material UI for a wide variety of components, which greatly sped up up our development time. Material UI also offers a fantastic icon library, which we took advantage of throughout the application.
 
-#### Axios 🚫
+#### Axios 
 
 -    Axios was removed in favor of utilizing urql
 
-### GraphQL URQL(LABS18)🤓
+### GraphQL URQL(LABS18)
 
 - GraphQL takes over more functions and that allows for the Cache functionality to take over for watching for changes in state and facilitates a better re-render process. 
 - GraphQL can still work on top of a REST setup if need be.
@@ -80,7 +80,7 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 -    Single page applications have special needs, particularly when it comes to routing the user from page-to-page. React router allows for the easy transport of the site's users whilst retaining SPA functionality. And with the new React Router hooks, we can do all of this inside of the functional programming paradigm.
 
-#### Formik/Yup 🚫
+#### Formik/Yup 
 
 -    no longer being used in this release- OKTA takes over for the forms where Formik/yup was used
 
@@ -98,7 +98,7 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 #### [Back end](https://github.com/Lambda-School-Labs/mission-control-be) built using:
 
 
-####  JWT 🍄
+####  JWT 
 
 -    Previously this was used to authenticate and determine user role rendering but when we instituted OKTA; now the only thing using this jwt is the backend to make sure we can use prisma to access the DB. you'll need this in your .env file for secure environment settings (REACT_APP_JWT_TOKEN) 
 
@@ -124,7 +124,7 @@ In order for the app to function correctly, the user must set up their own envir
 
 #### Jest
 
--    Embedded directly into Create React App, Jest provides all the tools one needs to run FE unit AND integration tests. Jest can be thought of as the lens through which an application's tests are viewed and ran. It is a stable base for other testing libraries to build off of.🐒
+-    Embedded directly into Create React App, Jest provides all the tools one needs to run FE unit AND integration tests. Jest can be thought of as the lens through which an application's tests are viewed and ran. It is a stable base for other testing libraries to build off of.
 
 #### React Testing Library
 
@@ -152,7 +152,7 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
  - Check first to see if your issue has already been reported.
  - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
  - Create a live example of the problem.
- - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.🐒
+ - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, 🐒 where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 
