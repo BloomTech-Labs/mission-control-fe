@@ -1,6 +1,4 @@
 import React, { useState, useCallback, useContext } from "react";
-import { connect } from "react-redux";
-import { setActiveProject } from "../../../actions/activeProductActions";
 import { useHistory } from "react-router-dom";
 import { warning } from "../../../utils/warning";
 import { useMutation } from "urql";
@@ -9,8 +7,9 @@ import { deleteProject, updateProject } from "../../../mutations";
 import {ProductContext} from '../../../context/ProductContext'
 
 const DashboardProject = props => {
-  // context
-  const {productState} = useContext(ProductContext)
+  // Context
+  const { productState, setSelectedProject } = useContext(ProductContext)
+
   let allowDelete = true;
   if (props.projects) {
     props.projects.projectRoles.forEach(role => {
@@ -23,8 +22,9 @@ const DashboardProject = props => {
   const history = useHistory();
 
   // references setting active project on second div tag of return below
-  const handleClick = () => {
-    props.setActiveProject(props.el.id);
+  const handleClick = async () => {
+    // props.setActiveProject(props.el.id);
+    await setSelectedProject(props.el.id)
     history.push(`/admin/dashboard/${props.el.id}`);
   };
 
@@ -117,12 +117,4 @@ const DashboardProject = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    activeProductStore: state.activeProductStore
-  };
-};
-
-export default connect((mapStateToProps), {
-  setActiveProject
-})(DashboardProject);
+export default DashboardProject

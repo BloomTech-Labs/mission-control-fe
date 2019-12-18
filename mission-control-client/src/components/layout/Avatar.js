@@ -54,5 +54,5 @@ const AvatarMenu = ({ name }) => {
     </PopupState>
   );
 };
-
-export default AvatarMenu;
+//resetProjects
+export default AvatarMenu
