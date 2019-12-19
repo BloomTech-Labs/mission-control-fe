@@ -1,7 +1,6 @@
 import React from "react";
 import NavLinksLoggedIn from './NavLinksLoggedIn';
 import NavLinksLoggedOut from './NavLinksLoggedOut';
-
 const NavLinks = () => {
   
   return (
