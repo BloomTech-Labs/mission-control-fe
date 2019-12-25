@@ -417,7 +417,7 @@ const projectRoles = `
                 lastname
                 program
                 slackId
-                timezone    
+                timezone
             }
             project {
                 id
@@ -480,7 +480,7 @@ const projectRoleByEmail = email => `
                 start
                 end
                 product {
-                  name  
+                  name
                 }
             }
             person {
