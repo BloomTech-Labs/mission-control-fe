@@ -10,11 +10,11 @@ const securityConfig = {
 	redirectUri: `${window.location.origin}/implicit/callback`,
 	clientId: `${process.env.REACT_APP_CLIENT_ID}}`,
 	pkce: true
-}
+};
 
 const App = () => (
 	<Security {...securityConfig}>
 		<SecureRoute exact path='/' component={Login} />
-			<Route path='/implicit/callback' component={ImplicitCallback} />
+		<Route path='/implicit/callback' component={ImplicitCallback} />
 	</Security>
 );
