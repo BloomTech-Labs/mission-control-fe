@@ -1,3 +1,5 @@
+import gql from "graphql-tag";
+
 //Done
 const persons = `
     query {
@@ -28,6 +30,21 @@ const person = id => `
 `;
 
 // Done
+const productsU = gql`
+  query {
+    products {
+      id
+      name
+      projects {
+        id
+        name
+        start
+        end
+      }
+    }
+  }
+`;
+
 const products = `
     query {
         products {
@@ -44,6 +61,21 @@ const products = `
 `;
 
 // Done
+const productU = gql`
+  query productQuery($id: ID!) {
+    product(where: { id: $id }) {
+      id
+      name
+      projects {
+        id
+        name
+        start
+        end
+      }
+    }
+  }
+`;
+
 const product = id => `
     query {
         product(where:{id:"${id}"}) {
@@ -231,6 +263,20 @@ const productRole = id => `
 `;
 
 // Done
+const projectsU = gql`
+  {
+    projects {
+      id
+      name
+      start
+      end
+      product {
+        id
+        name
+      }
+    }
+  }
+`;
 const projects = `
     query {
         projects{
@@ -247,7 +293,7 @@ const projects = `
 `;
 
 // Done
-const project = id => `
+const project = id => gql`
     query {
         project(where:{id:"${id}"}){
             id
@@ -260,6 +306,33 @@ const project = id => `
             }
         }
     }
+`;
+
+const projectDetailsByIdU = gql`
+  query ProjectDetails($id: ID!) {
+    projectRoles(where: { project: { id: $id } }) {
+      person {
+        id
+        firstname
+        lastname
+        timezone
+        program
+        email
+        githubId
+        slackId
+      }
+      project {
+        id
+        name
+        start
+        end
+        product {
+          id
+          name
+        }
+      }
+    }
+  }
 `;
 
 const fullProjectDetailsById = id => `
@@ -318,6 +391,17 @@ const projectGroupMembers = `
             }
         }
     }
+`;
+
+const projectRolesU = gql`
+  query {
+    projectRoles {
+      id
+      project {
+        id
+      }
+    }
+  }
 `;
 
 // Done
@@ -422,7 +506,9 @@ export {
   // createPerson,
   // updatePerson,
   // deletePerson,
+  productsU,
   products,
+  productU,
   product,
   // createProduct,
   // updateProduct,
@@ -454,6 +540,7 @@ export {
   // createProductRole,
   // updateProductRole,
   // deleteProductRole,
+  projectsU,
   projects,
   project,
   // createProject,
@@ -463,8 +550,10 @@ export {
   // createProjectGroupMember,
   // updateProjectGroupMember,
   // deleteProjectGroupMember,
+  projectRolesU,
   projectRoles,
   projectRole,
+  projectDetailsByIdU,
   fullProjectDetailsById,
   peopleByProjectId,
   projectRoleByEmail

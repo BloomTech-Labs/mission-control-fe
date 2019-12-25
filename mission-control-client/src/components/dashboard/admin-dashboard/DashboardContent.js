@@ -2,12 +2,13 @@ import React from "react";
 import DashboardBanner from "./DashboardBanner";
 import DashboardMetrics from "./DashboardMetrics";
 
-const DashboardContent = () => {
+
+const DashboardContent = (props) => {
 
   return (
     <div className="dashboard-content-container">
       <DashboardBanner />
-      <DashboardMetrics />
+      <DashboardMetrics products={props.products}/>
     </div>
   );
 };
