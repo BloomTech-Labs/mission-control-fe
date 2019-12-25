@@ -1,30 +1,26 @@
-import React, { useEffect } from "react";
-import { getProducts } from '../../../actions/productActions';
-// import { getProjects } from '../../../actions/projectActions';
-import { connect } from "react-redux";
+import React from "react";
 import ProductList from "../products/ProductList";
 import DashboardContent from "./DashboardContent";
+// GraphQL
+import { productsU } from "../../../queries"; // brings in the data from the grapql query
+import { useQuery } from "urql"; //comes default from urql
 
-const DashboardHome = props => {
+const DashboardHome = () => {
+  const [results] = useQuery({ query: productsU });
+  const { data, fetching, error } = results;
 
-  const { getProducts } = props
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
+  if (fetching || !data) {
+    return <h2>Loading...</h2>;
+  }
   return (
-    <div data-testid="dash" className="admin-dashboard-container">
-      <ProductList  products={props.productStore.products} />
-      <DashboardContent />
-    </div>
+    <>
+          <p className="warning">{error}&nbsp;</p>
+          <div data-testid="dash" className="admin-dashboard-container">
+              <ProductList products={data.products} />
+              <DashboardContent products={data.products} />
+          </div>
+    </>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    productStore: state.productStore,
-  };
-};
-
-export default connect(mapStateToProps, { getProducts })(DashboardHome);
+export default DashboardHome;
