@@ -8,7 +8,7 @@ import Login from './Authorization/Login'
 const securityConfig = {
 	issuer: `${process.env.REACT_APP_OKTA_URL}/oauth2/default`,
 	redirectUri: `${window.location.origin}/implicit/callback`,
-	clientId: `${process.env.REACT_APP_CLIENT_ID}}`,
+	clientId: `${process.env.REACT_APP_CLIENT_ID}`,
 	pkce: true
 };
 
@@ -18,3 +18,5 @@ const App = () => (
 		<Route path='/implicit/callback' component={ImplicitCallback} />
 	</Security>
 );
+
+export default App;
