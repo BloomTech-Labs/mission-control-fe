@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
-//Done
+// Done
 const persons = `
     query {
         persons {
@@ -14,7 +14,7 @@ const persons = `
         }
     }
 `;
-//Done
+// Done
 const person = id => `
     query {
         person(where:{id:"${id}"}) {
@@ -103,7 +103,7 @@ const projectGroups = `
     }
 `;
 
-//Done
+// Done
 const roles = `
     query {
         roles {
@@ -114,7 +114,7 @@ const roles = `
     }
 `;
 
-//Done
+// Done
 const role = id => `
     query {
         role(where:{id:"${id}"}) {
@@ -137,7 +137,7 @@ const peopleGroups = `
     }
 `;
 
-//Done
+// Done
 const lambdaRoles = `
 query {
     lambdaRoles {
@@ -159,7 +159,7 @@ query {
     }
 }`;
 
-//Done
+// Done
 const lambdaRole = id => `
     query {
         lambdaRole(where:{id:"${id}"}){
@@ -556,7 +556,7 @@ export {
   projectDetailsByIdU,
   fullProjectDetailsById,
   peopleByProjectId,
-  projectRoleByEmail
+  projectRoleByEmail,
   // createProjectRole,
   // updateProjectRole,
   // deleteProjectRole,

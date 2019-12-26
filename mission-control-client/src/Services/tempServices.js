@@ -1,21 +1,21 @@
 // These are temporary to fetch data from testing
 // Update methods accordingly once Apollo is in place
 
-import axios from 'axios'
+import axios from 'axios';
 
 export const getData = async token => {
-	const result = await axios.get('http://localhost:4000/secure', {
-			headers: {
-				authorization: `Bearer ${token}`
-			}
-	})
+  const result = await axios.get('http://localhost:4000/secure', {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
 
-	return result
-}
+  return result;
+};
 
 export const secureRequest = async (verify, http) => {
-	const token = await verify()
-	const result = await http(token)
+  const token = await verify();
+  const result = await http(token);
 
-	return result
-}
+  return result;
+};
