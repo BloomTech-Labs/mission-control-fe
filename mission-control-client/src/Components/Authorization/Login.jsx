@@ -1,54 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { withAuth } from '@okta/okta-react';
+
 import Dashboard from '../Dashboard/Dashboard';
 
-export default withAuth(
-  class Home extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = { authenticated: null };
-      this.checkAuthentication = this.checkAuthentication.bind(this);
-      this.logout = this.logout.bind(this);
-      this.checkAuthentication();
-    }
+export default withAuth(({ auth }) => {
+  const [authState, setAuthState] = useState(null);
+  const { isAuthenticated, logout, getAccessToken } = auth;
 
-    componentDidUpdate() {
-      this.checkAuthentication();
-    }
-
-    async checkAuthentication() {
-      const {
-        props: {
-          auth: { isAuthenticated },
-        },
-      } = this;
-
+  useEffect(() => {
+    const checkAuthentication = async () => {
       const authenticated = await isAuthenticated();
 
-      const {
-        state: { authenticated: authed },
-      } = this;
-
-      if (authenticated !== authed) {
-        this.setState({ authenticated });
+      if (authenticated !== authState) {
+        setAuthState({ authenticated });
       }
-    }
+    };
+    checkAuthentication();
+  }, [authState, isAuthenticated]);
 
-    async logout() {
-      localStorage.clear();
-      this.props.auth.logout('/');
-    }
+  const invokeOktaLogout = async () => {
+    localStorage.clear();
+    logout('/');
+  };
 
-    render() {
-      const {
-        props: {
-          auth: { getAccessToken },
-        },
-        state: { authenticated },
-      } = this;
-
-      if (authenticated === null) return null;
-      return <Dashboard getToken={getAccessToken} logout={this.logout} />;
-    }
-  }
-);
+  return authState === null ? null : (
+    <Dashboard getToken={getAccessToken} logout={invokeOktaLogout} />
+  );
+});
