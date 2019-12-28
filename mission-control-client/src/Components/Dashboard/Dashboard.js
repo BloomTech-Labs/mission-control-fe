@@ -2,15 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { getData, secureRequest } from '../../Services/tempServices';
 
 const Dashboard = ({ logout, getToken }) => {
-  const [data, setData] = useState({});
+  const [server, setServer] = useState({});
 
   useEffect(() => {
-    secureRequest(getToken, getData).then(res => res && setData(res.data));
-  }, []);
+    (async () => {
+      const { data } = await secureRequest(getToken, getData);
+      setServer(data);
+    })();
+  }, [getToken]);
 
   return (
     <>
-      <pre>{JSON.stringify(data, null, 4)}</pre>
+      <pre>{JSON.stringify(server, null, 4)}</pre>
       <div>This is the Dashboard view</div>
       <button type="submit" onClick={logout}>
         Logout
