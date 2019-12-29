@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { Security, SecureRoute, ImplicitCallback } from '@okta/okta-react';
 
-import Login from './Authorization/Login';
+import Authorization from './Authorization';
 
 // Configures Security component
 const securityConfig = {
@@ -14,7 +14,7 @@ const securityConfig = {
 
 const App = () => (
   <Security {...securityConfig}>
-    <SecureRoute exact path="/" component={Login} />
+    <SecureRoute exact path="/" component={Authorization} />
     <Route path="/implicit/callback" component={ImplicitCallback} />
   </Security>
 );
