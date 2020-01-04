@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getData, secureRequest } from '../../Services/tempServices';
+import { getData, secureRequest } from '../../services/tempServices';
 
 const Dashboard = ({ logout, getToken }) => {
   const [server, setServer] = useState({});
