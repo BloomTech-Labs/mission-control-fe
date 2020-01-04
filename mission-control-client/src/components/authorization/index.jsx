@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { withAuth } from '@okta/okta-react';
 
-import Dashboard from '../Dashboard';
+import Dashboard from '../dashboard';
 
 // OKTA authentication widget, invokes implicit callback to login
 // if the user attempts to access a protected view.
