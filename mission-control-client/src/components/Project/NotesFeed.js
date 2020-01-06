@@ -10,7 +10,7 @@ export default () => {
     <div>
       <h1>Notes Feed</h1>
       {notes.map(note => {
-        return <Note author={{ photo: mockImg, name: 'Tony' }} note={notes} />;
+        return <Note note={note} />;
       })}
     </div>
   );

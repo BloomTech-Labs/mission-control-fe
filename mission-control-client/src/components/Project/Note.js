@@ -2,16 +2,11 @@ import React, { useState } from 'react';
 import Rating from '@material-ui/lab/Rating';
 
 export default ({
-  author,
-  title,
-  body,
-  rating,
-  attachment,
-  attendees,
-  tags,
+  note: { author, title, body, rating, attachment, attendees, tags },
 }) => {
   const [expanded, setExpanded] = useState(false);
   const { avatar, firstName } = author;
+  console.log(attendees);
   return (
     <section>
       <div className="avatar-container">
