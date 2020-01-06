@@ -5,6 +5,7 @@ import { SecureRoute, ImplicitCallback } from '@okta/okta-react';
 import embedAnalytics from '../utils/embedAnalytics';
 
 import Authorization from './Authorization';
+import Project from './Project/Project';
 
 const App = () => {
   const location = useLocation();
@@ -17,6 +18,7 @@ const App = () => {
     <Switch>
       <SecureRoute exact path="/" component={Authorization} />
       <Route path="/implicit/callback" component={ImplicitCallback} />
+      <Route path="/project" component={Project} />
     </Switch>
   );
 };
