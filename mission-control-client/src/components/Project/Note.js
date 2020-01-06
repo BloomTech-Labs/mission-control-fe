@@ -1,11 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Rating from '@material-ui/lab/Rating';
-
-attendees = [
-  { photo: 'xyz', ID: '123' },
-  { photo: 'abc', ID: '456' },
-  { photo: 'def', ID: '789' },
-];
 
 export default ({
   author,
@@ -17,11 +11,11 @@ export default ({
   tags,
 }) => {
   const [expanded, setExpanded] = useState(false);
-  const { photo, name } = author;
+  const { avatar, firstName } = author;
   return (
     <section>
       <div className="avatar-container">
-        <img src={photo} alt={name} className="avatar" />
+        <img src={avatar} alt={firstName} className="avatar" />
       </div>
       <div className="note-container">
         <div className="note-header">
@@ -37,8 +31,10 @@ export default ({
             {attendees.map(attendee => {
               return (
                 <div className="mini-avatar-container">
-                  <img src={attendee.photo} />
-                  <p>{attendee.name}</p>
+                  <img src={attendee.avatar} />
+                  <p>
+                    {attendee.firstName} {attendee.lastName}
+                  </p>
                 </div>
               );
             })}
