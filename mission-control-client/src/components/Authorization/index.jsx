@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { withAuth } from '@okta/okta-react';
 
-import Dashboard from '../dashboard';
+import Dashboard from '../Dashboard';
 
 // OKTA authentication widget, invokes implicit callback to login
 // if the user attempts to access a protected view.
@@ -25,7 +25,6 @@ export default withAuth(({ auth }) => {
     checkAuthentication();
   });
 
-  // Clear localStorage to remove token
   const invokeOktaLogout = async () => {
     localStorage.clear();
     logout('/');
