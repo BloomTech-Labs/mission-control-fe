@@ -4,7 +4,7 @@ import { SecureRoute, ImplicitCallback } from '@okta/okta-react';
 
 import embedAnalytics from '../utils/embedAnalytics';
 
-import Authorization from './authorization';
+import Authorization from './Authorization';
 
 const App = () => {
   const location = useLocation();
