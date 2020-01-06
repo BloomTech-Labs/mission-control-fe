@@ -1,11 +1,9 @@
 import React from 'react';
 
+import Projects from './Projects';
+
 const Dashboard = ({ logout, getToken }) => {
-  return (
-    <>
-      <div>This is the Dashboard view</div>
-    </>
-  );
+  return <Projects />;
 };
 
 export default Dashboard;
