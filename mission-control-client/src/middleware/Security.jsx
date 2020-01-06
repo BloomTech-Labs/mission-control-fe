@@ -1,5 +1,5 @@
 import React from 'react';
-import { Security } from '@okta/okta-react';
+import { Security as SecurityProvider } from '@okta/okta-react';
 
 const config = {
   issuer: `${process.env.REACT_APP_OKTA_URL}/oauth2/default`,
@@ -8,17 +8,19 @@ const config = {
   pkce: true,
 };
 
-export default ({ children }) => {
+const Security = ({ children }) => {
   const { issuer, redirectUri, clientId } = config;
 
   return (
-    <Security
+    <SecurityProvider
       issuer={issuer}
       redirectUri={redirectUri}
       clientId={clientId}
       pkce
     >
       {children}
-    </Security>
+    </SecurityProvider>
   );
 };
+
+export default Security;

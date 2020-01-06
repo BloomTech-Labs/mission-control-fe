@@ -1,4 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-export default ({ children }) => <Router>{children}</Router>;
+const Router = ({ children }) => <BrowserRouter>{children}</BrowserRouter>;
+
+export default Router;
