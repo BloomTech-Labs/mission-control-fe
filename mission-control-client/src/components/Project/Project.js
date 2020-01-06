@@ -1,5 +1,11 @@
 import React from 'react';
+import NotesFeed from './NotesFeed';
 
 export default () => {
-  return <div></div>;
+  return (
+    <>
+      <p>Hey</p>
+      <NotesFeed />
+    </>
+  );
 };
