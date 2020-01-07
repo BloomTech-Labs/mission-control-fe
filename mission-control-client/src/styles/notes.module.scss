@@ -34,6 +34,11 @@ section {
     margin-right: 12px;
     display: flex;
     flex-flow: row;
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
   }
 }
 
