@@ -1,21 +1,13 @@
 @import 'variables.scss';
 
-* {
-  font-family: $noto;
-  font-size: 1rem;
-  color: $dark;
-}
-
 .project-container {
   display: flex;
 }
+
 section {
   display: flex;
   margin-left: 15rem;
   width: 35rem;
-  .avatar-container {
-    height: 150px;
-  }
 }
 
 .avatar-container {
@@ -24,6 +16,9 @@ section {
 
 .avatar {
   border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 10px 0;
 }
 
 .content-container {
@@ -31,25 +26,38 @@ section {
   flex-flow: column;
 }
 
-.note-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-}
-
 .note-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  .note-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    align-items: center;
+  }
+}
+
+.note-body {
+  margin-bottom: 0.7rem;
+  font-size: 0.7rem;
+  color: $copy;
+  line-height: 1.2rem;
 }
 
 .note-footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   button {
-    height: 30px;
-    width: 60px;
+    align-items: flex-start;
+    background: none;
+    border: none;
+    color: $copy;
+    font-size: 0.7rem;
+    height: 25px;
+    width: 45px;
   }
 }
 
@@ -59,14 +67,18 @@ section {
     height: 30px;
     width: 30px;
     border-radius: 50%;
+    margin-top: 10px;
+  }
+  p {
+    font-size: 0.6rem;
+    margin: 18px 0 0 5px;
   }
 }
 
 .collapsed {
   display: flex;
-  margin-left: 5px;
   img {
-    margin-right: -10px;
+    margin-right: -6px;
     box-shadow: -2px 2px $light;
   }
   p {
