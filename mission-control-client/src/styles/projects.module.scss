@@ -1,9 +1,15 @@
 @import 'variables.scss';
 
-* {
+th,
+td,
+a {
   font-family: $noto;
   font-size: 1rem;
-	color: $dark;
+  color: $dark;
+}
+
+a {
+  text-decoration: none;
 }
 
 table {
@@ -33,8 +39,8 @@ th {
 
 .rtc {
   text-align: center;
-	padding-right: 0;
-	padding-left: 50px;
+  padding-right: 0;
+  padding-left: 50px;
 }
 
 tr:nth-child(even) {
