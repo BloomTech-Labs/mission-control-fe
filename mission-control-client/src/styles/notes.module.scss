@@ -10,17 +10,15 @@
   display: flex;
 }
 section {
-  border: 3px solid red;
   display: flex;
   margin-left: 15rem;
   width: 35rem;
   .avatar-container {
-    height: 300px;
+    height: 150px;
   }
 }
 
 .avatar-container {
-  border: 2px solid black;
   width: 75px;
 }
 
@@ -34,14 +32,16 @@ section {
 }
 
 .note-header {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 2rem;
 }
 
 .note-container {
-  border: 2px solid orange;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
 }
 
 .note-footer {

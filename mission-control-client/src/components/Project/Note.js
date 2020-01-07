@@ -17,8 +17,8 @@ export default ({
       <div className={styles['note-container']}>
         <div className={styles['content-container']}>
           <div className={styles['note-header']}>
-            {title}
-            <Rating name="rating" value={rating} readOnly />
+            <h2>{title}</h2>
+            <Rating name="rating" value={rating} readOnly max={3} />
           </div>
           <div className={styles['note-body']}>{body}</div>
         </div>
