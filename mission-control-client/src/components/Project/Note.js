@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import StarRatings from 'react-star-ratings';
 
 import styles from '../../styles/notes.module.scss';
 
@@ -16,6 +17,14 @@ export default ({
         <div className={styles['content-container']}>
           <div className={styles['note-header']}>
             <h2>{title}</h2>
+            <StarRatings
+              numberOfStars={3}
+              rating={rating}
+              className={styles['star-rating']}
+              starRatedColor="rgb(245,73,135)"
+              starDimension="20px"
+              starSpacing=".5px"
+            />
           </div>
           <div className={styles['note-body']}>{body}</div>
         </div>
