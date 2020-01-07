@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Rating from '@material-ui/lab/Rating';
 
 import styles from '../../styles/notes.module.scss';
 
@@ -17,13 +16,6 @@ export default ({
         <div className={styles['content-container']}>
           <div className={styles['note-header']}>
             <h2>{title}</h2>
-            <Rating
-              name="rating"
-              value={rating}
-              readOnly
-              max={3}
-              className={styles['star-color']}
-            />
           </div>
           <div className={styles['note-body']}>{body}</div>
         </div>
