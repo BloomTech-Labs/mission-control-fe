@@ -10,8 +10,6 @@
     "emotion"
   ],
   "dependencies": {
-    "@material-ui/core": "^4.8.3",
-    "@material-ui/lab": "^4.0.0-alpha.39",
     "@okta/okta-react": "^1.2.3",
     "@okta/okta-signin-widget": "^3.4.2",
     "@urql/exchange-graphcache": "^2.0.0",
