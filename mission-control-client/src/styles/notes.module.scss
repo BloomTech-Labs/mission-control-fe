@@ -5,9 +5,15 @@
   font-size: 1rem;
   color: $dark;
 }
+
+.project-container {
+  display: flex;
+}
 section {
   border: 3px solid red;
   display: flex;
+  margin-left: 15rem;
+  width: 35rem;
   .avatar-container {
     height: 300px;
   }
@@ -16,17 +22,26 @@ section {
 .avatar-container {
   border: 2px solid black;
   width: 75px;
-  //   height: 100%;
 }
 
 .avatar {
   border-radius: 50%;
 }
 
+.content-container {
+  display: flex;
+  flex-flow: column;
+}
+
+.note-header {
+  margin-bottom: 2rem;
+}
+
 .note-container {
   border: 2px solid orange;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .note-footer {
@@ -40,14 +55,21 @@ section {
 
 .mini-avatar-container {
   display: flex;
-  flex-direction: row;
   img {
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
   }
 }
 
-// .note-container {
-//   background: red;
-// }
+.collapsed {
+  display: flex;
+  margin-left: 5px;
+  img {
+    margin-right: -10px;
+    box-shadow: -2px 2px $light;
+  }
+  p {
+    display: none;
+  }
+}
