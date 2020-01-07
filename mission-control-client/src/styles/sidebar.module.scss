@@ -10,11 +10,12 @@
 }
 
 .orgIcon {
-    background-color: red;
+    background-color: $accent;
     height: 50px;
     width: 50px;
     margin: 2rem;
 }
+
 
 .links {
     display: flex;
@@ -30,7 +31,13 @@
     border-left: 5px solid #FBFBFB;
 }
 
-.linka {
-    border-left: 5px solid $accent;
+.link:hover {
+    color: $accent;
+}
+
+.current {
+    border-left: 6px solid $accent;
+    // border-top-left-radius: 2px;
+    // border-bottom-left-radius: 2px;
     font-weight: 900;
 }
