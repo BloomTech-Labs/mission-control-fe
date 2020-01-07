@@ -1,0 +1,53 @@
+@import 'variables.scss';
+
+* {
+  font-family: $noto;
+  font-size: 1rem;
+  color: $dark;
+}
+section {
+  border: 3px solid red;
+  display: flex;
+  .avatar-container {
+    height: 300px;
+  }
+}
+
+.avatar-container {
+  border: 2px solid black;
+  width: 75px;
+  //   height: 100%;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.note-container {
+  border: 2px solid orange;
+  display: flex;
+  flex-direction: column;
+}
+
+.note-footer {
+  display: flex;
+  justify-content: space-between;
+  button {
+    height: 30px;
+    width: 60px;
+  }
+}
+
+.mini-avatar-container {
+  display: flex;
+  flex-direction: row;
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+}
+
+// .note-container {
+//   background: red;
+// }
