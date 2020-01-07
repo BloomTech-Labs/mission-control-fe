@@ -8,7 +8,6 @@ export default ({
 }) => {
   const [expanded, setExpanded] = useState(false);
   const { avatar, firstName } = author;
-  console.log(attendees);
   return (
     <section>
       <div className={styles['avatar-container']}>
@@ -18,7 +17,13 @@ export default ({
         <div className={styles['content-container']}>
           <div className={styles['note-header']}>
             <h2>{title}</h2>
-            <Rating name="rating" value={rating} readOnly max={3} />
+            <Rating
+              name="rating"
+              value={rating}
+              readOnly
+              max={3}
+              className={styles['star-color']}
+            />
           </div>
           <div className={styles['note-body']}>{body}</div>
         </div>
