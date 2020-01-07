@@ -6,7 +6,7 @@ import {
   orgIcon,
   links,
   link,
-  linka,
+  current,
 } from '../../../styles/sidebar.module.scss';
 
 const Sidebar = props => {
@@ -14,10 +14,10 @@ const Sidebar = props => {
     <div className={sidebar}>
       <div className={orgIcon}></div>
       <div className={links}>
-        <NavLink to="/" className={link} activeClassName={linka}>
+        <NavLink to="/" className={link} activeClassName={current}>
           Projects
         </NavLink>
-        <NavLink to="/students" className={link} activeClassName={linka}>
+        <NavLink to="/students" className={link} activeClassName={current}>
           Students
         </NavLink>
       </div>
