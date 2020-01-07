@@ -7,7 +7,7 @@ import { cacheExchange as normalizedCache } from '@urql/exchange-graphcache';
 const cacheExchange = normalizedCache({});
 
 const client = new Client({
-  url: `${process.env.REACT_APP_GRAPHQL_URL}`,
+  url: `http://localhost:4000`,
   exchanges: [dedupExchange, cacheExchange, fetchExchange],
 });
 
