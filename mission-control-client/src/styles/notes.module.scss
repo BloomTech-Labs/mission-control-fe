@@ -8,6 +8,7 @@ section {
   display: flex;
   margin-left: 15rem;
   width: 35rem;
+  margin-bottom: 10px;
 }
 
 .avatar-container {
@@ -31,7 +32,6 @@ section {
   flex-wrap: wrap;
   .mini-avatar-container {
     width: 40%;
-    margin-right: 12px;
     display: flex;
     flex-flow: row;
     p {
@@ -99,6 +99,9 @@ section {
     box-shadow: -2px 2px $light;
   }
   p {
+    display: none;
+  }
+  button {
     display: none;
   }
 }

@@ -8,7 +8,10 @@ export default () => {
   return (
     <div className={styles['project-container']}>
       <Sidebar />
+      {/* Header */}
+      {/* Input Field */}
       <NotesFeed />
+      {/* Team */}
     </div>
   );
 };
