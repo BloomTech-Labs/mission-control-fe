@@ -15,14 +15,16 @@ export default ({
         <img src={avatar} alt={firstName} className={styles['avatar']} />
       </div>
       <div className={styles['note-container']}>
-        <div className={styles['note-header']}>
-          {title}
-          <Rating name="rating" value={rating} readOnly />
+        <div className={styles['content-container']}>
+          <div className={styles['note-header']}>
+            {title}
+            <Rating name="rating" value={rating} readOnly />
+          </div>
+          <div className={styles['note-body']}>{body}</div>
         </div>
-        <div className={styles['note-body']}>{body}</div>
         <div className={styles['note-footer']}>
           <div
-            className={expanded ? styles['expanded'] : styles['linear']}
+            className={expanded ? styles['expanded'] : styles['collapsed']}
             onClick={() => setExpanded(!expanded)}
           >
             {attendees.map(attendee => {
