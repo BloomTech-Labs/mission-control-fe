@@ -26,6 +26,17 @@ section {
   flex-flow: column;
 }
 
+.expanded {
+  display: flex;
+  flex-wrap: wrap;
+  .mini-avatar-container {
+    width: 40%;
+    margin-right: 12px;
+    display: flex;
+    flex-flow: row;
+  }
+}
+
 .note-container {
   display: flex;
   flex-direction: column;
@@ -49,7 +60,7 @@ section {
 .note-footer {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   button {
     align-items: flex-start;
     background: none;
@@ -63,6 +74,7 @@ section {
 
 .mini-avatar-container {
   display: flex;
+  flex-wrap: wrap;
   img {
     height: 30px;
     width: 30px;
