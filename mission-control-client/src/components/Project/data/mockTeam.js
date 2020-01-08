@@ -74,7 +74,7 @@ export default [
       title: 'Web',
     },
     person: {
-      firstName: 'Tommy',
+      firstName: 'Tommy5',
       lastName: 'Coleman',
       avatar: 'https://ca.slack-edge.com/T4JUEB3ME-UHXNFRBFE-b1accb251340-512',
     },

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import tempStyle from '../../styles/notes.module.scss';
+import styles from '../../styles/team.module.scss';
 
 //Takes in an array of project roles
 const buildTeamList = team => {
@@ -25,17 +25,17 @@ const buildTeamList = team => {
 export default ({ team }) => {
   const renderedTeam = buildTeamList(team);
   return (
-    <div>
+    <div className={styles['team-container']}>
       <h2>Team</h2>
       {Object.keys(renderedTeam).map(role => {
         return (
-          <div>
+          <div className={styles['member-container']}>
             <h3>{role}</h3>
             {renderedTeam[role].map(name => {
               return (
-                <div>
-                  <img src={name.avatar} className={tempStyle['avatar']} />
-                  <p>
+                <div className={styles['members']}>
+                  <img src={name.avatar} className={styles['avatar']} />
+                  <p className={styles['team-names']}>
                     {name.firstName} {name.lastName}
                   </p>
                 </div>
