@@ -1,11 +1,10 @@
 import React from 'react';
 
 import NotesFeed from './NotesFeed';
-import Sidebar from '../Layout/Sidebar';
 import Team from './Team';
 import NoteEditor from './NoteEditor';
 
-import styles from '../../styles/notes.module.scss';
+import styles from '../../styles/projectView.module.scss';
 
 import teamList from './data/mockTeam';
 import mockSession from './data/mockEditor';
@@ -13,12 +12,15 @@ import mockSession from './data/mockEditor';
 export default () => {
   return (
     <div className={styles['project-container']}>
-      <Sidebar />
       {/* Header */}
-      <NoteEditor user={mockSession.user} team={mockSession.attendees} />
-      <NotesFeed />
+      <div className={styles['note-container']}>
+        <NoteEditor user={mockSession.user} team={mockSession.attendees} />
+        <NotesFeed />
+      </div>
       {/* Team */}
-      <Team team={teamList} />
+      <div className={styles['team-container']}>
+        <Team team={teamList} />
+      </div>
     </div>
   );
 };

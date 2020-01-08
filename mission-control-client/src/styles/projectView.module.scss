@@ -1,0 +1,11 @@
+@import 'variables.scss';
+
+.project-container {
+  display: flex;
+}
+
+.note-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
