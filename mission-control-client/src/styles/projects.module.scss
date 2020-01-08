@@ -1,0 +1,52 @@
+@import 'variables.scss';
+
+th,
+td,
+a {
+  font-family: $noto;
+  font-size: 1rem;
+  color: $dark;
+
+a {
+  text-decoration: none;
+}
+
+table {
+  margin-left: 15rem;
+  width: 75%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 20px 20px;
+  border-bottom: 2px solid rgba(33, 34, 47, 0.05);
+  text-align: left;
+}
+
+th {
+  text-transform: uppercase;
+  text-align: left;
+  padding: 8px 20px;
+  font-size: 0.7rem;
+  font-weight: 900;
+  border-bottom: 2px solid rgba(33, 34, 47, 0.16);
+}
+
+.rtd {
+  text-align: right;
+}
+
+.rtc {
+  text-align: center;
+  padding-right: 0;
+  padding-left: 50px;
+}
+
+tr:nth-child(even) {
+  background: $light;
+}
+
+.title {
+  color: $accent;
+  font-weight: 900;
+}

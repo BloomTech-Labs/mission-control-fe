@@ -1,25 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { getData, secureRequest } from '../../services/tempServices';
+import React from 'react';
+
+import Projects from './Projects';
+import Sidebar from '../Layout/Sidebar';
 
 const Dashboard = ({ logout, getToken }) => {
-  const [server, setServer] = useState({});
+  
+  return [
+    <button type="submit" onClick={logout}>
+      Logout
+    </button>,
+    <Projects />,
+  ];
 
-  useEffect(() => {
-    (async () => {
-      const { data } = await secureRequest(getToken, getData);
-      setServer(data);
-    })();
-  }, [getToken]);
-
-  return (
-    <>
-      <pre>{JSON.stringify(server, null, 4)}</pre>
-      <div>This is the Dashboard view</div>
-      <button type="submit" onClick={logout}>
-        Logout
-      </button>
-    </>
-  );
 };
 
 export default Dashboard;
