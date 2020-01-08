@@ -22,6 +22,7 @@ export default ({
               rating={rating}
               className={styles['star-rating']}
               starRatedColor="rgb(245,73,135)"
+              starEmptyColor="rgba(245,73,135,.2)"
               starDimension="20px"
               starSpacing=".5px"
             />
