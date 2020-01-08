@@ -1,0 +1,43 @@
+@import 'variables.scss';
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 10rem;
+    background-color: #FBFBFB;
+    position: fixed;
+    height: 100vh;
+}
+
+.orgIcon {
+    background-color: $accent;
+    height: 50px;
+    width: 50px;
+    margin: 2rem;
+}
+
+
+.links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 20%;
+}
+
+.link {
+    font-family: $fira;
+    text-decoration: none;
+    padding-left: 2rem;
+    border-left: 5px solid #FBFBFB;
+}
+
+.link:hover {
+    color: $accent;
+}
+
+.current {
+    border-left: 6px solid $accent;
+    // border-top-left-radius: 2px;
+    // border-bottom-left-radius: 2px;
+    font-weight: 900;
+}

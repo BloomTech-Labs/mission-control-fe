@@ -4,6 +4,8 @@ import App from './components/App';
 
 import Middleware from './middleware';
 
+import 'normalize.css';
+
 render(
   <Middleware>
     <App />
