@@ -3,8 +3,6 @@ import { useQuery } from 'urql';
 import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
 
-import { getToken } from '../../../services/tempServices';
-
 import styles from '../../../styles/projects.module.scss';
 
 const FEED_QUERY = gql`
@@ -21,7 +19,7 @@ const FEED_QUERY = gql`
 
 const Projects = () => {
   const [state] = useQuery({ query: FEED_QUERY });
-  const { data, error, fetching } = state;
+  const { data, fetching } = state;
 
   if (fetching) return <div>fetching</div>;
 
