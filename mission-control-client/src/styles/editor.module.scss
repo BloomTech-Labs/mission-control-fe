@@ -1,28 +1,53 @@
 @import 'variables.scss';
 
+h2 {
+  font-size: 1.4rem;
+  font-family: $fira;
+}
 .editor-container {
   margin-top: 5vh;
   width: 35rem;
   display: flex;
 
   .avatar-container {
+    padding: 0.5rem;
     img {
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
     }
   }
-  form {
-    width: 100%;
+  .form-container {
+    max-width: 100%;
     background: rgba(33, 34, 47, 0.1);
-    padding: 5vh 5% 0 5%;
+    padding: 5vh 5% 5vh 5%;
+    margin: 0 5% 5%;
+    border-radius: 5%;
     input {
+      background: inherit;
       border: none;
       width: 70%;
+    }
+    input:focus {
+      outline: none;
+    }
+    textarea {
       background: inherit;
+      padding: 0;
+      border: none;
+      min-width: 400px;
+      max-width: 100%;
+      min-height: 20vh;
+      resize: none;
+      &:focus {
+        outline: none;
+      }
     }
   }
   .form-header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 2vh;
   }
   .body-input {
     height: 15vh;
@@ -32,7 +57,6 @@
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
-    margin: 10vh 0 10vh;
     width: 100%;
     p {
       font-size: 0.6rem;
