@@ -4,5 +4,9 @@ export default () => {
     accessToken: { accessToken },
   } = JSON.parse(token);
 
-  return accessToken;
+  if (token)
+    return {
+      accessToken,
+      type: 'OKTA',
+    };
 };
