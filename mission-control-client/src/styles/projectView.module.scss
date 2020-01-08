@@ -4,8 +4,11 @@
   display: flex;
 }
 
-.note-container {
+.editor-feed-container {
   display: flex;
   flex-flow: column;
-  align-items: center;
+}
+
+.team-container {
+  margin-left: 5%;
 }
