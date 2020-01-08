@@ -13,7 +13,7 @@ export default () => {
   return (
     <div className={styles['project-container']}>
       {/* Header */}
-      <div className={styles['note-container']}>
+      <div className={styles['editor-feed-container']}>
         <NoteEditor user={mockSession.user} team={mockSession.attendees} />
         <NotesFeed />
       </div>

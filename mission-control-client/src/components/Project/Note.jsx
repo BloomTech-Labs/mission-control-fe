@@ -9,7 +9,7 @@ export default ({
   const [expanded, setExpanded] = useState(false);
   const { avatar, firstName } = author;
   return (
-    <section>
+    <section className={styles['project-note']}>
       <div className={styles['avatar-container']}>
         <img src={avatar} alt={firstName} className={styles['avatar']} />
       </div>
