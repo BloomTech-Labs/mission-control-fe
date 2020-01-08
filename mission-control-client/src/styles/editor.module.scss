@@ -1,0 +1,81 @@
+@import 'variables.scss';
+
+.editor-container {
+  margin-top: 5vh;
+  width: 35rem;
+  display: flex;
+
+  .avatar-container {
+    img {
+      border-radius: 50%;
+    }
+  }
+  form {
+    width: 100%;
+    background: rgba(33, 34, 47, 0.1);
+    padding: 5vh 5% 0 5%;
+    input {
+      border: none;
+      width: 70%;
+      background: inherit;
+    }
+  }
+  .form-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  .body-input {
+    height: 15vh;
+  }
+  .text-footer {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10vh 0 10vh;
+    width: 100%;
+    p {
+      font-size: 0.6rem;
+    }
+    img {
+      width: 25px;
+      border-radius: 50%;
+    }
+    .expanded {
+      .attendees-avatars {
+        display: flex;
+        flex-flow: wrap;
+      }
+      .mini-avatar-container {
+        display: flex;
+        align-items: center;
+        width: 40%;
+        p {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          margin-left: 0.5rem;
+        }
+        button {
+          border: none;
+          background: none;
+        }
+      }
+    }
+    .collapsed {
+      .attendees-avatars {
+        display: flex;
+        img {
+          margin-right: -6px;
+          box-shadow: -2px 2px rgba(33, 34, 47, 0.1);
+        }
+        p {
+          display: none;
+        }
+        button {
+          display: none;
+        }
+      }
+    }
+  }
+}
