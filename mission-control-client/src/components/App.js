@@ -1,24 +1,27 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { SecureRoute, ImplicitCallback } from '@okta/okta-react';
 
 import { embedAnalytics } from '../utils';
 
 import Authorization from './Authorization';
-import Project from './Project/Project.jsx';
+import Project from './Project/Project';
+import ProjectListView from './ProjectListView';
 
 const App = () => {
   const location = useLocation();
 
-  useEffect(() => {
+  React.useEffect(() => {
     embedAnalytics();
   }, [location]);
 
   return (
     <Switch>
-      <SecureRoute exact path="/" component={Authorization} />
       <Route path="/implicit/callback" component={ImplicitCallback} />
       <Route path="/project" component={Project} />
+      {/* Authorization component renders ProjectListView implicitly */}
+      <Route path="/" component={ProjectListView} />
+      <SecureRoute exact path="/" component={Authorization} />
     </Switch>
   );
 };
