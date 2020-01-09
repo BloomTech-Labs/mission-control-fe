@@ -1,9 +1,28 @@
 import React from 'react';
-import dummyData from '../data';
+import { useQuery } from 'urql';
+import gql from 'graphql-tag';
+import { Link } from 'react-router-dom';
 
 import styles from '../../../styles/projects.module.scss';
 
+const FEED_QUERY = gql`
+  {
+    info {
+      project
+      team_lead
+      section_lead
+      status
+      update
+    }
+  }
+`;
+
 const Projects = () => {
+  const [state] = useQuery({ query: FEED_QUERY });
+  const { data, fetching } = state;
+
+  if (fetching) return <div>fetching</div>;
+
   return (
     <table>
       <tr>
@@ -13,9 +32,13 @@ const Projects = () => {
         <th className={styles.rtd}>Last Updated</th>
         <th className={styles.rtc}>Status</th>
       </tr>
-      {dummyData.map(project => (
+      {data.info.map(project => (
         <tr>
-          <td className={styles.title}>{project.project}</td>
+          <td className={styles.title}>
+            <Link to="/" className={styles.title}>
+              {project.project}
+            </Link>
+          </td>
           <td>{project.section_lead}</td>
           <td>{project.team_lead}</td>
           <td className={styles.rtd}>{project.update}</td>
