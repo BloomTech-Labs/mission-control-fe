@@ -1,13 +1,19 @@
 import React from 'react';
 
+import styles from '../../styles/dashboard.module.scss';
+
 import Projects from './Projects';
 import Sidebar from '../Layout/Sidebar';
 
 const Dashboard = ({ logout, getToken }) => {
   return (
-    <div>
-      <Sidebar />
-      <Projects />
+    <div className={styles['dashboard-parent-container']}>
+      <span className={styles['dashboard-sidebar']}>
+        <Sidebar />
+      </span>
+      <span className={styles['dashboard-project-list']}>
+        <Projects />
+      </span >
     </div>
   );
 };
