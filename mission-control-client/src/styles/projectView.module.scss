@@ -1,5 +1,17 @@
 @import 'variables.scss';
 
+.parent-project-container {
+  display: flex;
+}
+
+.project-page-sidebar {
+  margin-right: 5%;
+}
+
+.project-page-contents {
+  width: 100%;
+}
+
 .project-container {
   display: flex;
 }

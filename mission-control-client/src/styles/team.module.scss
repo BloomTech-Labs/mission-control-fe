@@ -20,6 +20,8 @@
 .member-container {
   display: flex;
   flex-direction: column;
+  width: max-content;
+
   h3 {
     font-family: $fira;
     font-style: normal;
