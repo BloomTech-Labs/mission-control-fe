@@ -8,18 +8,30 @@ import styles from '../../styles/projectView.module.scss';
 
 import teamList from './data/mockTeam';
 import mockSession from './data/mockEditor';
+import Header from './Header';
+import Sidebar from '../Layout/Sidebar';
 
 export default () => {
   return (
-    <div className={styles['project-container']}>
-      {/* Header */}
-      <div className={styles['editor-feed-container']}>
-        <NoteEditor user={mockSession.user} team={mockSession.attendees} />
-        <NotesFeed />
+    <div className={styles['parent-project-container']}>
+      <div className={styles['project-page-sidebar']}>
+        <Sidebar />
       </div>
-      {/* Team */}
-      <div className={styles['team-container']}>
-        <Team team={teamList} />
+      <div className={styles['project-page-contents']}>
+        <div>
+          <Header />
+        </div>
+        <div className={styles['project-container']}>
+          {/* Header */}
+          <div className={styles['editor-feed-container']}>
+            <NoteEditor user={mockSession.user} team={mockSession.attendees} />
+            <NotesFeed />
+          </div>
+          {/* Team */}
+          <div className={styles['team-container']}>
+            <Team team={teamList} />
+          </div>
+        </div>
       </div>
     </div>
   );
