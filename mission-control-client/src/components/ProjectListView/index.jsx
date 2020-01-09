@@ -17,7 +17,8 @@ const FEED_QUERY = gql`
   }
 `;
 
-const ProjectListView = () => {
+const ProjectListView = props => {
+  console.log(props);
   const [state] = useQuery({ query: FEED_QUERY });
   const { fetching } = state;
   const data = [
