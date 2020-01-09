@@ -6,7 +6,7 @@ h2 {
 }
 
 .editor-container {
-  margin-top: 5vh;
+  margin-top: 25px;
   display: flex;
   .avatar-container {
     padding: 0.5rem;
@@ -18,9 +18,10 @@ h2 {
   }
   .form-container {
     width: 30rem;
-    background: rgba(33, 34, 47, 0.1);
+    background: rgba(33, 34, 47, 0.02);
+    border: solid 0.05rem rgba(33, 34, 47, 0.2);
     padding: 2% 3%;
-    border-radius: 5%;
+    border-radius: 1rem;
     input {
       background: inherit;
       border: none;
@@ -102,7 +103,8 @@ h2 {
     .button-container {
       display: flex;
       justify-content: space-between;
-      height: 8vh;
+      height: 4.5vh;
+      max-height: 40px;
       .attach-btn {
         width: 5rem;
         color: $accent;
