@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Logo from '../../../images/logo.png';
 
 import {
   sidebar,
-  orgIcon,
+  logo,
   links,
   link,
   current,
@@ -12,7 +13,9 @@ import {
 const Sidebar = props => {
   return (
     <div className={sidebar}>
-      <div className={orgIcon}></div>
+      <div>
+        <img src={Logo} className={logo} alt='mission-control-logo' />
+      </div>
       <div className={links}>
         <NavLink to="/" className={link} activeClassName={current}>
           Projects
