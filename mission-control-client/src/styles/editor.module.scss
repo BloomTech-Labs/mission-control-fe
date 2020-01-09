@@ -6,9 +6,7 @@ h2 {
 }
 .editor-container {
   margin-top: 5vh;
-  width: 35rem;
   display: flex;
-
   .avatar-container {
     padding: 0.5rem;
     img {
@@ -18,15 +16,13 @@ h2 {
     }
   }
   .form-container {
-    max-width: 100%;
+    width: 30rem;
     background: rgba(33, 34, 47, 0.1);
-    padding: 5vh 5% 5vh 5%;
-    margin: 0 5% 5%;
+    padding: 2% 3%;
     border-radius: 5%;
     input {
       background: inherit;
       border: none;
-      width: 70%;
     }
     input:focus {
       outline: none;
@@ -89,6 +85,7 @@ h2 {
     .collapsed {
       .attendees-avatars {
         display: flex;
+        margin-top: 0.5vh;
         img {
           margin-right: -6px;
           box-shadow: -2px 2px rgba(33, 34, 47, 0.1);
@@ -99,6 +96,29 @@ h2 {
         button {
           display: none;
         }
+      }
+    }
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      height: 8vh;
+      .attach-btn {
+        width: 5rem;
+        color: $accent;
+        border: none;
+        background: inherit;
+        svg {
+          path {
+            color: $accent;
+          }
+        }
+      }
+      .save-btn {
+        background: $accent;
+        border-radius: 8%;
+        color: white;
+        width: 5rem;
+        border: none;
       }
     }
   }
