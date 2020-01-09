@@ -3,7 +3,7 @@ import { useQuery } from 'urql';
 import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
 
-import styles from '../../../styles/projects.module.scss';
+import styles from '../../styles/projects.module.scss';
 
 const FEED_QUERY = gql`
   {
@@ -17,9 +17,18 @@ const FEED_QUERY = gql`
   }
 `;
 
-const Projects = () => {
+const ProjectListView = () => {
   const [state] = useQuery({ query: FEED_QUERY });
-  const { data, fetching } = state;
+  const { fetching } = state;
+  const data = [
+    {
+      project: 'aaa',
+      section_lead: 'aaa',
+      team_lead: 'aaaa',
+      update: 'aaa',
+      status: 'aaa',
+    },
+  ];
 
   if (fetching) return <div>fetching</div>;
 
@@ -32,7 +41,7 @@ const Projects = () => {
         <th className={styles.rtd}>Last Updated</th>
         <th className={styles.rtc}>Status</th>
       </tr>
-      {data.info.map(project => (
+      {data.map(project => (
         <tr>
           <td className={styles.title}>
             <Link to="/" className={styles.title}>
@@ -49,4 +58,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default ProjectListView;
