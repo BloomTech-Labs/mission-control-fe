@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 
 import styles from '../../styles/editor.module.scss';
 
@@ -13,18 +15,41 @@ import styles from '../../styles/editor.module.scss';
 export default ({ user, team }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [rating, setRating] = useState('');
-  const [expanded, setExpanded] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [expandedAttendees, setExpandedAttendees] = useState(false);
   const [attendees, setAttendees] = useState(team);
+  const [expandedAbsent, setExpandedAbsent] = useState(false);
+  const [absentees, setAbsentees] = useState([]);
 
-  const deleteAttendee = e => {
+  const markAbsent = e => {
     e.preventDefault();
     e.stopPropagation();
     const deleted = e.target.previousSibling.textContent.split(' ');
     const newAttendees = attendees.filter(({ firstName, lastName }) => {
-      return firstName != deleted[0] && lastName != deleted[1];
+      return firstName !== deleted[0] && lastName !== deleted[1];
     });
+    const deletedAttendee = attendees.filter(({ firstName, lastName }) => {
+      return firstName === deleted[0] && lastName === deleted[1];
+    });
+    const newAbsentees = [...absentees, ...deletedAttendee];
     setAttendees(newAttendees);
+    setAbsentees(newAbsentees);
+  };
+
+  const markAttended = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    const attended = e.target.previousSibling.textContent.split(' ');
+    const newAttendee = absentees.filter(({ firstName, lastName }) => {
+      return firstName === attended[0] && lastName === attended[1];
+    });
+    const newAttendees = [...attendees, ...newAttendee];
+    const newAbsentees = absentees.filter(({ firstName, lastName }) => {
+      return firstName !== attended[0] && lastName !== attended[1];
+    });
+
+    setAttendees(newAttendees);
+    setAbsentees(newAbsentees);
   };
 
   return (
@@ -34,7 +59,18 @@ export default ({ user, team }) => {
         <div className={styles['avatar-container']}>
           <img src={user.avatar} />
         </div>
-        <form className={styles['form-container']}>
+        <form
+          onSubmit={e => {
+            e.preventDefault();
+            console.log({
+              title,
+              body,
+              rating,
+              attendees,
+            });
+          }}
+          className={styles['form-container']}
+        >
           <div className={styles['form-header']}>
             <input
               placeholder="Meeting Topic"
@@ -51,6 +87,7 @@ export default ({ user, team }) => {
               changeRating={rating => setRating(rating)}
               starDimension="20px"
               starSpacing=".5px"
+              rating={rating}
             />
           </div>
           <div className={styles['body-container']}>
@@ -62,27 +99,57 @@ export default ({ user, team }) => {
             />
           </div>
           <div className={styles['text-footer']}>
-            <div
-              className={expanded ? styles['expanded'] : styles['collapsed']}
-              onClick={() => setExpanded(!expanded)}
-            >
-              <div className={styles['attendees-avatars']}>
-                {attendees.map(attendee => {
-                  return (
-                    <div className={styles['mini-avatar-container']}>
-                      <img src={attendee.avatar} />
-                      <p>
-                        {attendee.firstName} {attendee.lastName}
-                      </p>
-                      <button onClick={deleteAttendee}>x</button>
-                    </div>
-                  );
-                })}
+            <div className="attendance">
+              <div
+                className={
+                  expandedAttendees ? styles['expanded'] : styles['collapsed']
+                }
+                onClick={() => setExpandedAttendees(!expandedAttendees)}
+              >
+                Attendees
+                <div className={styles['attendees-avatars']}>
+                  {attendees.map(({ firstName, lastName, avatar }) => {
+                    return (
+                      <div className={styles['mini-avatar-container']}>
+                        <img src={avatar} alt={`${firstName} ${lastName}`} />
+                        <p>
+                          {firstName} {lastName}
+                        </p>
+                        <button onClick={markAbsent}>x</button>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
+              {!!absentees.length && (
+                <div
+                  className={
+                    expandedAbsent ? styles['expanded'] : styles['collapsed']
+                  }
+                  onClick={() => setExpandedAbsent(!expandedAbsent)}
+                >
+                  Absent
+                  <div className={styles['attendees-avatars']}>
+                    {absentees.map(({ firstName, lastName, avatar }) => {
+                      return (
+                        <div className={styles['mini-avatar-container']}>
+                          <img src={avatar} />
+                          <p>
+                            {firstName} {lastName}
+                          </p>
+                          <button onClick={markAttended}>x</button>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
-            <div className="button-container">
-              <button>Attach</button>
-              <button>Save</button>
+            <div className={styles['button-container']}>
+              <button className={styles['attach-btn']}>
+                <FontAwesomeIcon icon={faPaperclip} /> Attach
+              </button>
+              <button className={styles['save-btn']}>Save</button>
             </div>
           </div>
         </form>
