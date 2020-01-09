@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { SecureRoute, ImplicitCallback } from '@okta/okta-react';
 
-import embedAnalytics from '../utils/embedAnalytics';
+import { embedAnalytics } from '../utils';
 
 import Authorization from './Authorization';
 import Project from './Project/Project.jsx';

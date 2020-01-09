@@ -1,9 +1,15 @@
 @import 'variables.scss';
 
-* {
+th,
+td,
+a {
   font-family: $noto;
   font-size: 1rem;
   color: $dark;
+}
+
+a {
+  text-decoration: none;
 }
 
 table {

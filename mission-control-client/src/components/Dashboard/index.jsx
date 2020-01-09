@@ -11,9 +11,12 @@ const Dashboard = ({ logout, getToken }) => {
       <span className={styles['dashboard-sidebar']}>
         <Sidebar />
       </span>
+      <button type="submit" onClick={logout}>
+        Logout
+      </button>
       <span className={styles['dashboard-project-list']}>
         <Projects />
-      </span >
+      </span>
     </div>
   );
 };
