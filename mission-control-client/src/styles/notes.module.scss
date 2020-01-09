@@ -8,7 +8,6 @@ section {
   display: flex;
   margin-left: 15rem;
   width: 35rem;
-  margin-bottom: 10px;
 }
 
 .avatar-container {
@@ -47,11 +46,19 @@ section {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
+  padding-bottom: 20px;
+  padding-top: 10px;
   .note-header {
     display: flex;
     justify-content: space-between;
     font-size: 0.75rem;
     align-items: center;
+  }
+}
+
+section:not(:last-child) {
+  .note-container {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   }
 }
 

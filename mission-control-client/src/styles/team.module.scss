@@ -20,6 +20,7 @@
 .member-container {
   display: flex;
   flex-direction: column;
+  padding-bottom: 5px;
   h3 {
     font-family: $fira;
     font-style: normal;
@@ -29,6 +30,11 @@
     text-transform: uppercase;
     color: $copy;
   }
+}
+
+.member-container:nth-child(3) {
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .team-container {
