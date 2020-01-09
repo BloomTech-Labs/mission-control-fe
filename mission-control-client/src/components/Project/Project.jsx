@@ -9,14 +9,10 @@ import styles from '../../styles/projectView.module.scss';
 import teamList from './data/mockTeam';
 import mockSession from './data/mockEditor';
 import Header from './Header';
-import Sidebar from '../Layout/Sidebar';
 
 export default () => {
   return (
     <div className={styles['parent-project-container']}>
-      <div className={styles['project-page-sidebar']}>
-        <Sidebar />
-      </div>
       <div className={styles['project-page-contents']}>
         <div>
           <Header />

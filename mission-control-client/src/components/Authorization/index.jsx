@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { withAuth } from '@okta/okta-react';
 
-import Dashboard from '../Dashboard';
+import ProjectListView from '../ProjectListView';
 
 // OKTA authentication widget, invokes implicit callback to login
 // if the user attempts to access a protected view.
@@ -31,6 +31,6 @@ export default withAuth(({ auth }) => {
   };
 
   return authState === null ? null : (
-    <Dashboard getToken={getAccessToken} logout={invokeOktaLogout} />
+    <ProjectListView getToken={getAccessToken} logout={invokeOktaLogout} />
   );
 });
