@@ -1,9 +1,11 @@
-$primary: #AB0027;
-$secondary: #1A3777;
-$accent: #FDD421;
-$background: #E5E5E5;
-$gray-accent: rgb(235, 235, 235);
-$nav-link: #313131;
-$nav-link-selected: #0051BE;
-$admin-product-background: #FFFFFF;
-$user-project-background: #FFFFFF;
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,400i,500|Noto+Sans+KR:400,500,700,900&display=swap');
+
+// Fonts
+$noto: 'Noto Sans KR', sans-serif;
+$fira: 'Fira Sans', sans-serif;
+
+// Colors
+$accent: #f54987;
+$dark: #21222f;
+$light: #fbfbfb;
+$copy: #71727a;
