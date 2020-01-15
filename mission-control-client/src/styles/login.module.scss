@@ -1,0 +1,107 @@
+@import 'variables.scss';
+
+body {
+  background-color: $dark;
+}
+
+.container {
+  margin: 3rem auto;
+  border: 2px solid $copy;
+  border-radius: 10px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 30rem;
+  background-color: $light;
+}
+
+.login-header {
+  font-family: $noto;
+  font-weight: 900;
+  font-size: 2rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.login-form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  align-items: center;
+  justify-content: space-between;
+  height: 10rem;
+}
+
+input {
+  -webkit-transition: width 0.2s ease-in-out;
+  transition: width 0.2s ease-in-out;
+  height: 2rem;
+  width: 15rem;
+  border: none;
+  border-bottom: 1px solid $copy;
+  font-size: 1.2rem;
+  text-decoration: none;
+  background: transparent;
+  padding: 0.2rem 1rem;
+}
+
+input:focus {
+  width: 18rem;
+  border-bottom: 1px solid $accent;
+  outline: none;
+}
+
+.signup {
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  font-family: $fira;
+}
+
+p {
+  color: $copy;
+  margin: 0 1rem;
+}
+
+.login-button {
+  padding: 0.5rem 1rem;
+  -webkit-transition: background 0.15s ease-in-out;
+  transition: background 0.15s ease-in-out;
+  -webkit-transition: color 0.1s ease-in-out;
+  transition: color 0.1s ease-in-out;
+  background: $accent;
+  border: 1px solid $accent;
+  border-radius: 3px;
+  color: $light;
+  font-family: $noto;
+  font-size: 1.2rem;
+  width: 8rem;
+  margin: 0 auto;
+}
+
+.login-button:hover {
+  background: transparent;
+  color: $accent;
+  cursor: pointer;
+}
+
+.signup-button {
+  padding: 0.5rem 1rem;
+  -webkit-transition: background 0.15s ease-in-out;
+  transition: background 0.15s ease-in-out;
+  -webkit-transition: color 0.1s ease-in-out;
+  transition: color 0.1s ease-in-out;
+  background: transparent;
+  border: 1px solid $accent;
+  border-radius: 3px;
+  font-family: $fira;
+  color: $accent;
+}
+
+.signup-button:hover {
+  background: $accent;
+  color: $light;
+  cursor: pointer;
+}
