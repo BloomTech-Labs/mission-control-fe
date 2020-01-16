@@ -1,6 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { withAuth } from '@okta/okta-react';
+import React, { useState, useEffect, useCallback, createContext } from 'react';
+import { withAuth, SecureRoute } from '@okta/okta-react';
+import { Switch } from 'react-router-dom';
 
+import Layout from '../Layout';
+import Project from '../Project/Project';
 import ProjectListView from '../ProjectListView';
 
 // OKTA authentication widget, invokes implicit callback to login
@@ -11,7 +14,6 @@ import ProjectListView from '../ProjectListView';
 export default withAuth(({ auth }) => {
   const [authState, setAuthState] = useState(null);
   const { isAuthenticated, logout, getAccessToken } = auth;
-
   // Memoized callback for subsequent re-renders of Dashboard children
   const checkAuthentication = useCallback(async () => {
     const authenticated = await isAuthenticated();
@@ -31,6 +33,20 @@ export default withAuth(({ auth }) => {
   };
 
   return authState === null ? null : (
-    <ProjectListView getToken={getAccessToken} logout={invokeOktaLogout} />
+    <Layout>
+      <Switch>
+        <SecureRoute path="/project" component={Project} />
+        <SecureRoute
+          path="/"
+          render={props => (
+            <ProjectListView
+              {...props}
+              logout={invokeOktaLogout}
+              getAccessToken={getAccessToken}
+            />
+          )}
+        />
+      </Switch>
+    </Layout>
   );
 });

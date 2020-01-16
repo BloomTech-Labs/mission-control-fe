@@ -13,7 +13,7 @@ const client = new Client({
   fetchOptions: () => {
     const token = getToken();
     return {
-      headers: { authorization: JSON.stringify(token) },
+      headers: { authorization: token },
     };
   },
 });
