@@ -6,7 +6,7 @@ import { embedAnalytics } from '../utils';
 
 import Authorization from './Authorization';
 import Project from './Project/Project';
-import ProjectListView from './ProjectListView';
+// import ProjectListView from './ProjectListView';
 
 const App = () => {
   const location = useLocation();
@@ -20,7 +20,7 @@ const App = () => {
       <Route path="/implicit/callback" component={ImplicitCallback} />
       <Route path="/project" component={Project} />
       {/* Authorization component renders ProjectListView implicitly */}
-      <Route path="/" component={ProjectListView} />
+      {/* <Route path="/" component={ProjectListView} /> */}
       <SecureRoute exact path="/" component={Authorization} />
     </Switch>
   );

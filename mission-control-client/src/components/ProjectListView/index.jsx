@@ -22,11 +22,11 @@ const ProjectListView = () => {
   const { fetching } = state;
   const data = [
     {
-      project: 'aaa',
-      section_lead: 'aaa',
-      team_lead: 'aaaa',
-      update: 'aaa',
-      status: 'aaa',
+      project: 'Resume Q',
+      section_lead: 'Kelly Rippa',
+      team_lead: 'Dakotah Huey',
+      update: '01/26/2020',
+      status: 'Green',
     },
   ];
 
@@ -44,7 +44,7 @@ const ProjectListView = () => {
       {data.map(project => (
         <tr>
           <td className={styles.title}>
-            <Link to="/" className={styles.title}>
+            <Link to="/project" className={styles.title}>
               {project.project}
             </Link>
           </td>
