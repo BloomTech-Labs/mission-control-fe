@@ -17,11 +17,11 @@ const ProjectListView = ({ logout }) => {
   console.log('data from backend', data);
   const dummyData = [
     {
-      project: 'aaa',
-      section_lead: 'aaa',
-      team_lead: 'aaaa',
-      update: 'aaa',
-      status: 'aaa',
+      project: 'Resume Q',
+      section_lead: 'Kelly Rippa',
+      team_lead: 'Dakotah Huey',
+      update: '01/26/2020',
+      status: 'Green',
     },
   ];
 

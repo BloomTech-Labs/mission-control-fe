@@ -8,7 +8,7 @@ import { getToken } from '../utils';
 const cacheExchange = normalizedCache({});
 
 const client = new Client({
-  url: `http://localhost:8000`,
+  url: `${process.env.REACT_APP_URQL_URL}`,
   exchanges: [dedupExchange, cacheExchange, fetchExchange],
   fetchOptions: () => {
     const token = getToken();
