@@ -37,7 +37,7 @@ const ProjectListView = ({ logout }) => {
             <th className={styles.rtd}>Last Updated</th>
             <th className={styles.rtc}>Status</th>
           </tr>
-          {data.map(project => (
+          {dummyData.map(project => (
             <tr>
               <td className={styles.title}>
                 <Link to="/" className={styles.title}>
