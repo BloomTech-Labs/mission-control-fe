@@ -3,10 +3,6 @@ export default () => {
   const {
     accessToken: { accessToken },
   } = JSON.parse(token);
-
-  if (token)
-    return {
-      accessToken,
-      type: 'OKTA',
-    };
+  console.log('=========accessToken==========', accessToken);
+  return accessToken;
 };
