@@ -7,20 +7,15 @@ import styles from '../../styles/projects.module.scss';
 
 const FEED_QUERY = gql`
   {
-    info {
-      project
-      team_lead
-      section_lead
-      status
-      update
-    }
+    info
   }
 `;
 
 const ProjectListView = ({ logout }) => {
   const [state] = useQuery({ query: FEED_QUERY });
-  const { fetching } = state;
-  const data = [
+  const { data, fetching } = state;
+  console.log('data from backend', data);
+  const dummyData = [
     {
       project: 'aaa',
       section_lead: 'aaa',
