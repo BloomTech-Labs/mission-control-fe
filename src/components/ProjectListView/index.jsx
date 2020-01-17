@@ -27,7 +27,7 @@ const ProjectListView = ({ logout }) => {
 
   return (
     <div>
-      <button onClick={logout}>Clicking Space</button>
+      <button onClick={logout}>Logout</button>
       {!fetching ? (
         <table>
           <tr>
@@ -40,7 +40,7 @@ const ProjectListView = ({ logout }) => {
           {dummyData.map(project => (
             <tr>
               <td className={styles.title}>
-                <Link to="/" className={styles.title}>
+                <Link to="/project" className={styles.title}>
                   {project.project}
                 </Link>
               </td>

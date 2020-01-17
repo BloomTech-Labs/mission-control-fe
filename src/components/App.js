@@ -15,7 +15,7 @@ const App = () => {
 
   return [
     <Route path="/implicit/callback" component={ImplicitCallback} />,
-    <SecureRoute exact path="/" component={Authorization} />,
+    <SecureRoute path="/" component={Authorization} />,
   ];
 };
 
