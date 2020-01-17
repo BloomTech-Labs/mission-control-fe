@@ -8,12 +8,12 @@ import { getToken } from '../utils';
 const cacheExchange = normalizedCache({});
 
 const client = new Client({
-  url: `http://localhost:4000`,
+  url: `${process.env.REACT_APP_URQL_URL}`,
   exchanges: [dedupExchange, cacheExchange, fetchExchange],
   fetchOptions: () => {
     const token = getToken();
     return {
-      headers: { authorization: JSON.stringify(token) },
+      headers: { authorization: token },
     };
   },
 });
