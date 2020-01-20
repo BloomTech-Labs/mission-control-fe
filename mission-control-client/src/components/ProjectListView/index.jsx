@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useQuery } from 'urql';
 import gql from 'graphql-tag';
 import { Link } from 'react-router-dom';
@@ -6,7 +6,7 @@ import mapTime from '../../mappers/mapTime';
 
 import styles from '../../styles/projects.module.scss';
 
-const FEED_QUERY = gql`
+const PROJECT_LIST_VIEW = gql`
   query {
     products {
       id
@@ -32,12 +32,14 @@ const FEED_QUERY = gql`
 `;
 
 const ProjectListView = ({ logout }) => {
-  const [state] = useQuery({ query: FEED_QUERY });
+  const [state] = useQuery({ query: PROJECT_LIST_VIEW });
   const { data, fetching } = state;
 
   return (
     <div>
-      <button onClick={logout}>Clicking Space</button>
+      <button type="submit" onClick={logout}>
+        Clicking Space
+      </button>
       {!fetching ? (
         <table>
           <thead>
@@ -60,7 +62,7 @@ const ProjectListView = ({ logout }) => {
                 <td>{product.projects[0].sectionLead.name}</td>
                 <td>{product.projects[0].teamLead.name}</td>
                 <td className={styles.rtd}>
-                  {mapTime(product.projects[0].updatedAt) + ' ago'}
+                  {`${mapTime(product.projects[0].updatedAt)}  ago`}
                 </td>
                 {/* <td className={styles.rtd}>Yesterday</td> */}
                 <td className={styles.rtc}>
