@@ -1,6 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 *.md
-.DS_Store
+
 # Ignore till later
 yarn.lock
 package-lock.json
