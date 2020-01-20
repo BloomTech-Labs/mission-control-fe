@@ -37,20 +37,18 @@ const ProjectListView = ({ logout }) => {
 
   return (
     <div>
-      <button onClick={logout}>Logout</button>
+      <button type="submit" onClick={logout}>
+        Clicking Space
+      </button>
       {!fetching ? (
         <table>
           <thead>
             <tr>
-              <td className={styles.title}>
-                <Link to="/project" className={styles.title}>
-                  {project.project}
-                </Link>
-              </td>
-              <td>{project.section_lead}</td>
-              <td>{project.team_lead}</td>
-              <td className={styles.rtd}>{project.update}</td>
-              <td className={styles.rtc}>{project.status}</td>
+              <th>Project Name</th>
+              <th>Section Lead</th>
+              <th>Team Lead</th>
+              <th className={styles.rtd}>Last Updated</th>
+              <th className={styles.rtc}>Status</th>
             </tr>
           </thead>
           {data.products.map(product => (
@@ -66,6 +64,7 @@ const ProjectListView = ({ logout }) => {
                 <td className={styles.rtd}>
                   {`${mapTime(product.projects[0].updatedAt)}  ago`}
                 </td>
+                {/* <td className={styles.rtd}>Yesterday</td> */}
                 <td className={styles.rtc}>
                   {product.projects[0].status ? 'OK' : 'Fire'}
                 </td>
