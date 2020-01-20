@@ -13,6 +13,7 @@ a {
 }
 
 table {
+  margin-top: 20px;
   width: 100%;
   border-collapse: collapse;
 }
@@ -51,3 +52,16 @@ tr:nth-child(even) {
   font-weight: 900;
 }
 
+button {
+  border-radius: 5px;
+  padding: 5px 20px 6px;
+  transition: 600ms;
+}
+
+button:hover {
+  transition: 600ms;
+  transform: scale(1.1);
+  color: white;
+  background-color: $accent;
+  cursor: pointer;
+}

@@ -4,7 +4,7 @@ import Sidebar from './Sidebar';
 const Layout = ({ children }) => (
   <div style={{ display: 'flex' }}>
     <Sidebar />
-    <div>{children}</div>
+    <div style={ { width: '100%', padding: '20px 40px' } }>{children}</div>
   </div>
 );
 

@@ -19,9 +19,10 @@
 .editor-feed-container {
   display: flex;
   flex-flow: column;
+  justify-content: space-around;
   min-width: 30rem;
 }
 
 .team-container {
-  margin-left: 5%;
+  margin-left: 8%;
 }
