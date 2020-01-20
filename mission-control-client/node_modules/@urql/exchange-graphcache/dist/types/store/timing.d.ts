@@ -1,0 +1,1 @@
+export declare const defer: (fn: () => void) => void;
