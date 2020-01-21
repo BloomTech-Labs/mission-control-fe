@@ -1,0 +1,28 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import mapTime from '../../mappers/mapTime';
+
+import fire from '../../images/fire.png';
+import styles from '../../styles/projectList.module.scss';
+
+const ProjectRow = ({ project }) => (
+  <tr>
+    <td className={styles.title}>
+      <Link to={`/project/${project.id}`} className={styles.title}>
+        {project.name}
+      </Link>
+    </td>
+    <td className={styles.padding}>{project.sectionLead.name}</td>
+    <td>{project.teamLead.name}</td>
+    <td className={styles.rtd}>{mapTime(project.updatedAt)} ago</td>
+    <td className={styles.rtc}>
+      {project.status ? (
+        ''
+      ) : (
+        <img src={fire} className={styles.rtci} alt="fire-warning" />
+      )}
+    </td>
+  </tr>
+);
+
+export default ProjectRow;
