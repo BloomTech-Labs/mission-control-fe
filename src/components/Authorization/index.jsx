@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback, createContext } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { withAuth, SecureRoute } from '@okta/okta-react';
 import { Switch } from 'react-router-dom';
 
 import Layout from '../Layout';
 import Project from '../Project/Project';
-import ProjectListView from '../ProjectListView';
+import ProjectList from '../ProjectList';
 
 // OKTA authentication widget, invokes implicit callback to login
 // if the user attempts to access a protected view.
@@ -35,11 +35,12 @@ export default withAuth(({ auth }) => {
   return authState === null ? null : (
     <Layout logout={invokeOktaLogout}>
       <Switch>
-        <SecureRoute path="/project" component={Project} />
+        <SecureRoute path="/project/:id" component={Project} />
         <SecureRoute
+          exact
           path="/"
           render={props => (
-            <ProjectListView
+            <ProjectList
               {...props}
               logout={invokeOktaLogout}
               getAccessToken={getAccessToken}
