@@ -10,11 +10,12 @@ import {
   current,
 } from '../../../styles/sidebar.module.scss';
 
-const Sidebar = props => {
+const Sidebar = ({ logout }) => {
+  console.log(logout);
   return (
     <div className={sidebar}>
       <div>
-        <img src={Logo} className={logo} alt='mission-control-logo' />
+        <img src={Logo} className={logo} alt="mission-control-logo" />
       </div>
       <div className={links}>
         <NavLink to="/" className={link} activeClassName={current}>
@@ -23,6 +24,9 @@ const Sidebar = props => {
         <NavLink to="/students" className={link} activeClassName={current}>
           Students
         </NavLink>
+        <button onClick={logout} type="submit" className={link}>
+          Logout
+        </button>
       </div>
     </div>
   );
