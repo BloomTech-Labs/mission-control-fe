@@ -33,7 +33,7 @@ export default withAuth(({ auth }) => {
   };
 
   return authState === null ? null : (
-    <Layout>
+    <Layout logout={invokeOktaLogout}>
       <Switch>
         <SecureRoute path="/project" component={Project} />
         <SecureRoute
