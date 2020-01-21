@@ -10,7 +10,8 @@ import teamList from './data/mockTeam';
 import mockSession from './data/mockEditor';
 import Header from './Header';
 
-export default () => {
+export default props => {
+  console.log(props);
   return (
     <div className={styles['parent-project-container']}>
       <div className={styles['project-page-contents']}>
