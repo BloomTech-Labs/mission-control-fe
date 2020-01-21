@@ -4,10 +4,8 @@
 // seconds/minutes/days/years
 
 export default str => {
-  const split = str.split('');
-  const result = split.slice(0, 10);
-  const time = result.join('');
-  const timestamp = new Date(time).getTime() / 1000;
+  const time = Date.parse(str);
+  const timestamp = parseInt(new Date(time).getTime() / 1000, 10).toFixed(0);
   const seconds = Math.floor((new Date() - timestamp * 1000) / 1000);
 
   let interval = Math.floor(seconds / 31536000);
