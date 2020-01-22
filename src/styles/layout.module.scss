@@ -1,0 +1,10 @@
+@import 'variables.scss';
+
+.main-container {
+  width: 100%;
+
+  .content-container {
+    margin-left: 10rem;
+    padding: 20px 40px;
+  }
+}
