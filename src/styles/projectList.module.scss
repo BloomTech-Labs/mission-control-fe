@@ -13,7 +13,7 @@ a {
 }
 
 table {
-  margin-top: 20px;
+  margin-top: 4rem;
   width: 100%;
   border-collapse: collapse;
 }
@@ -22,6 +22,10 @@ td {
   padding: 20px 20px;
   border-bottom: 2px solid rgba(33, 34, 47, 0.05);
   text-align: left;
+}
+
+.pl {
+	padding-right: 20rem;
 }
 
 th {
@@ -39,8 +43,14 @@ th {
 
 .rtc {
   text-align: center;
+  padding-top: 0;
+  padding-bottom: 0;
   padding-right: 0;
   padding-left: 50px;
+
+  .rtci {
+    height: 40px;
+  }
 }
 
 tr:nth-child(even) {
@@ -52,16 +62,16 @@ tr:nth-child(even) {
   font-weight: 900;
 }
 
-button {
-  border-radius: 5px;
-  padding: 5px 20px 6px;
-  transition: 600ms;
-}
+// button {
+//   border-radius: 5px;
+//   padding: 5px 20px 6px;
+//   transition: 600ms;
+// }
 
-button:hover {
-  transition: 600ms;
-  transform: scale(1.1);
-  color: white;
-  background-color: $accent;
-  cursor: pointer;
-}
+// button:hover {
+//   transition: 600ms;
+//   transform: scale(1.1);
+//   color: white;
+//   background-color: $accent;
+//   cursor: pointer;
+// }

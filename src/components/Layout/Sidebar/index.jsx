@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import Logo from '../../../images/logo.png';
 
 import {
@@ -8,25 +8,39 @@ import {
   links,
   link,
   current,
+  logoContainer,
+  logoutButton,
+  topLinks,
+  bottomLinks
 } from '../../../styles/sidebar.module.scss';
 
 const Sidebar = ({ logout }) => {
-  console.log(logout);
+  const location = useLocation();
   return (
     <div className={sidebar}>
-      <div>
+      <div className={logoContainer}>
         <img src={Logo} className={logo} alt="mission-control-logo" />
       </div>
       <div className={links}>
-        <NavLink to="/" className={link} activeClassName={current}>
-          Projects
-        </NavLink>
-        <NavLink to="/students" className={link} activeClassName={current}>
-          Students
-        </NavLink>
-        <button onClick={logout} type="submit" className={link}>
-          Logout
-        </button>
+        <div className={topLinks}>
+          <NavLink
+            to="/"
+            className={link}
+            activeClassName={location.pathname === '/' ? current : ''}
+          >
+            Projects
+          </NavLink>
+          <NavLink to="/students" className={link} activeClassName={current}>
+            Students
+          </NavLink>
+        </div>
+        <div className={bottomLinks}>
+          <button className={logoutButton}>
+            <NavLink to="/" onClick={logout}>
+              Logout
+            </NavLink>
+          </button>
+        </div>
       </div>
     </div>
   );
