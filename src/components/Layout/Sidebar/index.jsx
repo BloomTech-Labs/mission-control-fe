@@ -9,6 +9,9 @@ import {
   link,
   current,
   logoContainer,
+  logoutButton,
+  topLinks,
+  bottomLinks
 } from '../../../styles/sidebar.module.scss';
 
 const Sidebar = ({ logout }) => {
@@ -19,24 +22,25 @@ const Sidebar = ({ logout }) => {
         <img src={Logo} className={logo} alt="mission-control-logo" />
       </div>
       <div className={links}>
-        <NavLink
-          to="/"
-          className={link}
-          activeClassName={location.pathname === '/' ? current : ''}
-        >
-          Projects
-        </NavLink>
-        <NavLink to="/students" className={link} activeClassName={current}>
-          Students
-        </NavLink>
-        {/* DELETE THIS LINE BREAK */}
-        <br />
-        <br />
-        <br />
-        <br />
-        <NavLink to="/" onClick={logout} className={link}>
-          Logout
-        </NavLink>
+        <div className={topLinks}>
+          <NavLink
+            to="/"
+            className={link}
+            activeClassName={location.pathname === '/' ? current : ''}
+          >
+            Projects
+          </NavLink>
+          <NavLink to="/students" className={link} activeClassName={current}>
+            Students
+          </NavLink>
+        </div>
+        <div className={bottomLinks}>
+          <button className={logoutButton}>
+            <NavLink to="/" onClick={logout}>
+              Logout
+            </NavLink>
+          </button>
+        </div>
       </div>
     </div>
   );
