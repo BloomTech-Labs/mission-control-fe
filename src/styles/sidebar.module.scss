@@ -5,7 +5,7 @@
   flex-direction: column;
   width: 15rem;
   background-color: #f9f9f9;
-  height: 100%;
+  height: 100vh;
 }
 
 .logo {
@@ -24,7 +24,8 @@
 .links {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
+  justify-content: space-between;
 }
 
 .link {
@@ -41,8 +42,48 @@
 
 .current {
   border-left: 6px solid $accent;
-  // border-top-left-radius: 2px;
-  // border-bottom-left-radius: 2px;
   font-weight: 900;
   margin-bottom: 20px;
+}
+
+
+.topLinks {
+    display: flex;
+    flex-direction: column;
+}
+
+.bottomLinks {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+.logoutButton {
+    padding: .5rem 1rem;
+    -webkit-transition: background 0.15s ease-in-out;
+    transition: background 0.15s ease-in-out;
+    -webkit-transition: color 0.1s ease-in-out;
+    transition: color 0.1s ease-in-out;
+    background: $accent;
+    border: 1px solid $accent;
+    border-radius: 3px;
+    color: $light;
+    font-family: $noto;
+    font-size: 1.2rem;
+    width: 8rem;
+    margin: 0 auto;
+
+    a {
+        color: $light;
+    }
+}
+
+.logoutButton:hover {
+    background: transparent;
+    color: $accent;
+    cursor: pointer;
+
+    a {
+        color: $accent;
+    }
 }
