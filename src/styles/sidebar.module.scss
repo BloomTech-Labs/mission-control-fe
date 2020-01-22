@@ -3,9 +3,10 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: 15rem;
+  min-width: 10rem;
   background-color: #f9f9f9;
   height: 100vh;
+  position: fixed;
 }
 
 .logo {
@@ -33,7 +34,7 @@
   text-decoration: none;
   padding-left: 3rem;
   border-left: 5px solid #f9f9f9;
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .link:hover {
@@ -46,44 +47,43 @@
   margin-bottom: 20px;
 }
 
-
 .topLinks {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .bottomLinks {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
 }
 
 .logoutButton {
-    padding: .5rem 1rem;
-    -webkit-transition: background 0.15s ease-in-out;
-    transition: background 0.15s ease-in-out;
-    -webkit-transition: color 0.1s ease-in-out;
-    transition: color 0.1s ease-in-out;
-    background: $accent;
-    border: 1px solid $accent;
-    border-radius: 3px;
-    color: $light;
-    font-family: $noto;
-    font-size: 1.2rem;
-    width: 8rem;
-    margin: 0 auto;
+  padding: 0.5rem 1rem;
+  -webkit-transition: background 0.15s ease-in-out;
+  transition: background 0.15s ease-in-out;
+  -webkit-transition: color 0.1s ease-in-out;
+  transition: color 0.1s ease-in-out;
+  background: $accent;
+  border: 1px solid $accent;
+  border-radius: 3px;
+  color: $light;
+  font-family: $noto;
+  font-size: 1.2rem;
+  width: 8rem;
+  margin: 0 auto;
 
-    a {
-        color: $light;
-    }
+  a {
+    color: $light;
+  }
 }
 
 .logoutButton:hover {
-    background: transparent;
-    color: $accent;
-    cursor: pointer;
+  background: transparent;
+  color: $accent;
+  cursor: pointer;
 
-    a {
-        color: $accent;
-    }
+  a {
+    color: $accent;
+  }
 }
