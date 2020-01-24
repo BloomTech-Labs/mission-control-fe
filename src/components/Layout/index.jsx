@@ -1,10 +1,12 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 
+import styles from '../../styles/layout.module.scss';
+
 const Layout = ({ children, logout }) => (
-  <div style={{ display: 'flex' }}>
+  <div className={styles['main-container']}>
     <Sidebar logout={logout} />
-    <div style={{ width: '100%', padding: '20px 40px' }}>{children}</div>
+    <div className={styles['content-container']}>{children}</div>
   </div>
 );
 
