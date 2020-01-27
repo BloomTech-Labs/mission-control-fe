@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useLocation, Route } from 'react-router-dom';
 import { SecureRoute, ImplicitCallback } from '@okta/okta-react';
 
@@ -9,7 +9,7 @@ import Authorization from './Authorization';
 const App = () => {
   const location = useLocation();
 
-  useEffect(() => {
+  React.useEffect(() => {
     embedAnalytics();
   }, [location]);
 
