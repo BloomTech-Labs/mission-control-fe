@@ -57,7 +57,7 @@ export default ({ user, team }) => {
       <h2>Project Notes</h2>
       <div className={styles['editor-container']}>
         <div className={styles['avatar-container']}>
-          <img src={user.avatar} />
+          <img src={user.avatar} alt={`avatar of ${user.name}`} />
         </div>
         <form
           onSubmit={e => {
