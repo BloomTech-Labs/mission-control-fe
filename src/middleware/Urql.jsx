@@ -13,7 +13,7 @@ const client = new Client({
   fetchOptions: () => {
     const token = getToken();
     return {
-      headers: { authorization: token },
+      headers: { authorization: `Bearer ${token}` },
     };
   },
 });
