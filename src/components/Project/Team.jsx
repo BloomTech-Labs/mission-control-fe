@@ -45,6 +45,7 @@ export default ({ team, teamLead, sectionLead }) => {
           />
           <p className={styles['team-names']}>{teamLead.name}</p>
         </div>
+        <h3>Team</h3>
         {team.map(member => {
           return (
             <div className={styles.members}>
