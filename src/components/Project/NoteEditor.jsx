@@ -3,15 +3,9 @@ import StarRatings from 'react-star-ratings';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from 'semantic-ui-react';
+import managers from './data/managers';
 
 import styles from '../../styles/editor.module.scss';
-
-// avatar of person signed in
-// note title
-// note body
-// attendees
-// rating
-// attachment
 
 const topicOptions = [
   { key: 'gd', value: 'General Discussion', text: 'General Discussion' },
@@ -27,12 +21,12 @@ const topicOptions = [
   },
 ];
 
-export default ({ user, team }) => {
-  const [title, setTitle] = useState('');
+export default ({ user }) => {
+  const [topic, setTopic] = useState('');
   const [body, setBody] = useState('');
   const [rating, setRating] = useState(0);
+  const [attendees, setAttendees] = useState([]);
   const [expandedAttendees, setExpandedAttendees] = useState(false);
-  const [attendees, setAttendees] = useState(team);
   const [expandedAbsent, setExpandedAbsent] = useState(false);
   const [absentees, setAbsentees] = useState([]);
 
@@ -72,13 +66,16 @@ export default ({ user, team }) => {
       <h2>Project Notes</h2>
       <div className={styles['editor-container']}>
         <div className={styles['avatar-container']}>
-          <img src={user.avatar} alt={`avatar of ${user.name}`} />
+          <img
+            src="https://ca.slack-edge.com/T4JUEB3ME-ULLS6HX6G-22adeea32d11-72"
+            alt={`avatar of ${user.name}`}
+          />
         </div>
         <form
           onSubmit={e => {
             e.preventDefault();
             console.log({
-              title,
+              topic,
               body,
               rating,
               attendees,
@@ -91,6 +88,9 @@ export default ({ user, team }) => {
               placeholder="Select Topic"
               inline
               options={topicOptions}
+              onChange={(_, value) => {
+                setTopic(value);
+              }}
             />
             <StarRatings
               numberOfStars={3}
@@ -122,13 +122,12 @@ export default ({ user, team }) => {
               >
                 Attendees
                 <div className={styles['attendees-avatars']}>
-                  {attendees.map(({ firstName, lastName, avatar }) => {
+                  {managers.map(({ name, email, avatar }) => {
+                    // check the email of the attendees
                     return (
                       <div className={styles['mini-avatar-container']}>
-                        <img src={avatar} alt={`${firstName} ${lastName}`} />
-                        <p>
-                          {firstName} {lastName}
-                        </p>
+                        <img src={avatar} alt={`avatar of ${name}`} />
+                        <p>{name}</p>
                         <button onClick={markAbsent}>x</button>
                       </div>
                     );
