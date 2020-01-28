@@ -62,7 +62,7 @@ export default ({ user }) => {
   };
 
   return (
-    <div>
+    <div className={styles['main-container']}>
       <h2>Project Notes</h2>
       <div className={styles['editor-container']}>
         <div className={styles['avatar-container']}>
