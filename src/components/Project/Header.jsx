@@ -19,7 +19,6 @@ export default ({ product, project }) => {
             <h1 className={styles['project-title']}>
               {/* Todo: Project name needs to be dynamic */}
               {`${product}: ${project}`}
-              {console.log('PROPS', project, project)}
             </h1>
             {/* Todo: Cohort name needs to be dynamic */}
             <p className={styles['project-cohort']}> Labs 19 </p>
