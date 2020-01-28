@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import mapTime from '../../mappers/mapTime';
 
 import fire from '../../images/fire.png';
-import styles from '../../styles/projectList.module.scss';
+import styles from './projectList.module.scss';
 
 // Sanitize string inputs to remove Product prefix
 const cleanName = str => {
