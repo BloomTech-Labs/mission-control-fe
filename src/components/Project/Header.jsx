@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Fire from '../../images/fire.png';
 
 import {
   projectHeaderContainer,
@@ -42,11 +41,7 @@ const Header = ({ project: { name, status } }) => {
               ''
             ) : (
               <>
-                <img
-                  src={Fire}
-                  alt="project fire"
-                  className={projectFire}
-                />
+              <span className={projectFire} role="img" aria-label="fire">🔥</span> 
                 <p className={projectStatus}> Falling behind! </p>
               </>
             )}
