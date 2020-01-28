@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from '../../styles/projectList.module.scss';
+import styles from './projectList.module.scss';
 
 const ProjectContainer = ({ children }) => (
   <table>
