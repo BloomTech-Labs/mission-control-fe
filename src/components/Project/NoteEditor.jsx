@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
@@ -25,20 +25,27 @@ export default ({ user }) => {
   const [topic, setTopic] = useState('');
   const [body, setBody] = useState('');
   const [rating, setRating] = useState(0);
-  const [attendees, setAttendees] = useState([]);
+  const [attendees, setAttendees] = useState(managers);
   const [expandedAttendees, setExpandedAttendees] = useState(false);
   const [expandedAbsent, setExpandedAbsent] = useState(false);
   const [absentees, setAbsentees] = useState([]);
 
+  useEffect(() => {
+    console.log('ATTENDEES', attendees);
+    console.log('ABSENTEES', absentees);
+  }, [attendees]);
+
   const markAbsent = e => {
     e.preventDefault();
     e.stopPropagation();
-    const deleted = e.target.previousSibling.textContent.split(' ');
-    const newAttendees = attendees.filter(({ firstName, lastName }) => {
-      return firstName !== deleted[0] && lastName !== deleted[1];
+    const deleted = e.target.previousSibling.textContent;
+    const newAttendees = attendees.filter(({ name }) => {
+      console.log('NAME', name);
+      console.log('DELETED', deleted);
+      return name !== deleted;
     });
-    const deletedAttendee = attendees.filter(({ firstName, lastName }) => {
-      return firstName === deleted[0] && lastName === deleted[1];
+    const deletedAttendee = attendees.filter(({ name }) => {
+      return name === deleted;
     });
     const newAbsentees = [...absentees, ...deletedAttendee];
     setAttendees(newAttendees);
@@ -48,13 +55,13 @@ export default ({ user }) => {
   const markAttended = e => {
     e.preventDefault();
     e.stopPropagation();
-    const attended = e.target.previousSibling.textContent.split(' ');
-    const newAttendee = absentees.filter(({ firstName, lastName }) => {
-      return firstName === attended[0] && lastName === attended[1];
+    const attended = e.target.previousSibling.textContent;
+    const newAttendee = absentees.filter(({ name }) => {
+      return name === attended;
     });
     const newAttendees = [...attendees, ...newAttendee];
-    const newAbsentees = absentees.filter(({ firstName, lastName }) => {
-      return firstName !== attended[0] && lastName !== attended[1];
+    const newAbsentees = absentees.filter(({ name }) => {
+      return name !== attended;
     });
 
     setAttendees(newAttendees);
@@ -122,7 +129,7 @@ export default ({ user }) => {
               >
                 Attendees
                 <div className={styles['attendees-avatars']}>
-                  {managers.map(({ name, email, avatar }) => {
+                  {attendees.map(({ name, email, avatar }) => {
                     // check the email of the attendees
                     return (
                       <div className={styles['mini-avatar-container']}>
@@ -143,14 +150,12 @@ export default ({ user }) => {
                 >
                   Absent
                   <div className={styles['attendees-avatars']}>
-                    {absentees.map(({ firstName, lastName, avatar }) => {
+                    {absentees.map(({ name, avatar }) => {
                       return (
                         <div className={styles['mini-avatar-container']}>
-                          <img src={avatar} alt="avatar"/>
-                          <p>
-                            {firstName} {lastName}
-                          </p>
-                          <button onClick={markAttended}>x</button>
+                          <img src={avatar} alt="avatar" />
+                          <p>{name}</p>
+                          <button onClick={markAttended}>+</button>
                         </div>
                       );
                     })}
