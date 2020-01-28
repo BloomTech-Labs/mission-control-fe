@@ -1,8 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import styles from './Header.module.scss';
 import Fire from '../../images/fire.png';
+
+import {
+  projectHeaderContainer,
+  projectBackLink,
+  projectSummaryContainer,
+  projectTitleContainer,
+  projectTitle,
+  projectStatusContainer,
+  projectStatus,
+  projectFire,
+  
+  projectTabContainer,
+  projectOverviewTab,
+  projectContentDivider
+
+} from './Header.module.scss';
 
 const Header = ({ project: { name, status } }) => {
   // Sanitize string inputs to remove Product prefix
@@ -13,36 +27,36 @@ const Header = ({ project: { name, status } }) => {
 
   return (
     <>
-      <div className={styles['project-header-container']}>
-        <div className={styles['project-back-container']}>
-          <Link to="/" className={styles['project-back-link']}>
+      <div className={projectHeaderContainer}>
+        <div>
+          <Link to="/" className={projectBackLink}>
             All Projects
           </Link>
         </div>
-        <div className={styles['project-summary-container']}>
-          <div className={styles['project-title-container']}>
-            <h1 className={styles['project-title']}>{cleanName(name)}</h1>
+        <div className={projectSummaryContainer}>
+          <div className={projectTitleContainer}>
+            <h1 className={projectTitle}>{cleanName(name)}</h1>
           </div>
-          <div className={styles['project-status-container']}>
+          <div className={projectStatusContainer}>
             {status ? (
               ''
             ) : (
               <>
                 <img
                   src={Fire}
-                  alt="project-fire"
-                  className={styles['project-fire']}
+                  alt="project fire"
+                  className={projectFire}
                 />
-                <p className={styles['project-status']}> Falling behind! </p>
+                <p className={projectStatus}> Falling behind! </p>
               </>
             )}
           </div>
         </div>
       </div>
-      <div className={styles['project-tabs-container']}>
-        <p className={styles['project-overview-tab']}> Overview </p>
+      <div className={projectTabContainer}>
+        <p className={projectOverviewTab}> Overview </p>
       </div>
-      <hr className={styles['project-content-divider']} />
+      <hr className={projectContentDivider} />
     </>
   );
 };
