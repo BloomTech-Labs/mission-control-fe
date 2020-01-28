@@ -25,7 +25,6 @@ export default ( {project, product, status} ) => {
             <h1 className={styles['project-title']}>
               {cleanName(project.name)}
             </h1>
-            <p className={styles['project-cohort']}> {product} </p>
           </div>
           <div className={styles['project-status-container']}>
 
