@@ -9,6 +9,7 @@ export default gql`
     project(id: $id) {
       id
       name
+      status
       product {
         id
         name
