@@ -37,7 +37,7 @@ export default ({
             {attendees.map(attendee => {
               return (
                 <div className={styles['mini-avatar-container']}>
-                  <img src={attendee.avatar} />
+                  <img src={attendee.avatar} alt="avatar" />
                   <p>
                     {attendee.firstName} {attendee.lastName}
                   </p>
