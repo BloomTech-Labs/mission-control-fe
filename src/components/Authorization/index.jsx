@@ -3,7 +3,7 @@ import { withAuth, SecureRoute } from '@okta/okta-react';
 import { Switch } from 'react-router-dom';
 
 import Layout from '../Layout';
-import Project from '../Project/Project';
+import Project from '../Project';
 import ProjectList from '../ProjectList';
 
 // OKTA authentication widget, invokes implicit callback to login
