@@ -6,7 +6,7 @@ import Team from './Team';
 import NoteEditor from './NoteEditor';
 import Header from './Header';
 
-import styles from '../../styles/projectView.module.scss';
+import styles from './Project.module.scss';
 
 import query from './query';
 
