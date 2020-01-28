@@ -12,7 +12,7 @@ import {
   logoutButton,
   topLinks,
   bottomLinks
-} from '../../../styles/sidebar.module.scss';
+} from './Sidebar.module.scss';
 
 const Sidebar = ({ logout }) => {
   const location = useLocation();
