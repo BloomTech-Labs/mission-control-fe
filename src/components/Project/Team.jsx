@@ -1,60 +1,49 @@
 import React from 'react';
 
-import styles from './Team.module.scss';
+import {
+  teamContainer,
+  teamTitle,
+  memberContainer,
+  members,
+  avatar,
+  teamNames,
+  teamMemberTitle,
 
-// Takes in an array of project roles
-// const buildTeamList = team => {
-//   const teamList = {};
-//   // Looping through the array of project roles
-//   team.forEach(member => {
-//     // Destructuring out Roles and People from the project role
-//     const { role, person } = member;
-//     // Ternary checking if role already exists in the hash table
-//     teamList[role.title]
-//       ? (teamList[role.title] = [
-//           // And appending the person to that role
-//           ...teamList[role.title],
-//           person,
-//         ])
-// // If the role does not exist, creates new one and inputs the person's name
-//         (teamList[role.title] = [person]);
-//   });
-//   return teamList;
-// };
+} from './Team.module.scss';
 
-export default ({ team, teamLead, sectionLead }) => {
+const Team = ({ team, teamLead, sectionLead }) => {
   return (
-    <div className={styles['team-container']}>
-      <h2>Team</h2>
-      <div className={styles['member-container']}>
+    <div className={teamContainer}>
+      <h2 className={teamTitle} >Team</h2>
+      <div className={memberContainer}>
         <h3>Section Lead</h3>
-        <div className={styles.members}>
+        <div className={members}>
           <img
+            className={avatar}
             src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
             alt={sectionLead.name}
-            className={styles.avatar}
           />
-          <p className={styles['team-names']}>{sectionLead.name}</p>
+          <p className={teamNames}>{sectionLead.name}</p>
         </div>
-        <h3>Team Lead</h3>
-        <div className={styles.members}>
+        <h3 className={teamMemberTitle}>Team Lead</h3>
+        <div className={members}>
           <img
             src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
             alt={teamLead.name}
-            className={styles.avatar}
+            className={avatar}
           />
-          <p className={styles['team-names']}>{teamLead.name}</p>
+          <p className={teamNames}>{teamLead.name}</p>
         </div>
-        <h3>Team</h3>
+        <h3 className={teamMemberTitle}>Team</h3>
         {team.map(member => {
           return (
-            <div className={styles.members}>
+            <div className={members}>
               <img
                 src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
                 alt={member.name}
-                className={styles.avatar}
+                className={avatar}
               />
-              <p className={styles['team-names']}>{member.name}</p>
+              <p className={teamNames}>{member.name}</p>
             </div>
           );
         })}
@@ -62,3 +51,5 @@ export default ({ team, teamLead, sectionLead }) => {
     </div>
   );
 };
+
+export default Team;
