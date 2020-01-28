@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import styles from '../../styles/projectHeader.module.scss';
+import styles from './Header.module.scss';
 import Fire from '../../images/fire.png';
 
 const Header = ({ project: { name, status } }) => {
