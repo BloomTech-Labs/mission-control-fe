@@ -1,10 +1,8 @@
 import React from 'react';
 import Note from './Note';
 
-export default ({ notes }) => {
-  console.log(notes);
+const NotesFeed = ({ notes }) => {
   if (notes && notes.length) {
-    console.log(notes);
     return (
       <div>
         {notes.map(note => {
@@ -17,3 +15,5 @@ export default ({ notes }) => {
   }
   return <h2>Loading...</h2>;
 };
+
+export default NotesFeed;
