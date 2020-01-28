@@ -30,9 +30,6 @@ const Sidebar = ({ logout }) => {
           >
             Projects
           </NavLink>
-          <NavLink to="/students" className={link} activeClassName={current}>
-            Students
-          </NavLink>
         </div>
         <div className={bottomLinks}>
           <button className={logoutButton}>

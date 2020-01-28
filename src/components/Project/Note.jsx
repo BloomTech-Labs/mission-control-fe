@@ -7,7 +7,6 @@ export default ({
   note: { author, topic, content, rating, attendedBy, tags },
 }) => {
   const [expanded, setExpanded] = useState(false);
-  const { avatar, firstName } = author;
   return (
     <section className={styles['project-note']}>
       <div className={styles['avatar-container']}>
