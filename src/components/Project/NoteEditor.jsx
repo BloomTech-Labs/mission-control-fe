@@ -81,7 +81,6 @@ export default ({ user, projectId }) => {
           />
         </div>
         <form
-          id="form-reset"
           onSubmit={e => {
             e.preventDefault();
             const input = {
@@ -94,6 +93,7 @@ export default ({ user, projectId }) => {
             };
             executeMutation(input);
             // Resets form
+            setState(initialState);
           }}
           className={styles['form-container']}
         >
@@ -105,6 +105,7 @@ export default ({ user, projectId }) => {
               onChange={(_, { value }) => {
                 setState({ ...state, topic: value });
               }}
+              value={state.topic}
             />
             <StarRatings
               numberOfStars={3}
@@ -124,6 +125,7 @@ export default ({ user, projectId }) => {
               placeholder="What's going on?"
               name="content"
               onChange={e => setState({ ...state, content: e.target.value })}
+              value={state.content}
             />
           </div>
           <div className={styles['text-footer']}>
