@@ -9,7 +9,6 @@ import Header from './Header';
 import styles from '../../styles/projectView.module.scss';
 
 import query from './query';
-import managers from './data/managers';
 
 export default ({ match }) => {
   const {
@@ -31,7 +30,7 @@ export default ({ match }) => {
         <div className={styles['project-container']}>
           {/* Header */}
           <div className={styles['editor-feed-container']}>
-            {/* <NoteEditor user={data.me.email} attendedBy={managers} /> */}
+            <NoteEditor user={data.me.email} />
             <NotesFeed notes={data.project.notes} />
           </div>
           {/* Team */}
