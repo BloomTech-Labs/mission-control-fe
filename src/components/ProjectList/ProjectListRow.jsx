@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import mapTime from '../../mappers/mapTime';
 
-import fire from '../../images/fire.png';
-import styles from './projectList.module.scss';
+import {
+  title,
+  rtd,
+  rtc,
+} from './projectList.module.scss';
 
 // Sanitize string inputs to remove Product prefix
 const cleanName = str => {
@@ -13,19 +16,19 @@ const cleanName = str => {
 
 const ProjectRow = ({ project }) => (
   <tr>
-    <td className={styles.title}>
-      <Link to={`/project/${project.id}`} className={styles.title}>
+    <td className={title}>
+      <Link to={`/project/${project.id}`} className={title}>
         {cleanName(project.name)}
       </Link>
     </td>
     <td>{project.sectionLead.name}</td>
-    <td className={styles.pl}>{project.teamLead.name}</td>
-    <td className={styles.rtd}>{mapTime(project.updatedAt)} ago</td>
-    <td className={styles.rtc}>
+    <td>{project.teamLead.name}</td>
+    <td className={rtd}>{mapTime(project.updatedAt)} ago</td>
+    <td className={rtc}>
       {project.status ? (
         ''
       ) : (
-        <img src={fire} className={styles.rtci} alt="fire-warning" />
+        <span role="img" aria-label="fire">🔥</span> 
       )}
     </td>
   </tr>
