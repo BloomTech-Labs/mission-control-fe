@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from '../../styles/projectHeader.module.scss';
 import Fire from '../../images/fire.png';
 
-export default () => {
+export default ({ product, project }) => {
   return (
     <>
       <div className={styles['project-header-container']}>
@@ -18,7 +18,8 @@ export default () => {
           <div className={styles['project-title-container']}>
             <h1 className={styles['project-title']}>
               {/* Todo: Project name needs to be dynamic */}
-              Project: Resume Q
+              {`${product}: ${project}`}
+              {console.log('PROPS', project, project)}
             </h1>
             {/* Todo: Cohort name needs to be dynamic */}
             <p className={styles['project-cohort']}> Labs 19 </p>
