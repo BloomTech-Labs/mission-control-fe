@@ -1,81 +1,65 @@
 @import '../../styles/variables.scss';
 
-* {
-    font-family: $noto;
-    font-size: 1rem;
-    color: $dark;
+.header {
+    border-bottom: 1px solid #e9e9e9;
 }
 
-.projectHeaderContainer {
+.headerContainer {
     display: flex;
-    flex-direction: column;
-    padding: 4vh 0 0;
+    justify-content: space-between;
+}
 
-    .projectBackLink  {
-        font-family: $fira;
-        background-color: white;
-        text-decoration: none;
+.allProducts {
+    font-family: $fira;
+    color: $accent;
+    font-weight: 500;
+    &:hover {
         color: $accent;
-        font-weight: bold;
     }
 }
 
-.projectSummaryContainer {
-    display: flex;
-
-    .projectTitleContainer {
-        width: 48rem;
-    
-        .projectTitle {
-            margin: 10px 0;
-            font-size: 2.5rem;
-        }
-    }
-    
-    .projectStatusContainer {
-        display: flex;
-        align-items: center;
-    
-        .projectStatus {
-            width: 50%;
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin: 0 5%;
-        }
-        
-        .projectFire {
-            font-size: 2.5rem; 
-        }
-    }
+.projectName {
+    font-family: $noto;
+    color: $dark;
+    font-weight: 700;
+    font-size: 2.5rem;
+    padding: 0.5rem 0 1rem;
 }
 
-.projectTabsContainer {
+.statusContainer {
     display: flex;
-    margin: 0;
+    flex-direction: row; 
+    align-items: center;
+    font-family: $fira;
 
-    .projectOverviewTab {
+    span {
+        font-size: 3rem;
+    }
+
+    p {
         font-family: $fira;
-        margin: 5px 20px 0 0;
-        cursor: pointer;
-        padding: 0 2px 4px 1px;
-        border-bottom: 2px solid $accent;
-        font-weight: bold;
-    }
-
-    .projectDynamicsTab {
-        font-family: $fira;
-        margin: 5px 20px 0 0;
-        cursor: pointer;
-        padding: 0 2px 4px 1px;
-    }
-    .projectDynamicsTab:hover {
-        border-bottom: 2px solid $accent;
-        padding: 0 2px 2px 1px;
+        font-weight: 500;
+        color: $dark;
+        font-size: 1.3rem;
+        padding-left: 1rem;
+        line-height: 1.1;
     }
 }
 
-.projectContentDivider {
-    display: flex;
-    opacity: 0.2;
-    margin: 0 10% 0 0; 
+.projectNav {
+    padding-bottom: 0.4rem;
+    width: fit-content;
+
+    a {
+        font-family: $noto;
+        &:hover {
+            color: $dark
+        }
+    }
+}
+
+.activeLink {
+    font-weight: 500;
+    border-bottom: 2px solid $accent;
+    padding-bottom: 0.4rem;
 }

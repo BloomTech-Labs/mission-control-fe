@@ -1,23 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import {
-  projectHeaderContainer,
-  projectBackLink,
-  projectSummaryContainer,
-  projectTitleContainer,
-  projectTitle,
-  projectStatusContainer,
-  projectStatus,
-  projectFire,
-  
-  projectTabContainer,
-  projectOverviewTab,
-  projectContentDivider
-
+  header,
+  headerContainer,
+  allProducts,
+  projectName,
+  statusContainer,
+  projectNav,
+  activeLink,
 } from './Header.module.scss';
 
-const Header = ({ project: { name, status } }) => {
+const Header = ({ project: { name, status }, projectId }) => {
   // Sanitize string inputs to remove Product prefix
   const cleanName = str => {
     const match = str.match(/Labs \d{1,3} -(.+)/);
@@ -25,34 +19,45 @@ const Header = ({ project: { name, status } }) => {
   };
 
   return (
-    <>
-      <div className={projectHeaderContainer}>
+    <header className={header}>
+      <div className={headerContainer}>
         <div>
-          <Link to="/" className={projectBackLink}>
-            All Projects
-          </Link>
-        </div>
-        <div className={projectSummaryContainer}>
-          <div className={projectTitleContainer}>
-            <h1 className={projectTitle}>{cleanName(name)}</h1>
+          <div>
+            <Link to="/" className={allProducts}>
+              <span role="img" aria-label="back-arrow">
+                &#x21FD;
+              </span>
+                All Projects
+            </Link>
           </div>
-          <div className={projectStatusContainer}>
-            {status ? (
-              ''
-            ) : (
-              <>
-              <span className={projectFire} role="img" aria-label="fire">🔥</span> 
-                <p className={projectStatus}> Falling behind! </p>
-              </>
-            )}
+
+          <div>
+            <h1 className={projectName}>{cleanName(name)}</h1>
           </div>
         </div>
+
+        <div className={statusContainer}>
+          {status
+            ? ''
+            : [
+                <span role="img" aria-label="fire">
+                  🔥
+                </span>,
+                <p>
+                  {' '}
+                  Falling <br /> behind!{' '}
+                </p>,
+              ]}
+        </div>
       </div>
-      <div className={projectTabContainer}>
-        <p className={projectOverviewTab}> Overview </p>
-      </div>
-      <hr className={projectContentDivider} />
-    </>
+
+      <nav className={projectNav}>
+        <NavLink activeClassName={activeLink} to={`${projectId}`}>
+          {' '}
+          Overview{' '}
+        </NavLink>
+      </nav>
+    </header>
   );
 };
 
