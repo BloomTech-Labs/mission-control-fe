@@ -4,8 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from 'semantic-ui-react';
 import managers from './data/managers';
+import { useMutation } from 'urql';
 
+import { CreateNoteMutation as createNote } from './requests';
 import styles from '../../styles/editor.module.scss';
+import { execute } from 'graphql';
+import { initialize } from 'react-ga';
 
 const topicOptions = [
   { key: 'gd', value: 'General Discussion', text: 'General Discussion' },
@@ -21,27 +25,25 @@ const topicOptions = [
   },
 ];
 
-export default ({ user }) => {
+export default ({ user, projectId }) => {
   const [topic, setTopic] = useState('');
-  const [body, setBody] = useState('');
+  const [content, setContent] = useState('');
   const [rating, setRating] = useState(0);
   const [attendees, setAttendees] = useState(managers);
   const [expandedAttendees, setExpandedAttendees] = useState(false);
   const [expandedAbsent, setExpandedAbsent] = useState(false);
   const [absentees, setAbsentees] = useState([]);
+  const [res, executeMutation] = useMutation(createNote);
 
-  useEffect(() => {
-    console.log('ATTENDEES', attendees);
-    console.log('ABSENTEES', absentees);
-  }, [attendees]);
+  if (res.error) {
+    alert('Incorrect data shape');
+  }
 
   const markAbsent = e => {
     e.preventDefault();
     e.stopPropagation();
     const deleted = e.target.previousSibling.textContent;
     const newAttendees = attendees.filter(({ name }) => {
-      console.log('NAME', name);
-      console.log('DELETED', deleted);
       return name !== deleted;
     });
     const deletedAttendee = attendees.filter(({ name }) => {
@@ -63,9 +65,6 @@ export default ({ user }) => {
     const newAbsentees = absentees.filter(({ name }) => {
       return name !== attended;
     });
-
-    setAttendees(newAttendees);
-    setAbsentees(newAbsentees);
   };
 
   return (
@@ -81,12 +80,14 @@ export default ({ user }) => {
         <form
           onSubmit={e => {
             e.preventDefault();
-            console.log({
+            const input = {
+              id: projectId,
               topic,
-              body,
+              content,
               rating,
-              attendees,
-            });
+              attendedBy: Array.from(attendees, element => element.email),
+            };
+            executeMutation(input);
           }}
           className={styles['form-container']}
         >
@@ -95,7 +96,7 @@ export default ({ user }) => {
               placeholder="Select Topic"
               inline
               options={topicOptions}
-              onChange={(_, value) => {
+              onChange={(_, { value }) => {
                 setTopic(value);
               }}
             />
@@ -115,8 +116,8 @@ export default ({ user }) => {
             <textarea
               className={styles['body-input']}
               placeholder="What's going on?"
-              name="body"
-              onChange={e => setBody(e.target.value)}
+              name="content"
+              onChange={e => setContent(e.target.value)}
             />
           </div>
           <div className={styles['text-footer']}>
@@ -164,10 +165,9 @@ export default ({ user }) => {
               )}
             </div>
             <div className={styles['button-container']}>
-              <button className={styles['attach-btn']}>
-                <FontAwesomeIcon icon={faPaperclip} /> Attach
+              <button className={styles['save-btn']} type="submit">
+                Save
               </button>
-              <button className={styles['save-btn']}>Save</button>
             </div>
           </div>
         </form>

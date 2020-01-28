@@ -46,3 +46,29 @@ export const ProjectViewQuery = gql`
     }
   }
 `;
+
+export const CreateNoteMutation = gql`
+  mutation CreateNoteMutation(
+    $id: ID!
+    $topic: String!
+    $content: String!
+    $attendedBy: [String!]!
+    $rating: Int!
+  ) {
+    createNote(
+      topic: $topic
+      content: $content
+      attendedBy: $attendedBy
+      id: $id
+      rating: $rating
+    ) {
+      content
+      topic
+      attendedBy {
+        name
+      }
+      id
+      rating
+    }
+  }
+`;
