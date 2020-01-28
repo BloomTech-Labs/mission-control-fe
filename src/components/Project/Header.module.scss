@@ -6,12 +6,12 @@
     color: $dark;
 }
 
-.project-header-container {
+.projectHeaderContainer {
     display: flex;
     flex-direction: column;
     padding: 4vh 0 0;
 
-    .project-back-link  {
+    .projectBackLink  {
         font-family: $fira;
         background-color: white;
         text-decoration: none;
@@ -20,43 +20,31 @@
     }
 }
 
-.project-summary-container {
+.projectSummaryContainer {
     display: flex;
 
-    .project-title-container {
+    .projectTitleContainer {
         width: 48rem;
     
-        .project-title {
+        .projectTitle {
             margin: 10px 0;
             font-size: 2.5rem;
         }
-        
-        .project-cohort {
-            margin: 10px 0;
-            border: 1px solid #71727a;
-            border-radius: 9px;
-            width: 100px;
-            text-align: center;
-            font-size: 0.6rem;
-            padding: 3px;
-            color: #71727a;
-            cursor: default;
-        }
     }
     
-    .project-status-container {
+    .projectStatusContainer {
         display: flex;
         justify-content: center;
         margin-top: 2rem;
     
-        .project-status {
+        .projectStatus {
             width: 50%;
             font-size: 1.1rem;
             font-weight: bold;
             margin: 0 5%;
         }
         
-        .project-fire {
+        .projectFire {
             width: 40px;
             height: 55px;
             box-sizing: border-box;
@@ -65,11 +53,11 @@
     }
 }
 
-.project-tabs-container {
+.projectTabsContainer {
     display: flex;
     margin: 0;
 
-    .project-overview-tab {
+    .projectOverviewTab {
         font-family: $fira;
         margin: 5px 20px 0 0;
         cursor: pointer;
@@ -78,19 +66,19 @@
         font-weight: bold;
     }
 
-    .project-dynamics-tab {
+    .projectDynamicsTab {
         font-family: $fira;
         margin: 5px 20px 0 0;
         cursor: pointer;
         padding: 0 2px 4px 1px;
     }
-    .project-dynamics-tab:hover {
+    .projectDynamicsTab:hover {
         border-bottom: 2px solid $accent;
         padding: 0 2px 2px 1px;
     }
 }
 
-.project-content-divider {
+.projectContentDivider {
     display: flex;
     opacity: 0.2;
     margin: 0 10% 0 0; 
