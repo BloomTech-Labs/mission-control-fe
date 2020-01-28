@@ -6,9 +6,7 @@ import styles from '../../styles/noteFeed.module.scss';
 
 export default ({ notes }) => {
   // const [notes, setNotes] = useState(mockNotes);
-  console.log(notes);
   if (notes && notes.length) {
-    console.log(notes);
     return (
       <div className={styles['notes-container']}>
         {notes.map(note => {
