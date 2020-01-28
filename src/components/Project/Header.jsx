@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from '../../styles/projectHeader.module.scss';
 import Fire from '../../images/fire.png';
 
-export default ({ project, product, status }) => {
+const Header = ({ project: { name, status } }) => {
   // Sanitize string inputs to remove Product prefix
   const cleanName = str => {
     const match = str.match(/Labs \d{1,3} -(.+)/);
@@ -21,14 +21,10 @@ export default ({ project, product, status }) => {
         </div>
         <div className={styles['project-summary-container']}>
           <div className={styles['project-title-container']}>
-            <h1 className={styles['project-title']}>
-              {/* Todo: Project name needs to be dynamic */}
-              {`${product.name}: ${project.name}`}
-            </h1>
-            <p className={styles['project-cohort']}> {product.name} </p>
+            <h1 className={styles['project-title']}>{cleanName(name)}</h1>
           </div>
           <div className={styles['project-status-container']}>
-            {project.status ? (
+            {status ? (
               ''
             ) : (
               <>
@@ -50,3 +46,5 @@ export default ({ project, product, status }) => {
     </>
   );
 };
+
+export default Header;
