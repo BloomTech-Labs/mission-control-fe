@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { Dropdown } from 'semantic-ui-react';
 
 import styles from '../../styles/editor.module.scss';
 
@@ -11,6 +12,20 @@ import styles from '../../styles/editor.module.scss';
 // attendees
 // rating
 // attachment
+
+const topicOptions = [
+  { key: 'gd', value: 'General Discussion', text: 'General Discussion' },
+  {
+    key: 'pca',
+    value: 'Product Cycle Approval',
+    text: 'Product Cycle Approval',
+  },
+  {
+    key: 'rca',
+    value: 'Release Canvas Approval',
+    text: 'Release Canvas Approval',
+  },
+];
 
 export default ({ user, team }) => {
   const [title, setTitle] = useState('');
@@ -57,7 +72,7 @@ export default ({ user, team }) => {
       <h2>Project Notes</h2>
       <div className={styles['editor-container']}>
         <div className={styles['avatar-container']}>
-          <img src={user.avatar} />
+          <img src={user.avatar} alt={`avatar of ${user.name}`} />
         </div>
         <form
           onSubmit={e => {
@@ -72,11 +87,10 @@ export default ({ user, team }) => {
           className={styles['form-container']}
         >
           <div className={styles['form-header']}>
-            <input
-              placeholder="Meeting Topic"
-              type="text"
-              name="title"
-              onChange={e => setTitle(e.target.value)}
+            <Dropdown
+              placeholder="Select Topic"
+              inline
+              options={topicOptions}
             />
             <StarRatings
               numberOfStars={3}
