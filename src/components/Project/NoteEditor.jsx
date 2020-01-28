@@ -26,13 +26,16 @@ const topicOptions = [
 ];
 
 export default ({ user, projectId }) => {
-  const [topic, setTopic] = useState('');
-  const [content, setContent] = useState('');
-  const [rating, setRating] = useState(0);
-  const [attendees, setAttendees] = useState(managers);
-  const [expandedAttendees, setExpandedAttendees] = useState(false);
-  const [expandedAbsent, setExpandedAbsent] = useState(false);
-  const [absentees, setAbsentees] = useState([]);
+  const initialState = {
+    topic: '',
+    content: '',
+    rating: 0,
+    attendees: managers,
+    expandedAttendees: false,
+    expandedAbsent: false,
+    absentees: [],
+  };
+  const [state, setState] = useState(initialState);
   const [res, executeMutation] = useMutation(createNote);
 
   if (res.error) {
@@ -43,28 +46,28 @@ export default ({ user, projectId }) => {
     e.preventDefault();
     e.stopPropagation();
     const deleted = e.target.previousSibling.textContent;
-    const newAttendees = attendees.filter(({ name }) => {
+    const newAttendees = state.attendees.filter(({ name }) => {
       return name !== deleted;
     });
-    const deletedAttendee = attendees.filter(({ name }) => {
+    const deletedAttendee = state.attendees.filter(({ name }) => {
       return name === deleted;
     });
-    const newAbsentees = [...absentees, ...deletedAttendee];
-    setAttendees(newAttendees);
-    setAbsentees(newAbsentees);
+    const newAbsentees = [...state.absentees, ...deletedAttendee];
+    setState({ ...state, attendees: newAttendees, absentees: newAbsentees });
   };
 
   const markAttended = e => {
     e.preventDefault();
     e.stopPropagation();
     const attended = e.target.previousSibling.textContent;
-    const newAttendee = absentees.filter(({ name }) => {
+    const newAttendee = state.absentees.filter(({ name }) => {
       return name === attended;
     });
-    const newAttendees = [...attendees, ...newAttendee];
-    const newAbsentees = absentees.filter(({ name }) => {
+    const newAttendees = [...state.attendees, ...newAttendee];
+    const newAbsentees = state.absentees.filter(({ name }) => {
       return name !== attended;
     });
+    setState({ ...state, attendees: newAttendees, absentees: newAbsentees });
   };
 
   return (
@@ -78,16 +81,19 @@ export default ({ user, projectId }) => {
           />
         </div>
         <form
+          id="form-reset"
           onSubmit={e => {
             e.preventDefault();
             const input = {
               id: projectId,
-              topic,
-              content,
-              rating,
-              attendedBy: Array.from(attendees, element => element.email),
+              topic: state.topic,
+              content: state.content,
+              rating: state.rating,
+              // Extracts an array of emails from array of Person objects
+              attendedBy: Array.from(state.attendees, ({ email }) => email),
             };
             executeMutation(input);
+            // Resets form
           }}
           className={styles['form-container']}
         >
@@ -97,7 +103,7 @@ export default ({ user, projectId }) => {
               inline
               options={topicOptions}
               onChange={(_, { value }) => {
-                setTopic(value);
+                setState({ ...state, topic: value });
               }}
             />
             <StarRatings
@@ -106,10 +112,10 @@ export default ({ user, projectId }) => {
               starRatedColors="rgb(245,73,135)"
               starHoverColor="rgb(245,73,135)"
               starEmptyColor="rgba(245,73,135,.2)"
-              changeRating={rating => setRating(rating)}
+              changeRating={rating => setState({ ...state, rating })}
               starDimension="20px"
               starSpacing=".5px"
-              rating={rating}
+              rating={state.rating}
             />
           </div>
           <div className={styles['body-container']}>
@@ -117,21 +123,28 @@ export default ({ user, projectId }) => {
               className={styles['body-input']}
               placeholder="What's going on?"
               name="content"
-              onChange={e => setContent(e.target.value)}
+              onChange={e => setState({ ...state, content: e.target.value })}
             />
           </div>
           <div className={styles['text-footer']}>
             <div className="attendance">
               <div
                 className={
-                  expandedAttendees ? styles['expanded'] : styles['collapsed']
+                  state.expandedAttendees
+                    ? styles['expanded']
+                    : styles['collapsed']
                 }
-                onClick={() => setExpandedAttendees(!expandedAttendees)}
+                onClick={() =>
+                  setState({
+                    ...state,
+                    expandedAttendees: !state.expandedAttendees,
+                  })
+                }
               >
                 Attendees
                 <div className={styles['attendees-avatars']}>
-                  {attendees.map(({ name, email, avatar }) => {
-                    // check the email of the attendees
+                  {state.attendees.map(({ name, email, avatar }) => {
+                    // TODO: get slack avatar based on email
                     return (
                       <div className={styles['mini-avatar-container']}>
                         <img src={avatar} alt={`avatar of ${name}`} />
@@ -142,16 +155,23 @@ export default ({ user, projectId }) => {
                   })}
                 </div>
               </div>
-              {!!absentees.length && (
+              {!!state.absentees.length && (
                 <div
                   className={
-                    expandedAbsent ? styles['expanded'] : styles['collapsed']
+                    state.expandedAbsent
+                      ? styles['expanded']
+                      : styles['collapsed']
                   }
-                  onClick={() => setExpandedAbsent(!expandedAbsent)}
+                  onClick={() =>
+                    setState({
+                      ...state,
+                      expandedAbsent: !state.expandedAbsent,
+                    })
+                  }
                 >
                   Absent
                   <div className={styles['attendees-avatars']}>
-                    {absentees.map(({ name, avatar }) => {
+                    {state.absentees.map(({ name, avatar }) => {
                       return (
                         <div className={styles['mini-avatar-container']}>
                           <img src={avatar} alt="avatar" />
