@@ -5,7 +5,7 @@ import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from 'semantic-ui-react';
 import managers from './data/managers';
 
-import styles from '../../styles/editor.module.scss';
+import styles from './NoteEditor.module.scss';
 
 const topicOptions = [
   { key: 'gd', value: 'General Discussion', text: 'General Discussion' },
