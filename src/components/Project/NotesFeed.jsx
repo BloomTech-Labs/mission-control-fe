@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Note from './Note';
-import mockNotes from './data/mockNotes';
 
 import styles from '../../styles/noteFeed.module.scss';
 
 export default ({ notes }) => {
-  // const [notes, setNotes] = useState(mockNotes);
   console.log(notes);
   if (notes && notes.length) {
     console.log(notes);
