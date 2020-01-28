@@ -8,13 +8,12 @@ import NoteEditor from './NoteEditor';
 import Header from './Header';
 
 import {
-parentProjectContainer,
-projectPageContents,
-projectContainer,
-editorFeedContainer,
-teamContainer,
+  parentProjectContainer,
+  projectPageContents,
+  projectContainer,
+  editorFeedContainer,
+  teamContainer,
 } from './Project.module.scss';
-
 
 const Project = ({ match: { params } }) => {
   const { id } = params;
@@ -25,7 +24,7 @@ const Project = ({ match: { params } }) => {
     <div className={parentProjectContainer}>
       <div className={projectPageContents}>
         <div>
-          <Header project={data.project} />
+          <Header project={data.project} projectId={id} />
         </div>
         <div className={projectContainer}>
           <div className={editorFeedContainer}>
