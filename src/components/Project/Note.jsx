@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
 
-import styles from '../../styles/notes.module.scss';
+import styles from './Notes.module.scss';
 
 export default ({
   note: { author, topic, content, rating, attendedBy, tags },

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from '../../styles/team.module.scss';
+import styles from './Team.module.scss';
 
 // Takes in an array of project roles
 // const buildTeamList = team => {
