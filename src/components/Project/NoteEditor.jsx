@@ -146,7 +146,7 @@ export default ({ user }) => {
                     {absentees.map(({ firstName, lastName, avatar }) => {
                       return (
                         <div className={styles['mini-avatar-container']}>
-                          <img src={avatar} />
+                          <img src={avatar} alt="avatar"/>
                           <p>
                             {firstName} {lastName}
                           </p>
