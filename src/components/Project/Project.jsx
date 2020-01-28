@@ -8,7 +8,7 @@ import Header from './Header';
 
 import styles from '../../styles/projectView.module.scss';
 
-import query from './query';
+import { ProjectViewQuery as query } from './requests';
 
 export default ({ match }) => {
   const {
@@ -22,10 +22,7 @@ export default ({ match }) => {
       {console.log(`=========data===========\n`, data)}
       <div className={styles['project-page-contents']}>
         <div>
-          <Header
-            product={data.project.product}
-            project={data.project}
-          />
+          <Header product={data.project.product} project={data.project} />
         </div>
         <div className={styles['project-container']}>
           {/* Header */}
