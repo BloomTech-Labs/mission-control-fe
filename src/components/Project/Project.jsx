@@ -23,7 +23,7 @@ export default ({ match }) => {
       <div className={styles['project-page-contents']}>
         <div>
           <Header
-            product={data.project.product.name}
+            product={data.project.product}
             project={data.project}
           />
         </div>

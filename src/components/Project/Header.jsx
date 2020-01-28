@@ -24,9 +24,9 @@ export default ( {project, product, status} ) => {
           <div className={styles['project-title-container']}>
             <h1 className={styles['project-title']}>
               {/* Todo: Project name needs to be dynamic */}
-              {`${product}: ${project}`}
+              {`${product.name}: ${project.name}`}
             </h1>
-            <p className={styles['project-cohort']}> {product} </p>
+            <p className={styles['project-cohort']}> {product.name} </p>
           </div>
           <div className={styles['project-status-container']}>
 
