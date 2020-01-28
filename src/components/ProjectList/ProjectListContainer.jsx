@@ -1,6 +1,9 @@
 import React from 'react';
 
-import styles from './projectList.module.scss';
+import {
+  rtd,
+  rtc,
+} from './projectList.module.scss';
 
 const ProjectContainer = ({ children }) => (
   <table>
@@ -9,8 +12,8 @@ const ProjectContainer = ({ children }) => (
         <th>Project Name</th>
         <th>Section Lead</th>
         <th>Team Lead</th>
-        <th className={styles.rtd}>Last Updated</th>
-        <th className={styles.rtc}>Status</th>
+        <th className={rtd}>Last Updated</th>
+        <th className={rtc}>Status</th>
       </tr>
     </thead>
     <tbody>{children}</tbody>
