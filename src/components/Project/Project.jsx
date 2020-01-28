@@ -24,7 +24,7 @@ export default ({ match }) => {
         <div>
           <Header
             product={data.project.product.name}
-            project={data.project.name}
+            project={data.project}
           />
         </div>
         <div className={styles['project-container']}>
