@@ -1,0 +1,30 @@
+@import '../../styles/variables.scss';
+
+.parentProjectContainer {
+  display: flex;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.projectPageSidebar {
+  margin-right: 5%;
+}
+
+.projectPageContents {
+  width: 100%;
+}
+
+.projectContainer {
+  display: flex;
+}
+
+.editorFeedContainer {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  min-width: 30rem;
+}
+
+.teamContainer {
+  margin-left: 15%;
+}
