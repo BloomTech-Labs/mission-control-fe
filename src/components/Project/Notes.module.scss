@@ -2,9 +2,7 @@
 
 section {
   display: flex;
-  width: 42rem;
-  margin-bottom: 10px;
-  padding-left: 0.5rem;
+  margin: 30px 10px;
 }
 
 section:not(:last-child) {
@@ -61,7 +59,7 @@ section:not(:last-child) {
 
 .noteBody {
   margin-bottom: 0.7rem;
-  font-size: 0.7rem;
+  font-size: 1rem;
   color: $copy;
   line-height: 1.2rem;
 }
