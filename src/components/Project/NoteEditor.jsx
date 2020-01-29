@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown } from 'semantic-ui-react';
-import { extractAvatar } from './data/managers';
 import { useMutation } from 'urql';
+import { extractAvatar } from './data/managers';
 
 import styles from './NoteEditor.module.scss';
 import { CreateNoteMutation as createNote } from './requests';
@@ -38,9 +38,9 @@ export default ({ user, projectId, projectManagers }) => {
 
   useEffect(() => {
     if (state.topic && state.content && state.rating > 0) {
-      setState({ ...state, error: false, hover: false });
+      setState(s => ({ ...s, error: false, hover: false }));
     } else {
-      setState({ ...state, error: true, hover: true });
+      setState(s => ({ ...s, error: true, hover: true }));
     }
   }, [state.topic, state.content, state.rating]);
 
@@ -137,9 +137,7 @@ export default ({ user, projectId, projectManagers }) => {
             <div className="attendance">
               <div
                 className={
-                  state.expandedAttendees
-                    ? styles['expanded']
-                    : styles['collapsed']
+                  state.expandedAttendees ? styles.expanded : styles.collapsed
                 }
                 onClick={() =>
                   setState({
@@ -147,6 +145,7 @@ export default ({ user, projectId, projectManagers }) => {
                     expandedAttendees: !state.expandedAttendees,
                   })
                 }
+                role="presentation"
               >
                 Attendees
                 <div className={styles['attendees-avatars']}>
@@ -159,7 +158,9 @@ export default ({ user, projectId, projectManagers }) => {
                           alt={`avatar of ${name}`}
                         />
                         <p>{name}</p>
-                        <button onClick={markAbsent}>x</button>
+                        <button onClick={markAbsent} type="button">
+                          x
+                        </button>
                       </div>
                     );
                   })}
@@ -168,9 +169,7 @@ export default ({ user, projectId, projectManagers }) => {
               {!!state.absentees.length && (
                 <div
                   className={
-                    state.expandedAbsent
-                      ? styles['expanded']
-                      : styles['collapsed']
+                    state.expandedAbsent ? styles.expanded : styles.collapsed
                   }
                   onClick={() =>
                     setState({
@@ -178,6 +177,7 @@ export default ({ user, projectId, projectManagers }) => {
                       expandedAbsent: !state.expandedAbsent,
                     })
                   }
+                  role="presentation"
                 >
                   Absent
                   <div className={styles['attendees-avatars']}>
@@ -189,7 +189,9 @@ export default ({ user, projectId, projectManagers }) => {
                             alt={`avatar of ${name}`}
                           />
                           <p>{name}</p>
-                          <button onClick={markAttended}>+</button>
+                          <button onClick={markAttended} type="button">
+                            +
+                          </button>
                         </div>
                       );
                     })}
@@ -199,9 +201,7 @@ export default ({ user, projectId, projectManagers }) => {
             </div>
             <div className={styles['button-container']}>
               <button
-                className={
-                  state.error ? styles['disabled'] : styles['save-btn']
-                }
+                className={state.error ? styles.disabled : styles['save-btn']}
                 type="submit"
                 disabled={state.error}
                 title={

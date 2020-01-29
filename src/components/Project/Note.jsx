@@ -23,14 +23,14 @@ import {
 const Note = ({ note, user, projectId, projectManagers }) => {
   const [expandedList, setExpandedList] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const { author, topic, content, rating, attendedBy, tags } = note;
+  const { topic, content, rating, attendedBy } = note;
 
   return isEditing === false ? (
     <section className={projectNote}>
       <div className={avatarContainer}>
         <img
-          src={'https://ca.slack-edge.com/T4JUEB3ME-U9E7020TX-4e37d09c9c61-512'}
-          alt={'Holdy'}
+          src="https://ca.slack-edge.com/T4JUEB3ME-U9E7020TX-4e37d09c9c61-512"
+          alt="Holdy"
           className={avatar}
         />
       </div>
@@ -54,14 +54,13 @@ const Note = ({ note, user, projectId, projectManagers }) => {
           <div
             className={expandedList ? expanded : collapsed}
             onClick={() => setExpandedList(!expandedList)}
+            role="presentation"
           >
             {attendedBy.map(attendee => {
               return (
                 <div className={miniAvatarContainer}>
                   <img
-                    src={
-                      'https://ca.slack-edge.com/T4JUEB3ME-U9E7020TX-4e37d09c9c61-512'
-                    }
+                    src="https://ca.slack-edge.com/T4JUEB3ME-U9E7020TX-4e37d09c9c61-512"
                     alt="avatar"
                   />
                   <p>{attendee.name}</p>
@@ -72,6 +71,7 @@ const Note = ({ note, user, projectId, projectManagers }) => {
           <button
             className={editNoteBtn}
             onClick={() => setIsEditing(!isEditing)}
+            type="button"
           >
             Edit
           </button>
