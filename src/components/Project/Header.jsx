@@ -1,44 +1,64 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
-import styles from '../../styles/projectHeader.module.scss';
-import Fire from '../../images/fire.png';
+import {
+  header,
+  headerContainer,
+  allProducts,
+  projectName,
+  statusContainer,
+  projectNav,
+  activeLink,
+} from './Header.module.scss';
 
-export default () => {
+const Header = ({ project: { name, status }, projectId }) => {
+  // Sanitize string inputs to remove Product prefix
+  const cleanName = str => {
+    const match = str.match(/Labs \d{1,3} -(.+)/);
+    return match[1];
+  };
+
   return (
-    <>
-      <div className={styles['project-header-container']}>
-        <div className={styles['project-back-container']}>
-          <Link to="/" className={styles['project-back-link']}>
-            {' '}
-            All Projects{' '}
-          </Link>
-        </div>
-        <div className={styles['project-summary-container']}>
-          <div className={styles['project-title-container']}>
-            <h1 className={styles['project-title']}>
-              {/* Todo: Project name needs to be dynamic */}
-              Project: Resume Q
-            </h1>
-            {/* Todo: Cohort name needs to be dynamic */}
-            <p className={styles['project-cohort']}> Labs 19 </p>
+    <header className={header}>
+      <div className={headerContainer}>
+        <div>
+          <div>
+            <Link to="/" className={allProducts}>
+              <span role="img" aria-label="back-arrow">
+                &#x21FD;
+              </span>
+                All Projects
+            </Link>
           </div>
-          <div className={styles['project-status-container']}>
-            {/* Todo: Project status needs to be dynamic */}
-            <img
-              src={Fire}
-              alt="project-fire"
-              className={styles['project-fire']}
-            />
-            <p className={styles['project-status']}> Falling behind! </p>
+
+          <div>
+            <h1 className={projectName}>{cleanName(name)}</h1>
           </div>
         </div>
+
+        <div className={statusContainer}>
+          {status
+            ? ''
+            : [
+                <span role="img" aria-label="fire">
+                  🔥
+                </span>,
+                <p>
+                  {' '}
+                  Falling <br /> behind!{' '}
+                </p>,
+              ]}
+        </div>
       </div>
-      <div className={styles['project-tabs-container']}>
-        <p className={styles['project-overview-tab']}> Overview </p>
-        <p className={styles['project-dynamics-tab']}> Team Dynamics </p>
-      </div>
-      <hr className={styles['project-content-divider']} />
-    </>
+
+      <nav className={projectNav}>
+        <NavLink activeClassName={activeLink} to={`${projectId}`}>
+          {' '}
+          Overview{' '}
+        </NavLink>
+      </nav>
+    </header>
   );
 };
+
+export default Header;
