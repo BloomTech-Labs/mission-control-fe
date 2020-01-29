@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
 
+import NoteFeedEdit from './NoteFeedEdit';
+
 import {
   section,
   projectNote,
@@ -18,11 +20,12 @@ import {
   editNoteBtn,
 } from './Notes.module.scss';
 
-const Note = ({
-  note: { author, topic, content, rating, attendedBy, tags },
-}) => {
+const Note = ({ note, user, projectId, projectManagers }) => {
   const [expandedList, setExpandedList] = useState(false);
-  return (
+  const [isEditing, setIsEditing] = useState(false);
+  const { author, topic, content, rating, attendedBy, tags } = note;
+
+  return isEditing === false ? (
     <section className={projectNote}>
       <div className={avatarContainer}>
         <img
@@ -66,10 +69,25 @@ const Note = ({
               );
             })}
           </div>
-          <button className={editNoteBtn}>Edit</button>
+          <button
+            className={editNoteBtn}
+            onClick={() => setIsEditing(!isEditing)}
+          >
+            Edit
+          </button>
         </div>
       </div>
     </section>
+  ) : (
+    <NoteFeedEdit
+      id={note.id}
+      note={note}
+      user={user}
+      projectId={projectId}
+      projectManagers={projectManagers}
+      setIsEditing={setIsEditing}
+      isEditing={isEditing}
+    />
   );
 };
 
