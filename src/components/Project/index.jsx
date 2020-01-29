@@ -33,7 +33,7 @@ const Project = ({ match: { params } }) => {
         <div className={projectContainer}>
           <div className={editorFeedContainer}>
             <NoteEditor
-              user={data.me.email}
+              user={data.me}
               projectId={id}
               projectManagers={data.project.projectManagers}
             />
