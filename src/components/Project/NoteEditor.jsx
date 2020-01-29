@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
-import { Button, Icon, Label } from 'semantic-ui-react';
+import { Label, Dropdown } from 'semantic-ui-react';
 
-import { Dropdown } from 'semantic-ui-react';
 import { useMutation } from 'urql';
-import { extractAvatar } from './data/managers';
+import extractAvatar from '../../utils/managers';
 
 import styles from './NoteEditor.module.scss';
 import { CreateNoteMutation as createNote } from './requests';
@@ -39,6 +38,7 @@ export default ({ user, projectId, projectManagers }) => {
   const [res, executeMutation] = useMutation(createNote);
 
   useEffect(() => {
+    console.log(projectManagers);
     if (state.topic && state.content && state.rating > 0) {
       setState(s => ({ ...s, error: false, hover: false }));
     } else {
@@ -83,10 +83,7 @@ export default ({ user, projectId, projectManagers }) => {
       <h2>Project Notes</h2>
       <div className={styles['editor-container']}>
         <div className={styles['avatar-container']}>
-          <img
-            src="https://ca.slack-edge.com/T4JUEB3ME-ULLS6HX6G-22adeea32d11-72"
-            alt={`avatar of ${user.name}`}
-          />
+          <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
         </div>
         <form
           onSubmit={e => {
