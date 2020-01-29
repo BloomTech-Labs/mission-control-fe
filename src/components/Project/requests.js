@@ -77,3 +77,29 @@ export const CreateNoteMutation = gql`
     }
   }
 `;
+
+export const UpdateNoteMutation = gql`
+  mutation UpdateNoteMutation(
+    $id: ID!
+    $topic: String!
+    $content: String!
+    $attendedBy: [String!]!
+    $rating: Int!
+  ) {
+    updateNote(
+      topic: $topic
+      content: $content
+      attendedBy: $attendedBy
+      id: $id
+      rating: $rating
+    ) {
+      content
+      topic
+      attendedBy {
+        name
+      }
+      id
+      rating
+    }
+  }
+`;
