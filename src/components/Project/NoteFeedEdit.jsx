@@ -211,6 +211,13 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
             </div>
             <div className={styles['button-container']}>
               <button
+                className="cancelButton"
+                type="submit"
+                onClick="window.location.reload();"
+              >
+                Cancel
+              </button>
+              <button
                 className={
                   state.error ? styles['disabled'] : styles['save-btn']
                 }
