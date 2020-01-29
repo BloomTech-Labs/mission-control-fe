@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from 'semantic-ui-react';
 
-import styles from '../../styles/editor.module.scss';
+import styles from './NoteEditor.module.scss';
 
 // avatar of person signed in
 // note title
@@ -36,7 +36,7 @@ export default ({ note, team }) => {
   const [expandedAbsent, setExpandedAbsent] = useState(false);
   const [absentees, setAbsentees] = useState([]);
 
-  console.log(note)
+  console.log(note);
 
   const markAbsent = e => {
     e.preventDefault();
@@ -74,7 +74,12 @@ export default ({ note, team }) => {
       <h2>Project Notes</h2>
       <div className={styles['editor-container']}>
         <div className={styles['avatar-container']}>
-          <img src={"https://ca.slack-edge.com/T4JUEB3ME-ULLS6HX6G-22adeea32d11-72"} alt={`avatar of ${note.name}`} />
+          <img
+            src={
+              'https://ca.slack-edge.com/T4JUEB3ME-ULLS6HX6G-22adeea32d11-72'
+            }
+            alt={`avatar of ${note.name}`}
+          />
         </div>
         <form
           onSubmit={e => {
@@ -128,10 +133,13 @@ export default ({ note, team }) => {
                   {note.attendedBy.map(({ name }) => {
                     return (
                       <div className={styles['mini-avatar-container']}>
-                        <img src={"https://ca.slack-edge.com/T4JUEB3ME-ULLS6HX6G-22adeea32d11-72"} alt={`${name}`} />
-                        <p>
-                          {name}
-                        </p>
+                        <img
+                          src={
+                            'https://ca.slack-edge.com/T4JUEB3ME-ULLS6HX6G-22adeea32d11-72'
+                          }
+                          alt={`${name}`}
+                        />
+                        <p>{name}</p>
                         <button onClick={markAbsent}>x</button>
                       </div>
                     );
@@ -147,13 +155,15 @@ export default ({ note, team }) => {
                 >
                   Absent
                   <div className={styles['attendees-avatars']}>
-                    {note.attendedBy.map(({  name }) => {
+                    {note.attendedBy.map(({ name }) => {
                       return (
                         <div className={styles['mini-avatar-container']}>
-                          <img src={"https://ca.slack-edge.com/T4JUEB3ME-U9E7020TX-4e37d09c9c61-512"} />
-                          <p>
-                            {name}
-                          </p>
+                          <img
+                            src={
+                              'https://ca.slack-edge.com/T4JUEB3ME-U9E7020TX-4e37d09c9c61-512'
+                            }
+                          />
+                          <p>{name}</p>
                           <button onClick={markAttended}>x</button>
                         </div>
                       );
