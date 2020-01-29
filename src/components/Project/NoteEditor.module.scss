@@ -35,8 +35,7 @@ h2 {
         background: inherit;
         padding: 0;
         border: none;
-        min-width: 400px;
-        max-width: 100%;
+        width: 100%;
         min-height: 20vh;
         resize: none;
         &:focus {
