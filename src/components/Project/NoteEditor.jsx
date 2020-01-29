@@ -4,11 +4,8 @@ import { Dropdown } from 'semantic-ui-react';
 import { extractAvatar } from './data/managers';
 import { useMutation } from 'urql';
 
+import styles from './NoteEditor.module.scss';
 import { CreateNoteMutation as createNote } from './requests';
-import styles from '../../styles/editor.module.scss';
-// WIP: Attach file feature
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 
 const topicOptions = [
   { key: 'gd', value: 'General Discussion', text: 'General Discussion' },

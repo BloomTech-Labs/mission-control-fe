@@ -32,7 +32,7 @@ export const ProjectViewQuery = gql`
         id
         email
       }
-      notes {
+      notes(orderBy: updatedAt_DESC) {
         id
         topic
         content
