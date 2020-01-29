@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
-import { Label } from 'semantic-ui-react';
+import { Label, Dropdown } from 'semantic-ui-react';
 
 import { useMutation } from 'urql';
 import extractAvatar from '../../utils/managers';
