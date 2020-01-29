@@ -3,7 +3,7 @@
 .parentProjectContainer {
   display: flex;
   margin: 0 auto;
-  width: 1000px;
+  max-width: 1000px;
 }
 
 .projectPageSidebar {
@@ -26,5 +26,5 @@
 }
 
 .teamContainer {
-  margin-left: 8%;
+  margin-left: 15%;
 }
