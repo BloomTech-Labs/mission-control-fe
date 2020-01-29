@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
+import { Button, Icon, Label } from 'semantic-ui-react';
+
 import { Dropdown } from 'semantic-ui-react';
 import { extractAvatar } from './data/managers';
 import { useMutation } from 'urql';
@@ -158,8 +160,21 @@ export default ({ user, projectId, projectManagers }) => {
                           src={extractAvatar(email)}
                           alt={`avatar of ${name}`}
                         />
-                        <p>{name}</p>
-                        <button onClick={markAbsent}>x</button>
+                        <button>
+                          <Label disabled labelPosition="right" size="small">
+                            {name}
+                          </Label>
+                          <Label
+                            onClick={markAbsent}
+                            size="tiny"
+                            as="a"
+                            basic
+                            color="pink"
+                            pointing="left"
+                          >
+                            Remove
+                          </Label>
+                        </button>
                       </div>
                     );
                   })}
@@ -188,8 +203,21 @@ export default ({ user, projectId, projectManagers }) => {
                             src={extractAvatar(email)}
                             alt={`avatar of ${name}`}
                           />
-                          <p>{name}</p>
-                          <button onClick={markAttended}>+</button>
+                          <button>
+                            <Label disabled labelPosition="right" size="small">
+                              {name}
+                            </Label>
+                            <Label
+                              onClick={markAttended}
+                              size="tiny"
+                              as="a"
+                              basic
+                              color="green"
+                              pointing="left"
+                            >
+                              Add
+                            </Label>
+                          </button>
                         </div>
                       );
                     })}
