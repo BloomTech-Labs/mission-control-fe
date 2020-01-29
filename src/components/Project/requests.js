@@ -27,6 +27,11 @@ export const ProjectViewQuery = gql`
         id
         name
       }
+      projectManagers {
+        name
+        id
+        email
+      }
       notes {
         id
         topic

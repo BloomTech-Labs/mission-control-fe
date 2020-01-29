@@ -26,7 +26,11 @@ const Project = ({ match: { params } }) => {
         </div>
         <div className={styles['project-container']}>
           <div className={styles['editor-feed-container']}>
-            <NoteEditor user={data.me.email} projectId={id} />
+            <NoteEditor
+              user={data.me.email}
+              projectId={id}
+              projectManagers={data.project.projectManagers}
+            />
             <NotesFeed notes={data.project.notes} />
           </div>
           <div className={styles['team-container']}>
