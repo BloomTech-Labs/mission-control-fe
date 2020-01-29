@@ -2,6 +2,7 @@ import React from 'react';
 import Note from './Note';
 
 const NotesFeed = ({ notes }) => {
+  // const [notes, setNotes] = useState(mockNotes);
   if (notes && notes.length) {
     return (
       <div>

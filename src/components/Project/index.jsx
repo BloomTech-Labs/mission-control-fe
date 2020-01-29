@@ -1,6 +1,5 @@
 import React from 'react';
 import { useQuery } from 'urql';
-import query from './query';
 
 import NotesFeed from './NotesFeed';
 import Team from './Team';
@@ -14,6 +13,8 @@ import {
   editorFeedContainer,
   teamContainer,
 } from './Project.module.scss';
+
+import { ProjectViewQuery as query } from './requests';
 
 const Project = ({ match: { params } }) => {
   const { id } = params;
