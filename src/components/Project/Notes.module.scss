@@ -1,13 +1,17 @@
-@import 'variables.scss';
+@import '../../styles/variables.scss';
 
 section {
   display: flex;
-  width: 42rem;
-  margin-bottom: 10px;
-  padding-left: 0.5rem;
+  margin: 30px 10px;
 }
 
-.avatar-container {
+section:not(:last-child) {
+  .noteContainer {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+.avatarContainer {
   width: 75px;
 }
 
@@ -18,7 +22,7 @@ section {
   margin: 10px 0;
 }
 
-.content-container {
+.contentContainer {
   display: flex;
   flex-flow: column;
 }
@@ -26,7 +30,7 @@ section {
 .expanded {
   display: flex;
   flex-wrap: wrap;
-  .mini-avatar-container {
+  .miniAvatarContainer {
     width: 40%;
     display: flex;
     flex-flow: row;
@@ -38,14 +42,14 @@ section {
   }
 }
 
-.note-container {
+.noteContainer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
   padding-bottom: 20px;
   padding-top: 10px;
-  .note-header {
+  .noteHeader {
     display: flex;
     justify-content: space-between;
     font-size: 0.75rem;
@@ -53,20 +57,14 @@ section {
   }
 }
 
-section:not(:last-child) {
-  .note-container {
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  }
-}
-
-.note-body {
+.noteBody {
   margin-bottom: 0.7rem;
-  font-size: 0.7rem;
+  font-size: 1rem;
   color: $copy;
   line-height: 1.2rem;
 }
 
-.note-footer {
+.noteFooter {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -81,7 +79,7 @@ section:not(:last-child) {
   }
 }
 
-.mini-avatar-container {
+.miniAvatarContainer {
   display: flex;
   flex-wrap: wrap;
   img {
