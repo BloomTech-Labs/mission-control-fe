@@ -84,6 +84,9 @@ h2 {
           button {
             border: none;
             background: none;
+            &:focus {
+              outline: none;
+            }
           }
         }
       }
@@ -119,12 +122,27 @@ h2 {
             }
           }
         }
+
+        .disabled {
+          background: $copy;
+          border-radius: 8%;
+          color: white;
+          width: 5rem;
+          border: none;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
         .save-btn {
           background: $accent;
           border-radius: 8%;
           color: white;
           width: 5rem;
           border: none;
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }
