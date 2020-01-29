@@ -3,15 +3,19 @@ import Note from './Note';
 import NoteFeedEdit from './NoteFeedEdit';
 import mockNotes from './data/mockNotes';
 
-const NotesFeed = ({ notes }) => {
-  // const [notes, setNotes] = useState(mockNotes);
-  const [isEditing, setIsEditing] = useState(false);
-  console.log(notes);
+const NotesFeed = ({ notes, projectId, user, projectManagers }) => {
   if (notes && notes.length) {
     return (
       <div>
         {notes.map(note => {
-          return <Note note={note} />;
+          return (
+            <Note
+              note={note}
+              user={user}
+              projectId={projectId}
+              projectManagers={projectManagers}
+            />
+          );
         })}
       </div>
     );
