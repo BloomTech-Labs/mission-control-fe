@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Label } from 'semantic-ui-react';
 
-import { Dropdown } from 'semantic-ui-react';
 import { useMutation } from 'urql';
-import { extractAvatar } from './data/managers';
+import extractAvatar from '../../utils/managers';
 
 import styles from './NoteEditor.module.scss';
 import { CreateNoteMutation as createNote } from './requests';
@@ -28,10 +27,10 @@ export default ({ user, projectId, projectManagers }) => {
     topic: '',
     content: '',
     rating: 0,
-    attendees: projectManagers,
+    attendees: [],
     expandedAttendees: false,
     expandedAbsent: false,
-    absentees: [],
+    absentees: projectManagers,
     error: true,
     hover: true,
   };
@@ -78,15 +77,16 @@ export default ({ user, projectId, projectManagers }) => {
     setState({ ...state, attendees: newAttendees, absentees: newAbsentees });
   };
 
+  const displayedAttendees = state.attendees.filter(
+    person => person.email !== user.email
+  );
+
   return (
     <div className={styles['main-container']}>
       <h2>Project Notes</h2>
       <div className={styles['editor-container']}>
         <div className={styles['avatar-container']}>
-          <img
-            src="https://ca.slack-edge.com/T4JUEB3ME-ULLS6HX6G-22adeea32d11-72"
-            alt={`avatar of ${user.name}`}
-          />
+          <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
         </div>
         <form
           onSubmit={e => {
@@ -151,8 +151,7 @@ export default ({ user, projectId, projectManagers }) => {
               >
                 Attendees
                 <div className={styles['attendees-avatars']}>
-                  {state.attendees.map(({ name, email }) => {
-                    // TODO: get slack avatar based on email
+                  {displayedAttendees.map(({ name, email }) => {
                     return (
                       <div className={styles['mini-avatar-container']}>
                         <img
