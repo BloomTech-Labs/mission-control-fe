@@ -12,12 +12,6 @@ import {
 } from './Header.module.scss';
 
 const Header = ({ project: { name, status }, projectId }) => {
-  // Sanitize string inputs to remove Product prefix
-  const cleanName = str => {
-    const match = str.match(/Labs \d{1,3} -(.+)/);
-    return match[1];
-  };
-
   return (
     <header className={header}>
       <div className={headerContainer}>
@@ -27,12 +21,12 @@ const Header = ({ project: { name, status }, projectId }) => {
               <span role="img" aria-label="back-arrow">
                 &#x21FD;
               </span>
-                All Projects
+              All Projects
             </Link>
           </div>
 
           <div>
-            <h1 className={projectName}>{cleanName(name)}</h1>
+            <h1 className={projectName}>{name}</h1>
           </div>
         </div>
 
@@ -44,8 +38,7 @@ const Header = ({ project: { name, status }, projectId }) => {
                   🔥
                 </span>,
                 <p>
-                  {' '}
-                  Falling <br /> behind!{' '}
+                  Falling <br /> behind!
                 </p>,
               ]}
         </div>

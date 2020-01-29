@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
 
+import NoteFeedEdit from './NoteFeedEdit';
+import extractAvatar from '../../utils/managers';
+
 import {
   section,
   projectNote,
@@ -18,16 +21,20 @@ import {
   editNoteBtn,
 } from './Notes.module.scss';
 
-const Note = ({
-  note: { author, topic, content, rating, attendedBy, tags },
-}) => {
+const Note = ({ note, user, projectId, projectManagers }) => {
   const [expandedList, setExpandedList] = useState(false);
-  return (
+  const [isEditing, setIsEditing] = useState(false);
+  const { topic, content, rating, attendedBy } = note;
+
+  // Removes redundant avatar of signed-in user
+  const displayedAttendees = attendedBy.filter(person => person.email !== user);
+
+  return isEditing === false ? (
     <section className={projectNote}>
       <div className={avatarContainer}>
         <img
-          src={'https://ca.slack-edge.com/T4JUEB3ME-U9E7020TX-4e37d09c9c61-512'}
-          alt={'Holdy'}
+          src={extractAvatar(note.author.email)}
+          alt={`avatar of ${note.author.name}`}
           className={avatar}
         />
       </div>
@@ -51,25 +58,40 @@ const Note = ({
           <div
             className={expandedList ? expanded : collapsed}
             onClick={() => setExpandedList(!expandedList)}
+            role="presentation"
           >
-            {attendedBy.map(attendee => {
+            {displayedAttendees.map(attendee => {
               return (
                 <div className={miniAvatarContainer}>
                   <img
-                    src={
-                      'https://ca.slack-edge.com/T4JUEB3ME-U9E7020TX-4e37d09c9c61-512'
-                    }
-                    alt="avatar"
+                    src={extractAvatar(attendee.email)}
+                    alt={`avatar of ${attendee.name}`}
                   />
                   <p>{attendee.name}</p>
                 </div>
               );
             })}
           </div>
-          <button className={editNoteBtn}>Edit</button>
+          <button
+            className={editNoteBtn}
+            onClick={() => setIsEditing(!isEditing)}
+            type="button"
+          >
+            Edit
+          </button>
         </div>
       </div>
     </section>
+  ) : (
+    <NoteFeedEdit
+      id={note.id}
+      note={note}
+      user={user}
+      projectId={projectId}
+      projectManagers={projectManagers}
+      setIsEditing={setIsEditing}
+      isEditing={isEditing}
+    />
   );
 };
 

@@ -22,7 +22,7 @@ const Project = ({ match: { params } }) => {
     query,
     variables: { id },
   });
-  const { data } = state;
+  const { data, fetching } = state;
 
   return data ? (
     <div className={parentProjectContainer}>
@@ -33,11 +33,17 @@ const Project = ({ match: { params } }) => {
         <div className={projectContainer}>
           <div className={editorFeedContainer}>
             <NoteEditor
-              user={data.me.email}
+              user={data.me}
               projectId={id}
               projectManagers={data.project.projectManagers}
             />
-            <NotesFeed notes={data.project.notes} />
+            <NotesFeed
+              notes={data.project.notes}
+              projectId={id}
+              user={data.me.email}
+              projectManagers={data.project.projectManagers}
+              fetching={fetching}
+            />
           </div>
           <div className={teamContainer}>
             <Team

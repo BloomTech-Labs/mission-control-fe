@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
-import { Dropdown } from 'semantic-ui-react';
-import { extractAvatar } from './data/managers';
+import { Label, Dropdown } from 'semantic-ui-react';
+
 import { useMutation } from 'urql';
+import extractAvatar from '../../utils/managers';
 
 import styles from './NoteEditor.module.scss';
 import { CreateNoteMutation as createNote } from './requests';
@@ -26,10 +27,10 @@ export default ({ user, projectId, projectManagers }) => {
     topic: '',
     content: '',
     rating: 0,
-    attendees: projectManagers,
+    attendees: [],
     expandedAttendees: false,
     expandedAbsent: false,
-    absentees: [],
+    absentees: projectManagers,
     error: true,
     hover: true,
   };
@@ -38,9 +39,9 @@ export default ({ user, projectId, projectManagers }) => {
 
   useEffect(() => {
     if (state.topic && state.content && state.rating > 0) {
-      setState({ ...state, error: false, hover: false });
+      setState(s => ({ ...s, error: false, hover: false }));
     } else {
-      setState({ ...state, error: true, hover: true });
+      setState(s => ({ ...s, error: true, hover: true }));
     }
   }, [state.topic, state.content, state.rating]);
 
@@ -76,15 +77,16 @@ export default ({ user, projectId, projectManagers }) => {
     setState({ ...state, attendees: newAttendees, absentees: newAbsentees });
   };
 
+  const displayedAttendees = state.attendees.filter(
+    person => person.email !== user.email
+  );
+
   return (
     <div className={styles['main-container']}>
       <h2>Project Notes</h2>
       <div className={styles['editor-container']}>
         <div className={styles['avatar-container']}>
-          <img
-            src="https://ca.slack-edge.com/T4JUEB3ME-ULLS6HX6G-22adeea32d11-72"
-            alt={`avatar of ${user.name}`}
-          />
+          <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
         </div>
         <form
           onSubmit={e => {
@@ -137,9 +139,7 @@ export default ({ user, projectId, projectManagers }) => {
             <div className="attendance">
               <div
                 className={
-                  state.expandedAttendees
-                    ? styles['expanded']
-                    : styles['collapsed']
+                  state.expandedAttendees ? styles.expanded : styles.collapsed
                 }
                 onClick={() =>
                   setState({
@@ -147,19 +147,32 @@ export default ({ user, projectId, projectManagers }) => {
                     expandedAttendees: !state.expandedAttendees,
                   })
                 }
+                role="presentation"
               >
                 Attendees
                 <div className={styles['attendees-avatars']}>
-                  {state.attendees.map(({ name, email }) => {
-                    // TODO: get slack avatar based on email
+                  {displayedAttendees.map(({ name, email }) => {
                     return (
                       <div className={styles['mini-avatar-container']}>
                         <img
                           src={extractAvatar(email)}
                           alt={`avatar of ${name}`}
                         />
-                        <p>{name}</p>
-                        <button onClick={markAbsent}>x</button>
+                        <button type="button">
+                          <Label disabled labelPosition="right" size="small">
+                            {name}
+                          </Label>
+                          <Label
+                            onClick={markAbsent}
+                            size="tiny"
+                            as="a"
+                            basic
+                            color="pink"
+                            pointing="left"
+                          >
+                            Remove
+                          </Label>
+                        </button>
                       </div>
                     );
                   })}
@@ -168,9 +181,7 @@ export default ({ user, projectId, projectManagers }) => {
               {!!state.absentees.length && (
                 <div
                   className={
-                    state.expandedAbsent
-                      ? styles['expanded']
-                      : styles['collapsed']
+                    state.expandedAbsent ? styles.expanded : styles.collapsed
                   }
                   onClick={() =>
                     setState({
@@ -178,6 +189,7 @@ export default ({ user, projectId, projectManagers }) => {
                       expandedAbsent: !state.expandedAbsent,
                     })
                   }
+                  role="presentation"
                 >
                   Absent
                   <div className={styles['attendees-avatars']}>
@@ -188,8 +200,21 @@ export default ({ user, projectId, projectManagers }) => {
                             src={extractAvatar(email)}
                             alt={`avatar of ${name}`}
                           />
-                          <p>{name}</p>
-                          <button onClick={markAttended}>+</button>
+                          <button type="button">
+                            <Label disabled labelPosition="right" size="small">
+                              {name}
+                            </Label>
+                            <Label
+                              onClick={markAttended}
+                              size="tiny"
+                              as="a"
+                              basic
+                              color="green"
+                              pointing="left"
+                            >
+                              Add
+                            </Label>
+                          </button>
                         </div>
                       );
                     })}
@@ -199,9 +224,7 @@ export default ({ user, projectId, projectManagers }) => {
             </div>
             <div className={styles['button-container']}>
               <button
-                className={
-                  state.error ? styles['disabled'] : styles['save-btn']
-                }
+                className={state.error ? styles.disabled : styles['save-btn']}
                 type="submit"
                 disabled={state.error}
                 title={
