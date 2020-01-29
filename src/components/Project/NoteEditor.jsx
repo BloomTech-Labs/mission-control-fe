@@ -6,10 +6,8 @@ import { Dropdown } from 'semantic-ui-react';
 import managers from './data/managers';
 import { useMutation } from 'urql';
 
+import styles from './NoteEditor.module.scss';
 import { CreateNoteMutation as createNote } from './requests';
-import styles from '../../styles/editor.module.scss';
-import { execute } from 'graphql';
-import { initialize } from 'react-ga';
 
 const topicOptions = [
   { key: 'gd', value: 'General Discussion', text: 'General Discussion' },
