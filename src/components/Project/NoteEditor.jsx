@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown } from 'semantic-ui-react';
-import managers from './data/managers';
+import { extractAvatar } from './data/managers';
 import { useMutation } from 'urql';
 
 import { CreateNoteMutation as createNote } from './requests';
@@ -24,12 +24,12 @@ const topicOptions = [
   },
 ];
 
-export default ({ user, projectId }) => {
+export default ({ user, projectId, projectManagers }) => {
   const initialState = {
     topic: '',
     content: '',
     rating: 0,
-    attendees: managers,
+    attendees: projectManagers,
     expandedAttendees: false,
     expandedAbsent: false,
     absentees: [],
@@ -40,7 +40,6 @@ export default ({ user, projectId }) => {
   const [res, executeMutation] = useMutation(createNote);
 
   useEffect(() => {
-    console.log('sadfasdf');
     if (state.topic && state.content && state.rating > 0) {
       setState({ ...state, error: false, hover: false });
     } else {
@@ -154,11 +153,14 @@ export default ({ user, projectId }) => {
               >
                 Attendees
                 <div className={styles['attendees-avatars']}>
-                  {state.attendees.map(({ name, email, avatar }) => {
+                  {state.attendees.map(({ name, email }) => {
                     // TODO: get slack avatar based on email
                     return (
                       <div className={styles['mini-avatar-container']}>
-                        <img src={avatar} alt={`avatar of ${name}`} />
+                        <img
+                          src={extractAvatar(email)}
+                          alt={`avatar of ${name}`}
+                        />
                         <p>{name}</p>
                         <button onClick={markAbsent}>x</button>
                       </div>
@@ -182,10 +184,13 @@ export default ({ user, projectId }) => {
                 >
                   Absent
                   <div className={styles['attendees-avatars']}>
-                    {state.absentees.map(({ name, avatar }) => {
+                    {state.absentees.map(({ name, email }) => {
                       return (
                         <div className={styles['mini-avatar-container']}>
-                          <img src={avatar} alt="avatar" />
+                          <img
+                            src={extractAvatar(email)}
+                            alt={`avatar of ${name}`}
+                          />
                           <p>{name}</p>
                           <button onClick={markAttended}>+</button>
                         </div>
