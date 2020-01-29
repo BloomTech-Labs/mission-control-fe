@@ -12,7 +12,10 @@ import { ProjectViewQuery as query } from './requests';
 
 const Project = ({ match: { params } }) => {
   const { id } = params;
-  const [state] = useQuery({ query, variables: { id } });
+  const [state] = useQuery({
+    query,
+    variables: { id },
+  });
   const { data } = state;
 
   return data ? (
