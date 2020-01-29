@@ -4,14 +4,14 @@ import Logo from '../../../images/logo.png';
 
 import {
   sidebar,
+  logoContainer,
   logo,
   links,
   link,
   current,
-  logoContainer,
   logoutButton,
   topLinks,
-  bottomLinks
+  bottomLinks,
 } from './Sidebar.module.scss';
 
 const Sidebar = ({ logout }) => {
