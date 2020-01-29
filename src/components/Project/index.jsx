@@ -22,7 +22,7 @@ const Project = ({ match: { params } }) => {
     query,
     variables: { id },
   });
-  const { data } = state;
+  const { data, fetching } = state;
 
   return data ? (
     <div className={parentProjectContainer}>
@@ -42,6 +42,7 @@ const Project = ({ match: { params } }) => {
               projectId={id}
               user={data.me.email}
               projectManagers={data.project.projectManagers}
+              fetching={fetching}
             />
           </div>
           <div className={teamContainer}>

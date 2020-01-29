@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown } from 'semantic-ui-react';
-import { extractAvatar } from './data/managers';
 import { useMutation } from 'urql';
+import { extractAvatar } from './data/managers';
 
 import styles from './NoteEditor.module.scss';
 import { UpdateNoteMutation as updateNote } from './requests';
@@ -21,15 +21,7 @@ const topicOptions = [
   },
 ];
 
-export default ({
-  user,
-  projectId,
-  projectManagers,
-  note,
-  id,
-  setIsEditing,
-  isEditing,
-}) => {
+export default ({ user, note, id, setIsEditing, isEditing }) => {
   const initialState = {
     topic: note.topic,
     content: note.content,
@@ -46,9 +38,9 @@ export default ({
 
   useEffect(() => {
     if (state.topic && state.content && state.rating > 0) {
-      setState({ ...state, error: false, hover: false });
+      setState(s => ({ ...s, error: false, hover: false }));
     } else {
-      setState({ ...state, error: true, hover: true });
+      setState(s => ({ ...s, error: true, hover: true }));
     }
   }, [state.topic, state.content, state.rating]);
 
@@ -97,7 +89,7 @@ export default ({
           onSubmit={e => {
             e.preventDefault();
             const input = {
-              id: id,
+              id,
               topic: state.topic,
               content: state.content,
               rating: state.rating,
@@ -155,6 +147,7 @@ export default ({
                     expandedAttendees: !state.expandedAttendees,
                   })
                 }
+                role="presentation"
               >
                 Attendees
                 <div className={styles['attendees-avatars']}>
@@ -167,7 +160,9 @@ export default ({
                           alt={`avatar of ${name}`}
                         />
                         <p>{name}</p>
-                        <button onClick={markAbsent}>x</button>
+                        <button onClick={markAbsent} type="button">
+                          x
+                        </button>
                       </div>
                     );
                   })}
@@ -180,12 +175,19 @@ export default ({
                       ? styles['expanded']
                       : styles['collapsed']
                   }
+                  onKeyDown={() =>
+                    setState({
+                      ...state,
+                      expandedAttendees: !state.expandedAttendees,
+                    })
+                  }
                   onClick={() =>
                     setState({
                       ...state,
                       expandedAbsent: !state.expandedAbsent,
                     })
                   }
+                  role="presentation"
                 >
                   Absent
                   <div className={styles['attendees-avatars']}>
@@ -197,7 +199,9 @@ export default ({
                             alt={`avatar of ${name}`}
                           />
                           <p>{name}</p>
-                          <button onClick={markAttended}>+</button>
+                          <button onClick={markAttended} type="button">
+                            +
+                          </button>
                         </div>
                       );
                     })}
