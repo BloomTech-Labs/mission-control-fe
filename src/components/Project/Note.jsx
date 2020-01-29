@@ -1,59 +1,76 @@
 import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
 
-import styles from '../../styles/notes.module.scss';
+import {
+  section,
+  projectNote,
+  avatarContainer,
+  avatar,
+  contentContainer,
+  noteContainer,
+  noteHeader,
+  starRating,
+  noteBody,
+  noteFooter,
+  expanded,
+  miniAvatarContainer,
+  collapsed,
+  editNoteBtn,
+} from './Notes.module.scss';
 
-export default ({
+const Note = ({
   note: { author, topic, content, rating, attendedBy, tags },
 }) => {
-  const [expanded, setExpanded] = useState(false);
-  const { avatar, firstName } = author;
+  const [expandedList, setExpandedList] = useState(false);
   return (
-    <section className={styles['project-note']}>
-      <div className={styles['avatar-container']}>
+    <section className={projectNote}>
+      <div className={avatarContainer}>
         <img
           src={'https://ca.slack-edge.com/T4JUEB3ME-U9E7020TX-4e37d09c9c61-512'}
           alt={'Holdy'}
-          className={styles['avatar']}
+          className={avatar}
         />
       </div>
-      <div className={styles['note-container']}>
-        <div className={styles['content-container']}>
-          <div className={styles['note-header']}>
+      <div className={noteContainer}>
+        <div className={contentContainer}>
+          <div className={noteHeader}>
             <h2>{topic}</h2>
             <StarRatings
               numberOfStars={3}
               rating={rating}
-              className={styles['star-rating']}
+              className={starRating}
               starRatedColor="rgb(245,73,135)"
               starEmptyColor="rgba(245,73,135,.2)"
               starDimension="20px"
               starSpacing=".5px"
             />
           </div>
-          <div className={styles['note-body']}>{content}</div>
+          <div className={noteBody}>{content}</div>
         </div>
-        <div className={styles['note-footer']}>
+        <div className={noteFooter}>
           <div
-            className={expanded ? styles['expanded'] : styles['collapsed']}
-            onClick={() => setExpanded(!expanded)}
+            className={expandedList ? expanded : collapsed}
+            onClick={() => setExpandedList(!expandedList)}
           >
             {attendedBy.map(attendee => {
               return (
-                <div className={styles['mini-avatar-container']}>
+                <div className={miniAvatarContainer}>
                   <img
                     src={
                       'https://ca.slack-edge.com/T4JUEB3ME-U9E7020TX-4e37d09c9c61-512'
                     }
+                    alt="avatar"
                   />
                   <p>{attendee.name}</p>
                 </div>
               );
             })}
           </div>
-          <button className={styles['edit-note-btn']}>Edit</button>
+          <button className={editNoteBtn}>Edit</button>
         </div>
       </div>
     </section>
   );
 };
+
+export default Note;

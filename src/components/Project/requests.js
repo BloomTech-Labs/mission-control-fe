@@ -27,7 +27,7 @@ export const ProjectViewQuery = gql`
         id
         name
       }
-      notes {
+      notes(orderBy: updatedAt_DESC) {
         id
         topic
         content
