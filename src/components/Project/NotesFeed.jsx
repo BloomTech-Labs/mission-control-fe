@@ -1,20 +1,25 @@
 import React from 'react';
 import Note from './Note';
 
-const NotesFeed = ({ notes }) => {
-  // const [notes, setNotes] = useState(mockNotes);
+const NotesFeed = ({ notes, projectId, user, projectManagers, fetching }) => {
+  if (fetching) return <h2>Loading</h2>;
   if (notes && notes.length) {
     return (
       <div>
         {notes.map(note => {
-          return <Note note={note} />;
+          return (
+            <Note
+              note={note}
+              user={user}
+              projectId={projectId}
+              projectManagers={projectManagers}
+            />
+          );
         })}
       </div>
     );
-  } else if (notes.length === 0) {
-    return <h2>There are no notes.</h2>;
   }
-  return <h2>Loading...</h2>;
+  return <h2>There Are No Notes</h2>;
 };
 
 export default NotesFeed;
