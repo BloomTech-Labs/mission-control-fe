@@ -77,9 +77,10 @@ export default ({ user, projectId, projectManagers }) => {
     setState({ ...state, attendees: newAttendees, absentees: newAbsentees });
   };
 
-  const displayedAttendees = state.attendees.filter(
-    person => person.email !== user.email
-  );
+  // removes redundant user avatar
+  const removeUserAvatar = arr => {
+    return arr.filter(person => person.email !== user.email);
+  };
 
   return (
     <div className={styles['main-container']}>
@@ -151,7 +152,7 @@ export default ({ user, projectId, projectManagers }) => {
               >
                 Attendees
                 <div className={styles['attendees-avatars']}>
-                  {displayedAttendees.map(({ name, email }) => {
+                  {removeUserAvatar(state.attendees).map(({ name, email }) => {
                     return (
                       <div className={styles['mini-avatar-container']}>
                         <img
@@ -193,31 +194,37 @@ export default ({ user, projectId, projectManagers }) => {
                 >
                   Absent
                   <div className={styles['attendees-avatars']}>
-                    {state.absentees.map(({ name, email }) => {
-                      return (
-                        <div className={styles['mini-avatar-container']}>
-                          <img
-                            src={extractAvatar(email)}
-                            alt={`avatar of ${name}`}
-                          />
-                          <button type="button">
-                            <Label disabled labelPosition="right" size="small">
-                              {name}
-                            </Label>
-                            <Label
-                              onClick={markAttended}
-                              size="tiny"
-                              as="a"
-                              basic
-                              color="green"
-                              pointing="left"
-                            >
-                              Add
-                            </Label>
-                          </button>
-                        </div>
-                      );
-                    })}
+                    {removeUserAvatar(state.absentees).map(
+                      ({ name, email }) => {
+                        return (
+                          <div className={styles['mini-avatar-container']}>
+                            <img
+                              src={extractAvatar(email)}
+                              alt={`avatar of ${name}`}
+                            />
+                            <button type="button">
+                              <Label
+                                disabled
+                                labelPosition="right"
+                                size="small"
+                              >
+                                {name}
+                              </Label>
+                              <Label
+                                onClick={markAttended}
+                                size="tiny"
+                                as="a"
+                                basic
+                                color="green"
+                                pointing="left"
+                              >
+                                Add
+                              </Label>
+                            </button>
+                          </div>
+                        );
+                      }
+                    )}
                   </div>
                 </div>
               )}
