@@ -10,9 +10,12 @@
 }
 
 .logo {
-  padding: 2rem;
-  padding-left: 3rem;
   width: 35px;
+}
+
+.logoContainer {
+  display: flex;
+  padding: 2rem 3rem;
 }
 
 .orgIcon {
