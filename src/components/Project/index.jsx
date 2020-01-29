@@ -6,7 +6,13 @@ import Team from './Team';
 import NoteEditor from './NoteEditor';
 import Header from './Header';
 
-import styles from '../../styles/projectView.module.scss';
+import {
+  parentProjectContainer,
+  projectPageContents,
+  projectContainer,
+  editorFeedContainer,
+  teamContainer,
+} from './Project.module.scss';
 
 import { ProjectViewQuery as query } from './requests';
 
@@ -19,13 +25,13 @@ const Project = ({ match: { params } }) => {
   const { data } = state;
 
   return data ? (
-    <div className={styles['parent-project-container']}>
-      <div className={styles['project-page-contents']}>
+    <div className={parentProjectContainer}>
+      <div className={projectPageContents}>
         <div>
-          <Header project={data.project} />
+          <Header project={data.project} projectId={id} />
         </div>
-        <div className={styles['project-container']}>
-          <div className={styles['editor-feed-container']}>
+        <div className={projectContainer}>
+          <div className={editorFeedContainer}>
             <NoteEditor
               user={data.me.email}
               projectId={id}
@@ -33,7 +39,7 @@ const Project = ({ match: { params } }) => {
             />
             <NotesFeed notes={data.project.notes} />
           </div>
-          <div className={styles['team-container']}>
+          <div className={teamContainer}>
             <Team
               team={data.project.team}
               teamLead={data.project.teamLead}

@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Note from './Note';
-import mockNotes from './data/mockNotes';
 
-import styles from '../../styles/noteFeed.module.scss';
-
-export default ({ notes }) => {
+const NotesFeed = ({ notes }) => {
   // const [notes, setNotes] = useState(mockNotes);
   if (notes && notes.length) {
     return (
-      <div className={styles['notes-container']}>
+      <div>
         {notes.map(note => {
           return <Note note={note} />;
         })}
@@ -19,3 +16,5 @@ export default ({ notes }) => {
   }
   return <h2>Loading...</h2>;
 };
+
+export default NotesFeed;
