@@ -27,10 +27,10 @@ export default ({ user, projectId, projectManagers }) => {
     topic: '',
     content: '',
     rating: 0,
-    attendees: projectManagers,
+    attendees: [],
     expandedAttendees: false,
     expandedAbsent: false,
-    absentees: [],
+    absentees: projectManagers,
     error: true,
     hover: true,
   };
