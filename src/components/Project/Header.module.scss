@@ -13,6 +13,7 @@
     font-family: $fira;
     color: $accent;
     font-weight: 500;
+    margin-left: -0.7rem;
     &:hover {
         color: $accent;
     }
@@ -27,6 +28,7 @@
 }
 
 .statusContainer {
+    margin-right: 2.5rem;
     display: flex;
     flex-direction: row; 
     align-items: center;
