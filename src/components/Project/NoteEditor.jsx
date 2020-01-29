@@ -38,7 +38,6 @@ export default ({ user, projectId, projectManagers }) => {
   const [res, executeMutation] = useMutation(createNote);
 
   useEffect(() => {
-    console.log(projectManagers);
     if (state.topic && state.content && state.rating > 0) {
       setState(s => ({ ...s, error: false, hover: false }));
     } else {
@@ -77,6 +76,10 @@ export default ({ user, projectId, projectManagers }) => {
     });
     setState({ ...state, attendees: newAttendees, absentees: newAbsentees });
   };
+
+  const displayedAttendees = state.attendees.filter(
+    person => person.email !== user.email
+  );
 
   return (
     <div className={styles['main-container']}>
@@ -148,8 +151,7 @@ export default ({ user, projectId, projectManagers }) => {
               >
                 Attendees
                 <div className={styles['attendees-avatars']}>
-                  {state.attendees.map(({ name, email }) => {
-                    // TODO: get slack avatar based on email
+                  {displayedAttendees.map(({ name, email }) => {
                     return (
                       <div className={styles['mini-avatar-container']}>
                         <img
