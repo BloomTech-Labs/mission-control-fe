@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from 'semantic-ui-react';
 import managers from './data/managers';
+import { useMutation } from 'urql';
 
 import styles from './NoteEditor.module.scss';
+import { CreateNoteMutation as createNote } from './requests';
 
 const topicOptions = [
   { key: 'gd', value: 'General Discussion', text: 'General Discussion' },
@@ -21,44 +23,49 @@ const topicOptions = [
   },
 ];
 
-export default ({ user }) => {
-  const [topic, setTopic] = useState('');
-  const [body, setBody] = useState('');
-  const [rating, setRating] = useState(0);
-  const [attendees, setAttendees] = useState([]);
-  const [expandedAttendees, setExpandedAttendees] = useState(false);
-  const [expandedAbsent, setExpandedAbsent] = useState(false);
-  const [absentees, setAbsentees] = useState([]);
+export default ({ user, projectId }) => {
+  const initialState = {
+    topic: '',
+    content: '',
+    rating: 0,
+    attendees: managers,
+    expandedAttendees: false,
+    expandedAbsent: false,
+    absentees: [],
+  };
+  const [state, setState] = useState(initialState);
+  const [res, executeMutation] = useMutation(createNote);
+
+  if (res.error) {
+    alert('Incorrect data shape');
+  }
 
   const markAbsent = e => {
     e.preventDefault();
     e.stopPropagation();
-    const deleted = e.target.previousSibling.textContent.split(' ');
-    const newAttendees = attendees.filter(({ firstName, lastName }) => {
-      return firstName !== deleted[0] && lastName !== deleted[1];
+    const deleted = e.target.previousSibling.textContent;
+    const newAttendees = state.attendees.filter(({ name }) => {
+      return name !== deleted;
     });
-    const deletedAttendee = attendees.filter(({ firstName, lastName }) => {
-      return firstName === deleted[0] && lastName === deleted[1];
+    const deletedAttendee = state.attendees.filter(({ name }) => {
+      return name === deleted;
     });
-    const newAbsentees = [...absentees, ...deletedAttendee];
-    setAttendees(newAttendees);
-    setAbsentees(newAbsentees);
+    const newAbsentees = [...state.absentees, ...deletedAttendee];
+    setState({ ...state, attendees: newAttendees, absentees: newAbsentees });
   };
 
   const markAttended = e => {
     e.preventDefault();
     e.stopPropagation();
-    const attended = e.target.previousSibling.textContent.split(' ');
-    const newAttendee = absentees.filter(({ firstName, lastName }) => {
-      return firstName === attended[0] && lastName === attended[1];
+    const attended = e.target.previousSibling.textContent;
+    const newAttendee = state.absentees.filter(({ name }) => {
+      return name === attended;
     });
-    const newAttendees = [...attendees, ...newAttendee];
-    const newAbsentees = absentees.filter(({ firstName, lastName }) => {
-      return firstName !== attended[0] && lastName !== attended[1];
+    const newAttendees = [...state.attendees, ...newAttendee];
+    const newAbsentees = state.absentees.filter(({ name }) => {
+      return name !== attended;
     });
-
-    setAttendees(newAttendees);
-    setAbsentees(newAbsentees);
+    setState({ ...state, attendees: newAttendees, absentees: newAbsentees });
   };
 
   return (
@@ -74,12 +81,17 @@ export default ({ user }) => {
         <form
           onSubmit={e => {
             e.preventDefault();
-            console.log({
-              topic,
-              body,
-              rating,
-              attendees,
-            });
+            const input = {
+              id: projectId,
+              topic: state.topic,
+              content: state.content,
+              rating: state.rating,
+              // Extracts an array of emails from array of Person objects
+              attendedBy: Array.from(state.attendees, ({ email }) => email),
+            };
+            executeMutation(input);
+            // Resets form
+            setState(initialState);
           }}
           className={styles['form-container']}
         >
@@ -88,9 +100,10 @@ export default ({ user }) => {
               placeholder="Select Topic"
               inline
               options={topicOptions}
-              onChange={(_, value) => {
-                setTopic(value);
+              onChange={(_, { value }) => {
+                setState({ ...state, topic: value });
               }}
+              value={state.topic}
             />
             <StarRatings
               numberOfStars={3}
@@ -98,32 +111,40 @@ export default ({ user }) => {
               starRatedColors="rgb(245,73,135)"
               starHoverColor="rgb(245,73,135)"
               starEmptyColor="rgba(245,73,135,.2)"
-              changeRating={rating => setRating(rating)}
+              changeRating={rating => setState({ ...state, rating })}
               starDimension="20px"
               starSpacing=".5px"
-              rating={rating}
+              rating={state.rating}
             />
           </div>
           <div className={styles['body-container']}>
             <textarea
               className={styles['body-input']}
               placeholder="What's going on?"
-              name="body"
-              onChange={e => setBody(e.target.value)}
+              name="content"
+              onChange={e => setState({ ...state, content: e.target.value })}
+              value={state.content}
             />
           </div>
           <div className={styles['text-footer']}>
             <div className="attendance">
               <div
                 className={
-                  expandedAttendees ? styles['expanded'] : styles['collapsed']
+                  state.expandedAttendees
+                    ? styles['expanded']
+                    : styles['collapsed']
                 }
-                onClick={() => setExpandedAttendees(!expandedAttendees)}
+                onClick={() =>
+                  setState({
+                    ...state,
+                    expandedAttendees: !state.expandedAttendees,
+                  })
+                }
               >
                 Attendees
                 <div className={styles['attendees-avatars']}>
-                  {managers.map(({ name, email, avatar }) => {
-                    // check the email of the attendees
+                  {state.attendees.map(({ name, email, avatar }) => {
+                    // TODO: get slack avatar based on email
                     return (
                       <div className={styles['mini-avatar-container']}>
                         <img src={avatar} alt={`avatar of ${name}`} />
@@ -134,23 +155,28 @@ export default ({ user }) => {
                   })}
                 </div>
               </div>
-              {!!absentees.length && (
+              {!!state.absentees.length && (
                 <div
                   className={
-                    expandedAbsent ? styles['expanded'] : styles['collapsed']
+                    state.expandedAbsent
+                      ? styles['expanded']
+                      : styles['collapsed']
                   }
-                  onClick={() => setExpandedAbsent(!expandedAbsent)}
+                  onClick={() =>
+                    setState({
+                      ...state,
+                      expandedAbsent: !state.expandedAbsent,
+                    })
+                  }
                 >
                   Absent
                   <div className={styles['attendees-avatars']}>
-                    {absentees.map(({ firstName, lastName, avatar }) => {
+                    {state.absentees.map(({ name, avatar }) => {
                       return (
                         <div className={styles['mini-avatar-container']}>
-                          <img src={avatar} alt="avatar"/>
-                          <p>
-                            {firstName} {lastName}
-                          </p>
-                          <button onClick={markAttended}>x</button>
+                          <img src={avatar} alt="avatar" />
+                          <p>{name}</p>
+                          <button onClick={markAttended}>+</button>
                         </div>
                       );
                     })}
@@ -159,10 +185,9 @@ export default ({ user }) => {
               )}
             </div>
             <div className={styles['button-container']}>
-              <button className={styles['attach-btn']}>
-                <FontAwesomeIcon icon={faPaperclip} /> Attach
+              <button className={styles['save-btn']} type="submit">
+                Save
               </button>
-              <button className={styles['save-btn']}>Save</button>
             </div>
           </div>
         </form>
