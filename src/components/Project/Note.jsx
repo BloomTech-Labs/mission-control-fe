@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
 
-import { 
+import {
   section,
   projectNote,
   avatarContainer,
@@ -16,7 +16,6 @@ import {
   miniAvatarContainer,
   collapsed,
   editNoteBtn,
-
 } from './Notes.module.scss';
 
 const Note = ({
@@ -59,7 +58,8 @@ const Note = ({
                   <img
                     src={
                       'https://ca.slack-edge.com/T4JUEB3ME-U9E7020TX-4e37d09c9c61-512'
-                    } alt="avatar"
+                    }
+                    alt="avatar"
                   />
                   <p>{attendee.name}</p>
                 </div>
@@ -72,6 +72,5 @@ const Note = ({
     </section>
   );
 };
-
 
 export default Note;
