@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown } from 'semantic-ui-react';
 import { useMutation } from 'urql';
-import { extractAvatar } from './data/managers';
+import extractAvatar from '../../utils/managers';
 
 import styles from './NoteEditor.module.scss';
 import { UpdateNoteMutation as updateNote } from './requests';
@@ -80,10 +80,7 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
     <div className={styles['main-container']}>
       <div className={styles['editor-container']}>
         <div className={styles['avatar-container']}>
-          <img
-            src="https://ca.slack-edge.com/T4JUEB3ME-ULLS6HX6G-22adeea32d11-72"
-            alt={`avatar of ${user.name}`}
-          />
+          <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
         </div>
         <form
           onSubmit={e => {
@@ -137,9 +134,7 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
             <div className="attendance">
               <div
                 className={
-                  state.expandedAttendees
-                    ? styles['expanded']
-                    : styles['collapsed']
+                  state.expandedAttendees ? styles.expanded : styles.collapsed
                 }
                 onClick={() =>
                   setState({
@@ -171,9 +166,7 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
               {!!state.absentees.length && (
                 <div
                   className={
-                    state.expandedAbsent
-                      ? styles['expanded']
-                      : styles['collapsed']
+                    state.expandedAbsent ? styles.expanded : styles.collapsed
                   }
                   onKeyDown={() =>
                     setState({
@@ -211,9 +204,7 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
             </div>
             <div className={styles['button-container']}>
               <button
-                className={
-                  state.error ? styles['disabled'] : styles['save-btn']
-                }
+                className={state.error ? styles.disabled : styles['save-btn']}
                 type="submit"
                 disabled={state.error}
                 title={
