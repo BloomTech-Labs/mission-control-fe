@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from 'semantic-ui-react';
-import managers from './data/managers';
+import { extractAvatar } from './data/managers';
 import { useMutation } from 'urql';
 
 import styles from './NoteEditor.module.scss';
@@ -23,18 +21,28 @@ const topicOptions = [
   },
 ];
 
-export default ({ user, projectId }) => {
+export default ({ user, projectId, projectManagers }) => {
   const initialState = {
     topic: '',
     content: '',
     rating: 0,
-    attendees: managers,
+    attendees: projectManagers,
     expandedAttendees: false,
     expandedAbsent: false,
     absentees: [],
+    error: true,
+    hover: true,
   };
   const [state, setState] = useState(initialState);
   const [res, executeMutation] = useMutation(createNote);
+
+  useEffect(() => {
+    if (state.topic && state.content && state.rating > 0) {
+      setState({ ...state, error: false, hover: false });
+    } else {
+      setState({ ...state, error: true, hover: true });
+    }
+  }, [state.topic, state.content, state.rating]);
 
   if (res.error) {
     alert('Incorrect data shape');
@@ -90,7 +98,6 @@ export default ({ user, projectId }) => {
               attendedBy: Array.from(state.attendees, ({ email }) => email),
             };
             executeMutation(input);
-            // Resets form
             setState(initialState);
           }}
           className={styles['form-container']}
@@ -143,11 +150,14 @@ export default ({ user, projectId }) => {
               >
                 Attendees
                 <div className={styles['attendees-avatars']}>
-                  {state.attendees.map(({ name, email, avatar }) => {
+                  {state.attendees.map(({ name, email }) => {
                     // TODO: get slack avatar based on email
                     return (
                       <div className={styles['mini-avatar-container']}>
-                        <img src={avatar} alt={`avatar of ${name}`} />
+                        <img
+                          src={extractAvatar(email)}
+                          alt={`avatar of ${name}`}
+                        />
                         <p>{name}</p>
                         <button onClick={markAbsent}>x</button>
                       </div>
@@ -171,10 +181,13 @@ export default ({ user, projectId }) => {
                 >
                   Absent
                   <div className={styles['attendees-avatars']}>
-                    {state.absentees.map(({ name, avatar }) => {
+                    {state.absentees.map(({ name, email }) => {
                       return (
                         <div className={styles['mini-avatar-container']}>
-                          <img src={avatar} alt="avatar" />
+                          <img
+                            src={extractAvatar(email)}
+                            alt={`avatar of ${name}`}
+                          />
                           <p>{name}</p>
                           <button onClick={markAttended}>+</button>
                         </div>
@@ -185,7 +198,18 @@ export default ({ user, projectId }) => {
               )}
             </div>
             <div className={styles['button-container']}>
-              <button className={styles['save-btn']} type="submit">
+              <button
+                className={
+                  state.error ? styles['disabled'] : styles['save-btn']
+                }
+                type="submit"
+                disabled={state.error}
+                title={
+                  state.hover
+                    ? 'Please include a title, rating, and content'
+                    : null
+                }
+              >
                 Save
               </button>
             </div>

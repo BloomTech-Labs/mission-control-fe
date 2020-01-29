@@ -18,7 +18,10 @@ import { ProjectViewQuery as query } from './requests';
 
 const Project = ({ match: { params } }) => {
   const { id } = params;
-  const [state] = useQuery({ query, variables: { id } });
+  const [state] = useQuery({
+    query,
+    variables: { id },
+  });
   const { data } = state;
 
   return data ? (
@@ -29,7 +32,11 @@ const Project = ({ match: { params } }) => {
         </div>
         <div className={projectContainer}>
           <div className={editorFeedContainer}>
-            <NoteEditor user={data.me.email} />
+            <NoteEditor
+              user={data.me.email}
+              projectId={id}
+              projectManagers={data.project.projectManagers}
+            />
             <NotesFeed notes={data.project.notes} />
           </div>
           <div className={teamContainer}>
