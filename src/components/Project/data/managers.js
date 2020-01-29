@@ -37,5 +37,5 @@ const managers = [
 
 export const extractAvatar = email => {
   const res = managers.filter(e => e.email === email);
-  return res[0].avatar;
+  return res.length && res[0].avatar;
 };
