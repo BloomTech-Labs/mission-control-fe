@@ -37,7 +37,12 @@ const Project = ({ match: { params } }) => {
               projectId={id}
               projectManagers={data.project.projectManagers}
             />
-            <NotesFeed notes={data.project.notes} />
+            <NotesFeed
+              notes={data.project.notes}
+              projectId={id}
+              user={data.me.email}
+              projectManagers={data.project.projectManagers}
+            />
           </div>
           <div className={teamContainer}>
             <Team
