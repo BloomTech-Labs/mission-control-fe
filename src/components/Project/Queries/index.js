@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const TEAM_QUERY = gql`
-  query ProjectView($id: ID!) {
+  query TeamView($id: ID!) {
     project(id: $id) {
       id
       team {
@@ -22,4 +22,12 @@ export const TEAM_QUERY = gql`
   }
 `;
 
-export const DUMMY = 'hello world';
+export const HEADER_QUERY = gql`
+  query HeaderView($id: ID!) {
+    project(id: $id) {
+      id
+      status
+      name
+    }
+  }
+`;
