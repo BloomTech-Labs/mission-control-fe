@@ -2,11 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import mapTime from '../../../mappers/mapTime';
 
-import { title } from './projectListRow.module.scss';
-import {
-  rtd,
-  rtc,
-} from '../ProjectListContainer/projectListContainer.module.scss';
+import { title, rtd, rtc } from './projectListRow.module.scss';
 
 // Sanitize string inputs to remove Product prefix
 const cleanName = str => {
