@@ -9,6 +9,7 @@ const NotesFeed = ({ notes, projectId, user, projectManagers, fetching }) => {
         {notes.map(note => {
           return (
             <Note
+              key={note.id}
               note={note}
               user={user}
               projectId={projectId}
