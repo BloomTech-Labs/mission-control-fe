@@ -74,7 +74,7 @@ const Note = ({ note, user, projectId, projectManagers }) => {
           </div>
           <button
             className={editNoteBtn}
-            onClick={() => setIsEditing(!isEditing)}
+            onClick={() => setIsEditing(true)}
             type="button"
           >
             Edit

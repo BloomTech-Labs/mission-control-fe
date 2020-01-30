@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
-import { Dropdown } from 'semantic-ui-react';
+import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation } from 'urql';
 import extractAvatar from '../../utils/managers';
 
@@ -80,7 +80,7 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
     <div className={styles['main-container']}>
       <div className={styles['editor-container']}>
         <div className={styles['avatar-container']}>
-          <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
+          <img src={extractAvatar(user)} alt={`avatar of ${user.name}`} />
         </div>
         <form
           onSubmit={e => {
@@ -203,17 +203,16 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
               )}
             </div>
             <div className={styles['button-container']}>
-              <button
-                className="cancelButton"
-                type="submit"
-                onClick="window.location.reload();"
+              <SemanticButton
+                type="button"
+                onClick={() => {
+                  setIsEditing(false);
+                }}
               >
                 Cancel
-              </button>
-              <button
-                className={
-                  state.error ? styles['disabled'] : styles['save-btn']
-                }
+              </SemanticButton>
+              <SemanticButton
+                className={state.error ? styles.disabled : styles['save-btn']}
                 type="submit"
                 disabled={state.error}
                 title={
@@ -223,7 +222,7 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
                 }
               >
                 Save
-              </button>
+              </SemanticButton>
             </div>
           </div>
         </form>
