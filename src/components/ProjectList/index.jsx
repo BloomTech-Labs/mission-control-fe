@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from 'urql';
-import { PROJECT_LIST_VIEW as query } from './projectQueries';
+import { PROJECT_LIST_VIEW as query } from './Queries/projectQueries';
 
 import ProjectListContainer from './ProjectListContainer';
 import ProjectListRow from './ProjectListRow';
