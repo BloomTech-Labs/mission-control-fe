@@ -46,11 +46,7 @@ const Project = ({ match: { params } }) => {
             />
           </div>
           <div className={teamContainer}>
-            <Team
-              team={data.project.team}
-              teamLead={data.project.teamLead}
-              sectionLead={data.project.sectionLead}
-            />
+            <Team projectId={id} />
           </div>
         </div>
       </div>
