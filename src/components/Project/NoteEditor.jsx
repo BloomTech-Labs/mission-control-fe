@@ -22,7 +22,7 @@ const topicOptions = [
   },
 ];
 
-export default ({ user, projectId, projectManagers }) => {
+export default ({ user, projectId, projectManagers, executeQuery }) => {
   const initialState = {
     topic: '',
     content: '',
@@ -34,8 +34,9 @@ export default ({ user, projectId, projectManagers }) => {
     error: true,
     hover: true,
   };
+
   const [state, setState] = useState(initialState);
-  const [res, executeMutation] = useMutation(createNote);
+  const [, executeMutation] = useMutation(createNote);
 
   useEffect(() => {
     if (state.topic && state.content && state.rating > 0) {
@@ -44,10 +45,6 @@ export default ({ user, projectId, projectManagers }) => {
       setState(s => ({ ...s, error: true, hover: true }));
     }
   }, [state.topic, state.content, state.rating]);
-
-  if (res.error) {
-    alert('Incorrect data shape');
-  }
 
   const markAbsent = e => {
     e.preventDefault();
@@ -102,6 +99,7 @@ export default ({ user, projectId, projectManagers }) => {
             };
             executeMutation(input);
             setState(initialState);
+            executeQuery({ requestPolicy: 'cache-and-network' });
           }}
           className={styles['form-container']}
         >
