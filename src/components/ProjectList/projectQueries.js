@@ -9,6 +9,10 @@ export const PROJECT_LIST_VIEW = gql`
         name
         status
         updatedAt
+        notes(orderBy: updatedAt_DESC) {
+          id
+          updatedAt
+        }
         sectionLead {
           id
           name
