@@ -160,7 +160,7 @@ export default ({ user, projectId, projectManagers }) => {
                           alt={`avatar of ${name}`}
                         />
                         <button type="button">
-                          <Label disabled labelPosition="right" size="small">
+                          <Label disabled size="small">
                             {name}
                           </Label>
                           <Label
@@ -203,11 +203,7 @@ export default ({ user, projectId, projectManagers }) => {
                               alt={`avatar of ${name}`}
                             />
                             <button type="button">
-                              <Label
-                                disabled
-                                labelPosition="right"
-                                size="small"
-                              >
+                              <Label disabled size="small">
                                 {name}
                               </Label>
                               <Label
