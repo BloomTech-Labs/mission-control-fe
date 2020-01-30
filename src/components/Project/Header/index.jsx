@@ -19,7 +19,7 @@ const Header = ({ project: { name, status }, projectId }) => {
           <div>
             <Link to="/" className={allProducts}>
               <span role="img" aria-label="back-arrow">
-                &#x21FD;
+                &#x21FD;{' '}
               </span>
               All Projects
             </Link>
@@ -46,8 +46,7 @@ const Header = ({ project: { name, status }, projectId }) => {
 
       <nav className={projectNav}>
         <NavLink activeClassName={activeLink} to={`${projectId}`}>
-          {' '}
-          Overview{' '}
+          Overview
         </NavLink>
       </nav>
     </header>
