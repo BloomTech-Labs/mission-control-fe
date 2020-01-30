@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useQuery } from 'urql';
+import { HEADER_QUERY as query } from '../Queries';
 
 import {
   header,
@@ -11,46 +13,57 @@ import {
   activeLink,
 } from './Header.module.scss';
 
-const Header = ({ project: { name, status }, projectId }) => {
-  return (
-    <header className={header}>
-      <div className={headerContainer}>
-        <div>
+const Header = ({ projectId }) => {
+  const [state] = useQuery({ query, variables: { id: projectId } });
+  const { data, fetching } = state;
+
+  if (fetching) return <h1>Loading</h1>;
+  if (data && data.project) {
+    const {
+      project: { name, status },
+    } = data;
+
+    return (
+      <header className={header}>
+        <div className={headerContainer}>
           <div>
-            <Link to="/" className={allProducts}>
-              <span role="img" aria-label="back-arrow">
-                &#x21FD;{' '}
-              </span>
-              All Projects
-            </Link>
+            <div>
+              <Link to="/" className={allProducts}>
+                <span role="img" aria-label="back-arrow">
+                  &#x21FD;{' '}
+                </span>
+                All Projects
+              </Link>
+            </div>
+
+            <div>
+              <h1 className={projectName}>{name}</h1>
+            </div>
           </div>
 
-          <div>
-            <h1 className={projectName}>{name}</h1>
+          <div className={statusContainer}>
+            {status
+              ? ''
+              : [
+                  <span role="img" aria-label="fire">
+                    🔥
+                  </span>,
+                  <p>
+                    Falling <br /> behind!
+                  </p>,
+                ]}
           </div>
         </div>
 
-        <div className={statusContainer}>
-          {status
-            ? ''
-            : [
-                <span role="img" aria-label="fire">
-                  🔥
-                </span>,
-                <p>
-                  Falling <br /> behind!
-                </p>,
-              ]}
-        </div>
-      </div>
-
-      <nav className={projectNav}>
-        <NavLink activeClassName={activeLink} to={`${projectId}`}>
-          Overview
-        </NavLink>
-      </nav>
-    </header>
-  );
+        <nav className={projectNav}>
+          <NavLink activeClassName={activeLink} to={`${projectId}`}>
+            Overview
+          </NavLink>
+        </nav>
+      </header>
+    );
+  }
+  return <h1>No project found</h1>;
 };
 
 export default Header;
