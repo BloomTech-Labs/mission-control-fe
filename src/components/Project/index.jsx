@@ -18,21 +18,19 @@ import { ProjectViewQuery as query } from './requests';
 
 const Project = ({ match: { params } }) => {
   const { id } = params;
-  const [state] = useQuery({
-    query,
-    variables: { id },
-  });
+  const [state, executeQuery] = useQuery({ query, variables: { id } });
   const { data, fetching } = state;
 
   return data ? (
     <div className={parentProjectContainer}>
       <div className={projectPageContents}>
         <div>
-          <Header project={data.project} projectId={id} />
+          <Header projectId={id} />
         </div>
         <div className={projectContainer}>
           <div className={editorFeedContainer}>
             <NoteEditor
+              executeQuery={executeQuery}
               user={data.me}
               projectId={id}
               projectManagers={data.project.projectManagers}
