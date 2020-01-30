@@ -1,9 +1,10 @@
 import React from 'react';
 import { useQuery } from 'urql';
 
-import NotesFeed from './NotesFeed';
-import Team from './Team';
 import NoteEditor from './NoteEditor';
+import NotesFeed from './NoteFeed';
+import Team from './Team';
+
 import Header from './Header';
 
 import {
@@ -14,7 +15,7 @@ import {
   teamContainer,
 } from './Project.module.scss';
 
-import { ProjectViewQuery as query } from './requests';
+import { ProjectViewQuery as query } from './Queries/requests';
 
 const Project = ({ match: { params } }) => {
   const { id } = params;
