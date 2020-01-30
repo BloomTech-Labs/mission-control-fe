@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
-import { Label, Dropdown } from 'semantic-ui-react';
+import { Label, Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 
 import { useMutation } from 'urql';
 import extractAvatar from '../../utils/managers';
@@ -226,7 +226,7 @@ export default ({ user, projectId, projectManagers }) => {
               )}
             </div>
             <div className={styles['button-container']}>
-              <button
+              <SemanticButton
                 className={state.error ? styles.disabled : styles['save-btn']}
                 type="submit"
                 disabled={state.error}
@@ -237,7 +237,7 @@ export default ({ user, projectId, projectManagers }) => {
                 }
               >
                 Save
-              </button>
+              </SemanticButton>
             </div>
           </div>
         </form>
