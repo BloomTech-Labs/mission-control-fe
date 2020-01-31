@@ -74,7 +74,7 @@ h2 {
         .mini-avatar-container {
           display: flex;
           align-items: center;
-          width: 40%;
+          // width: 40%;
           button {
             border: none;
             background: none;
@@ -147,6 +147,9 @@ h2 {
           align-items: center;
           margin-bottom: 1vh;
           text-align: center;
+        }
+        input {
+          margin: 0 -0.2rem 0.6rem 0.8rem;
         }
       }
     }
