@@ -33,6 +33,7 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
     absentees: projectManagers,
     error: true,
     hover: true,
+    notification: false,
   };
 
   const [state, setState] = useState(initialState);
@@ -96,6 +97,7 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
               rating: state.rating,
               // Extracts an array of emails from array of Person objects
               attendedBy: Array.from(state.attendees, ({ email }) => email),
+              notification: state.notification,
             };
             executeMutation(input);
             setState(initialState);
@@ -135,7 +137,7 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
             />
           </div>
           <div className={styles['text-footer']}>
-            <div className="attendance">
+            <div className={styles.attendance}>
               <div
                 className={
                   state.expandedAttendees ? styles.expanded : styles.collapsed
@@ -223,7 +225,30 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
                 </div>
               )}
             </div>
-            <div className={styles['button-container']}>
+            <div
+              className={
+                state.expandedAbsent || state.expandedAttendees
+                  ? styles['button-container-min']
+                  : styles['button-container']
+              }
+            >
+              <div className={styles.notification}>
+                <label htmlFor="notification">
+                  Email Notifications
+                  <input
+                    type="checkbox"
+                    checked={state.notification}
+                    id="notification"
+                    name="notification"
+                    onClick={() =>
+                      setState({
+                        ...state,
+                        notification: !state.notification,
+                      })
+                    }
+                  />
+                </label>
+              </div>
               <SemanticButton
                 className={state.error ? styles.disabled : styles['save-btn']}
                 type="submit"
