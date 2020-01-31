@@ -1,0 +1,148 @@
+@import '../../../styles/variables.scss';
+
+h2 {
+  font-size: 1.4rem;
+  font-family: $fira;
+}
+.mainContainer {
+  margin-top: 1rem;
+
+  .editorContainer {
+    margin-top: 25px;
+    display: flex;
+    .avatarContainer {
+      padding: 0.5rem;
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+    }
+    .formContainer {
+      width: 100%;
+      background: rgba(33, 34, 47, 0.02);
+      border: solid 0.05rem rgba(33, 34, 47, 0.2);
+      padding: 2% 3%;
+      border-radius: 1rem;
+      input {
+        background: inherit;
+        border: none;
+      }
+      input:focus {
+        outline: none;
+      }
+      textarea {
+        background: inherit;
+        padding: 0;
+        border: none;
+        width: 100%;
+        min-height: 20vh;
+        resize: none;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+    .formHeader {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2vh;
+    }
+    .bodyInput {
+      height: 15vh;
+    }
+    .textFooter {
+      display: flex;
+      flex-flow: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      p {
+        font-size: 0.6rem;
+      }
+      img {
+        width: 25px;
+        border-radius: 50%;
+      }
+      .expandedView {
+        .attendees-avatars {
+          display: flex;
+          margin-top: 0.5vh;
+          flex-flow: wrap;
+        }
+        .miniAvatarContainer {
+          display: flex;
+          align-items: center;
+          p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-left: 0.5rem;
+          }
+          button {
+            border: none;
+            background: none;
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+      .collapsedView {
+        .attendeesAvatars {
+          display: flex;
+          margin-top: 0.5vh;
+          img {
+            margin-right: -6px;
+            box-shadow: -2px 2px rgba(33, 34, 47, 0.1);
+          }
+          p {
+            display: none;
+          }
+          button {
+            display: none;
+          }
+        }
+      }
+      .buttonContainer {
+        display: flex;
+        justify-content: space-between;
+        height: 4.5vh;
+        max-height: 40px;
+        .attachBtn {
+          width: 5rem;
+          color: $accent;
+          border: none;
+          background: inherit;
+          svg {
+            path {
+              color: $accent;
+            }
+          }
+        }
+
+        .disabled {
+          background: $copy;
+          border-radius: 8%;
+          color: white;
+          width: 5rem;
+          border: none;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .saveBtn {
+          background: $accent;
+          border-radius: 8%;
+          color: white;
+          width: 5rem;
+          border: none;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

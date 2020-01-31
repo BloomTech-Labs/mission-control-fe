@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import '../../../styles/variables.scss';
 
 h2 {
   font-size: 1.4rem;
@@ -75,12 +75,6 @@ h2 {
           display: flex;
           align-items: center;
           width: 40%;
-          p {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            margin-left: 0.5rem;
-          }
           button {
             border: none;
             background: none;
@@ -97,6 +91,9 @@ h2 {
           img {
             margin-right: -6px;
             box-shadow: -2px 2px rgba(33, 34, 47, 0.1);
+            &:hover {
+              cursor: pointer;
+            }
           }
           p {
             display: none;
