@@ -30,14 +30,23 @@ section:not(:last-child) {
 .expanded {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   .miniAvatarContainer {
     width: 40%;
     display: flex;
-    flex-flow: row;
-    p {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 1rem;
+
+    button {
+      &:focus {
+        outline: none;
+      }
+      div {
+        align-self: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
   }
 }
@@ -86,7 +95,7 @@ section:not(:last-child) {
     height: 30px;
     width: 30px;
     border-radius: 50%;
-    margin-top: 10px;
+    margin-top: 0.5vh;
   }
   p {
     font-size: 0.6rem;
@@ -96,6 +105,9 @@ section:not(:last-child) {
 
 .collapsed {
   display: flex;
+  &:hover {
+    cursor: pointer;
+  }
   img {
     margin-right: -6px;
     box-shadow: -2px 2px $light;
