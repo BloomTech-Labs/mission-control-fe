@@ -118,7 +118,7 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
             <StarRatings
               numberOfStars={3}
               name="rating"
-              starRatedColors="rgb(245,73,135)"
+              starRatedColor="rgb(245,73,135)"
               starHoverColor="rgb(245,73,135)"
               starEmptyColor="rgba(245,73,135,.2)"
               changeRating={rating => setState({ ...state, rating })}
