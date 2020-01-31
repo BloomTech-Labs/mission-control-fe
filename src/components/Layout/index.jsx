@@ -1,10 +1,7 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 
-import {
-  mainContainer, 
-  contentContainer
-} from './Layout.module.scss';
+import { mainContainer, contentContainer } from './Layout.module.scss';
 
 const Layout = ({ children, logout }) => (
   <div className={mainContainer}>

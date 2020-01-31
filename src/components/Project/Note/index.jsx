@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
+import { Label } from 'semantic-ui-react';
 
-import NoteFeedEdit from './NoteFeedEdit';
-import extractAvatar from '../../utils/managers';
+import NoteFeedEdit from '../NoteFeedEdit';
+import extractAvatar from '../../../utils/managers';
 
 import {
   section,
@@ -67,7 +68,11 @@ const Note = ({ note, user, projectId, projectManagers }) => {
                     src={extractAvatar(attendee.email)}
                     alt={`avatar of ${attendee.name}`}
                   />
-                  <p>{attendee.name}</p>
+                  <button type="button">
+                    <Label disabled size="small">
+                      {attendee.name}
+                    </Label>
+                  </button>
                 </div>
               );
             })}

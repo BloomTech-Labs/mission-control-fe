@@ -1,5 +1,5 @@
 import React from 'react';
-import Note from './Note';
+import Note from '../Note';
 
 const NotesFeed = ({ notes, projectId, user, projectManagers, fetching }) => {
   if (fetching) return <h2>Loading</h2>;

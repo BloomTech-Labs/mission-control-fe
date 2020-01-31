@@ -1,11 +1,8 @@
 import React from 'react';
 
-import {
-  rtd,
-  rtc,
-} from './projectList.module.scss';
+import { rtd, rtc } from './projectListContainer.module.scss';
 
-const ProjectContainer = ({ children }) => (
+const ProjectListContainer = ({ children }) => (
   <table>
     <thead>
       <tr>
@@ -20,4 +17,4 @@ const ProjectContainer = ({ children }) => (
   </table>
 );
 
-export default ProjectContainer;
+export default ProjectListContainer;

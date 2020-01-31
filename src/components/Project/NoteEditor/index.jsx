@@ -3,10 +3,10 @@ import StarRatings from 'react-star-ratings';
 import { Label, Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 
 import { useMutation } from 'urql';
-import extractAvatar from '../../utils/managers';
+import extractAvatar from '../../../utils/managers';
 
 import styles from './NoteEditor.module.scss';
-import { CreateNoteMutation as createNote } from './requests';
+import { CreateNoteMutation as createNote } from '../Queries/requests';
 
 const topicOptions = [
   { key: 'gd', value: 'General Discussion', text: 'General Discussion' },
@@ -22,7 +22,7 @@ const topicOptions = [
   },
 ];
 
-export default ({ user, projectId, projectManagers }) => {
+const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
   const initialState = {
     topic: '',
     content: '',
@@ -35,8 +35,9 @@ export default ({ user, projectId, projectManagers }) => {
     hover: true,
     notification: false,
   };
+
   const [state, setState] = useState(initialState);
-  const [res, executeMutation] = useMutation(createNote);
+  const [, executeMutation] = useMutation(createNote);
 
   useEffect(() => {
     if (state.topic && state.content && state.rating > 0) {
@@ -45,10 +46,6 @@ export default ({ user, projectId, projectManagers }) => {
       setState(s => ({ ...s, error: true, hover: true }));
     }
   }, [state.topic, state.content, state.rating]);
-
-  if (res.error) {
-    alert('Incorrect data shape');
-  }
 
   const markAbsent = e => {
     e.preventDefault();
@@ -104,6 +101,7 @@ export default ({ user, projectId, projectManagers }) => {
             };
             executeMutation(input);
             setState(initialState);
+            executeQuery({ requestPolicy: 'cache-and-network' });
           }}
           className={styles['form-container']}
         >
@@ -270,3 +268,5 @@ export default ({ user, projectId, projectManagers }) => {
     </div>
   );
 };
+
+export default NoteEditor;

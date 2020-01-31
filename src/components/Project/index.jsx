@@ -1,9 +1,10 @@
 import React from 'react';
 import { useQuery } from 'urql';
 
-import NotesFeed from './NotesFeed';
-import Team from './Team';
 import NoteEditor from './NoteEditor';
+import NotesFeed from './NoteFeed';
+import Team from './Team';
+
 import Header from './Header';
 
 import {
@@ -14,25 +15,23 @@ import {
   teamContainer,
 } from './Project.module.scss';
 
-import { ProjectViewQuery as query } from './requests';
+import { ProjectViewQuery as query } from './Queries/requests';
 
 const Project = ({ match: { params } }) => {
   const { id } = params;
-  const [state] = useQuery({
-    query,
-    variables: { id },
-  });
+  const [state, executeQuery] = useQuery({ query, variables: { id } });
   const { data, fetching } = state;
 
   return data ? (
     <div className={parentProjectContainer}>
       <div className={projectPageContents}>
         <div>
-          <Header project={data.project} projectId={id} />
+          <Header projectId={id} />
         </div>
         <div className={projectContainer}>
           <div className={editorFeedContainer}>
             <NoteEditor
+              executeQuery={executeQuery}
               user={data.me}
               projectId={id}
               projectManagers={data.project.projectManagers}
@@ -46,11 +45,7 @@ const Project = ({ match: { params } }) => {
             />
           </div>
           <div className={teamContainer}>
-            <Team
-              team={data.project.team}
-              teamLead={data.project.teamLead}
-              sectionLead={data.project.sectionLead}
-            />
+            <Team projectId={id} />
           </div>
         </div>
       </div>
