@@ -59,6 +59,7 @@ export const CreateNoteMutation = gql`
     $content: String!
     $attendedBy: [String!]!
     $rating: Int!
+    $notification: Boolean
   ) {
     createNote(
       topic: $topic
@@ -66,6 +67,7 @@ export const CreateNoteMutation = gql`
       attendedBy: $attendedBy
       id: $id
       rating: $rating
+      notification: $notification
     ) {
       content
       topic
