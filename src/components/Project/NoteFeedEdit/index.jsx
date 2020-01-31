@@ -1,11 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
-import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
+import { Label, Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation } from 'urql';
-import extractAvatar from '../../utils/managers';
+import extractAvatar from '../../../utils/managers';
 
-import styles from './NoteEditor.module.scss';
-import { UpdateNoteMutation as updateNote } from './requests';
+import {
+  mainContainer,
+  editorContainer,
+  avatarContainer,
+  formContainer,
+  formHeader,
+  bodyContainer,
+  bodyInput,
+  textFooter,
+  attendeesAvatars,
+  miniAvatarContainer,
+  buttonContainer,
+  saveBtn,
+  collapsedView,
+  expandedView,
+  disabled,
+} from './NoteFeedEdit.module.scss';
+
+import { UpdateNoteMutation as updateNote } from '../Queries/requests';
 
 const topicOptions = [
   { key: 'gd', value: 'General Discussion', text: 'General Discussion' },
@@ -77,9 +94,9 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
   };
 
   return (
-    <div className={styles['main-container']}>
-      <div className={styles['editor-container']}>
-        <div className={styles['avatar-container']}>
+    <div className={mainContainer}>
+      <div className={editorContainer}>
+        <div className={avatarContainer}>
           <img src={extractAvatar(user)} alt={`avatar of ${user.name}`} />
         </div>
         <form
@@ -97,9 +114,9 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
             setState(initialState);
             setIsEditing(!isEditing);
           }}
-          className={styles['form-container']}
+          className={formContainer}
         >
-          <div className={styles['form-header']}>
+          <div className={formHeader}>
             <Dropdown
               placeholder="Select Topic"
               inline
@@ -121,20 +138,20 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
               rating={state.rating}
             />
           </div>
-          <div className={styles['body-container']}>
+          <div className={bodyContainer}>
             <textarea
-              className={styles['body-input']}
+              className={bodyInput}
               placeholder="What's going on?"
               name="content"
               onChange={e => setState({ ...state, content: e.target.value })}
               value={state.content}
             />
           </div>
-          <div className={styles['text-footer']}>
-            <div className="attendance">
+          <div className={textFooter}>
+            <div>
               <div
                 className={
-                  state.expandedAttendees ? styles.expanded : styles.collapsed
+                  state.expandedAttendees ? expandedView : collapsedView
                 }
                 onClick={() =>
                   setState({
@@ -145,18 +162,29 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
                 role="presentation"
               >
                 Attendees
-                <div className={styles['attendees-avatars']}>
+                <div className={attendeesAvatars}>
                   {state.attendees.map(({ name, email }) => {
                     // TODO: get slack avatar based on email
                     return (
-                      <div className={styles['mini-avatar-container']}>
+                      <div className={miniAvatarContainer}>
                         <img
                           src={extractAvatar(email)}
                           alt={`avatar of ${name}`}
                         />
-                        <p>{name}</p>
-                        <button onClick={markAbsent} type="button">
-                          x
+                        <button type="button">
+                          <Label disabled size="small">
+                            {name}
+                          </Label>
+                          <Label
+                            onClick={markAbsent}
+                            size="tiny"
+                            as="a"
+                            basic
+                            color="pink"
+                            pointing="left"
+                          >
+                            Remove
+                          </Label>
                         </button>
                       </div>
                     );
@@ -166,7 +194,7 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
               {!!state.absentees.length && (
                 <div
                   className={
-                    state.expandedAbsent ? styles.expanded : styles.collapsed
+                    state.expandedAbsent ? expandedView : collapsedView
                   }
                   onKeyDown={() =>
                     setState({
@@ -183,17 +211,28 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
                   role="presentation"
                 >
                   Absent
-                  <div className={styles['attendees-avatars']}>
+                  <div className={attendeesAvatars}>
                     {state.absentees.map(({ name, email }) => {
                       return (
-                        <div className={styles['mini-avatar-container']}>
+                        <div className={miniAvatarContainer}>
                           <img
                             src={extractAvatar(email)}
                             alt={`avatar of ${name}`}
                           />
-                          <p>{name}</p>
-                          <button onClick={markAttended} type="button">
-                            +
+                          <button type="button">
+                            <Label disabled size="small">
+                              {name}
+                            </Label>
+                            <Label
+                              onClick={markAttended}
+                              size="tiny"
+                              as="a"
+                              basic
+                              color="green"
+                              pointing="left"
+                            >
+                              Add
+                            </Label>
                           </button>
                         </div>
                       );
@@ -202,7 +241,7 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
                 </div>
               )}
             </div>
-            <div className={styles['button-container']}>
+            <div className={buttonContainer}>
               <SemanticButton
                 type="button"
                 onClick={() => {
@@ -212,7 +251,7 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
                 Cancel
               </SemanticButton>
               <SemanticButton
-                className={state.error ? styles.disabled : styles['save-btn']}
+                className={state.error ? disabled : saveBtn}
                 type="submit"
                 disabled={state.error}
                 title={
