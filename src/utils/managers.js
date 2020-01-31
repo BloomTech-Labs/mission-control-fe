@@ -37,5 +37,8 @@ const managers = [
 
 export default email => {
   const [res] = managers.filter(e => e.email === email);
-  return res && res.avatar;
+  if (res) {
+    return res.avatar;
+  }
+  return 'https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png';
 };
