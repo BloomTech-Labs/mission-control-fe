@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
+
+import EditIcon from '@material-ui/icons/Edit';
+import Fab from '@material-ui/core/Fab';
 import { Label } from 'semantic-ui-react';
 
 import NoteFeedEdit from '../NoteFeedEdit';
@@ -19,7 +22,6 @@ import {
   expanded,
   miniAvatarContainer,
   collapsed,
-  editNoteBtn,
 } from './Notes.module.scss';
 
 const Note = ({ note, user, projectId, projectManagers }) => {
@@ -77,13 +79,9 @@ const Note = ({ note, user, projectId, projectManagers }) => {
               );
             })}
           </div>
-          <button
-            className={editNoteBtn}
-            onClick={() => setIsEditing(true)}
-            type="button"
-          >
-            Edit
-          </button>
+          <Fab color="default" onClick={() => setIsEditing(true)}>
+            <EditIcon />
+          </Fab>
         </div>
       </div>
     </section>
