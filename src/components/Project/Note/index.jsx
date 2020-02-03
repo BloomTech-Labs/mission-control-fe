@@ -22,7 +22,7 @@ import {
   editNoteBtn,
 } from './Notes.module.scss';
 
-const Note = ({ note, user, projectId, projectManagers }) => {
+const Note = ({ note, user, projectManagers }) => {
   const [expandedList, setExpandedList] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const { topic, content, rating, attendedBy } = note;
@@ -92,7 +92,6 @@ const Note = ({ note, user, projectId, projectManagers }) => {
       id={note.id}
       note={note}
       user={user}
-      projectId={projectId}
       projectManagers={projectManagers}
       setIsEditing={setIsEditing}
       isEditing={isEditing}
