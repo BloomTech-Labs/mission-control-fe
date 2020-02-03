@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
-import { Label, Dropdown, Button as SemanticButton } from 'semantic-ui-react';
+import { Label, Dropdown } from 'semantic-ui-react';
+import Button from '@material-ui/core/Button';
 import { useMutation } from 'urql';
 import extractAvatar from '../../../utils/managers';
+import DeleteNote from '../Note/DeleteNote';
 
 import {
   mainContainer,
@@ -15,11 +17,10 @@ import {
   textFooter,
   attendeesAvatars,
   miniAvatarContainer,
-  buttonContainer,
-  saveBtn,
   collapsedView,
   expandedView,
-  disabled,
+  saveBtn,
+  editButtons,
 } from './NoteFeedEdit.module.scss';
 
 import { UpdateNoteMutation as updateNote } from '../Queries/requests';
@@ -164,7 +165,6 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
                 Attendees
                 <div className={attendeesAvatars}>
                   {state.attendees.map(({ name, email }) => {
-                    // TODO: get slack avatar based on email
                     return (
                       <div className={miniAvatarContainer}>
                         <img
@@ -241,17 +241,22 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
                 </div>
               )}
             </div>
-            <div className={buttonContainer}>
-              <SemanticButton
+            <div className={editButtons}>
+              <DeleteNote id={note.id} />
+              <Button
+                color="default"
+                variant="outlined"
                 type="button"
                 onClick={() => {
                   setIsEditing(false);
                 }}
               >
                 Cancel
-              </SemanticButton>
-              <SemanticButton
-                className={state.error ? disabled : saveBtn}
+              </Button>
+              <button
+                className={saveBtn}
+                color="primary"
+                variant="outlined"
                 type="submit"
                 disabled={state.error}
                 title={
@@ -261,7 +266,7 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
                 }
               >
                 Save
-              </SemanticButton>
+              </button>
             </div>
           </div>
         </form>
