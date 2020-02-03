@@ -24,7 +24,7 @@ import {
   collapsed,
 } from './Notes.module.scss';
 
-const Note = ({ note, user, projectId, projectManagers }) => {
+const Note = ({ note, user, projectId, projectManagers, editable }) => {
   const [expandedList, setExpandedList] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const { topic, content, rating, attendedBy } = note;
@@ -79,14 +79,19 @@ const Note = ({ note, user, projectId, projectManagers }) => {
               );
             })}
           </div>
-          <Fab color="default" onClick={() => setIsEditing(true)}>
-            <EditIcon />
-          </Fab>
+          {editable ? (
+            <Fab color="default" onClick={() => setIsEditing(true)}>
+              <EditIcon />
+            </Fab>
+          ) : (
+            false
+          )}
         </div>
       </div>
     </section>
   ) : (
     <NoteFeedEdit
+      key={note.id}
       id={note.id}
       note={note}
       user={user}
