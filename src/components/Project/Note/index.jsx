@@ -94,7 +94,6 @@ const Note = ({ note, user, projectManagers }) => {
       user={user}
       projectManagers={projectManagers}
       setIsEditing={setIsEditing}
-      isEditing={isEditing}
     />
   );
 };
