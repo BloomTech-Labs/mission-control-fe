@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
-import { Label, Dropdown, Button as SemanticButton } from 'semantic-ui-react';
+import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation } from 'urql';
+
+import Attendees from '../Attendees/index';
+
 import extractAvatar from '../../../utils/managers';
 
 import {
@@ -14,7 +17,6 @@ import {
   bodyInput,
   textFooter,
   attendeesAvatars,
-  miniAvatarContainer,
   buttonContainer,
   saveBtn,
   collapsedView,
@@ -38,7 +40,7 @@ const topicOptions = [
   },
 ];
 
-export default ({ user, note, id, setIsEditing, isEditing }) => {
+export default ({ user, note, id, setIsEditing }) => {
   const initialState = {
     topic: note.topic,
     content: note.content,
@@ -52,14 +54,6 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
   };
   const [state, setState] = useState(initialState);
   const [res, executeMutation] = useMutation(updateNote);
-
-  useEffect(() => {
-    if (state.topic && state.content && state.rating > 0) {
-      setState(s => ({ ...s, error: false, hover: false }));
-    } else {
-      setState(s => ({ ...s, error: true, hover: true }));
-    }
-  }, [state.topic, state.content, state.rating]);
 
   if (res.error) {
     alert('Incorrect data shape');
@@ -112,7 +106,7 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
             };
             executeMutation(input);
             setState(initialState);
-            setIsEditing(!isEditing);
+            setIsEditing(false);
           }}
           className={formContainer}
         >
@@ -166,27 +160,13 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
                   {state.attendees.map(({ name, email }) => {
                     // TODO: get slack avatar based on email
                     return (
-                      <div className={miniAvatarContainer}>
-                        <img
-                          src={extractAvatar(email)}
-                          alt={`avatar of ${name}`}
-                        />
-                        <button type="button">
-                          <Label disabled size="small">
-                            {name}
-                          </Label>
-                          <Label
-                            onClick={markAbsent}
-                            size="tiny"
-                            as="a"
-                            basic
-                            color="pink"
-                            pointing="left"
-                          >
-                            Remove
-                          </Label>
-                        </button>
-                      </div>
+                      <Attendees
+                        name={name}
+                        email={email}
+                        extractAvatar={extractAvatar}
+                        toggle={markAbsent}
+                        action="Remove"
+                      />
                     );
                   })}
                 </div>
@@ -214,27 +194,13 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
                   <div className={attendeesAvatars}>
                     {state.absentees.map(({ name, email }) => {
                       return (
-                        <div className={miniAvatarContainer}>
-                          <img
-                            src={extractAvatar(email)}
-                            alt={`avatar of ${name}`}
-                          />
-                          <button type="button">
-                            <Label disabled size="small">
-                              {name}
-                            </Label>
-                            <Label
-                              onClick={markAttended}
-                              size="tiny"
-                              as="a"
-                              basic
-                              color="green"
-                              pointing="left"
-                            >
-                              Add
-                            </Label>
-                          </button>
-                        </div>
+                        <Attendees
+                          name={name}
+                          email={email}
+                          extractAvatar={extractAvatar}
+                          toggle={markAttended}
+                          action="Add"
+                        />
                       );
                     })}
                   </div>
