@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMutation } from 'urql';
 
 import Button from '@material-ui/core/Button';
@@ -12,11 +12,8 @@ import { DeleteNoteMutation as deleteNote } from '../Queries/requests';
 
 import { deleteButton } from './Notes.module.scss';
 
-export default function DeleteNote({ id }) {
-  console.log(id);
-
-  const [open, setOpen] = React.useState(false);
-
+export default function DeleteNote({ id, setIsEditing }) {
+  const [open, setOpen] = useState(false);
   const [, executeMutation] = useMutation(deleteNote);
 
   const handleClickOpen = () => {
@@ -51,9 +48,14 @@ export default function DeleteNote({ id }) {
           <Button
             color="secondary"
             autoFocus
-            // onClick={deleteNote({ variables: { id } })}
+            type="button"
+            onClick={() => {
+              executeMutation({ id });
+              setIsEditing(false);
+              handleClose();
+            }}
           >
-            Let's do it
+            Let&apos;s do it
           </Button>
         </DialogActions>
       </Dialog>
