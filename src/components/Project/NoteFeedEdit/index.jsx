@@ -52,7 +52,7 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
     hover: true,
   };
   const [state, setState] = useState(initialState);
-  const [res, executeMutation] = useMutation(updateNote);
+  const [, executeMutation] = useMutation(updateNote);
 
   useEffect(() => {
     if (state.topic && state.content && state.rating > 0) {
@@ -61,10 +61,6 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
       setState(s => ({ ...s, error: true, hover: true }));
     }
   }, [state.topic, state.content, state.rating]);
-
-  if (res.error) {
-    alert('Incorrect data shape');
-  }
 
   const markAbsent = e => {
     e.preventDefault();
@@ -242,7 +238,7 @@ export default ({ user, note, id, setIsEditing, isEditing }) => {
               )}
             </div>
             <div className={editButtons}>
-              <DeleteNote id={note.id} />
+              <DeleteNote id={id} setIsEditing={setIsEditing} />
               <Button
                 color="default"
                 variant="outlined"
