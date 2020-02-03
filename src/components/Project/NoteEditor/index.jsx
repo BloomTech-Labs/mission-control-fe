@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
-import { Label, Dropdown, Button as SemanticButton } from 'semantic-ui-react';
+import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 
 import { useMutation } from 'urql';
 import extractAvatar from '../../../utils/managers';
+
+import Attendees from '../Attendees/index';
 
 import styles from './NoteEditor.module.scss';
 import { CreateNoteMutation as createNote } from '../Queries/requests';
@@ -154,27 +156,13 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
                 <div className={styles['attendees-avatars']}>
                   {removeUserAvatar(state.attendees).map(({ name, email }) => {
                     return (
-                      <div className={styles['mini-avatar-container']}>
-                        <img
-                          src={extractAvatar(email)}
-                          alt={`avatar of ${name}`}
-                        />
-                        <button type="button">
-                          <Label disabled size="small">
-                            {name}
-                          </Label>
-                          <Label
-                            onClick={markAbsent}
-                            size="tiny"
-                            as="a"
-                            basic
-                            color="pink"
-                            pointing="left"
-                          >
-                            Remove
-                          </Label>
-                        </button>
-                      </div>
+                      <Attendees
+                        name={name}
+                        email={email}
+                        extractAvatar={extractAvatar}
+                        toggle={markAbsent}
+                        action="Remove"
+                      />
                     );
                   })}
                 </div>
@@ -197,27 +185,13 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
                     {removeUserAvatar(state.absentees).map(
                       ({ name, email }) => {
                         return (
-                          <div className={styles['mini-avatar-container']}>
-                            <img
-                              src={extractAvatar(email)}
-                              alt={`avatar of ${name}`}
-                            />
-                            <button type="button">
-                              <Label disabled size="small">
-                                {name}
-                              </Label>
-                              <Label
-                                onClick={markAttended}
-                                size="tiny"
-                                as="a"
-                                basic
-                                color="green"
-                                pointing="left"
-                              >
-                                Add
-                              </Label>
-                            </button>
-                          </div>
+                          <Attendees
+                            name={name}
+                            email={email}
+                            extractAvatar={extractAvatar}
+                            toggle={markAttended}
+                            action="Add"
+                          />
                         );
                       }
                     )}
