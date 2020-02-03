@@ -14,6 +14,7 @@ const NotesFeed = ({ notes, projectId, user, projectManagers, fetching }) => {
               user={user}
               projectId={projectId}
               projectManagers={projectManagers}
+              editable={note.author.email === user}
             />
           );
         })}
