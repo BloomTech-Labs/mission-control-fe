@@ -31,3 +31,35 @@ export const HEADER_QUERY = gql`
     }
   }
 `;
+
+export const NoteFeedQuery = gql`
+  query NoteFeed($id: ID!) {
+    me {
+      id
+      email
+    }
+    project(id: $id) {
+      projectManagers {
+        name
+        id
+        email
+      }
+      notes(orderBy: updatedAt_DESC) {
+        id
+        topic
+        content
+        author {
+          id
+          email
+          name
+        }
+        attendedBy {
+          id
+          name
+          email
+        }
+        rating
+      }
+    }
+  }
+`;
