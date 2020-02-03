@@ -105,3 +105,11 @@ export const UpdateNoteMutation = gql`
     }
   }
 `;
+
+export const DeleteNoteMutation = gql`
+  mutation DeleteNoteMutation($id: ID!) {
+    deleteNote(id: $id) {
+      id
+    }
+  }
+`;
