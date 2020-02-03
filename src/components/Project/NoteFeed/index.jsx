@@ -1,7 +1,22 @@
 import React from 'react';
+import { useQuery } from 'urql';
 import Note from '../Note';
 
-const NotesFeed = ({ notes, projectId, user, projectManagers, fetching }) => {
+import { NoteFeedQuery as query } from '../Queries/index';
+
+const NotesFeed = ({ projectId }) => {
+  const [state] = useQuery({
+    query,
+    variables: { id: projectId },
+  });
+  const {
+    data: {
+      me,
+      project: { notes, projectManagers },
+    },
+    fetching,
+  } = state;
+
   if (fetching) return <h2>Loading</h2>;
   if (notes && notes.length) {
     return (
@@ -11,8 +26,7 @@ const NotesFeed = ({ notes, projectId, user, projectManagers, fetching }) => {
             <Note
               key={note.id}
               note={note}
-              user={user}
-              projectId={projectId}
+              user={me}
               projectManagers={projectManagers}
             />
           );
