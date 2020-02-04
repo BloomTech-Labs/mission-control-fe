@@ -28,14 +28,20 @@ const topicOptions = [
   },
 ];
 
-const NoteEditor = ({ user, projectId, note, setIsEditing }) => {
+const NoteEditor = ({
+  projectManagers,
+  user,
+  projectId,
+  note,
+  setIsEditing,
+}) => {
   const [topic, setTopic] = useState((note && note.topic) || '');
   const [content, setContent] = useState((note && note.content) || '');
   const [rating, setRating] = useState((note && note.rating) || 0);
   const [attendees, setAttendees] = useState((note && note.attendedBy) || []);
   const [expandedAttendees, setExpandedAttendees] = useState(false);
   const [expandedAbsent, setExpandedAbsent] = useState(false);
-  const [absentees, setAbsentees] = useState([]);
+  const [absentees, setAbsentees] = useState(projectManagers || []);
   const [validated, setValidated] = useState(false);
   const [notification, setNotification] = useState(false);
 
@@ -49,6 +55,13 @@ const NoteEditor = ({ user, projectId, note, setIsEditing }) => {
       setValidated(false);
     }
   }, [topic, content, rating]);
+
+  // const [state] = useQuery({
+  //   query: queryManagers,
+  //   variables: { id: projectId },
+  // });
+
+  // console.log(state);
 
   // resets the form, as form.reset doesn't seem to affect React state
   const resetForm = () => {
@@ -68,31 +81,27 @@ const NoteEditor = ({ user, projectId, note, setIsEditing }) => {
       case 'create':
         e.preventDefault();
         executeCreate({
-          input: {
-            id: projectId,
-            topic,
-            content,
-            rating,
-            // Extracts an array of emails from array of Person objects
-            attendedBy: Array.from(attendees, ({ email }) => email),
-            notification,
-          },
+          id: projectId,
+          topic,
+          content,
+          rating,
+          // Extracts an array of emails from array of Person objects
+          attendedBy: Array.from(attendees, ({ email }) => email),
+          notification,
         });
         resetForm();
         break;
       case 'update':
         e.preventDefault();
         executeUpdate({
-          input: {
-            id: note.id,
-            topic,
-            content,
-            rating,
-            // Extracts an array of emails from array of Person objects
-            attendedBy: Array.from(attendees, ({ email }) => email),
-          },
+          id: note.id,
+          topic,
+          content,
+          rating,
+          // Extracts an array of emails from array of Person objects
+          attendedBy: Array.from(attendees, ({ email }) => email),
         });
-        resetForm();
+        setIsEditing(false);
         break;
       default:
         resetForm();
@@ -158,6 +167,7 @@ const NoteEditor = ({ user, projectId, note, setIsEditing }) => {
               expandedAbsent={expandedAbsent}
               setExpandedAbsent={setExpandedAbsent}
               projectId={projectId}
+              projectManagers={projectManagers}
             />
             <div
               className={
