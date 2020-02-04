@@ -24,6 +24,7 @@ const NotesFeed = ({ projectId }) => {
         {notes.map(note => {
           return (
             <Note
+              projectId={projectId}
               key={note.id}
               note={note}
               user={me}
