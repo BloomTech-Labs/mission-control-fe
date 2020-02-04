@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from 'urql';
-import Note from '../Note';
+import Note from './Note';
 
-import { NoteFeedQuery as query } from '../Queries/index';
+import { NOTE_FEED_QUERY as query } from '../Queries/index';
 
 const NotesFeed = ({ projectId }) => {
   const [state] = useQuery({
