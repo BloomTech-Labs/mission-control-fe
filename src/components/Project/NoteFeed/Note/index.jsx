@@ -5,8 +5,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import Fab from '@material-ui/core/Fab';
 import { Label } from 'semantic-ui-react';
 
-import NoteEditor from '../NoteEditor';
-import extractAvatar from '../../../utils/managers';
+import NoteEditor from '../../NoteEditor';
+import extractAvatar from '../../../../utils/managers';
 
 import {
   section,
