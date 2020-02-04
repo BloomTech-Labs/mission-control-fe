@@ -32,7 +32,7 @@ export const HEADER_QUERY = gql`
   }
 `;
 
-export const NoteFeedQuery = gql`
+export const NOTE_FEED_QUERY = gql`
   query NoteFeed($id: ID!) {
     me {
       id
@@ -59,6 +59,18 @@ export const NoteFeedQuery = gql`
           email
         }
         rating
+      }
+    }
+  }
+`;
+
+export const ATTENDANCE_QUERY = gql`
+  query managerAttendance($id: ID!) {
+    project(id: $id) {
+      projectManagers {
+        name
+        email
+        avatar
       }
     }
   }
