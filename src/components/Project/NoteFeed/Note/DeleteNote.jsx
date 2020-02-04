@@ -52,7 +52,8 @@ export default function DeleteNote({ id, setIsEditing }) {
             onClick={() => {
               executeMutation({ id });
               setIsEditing(false);
-              handleClose();
+              // handleClose();
+              window.location.reload();
             }}
           >
             Let&apos;s do it
