@@ -5,7 +5,7 @@ import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation } from 'urql';
 import extractAvatar from '../../../utils/managers';
 
-import Attendees from '../Attendees/index';
+import Attendees from '../Attendance';
 
 import styles from './NoteEditor.module.scss';
 import { CreateNoteMutation as createNote } from '../Queries/requests';
@@ -48,39 +48,6 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
       setState(s => ({ ...s, error: true, hover: true }));
     }
   }, [state.topic, state.content, state.rating]);
-
-  const markAbsent = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    const deleted = e.target.previousSibling.textContent;
-    const newAttendees = state.attendees.filter(({ name }) => {
-      return name !== deleted;
-    });
-    const deletedAttendee = state.attendees.filter(({ name }) => {
-      return name === deleted;
-    });
-    const newAbsentees = [...state.absentees, ...deletedAttendee];
-    setState({ ...state, attendees: newAttendees, absentees: newAbsentees });
-  };
-
-  const markAttended = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    const attended = e.target.previousSibling.textContent;
-    const newAttendee = state.absentees.filter(({ name }) => {
-      return name === attended;
-    });
-    const newAttendees = [...state.attendees, ...newAttendee];
-    const newAbsentees = state.absentees.filter(({ name }) => {
-      return name !== attended;
-    });
-    setState({ ...state, attendees: newAttendees, absentees: newAbsentees });
-  };
-
-  // removes redundant user avatar
-  const removeUserAvatar = arr => {
-    return arr.filter(person => person.email !== user.email);
-  };
 
   return (
     <div className={styles['main-container']}>
@@ -139,66 +106,7 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
             />
           </div>
           <div className={styles['text-footer']}>
-            <div className={styles.attendance}>
-              <div
-                className={
-                  state.expandedAttendees ? styles.expanded : styles.collapsed
-                }
-                onClick={() =>
-                  setState({
-                    ...state,
-                    expandedAttendees: !state.expandedAttendees,
-                  })
-                }
-                role="presentation"
-              >
-                Attendees
-                <div className={styles['attendees-avatars']}>
-                  {removeUserAvatar(state.attendees).map(({ name, email }) => {
-                    return (
-                      <Attendees
-                        name={name}
-                        email={email}
-                        extractAvatar={extractAvatar}
-                        toggle={markAbsent}
-                        action="Remove"
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-              {!!state.absentees.length && (
-                <div
-                  className={
-                    state.expandedAbsent ? styles.expanded : styles.collapsed
-                  }
-                  onClick={() =>
-                    setState({
-                      ...state,
-                      expandedAbsent: !state.expandedAbsent,
-                    })
-                  }
-                  role="presentation"
-                >
-                  Absent
-                  <div className={styles['attendees-avatars']}>
-                    {removeUserAvatar(state.absentees).map(
-                      ({ name, email }) => {
-                        return (
-                          <Attendees
-                            name={name}
-                            email={email}
-                            extractAvatar={extractAvatar}
-                            toggle={markAttended}
-                            action="Add"
-                          />
-                        );
-                      }
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
+            <Attendees state={state} user={user} setState={setState} />
             <div
               className={
                 state.expandedAbsent || state.expandedAttendees
