@@ -9,7 +9,10 @@ import Attendance from './Attendance';
 import DeleteNote from '../NoteFeed/Note/DeleteNote';
 
 import styles from './NoteEditor.module.scss';
-import { CreateNoteMutation as createNote } from '../Queries/requests';
+import {
+  CREATE_NOTE as createNote,
+  UPDATE_NOTE as updateNote,
+} from '../Queries';
 
 const topicOptions = [
   { key: 'gd', value: 'General Discussion', text: 'General Discussion' },
@@ -36,7 +39,8 @@ const NoteEditor = ({ user, projectId, note, setIsEditing }) => {
   const [validated, setValidated] = useState(false);
   const [notification, setNotification] = useState(false);
 
-  const [, executeMutation] = useMutation(createNote);
+  const [, executeCreate] = useMutation(createNote);
+  const [, executeUpdate] = useMutation(updateNote);
 
   useEffect(() => {
     if (topic && content && rating > 0) {
@@ -59,6 +63,42 @@ const NoteEditor = ({ user, projectId, note, setIsEditing }) => {
     setNotification(false);
   };
 
+  const handleSubmit = (e, type) => {
+    switch (type) {
+      case 'create':
+        e.preventDefault();
+        executeCreate({
+          input: {
+            id: projectId,
+            topic,
+            content,
+            rating,
+            // Extracts an array of emails from array of Person objects
+            attendedBy: Array.from(attendees, ({ email }) => email),
+            notification,
+          },
+        });
+        resetForm();
+        break;
+      case 'update':
+        e.preventDefault();
+        executeUpdate({
+          input: {
+            id: note.id,
+            topic,
+            content,
+            rating,
+            // Extracts an array of emails from array of Person objects
+            attendedBy: Array.from(attendees, ({ email }) => email),
+          },
+        });
+        resetForm();
+        break;
+      default:
+        resetForm();
+    }
+  };
+
   return (
     <div className={styles['main-container']}>
       <div className={styles['editor-container']}>
@@ -67,18 +107,11 @@ const NoteEditor = ({ user, projectId, note, setIsEditing }) => {
         </div>
         <form
           onSubmit={e => {
-            e.preventDefault();
-            const input = {
-              id: projectId,
-              topic,
-              content,
-              rating,
-              // Extracts an array of emails from array of Person objects
-              attendedBy: Array.from(attendees, ({ email }) => email),
-              notification,
-            };
-            executeMutation(input);
-            resetForm();
+            if (note) {
+              handleSubmit(e, 'update');
+            } else {
+              handleSubmit(e, 'create');
+            }
           }}
           className={styles['form-container']}
         >
