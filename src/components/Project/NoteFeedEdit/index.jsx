@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation } from 'urql';
 
-import Attendees from '../Attendees/index';
+import Attendance from '../Attendance';
 
 import extractAvatar from '../../../utils/managers';
 
@@ -160,7 +160,7 @@ export default ({ user, note, id, setIsEditing }) => {
                   {state.attendees.map(({ name, email }) => {
                     // TODO: get slack avatar based on email
                     return (
-                      <Attendees
+                      <Attendance
                         name={name}
                         email={email}
                         extractAvatar={extractAvatar}
@@ -194,7 +194,7 @@ export default ({ user, note, id, setIsEditing }) => {
                   <div className={attendeesAvatars}>
                     {state.absentees.map(({ name, email }) => {
                       return (
-                        <Attendees
+                        <Attendance
                           name={name}
                           email={email}
                           extractAvatar={extractAvatar}
