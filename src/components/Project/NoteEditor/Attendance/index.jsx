@@ -14,34 +14,23 @@ export default ({
   setExpandedAbsent,
   user,
 }) => {
-  const markAbsent = e => {
+  const handleAttendance = (e, absent) => {
     e.preventDefault();
     e.stopPropagation();
-    const deleted = e.target.previousSibling.textContent;
-    const newAttendees = attendees.filter(({ name }) => {
-      return name !== deleted;
-    });
-    const deletedAttendee = attendees.filter(({ name }) => {
-      return name === deleted;
-    });
-    const newAbsentees = [...absentees, ...deletedAttendee];
-    setAttendees(newAttendees);
-    setAbsentees(newAbsentees);
-  };
-
-  const markAttended = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    const attended = e.target.previousSibling.textContent;
-    const newAttendee = absentees.filter(({ name }) => {
-      return name === attended;
-    });
-    const newAttendees = [...attendees, ...newAttendee];
-    const newAbsentees = absentees.filter(({ name }) => {
-      return name !== attended;
-    });
-    setAttendees(newAttendees);
-    setAbsentees(newAbsentees);
+    const person = e.target.previousSibling.textContent;
+    if (absent) {
+      const newAbsentee = attendees.filter(({ name }) => name === person);
+      const newAttendees = attendees.filter(({ name }) => name !== person);
+      const newAbsentees = [...absentees, ...newAbsentee];
+      setAttendees(newAttendees);
+      setAbsentees(newAbsentees);
+    } else {
+      const newAttendee = absentees.filter(({ name }) => name === person);
+      const newAbsentees = absentees.filter(({ name }) => name !== person);
+      const newAttendees = [...attendees, ...newAttendee];
+      setAttendees(newAttendees);
+      setAbsentees(newAbsentees);
+    }
   };
 
   // takes in two arrays attendance, and all project managers
@@ -52,8 +41,6 @@ export default ({
     });
   };
 
-  // if (fetching) return <h1>Loading</h1>;
-  // if (data && data.project) {
   return (
     <div className={styles.attendance}>
       <div
@@ -66,11 +53,12 @@ export default ({
           {attendees.map(({ name, email }) => {
             return (
               <Member
+                key={`attendance${name}`}
                 action="Remove"
                 name={name}
                 email={email}
                 user={user}
-                markAbsent={markAbsent}
+                handleAttendance={handleAttendance}
               />
             );
           })}
@@ -87,12 +75,12 @@ export default ({
             {removeAllAttended(attendees, absentees).map(({ name, email }) => {
               return (
                 <Member
-                  key={`attendance${name}`}
+                  key={`absence${name}`}
                   action="Add"
                   name={name}
                   email={email}
                   user={user}
-                  markAttended={markAttended}
+                  handleAttendance={handleAttendance}
                 />
               );
             })}
@@ -101,6 +89,4 @@ export default ({
       )}
     </div>
   );
-  // }
-  // return <h1>No project found</h1>;
 };
