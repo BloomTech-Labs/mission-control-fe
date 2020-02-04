@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import StarRatings from 'react-star-ratings';
+
+import EditIcon from '@material-ui/icons/Edit';
+import Fab from '@material-ui/core/Fab';
 import { Label } from 'semantic-ui-react';
 
 import NoteFeedEdit from '../NoteFeedEdit';
@@ -19,10 +22,9 @@ import {
   expanded,
   miniAvatarContainer,
   collapsed,
-  editNoteBtn,
 } from './Notes.module.scss';
 
-const Note = ({ note, user, projectId, projectManagers }) => {
+const Note = ({ note, user, projectId, projectManagers, editable }) => {
   const [expandedList, setExpandedList] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const { topic, content, rating, attendedBy } = note;
@@ -77,18 +79,19 @@ const Note = ({ note, user, projectId, projectManagers }) => {
               );
             })}
           </div>
-          <button
-            className={editNoteBtn}
-            onClick={() => setIsEditing(true)}
-            type="button"
-          >
-            Edit
-          </button>
+          {editable ? (
+            <Fab color="default" onClick={() => setIsEditing(true)}>
+              <EditIcon />
+            </Fab>
+          ) : (
+            false
+          )}
         </div>
       </div>
     </section>
   ) : (
     <NoteFeedEdit
+      key={note.id}
       id={note.id}
       note={note}
       user={user}

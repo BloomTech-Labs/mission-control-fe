@@ -27,12 +27,6 @@ const managers = [
     email: 'ryan.hamblin@lambdaschool.com',
     avatar: 'https://ca.slack-edge.com/T4JUEB3ME-U5SF97A1Z-3e40fb644cb0-512',
   },
-  {
-    name: 'Dev',
-    email: 'missioncontrolpm@gmail.com',
-    avatar:
-      'https://img.discogs.com/bPb2OOaaSY21Gt7fae5qnz17eF0=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/A-3624278-1419177982-9445.jpeg.jpg',
-  },
 ];
 
 export default email => {
