@@ -9,13 +9,16 @@ export const TEAM_QUERY = gql`
         name
         email
         role
+        avatar
       }
       teamLead {
         id
+        avatar
         name
       }
       sectionLead {
         id
+        avatar
         name
       }
     }
@@ -43,6 +46,7 @@ export const NOTE_FEED_QUERY = gql`
         name
         id
         email
+        avatar
       }
       notes(orderBy: updatedAt_DESC) {
         id
@@ -57,6 +61,7 @@ export const NOTE_FEED_QUERY = gql`
           id
           name
           email
+          avatar
         }
         rating
       }
@@ -65,10 +70,11 @@ export const NOTE_FEED_QUERY = gql`
 `;
 
 export const ATTENDANCE_QUERY = gql`
-  query managerAttendance($id: ID!) {
+  query attendance($id: ID!) {
     project(id: $id) {
       projectManagers {
         name
+        id
         email
         avatar
       }
