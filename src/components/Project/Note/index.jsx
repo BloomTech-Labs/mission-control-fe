@@ -30,7 +30,9 @@ const Note = ({ note, user, projectManagers, editable, projectId }) => {
   const { topic, content, rating, attendedBy } = note;
 
   // Removes redundant avatar of signed-in user
-  const displayedAttendees = attendedBy.filter(person => person.email !== user);
+  const displayedAttendees = attendedBy.filter(
+    person => person.email !== user.email
+  );
   return isEditing ? (
     <NoteEditor
       projectId={projectId}
@@ -74,7 +76,7 @@ const Note = ({ note, user, projectManagers, editable, projectId }) => {
           >
             {displayedAttendees.map(attendee => {
               return (
-                <div className={miniAvatarContainer}>
+                <div key={attendee.name} className={miniAvatarContainer}>
                   <img
                     src={extractAvatar(attendee.email)}
                     alt={`avatar of ${attendee.name}`}
