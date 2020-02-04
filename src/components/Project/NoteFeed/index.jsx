@@ -13,7 +13,7 @@ const NotesFeed = ({ projectId }) => {
   const { data, fetching } = state;
 
   if (fetching) return <h2>Loading</h2>;
-  if (data) {
+  if (data && data.project.notes.length) {
     return (
       <div>
         {data.project.notes.map(note => {
