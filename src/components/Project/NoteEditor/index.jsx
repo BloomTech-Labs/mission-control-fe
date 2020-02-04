@@ -6,6 +6,7 @@ import { useMutation } from 'urql';
 import extractAvatar from '../../../utils/managers';
 
 import Attendance from '../Attendance';
+import DeleteNote from '../Note/DeleteNote';
 
 import styles from './NoteEditor.module.scss';
 import { CreateNoteMutation as createNote } from '../Queries/requests';
@@ -28,8 +29,8 @@ const NoteEditor = ({
   user,
   projectId,
   projectManagers,
-  executeQuery,
   note,
+  setIsEditing,
 }) => {
   const initialState = {
     topic: (note && note.topic) || '',
@@ -75,7 +76,6 @@ const NoteEditor = ({
             };
             executeMutation(input);
             setState(initialState);
-            executeQuery({ requestPolicy: 'cache-and-network' });
           }}
           className={styles['form-container']}
         >
@@ -119,8 +119,22 @@ const NoteEditor = ({
                   : styles['button-container']
               }
             >
-              <div className={styles.notification}>
-                <label htmlFor="notification">
+              {note ? (
+                [
+                  <DeleteNote id={note.id} setIsEditing={setIsEditing} />,
+                  <SemanticButton
+                    color="default"
+                    variant="outlined"
+                    type="button"
+                    onClick={() => {
+                      setIsEditing(false);
+                    }}
+                  >
+                    Cancel
+                  </SemanticButton>,
+                ]
+              ) : (
+                <label className={styles.notification} htmlFor="notification">
                   Email Notifications
                   <input
                     type="checkbox"
@@ -135,7 +149,7 @@ const NoteEditor = ({
                     }
                   />
                 </label>
-              </div>
+              )}
               <SemanticButton
                 className={
                   state.validated ? styles['save-btn'] : styles.disabled
