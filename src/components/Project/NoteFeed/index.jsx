@@ -28,6 +28,7 @@ const NotesFeed = ({ projectId }) => {
               note={note}
               user={me}
               projectManagers={projectManagers}
+              editable={note.author.email === me.email}
             />
           );
         })}

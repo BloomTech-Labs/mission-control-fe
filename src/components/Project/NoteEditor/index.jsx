@@ -5,7 +5,7 @@ import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation } from 'urql';
 import extractAvatar from '../../../utils/managers';
 
-import Attendees from '../Attendance';
+import Attendance from '../Attendance';
 
 import styles from './NoteEditor.module.scss';
 import { CreateNoteMutation as createNote } from '../Queries/requests';
@@ -106,7 +106,7 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
             />
           </div>
           <div className={styles['text-footer']}>
-            <Attendees state={state} user={user} setState={setState} />
+            <Attendance state={state} user={user} setState={setState} />
             <div
               className={
                 state.expandedAbsent || state.expandedAttendees

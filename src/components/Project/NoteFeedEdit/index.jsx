@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation } from 'urql';
@@ -6,6 +6,7 @@ import { useMutation } from 'urql';
 import Attendance from '../Attendance';
 
 import extractAvatar from '../../../utils/managers';
+import DeleteNote from '../Note/DeleteNote';
 
 import {
   mainContainer,
@@ -21,7 +22,7 @@ import {
   saveBtn,
   collapsedView,
   expandedView,
-  disabled,
+  editButtons,
 } from './NoteFeedEdit.module.scss';
 
 import { UpdateNoteMutation as updateNote } from '../Queries/requests';
@@ -53,11 +54,15 @@ export default ({ user, note, id, setIsEditing }) => {
     hover: true,
   };
   const [state, setState] = useState(initialState);
-  const [res, executeMutation] = useMutation(updateNote);
+  const [, executeMutation] = useMutation(updateNote);
 
-  if (res.error) {
-    alert('Incorrect data shape');
-  }
+  useEffect(() => {
+    if (state.topic && state.content && state.rating > 0) {
+      setState(s => ({ ...s, error: false, hover: false }));
+    } else {
+      setState(s => ({ ...s, error: true, hover: true }));
+    }
+  }, [state.topic, state.content, state.rating]);
 
   const markAbsent = e => {
     e.preventDefault();
@@ -158,7 +163,6 @@ export default ({ user, note, id, setIsEditing }) => {
                 Attendees
                 <div className={attendeesAvatars}>
                   {state.attendees.map(({ name, email }) => {
-                    // TODO: get slack avatar based on email
                     return (
                       <Attendance
                         name={name}
@@ -207,8 +211,11 @@ export default ({ user, note, id, setIsEditing }) => {
                 </div>
               )}
             </div>
-            <div className={buttonContainer}>
+            <div className={editButtons}>
+              <DeleteNote id={id} setIsEditing={setIsEditing} />
               <SemanticButton
+                color="default"
+                variant="outlined"
                 type="button"
                 onClick={() => {
                   setIsEditing(false);
@@ -216,8 +223,10 @@ export default ({ user, note, id, setIsEditing }) => {
               >
                 Cancel
               </SemanticButton>
-              <SemanticButton
-                className={state.error ? disabled : saveBtn}
+              <button
+                className={saveBtn}
+                color="primary"
+                variant="outlined"
                 type="submit"
                 disabled={state.error}
                 title={
@@ -227,7 +236,7 @@ export default ({ user, note, id, setIsEditing }) => {
                 }
               >
                 Save
-              </SemanticButton>
+              </button>
             </div>
           </div>
         </form>
