@@ -32,32 +32,41 @@ const NoteEditor = ({
   note,
   setIsEditing,
 }) => {
-  const initialState = {
-    topic: (note && note.topic) || '',
-    content: (note && note.content) || '',
-    rating: (note && note.rating) || 0,
-    attendees: (note && note.attendedBy) || [],
-    expandedAttendees: false,
-    expandedAbsent: false,
-    absentees: projectManagers,
-    validated: false,
-    notification: false,
-  };
+  const [topic, setTopic] = useState((note && note.topic) || '');
+  const [content, setContent] = useState((note && note.content) || '');
+  const [rating, setRating] = useState((note && note.rating) || 0);
+  const [attendees, setAttendees] = useState((note && note.attendedBy) || []);
+  const [expandedAttendees, setExpandedAttendees] = useState(false);
+  const [expandedAbsent, setExpandedAbsent] = useState(false);
+  const [absentees, setAbsentees] = useState(projectManagers);
+  const [validated, setValidated] = useState(false);
+  const [notification, setNotification] = useState(false);
 
-  const [state, setState] = useState(initialState);
   const [, executeMutation] = useMutation(createNote);
 
   useEffect(() => {
-    if (state.topic && state.content && state.rating > 0) {
-      setState(s => ({ ...s, validated: true }));
+    if (topic && content && rating > 0) {
+      setValidated(true);
     } else {
-      setState(s => ({ ...s, validated: false }));
+      setValidated(false);
     }
-  }, [state.topic, state.content, state.rating]);
+  }, [topic, content, rating]);
+
+  // resets the form, as form.reset doesn't seem to affect React state
+  const resetForm = () => {
+    setTopic('');
+    setContent('');
+    setRating(0);
+    setAttendees([]);
+    setAbsentees([]);
+    setExpandedAttendees(false);
+    setExpandedAbsent(false);
+    setValidated(false);
+    setNotification(false);
+  };
 
   return (
     <div className={styles['main-container']}>
-      <h2>Project Notes</h2>
       <div className={styles['editor-container']}>
         <div className={styles['avatar-container']}>
           <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
@@ -67,15 +76,15 @@ const NoteEditor = ({
             e.preventDefault();
             const input = {
               id: projectId,
-              topic: state.topic,
-              content: state.content,
-              rating: state.rating,
+              topic,
+              content,
+              rating,
               // Extracts an array of emails from array of Person objects
-              attendedBy: Array.from(state.attendees, ({ email }) => email),
-              notification: state.notification,
+              attendedBy: Array.from(attendees, ({ email }) => email),
+              notification,
             };
             executeMutation(input);
-            setState(initialState);
+            resetForm();
           }}
           className={styles['form-container']}
         >
@@ -85,9 +94,9 @@ const NoteEditor = ({
               inline
               options={topicOptions}
               onChange={(_, { value }) => {
-                setState({ ...state, topic: value });
+                setTopic(value);
               }}
-              value={state.topic}
+              value={topic}
             />
             <StarRatings
               numberOfStars={3}
@@ -95,10 +104,10 @@ const NoteEditor = ({
               starRatedColor="rgb(245,73,135)"
               starHoverColor="rgb(245,73,135)"
               starEmptyColor="rgba(245,73,135,.2)"
-              changeRating={rating => setState({ ...state, rating })}
+              changeRating={newRating => setRating(newRating)}
               starDimension="20px"
               starSpacing=".5px"
-              rating={state.rating}
+              rating={rating}
             />
           </div>
           <div className={styles['body-container']}>
@@ -106,15 +115,26 @@ const NoteEditor = ({
               className={styles['body-input']}
               placeholder="What's going on?"
               name="content"
-              onChange={e => setState({ ...state, content: e.target.value })}
-              value={state.content}
+              onChange={e => setContent(e.target.value)}
+              value={content}
             />
           </div>
           <div className={styles['text-footer']}>
-            <Attendance state={state} user={user} setState={setState} />
+            <Attendance
+              user={user}
+              attendees={attendees}
+              absentees={absentees}
+              setAttendees={setAttendees}
+              setAbsentees={setAbsentees}
+              expandedAttendees={expandedAttendees}
+              setExpandedAttendees={setExpandedAttendees}
+              expandedAbsent={expandedAbsent}
+              setExpandedAbsent={setExpandedAbsent}
+              projectId={projectId}
+            />
             <div
               className={
-                state.expandedAbsent || state.expandedAttendees
+                expandedAbsent || expandedAttendees
                   ? styles['button-container-min']
                   : styles['button-container']
               }
@@ -138,26 +158,19 @@ const NoteEditor = ({
                   Email Notifications
                   <input
                     type="checkbox"
-                    checked={state.notification}
+                    checked={notification}
                     id="notification"
                     name="notification"
-                    onClick={() =>
-                      setState({
-                        ...state,
-                        notification: !state.notification,
-                      })
-                    }
+                    onChange={() => setNotification(!notification)}
                   />
                 </label>
               )}
               <SemanticButton
-                className={
-                  state.validated ? styles['save-btn'] : styles.disabled
-                }
+                className={validated ? styles['save-btn'] : styles.disabled}
                 type="submit"
-                disabled={!state.validated}
+                disabled={!validated}
                 title={
-                  state.validated
+                  validated
                     ? null
                     : 'Please include a title, rating, and content'
                 }
