@@ -5,9 +5,20 @@ section {
   margin: 60px 10px;
 }
 
+span {
+  box-shadow: 0px 0px rgba(0, 0, 0, 0);
+}
+
 section:not(:last-child) {
   .noteContainer {
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+.edit {
+  opacity: 0.8;
+  &:hover {
+    cursor: pointer;
   }
 }
 
