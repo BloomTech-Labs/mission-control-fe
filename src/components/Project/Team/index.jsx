@@ -11,6 +11,7 @@ import {
   teamNames,
   teamMemberTitle,
 } from './Team.module.scss';
+import { checkNullAvatar } from '../../../utils';
 
 const Team = ({ projectId }) => {
   const [state] = useQuery({ query, variables: { id: projectId } });
@@ -32,7 +33,7 @@ const Team = ({ projectId }) => {
           <section className={members}>
             <img
               className={avatar}
-              src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
+              src={checkNullAvatar(sectionLead.avatar)}
               alt={sectionLead.name}
             />
             <p className={teamNames}>{sectionLead.name}</p>
@@ -40,22 +41,22 @@ const Team = ({ projectId }) => {
           <h3 className={teamMemberTitle}>Team Lead</h3>
           <section className={members}>
             <img
-              src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
+              src={checkNullAvatar(teamLead.avatar)}
               alt={teamLead.name}
               className={avatar}
             />
             <p className={teamNames}>{teamLead.name}</p>
           </section>
           <h3 className={teamMemberTitle}>Team</h3>
-          {team.map(({ name, email }) => {
+          {team.map(teammate => {
             return (
-              <section className={members} key={email}>
+              <section className={members} key={teammate.name}>
                 <img
-                  src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
-                  alt={name}
+                  src={checkNullAvatar(teammate.avatar)}
+                  alt={teammate.name}
                   className={avatar}
                 />
-                <p className={teamNames}>{name}</p>
+                <p className={teamNames}>{teammate.name}</p>
               </section>
             );
           })}
