@@ -15,7 +15,7 @@ import {
   teamContainer,
 } from './Project.module.scss';
 
-import { ProjectViewQuery as query } from './Queries/requests';
+import { PROJECT_VIEW_QUERY as query } from './Queries';
 
 const Project = ({ match: { params } }) => {
   const { id } = params;

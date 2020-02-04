@@ -57,7 +57,6 @@ export default ({
                 action="Remove"
                 name={name}
                 email={email}
-                user={user}
                 handleAttendance={handleAttendance}
               />
             );
@@ -79,7 +78,6 @@ export default ({
                   action="Add"
                   name={name}
                   email={email}
-                  user={user}
                   handleAttendance={handleAttendance}
                 />
               );
