@@ -9,26 +9,21 @@ const NotesFeed = ({ projectId }) => {
     query,
     variables: { id: projectId },
   });
-  const {
-    data: {
-      me,
-      project: { notes, projectManagers },
-    },
-    fetching,
-  } = state;
+
+  const { data, fetching } = state;
 
   if (fetching) return <h2>Loading</h2>;
-  if (notes && notes.length) {
+  if (data) {
     return (
       <div>
-        {notes.map(note => {
+        {data.project.notes.map(note => {
           return (
             <Note
               projectId={projectId}
               key={note.id}
               note={note}
-              user={me}
-              projectManagers={projectManagers}
+              user={data.me}
+              projectManagers={data.project.projectManagers}
             />
           );
         })}
