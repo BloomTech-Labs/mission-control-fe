@@ -1,9 +1,11 @@
 import React from 'react';
+
 import { Label } from 'semantic-ui-react';
 
-import { miniAvatarContainer } from './Attendees.module.scss';
+import { miniAvatarContainer } from './Member.module.scss';
+import extractAvatar from '../../../../utils/managers';
 
-export default ({ extractAvatar, toggle, name, email, action }) => {
+export default ({ action, email, name, markAbsent, markAttended }) => {
   return (
     <div className={miniAvatarContainer}>
       <img src={extractAvatar(email)} alt={`avatar of ${name}`} />
@@ -13,7 +15,7 @@ export default ({ extractAvatar, toggle, name, email, action }) => {
         </Label>
         {action === 'Remove' ? (
           <Label
-            onClick={toggle}
+            onClick={markAbsent}
             size="tiny"
             as="a"
             basic
@@ -24,7 +26,7 @@ export default ({ extractAvatar, toggle, name, email, action }) => {
           </Label>
         ) : (
           <Label
-            onClick={toggle}
+            onClick={markAttended}
             size="tiny"
             as="a"
             basic
