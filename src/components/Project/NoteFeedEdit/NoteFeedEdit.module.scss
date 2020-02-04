@@ -131,18 +131,23 @@ h2 {
             cursor: pointer;
           }
         }
-
-        .saveBtn {
-          background: $accent;
-          border-radius: 8%;
-          color: white;
-          width: 5rem;
-          border: none;
-          &:hover {
-            cursor: pointer;
-          }
-        }
       }
     }
   }
+}
+
+.saveBtn {
+  background: $accent;
+  border-radius: 8%;
+  margin: 0 0.5rem;
+  color: white;
+  width: 5rem;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.editButtons {
+  display: flex;
 }
