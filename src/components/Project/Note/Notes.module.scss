@@ -31,6 +31,7 @@ section:not(:last-child) {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  width: 50%;
   .miniAvatarContainer {
     width: 40%;
     display: flex;
