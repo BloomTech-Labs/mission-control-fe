@@ -1,20 +1,29 @@
 import React from 'react';
-import Note from '../Note';
+import { useQuery } from 'urql';
+import Note from './Note';
 
-const NotesFeed = ({ notes, projectId, user, projectManagers, fetching }) => {
+import { NOTE_FEED_QUERY as query } from '../Queries/index';
+
+const NotesFeed = ({ projectId }) => {
+  const [state] = useQuery({
+    query,
+    variables: { id: projectId },
+  });
+
+  const { data, fetching } = state;
+
   if (fetching) return <h2>Loading</h2>;
-  if (notes && notes.length) {
+  if (data) {
     return (
       <div>
-        {notes.map(note => {
+        {data.project.notes.map(note => {
           return (
             <Note
+              projectId={projectId}
               key={note.id}
               note={note}
-              user={user}
-              projectId={projectId}
-              projectManagers={projectManagers}
-              editable={note.author.email === user}
+              user={data.me}
+              projectManagers={data.project.projectManagers}
             />
           );
         })}

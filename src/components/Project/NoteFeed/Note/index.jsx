@@ -5,8 +5,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import Fab from '@material-ui/core/Fab';
 import { Label } from 'semantic-ui-react';
 
-import NoteFeedEdit from '../NoteFeedEdit';
-import extractAvatar from '../../../utils/managers';
+import NoteEditor from '../../NoteEditor';
+import extractAvatar from '../../../../utils/managers';
 
 import {
   section,
@@ -24,15 +24,26 @@ import {
   collapsed,
 } from './Notes.module.scss';
 
-const Note = ({ note, user, projectId, projectManagers, editable }) => {
+const Note = ({ note, user, projectManagers, projectId }) => {
   const [expandedList, setExpandedList] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const { topic, content, rating, attendedBy } = note;
 
   // Removes redundant avatar of signed-in user
-  const displayedAttendees = attendedBy.filter(person => person.email !== user);
-
-  return isEditing === false ? (
+  const displayedAttendees = attendedBy.filter(
+    person => person.email !== user.email
+  );
+  return isEditing ? (
+    <NoteEditor
+      projectId={projectId}
+      note={note}
+      key={note.id}
+      id={note.id}
+      user={user}
+      projectManagers={projectManagers}
+      setIsEditing={setIsEditing}
+    />
+  ) : (
     <section className={projectNote}>
       <div className={avatarContainer}>
         <img
@@ -65,7 +76,7 @@ const Note = ({ note, user, projectId, projectManagers, editable }) => {
           >
             {displayedAttendees.map(attendee => {
               return (
-                <div className={miniAvatarContainer}>
+                <div key={attendee.name} className={miniAvatarContainer}>
                   <img
                     src={extractAvatar(attendee.email)}
                     alt={`avatar of ${attendee.name}`}
@@ -79,7 +90,7 @@ const Note = ({ note, user, projectId, projectManagers, editable }) => {
               );
             })}
           </div>
-          {editable ? (
+          {note.author.email === user.email ? (
             <Fab color="default" onClick={() => setIsEditing(true)}>
               <EditIcon />
             </Fab>
@@ -89,17 +100,6 @@ const Note = ({ note, user, projectId, projectManagers, editable }) => {
         </div>
       </div>
     </section>
-  ) : (
-    <NoteFeedEdit
-      key={note.id}
-      id={note.id}
-      note={note}
-      user={user}
-      projectId={projectId}
-      projectManagers={projectManagers}
-      setIsEditing={setIsEditing}
-      isEditing={isEditing}
-    />
   );
 };
 
