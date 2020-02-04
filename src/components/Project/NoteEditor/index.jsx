@@ -6,7 +6,7 @@ import { useMutation } from 'urql';
 import extractAvatar from '../../../utils/managers';
 
 import Attendance from './Attendance';
-import DeleteNote from '../Note/DeleteNote';
+import DeleteNote from '../NoteFeed/Note/DeleteNote';
 
 import styles from './NoteEditor.module.scss';
 import { CreateNoteMutation as createNote } from '../Queries/requests';
@@ -25,20 +25,14 @@ const topicOptions = [
   },
 ];
 
-const NoteEditor = ({
-  user,
-  projectId,
-  projectManagers,
-  note,
-  setIsEditing,
-}) => {
+const NoteEditor = ({ user, projectId, note, setIsEditing }) => {
   const [topic, setTopic] = useState((note && note.topic) || '');
   const [content, setContent] = useState((note && note.content) || '');
   const [rating, setRating] = useState((note && note.rating) || 0);
   const [attendees, setAttendees] = useState((note && note.attendedBy) || []);
   const [expandedAttendees, setExpandedAttendees] = useState(false);
   const [expandedAbsent, setExpandedAbsent] = useState(false);
-  const [absentees, setAbsentees] = useState(projectManagers);
+  const [absentees, setAbsentees] = useState([]);
   const [validated, setValidated] = useState(false);
   const [notification, setNotification] = useState(false);
 
