@@ -5,7 +5,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import Fab from '@material-ui/core/Fab';
 import { Label } from 'semantic-ui-react';
 
-import NoteFeedEdit from '../NoteFeedEdit';
+import NoteEditor from '../NoteEditor';
 import extractAvatar from '../../../utils/managers';
 
 import {
@@ -24,15 +24,24 @@ import {
   collapsed,
 } from './Notes.module.scss';
 
-const Note = ({ note, user, projectManagers, editable }) => {
+const Note = ({ note, user, projectManagers, editable, projectId }) => {
   const [expandedList, setExpandedList] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const { topic, content, rating, attendedBy } = note;
 
   // Removes redundant avatar of signed-in user
   const displayedAttendees = attendedBy.filter(person => person.email !== user);
-
-  return isEditing === false ? (
+  return isEditing ? (
+    <NoteEditor
+      projectId={projectId}
+      note={note}
+      key={note.id}
+      id={note.id}
+      user={user}
+      projectManagers={projectManagers}
+      setIsEditing={setIsEditing}
+    />
+  ) : (
     <section className={projectNote}>
       <div className={avatarContainer}>
         <img
@@ -89,15 +98,6 @@ const Note = ({ note, user, projectManagers, editable }) => {
         </div>
       </div>
     </section>
-  ) : (
-    <NoteFeedEdit
-      key={note.id}
-      id={note.id}
-      note={note}
-      user={user}
-      projectManagers={projectManagers}
-      setIsEditing={setIsEditing}
-    />
   );
 };
 
