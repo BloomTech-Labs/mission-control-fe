@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
-import { Label, Dropdown, Button as SemanticButton } from 'semantic-ui-react';
+import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 
 import { useMutation } from 'urql';
-import extractAvatar from '../../../utils/managers';
+
+import Attendance from './Attendance';
+import DeleteNote from '../NoteFeed/Note/DeleteNote';
 
 import styles from './NoteEditor.module.scss';
-import { CreateNoteMutation as createNote } from '../Queries/requests';
+import {
+  CREATE_NOTE as createNote,
+  UPDATE_NOTE as updateNote,
+} from '../Queries';
+import { checkNullAvatar } from '../../../utils';
 
 const topicOptions = [
   { key: 'gd', value: 'General Discussion', text: 'General Discussion' },
@@ -22,86 +28,94 @@ const topicOptions = [
   },
 ];
 
-const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
-  const initialState = {
-    topic: '',
-    content: '',
-    rating: 0,
-    attendees: [],
-    expandedAttendees: false,
-    expandedAbsent: false,
-    absentees: projectManagers,
-    error: true,
-    hover: true,
-    notification: false,
-  };
+const NoteEditor = ({
+  projectManagers,
+  user,
+  projectId,
+  note,
+  setIsEditing,
+}) => {
+  const [topic, setTopic] = useState((note && note.topic) || '');
+  const [content, setContent] = useState((note && note.content) || '');
+  const [rating, setRating] = useState((note && note.rating) || 0);
+  const [attendees, setAttendees] = useState((note && note.attendedBy) || []);
+  const [expandedAttendees, setExpandedAttendees] = useState(false);
+  const [expandedAbsent, setExpandedAbsent] = useState(false);
+  const [absentees, setAbsentees] = useState(projectManagers || []);
+  const [validated, setValidated] = useState(false);
+  const [notification, setNotification] = useState(false);
 
-  const [state, setState] = useState(initialState);
-  const [, executeMutation] = useMutation(createNote);
+  const [, executeCreate] = useMutation(createNote);
+  const [, executeUpdate] = useMutation(updateNote);
 
   useEffect(() => {
-    if (state.topic && state.content && state.rating > 0) {
-      setState(s => ({ ...s, error: false, hover: false }));
+    if (topic && content && rating > 0) {
+      setValidated(true);
     } else {
-      setState(s => ({ ...s, error: true, hover: true }));
+      setValidated(false);
     }
-  }, [state.topic, state.content, state.rating]);
+  }, [topic, content, rating]);
 
-  const markAbsent = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    const deleted = e.target.previousSibling.textContent;
-    const newAttendees = state.attendees.filter(({ name }) => {
-      return name !== deleted;
-    });
-    const deletedAttendee = state.attendees.filter(({ name }) => {
-      return name === deleted;
-    });
-    const newAbsentees = [...state.absentees, ...deletedAttendee];
-    setState({ ...state, attendees: newAttendees, absentees: newAbsentees });
+  // resets the form, as form.reset doesn't seem to affect React state
+  const resetForm = () => {
+    setTopic('');
+    setContent('');
+    setRating(0);
+    setAttendees([]);
+    setAbsentees([]);
+    setExpandedAttendees(false);
+    setExpandedAbsent(false);
+    setValidated(false);
+    setNotification(false);
   };
 
-  const markAttended = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    const attended = e.target.previousSibling.textContent;
-    const newAttendee = state.absentees.filter(({ name }) => {
-      return name === attended;
-    });
-    const newAttendees = [...state.attendees, ...newAttendee];
-    const newAbsentees = state.absentees.filter(({ name }) => {
-      return name !== attended;
-    });
-    setState({ ...state, attendees: newAttendees, absentees: newAbsentees });
-  };
-
-  // removes redundant user avatar
-  const removeUserAvatar = arr => {
-    return arr.filter(person => person.email !== user.email);
+  const handleSubmit = (e, type) => {
+    switch (type) {
+      case 'create':
+        e.preventDefault();
+        executeCreate({
+          id: projectId,
+          topic,
+          content,
+          rating,
+          // Extracts an array of emails from array of Person objects
+          attendedBy: Array.from(attendees, ({ email }) => email),
+          notification,
+        });
+        resetForm();
+        break;
+      case 'update':
+        e.preventDefault();
+        executeUpdate({
+          id: note.id,
+          topic,
+          content,
+          rating,
+          attendedBy: Array.from(attendees, ({ email }) => email),
+        });
+        setIsEditing(false);
+        break;
+      default:
+        resetForm();
+    }
   };
 
   return (
     <div className={styles['main-container']}>
-      <h2>Project Notes</h2>
       <div className={styles['editor-container']}>
         <div className={styles['avatar-container']}>
-          <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
+          <img
+            src={checkNullAvatar(user.avatar)}
+            alt={`avatar of ${user.name}`}
+          />
         </div>
         <form
           onSubmit={e => {
-            e.preventDefault();
-            const input = {
-              id: projectId,
-              topic: state.topic,
-              content: state.content,
-              rating: state.rating,
-              // Extracts an array of emails from array of Person objects
-              attendedBy: Array.from(state.attendees, ({ email }) => email),
-              notification: state.notification,
-            };
-            executeMutation(input);
-            setState(initialState);
-            executeQuery({ requestPolicy: 'cache-and-network' });
+            if (note) {
+              handleSubmit(e, 'update');
+            } else {
+              handleSubmit(e, 'create');
+            }
           }}
           className={styles['form-container']}
         >
@@ -111,9 +125,9 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
               inline
               options={topicOptions}
               onChange={(_, { value }) => {
-                setState({ ...state, topic: value });
+                setTopic(value);
               }}
-              value={state.topic}
+              value={topic}
             />
             <StarRatings
               numberOfStars={3}
@@ -121,10 +135,10 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
               starRatedColor="rgb(245,73,135)"
               starHoverColor="rgb(245,73,135)"
               starEmptyColor="rgba(245,73,135,.2)"
-              changeRating={rating => setState({ ...state, rating })}
+              changeRating={newRating => setRating(newRating)}
               starDimension="20px"
               starSpacing=".5px"
-              rating={state.rating}
+              rating={rating}
             />
           </div>
           <div className={styles['body-container']}>
@@ -132,131 +146,65 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
               className={styles['body-input']}
               placeholder="What's going on?"
               name="content"
-              onChange={e => setState({ ...state, content: e.target.value })}
-              value={state.content}
+              onChange={e => setContent(e.target.value)}
+              value={content}
             />
           </div>
           <div className={styles['text-footer']}>
-            <div className={styles.attendance}>
-              <div
-                className={
-                  state.expandedAttendees ? styles.expanded : styles.collapsed
-                }
-                onClick={() =>
-                  setState({
-                    ...state,
-                    expandedAttendees: !state.expandedAttendees,
-                  })
-                }
-                role="presentation"
-              >
-                Attendees
-                <div className={styles['attendees-avatars']}>
-                  {removeUserAvatar(state.attendees).map(({ name, email }) => {
-                    return (
-                      <div className={styles['mini-avatar-container']}>
-                        <img
-                          src={extractAvatar(email)}
-                          alt={`avatar of ${name}`}
-                        />
-                        <button type="button">
-                          <Label disabled size="small">
-                            {name}
-                          </Label>
-                          <Label
-                            onClick={markAbsent}
-                            size="tiny"
-                            as="a"
-                            basic
-                            color="pink"
-                            pointing="left"
-                          >
-                            Remove
-                          </Label>
-                        </button>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              {!!state.absentees.length && (
-                <div
-                  className={
-                    state.expandedAbsent ? styles.expanded : styles.collapsed
-                  }
-                  onClick={() =>
-                    setState({
-                      ...state,
-                      expandedAbsent: !state.expandedAbsent,
-                    })
-                  }
-                  role="presentation"
-                >
-                  Absent
-                  <div className={styles['attendees-avatars']}>
-                    {removeUserAvatar(state.absentees).map(
-                      ({ name, email }) => {
-                        return (
-                          <div className={styles['mini-avatar-container']}>
-                            <img
-                              src={extractAvatar(email)}
-                              alt={`avatar of ${name}`}
-                            />
-                            <button type="button">
-                              <Label disabled size="small">
-                                {name}
-                              </Label>
-                              <Label
-                                onClick={markAttended}
-                                size="tiny"
-                                as="a"
-                                basic
-                                color="green"
-                                pointing="left"
-                              >
-                                Add
-                              </Label>
-                            </button>
-                          </div>
-                        );
-                      }
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
+            <Attendance
+              user={user}
+              attendees={attendees}
+              absentees={absentees}
+              setAttendees={setAttendees}
+              setAbsentees={setAbsentees}
+              expandedAttendees={expandedAttendees}
+              setExpandedAttendees={setExpandedAttendees}
+              expandedAbsent={expandedAbsent}
+              setExpandedAbsent={setExpandedAbsent}
+              projectId={projectId}
+              projectManagers={projectManagers}
+            />
             <div
               className={
-                state.expandedAbsent || state.expandedAttendees
+                expandedAbsent || expandedAttendees
                   ? styles['button-container-min']
                   : styles['button-container']
               }
             >
-              <div className={styles.notification}>
-                <label htmlFor="notification">
+              {note ? (
+                [
+                  <DeleteNote id={note.id} setIsEditing={setIsEditing} />,
+                  <SemanticButton
+                    color="default"
+                    variant="outlined"
+                    type="button"
+                    onClick={() => {
+                      setIsEditing(false);
+                    }}
+                  >
+                    Cancel
+                  </SemanticButton>,
+                ]
+              ) : (
+                <label className={styles.notification} htmlFor="notification">
                   Email Notifications
                   <input
                     type="checkbox"
-                    checked={state.notification}
+                    checked={notification}
                     id="notification"
                     name="notification"
-                    onClick={() =>
-                      setState({
-                        ...state,
-                        notification: !state.notification,
-                      })
-                    }
+                    onChange={() => setNotification(!notification)}
                   />
                 </label>
-              </div>
+              )}
               <SemanticButton
-                className={state.error ? styles.disabled : styles['save-btn']}
+                className={validated ? styles['save-btn'] : styles.disabled}
                 type="submit"
-                disabled={state.error}
+                disabled={!validated}
                 title={
-                  state.hover
-                    ? 'Please include a title, rating, and content'
-                    : null
+                  validated
+                    ? null
+                    : 'Please include a title, rating, and content'
                 }
               >
                 Save

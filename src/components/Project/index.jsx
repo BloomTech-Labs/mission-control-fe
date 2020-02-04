@@ -15,12 +15,12 @@ import {
   teamContainer,
 } from './Project.module.scss';
 
-import { ProjectViewQuery as query } from './Queries/requests';
+import { PROJECT_VIEW_QUERY as query } from './Queries';
 
 const Project = ({ match: { params } }) => {
   const { id } = params;
-  const [state, executeQuery] = useQuery({ query, variables: { id } });
-  const { data, fetching } = state;
+  const [state] = useQuery({ query, variables: { id } });
+  const { data } = state;
 
   return data ? (
     <div className={parentProjectContainer}>
@@ -30,19 +30,13 @@ const Project = ({ match: { params } }) => {
         </div>
         <div className={projectContainer}>
           <div className={editorFeedContainer}>
+            <h2>Project Notes</h2>
             <NoteEditor
-              executeQuery={executeQuery}
               user={data.me}
               projectId={id}
               projectManagers={data.project.projectManagers}
             />
-            <NotesFeed
-              notes={data.project.notes}
-              projectId={id}
-              user={data.me.email}
-              projectManagers={data.project.projectManagers}
-              fetching={fetching}
-            />
+            <NotesFeed projectId={id} />
           </div>
           <div className={teamContainer}>
             <Team projectId={id} />
