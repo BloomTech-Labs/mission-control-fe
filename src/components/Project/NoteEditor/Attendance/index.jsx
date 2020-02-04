@@ -13,6 +13,7 @@ export default ({
   expandedAbsent,
   setExpandedAbsent,
   user,
+  projectManagers,
 }) => {
   const handleAttendance = (e, absent) => {
     e.preventDefault();
@@ -37,7 +38,10 @@ export default ({
   const removeAllAttended = (attendedBy, allManagers) => {
     return allManagers.filter(({ email }) => {
       // filters by email if they are already attending or logged in
-      return !(attendedBy.includes(email) || email === user.email);
+      return !(
+        Array.from(attendedBy, person => person.email).includes(email) ||
+        email === user.email
+      );
     });
   };
 
@@ -50,17 +54,20 @@ export default ({
       >
         Attendees
         <div className={styles['attendees-avatars']}>
-          {attendees.map(({ name, email }) => {
-            return (
-              <Member
-                key={`attendance${name}`}
-                action="Remove"
-                name={name}
-                email={email}
-                handleAttendance={handleAttendance}
-              />
-            );
-          })}
+          {/* Strip out user avatar before rendering */}
+          {attendees
+            .filter(({ email }) => user.email !== email)
+            .map(({ name, email }) => {
+              return (
+                <Member
+                  key={`attendance${name}`}
+                  action="Remove"
+                  name={name}
+                  email={email}
+                  handleAttendance={handleAttendance}
+                />
+              );
+            })}
         </div>
       </div>
       {!!absentees.length && (
@@ -71,17 +78,19 @@ export default ({
         >
           Absent
           <div className={styles['attendees-avatars']}>
-            {removeAllAttended(attendees, absentees).map(({ name, email }) => {
-              return (
-                <Member
-                  key={`absence${name}`}
-                  action="Add"
-                  name={name}
-                  email={email}
-                  handleAttendance={handleAttendance}
-                />
-              );
-            })}
+            {removeAllAttended(attendees, projectManagers).map(
+              ({ name, email }) => {
+                return (
+                  <Member
+                    key={`absence${name}`}
+                    action="Add"
+                    name={name}
+                    email={email}
+                    handleAttendance={handleAttendance}
+                  />
+                );
+              }
+            )}
           </div>
         </div>
       )}
