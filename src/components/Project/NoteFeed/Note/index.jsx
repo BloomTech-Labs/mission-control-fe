@@ -24,7 +24,7 @@ import {
   collapsed,
 } from './Notes.module.scss';
 
-const Note = ({ note, user, projectManagers, editable, projectId }) => {
+const Note = ({ note, user, projectManagers, projectId }) => {
   const [expandedList, setExpandedList] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const { topic, content, rating, attendedBy } = note;
@@ -90,7 +90,7 @@ const Note = ({ note, user, projectManagers, editable, projectId }) => {
               );
             })}
           </div>
-          {editable ? (
+          {note.author.email === user.email ? (
             <Fab color="default" onClick={() => setIsEditing(true)}>
               <EditIcon />
             </Fab>
