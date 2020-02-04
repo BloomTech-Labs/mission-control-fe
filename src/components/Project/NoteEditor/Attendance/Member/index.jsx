@@ -3,7 +3,7 @@ import React from 'react';
 import { Label } from 'semantic-ui-react';
 
 import { miniAvatarContainer } from './Member.module.scss';
-import extractAvatar from '../../../../utils/managers';
+import extractAvatar from '../../../../../utils/managers';
 
 export default ({ action, email, name, markAbsent, markAttended }) => {
   return (
