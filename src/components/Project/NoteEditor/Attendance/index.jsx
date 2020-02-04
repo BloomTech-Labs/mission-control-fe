@@ -80,7 +80,6 @@ export default ({
           Absent
           <div className={styles['attendees-avatars']}>
             {removeAllAttended(attendees, projectManagers).map(person => {
-              console.log(person);
               const { name, avatar } = person;
               return (
                 <Member

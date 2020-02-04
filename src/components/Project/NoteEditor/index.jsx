@@ -56,13 +56,6 @@ const NoteEditor = ({
     }
   }, [topic, content, rating]);
 
-  // const [state] = useQuery({
-  //   query: queryManagers,
-  //   variables: { id: projectId },
-  // });
-
-  // console.log(state);
-
   // resets the form, as form.reset doesn't seem to affect React state
   const resetForm = () => {
     setTopic('');
@@ -98,7 +91,6 @@ const NoteEditor = ({
           topic,
           content,
           rating,
-          // Extracts an array of emails from array of Person objects
           attendedBy: Array.from(attendees, ({ email }) => email),
         });
         setIsEditing(false);
