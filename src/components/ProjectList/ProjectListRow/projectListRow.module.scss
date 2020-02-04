@@ -40,6 +40,10 @@ tr:nth-child(even) {
 .title {
   color: $accent;
   font-weight: 900;
+
+  &:hover {
+    color: $accent;
+  }
 }
 
 .rtd {
