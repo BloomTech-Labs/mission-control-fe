@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import StarRatings from 'react-star-ratings';
 
 import EditIcon from '@material-ui/icons/Edit';
-import Fab from '@material-ui/core/Fab';
 import { Label } from 'semantic-ui-react';
 
 import NoteEditor from '../../NoteEditor';
 import extractAvatar from '../../../../utils/managers';
 
 import {
-  section,
+  edit,
   projectNote,
   avatarContainer,
   avatar,
@@ -25,8 +24,8 @@ import {
 } from './Notes.module.scss';
 
 const Note = ({ note, user, projectManagers, projectId }) => {
-  const [expandedList, setExpandedList] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
+  const [expandedList, setExpandedList] = React.useState(false);
+  const [isEditing, setIsEditing] = React.useState(false);
   const { topic, content, rating, attendedBy } = note;
 
   // Removes redundant avatar of signed-in user
@@ -91,9 +90,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
             })}
           </div>
           {note.author.email === user.email ? (
-            <Fab color="default" onClick={() => setIsEditing(true)}>
-              <EditIcon />
-            </Fab>
+            <EditIcon onClick={() => setIsEditing(true)} className={edit} />
           ) : (
             false
           )}
