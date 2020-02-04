@@ -5,7 +5,7 @@ import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation } from 'urql';
 import extractAvatar from '../../../utils/managers';
 
-import Attendance from '../Attendance';
+import Attendance from './Attendance';
 import DeleteNote from '../Note/DeleteNote';
 
 import styles from './NoteEditor.module.scss';

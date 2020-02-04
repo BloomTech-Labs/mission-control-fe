@@ -1,8 +1,7 @@
 import React from 'react';
 
 import Member from './Member/index';
-
-import styles from '../NoteEditor/NoteEditor.module.scss';
+import styles from '../NoteEditor.module.scss';
 
 export default ({
   attendees,
