@@ -3,12 +3,12 @@ import React from 'react';
 import { Label } from 'semantic-ui-react';
 
 import { miniAvatarContainer } from './Member.module.scss';
-import extractAvatar from '../../../../../utils/managers';
+import { checkNullAvatar } from '../../../../../utils';
 
-export default ({ action, email, name, handleAttendance }) => {
+export default ({ action, avatar, name, handleAttendance }) => {
   return (
     <div className={miniAvatarContainer}>
-      <img src={extractAvatar(email)} alt={`avatar of ${name}`} />
+      <img src={checkNullAvatar(avatar)} alt={`avatar of ${name}`} />
       <button type="button">
         <Label disabled size="small">
           {name}

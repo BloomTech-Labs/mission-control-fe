@@ -56,14 +56,15 @@ export default ({
         <div className={styles['attendees-avatars']}>
           {/* Strip out user avatar before rendering */}
           {attendees
-            .filter(({ email }) => user.email !== email)
-            .map(({ name, email }) => {
+            .filter(({ name }) => user.name !== name)
+            .map(person => {
+              const { name, avatar } = person;
               return (
                 <Member
                   key={`attendance${name}`}
                   action="Remove"
                   name={name}
-                  email={email}
+                  avatar={avatar}
                   handleAttendance={handleAttendance}
                 />
               );
@@ -78,19 +79,19 @@ export default ({
         >
           Absent
           <div className={styles['attendees-avatars']}>
-            {removeAllAttended(attendees, projectManagers).map(
-              ({ name, email }) => {
-                return (
-                  <Member
-                    key={`absence${name}`}
-                    action="Add"
-                    name={name}
-                    email={email}
-                    handleAttendance={handleAttendance}
-                  />
-                );
-              }
-            )}
+            {removeAllAttended(attendees, projectManagers).map(person => {
+              console.log(person);
+              const { name, avatar } = person;
+              return (
+                <Member
+                  key={`absence${name}`}
+                  action="Add"
+                  name={name}
+                  avatar={avatar}
+                  handleAttendance={handleAttendance}
+                />
+              );
+            })}
           </div>
         </div>
       )}
