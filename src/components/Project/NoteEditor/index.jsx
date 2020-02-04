@@ -24,17 +24,22 @@ const topicOptions = [
   },
 ];
 
-const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
+const NoteEditor = ({
+  user,
+  projectId,
+  projectManagers,
+  executeQuery,
+  note,
+}) => {
   const initialState = {
-    topic: '',
-    content: '',
-    rating: 0,
-    attendees: [],
+    topic: (note && note.topic) || '',
+    content: (note && note.content) || '',
+    rating: (note && note.rating) || 0,
+    attendees: (note && note.attendedBy) || [],
     expandedAttendees: false,
     expandedAbsent: false,
     absentees: projectManagers,
-    error: true,
-    hover: true,
+    validated: false,
     notification: false,
   };
 
@@ -43,9 +48,9 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
 
   useEffect(() => {
     if (state.topic && state.content && state.rating > 0) {
-      setState(s => ({ ...s, error: false, hover: false }));
+      setState(s => ({ ...s, validated: true }));
     } else {
-      setState(s => ({ ...s, error: true, hover: true }));
+      setState(s => ({ ...s, validated: false }));
     }
   }, [state.topic, state.content, state.rating]);
 
@@ -132,13 +137,15 @@ const NoteEditor = ({ user, projectId, projectManagers, executeQuery }) => {
                 </label>
               </div>
               <SemanticButton
-                className={state.error ? styles.disabled : styles['save-btn']}
+                className={
+                  state.validated ? styles['save-btn'] : styles.disabled
+                }
                 type="submit"
-                disabled={state.error}
+                disabled={!state.validated}
                 title={
-                  state.hover
-                    ? 'Please include a title, rating, and content'
-                    : null
+                  state.validated
+                    ? null
+                    : 'Please include a title, rating, and content'
                 }
               >
                 Save
