@@ -113,6 +113,7 @@ export const PROJECT_VIEW_QUERY = gql`
         name
         id
         email
+        avatar
       }
       notes(orderBy: updatedAt_DESC) {
         id
