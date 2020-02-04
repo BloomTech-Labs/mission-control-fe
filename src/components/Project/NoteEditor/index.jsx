@@ -12,7 +12,7 @@ import {
   CREATE_NOTE as createNote,
   UPDATE_NOTE as updateNote,
 } from '../Queries';
-import { checkNullAvatar } from '../../../utils';
+import extractAvatar from '../../../utils/managers';
 
 const topicOptions = [
   { key: 'gd', value: 'General Discussion', text: 'General Discussion' },
@@ -104,10 +104,7 @@ const NoteEditor = ({
     <div className={styles['main-container']}>
       <div className={styles['editor-container']}>
         <div className={styles['avatar-container']}>
-          <img
-            src={checkNullAvatar(user.avatar)}
-            alt={`avatar of ${user.name}`}
-          />
+          <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
         </div>
         <form
           onSubmit={e => {
