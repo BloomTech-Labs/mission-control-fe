@@ -80,7 +80,7 @@ const NoteEditor = ({
     switch (type) {
       case 'create':
         e.preventDefault();
-        await executeCreate({
+        executeCreate({
           id: projectId,
           topic,
           content,
