@@ -42,6 +42,7 @@ export const NOTE_FEED_QUERY = gql`
       email
     }
     project(id: $id) {
+      id
       projectManagers {
         name
         id
@@ -52,6 +53,9 @@ export const NOTE_FEED_QUERY = gql`
         id
         topic
         content
+        project {
+          id
+        }
         author {
           id
           email
@@ -193,6 +197,9 @@ export const DELETE_NOTE = gql`
   mutation DeleteNoteMutation($id: ID!) {
     deleteNote(id: $id) {
       id
+      project {
+        id
+      }
     }
   }
 `;
