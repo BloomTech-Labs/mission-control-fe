@@ -63,7 +63,7 @@ const NoteEditor = ({
     setContent('');
     setRating(0);
     setAttendees([]);
-    setAbsentees([]);
+    setAbsentees(projectManagers);
     setExpandedAttendees(false);
     setExpandedAbsent(false);
     setValidated(false);
@@ -84,7 +84,7 @@ const NoteEditor = ({
           notification,
         });
         resetForm();
-        executeQuery({ requestPolicy: 'network-only' });
+        executeQuery({ requestPolicy: 'cache-and-network' });
         break;
       case 'update':
         e.preventDefault();
