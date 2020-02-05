@@ -68,13 +68,15 @@ h2 {
       .expanded {
         .attendees-avatars {
           display: flex;
-          margin-top: 0.5vh;
           flex-flow: wrap;
+          img {
+            border: 2px solid $light;
+          }
         }
         .mini-avatar-container {
           display: flex;
           align-items: center;
-          // width: 40%;
+          width: 45%;
           button {
             border: none;
             background: none;
@@ -91,7 +93,7 @@ h2 {
           margin-right: 3rem;
           img {
             margin-right: -6px;
-            box-shadow: -2px 2px rgba(33, 34, 47, 0.1);
+            border: 2px solid $light;
             &:hover {
               cursor: pointer;
             }
