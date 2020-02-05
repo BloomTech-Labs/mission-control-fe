@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
-
-import { useMutation } from 'urql';
+import { useMutation, useQuery } from 'urql';
+import extractAvatar from '../../../utils/managers';
 
 import Attendance from './Attendance';
 import DeleteNote from '../NoteFeed/Note/DeleteNote';
 
-import styles from './NoteEditor.module.scss';
 import {
   CREATE_NOTE as createNote,
   UPDATE_NOTE as updateNote,
+  NOTE_FEED_QUERY as query,
 } from '../Queries';
-import extractAvatar from '../../../utils/managers';
+
+import styles from './NoteEditor.module.scss';
 
 const topicOptions = [
   { key: 'gd', value: 'General Discussion', text: 'General Discussion' },
@@ -34,8 +35,13 @@ const NoteEditor = ({
   projectId,
   note,
   setIsEditing,
-  executeQuery,
 }) => {
+  const [, executeQuery] = useQuery({
+    query,
+    variables: { id: projectId },
+    requestPolicy: 'cache-and-network',
+  });
+
   const [topic, setTopic] = useState((note && note.topic) || '');
   const [content, setContent] = useState((note && note.content) || '');
   const [rating, setRating] = useState((note && note.rating) || 0);
@@ -70,7 +76,7 @@ const NoteEditor = ({
     setNotification(false);
   };
 
-  const handleSubmit = (e, type) => {
+  const handleSubmit = async (e, type) => {
     switch (type) {
       case 'create':
         e.preventDefault();
@@ -84,7 +90,7 @@ const NoteEditor = ({
           notification,
         });
         resetForm();
-        executeQuery({ requestPolicy: 'cache-and-network' });
+        executeQuery();
         break;
       case 'update':
         e.preventDefault();
