@@ -34,6 +34,7 @@ const NoteEditor = ({
   projectId,
   note,
   setIsEditing,
+  executeQuery,
 }) => {
   const [topic, setTopic] = useState((note && note.topic) || '');
   const [content, setContent] = useState((note && note.content) || '');
@@ -83,6 +84,7 @@ const NoteEditor = ({
           notification,
         });
         resetForm();
+        executeQuery({ requestPolicy: 'network-only' });
         break;
       case 'update':
         e.preventDefault();
