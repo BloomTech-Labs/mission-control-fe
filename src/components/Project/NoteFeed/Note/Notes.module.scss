@@ -39,6 +39,10 @@ section:not(:last-child) {
     align-items: center;
     margin-right: 1rem;
 
+    img {
+      border: 2px solid white;
+    }
+
     button {
       &:focus {
         outline: none;
@@ -111,7 +115,7 @@ section:not(:last-child) {
   }
   img {
     margin-right: -6px;
-    box-shadow: -2px 2px $light;
+    border: 2px solid white;
   }
   p {
     display: none;
