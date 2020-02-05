@@ -69,7 +69,7 @@ const NoteEditor = ({
     setContent('');
     setRating(0);
     setAttendees([]);
-    setAbsentees([]);
+    setAbsentees(projectManagers);
     setExpandedAttendees(false);
     setExpandedAbsent(false);
     setValidated(false);
