@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
-import { useMutation } from 'urql';
+import { useMutation, useQuery } from 'urql';
 import extractAvatar from '../../../utils/managers';
 
 import Attendance from './Attendance';
@@ -10,6 +10,7 @@ import DeleteNote from '../NoteFeed/Note/DeleteNote';
 import {
   CREATE_NOTE as createNote,
   UPDATE_NOTE as updateNote,
+  NOTE_FEED_QUERY as query,
 } from '../Queries';
 
 import styles from './NoteEditor.module.scss';
@@ -35,6 +36,12 @@ const NoteEditor = ({
   note,
   setIsEditing,
 }) => {
+  const [, executeQuery] = useQuery({
+    query,
+    variables: { id: projectId },
+    requestPolicy: 'cache-and-network',
+  });
+
   const [topic, setTopic] = useState((note && note.topic) || '');
   const [content, setContent] = useState((note && note.content) || '');
   const [rating, setRating] = useState((note && note.rating) || 0);
@@ -83,6 +90,7 @@ const NoteEditor = ({
           notification,
         });
         resetForm();
+        executeQuery();
         break;
       case 'update':
         e.preventDefault();
