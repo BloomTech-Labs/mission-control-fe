@@ -1,15 +1,15 @@
 import React from 'react';
-import { useQuery, useSubscription } from 'urql';
+import { useQuery } from 'urql';
 import Note from './Note';
 
-import { NEW_SUB, NOTE_FEED_QUERY as query } from '../Queries/index';
+import { NOTE_FEED_QUERY as query } from '../Queries/index';
 
 const NotesFeed = ({ projectId }) => {
   const [state] = useQuery({
     query,
     variables: { id: projectId },
+    // requestPolicy: 'cache-and-network',
   });
-  useSubscription({ query: NEW_SUB });
 
   const { data, fetching } = state;
 
