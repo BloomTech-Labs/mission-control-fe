@@ -203,28 +203,3 @@ export const DELETE_NOTE = gql`
     }
   }
 `;
-
-export const NEW_SUB = gql`
-  subscription {
-    newNote {
-      id
-      topic
-      content
-      project {
-        id
-      }
-      author {
-        id
-        email
-        name
-      }
-      attendedBy {
-        id
-        name
-        email
-        avatar
-      }
-      rating
-    }
-  }
-`;
