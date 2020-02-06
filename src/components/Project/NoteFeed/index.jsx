@@ -8,7 +8,7 @@ const NotesFeed = ({ projectId }) => {
   const [state] = useQuery({
     query,
     variables: { id: projectId },
-    // requestPolicy: 'cache-and-network',
+    requestPolicy: 'cache-and-network',
   });
 
   const { data, fetching } = state;
