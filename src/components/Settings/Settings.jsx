@@ -12,13 +12,16 @@ import {
   PopoverHeader,
   PopoverBody,
 } from 'reactstrap';
+import { useMutation } from 'urql';
 import { CirclePicker } from 'react-color';
-import { PhotoshopPicker } from 'react-color';
+import {CREATE_LABEL as createLabel} from '../Project/Queries'
 
 const Settings = props => {
   const { buttonLabel, className } = props;
 
   const [modal, setModal] = useState(false);
+
+  const [, executeCreate] = useMutation(createLabel);
 
   const toggle = () => setModal(!modal);
 
@@ -28,6 +31,12 @@ const Settings = props => {
   };
 
   const [form, setForm] = useState(initState);
+
+  const handleSubmit = React.useCallback((e) => {
+    e.preventDefault()
+    executeCreate(form)
+    console.log('Handle submit', handleSubmit)
+  }, [executeCreate, form])
 
   const LabelPreviewColor = styled.div`
     color: white;
@@ -74,9 +83,10 @@ const Settings = props => {
                   Label Name:
                   <input
                     name="name"
-                    id="labelName"
+                    id="name"
                     placeholder="label name"
                     onChange={handleChanges}
+                    value={form.name}
                   />
                 </label>
                 <br />
@@ -118,7 +128,7 @@ const Settings = props => {
           </form>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>
+          <Button color="primary" onClick={handleSubmit}>
             Save
           </Button>
           <Button color="secondary" onClick={toggle}>
