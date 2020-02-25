@@ -196,9 +196,15 @@ export const DELETE_NOTE = gql`
   }
 `;
 
-// export const CREATE_LABEL = gql`
-//  mutation createLabel(
-//    $name: String!
-//    $color: String!
-//  )
-// `
+export const CREATE_LABEL = gql`
+ mutation CreateLabelMutation(
+   $name: String!
+   $color: String!
+ ){
+  createLabel( name: $name color: $color) {
+    name
+    color
+    id
+  }
+ }
+`
