@@ -7,7 +7,6 @@ export const PROJECT_LIST_VIEW = gql`
       projects {
         id
         name
-        status
         updatedAt
         notes(orderBy: updatedAt_DESC) {
           id
