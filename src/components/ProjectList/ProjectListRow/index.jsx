@@ -2,7 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import mapTime from '../../../mappers/mapTime';
 
-import { title, rtd, rtc } from './projectListRow.module.scss';
+import {
+  title,
+  rtd,
+  rtc,
+  behindColor,
+  goodColor,
+  fairColor,
+} from './projectListRow.module.scss';
 
 // Sanitize string inputs to remove Product prefix
 const cleanName = str => {
@@ -11,8 +18,15 @@ const cleanName = str => {
 };
 
 const ProjectRow = ({ project }) => {
+  console.log(project);
+
   return (
     <tr>
+      <td>
+        <div className={project.status ? goodColor : behindColor}>
+          {project.status ? 'on track' : 'behind'}
+        </div>
+      </td>
       <td className={title}>
         <Link to={`/project/${project.id}`} className={title}>
           {cleanName(project.name)}
@@ -23,17 +37,13 @@ const ProjectRow = ({ project }) => {
       <td className={rtd}>
         {project.notes.length
           ? mapTime(project.notes[0].updatedAt)
-          : mapTime(project.updatedAt)}{' '}
+          : mapTime(project.updatedAt)}
         ago
       </td>
       <td className={rtc}>
-        {project.status ? (
-          ''
-        ) : (
-          <span role="img" aria-label="fire">
-            🔥
-          </span>
-        )}
+        <div className={project.status ? goodColor : behindColor}>
+          {project.status ? 'on track' : 'behind'}
+        </div>
       </td>
     </tr>
   );
