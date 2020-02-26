@@ -1,5 +1,5 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import styled from 'styled-components';
 import { bottomLinks } from './Settings.module.scss';
 import {
@@ -16,8 +16,12 @@ import { CirclePicker } from 'react-color';
 import { CREATE_LABEL as createLabel } from '../Project/Queries';
 
 import LabelList from './LabelList';
+import CreateLabelForm from './CreateLabel';
+import {LabelContext} from '../../contexts/LabelContext'
 
 const Settings = props => {
+  const {label, setLabel} = useContext(LabelContext)
+
   const { className } = props;
 
   const [modal, setModal] = useState(false);
@@ -78,6 +82,8 @@ const Settings = props => {
     });
   };
 
+  console.log('label global state', label)
+
   return (
     <div className={bottomLinks}>
       <Button size="sm" color="secondary" onClick={toggle}>
@@ -87,64 +93,11 @@ const Settings = props => {
         <ModalHeader toggle={toggle}>Settings</ModalHeader>
         <ModalBody>
           {/* <LabelDiv> */}
-          <form>
-            <div>
-              <h4>Create New Label</h4>
-              <div>
-                <label>
-                  Label Name:
-                  <input
-                    name="name"
-                    id="name"
-                    placeholder="label name"
-                    onChange={handleChanges}
-                    value={form.name}
-                  />
-                </label>
-                <br />
-                {form.name && form.color ? (
-                  <LabelPreviewColor>{form.name}</LabelPreviewColor>
-                ) : (
-                  ''
-                )}
-                <label>
-                  <div>
-                    <Button id="PopoverLegacy" type="button">
-                      Choose Color
-                    </Button>
-                    <UncontrolledPopover
-                      trigger="legacy"
-                      placement="bottom"
-                      target="PopoverLegacy"
-                    >
-                      <PopoverBody>
-                        <CirclePicker
-                          color={form.color}
-                          colors={[
-                            '#75a9b6',
-                            '#575a7b',
-                            '#27213d',
-                            '#2c6049',
-                            '#d19c18',
-                            '#d42c08',
-                          ]}
-                          onChange={handleColorChanges}
-                          width="130px"
-                        />
-                      </PopoverBody>
-                    </UncontrolledPopover>
-                  </div>
-                </label>
-              </div>
-            </div>
-          </form>
+          <CreateLabelForm toggle={toggle}/>
           <LabelList />
           {/* </LabelDiv> */}
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={handleSubmit}>
-            Save
-          </Button>
           <Button color="secondary" onClick={toggle}>
             Cancel
           </Button>
