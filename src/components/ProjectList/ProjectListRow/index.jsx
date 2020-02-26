@@ -36,7 +36,7 @@ const ProjectRow = ({ project }) => {
       <td className={rtd}>
         {project.notes.length
           ? mapTime(project.notes[0].updatedAt)
-          : mapTime(project.updatedAt)}
+          : mapTime(project.updatedAt)}{' '}
         ago
       </td>
       <td className={rtc}>
