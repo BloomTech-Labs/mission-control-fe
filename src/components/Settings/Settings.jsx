@@ -36,6 +36,8 @@ const Settings = props => {
     e.preventDefault()
     executeCreate(form)
     console.log('Handle submit', handleSubmit)
+    toggle();
+    setForm(initState);
   }, [executeCreate, form])
 
   const LabelPreviewColor = styled.div`
