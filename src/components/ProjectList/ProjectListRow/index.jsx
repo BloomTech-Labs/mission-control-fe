@@ -8,7 +8,6 @@ import {
   rtc,
   behindColor,
   goodColor,
-  fairColor,
 } from './projectListRow.module.scss';
 
 // Sanitize string inputs to remove Product prefix
@@ -18,7 +17,7 @@ const cleanName = str => {
 };
 
 const ProjectRow = ({ project }) => {
-  console.log(project);
+  // console.log("project list query", project);
 
   return (
     <tr>
