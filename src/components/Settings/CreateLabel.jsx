@@ -5,20 +5,19 @@ import { CirclePicker } from 'react-color';
 
 import { LabelContext } from '../../contexts/LabelContext';
 
+const LabelPreviewColor = styled.div`
+  color: white;
+  text-align: center;
+  padding-top: 2px;
+  margin-bottom: 10px;
+  width: 60px;
+  height: 20px;
+  border-radius: 25px;
+  font-size: 0.8rem;
+`;
+
 const CreateLabelForm = () => {
   const { label, setLabel } = useContext(LabelContext);
-
-  const LabelPreviewColor = styled.div`
-    color: white;
-    text-align: center;
-    padding-top: 2px;
-    margin-bottom: 10px;
-    width: 60px;
-    height: 20px;
-    border-radius: 25px;
-    font-size: 0.8rem;
-    background: ${label.color};
-  `;
 
   const handleChanges = e => {
     e.preventDefault();
@@ -52,7 +51,7 @@ const CreateLabelForm = () => {
           </label>
           <br />
           {label.name && label.color ? (
-            <LabelPreviewColor>{label.name}</LabelPreviewColor>
+            <LabelPreviewColor style={{ background: `${label.color}` }}>{label.name}</LabelPreviewColor>
           ) : (
             ''
           )}
