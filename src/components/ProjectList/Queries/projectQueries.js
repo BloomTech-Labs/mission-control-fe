@@ -25,6 +25,16 @@ export const PROJECT_LIST_VIEW = gql`
   }
 `;
 
+export const LABELS_QUERY = gql`
+  query {
+    labels {
+      id
+      name
+      color
+    }
+  }
+`;
+
 export const DUMMY_QUERY = gql`
   query {
     info
