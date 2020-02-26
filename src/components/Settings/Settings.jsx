@@ -9,15 +9,16 @@ import {
   ModalBody,
   ModalFooter,
   UncontrolledPopover,
-  PopoverHeader,
   PopoverBody,
 } from 'reactstrap';
 import { useMutation } from 'urql';
 import { CirclePicker } from 'react-color';
-import {CREATE_LABEL as createLabel} from '../Project/Queries'
+import { CREATE_LABEL as createLabel } from '../Project/Queries';
+
+import LabelList from './LabelList';
 
 const Settings = props => {
-  const { buttonLabel, className } = props;
+  const { className } = props;
 
   const [modal, setModal] = useState(false);
 
@@ -32,13 +33,16 @@ const Settings = props => {
 
   const [form, setForm] = useState(initState);
 
-  const handleSubmit = React.useCallback((e) => {
-    e.preventDefault()
-    executeCreate(form)
-    console.log('Handle submit', handleSubmit)
-    toggle();
-    setForm(initState);
-  }, [executeCreate, form])
+  const handleSubmit = React.useCallback(
+    e => {
+      e.preventDefault();
+      executeCreate(form);
+      // console.log('Handle submit', handleSubmit);
+      toggle();
+      setForm(initState);
+    },
+    [executeCreate, form]
+  );
 
   const LabelPreviewColor = styled.div`
     color: white;
@@ -52,7 +56,12 @@ const Settings = props => {
     background: ${form.color};
   `;
 
-  console.log('form', form);
+  const LabelDiv = styled.div`
+    display: flex;
+    justify-content: space-around;
+  `;
+
+  // console.log('form', form);
 
   const handleChanges = e => {
     e.preventDefault();
@@ -77,57 +86,60 @@ const Settings = props => {
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Settings</ModalHeader>
         <ModalBody>
-          <form>
-            <div>
-              <h4>Create New Label</h4>
+          <LabelDiv>
+            <form>
               <div>
-                <label>
-                  Label Name:
-                  <input
-                    name="name"
-                    id="name"
-                    placeholder="label name"
-                    onChange={handleChanges}
-                    value={form.name}
-                  />
-                </label>
-                <br />
-                {form.name && form.color ? (
-                  <LabelPreviewColor>{form.name}</LabelPreviewColor>
-                ) : (
-                  ''
-                )}
-                <label>
-                  <div>
-                    <Button id="PopoverLegacy" type="button">
-                      Choose Color
-                    </Button>
-                    <UncontrolledPopover
-                      trigger="legacy"
-                      placement="bottom"
-                      target="PopoverLegacy"
-                    >
-                      <PopoverBody>
-                        <CirclePicker
-                          color={form.color}
-                          colors={[
-                            '#75a9b6',
-                            '#575a7b',
-                            '#27213d',
-                            '#2c6049',
-                            '#d19c18',
-                            '#d42c08',
-                          ]}
-                          onChange={handleColorChanges}
-                          width="130px"
-                        />
-                      </PopoverBody>
-                    </UncontrolledPopover>
-                  </div>
-                </label>
+                <h4>Create New Label</h4>
+                <div>
+                  <label>
+                    Label Name:
+                    <input
+                      name="name"
+                      id="name"
+                      placeholder="label name"
+                      onChange={handleChanges}
+                      value={form.name}
+                    />
+                  </label>
+                  <br />
+                  {form.name && form.color ? (
+                    <LabelPreviewColor>{form.name}</LabelPreviewColor>
+                  ) : (
+                    ''
+                  )}
+                  <label>
+                    <div>
+                      <Button id="PopoverLegacy" type="button">
+                        Choose Color
+                      </Button>
+                      <UncontrolledPopover
+                        trigger="legacy"
+                        placement="bottom"
+                        target="PopoverLegacy"
+                      >
+                        <PopoverBody>
+                          <CirclePicker
+                            color={form.color}
+                            colors={[
+                              '#75a9b6',
+                              '#575a7b',
+                              '#27213d',
+                              '#2c6049',
+                              '#d19c18',
+                              '#d42c08',
+                            ]}
+                            onChange={handleColorChanges}
+                            width="130px"
+                          />
+                        </PopoverBody>
+                      </UncontrolledPopover>
+                    </div>
+                  </label>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+            <LabelList />
+          </LabelDiv>
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={handleSubmit}>
