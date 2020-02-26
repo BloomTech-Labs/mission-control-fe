@@ -16,9 +16,9 @@ const App = () => {
 
   return [
     <LabelProvider>
-      <Route path="/implicit/callback" component={ImplicitCallback} />,
-      <SecureRoute path="/" component={Authorization} />,
-    </LabelProvider>
+      <Route path="/implicit/callback" component={ImplicitCallback} />
+      <SecureRoute path="/" component={Authorization} />
+    </LabelProvider>,
   ];
 };
 
