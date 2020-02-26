@@ -5,6 +5,7 @@ import { SecureRoute, ImplicitCallback } from '@okta/okta-react';
 import initializeAnalytics from '../utils/initializeAnalytics';
 
 import Authorization from './Authorization';
+import { LabelProvider } from '../contexts/LabelContext';
 
 const App = () => {
   const location = useLocation();
@@ -14,8 +15,10 @@ const App = () => {
   }, [location]);
 
   return [
-    <Route path="/implicit/callback" component={ImplicitCallback} />,
-    <SecureRoute path="/" component={Authorization} />,
+    <LabelProvider>
+      <Route path="/implicit/callback" component={ImplicitCallback} />,
+      <SecureRoute path="/" component={Authorization} />,
+    </LabelProvider>
   ];
 };
 
