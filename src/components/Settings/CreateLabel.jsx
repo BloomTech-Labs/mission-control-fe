@@ -1,20 +1,9 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
 import { Button, UncontrolledPopover, PopoverBody } from 'reactstrap';
 import { CirclePicker } from 'react-color';
 
 import { LabelContext } from '../../contexts/LabelContext';
-
-const LabelPreviewColor = styled.div`
-  color: white;
-  text-align: center;
-  padding-top: 2px;
-  margin-bottom: 10px;
-  width: 60px;
-  height: 20px;
-  border-radius: 25px;
-  font-size: 0.8rem;
-`;
+import { labelDesign } from './Settings.module.scss'
 
 const CreateLabelForm = () => {
   const { label, setLabel } = useContext(LabelContext);
@@ -51,7 +40,7 @@ const CreateLabelForm = () => {
           </label>
           <br />
           {label.name && label.color ? (
-            <LabelPreviewColor style={{ background: `${label.color}` }}>{label.name}</LabelPreviewColor>
+            <div className={labelDesign} style={{ background: `${label.color}` }}>{label.name}</div>
           ) : (
             ''
           )}
