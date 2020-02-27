@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import mapTime from '../../../mappers/mapTime';
-import LetterGrade from '../CodeClimate/LetterGrade.jsx';
+import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
 
 import { title, rtd, rtc } from './projectListRow.module.scss';
 
@@ -22,7 +22,7 @@ const ProjectRow = ({ project }) => {
         <Link to={`/project/${project.id}`} className={title}>
           {cleanName(project.name)}
         </Link>
-        <LetterGrade
+        <LetterGradeContainer
           ccrepos={[
             {
               name: 'Mission-Control-FE',
