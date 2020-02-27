@@ -20,6 +20,11 @@ export const PROJECT_LIST_VIEW = gql`
           id
           name
         }
+        projectStatus {
+          id
+          name
+          color
+        }
       }
     }
   }

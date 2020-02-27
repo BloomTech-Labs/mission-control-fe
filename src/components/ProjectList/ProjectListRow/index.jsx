@@ -11,7 +11,7 @@ const cleanName = str => {
 };
 
 const ProjectRow = ({ project }) => {
-  // console.log("project list query", project);
+  console.log('project list query', project);
 
   return (
     <tr>
@@ -32,7 +32,13 @@ const ProjectRow = ({ project }) => {
         ago
       </td>
       <td className={rtc}>
-        <div></div>
+        <div>
+          {!project.projectStatus ? (
+            <div>Add Label</div>
+          ) : (
+            <div>{project.projectStatus.name}</div>
+          )}
+        </div>
       </td>
     </tr>
   );
