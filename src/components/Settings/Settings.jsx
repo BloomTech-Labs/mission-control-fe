@@ -18,7 +18,10 @@ const Settings = props => {
 
   const [, executeCreate] = useMutation(createLabel);
 
-  const toggle = () => setModal(!modal);
+  const toggle = () => {
+    setModal(!modal)
+    setLabel({ id: '', color: '', name: '' })
+  };
 
   const disableTer = !label.color || !label.name;
 
@@ -26,11 +29,11 @@ const Settings = props => {
     e => {
       e.preventDefault();
       executeCreate(label);
-      setLabel({ id: '', color: '', name: '' });
       toggle();
     },
     [executeCreate, label, setLabel]
   );
+
 
   console.log('label global state', label);
 

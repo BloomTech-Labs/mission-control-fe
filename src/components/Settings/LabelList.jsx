@@ -9,7 +9,7 @@ const LabelPreviewColor = styled.div`
   text-align: center;
   padding-top: 2px;
   margin-bottom: 10px;
-  width: 60px;
+  width: 7rem;
   height: 20px;
   border-radius: 25px;
   font-size: 0.8rem;
