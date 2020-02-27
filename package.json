@@ -34,7 +34,6 @@
     "react-star-ratings": "^2.3.0",
     "reactstrap": "^8.4.1",
     "semantic-ui-react": "^0.88.2",
-    "styled-components": "^5.0.1",
     "urql": "^1.7.0"
   },
   "scripts": {
