@@ -6,6 +6,7 @@ const ProjectListContainer = ({ children }) => (
   <table>
     <thead>
       <tr>
+        <th>Project Health</th>
         <th>Project Name</th>
         <th>Section Lead</th>
         <th>Team Lead</th>
