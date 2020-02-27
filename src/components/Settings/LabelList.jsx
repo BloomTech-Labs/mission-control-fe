@@ -16,12 +16,10 @@ const LabelPreviewColor = styled.div`
 `;
 
 const LabelList = () => {
-  const [state] = useQuery({
-    query,
-    requestPolicy: 'cache-and-network',
-  });
+  const [state] = useQuery({ query, requestPolicy: 'cache-and-network' });
 
   const { data } = state;
+
   return (
     <div>
       <Button id="LabelsView" type="button">
@@ -50,4 +48,5 @@ const LabelList = () => {
     </div>
   );
 };
+
 export default LabelList;

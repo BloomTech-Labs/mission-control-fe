@@ -20,17 +20,19 @@ const Settings = props => {
 
   const toggle = () => setModal(!modal);
 
+  const disableTer = !label.color || !label.name;
+
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
       executeCreate(label);
+      setLabel({ id: '', color: '', name: '' });
       toggle();
-      setLabel({ id: '', name: '', color: '' });
     },
     [executeCreate, label, setLabel]
   );
 
-  // console.log('label global state', label);
+  console.log('label global state', label);
 
   return (
     <div className={bottomLinks}>
@@ -46,7 +48,7 @@ const Settings = props => {
           {/* </LabelDiv> */}
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={handleSubmit}>
+          <Button color="primary" disabled={disableTer} onClick={handleSubmit}>
             Save
           </Button>
           <Button color="secondary" onClick={toggle}>
