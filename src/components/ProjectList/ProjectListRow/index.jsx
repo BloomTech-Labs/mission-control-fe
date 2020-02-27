@@ -11,7 +11,6 @@ const cleanName = str => {
 };
 
 const ProjectRow = ({ project }) => {
-  console.log('project list query', project);
 
   return (
     <tr>
