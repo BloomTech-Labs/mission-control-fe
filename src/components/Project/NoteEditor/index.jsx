@@ -6,6 +6,7 @@ import extractAvatar from '../../../utils/managers';
 
 import Attendance from './Attendance';
 import DeleteNote from '../NoteFeed/Note/DeleteNote';
+import Grade from '../Grade';
 
 import {
   CREATE_NOTE as createNote,
@@ -110,6 +111,18 @@ const NoteEditor = ({
 
   return (
     <div className={styles['main-container']}>
+      <div>
+        <Grade ccrepo={[
+          {
+            name: "Mission Control - Frontend",
+            grade: "C"
+          },
+          {
+            name: "Mission Control - Backend",
+            grade: "C"
+          }
+        ]} />
+      </div>
       <div className={styles['editor-container']}>
         <div className={styles['avatar-container']}>
           <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
