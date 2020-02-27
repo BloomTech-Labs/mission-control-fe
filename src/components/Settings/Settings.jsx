@@ -34,9 +34,6 @@ const Settings = props => {
     [executeCreate, label, setLabel]
   );
 
-
-  console.log('label global state', label);
-
   return (
     <div className={bottomLinks}>
       <Button size="sm" color="secondary" onClick={toggle}>
@@ -45,10 +42,8 @@ const Settings = props => {
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Settings</ModalHeader>
         <ModalBody>
-          {/* <LabelDiv> */}
           <CreateLabelForm toggle={toggle} />
           <LabelList />
-          {/* </LabelDiv> */}
         </ModalBody>
         <ModalFooter>
           <Button color="primary" disabled={disableTer} onClick={handleSubmit}>
