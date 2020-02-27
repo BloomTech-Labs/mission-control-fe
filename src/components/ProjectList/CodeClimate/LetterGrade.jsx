@@ -2,18 +2,22 @@ import React from 'react';
 import { Maintainability, Repo, Grade } from './letterGrade.module.scss';
 
 const LetterGrade = props => {
-  console.log(props.ccrepos);
+
+  const getColor = (grade) => {
+    switch(grade) {
+      case "A": return "green"
+      case "B": return "greenyellow"
+      case "C": return "yellow"
+      case "D": return "orange"
+      case "F": return "red"
+      default : return "black"
+    }
+  }
   return (
-    <React.Fragment>
+    <>
       <div className={Maintainability}>
         {props.ccrepos.map(repo => {
-          let color = 'black';
-
-          if (repo.grade === 'A') color = 'green';
-          if (repo.grade === 'B') color = 'greenyellow';
-          if (repo.grade === 'C') color = 'yellow';
-          if (repo.grade === 'D') color = 'orange';
-          if (repo.grade === 'F') color = 'red';
+          const color = getColor(repo.grade)
           return (
             <p className={Repo}>
               {repo.name}:{' '}
@@ -27,7 +31,7 @@ const LetterGrade = props => {
           );
         })}
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
