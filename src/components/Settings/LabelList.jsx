@@ -1,19 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Button, UncontrolledPopover, PopoverBody } from 'reactstrap';
 import { useQuery } from 'urql';
 import { LABELS_QUERY as query } from '../ProjectList/Queries/projectQueries';
-
-const LabelPreviewColor = styled.div`
-  color: white;
-  text-align: center;
-  padding-top: 2px;
-  margin-bottom: 10px;
-  width: 7rem;
-  height: 20px;
-  border-radius: 25px;
-  font-size: 0.8rem;
-`;
+import { labelDesign } from './Settings.module.scss'
 
 const LabelList = () => {
   const [state] = useQuery({ query, requestPolicy: 'cache-and-network' });
@@ -34,12 +23,13 @@ const LabelList = () => {
           {data
             ? data.labels.map(label => {
                 return (
-                  <LabelPreviewColor
+                  <div
+                    className={labelDesign}
                     style={{ background: `${label.color}` }}
                     key={label.id}
                   >
                     {label.name}
-                  </LabelPreviewColor>
+                  </div>
                 );
               })
             : ''}
