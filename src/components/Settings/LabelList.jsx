@@ -12,23 +12,29 @@ const LabelList = () => {
 
   const { data } = state;
 
+  console.log(data && data.labels);
+
   return (
-    <div className={labelListStyleB}>
-      <div className={labelListStyle}>
-        {data
-          ? data.labels.map(label => {
-              return (
-                <div
-                  className={labelDesign}
-                  style={{ background: `${label.color}` }}
-                  key={label.id}
-                >
-                  {label.name}
-                </div>
-              );
-            })
-          : ''}
-      </div>
+    <div className={labelListStyle}>
+      {data ? (
+        data.labels.length < 4 ? (
+          data.labels.map(label => {
+            return (
+              <div
+                className={labelDesign}
+                style={{ background: `${label.color}` }}
+                key={label.id}
+              >
+                {label.name}
+              </div>
+            );
+          })
+        ) : (
+          <div>click here to see more</div>
+        )
+      ) : (
+        ''
+      )}
     </div>
   );
 };
