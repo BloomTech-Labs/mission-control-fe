@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { Button, UncontrolledPopover, PopoverBody } from 'reactstrap';
+import { Button, Popup } from 'semantic-ui-react';
 import { CirclePicker } from 'react-color';
 
 import { LabelContext } from '../../contexts/LabelContext';
-import { labelDesign } from './Settings.module.scss'
+import { labelDesign } from './Settings.module.scss';
 
 const CreateLabelForm = () => {
   const { label, setLabel } = useContext(LabelContext);
@@ -23,10 +23,13 @@ const CreateLabelForm = () => {
     });
   };
 
+  const colorPickerJar = e => {
+    e.preventDefault();
+  };
+
   return (
     <form>
       <div>
-        <h4>Create New Label</h4>
         <div>
           <label>
             Label Name:
@@ -40,21 +43,19 @@ const CreateLabelForm = () => {
           </label>
           <br />
           {label.name && label.color ? (
-            <div className={labelDesign} style={{ background: `${label.color}` }}>{label.name}</div>
+            <div
+              className={labelDesign}
+              style={{ background: `${label.color}` }}
+            >
+              {label.name}
+            </div>
           ) : (
             ''
           )}
           <label>
             <div>
-              <Button id="PopoverLegacy" type="button">
-                Choose Color
-              </Button>
-              <UncontrolledPopover
-                trigger="legacy"
-                placement="bottom"
-                target="PopoverLegacy"
-              >
-                <PopoverBody>
+              <Popup
+                content={
                   <CirclePicker
                     color={label.color}
                     colors={[
@@ -68,8 +69,12 @@ const CreateLabelForm = () => {
                     onChange={handleColorChanges}
                     width="130px"
                   />
-                </PopoverBody>
-              </UncontrolledPopover>
+                }
+                on="click"
+                trigger={
+                  <Button content="Choose Color" onClick={colorPickerJar} />
+                }
+              />
             </div>
           </label>
         </div>
