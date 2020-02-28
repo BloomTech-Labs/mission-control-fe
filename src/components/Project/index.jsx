@@ -6,6 +6,7 @@ import NotesFeed from './NoteFeed';
 import Team from './Team';
 
 import Header from './Header';
+import Grade from './Grade';
 
 import {
   parentProjectContainer,
@@ -13,6 +14,7 @@ import {
   projectContainer,
   editorFeedContainer,
   teamContainer,
+  gradeContainer,
 } from './Project.module.scss';
 
 import { PROJECT_VIEW_QUERY as query } from './Queries';
@@ -30,6 +32,18 @@ const Project = ({ match: { params } }) => {
         </div>
         <div className={projectContainer}>
           <div className={editorFeedContainer}>
+          <div className={gradeContainer}>
+            <Grade ccrepos={[
+              {
+                name: "Front End",
+                grade: "A"
+              },
+              {
+                name: "Back End",
+                grade: "F"
+              }
+            ]} />
+          </div>
             <h2>Project Notes</h2>
             <NoteEditor
               executeQuery={executeQuery}
