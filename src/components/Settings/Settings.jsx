@@ -12,12 +12,16 @@ import { LabelContext } from '../../contexts/LabelContext';
 const Settings = () => {
   const { label, setLabel } = useContext(LabelContext);
 
-  const [modal, setModal] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+
+  const handleClose = () => setOpen(false);
 
   const [, executeCreate] = useMutation(createLabel);
 
   const toggle = () => {
-    setModal(modal);
+    handleClose();
     setLabel({ id: '', color: '', name: '' });
   };
 
@@ -34,7 +38,12 @@ const Settings = () => {
 
   return (
     <div className={bottomLinks}>
-      <Modal trigger={<Button>Settings</Button>} className={modalStyle}>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        trigger={<Button onClick={handleOpen}>Settings</Button>}
+        className={modalStyle}
+      >
         <Modal.Header>Settings</Modal.Header>
         <Modal.Content>
           <Modal.Description>
@@ -45,13 +54,13 @@ const Settings = () => {
         </Modal.Content>
         <Modal.Actions className={buttonStyle}>
           <Button
-            className="ui positive submit button"
+            className="ui approve button"
             disabled={disableTer}
             onClick={handleSubmit}
           >
             Save
           </Button>
-          <Button className="ui red deny clear button" onClick={toggle}>
+          <Button className="ui cancel button" onClick={toggle}>
             Cancel
           </Button>
         </Modal.Actions>
