@@ -48,20 +48,24 @@
 }
 
 .modalStyle {
-  display: flex;
-  justify-content: center;
+  position: relative !important;
+  height: 300px !important;
+  width: 500px !important;
 }
 
 .labelListStyle {
   display: flex;
   justify-content: space-around;
-  max-height: 20px;
-  max-width: 500px;
+  max-width: 200px;
   overflow-y: auto;
   float: left;
 }
 
 .labelListStyleB {
-  height: 25px;
   padding-top: 10px;
+}
+
+.buttonStyle {
+  position: absolute !important;
+  margin-left: 60% !important;
 }
