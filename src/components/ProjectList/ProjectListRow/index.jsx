@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import mapTime from '../../../mappers/mapTime';
-
+import { useQuery } from 'urql';
+import { LABELS_QUERY as query } from '../Queries/projectQueries';
 import { title, rtd, rtc } from './projectListRow.module.scss';
+import { labelPreviewDesign } from '../../Settings/Settings.module.scss';
 
 // Sanitize string inputs to remove Product prefix
 const cleanName = str => {
@@ -11,6 +13,11 @@ const cleanName = str => {
 };
 
 const ProjectRow = ({ project }) => {
+  console.log(project);
+
+  const [state] = useQuery({ query, requestPolicy: 'cache-and-network' });
+
+  const { data } = state;
 
   return (
     <tr>
@@ -31,12 +38,16 @@ const ProjectRow = ({ project }) => {
         ago
       </td>
       <td className={rtc}>
-        <div>
-          {!project.projectStatus ? (
+        <div
+          style={{ background: `${data && data.labels[0].color}` }}
+          className={labelPreviewDesign}
+        >
+          {data && data.labels[0].name}
+          {/* {!project.projectStatus ? (
             <div>Add Label</div>
           ) : (
             <div>{project.projectStatus.name}</div>
-          )}
+          )} */}
         </div>
       </td>
     </tr>
