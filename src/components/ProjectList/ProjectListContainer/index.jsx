@@ -6,6 +6,7 @@ const ProjectListContainer = ({ children }) => (
   <table>
     <thead>
       <tr>
+        <th>Project Health</th>
         <th>Project Name</th>
         <th className={rtd}>Last Updated</th>
         <th className={rtc}>Status</th>
