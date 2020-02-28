@@ -43,7 +43,7 @@ const Settings = () => {
             <LabelList />
           </Modal.Description>
         </Modal.Content>
-        <div className={buttonStyle}>
+        <Modal.Actions className={buttonStyle}>
           <Button
             className="ui positive submit button"
             disabled={disableTer}
@@ -54,7 +54,7 @@ const Settings = () => {
           <Button className="ui red deny clear button" onClick={toggle}>
             Cancel
           </Button>
-        </div>
+        </Modal.Actions>
       </Modal>
     </div>
   );

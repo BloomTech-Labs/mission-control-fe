@@ -3,7 +3,7 @@ import { Button, Popup } from 'semantic-ui-react';
 import { CirclePicker } from 'react-color';
 
 import { LabelContext } from '../../contexts/LabelContext';
-import { labelDesign } from './Settings.module.scss';
+import { labelPreviewDesign } from './Settings.module.scss';
 
 const CreateLabelForm = () => {
   const { label, setLabel } = useContext(LabelContext);
@@ -23,10 +23,6 @@ const CreateLabelForm = () => {
     });
   };
 
-  const colorPickerJar = e => {
-    e.preventDefault();
-  };
-
   return (
     <form>
       <div>
@@ -44,7 +40,7 @@ const CreateLabelForm = () => {
           <br />
           {label.name && label.color ? (
             <div
-              className={labelDesign}
+              className={labelPreviewDesign}
               style={{ background: `${label.color}` }}
             >
               {label.name}
@@ -72,7 +68,10 @@ const CreateLabelForm = () => {
                 }
                 on="click"
                 trigger={
-                  <Button content="Choose Color" onClick={colorPickerJar} />
+                  <Button
+                    content="Choose Color"
+                    onClick={e => e.preventDefault()}
+                  />
                 }
               />
             </div>
