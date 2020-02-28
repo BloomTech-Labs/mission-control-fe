@@ -7,7 +7,7 @@ const StatusLabel = props => {
   return (
     <div className={labelDesign} style={{ background: `${props.label.color}` }}>
       {props.label.name}
-      <Modal trigger={<FaRegEdit />}>
+      <Modal className={modalStyle} trigger={<FaRegEdit />}>
         <Modal.Header>Edit Label</Modal.Header>
         <Modal.Content>
           <Modal.Description className={modalStyle}>
