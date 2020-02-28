@@ -7,8 +7,6 @@ const ProjectListContainer = ({ children }) => (
     <thead>
       <tr>
         <th>Project Name</th>
-        <th>Section Lead</th>
-        <th>Team Lead</th>
         <th className={rtd}>Last Updated</th>
         <th className={rtc}>Status</th>
       </tr>

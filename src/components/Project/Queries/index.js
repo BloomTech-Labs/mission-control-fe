@@ -8,18 +8,7 @@ export const TEAM_QUERY = gql`
         id
         name
         email
-        role
         avatar
-      }
-      teamLead {
-        id
-        avatar
-        name
-      }
-      sectionLead {
-        id
-        avatar
-        name
       }
     }
   }
@@ -97,15 +86,6 @@ export const PROJECT_VIEW_QUERY = gql`
         name
       }
       team {
-        id
-        name
-        role
-      }
-      teamLead {
-        id
-        name
-      }
-      sectionLead {
         id
         name
       }
