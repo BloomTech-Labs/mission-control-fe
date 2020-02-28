@@ -2,9 +2,7 @@ import gql from 'graphql-tag';
 
 export const PROJECT_LIST_VIEW = gql`
   query {
-    me {
-      id
-      projects {
+    projects {
         id
         name
         status
@@ -13,16 +11,7 @@ export const PROJECT_LIST_VIEW = gql`
           id
           updatedAt
         }
-        sectionLead {
-          id
-          name
-        }
-        teamLead {
-          id
-          name
-        }
       }
-    }
   }
 `;
 

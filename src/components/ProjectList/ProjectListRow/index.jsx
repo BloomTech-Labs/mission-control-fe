@@ -11,6 +11,7 @@ const cleanName = str => {
 };
 
 const ProjectRow = ({ project }) => {
+  console.log(project);
   return (
     <tr>
       <td className={title}>
@@ -18,8 +19,6 @@ const ProjectRow = ({ project }) => {
           {cleanName(project.name)}
         </Link>
       </td>
-      <td>{project.sectionLead.name}</td>
-      <td>{project.teamLead.name}</td>
       <td className={rtd}>
         {project.notes.length
           ? mapTime(project.notes[0].updatedAt)
