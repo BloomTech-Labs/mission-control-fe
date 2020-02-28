@@ -2,7 +2,7 @@
 
 .bottomLinks {
   position: fixed;
-  margin-left: 92%;
+  margin-left: 90%;
   margin-top: 10px;
 }
 
@@ -41,8 +41,27 @@
   text-align: center;
   padding-top: 2px;
   margin-bottom: 10px;
-  width: 7rem;
+  width: 120px;
   height: 20px;
   border-radius: 25px;
   font-size: 0.8rem;
+}
+
+.modalStyle {
+  display: flex;
+  justify-content: center;
+}
+
+.labelListStyle {
+  display: flex;
+  justify-content: space-around;
+  max-height: 20px;
+  max-width: 500px;
+  overflow-y: auto;
+  float: left;
+}
+
+.labelListStyleB {
+  height: 25px;
+  padding-top: 10px;
 }
