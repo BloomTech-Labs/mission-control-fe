@@ -1,6 +1,6 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React, { useState, useCallback, useContext } from 'react';
-import { bottomLinks, modalStyle } from './Settings.module.scss';
+import { bottomLinks, modalStyle, buttonStyle } from './Settings.module.scss';
 import { Button, Header, Modal } from 'semantic-ui-react';
 import { useMutation } from 'urql';
 import { CREATE_LABEL as createLabel } from '../Project/Queries';
@@ -17,7 +17,7 @@ const Settings = () => {
   const [, executeCreate] = useMutation(createLabel);
 
   const toggle = () => {
-    setModal(!modal);
+    setModal(modal);
     setLabel({ id: '', color: '', name: '' });
   };
 
@@ -34,16 +34,16 @@ const Settings = () => {
 
   return (
     <div className={bottomLinks}>
-      <Modal trigger={<Button>Settings</Button>}>
+      <Modal trigger={<Button>Settings</Button>} className={modalStyle}>
         <Modal.Header>Settings</Modal.Header>
         <Modal.Content>
-          <Modal.Description className={modalStyle}>
+          <Modal.Description>
             <Header>Create a Label</Header>
             <CreateLabelForm toggle={toggle} />
             <LabelList />
           </Modal.Description>
         </Modal.Content>
-        <div>
+        <div className={buttonStyle}>
           <Button
             className="ui positive submit button"
             disabled={disableTer}
