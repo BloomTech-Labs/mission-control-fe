@@ -1,6 +1,6 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React, { useState, useCallback, useContext } from 'react';
-import { bottomLinks, modalStyle } from './Settings.module.scss';
+import { bottomLinks, modalStyle, buttonStyle } from './Settings.module.scss';
 import { Button, Header, Modal } from 'semantic-ui-react';
 import { useMutation } from 'urql';
 import { CREATE_LABEL as createLabel } from '../Project/Queries';
@@ -12,12 +12,16 @@ import { LabelContext } from '../../contexts/LabelContext';
 const Settings = () => {
   const { label, setLabel } = useContext(LabelContext);
 
-  const [modal, setModal] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+
+  const handleClose = () => setOpen(false);
 
   const [, executeCreate] = useMutation(createLabel);
 
   const toggle = () => {
-    setModal(!modal);
+    handleClose();
     setLabel({ id: '', color: '', name: '' });
   };
 
@@ -34,27 +38,32 @@ const Settings = () => {
 
   return (
     <div className={bottomLinks}>
-      <Modal trigger={<Button>Settings</Button>}>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        trigger={<Button onClick={handleOpen}>Settings</Button>}
+        className={modalStyle}
+      >
         <Modal.Header>Settings</Modal.Header>
         <Modal.Content>
-          <Modal.Description className={modalStyle}>
+          <Modal.Description>
             <Header>Create a Label</Header>
             <CreateLabelForm toggle={toggle} />
             <LabelList />
           </Modal.Description>
         </Modal.Content>
-        <div>
+        <Modal.Actions className={buttonStyle}>
           <Button
-            className="ui positive submit button"
+            className="ui approve button"
             disabled={disableTer}
             onClick={handleSubmit}
           >
             Save
           </Button>
-          <Button className="ui red deny clear button" onClick={toggle}>
+          <Button className="ui cancel button" onClick={toggle}>
             Cancel
           </Button>
-        </div>
+        </Modal.Actions>
       </Modal>
     </div>
   );
