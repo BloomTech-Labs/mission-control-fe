@@ -109,114 +109,116 @@ const NoteEditor = ({
   };
 
   return (
-    <div className={styles['main-container']}>
-      <div className={styles['editor-container']}>
-        <div className={styles['avatar-container']}>
-          <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
-        </div>
-        <form
-          onSubmit={e => {
-            if (note) {
-              handleSubmit(e, 'update');
-            } else {
-              handleSubmit(e, 'create');
-            }
-          }}
-          className={styles['form-container']}
-        >
-          <div className={styles['form-header']}>
-            <Dropdown
-              placeholder="Select Topic"
-              inline
-              options={topicOptions}
-              onChange={(_, { value }) => {
-                setTopic(value);
-              }}
-              value={topic}
-            />
-            <StarRatings
-              numberOfStars={3}
-              name="rating"
-              starRatedColor="rgb(245,73,135)"
-              starHoverColor="rgb(245,73,135)"
-              starEmptyColor="rgba(245,73,135,.2)"
-              changeRating={newRating => setRating(newRating)}
-              starDimension="20px"
-              starSpacing=".5px"
-              rating={rating}
-            />
+    <div>
+      <div className={styles['main-container']}>
+        <div className={styles['editor-container']}>
+          <div className={styles['avatar-container']}>
+            <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
           </div>
-          <div className={styles['body-container']}>
-            <textarea
-              className={styles['body-input']}
-              placeholder="What's going on?"
-              name="content"
-              onChange={e => setContent(e.target.value)}
-              value={content}
-            />
-          </div>
-          <div className={styles['text-footer']}>
-            <Attendance
-              user={user}
-              attendees={attendees}
-              absentees={absentees}
-              setAttendees={setAttendees}
-              setAbsentees={setAbsentees}
-              expandedAttendees={expandedAttendees}
-              setExpandedAttendees={setExpandedAttendees}
-              expandedAbsent={expandedAbsent}
-              setExpandedAbsent={setExpandedAbsent}
-              projectId={projectId}
-              projectManagers={projectManagers}
-            />
-            <div
-              className={
-                expandedAbsent || expandedAttendees
-                  ? styles['button-container-min']
-                  : styles['button-container']
+          <form
+            onSubmit={e => {
+              if (note) {
+                handleSubmit(e, 'update');
+              } else {
+                handleSubmit(e, 'create');
               }
-            >
-              {note ? (
-                [
-                  <DeleteNote id={note.id} setIsEditing={setIsEditing} />,
-                  <SemanticButton
-                    color="default"
-                    variant="outlined"
-                    type="button"
-                    onClick={() => {
-                      setIsEditing(false);
-                    }}
-                  >
-                    Cancel
-                  </SemanticButton>,
-                ]
-              ) : (
-                <label className={styles.notification} htmlFor="notification">
-                  Email Notifications
-                  <input
-                    type="checkbox"
-                    checked={notification}
-                    id="notification"
-                    name="notification"
-                    onChange={() => setNotification(!notification)}
-                  />
-                </label>
-              )}
-              <SemanticButton
-                className={validated ? styles['save-btn'] : styles.disabled}
-                type="submit"
-                disabled={!validated}
-                title={
-                  validated
-                    ? null
-                    : 'Please include a title, rating, and content'
+            }}
+            className={styles['form-container']}
+          >
+            <div className={styles['form-header']}>
+              <Dropdown
+                placeholder="Select Topic"
+                inline
+                options={topicOptions}
+                onChange={(_, { value }) => {
+                  setTopic(value);
+                }}
+                value={topic}
+              />
+              <StarRatings
+                numberOfStars={3}
+                name="rating"
+                starRatedColor="rgb(245,73,135)"
+                starHoverColor="rgb(245,73,135)"
+                starEmptyColor="rgba(245,73,135,.2)"
+                changeRating={newRating => setRating(newRating)}
+                starDimension="20px"
+                starSpacing=".5px"
+                rating={rating}
+              />
+            </div>
+            <div className={styles['body-container']}>
+              <textarea
+                className={styles['body-input']}
+                placeholder="What's going on?"
+                name="content"
+                onChange={e => setContent(e.target.value)}
+                value={content}
+              />
+            </div>
+            <div className={styles['text-footer']}>
+              <Attendance
+                user={user}
+                attendees={attendees}
+                absentees={absentees}
+                setAttendees={setAttendees}
+                setAbsentees={setAbsentees}
+                expandedAttendees={expandedAttendees}
+                setExpandedAttendees={setExpandedAttendees}
+                expandedAbsent={expandedAbsent}
+                setExpandedAbsent={setExpandedAbsent}
+                projectId={projectId}
+                projectManagers={projectManagers}
+              />
+              <div
+                className={
+                  expandedAbsent || expandedAttendees
+                    ? styles['button-container-min']
+                    : styles['button-container']
                 }
               >
-                Save
-              </SemanticButton>
+                {note ? (
+                  [
+                    <DeleteNote id={note.id} setIsEditing={setIsEditing} />,
+                    <SemanticButton
+                      color="default"
+                      variant="outlined"
+                      type="button"
+                      onClick={() => {
+                        setIsEditing(false);
+                      }}
+                    >
+                      Cancel
+                    </SemanticButton>,
+                  ]
+                ) : (
+                  <label className={styles.notification} htmlFor="notification">
+                    Email Notifications
+                    <input
+                      type="checkbox"
+                      checked={notification}
+                      id="notification"
+                      name="notification"
+                      onChange={() => setNotification(!notification)}
+                    />
+                  </label>
+                )}
+                <SemanticButton
+                  className={validated ? styles['save-btn'] : styles.disabled}
+                  type="submit"
+                  disabled={!validated}
+                  title={
+                    validated
+                      ? null
+                      : 'Please include a title, rating, and content'
+                  }
+                >
+                  Save
+                </SemanticButton>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

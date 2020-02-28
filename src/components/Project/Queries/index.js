@@ -80,7 +80,6 @@ export const PROJECT_VIEW_QUERY = gql`
     project(id: $id) {
       id
       name
-      status
       product {
         id
         name
@@ -176,3 +175,16 @@ export const DELETE_NOTE = gql`
     }
   }
 `;
+
+export const CREATE_LABEL = gql`
+ mutation CreateLabelMutation(
+   $name: String!
+   $color: String!
+ ){
+  createLabel( name: $name color: $color) {
+    name
+    color
+    id
+  }
+ }
+`

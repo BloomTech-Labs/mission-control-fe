@@ -11,9 +11,11 @@ const cleanName = str => {
 };
 
 const ProjectRow = ({ project }) => {
-  console.log(project);
   return (
     <tr>
+      <td>
+        <div></div>
+      </td>
       <td className={title}>
         <Link to={`/project/${project.id}`} className={title}>
           {cleanName(project.name)}
@@ -26,13 +28,13 @@ const ProjectRow = ({ project }) => {
         ago
       </td>
       <td className={rtc}>
-        {project.status ? (
-          ''
-        ) : (
-          <span role="img" aria-label="fire">
-            🔥
-          </span>
-        )}
+        <div>
+          {!project.projectStatus ? (
+            <div>Add Label</div>
+          ) : (
+            <div>{project.projectStatus.name}</div>
+          )}
+        </div>
       </td>
     </tr>
   );
