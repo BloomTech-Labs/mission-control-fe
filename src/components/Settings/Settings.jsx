@@ -31,7 +31,7 @@ const Settings = props => {
       executeCreate(label);
       toggle();
     },
-    [executeCreate, label, setLabel]
+    [executeCreate, label, toggle]
   );
 
   return (
