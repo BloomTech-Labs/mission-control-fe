@@ -30,7 +30,7 @@ const Grade = (props) => {
                  {repo.grade} 
                 </a>
               </h3>
-              <p>Go to Analysis</p>
+              <a href={`https://codeclimate.com/github/Lambda-School-Labs/${repo.name}`}>Go to Analysis</a>
               </div>
             )
           })}
