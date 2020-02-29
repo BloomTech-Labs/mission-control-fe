@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from 'urql';
 import { LABELS_QUERY as query } from '../ProjectList/Queries/projectQueries';
-import { labelDesign, labelListStyle } from './Settings.module.scss';
+import { labelListStyle } from './Settings.module.scss';
 import StatusLabel from './StatusLabel';
 
 const LabelList = () => {
