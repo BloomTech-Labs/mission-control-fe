@@ -25,6 +25,12 @@ export const PROJECT_LIST_VIEW = gql`
           name
           color
         }
+        product{
+          grades{
+            grade
+            name
+          }
+        }
       }
     }
   }
