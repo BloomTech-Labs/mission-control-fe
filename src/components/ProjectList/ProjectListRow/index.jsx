@@ -13,8 +13,6 @@ const cleanName = str => {
 };
 
 const ProjectRow = ({ project }) => {
-  console.log(project);
-
   const [state] = useQuery({ query, requestPolicy: 'cache-and-network' });
 
   const { data } = state;
