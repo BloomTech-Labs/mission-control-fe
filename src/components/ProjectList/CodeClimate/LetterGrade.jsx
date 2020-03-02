@@ -9,6 +9,7 @@ const LetterGrade = ({ repo, color }) => {
           backgroundColor: color,
           padding: '0px 5px',
           textAlign: 'center',
+          borderRadius: '5px'
         }}
       >
         <a href={repo.link} className={Grade} style={{ color: 'white' }}>
