@@ -22,15 +22,15 @@ const Grade = (props) => {
             if (repo.grade === 'F') color = 'red';
 
             return (
-              <div className={scsssux}>
+              <div key={repo.name} className={scsssux}>
               <h3>
                 {repo.name}: {' '}
-                <a className={gradeBox} style={{backgroundColor: color, padding: '0px 6px', borderRadius: '3px'}}>
+                <a href={repo.link} className={gradeBox} style={{backgroundColor: color, padding: '0px 6px', borderRadius: '3px'}}>
                  {' '}
                  {repo.grade} 
                 </a>
               </h3>
-              <a href={`https://codeclimate.com/github/Lambda-School-Labs/${repo.name}`}>Go to Analysis</a>
+              <a href={repo.link}>Go to Analysis</a>
               </div>
             )
           })}

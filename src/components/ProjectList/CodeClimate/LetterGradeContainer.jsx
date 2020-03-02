@@ -25,7 +25,7 @@ const LetterGradeContainer = props => {
       <div className={Maintainability}>
         {props.ccrepos.map(repo => {
           const color = getColor(repo.grade);
-          return <LetterGrade color={color} repo={repo} />;
+          return <LetterGrade key={repo.name} color={color} repo={repo} />;
         })}
       </div>
     </>
