@@ -98,6 +98,7 @@ export const PROJECT_VIEW_QUERY = gql`
           id
           name
           grade
+          link
         }
       }
       team {
