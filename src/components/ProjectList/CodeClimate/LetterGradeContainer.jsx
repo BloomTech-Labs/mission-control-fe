@@ -1,25 +1,11 @@
 import React from 'react';
 import { Maintainability } from './letterGrade.module.scss';
 import LetterGrade from './LetterGrade';
-
-const getColor = grade => {
-  switch (grade) {
-    case 'A':
-      return 'green';
-    case 'B':
-      return 'greenyellow';
-    case 'C':
-      return 'yellow';
-    case 'D':
-      return 'orange';
-    case 'F':
-      return 'red';
-    default:
-      return 'black';
-  }
-};
+import getColor from '../../../utils/getColorFromCCGrade';
 
 const LetterGradeContainer = props => {
+  if (!props.ccrepos || !props.ccrepos.length) return null;
+
   return (
     <>
       <div className={Maintainability}>
