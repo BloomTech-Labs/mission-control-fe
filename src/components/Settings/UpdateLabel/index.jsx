@@ -38,9 +38,6 @@ const UpdateLabel = props => {
       color: color.hex,
     });
   };
-  const colorPickerJar = e => {
-    e.preventDefault();
-  };
 
   return (
     <form>
@@ -86,7 +83,10 @@ const UpdateLabel = props => {
                 }
                 on="click"
                 trigger={
-                  <Button content="Choose Color" onClick={colorPickerJar} />
+                  <Button
+                    content="Choose Color"
+                    onClick={e => e.preventDefault()}
+                  />
                 }
               />
             </div>
