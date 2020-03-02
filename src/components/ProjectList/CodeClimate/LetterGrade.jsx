@@ -11,7 +11,7 @@ const LetterGrade = ({ repo, color }) => {
           textAlign: 'center',
         }}
       >
-        <a className={Grade} style={{ color: 'white' }}>
+        <a href={repo.link} className={Grade} style={{ color: 'white' }}>
           {' '}
           {repo.grade}
         </a>
