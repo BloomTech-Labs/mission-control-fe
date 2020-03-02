@@ -13,7 +13,7 @@ const Grade = (props) => {
       <>
         <div className={gradeCont}>
           {props.ccrepos.map(repo => {
-            let color = 'white';
+            let color = 'black';
 
             if (repo.grade === 'A') color = 'green';
             if (repo.grade === 'B') color = 'greenyellow';
