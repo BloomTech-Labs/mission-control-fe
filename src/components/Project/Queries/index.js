@@ -18,7 +18,7 @@ export const HEADER_QUERY = gql`
   query HeaderView($id: ID!) {
     project(id: $id) {
       id
-      status
+      projectState
       name
     }
   }
@@ -83,6 +83,12 @@ export const PROJECT_VIEW_QUERY = gql`
       product {
         id
         name
+        grades {
+          id
+          name
+          grade
+          link
+        }
       }
       team {
         id
@@ -177,14 +183,11 @@ export const DELETE_NOTE = gql`
 `;
 
 export const CREATE_LABEL = gql`
- mutation CreateLabelMutation(
-   $name: String!
-   $color: String!
- ){
-  createLabel( name: $name color: $color) {
-    name
-    color
-    id
+  mutation CreateLabelMutation($name: String!, $color: String!) {
+    createLabel(name: $name, color: $color) {
+      name
+      color
+      id
+    }
   }
- }
-`
+`;

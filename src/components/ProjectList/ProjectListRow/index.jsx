@@ -5,12 +5,6 @@ import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
 
 import { title, rtd, rtc } from './projectListRow.module.scss';
 
-// Sanitize string inputs to remove Product prefix
-const cleanName = str => {
-  const match = str.match(/Labs \d{1,3} -(.+)/);
-  return match[1];
-};
-
 const ProjectRow = ({ project }) => {
   return (
     <tr>
@@ -19,19 +13,10 @@ const ProjectRow = ({ project }) => {
       </td>
       <td className={title}>
         <Link to={`/project/${project.id}`} className={title}>
-          {cleanName(project.name)}
+          {project.name}
         </Link>
         <LetterGradeContainer
-          ccrepos={[
-            {
-              name: 'Mission-Control-FE',
-              grade: 'A',
-            },
-            {
-              name: 'Mission Control-BE',
-              grade: 'C',
-            },
-          ]}
+          ccrepos={project.product.grades}
         />
       </td>
       <td className={rtd}>
