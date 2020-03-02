@@ -19,7 +19,7 @@ export const PROJECT_LIST_VIEW = gql`
         grades{
           grade
           name
-          
+          link
         }
       }
     }
