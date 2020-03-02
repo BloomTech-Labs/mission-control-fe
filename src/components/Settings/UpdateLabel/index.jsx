@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import { Button, Popup } from 'semantic-ui-react';
 import { CirclePicker } from 'react-color';
-import { labelDesign } from './Settings.module.scss';
-import { UPDATE_LABEL as updateLabelMutation } from '../Project/Queries';
+import { labelDesign } from './UpdateLabel.module.scss';
+import { UPDATE_LABEL as updateLabelMutation } from '../../Project/Queries';
 import { useMutation } from 'urql';
 const UpdateLabel = props => {
   const initState = {
