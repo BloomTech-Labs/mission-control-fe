@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from 'urql';
-import { LABELS_QUERY as query } from '../ProjectList/Queries/projectQueries';
-import { labelListStyle } from './Settings.module.scss';
-import StatusLabel from './StatusLabel';
+import { LABELS_QUERY as query } from '../../ProjectList/Queries/projectQueries';
+import { labelListStyle } from './LabelList.module.scss';
+import StatusLabel from '../StatusLabel/index';
 
 const LabelList = () => {
   const [state] = useQuery({ query, requestPolicy: 'cache-and-network' });

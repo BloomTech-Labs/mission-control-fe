@@ -5,8 +5,8 @@ import { Button, Header, Modal } from 'semantic-ui-react';
 import { useMutation } from 'urql';
 import { CREATE_LABEL as createLabel } from '../Project/Queries';
 
-import LabelList from './LabelList';
-import CreateLabelForm from './CreateLabel';
+import LabelList from './LabelList/index';
+import CreateLabelForm from './CreateLabel/index';
 import { LabelContext } from '../../contexts/LabelContext';
 
 const Settings = () => {
