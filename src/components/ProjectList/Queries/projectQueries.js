@@ -9,29 +9,17 @@ export const PROJECT_LIST_VIEW = gql`
       notes(orderBy: updatedAt_DESC) {
         id
         updatedAt
-        notes(orderBy: updatedAt_DESC) {
-          id
-          updatedAt
-        }
-        sectionLead {
-          id
+      }
+      projectStatus {
+        id
+        name
+        color
+      }
+      product{
+        grades{
+          grade
           name
-        }
-        teamLead {
-          id
-          name
-        }
-        projectStatus {
-          id
-          name
-          color
-        }
-        product {
-          grades {
-            grade
-            name
-            link
-          }
+          
         }
       }
     }
