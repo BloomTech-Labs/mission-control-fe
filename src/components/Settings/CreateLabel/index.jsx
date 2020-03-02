@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import { Button, Popup } from 'semantic-ui-react';
 import { CirclePicker } from 'react-color';
 
-import { LabelContext } from '../../contexts/LabelContext';
-import { labelPreviewDesign } from './Settings.module.scss';
+import { LabelContext } from '../../../contexts/LabelContext';
+import { labelPreviewDesign } from './CreateLabel.module.scss';
 
 const CreateLabelForm = () => {
   const { label, setLabel } = useContext(LabelContext);
