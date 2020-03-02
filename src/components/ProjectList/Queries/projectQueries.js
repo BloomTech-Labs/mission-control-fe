@@ -25,8 +25,8 @@ export const PROJECT_LIST_VIEW = gql`
           name
           color
         }
-        product{
-          grades{
+        product {
+          grades {
             grade
             name
             link
