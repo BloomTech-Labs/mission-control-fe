@@ -194,3 +194,11 @@ export const UPDATE_LABEL = gql`
     }
   }
 `;
+
+export const DELETE_LABEL = gql`
+  mutation DeleteLabelMutation($id: ID!) {
+    deleteLabel(id: $id) {
+      id
+    }
+  }
+`;
