@@ -9,6 +9,7 @@ const DeleteLabel = props => {
   const [, executeDelete] = useMutation(deleteLabel);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
   const handleSubmit = useCallback(e => {
     e.preventDefault();
     executeDelete(props.label);

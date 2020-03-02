@@ -18,6 +18,7 @@ export const HEADER_QUERY = gql`
   query HeaderView($id: ID!) {
     project(id: $id) {
       id
+      projectState
       name
     }
   }
@@ -82,6 +83,12 @@ export const PROJECT_VIEW_QUERY = gql`
       product {
         id
         name
+        grades {
+          id
+          name
+          grade
+          link
+        }
       }
       team {
         id

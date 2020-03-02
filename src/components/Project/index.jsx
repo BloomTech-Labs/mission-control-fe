@@ -33,16 +33,7 @@ const Project = ({ match: { params } }) => {
         <div className={projectContainer}>
           <div className={editorFeedContainer}>
           <div className={gradeContainer}>
-            <Grade ccrepos={[
-              {
-                name: "Front End",
-                grade: "A"
-              },
-              {
-                name: "Back End",
-                grade: "F"
-              }
-            ]} />
+            <Grade ccrepos={data.project.product.grades} />
           </div>
             <h2>Project Notes</h2>
             <NoteEditor
