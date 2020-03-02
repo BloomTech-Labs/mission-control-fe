@@ -15,10 +15,6 @@ const cleanName = str => {
 };
 
 const ProjectRow = ({ project }) => {
-  const [state] = useQuery({ query, requestPolicy: 'cache-and-network' });
-
-  const { data } = state;
-
   return (
     <tr>
       <td>
@@ -41,8 +37,6 @@ const ProjectRow = ({ project }) => {
           ]}
         />
       </td>
-      <td>{project.sectionLead.name}</td>
-      <td>{project.teamLead.name}</td>
       <td className={rtd}>
         {project.notes.length
           ? mapTime(project.notes[0].updatedAt)
