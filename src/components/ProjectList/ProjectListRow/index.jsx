@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import mapTime from '../../../mappers/mapTime';
 import { useQuery } from 'urql';
 import { LABELS_QUERY as query } from '../Queries/projectQueries';
+import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
+
 import { title, rtd, rtc } from './projectListRow.module.scss';
 import { labelPreviewDesign } from '../../Settings/Settings.module.scss';
 
@@ -26,6 +28,18 @@ const ProjectRow = ({ project }) => {
         <Link to={`/project/${project.id}`} className={title}>
           {cleanName(project.name)}
         </Link>
+        <LetterGradeContainer
+          ccrepos={[
+            {
+              name: 'Mission-Control-FE',
+              grade: 'A',
+            },
+            {
+              name: 'Mission Control-BE',
+              grade: 'C',
+            },
+          ]}
+        />
       </td>
       <td>{project.sectionLead.name}</td>
       <td>{project.teamLead.name}</td>
@@ -34,19 +48,6 @@ const ProjectRow = ({ project }) => {
           ? mapTime(project.notes[0].updatedAt)
           : mapTime(project.updatedAt)}{' '}
         ago
-      </td>
-      <td className={rtc}>
-        <div
-          style={{ background: `${data && data.labels[0].color}` }}
-          className={labelPreviewDesign}
-        >
-          {data && data.labels[0].name}
-          {/* {!project.projectStatus ? (
-            <div>Add Label</div>
-          ) : (
-            <div>{project.projectStatus.name}</div>
-          )} */}
-        </div>
       </td>
     </tr>
   );
