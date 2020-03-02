@@ -2,29 +2,18 @@ import gql from 'graphql-tag';
 
 export const PROJECT_LIST_VIEW = gql`
   query {
-    me {
+    projects {
       id
-      projects {
+      name
+      updatedAt
+      notes(orderBy: updatedAt_DESC) {
+        id
+        updatedAt
+      }
+      projectStatus {
         id
         name
-        updatedAt
-        notes(orderBy: updatedAt_DESC) {
-          id
-          updatedAt
-        }
-        sectionLead {
-          id
-          name
-        }
-        teamLead {
-          id
-          name
-        }
-        projectStatus {
-          id
-          name
-          color
-        }
+        color
       }
     }
   }
