@@ -13,10 +13,10 @@ const ProjectListView = () => {
   const [state] = useQuery({ query });
   const { data } = state;
 
-  if (data && data.me.projects.length) {
-    const {
-      me: { projects },
-    } = data;
+  if (data && data.projects.length) {
+    const projects = data.projects;
+
+    console.log("projects", projects[0]);
 
     return (
       <ProjectListContainer>

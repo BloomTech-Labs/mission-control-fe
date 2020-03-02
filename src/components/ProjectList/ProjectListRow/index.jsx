@@ -6,7 +6,6 @@ import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
 import { title, rtd, rtc } from './projectListRow.module.scss';
 
 const ProjectRow = ({ project }) => {
-
   return (
     <tr>
       <td>
@@ -20,8 +19,6 @@ const ProjectRow = ({ project }) => {
           ccrepos={project.product.grades}
         />
       </td>
-      <td>{project.sectionLead.name}</td>
-      <td>{project.teamLead.name}</td>
       <td className={rtd}>
         {project.notes.length
           ? mapTime(project.notes[0].updatedAt)
