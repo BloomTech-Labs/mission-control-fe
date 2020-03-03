@@ -3,7 +3,7 @@ import { labelDesign, editModalStyle } from './StatusLabel.module.scss';
 import { Modal, Header } from 'semantic-ui-react';
 import { FaRegEdit } from 'react-icons/fa';
 import UpdateLabel from '../UpdateLabel/index';
-import DeleteLabel from '../DeleteLabel/DeleteLabeleLabel';
+import DeleteLabel from '../DeleteLabel/DeleteLabel';
 const StatusLabel = props => {
   return (
     <div className={labelDesign} style={{ background: `${props.label.color}` }}>
