@@ -18,6 +18,7 @@ export const HEADER_QUERY = gql`
   query HeaderView($id: ID!) {
     project(id: $id) {
       id
+      projectState
       name
     }
   }
