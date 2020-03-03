@@ -2,16 +2,14 @@
 import React, { useState, useCallback, useContext } from 'react';
 import { bottomLinks, modalStyle, buttonStyle } from './Settings.module.scss';
 import { Button, Header, Modal } from 'semantic-ui-react';
-import { useMutation } from 'urql';
-import { CREATE_LABEL as createLabel } from '../Project/Queries';
+// import { useMutation } from 'urql';
+// import { CREATE_LABEL as createLabel } from '../Project/Queries';
 
-import LabelList from './LabelList/index';
-import CreateLabelForm from './CreateLabel/index';
-import EditColumns from './EditColumns/index';
-import { LabelContext } from '../../contexts/LabelContext';
+import ColumnSettings from './ColumnSettings/index';
+// import { LabelContext } from '../../contexts/LabelContext';
 
 const Settings = () => {
-  const { label, setLabel } = useContext(LabelContext);
+  // const { label, setLabel } = useContext(LabelContext);
 
   const [open, setOpen] = useState(false);
 
@@ -19,23 +17,23 @@ const Settings = () => {
 
   const handleClose = () => setOpen(false);
 
-  const [, executeCreate] = useMutation(createLabel);
+  // const [, executeCreate] = useMutation(createLabel);
 
   const toggle = () => {
     handleClose();
-    setLabel({ id: '', color: '', name: '' });
+    // setLabel({ id: '', color: '', name: '' });
   };
 
-  const disableTer = !label.color || !label.name;
+  // const disableTer = !label.color || !label.name;
 
-  const handleSubmit = useCallback(
-    e => {
-      e.preventDefault();
-      executeCreate(label);
-      toggle();
-    },
-    [executeCreate, label, toggle]
-  );
+  // const handleSubmit = useCallback(
+  //   e => {
+  //     e.preventDefault();
+  //     executeCreate(label);
+  //     toggle();
+  //   },
+  //   [executeCreate, label, toggle]
+  // );
 
   return (
     <div className={bottomLinks}>
@@ -49,17 +47,14 @@ const Settings = () => {
         <Modal.Content>
           <Modal.Description>
             <Header>Edit Columns</Header>
-            <EditColumns />
-            <Header>Create a Label</Header>
-            <CreateLabelForm toggle={toggle} />
-            <LabelList />
+            <ColumnSettings />
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions className={buttonStyle}>
           <Button
             className="ui approve button"
-            disabled={disableTer}
-            onClick={handleSubmit}
+            // disabled={disableTer}
+            // onClick={handleSubmit}
           >
             Save
           </Button>
