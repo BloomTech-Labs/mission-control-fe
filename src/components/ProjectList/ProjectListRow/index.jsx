@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import mapTime from '../../../mappers/mapTime';
+import { useQuery } from 'urql';
+import { LABELS_QUERY as query } from '../Queries/projectQueries';
 import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
 
 import { title, rtd, rtc } from './projectListRow.module.scss';
+import { labelPreviewDesign } from '../../Settings/Settings.module.scss';
 
 const ProjectRow = ({ project }) => {
   return (
@@ -24,15 +27,6 @@ const ProjectRow = ({ project }) => {
           ? mapTime(project.notes[0].updatedAt)
           : mapTime(project.updatedAt)}{' '}
         ago
-      </td>
-      <td className={rtc}>
-        <div>
-          {!project.projectStatus ? (
-            <div>Add Label</div>
-          ) : (
-            <div>{project.projectStatus.name}</div>
-          )}
-        </div>
       </td>
     </tr>
   );

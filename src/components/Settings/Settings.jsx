@@ -1,7 +1,7 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
 import React, { useState, useCallback, useContext } from 'react';
-import { bottomLinks } from './Settings.module.scss';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { bottomLinks, modalStyle, buttonStyle } from './Settings.module.scss';
+import { Button, Header, Modal } from 'semantic-ui-react';
 import { useMutation } from 'urql';
 import { CREATE_LABEL as createLabel } from '../Project/Queries';
 
@@ -9,18 +9,20 @@ import LabelList from './LabelList';
 import CreateLabelForm from './CreateLabel';
 import { LabelContext } from '../../contexts/LabelContext';
 
-const Settings = props => {
+const Settings = () => {
   const { label, setLabel } = useContext(LabelContext);
 
-  const { className } = props;
+  const [open, setOpen] = useState(false);
 
-  const [modal, setModal] = useState(false);
+  const handleOpen = () => setOpen(true);
+
+  const handleClose = () => setOpen(false);
 
   const [, executeCreate] = useMutation(createLabel);
 
   const toggle = () => {
-    setModal(!modal)
-    setLabel({ id: '', color: '', name: '' })
+    handleClose();
+    setLabel({ id: '', color: '', name: '' });
   };
 
   const disableTer = !label.color || !label.name;
@@ -31,28 +33,37 @@ const Settings = props => {
       executeCreate(label);
       toggle();
     },
-    [executeCreate, label, setLabel]
+    [executeCreate, label, toggle]
   );
 
   return (
     <div className={bottomLinks}>
-      <Button size="sm" color="secondary" onClick={toggle}>
-        Settings
-      </Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Settings</ModalHeader>
-        <ModalBody>
-          <CreateLabelForm toggle={toggle} />
-          <LabelList />
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" disabled={disableTer} onClick={handleSubmit}>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        trigger={<Button onClick={handleOpen}>Settings</Button>}
+        className={modalStyle}
+      >
+        <Modal.Header>Settings</Modal.Header>
+        <Modal.Content>
+          <Modal.Description>
+            <Header>Create a Label</Header>
+            <CreateLabelForm toggle={toggle} />
+            <LabelList />
+          </Modal.Description>
+        </Modal.Content>
+        <Modal.Actions className={buttonStyle}>
+          <Button
+            className="ui approve button"
+            disabled={disableTer}
+            onClick={handleSubmit}
+          >
             Save
           </Button>
-          <Button color="secondary" onClick={toggle}>
+          <Button className="ui cancel button" onClick={toggle}>
             Cancel
           </Button>
-        </ModalFooter>
+        </Modal.Actions>
       </Modal>
     </div>
   );

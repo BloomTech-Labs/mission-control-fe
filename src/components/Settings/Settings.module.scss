@@ -1,9 +1,8 @@
 @import '../../styles/variables.scss';
 
 .bottomLinks {
-  position: fixed;
-  margin-left: 92%;
-  margin-top: 10px;
+  margin-left: 90% !important;
+  margin-top: 10px !important;
 }
 
 .settingsButton {
@@ -37,12 +36,47 @@
 }
 
 .labelDesign {
+  display: inline-block;
   color: white;
   text-align: center;
   padding-top: 2px;
   margin-bottom: 10px;
-  width: 7rem;
+  width: 100px;
   height: 20px;
   border-radius: 25px;
   font-size: 0.8rem;
+}
+
+.labelPreviewDesign {
+  color: white;
+  text-align: center;
+  padding-top: 2px;
+  margin-bottom: 10px;
+  width: 120px;
+  height: 20px;
+  border-radius: 25px;
+  font-size: 0.8rem;
+}
+
+.modalStyle {
+  position: relative !important;
+  height: 325px !important;
+  width: 500px !important;
+}
+
+.editModalStyle {
+  position: relative !important;
+  height: 225px !important;
+  width: 350px !important;
+}
+
+.labelListStyle {
+  position: relative;
+  height: 25px;
+}
+
+.buttonStyle {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }

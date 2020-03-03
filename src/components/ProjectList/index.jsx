@@ -16,8 +16,6 @@ const ProjectListView = () => {
   if (data && data.projects.length) {
     const projects = data.projects;
 
-    console.log("projects", projects[0]);
-
     return (
       <ProjectListContainer>
         {projects.map(project => (
