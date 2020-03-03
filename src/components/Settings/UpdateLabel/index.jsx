@@ -18,7 +18,6 @@ const UpdateLabel = props => {
     e => {
       e.preventDefault();
       executeUpdate(updateLabel);
-      console.log(updateLabel);
     },
     [executeUpdate, updateLabel]
   );
@@ -30,7 +29,6 @@ const UpdateLabel = props => {
       [e.target.name]: e.target.value,
     });
   };
-  console.log('Label props', updateLabel);
 
   const handleColorChanges = color => {
     setUpdateLabel({
