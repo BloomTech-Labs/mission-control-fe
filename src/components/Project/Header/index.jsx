@@ -42,16 +42,6 @@ const Header = ({ projectId }) => {
           </div>
 
           <div className={statusContainer}>
-            {status
-              ? ''
-              : [
-                  <span role="img" aria-label="fire">
-                    🔥
-                  </span>,
-                  <p>
-                    Falling <br /> behind!
-                  </p>,
-                ]}
           </div>
         </div>
 
