@@ -15,8 +15,8 @@ export const PROJECT_LIST_VIEW = gql`
         name
         color
       }
-      product{
-        grades{
+      product {
+        grades {
           grade
           name
           link
@@ -39,5 +39,15 @@ export const LABELS_QUERY = gql`
 export const DUMMY_QUERY = gql`
   query {
     info
+  }
+`;
+
+export const SUBSCRIPTION = gql`
+  subscription {
+    newLabels {
+      id
+      name
+      color
+    }
   }
 `;
