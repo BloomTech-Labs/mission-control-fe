@@ -83,6 +83,12 @@ export const PROJECT_VIEW_QUERY = gql`
       product {
         id
         name
+        grades {
+          id
+          name
+          grade
+          link
+        }
       }
       team {
         id
