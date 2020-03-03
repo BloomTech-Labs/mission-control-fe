@@ -191,3 +191,13 @@ export const CREATE_LABEL = gql`
     }
   }
 `;
+
+export const UPDATE_LABEL = gql`
+  mutation UpdateLabelMutation($id: ID!, $name: String!, $color: String!) {
+    updateLabel(name: $name, color: $color, id: $id) {
+      id
+      name
+      color
+    }
+  }
+`;
