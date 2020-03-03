@@ -7,6 +7,7 @@ import { CREATE_LABEL as createLabel } from '../Project/Queries';
 
 import LabelList from './LabelList/index';
 import CreateLabelForm from './CreateLabel/index';
+import EditColumns from './EditColumns/index';
 import { LabelContext } from '../../contexts/LabelContext';
 
 const Settings = () => {
@@ -47,6 +48,8 @@ const Settings = () => {
         <Modal.Header>Settings</Modal.Header>
         <Modal.Content>
           <Modal.Description>
+            <Header>Edit Columns</Header>
+            <EditColumns />
             <Header>Create a Label</Header>
             <CreateLabelForm toggle={toggle} />
             <LabelList />
