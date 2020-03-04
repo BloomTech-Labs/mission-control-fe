@@ -1,12 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import mapTime from '../../../mappers/mapTime';
-import { useQuery } from 'urql';
-import { LABELS_QUERY as query } from '../Queries/projectQueries';
 import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
 
-import { title, rtd, rtc } from './projectListRow.module.scss';
-import { labelPreviewDesign } from '../../Settings/Settings.module.scss';
+import { title, rtd } from './projectListRow.module.scss';
 
 const ProjectRow = ({ project }) => {
   return (
@@ -18,9 +15,7 @@ const ProjectRow = ({ project }) => {
         <Link to={`/project/${project.id}`} className={title}>
           {project.name}
         </Link>
-        <LetterGradeContainer
-          ccrepos={project.product.grades}
-        />
+        <LetterGradeContainer ccrepos={project.product.grades} />
       </td>
       <td className={rtd}>
         {project.notes.length
