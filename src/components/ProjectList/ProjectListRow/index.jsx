@@ -5,7 +5,16 @@ import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
 
 import { title, rtd } from './projectListRow.module.scss';
 
-const ProjectRow = ({ project }) => {
+const ProjectRow = ({ project, status }) => {
+  const statusLabelsArr = [];
+
+  var i;
+  for (i = 0; i < 4; i++) {
+    statusLabelsArr.push(status[i]);
+  }
+
+  console.log('status label limit 4', statusLabelsArr);
+
   return (
     <tr>
       <td>
@@ -23,6 +32,11 @@ const ProjectRow = ({ project }) => {
           : mapTime(project.updatedAt)}{' '}
         ago
       </td>
+      {statusLabelsArr.length > 0
+        ? statusLabelsArr.map(statusData => (
+            <td>{statusData.projects[0].name}</td>
+          ))
+        : ''}
     </tr>
   );
 };

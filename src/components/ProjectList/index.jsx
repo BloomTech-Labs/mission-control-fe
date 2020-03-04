@@ -20,13 +20,15 @@ const ProjectListView = () => {
       projects.push(product.projects[0])
     );
 
-  console.log(data && data.programs);
+  const columns = data && data.programs[0].products;
+
+  console.log('program', data && data.programs);
 
   if (data && projects.length) {
     return (
-      <ProjectListContainer>
+      <ProjectListContainer status={columns}>
         {projects.map(project => (
-          <ProjectListRow key={project.id} project={project} />
+          <ProjectListRow key={project.id} project={project} status={columns} />
         ))}
       </ProjectListContainer>
     );
