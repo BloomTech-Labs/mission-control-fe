@@ -4,8 +4,9 @@ import { CirclePicker } from 'react-color';
 
 import { LabelContext } from '../../../contexts/LabelContext';
 import { labelPreviewDesign } from './CreateLabel.module.scss';
+import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
 
-const CreateLabelForm = () => {
+const CreateLabelForm = ({ handleSubmit }) => {
   const { label, setLabel } = useContext(LabelContext);
 
   const handleChanges = e => {
@@ -16,12 +17,7 @@ const CreateLabelForm = () => {
     });
   };
 
-  const handleColorChanges = color => {
-    setLabel({
-      ...label,
-      color: color.hex,
-    });
-  };
+  const disableTer = !label.color || label.name.length < 3;
 
   return (
     <form>
@@ -48,35 +44,11 @@ const CreateLabelForm = () => {
           ) : (
             ''
           )}
-          <label>
-            <div>
-              <Popup
-                content={
-                  <CirclePicker
-                    color={label.color}
-                    colors={[
-                      '#75a9b6',
-                      '#575a7b',
-                      '#27213d',
-                      '#2c6049',
-                      '#d19c18',
-                      '#d42c08',
-                    ]}
-                    onChange={handleColorChanges}
-                    width="130px"
-                  />
-                }
-                on="click"
-                trigger={
-                  <Button
-                    content="Choose Color"
-                    onClick={e => e.preventDefault()}
-                  />
-                }
-              />
-            </div>
-          </label>
         </div>
+        <CustomCirclePicker label={label} setLabel={setLabel} />
+      </div>
+      <div>
+        <Button content="Save" onClick={handleSubmit} disabled={disableTer} />
       </div>
     </form>
   );
