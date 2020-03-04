@@ -22,7 +22,7 @@ const ProjectListView = () => {
 
   const columns = data && data.programs[0].products;
 
-  console.log('program', data && data.programs);
+  // console.log('program', data && data.programs);
 
   if (data && projects.length) {
     return (
