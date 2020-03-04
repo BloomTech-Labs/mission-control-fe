@@ -8,7 +8,7 @@ const ProjectListContainer = ({ children, status }) => {
   const statusTitleArr = [];
 
   var i;
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < 3; i++) {
     statusTitleArr.push(status[i]);
   }
 
