@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
 import { columnEditCont } from './ColumnSettings.module.scss';
 
 import EditColumns from '../EditColumns/index';
