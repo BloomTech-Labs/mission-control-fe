@@ -10,11 +10,14 @@ const DeleteLabel = props => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleSubmit = useCallback(e => {
-    e.preventDefault();
-    executeDelete(props.label);
-    handleClose();
-  });
+  const handleSubmit = useCallback(
+    e => {
+      e.preventDefault();
+      executeDelete(props.label);
+      handleClose();
+    },
+    [executeDelete, props.label]
+  );
 
   return (
     <Modal
