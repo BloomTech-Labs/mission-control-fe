@@ -13,9 +13,16 @@ const ProjectListView = () => {
   const [state] = useQuery({ query });
   const { data } = state;
 
-  if (data && data.projects.length) {
-    const projects = data.projects;
+  const projects = [];
 
+  data &&
+    data.programs[0].products.map(product =>
+      projects.push(product.projects[0])
+    );
+
+  console.log(data && data.programs);
+
+  if (data && projects.length) {
     return (
       <ProjectListContainer>
         {projects.map(project => (
