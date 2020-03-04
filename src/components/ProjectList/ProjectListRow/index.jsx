@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import mapTime from '../../../mappers/mapTime';
 import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
+import LabelDropdown from '../LabelDropdown/index';
 
 import { title, rtd } from './projectListRow.module.scss';
 
@@ -9,7 +11,7 @@ const ProjectRow = ({ project, status }) => {
   const statusLabelsArr = [];
 
   var i;
-  for (i = 0; i < 4; i++) {
+  for (i = 0; i < 3; i++) {
     statusLabelsArr.push(status[i]);
   }
 
@@ -34,7 +36,9 @@ const ProjectRow = ({ project, status }) => {
       </td>
       {statusLabelsArr.length > 0
         ? statusLabelsArr.map(statusData => (
-            <td>{statusData.projects[0].name}</td>
+            <td>
+              <LabelDropdown labels={statusData.projects[0]} />
+            </td>
           ))
         : ''}
     </tr>
