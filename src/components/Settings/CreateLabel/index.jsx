@@ -17,7 +17,7 @@ const CreateLabelForm = ({ handleSubmit }) => {
     });
   };
 
-  const disableTer = !label.color || label.name.length < 3;
+  const disableTer = !label.color || !label.name;
 
   return (
     <form>
