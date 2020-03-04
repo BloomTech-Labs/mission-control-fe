@@ -15,7 +15,7 @@ const ProjectRow = ({ project, status }) => {
     statusLabelsArr.push(status[i]);
   }
 
-  console.log('status label limit 4', statusLabelsArr);
+  // console.log('status label limit 4', statusLabelsArr);
 
   return (
     <tr>
@@ -36,7 +36,7 @@ const ProjectRow = ({ project, status }) => {
       </td>
       {statusLabelsArr.length > 0
         ? statusLabelsArr.map(statusData => (
-            <td>
+            <td key={statusData.projects[0].id}>
               <LabelDropdown labels={statusData.projects[0]} />
             </td>
           ))
