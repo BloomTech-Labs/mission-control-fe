@@ -4,6 +4,7 @@ import { CirclePicker } from 'react-color';
 import { labelDesign } from './UpdateLabel.module.scss';
 import { UPDATE_LABEL as updateLabelMutation } from '../../Project/Queries';
 import { useMutation } from 'urql';
+import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
 const UpdateLabel = props => {
   const initState = {
     id: `${props.label.id}`,
@@ -11,29 +12,22 @@ const UpdateLabel = props => {
     color: `${props.label.color}`,
   };
 
-  const [updateLabel, setUpdateLabel] = useState(initState);
+  const [label, setLabel] = useState(initState);
   const [, executeUpdate] = useMutation(updateLabelMutation);
 
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
-      executeUpdate(updateLabel);
+      executeUpdate(label);
     },
-    [executeUpdate, updateLabel]
+    [executeUpdate, label]
   );
 
   const handleChanges = e => {
     e.preventDefault();
-    setUpdateLabel({
-      ...updateLabel,
+    setLabel({
+      ...label,
       [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleColorChanges = color => {
-    setUpdateLabel({
-      ...updateLabel,
-      color: color.hex,
     });
   };
 
@@ -47,52 +41,25 @@ const UpdateLabel = props => {
               name="name"
               id="name"
               onChange={handleChanges}
-              value={updateLabel.name}
+              value={label.name}
             />
           </label>
           <br />
-          {updateLabel.name && updateLabel.color ? (
+          {label.name && label.color ? (
             <div
               className={labelDesign}
-              style={{ background: `${updateLabel.color}` }}
+              style={{ background: `${label.color}` }}
             >
-              {updateLabel.name}
+              {label.name}
             </div>
           ) : (
             ''
           )}
-          <label>
-            <div>
-              <Popup
-                content={
-                  <CirclePicker
-                    color={updateLabel.color}
-                    colors={[
-                      '#75a9b6',
-                      '#575a7b',
-                      '#27213d',
-                      '#2c6049',
-                      '#d19c18',
-                      '#d42c08',
-                    ]}
-                    onChange={handleColorChanges}
-                    width="130px"
-                  />
-                }
-                on="click"
-                trigger={
-                  <Button
-                    content="Choose Color"
-                    onClick={e => e.preventDefault()}
-                  />
-                }
-              />
-            </div>
-          </label>
+          <CustomCirclePicker {...props} label={label} setLabel={setLabel} />
         </div>
       </div>
       <div>
-        <Button onClick={handleSubmit}>SAVE</Button>
+        <Button onClick={handleSubmit}>Save Changes</Button>
       </div>
     </form>
   );
