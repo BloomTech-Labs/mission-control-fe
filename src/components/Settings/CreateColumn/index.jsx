@@ -21,7 +21,7 @@ const CreateColumn = () => {
 
   const toggle = () => {
     handleClose();
-    setLabel({ label });
+    setLabel({ id: '', color: '', name: '' });
   };
 
   const handleSubmit = useCallback(
@@ -37,7 +37,7 @@ const CreateColumn = () => {
     <div>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={toggle}
         trigger={<Button onClick={handleOpen}>Create Column</Button>}
         className={modalStyle}
       >
@@ -54,9 +54,6 @@ const CreateColumn = () => {
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions className={buttonStyle}>
-          <Button className="ui approve button" onClick={handleSubmit}>
-            Save
-          </Button>
           <Button className="ui cancel button" onClick={toggle}>
             Cancel
           </Button>

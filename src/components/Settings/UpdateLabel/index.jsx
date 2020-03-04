@@ -2,31 +2,13 @@ import React, { useState, useCallback } from 'react';
 import { Button, Popup } from 'semantic-ui-react';
 import { CirclePicker } from 'react-color';
 import { labelDesign } from './UpdateLabel.module.scss';
-import { UPDATE_LABEL as updateLabelMutation } from '../../Project/Queries';
-import { useMutation } from 'urql';
+
 import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
 const UpdateLabel = props => {
-  const initState = {
-    id: `${props.label.id}`,
-    name: `${props.label.name}`,
-    color: `${props.label.color}`,
-  };
-
-  const [label, setLabel] = useState(initState);
-  const [, executeUpdate] = useMutation(updateLabelMutation);
-
-  const handleSubmit = useCallback(
-    e => {
-      e.preventDefault();
-      executeUpdate(label);
-    },
-    [executeUpdate, label]
-  );
-
   const handleChanges = e => {
     e.preventDefault();
-    setLabel({
-      ...label,
+    props.setLabel({
+      ...props.label,
       [e.target.name]: e.target.value,
     });
   };
@@ -41,25 +23,26 @@ const UpdateLabel = props => {
               name="name"
               id="name"
               onChange={handleChanges}
-              value={label.name}
+              value={props.label.name}
             />
           </label>
           <br />
-          {label.name && label.color ? (
+          {props.label.name && props.label.color ? (
             <div
               className={labelDesign}
-              style={{ background: `${label.color}` }}
+              style={{ background: `${props.label.color}` }}
             >
-              {label.name}
+              {props.label.name}
             </div>
           ) : (
             ''
           )}
-          <CustomCirclePicker {...props} label={label} setLabel={setLabel} />
+          <CustomCirclePicker
+            {...props}
+            label={props.label}
+            setLabel={props.setLabel}
+          />
         </div>
-      </div>
-      <div>
-        <Button onClick={handleSubmit}>Save Changes</Button>
       </div>
     </form>
   );
