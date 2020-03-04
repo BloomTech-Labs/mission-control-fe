@@ -21,7 +21,7 @@ const CreateColumn = () => {
 
   const toggle = () => {
     handleClose();
-    setLabel({ id: '', color: '', name: '' });
+    setLabel({ label });
   };
 
   const handleSubmit = useCallback(
@@ -49,7 +49,7 @@ const CreateColumn = () => {
               <input placeholder="Status" />
             </form>
             <Header>Create a Label</Header>
-            <CreateLabelForm toggle={toggle} />
+            <CreateLabelForm toggle={toggle} handleSubmit={handleSubmit} />
             <LabelList />
           </Modal.Description>
         </Modal.Content>
