@@ -2,10 +2,10 @@ import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 
 const LabelDropdown = props => {
-  const labels = props.labels.notes.map(label => ({
-    key: label.id,
-    value: label.id,
-    text: label.updatedAt,
+  const labels = props.labels.map(label => ({
+    key: label.name,
+    value: label.color,
+    text: label.name,
   }));
 
   //   console.log('labels', labels);

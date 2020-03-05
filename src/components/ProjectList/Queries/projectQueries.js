@@ -4,6 +4,13 @@ export const PROJECT_LIST_VIEW = gql`
   query {
     programs {
       name
+      columns {
+        name
+        labels {
+          name
+          color
+        }
+      }
       products {
         projects {
           id
