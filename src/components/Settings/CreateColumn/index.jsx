@@ -1,12 +1,15 @@
 import React, { useState, useCallback, useContext } from 'react';
 import { Button, Modal, Header } from 'semantic-ui-react';
 import { modalStyle, buttonStyle } from './CreateColumn.module.scss';
+import { useMutation } from 'urql';
+import { CREATE_COLUMN as createColumn } from '../../Project/Queries/index';
 
-import { LabelContext } from '../../../contexts/LabelContext';
+import { ColumnContext } from '../../../contexts/ColumnContext';
 
-const CreateColumn = () => {
-  const { label, setLabel } = useContext(LabelContext);
+const CreateColumn = ({ programId }) => {
+  const { column, setColumn } = useContext(ColumnContext);
   const [open, setOpen] = useState(false);
+  const [, executeCreate] = useMutation(createColumn);
 
   const handleOpen = () => setOpen(true);
 
@@ -14,8 +17,26 @@ const CreateColumn = () => {
 
   const toggle = () => {
     handleClose();
-    setLabel({ id: '', color: '', name: '' });
+    setColumn({ id: '', name: '' });
   };
+
+  const handleChanges = e => {
+    e.preventDefault();
+    setColumn({
+      ...column,
+      [e.target.name]: e.target.value,
+      id: programId,
+    });
+  };
+
+  const handleSubmit = useCallback(
+    e => {
+      e.preventDefault();
+      executeCreate(column);
+      toggle();
+    },
+    [executeCreate, column]
+  );
 
   return (
     <div>
@@ -30,11 +51,19 @@ const CreateColumn = () => {
           <Modal.Description>
             <form>
               <label> Column Name: </label>
-              <input placeholder="Status" />
+              <input
+                value={column.name}
+                name="name"
+                onChange={handleChanges}
+                placeholder="Status"
+              />
             </form>
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions className={buttonStyle}>
+          <Button className="ui approve button" onClick={handleSubmit}>
+            Save
+          </Button>
           <Button className="ui cancel button" onClick={toggle}>
             Cancel
           </Button>

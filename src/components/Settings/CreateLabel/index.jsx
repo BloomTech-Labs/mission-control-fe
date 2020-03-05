@@ -1,6 +1,5 @@
 import React, { useContext, useCallback } from 'react';
-import { Button, Popup } from 'semantic-ui-react';
-import { CirclePicker } from 'react-color';
+import { Button } from 'semantic-ui-react';
 import { useMutation } from 'urql';
 import { CREATE_LABEL as createLabel } from '../../Project/Queries/index';
 
@@ -16,6 +15,7 @@ const CreateLabelForm = ({ column }) => {
     setLabel({
       ...label,
       [e.target.name]: e.target.value,
+      id: column.id,
     });
   };
 
@@ -24,7 +24,7 @@ const CreateLabelForm = ({ column }) => {
       e.preventDefault();
       executeCreate(label);
     },
-    [label]
+    [executeCreate, label]
   );
 
   const disableTer = !label.color || !label.name;

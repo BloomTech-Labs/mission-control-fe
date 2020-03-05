@@ -9,9 +9,8 @@ const ColumnSettings = () => {
   const [state] = useQuery({ query, requestPolicy: 'cache-and-network' });
   const { data } = state;
 
-  console.log('data', data && data);
-
   const columns = data && data.programs[0].columns;
+  const programId = data && data.programs[0].id;
 
   return (
     <div>
@@ -24,7 +23,7 @@ const ColumnSettings = () => {
             ))
           : ' '}
       </div>
-      <CreateColumn />
+      <CreateColumn programId={programId} />
     </div>
   );
 };
