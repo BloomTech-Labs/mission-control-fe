@@ -20,9 +20,9 @@ const ProjectListView = () => {
       projects.push(product.projects[0])
     );
 
-  const columns = data && data.programs[0].products;
+  const columns = data && data.programs[0].columns;
 
-  // console.log('program', data && data.programs);
+  console.log('programs', data && data.programs);
 
   if (data && projects.length) {
     return (

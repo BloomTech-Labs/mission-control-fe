@@ -23,9 +23,7 @@ const ProjectListContainer = ({ children, status }) => {
           <th className={rtd}>Last Updated</th>
           {statusTitleArr.length > 0
             ? statusTitleArr.map(statusData => (
-                <th key={statusData.projects[0].id}>
-                  {statusData.projects[0].name}
-                </th>
+                <th key={statusData.name}>{statusData.name}</th>
               ))
             : ''}
         </tr>
