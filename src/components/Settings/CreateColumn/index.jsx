@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useContext } from 'react';
-import { Button, Modal, Header } from 'semantic-ui-react';
+import { Button, Modal } from 'semantic-ui-react';
 import { modalStyle, buttonStyle } from './CreateColumn.module.scss';
 import { useMutation } from 'urql';
 import { CREATE_COLUMN as createColumn } from '../../Project/Queries/index';
@@ -35,7 +35,7 @@ const CreateColumn = ({ programId }) => {
       executeCreate(column);
       toggle();
     },
-    [executeCreate, column]
+    [executeCreate, column, toggle]
   );
 
   return (
