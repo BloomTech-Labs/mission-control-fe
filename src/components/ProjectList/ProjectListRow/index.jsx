@@ -9,40 +9,58 @@ import { title, rtd } from './projectListRow.module.scss';
 
 const ProjectRow = ({ project, status }) => {
   const statusLabelsArr = [];
-
+  console.log('labels', statusLabelsArr);
   var i;
-  for (i = 0; i < 3; i++) {
-    statusLabelsArr.push(status[i]);
-  }
-
-  console.log('status label limit 3', statusLabelsArr);
-
-  return (
-    <tr>
-      <td>
-        <div></div>
-      </td>
-      <td className={title}>
-        <Link to={`/project/${project.id}`} className={title}>
-          {project.name}
-        </Link>
-        <LetterGradeContainer ccrepos={project.product.grades} />
-      </td>
-      <td className={rtd}>
-        {project.notes.length
-          ? mapTime(project.notes[0].updatedAt)
-          : mapTime(project.updatedAt)}{' '}
-        ago
-      </td>
-      {status.length > 0 && statusLabelsArr.length > 0
-        ? statusLabelsArr.map(statusData => (
-            <td key={statusData.name}>
-              <LabelDropdown labels={statusData.labels} />
-            </td>
-          ))
-        : ''}
-    </tr>
-  );
+  if (status.length > 0) {
+    for (i = 0; i < 3 && !(i >= status.length); i++) {
+      statusLabelsArr.push(status[i]);
+    }
+    return (
+      <tr>
+        <td>
+          <div></div>
+        </td>
+        <td className={title}>
+          <Link to={`/project/${project.id}`} className={title}>
+            {project.name}
+          </Link>
+          <LetterGradeContainer ccrepos={project.product.grades} />
+        </td>
+        <td className={rtd}>
+          {project.notes.length
+            ? mapTime(project.notes[0].updatedAt)
+            : mapTime(project.updatedAt)}{' '}
+          ago
+        </td>
+        {status.length > 0 && statusLabelsArr.length > 0
+          ? statusLabelsArr.map(statusData => (
+              <td key={statusData.id}>
+                <LabelDropdown labels={statusData.labels} />
+              </td>
+            ))
+          : ''}
+      </tr>
+    );
+  } else
+    return (
+      <tr>
+        <td>
+          <div></div>
+        </td>
+        <td className={title}>
+          <Link to={`/project/${project.id}`} className={title}>
+            {project.name}
+          </Link>
+          <LetterGradeContainer ccrepos={project.product.grades} />
+        </td>
+        <td className={rtd}>
+          {project.notes.length
+            ? mapTime(project.notes[0].updatedAt)
+            : mapTime(project.updatedAt)}{' '}
+          ago
+        </td>
+      </tr>
+    );
 };
 
 export default ProjectRow;
