@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'urql';
 
 import NoteEditor from './NoteEditor';
@@ -18,11 +18,47 @@ import {
 } from './Project.module.scss';
 
 import { PROJECT_VIEW_QUERY as query } from './Queries';
+import { GET_USER_ROLE as userQuery } from './Queries';
 
-const Project = ({ match: { params } }) => {
-  const { id } = params;
-  const [state, executeQuery] = useQuery({ query, variables: { id } });
-  const { data } = state;
+const Project = (props) => {
+//  console.log(props)
+  const { id } = props.match.params;
+  const [state, executeQuery] = useQuery({ query, variables: { id }});
+  const { data, fetching } = state;
+
+  const [user, setUser] = useState(false);
+  const [killLoop, setKillLoop] = useState(1);
+
+  const getUser = `
+  query GetUser($email: String!) {
+    person(email: $email) {
+      name
+      role {
+        name
+        privateNote
+      }
+    }
+  }
+`;
+
+  const [result] = useQuery({
+      query: getUser,
+      variables: { email: data ? data.me.email : "" }
+  })
+
+  useEffect(() => {
+    if(result.data) {
+      setUser(result.data.person.role.privateNote);
+
+      let hold = killLoop;
+      setKillLoop(hold + 1);
+    }
+  },[data])
+
+  console.log(user);
+  console.log(killLoop);
+  console.log("log");
+
 
   return data ? (
     <div className={parentProjectContainer}>
@@ -36,13 +72,16 @@ const Project = ({ match: { params } }) => {
             <Grade ccrepos={data.project.product.grades} />
           </div>
             <h2>Project Notes</h2>
-            <NoteEditor
-              executeQuery={executeQuery}
-              user={data.me}
-              projectId={id}
-              projectManagers={data.project.projectManagers}
-            />
-            <NotesFeed projectId={id} />
+            {user == true ?
+              <NoteEditor
+                executeQuery={executeQuery}
+                user={data.me}
+                projectId={id}
+                projectManagers={data.project.projectManagers}
+              />
+            : null }
+
+            <NotesFeed projectId={id} privateBol={user}/>
           </div>
           <div className={teamContainer}>
             <Team projectId={id} />
