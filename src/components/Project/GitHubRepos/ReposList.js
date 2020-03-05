@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
 import { Button, Modal, Input, List } from 'semantic-ui-react';
 // import {} from './Repos.module.scss';
+import repos from './repoData';
 
 const ReposList = () => {
   const [state, setState] = useState({ open: false });
+  const [searchResults, setSearchResults] = useState([]);
+  const [query, setQuery] = useState('');
+
+  const handleSearch = e => {
+    e.stopPropagation();
+    setSearchResults(repos.filter(repo => repo.name.includes(query)));
+  };
+
+  const handleChange = e => {
+    setQuery(e.target.value);
+  };
 
   const show = dimmer => () => {
     setState({
@@ -18,11 +30,6 @@ const ReposList = () => {
     });
   };
 
-  const repos = [
-    { name: 'mission-control-be' },
-    { name: 'mission-control-fe' },
-  ];
-
   const { open, dimmer } = state;
 
   return (
@@ -36,11 +43,16 @@ const ReposList = () => {
             <p>Search for exisitng Repos</p>
           </Modal.Description>
           <div>
-            <Input icon="user" placeholder="Search..." />
-            <Button>Search</Button>
+            <Input
+              icon="user"
+              placeholder="Search..."
+              value={query}
+              onChange={handleChange}
+            />
+            <Button onClick={handleSearch}>Search</Button>
           </div>
           <List selection verticalAlign="middle">
-            {repos.map(repo => (
+            {searchResults.map(repo => (
               <List.Item>
                 <List.Content>{repo.name}</List.Content>
               </List.Item>
@@ -66,62 +78,3 @@ const ReposList = () => {
 };
 
 export default ReposList;
-
-/*
-import React, { Component } from "react";
-import { Button, Header, Image, Modal, Input, List } from "semantic-ui-react";
-
-class ModalExampleDimmer extends Component {
-  state = { open: false };
-
-  show = dimmer => () => this.setState({ dimmer, open: true });
-  close = () => this.setState({ open: false });
-
-  repos = [{ name: "mission-control-be" }, { name: "mission-control-fe" }];
-
-  render() {
-    const { open, dimmer } = this.state;
-
-    return (
-      <div>
-        <Button onClick={this.show(true)}>Add Your GitHub Repos</Button>
-
-        <Modal dimmer={dimmer} open={open} onClose={this.close}>
-          <Modal.Header>Add Your GitHub Repos</Modal.Header>
-          <Modal.Content input>
-            <Modal.Description>
-              <p>Search for exisitng Repos</p>
-            </Modal.Description>
-            <div>
-              <Input icon="user" placeholder="Search..." />
-              <Button>Search</Button>
-            </div>
-            <List selection verticalAlign="middle">
-              {this.repos.map(repo => (
-                <List.Item>
-                  <List.Content>{repo.name}</List.Content>
-                </List.Item>
-              ))}
-            </List>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button color="black" onClick={this.close}>
-              Cancel
-            </Button>
-            <Button
-              disabled
-              positive
-              icon="checkmark"
-              labelPosition="right"
-              content="Save Repos"
-              onClick={this.close}
-            />
-          </Modal.Actions>
-        </Modal>
-      </div>
-    );
-  }
-}
-
-export default ModalExampleDimmer;
-*/
