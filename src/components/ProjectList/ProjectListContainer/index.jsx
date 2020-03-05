@@ -21,7 +21,7 @@ const ProjectListContainer = ({ children, status }) => {
           <th>Project Health</th>
           <th>Project Name</th>
           <th className={rtd}>Last Updated</th>
-          {statusTitleArr.length > 0
+          {status.length > 0 && statusTitleArr.length > 0
             ? statusTitleArr.map(statusData => (
                 <th key={statusData.name}>{statusData.name}</th>
               ))
