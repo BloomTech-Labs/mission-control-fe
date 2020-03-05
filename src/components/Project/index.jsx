@@ -7,6 +7,7 @@ import Team from './Team';
 
 import Header from './Header';
 import Grade from './Grade';
+import GitHubRepos from './GitHubRepos/ReposList';
 
 import {
   parentProjectContainer,
@@ -20,10 +21,10 @@ import {
 import { PROJECT_VIEW_QUERY as query } from './Queries';
 import { GET_USER_ROLE as userQuery } from './Queries';
 
-const Project = (props) => {
-//  console.log(props)
+const Project = props => {
+  //  console.log(props)
   const { id } = props.match.params;
-  const [state, executeQuery] = useQuery({ query, variables: { id }});
+  const [state, executeQuery] = useQuery({ query, variables: { id } });
   const { data, fetching } = state;
 
   const [user, setUser] = useState(false);
@@ -42,23 +43,22 @@ const Project = (props) => {
 `;
 
   const [result] = useQuery({
-      query: getUser,
-      variables: { email: data ? data.me.email : "" }
-  })
+    query: getUser,
+    variables: { email: data ? data.me.email : '' },
+  });
 
   useEffect(() => {
-    if(result.data) {
+    if (result.data) {
       setUser(result.data.person.role.privateNote);
 
       let hold = killLoop;
       setKillLoop(hold + 1);
     }
-  },[data])
+  }, [data]);
 
   console.log(user);
   console.log(killLoop);
-  console.log("log");
-
+  console.log('log');
 
   return data ? (
     <div className={parentProjectContainer}>
@@ -68,20 +68,23 @@ const Project = (props) => {
         </div>
         <div className={projectContainer}>
           <div className={editorFeedContainer}>
-          <div className={gradeContainer}>
-            <Grade ccrepos={data.project.product.grades} />
-          </div>
+            {/* add githubreplist */}
+            <h2>Repos Code Health</h2>
+            <GitHubRepos />
+            <div className={gradeContainer}>
+              <Grade ccrepos={data.project.product.grades} />
+            </div>
             <h2>Project Notes</h2>
-            {user == true ?
+            {user == true ? (
               <NoteEditor
                 executeQuery={executeQuery}
                 user={data.me}
                 projectId={id}
                 projectManagers={data.project.projectManagers}
               />
-            : null }
+            ) : null}
 
-            <NotesFeed projectId={id} privateBol={user}/>
+            <NotesFeed projectId={id} privateBol={user} />
           </div>
           <div className={teamContainer}>
             <Team projectId={id} />
