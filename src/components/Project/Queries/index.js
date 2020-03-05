@@ -25,7 +25,7 @@ export const HEADER_QUERY = gql`
 `;
 
 export const NOTE_FEED_QUERY = gql`
-  query NoteFeed($id: ID!) {
+  query NoteFeed($id: ID!, $privatePerm: Boolean) {
     me {
       id
       email
@@ -37,7 +37,7 @@ export const NOTE_FEED_QUERY = gql`
         email
         avatar
       }
-      notes(orderBy: updatedAt_DESC) {
+      notes(orderBy: updatedAt_DESC, privatePerm: $privatePerm) {
         id
         topic
         content
