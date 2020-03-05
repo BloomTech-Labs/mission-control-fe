@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'urql';
 
 import NoteEditor from './NoteEditor';
@@ -18,11 +18,41 @@ import {
 } from './Project.module.scss';
 
 import { PROJECT_VIEW_QUERY as query } from './Queries';
+import { GET_USER_ROLE as userQuery } from './Queries';
 
-const Project = ({ match: { params } }) => {
-  const { id } = params;
-  const [state, executeQuery] = useQuery({ query, variables: { id } });
-  const { data } = state;
+const Project = (props) => {
+  console.log(props)
+  const { id } = props.match.params;
+  const [state, executeQuery] = useQuery({ query, variables: { id }});
+  const { data, fetching } = state;
+
+  const [user, setUser] = useState({});
+
+  const getUser = `
+  query GetUser($email: String!) {
+    person(email: $email) {
+      name
+      role {
+        name
+        privateNote
+      }
+    }
+  }
+`;
+
+  const [result] = useQuery({
+      query: getUser,
+      variables: { email: data ? data.me.email : '' }
+  })
+
+  useEffect(() => {
+    if(result.data) {
+      setUser(result.data.person.role.privateNote);
+    }
+  },[data])
+
+  console.log(user);
+  
 
   return data ? (
     <div className={parentProjectContainer}>
@@ -42,7 +72,7 @@ const Project = ({ match: { params } }) => {
               projectId={id}
               projectManagers={data.project.projectManagers}
             />
-            <NotesFeed projectId={id} />
+            <NotesFeed projectId={id} private={user}/>
           </div>
           <div className={teamContainer}>
             <Team projectId={id} />

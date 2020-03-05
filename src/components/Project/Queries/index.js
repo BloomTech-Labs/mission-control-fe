@@ -201,3 +201,23 @@ export const UPDATE_LABEL = gql`
     }
   }
 `;
+
+export const GET_USER_ROLE = gql`
+  query GetUserRole($email: String!) {
+    person(email: "missioncontrolpm@gmail.com") {
+      name
+      role {
+        name
+        privateNote
+      }
+    }
+  }
+`;
+
+export const TEST_QUERY = gql`
+  query {
+    me {
+      email
+    }
+  }
+`;
