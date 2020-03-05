@@ -34,7 +34,7 @@ const ProjectRow = ({ project, status }) => {
           : mapTime(project.updatedAt)}{' '}
         ago
       </td>
-      {statusLabelsArr.length > 0
+      {status.length > 0 && statusLabelsArr.length > 0
         ? statusLabelsArr.map(statusData => (
             <td key={statusData.name}>
               <LabelDropdown labels={statusData.labels} />
