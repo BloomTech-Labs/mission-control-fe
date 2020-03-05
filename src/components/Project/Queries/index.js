@@ -183,8 +183,8 @@ export const DELETE_NOTE = gql`
 `;
 
 export const CREATE_LABEL = gql`
-  mutation CreateLabelMutation($name: String!, $color: String!) {
-    createLabel(name: $name, color: $color) {
+  mutation CreateLabelMutation($id: ID!, $name: String!, $color: String!) {
+    createLabel(id: $id, name: $name, color: $color) {
       name
       color
       id
@@ -218,6 +218,15 @@ export const GET_USER_ROLE = gql`
         name
         privateNote
       }
+    }
+  }
+`;
+
+export const CREATE_COLUMN = gql`
+  mutation createColumnMutation($id: ID!, $name: String!) {
+    createColumn(id: $id, name: $name) {
+      id
+      name
     }
   }
 `;
