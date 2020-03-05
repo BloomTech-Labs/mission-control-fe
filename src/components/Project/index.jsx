@@ -68,7 +68,6 @@ const Project = props => {
         </div>
         <div className={projectContainer}>
           <div className={editorFeedContainer}>
-            {/* add githubreplist */}
             <h2>Repos Code Health</h2>
             <GitHubRepos />
             <div className={gradeContainer}>
