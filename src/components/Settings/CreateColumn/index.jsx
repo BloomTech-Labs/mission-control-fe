@@ -2,11 +2,6 @@ import React, { useState, useCallback, useContext } from 'react';
 import { Button, Modal, Header } from 'semantic-ui-react';
 import { modalStyle, buttonStyle } from './CreateColumn.module.scss';
 
-import CreateLabelForm from '../CreateLabel/index';
-import LabelList from '../LabelList/index';
-import { useMutation } from 'urql';
-import { CREATE_LABEL as createLabel } from '../../Project/Queries/index';
-
 import { LabelContext } from '../../../contexts/LabelContext';
 
 const CreateColumn = () => {
@@ -17,21 +12,10 @@ const CreateColumn = () => {
 
   const handleClose = () => setOpen(false);
 
-  const [, executeCreate] = useMutation(createLabel);
-
   const toggle = () => {
     handleClose();
     setLabel({ id: '', color: '', name: '' });
   };
-
-  const handleSubmit = useCallback(
-    e => {
-      e.preventDefault();
-      executeCreate(label);
-      toggle();
-    },
-    [executeCreate, label, toggle]
-  );
 
   return (
     <div>
@@ -48,9 +32,6 @@ const CreateColumn = () => {
               <label> Column Name: </label>
               <input placeholder="Status" />
             </form>
-            <Header>Create a Label</Header>
-            <CreateLabelForm toggle={toggle} handleSubmit={handleSubmit} />
-            <LabelList />
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions className={buttonStyle}>

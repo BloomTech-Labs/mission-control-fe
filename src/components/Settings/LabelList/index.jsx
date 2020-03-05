@@ -1,17 +1,12 @@
 import React from 'react';
-import { useQuery } from 'urql';
-import { LABELS_QUERY as query } from '../../ProjectList/Queries/projectQueries';
 import { labelListStyle } from './LabelList.module.scss';
 import StatusLabel from '../StatusLabel/index';
 
-const LabelList = () => {
-  const [state] = useQuery({ query, requestPolicy: 'cache-and-network' });
-
-  const { data } = state;
+const LabelList = ({ column }) => {
   return (
     <div className={labelListStyle}>
-      {data
-        ? data.labels.map(label => {
+      {column
+        ? column.labels.map(label => {
             return <StatusLabel label={label} key={label.id} />;
           })
         : ''}
