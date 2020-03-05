@@ -34,7 +34,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
   );
 
   //MAKE EDDIT MUTATION
-
+//  console.log(note.privateNote);
 
   return isEditing ? (
     <NoteEditor
@@ -68,7 +68,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
               starDimension="20px"
               starSpacing=".5px"
             />
-            <button>{note.id}</button>
+            <button>{note.privateNote ? "Private Note" : "PUBLIC NOTE!!!"}</button>
           </div>
           <div className={noteBody}>{content}</div>
         </div>
