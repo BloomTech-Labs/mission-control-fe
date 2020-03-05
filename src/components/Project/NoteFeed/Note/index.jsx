@@ -64,6 +64,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
               starDimension="20px"
               starSpacing=".5px"
             />
+            <button>TOGGLE</button>
           </div>
           <div className={noteBody}>{content}</div>
         </div>
