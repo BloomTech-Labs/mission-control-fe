@@ -1,6 +1,4 @@
-import React, { useState, useCallback } from 'react';
-import { Button, Popup } from 'semantic-ui-react';
-import { CirclePicker } from 'react-color';
+import React from 'react';
 import { labelDesign } from './UpdateLabel.module.scss';
 
 import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
