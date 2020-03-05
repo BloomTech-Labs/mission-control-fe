@@ -68,7 +68,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
               starDimension="20px"
               starSpacing=".5px"
             />
-            <button>{note.privateNote ? "Private Note" : "PUBLIC NOTE!!!"}</button>
+            <button>{note.privateNote ? "Make Private Note Public" : "This note is a PUBLIC NOTE!!!"}</button>
           </div>
           <div className={noteBody}>{content}</div>
         </div>
