@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useContext } from 'react';
-import { Button, Modal, Header } from 'semantic-ui-react';
+import React, { useState, useContext } from 'react';
+import { Button, Modal } from 'semantic-ui-react';
 import EditIcon from '@material-ui/icons/Edit';
 import { LabelContext } from '../../../contexts/LabelContext';
 import { modalStyle, buttonStyle } from './EditColumnModal.module.scss';
@@ -8,7 +8,7 @@ import CreateLabel from '../CreateLabel/index';
 import LabelList from '../LabelList/index';
 
 const EditColumnModal = ({ column }) => {
-  const { label, setLabel } = useContext(LabelContext);
+  const { setLabel } = useContext(LabelContext);
 
   const [open, setOpen] = useState(false);
 
