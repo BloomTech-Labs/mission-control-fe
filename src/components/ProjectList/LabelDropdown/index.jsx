@@ -8,8 +8,6 @@ const LabelDropdown = props => {
     text: label.name,
   }));
 
-  //   console.log('labels', labels);
-
   return (
     <Dropdown
       placeholder="Select Label"

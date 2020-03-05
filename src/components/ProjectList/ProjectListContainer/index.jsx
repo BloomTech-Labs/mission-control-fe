@@ -3,10 +3,7 @@ import React from 'react';
 import { rtd } from './projectListContainer.module.scss';
 
 const ProjectListContainer = ({ children, status }) => {
-  console.log('status', status);
-
   const statusTitleArr = [];
-  console.log('status name', statusTitleArr);
   var i;
   if (status.length > 0) {
     for (i = 0; i < 3 && !(i >= status.length); i++) {

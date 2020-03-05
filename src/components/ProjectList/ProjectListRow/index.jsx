@@ -9,7 +9,6 @@ import { title, rtd } from './projectListRow.module.scss';
 
 const ProjectRow = ({ project, status }) => {
   const statusLabelsArr = [];
-  console.log('labels', statusLabelsArr);
   var i;
   if (status.length > 0) {
     for (i = 0; i < 3 && !(i >= status.length); i++) {

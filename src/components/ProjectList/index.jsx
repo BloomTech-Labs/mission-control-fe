@@ -22,8 +22,6 @@ const ProjectListView = () => {
 
   const columns = data && data.programs[0].columns;
 
-  console.log('programs', data && data.programs);
-
   if (data && projects.length) {
     return (
       <ProjectListContainer status={columns}>
