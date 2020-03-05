@@ -27,7 +27,7 @@ const Settings = () => {
         <Modal.Header>Settings</Modal.Header>
         <Modal.Content>
           <Modal.Description>
-            <Header>Edit Columns</Header>
+            <Header>Edit Column View</Header>
             <ColumnSettings />
           </Modal.Description>
         </Modal.Content>

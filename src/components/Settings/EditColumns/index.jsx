@@ -7,7 +7,9 @@ import {
   editColumnsDiv,
 } from './EditColumns.module.scss';
 
-const EditColumns = props => {
+import EditColumnModal from '../EditColumnModal/index';
+
+const EditColumns = ({ column }) => {
   const [toggleActive, setToggleActive] = useState(false);
 
   const toggler = e => {
@@ -24,7 +26,7 @@ const EditColumns = props => {
         <div className={toggleActive ? toggle : toggled} />
       </div>
       <div>
-        <p>{props.column}</p>
+        <EditColumnModal column={column} />
       </div>
     </div>
   );

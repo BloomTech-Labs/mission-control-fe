@@ -1,14 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import { Button, Popup } from 'semantic-ui-react';
 import { CirclePicker } from 'react-color';
+import { useMutation } from 'urql';
+import { CREATE_LABEL as createLabel } from '../../Project/Queries/index';
 
 import { LabelContext } from '../../../contexts/LabelContext';
 import { labelPreviewDesign } from './CreateLabel.module.scss';
 import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
 
-const CreateLabelForm = ({ handleSubmit }) => {
+const CreateLabelForm = ({ column }) => {
   const { label, setLabel } = useContext(LabelContext);
-
+  const [, executeCreate] = useMutation(createLabel);
   const handleChanges = e => {
     e.preventDefault();
     setLabel({
@@ -16,6 +18,14 @@ const CreateLabelForm = ({ handleSubmit }) => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const handleSubmit = useCallback(
+    e => {
+      e.preventDefault();
+      executeCreate(label);
+    },
+    [label]
+  );
 
   const disableTer = !label.color || !label.name;
 
