@@ -50,6 +50,16 @@ const Note = ({ note, user, projectManagers, projectId }) => {
     if (addTodoResult.error) {
       return 'Oh no!';
     }
+
+    const add = () => {
+    addTodo({ text: 'learn urql' })
+      .then(result => {
+        // You can do something here or use the result object on the useMutation
+      })
+      .catch(error => {
+        // You can do something here if it throws
+      })
+    }
   }
 
   return isEditing ? (
@@ -85,7 +95,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
               starSpacing=".5px"
             />
             {note.privateNote ? "Private Note" : "PUBLIC NOTE!!!"}
-            <button>{note.id}</button>
+            <button onClick={add}>{note.id}</button>
           </div>
           <div className={noteBody}>{content}</div>
         </div>
