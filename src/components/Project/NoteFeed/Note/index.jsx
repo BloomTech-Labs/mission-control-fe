@@ -32,6 +32,10 @@ const Note = ({ note, user, projectManagers, projectId }) => {
   const displayedAttendees = attendedBy.filter(
     person => person.email !== user.email
   );
+
+  //MAKE EDDIT MUTATION
+
+
   return isEditing ? (
     <NoteEditor
       projectId={projectId}
