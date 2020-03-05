@@ -25,7 +25,7 @@ export const HEADER_QUERY = gql`
 `;
 
 export const NOTE_FEED_QUERY = gql`
-  query NoteFeed($id: ID!) {
+  query NoteFeed($id: ID!, $privatePerm: Boolean) {
     me {
       id
       email
@@ -37,7 +37,7 @@ export const NOTE_FEED_QUERY = gql`
         email
         avatar
       }
-      notes(orderBy: updatedAt_DESC) {
+      notes(orderBy: updatedAt_DESC, privatePerm: $privatePerm) {
         id
         topic
         content
@@ -206,6 +206,26 @@ export const DELETE_LABEL = gql`
   mutation DeleteLabelMutation($id: ID!) {
     deleteLabel(id: $id) {
       id
+    }
+  }
+`;
+
+export const GET_USER_ROLE = gql`
+  query GetUserRole($email: String!) {
+    person(email: "missioncontrolpm@gmail.com") {
+      name
+      role {
+        name
+        privateNote
+      }
+    }
+  }
+`;
+
+export const TEST_QUERY = gql`
+  query {
+    me {
+      email
     }
   }
 `;
