@@ -43,9 +43,19 @@ export const DUMMY_QUERY = gql`
   }
 `;
 
-export const SUBSCRIPTION = gql`
-  subscription {
+export const LABELS_SUBSCRIPTION = gql`
+  subscription labelSubscription {
     newLabels {
+      id
+      name
+      color
+    }
+  }
+`;
+
+export const LABELS_QUERY = gql`
+  query labelQuery {
+    labels {
       id
       name
       color
