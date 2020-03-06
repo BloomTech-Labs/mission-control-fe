@@ -1,3 +1,12 @@
 .searchResult {
-  width: 30%;
+  width: 70%;
+}
+
+.repoAlignment {
+  display: flex;
+  .buttonAlign {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
