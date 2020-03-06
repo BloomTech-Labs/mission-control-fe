@@ -62,3 +62,27 @@ export const LABELS_QUERY = gql`
     }
   }
 `;
+
+export const PROGRAM_SUBSCRIPTION = gql`
+  subscription programsubscription {
+    programs {
+      id
+      name
+      columns {
+        id
+        name
+        labels {
+          id
+          name
+          color
+        }
+      }
+      products {
+        projects {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
