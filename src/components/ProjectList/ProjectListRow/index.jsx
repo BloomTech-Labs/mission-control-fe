@@ -5,7 +5,7 @@ import mapTime from '../../../mappers/mapTime';
 import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
 import LabelDropdown from '../LabelDropdown/index';
 
-import { title, rtd } from './projectListRow.module.scss';
+import { title, rtd, statusColumns } from './projectListRow.module.scss';
 
 const ProjectRow = ({ project, status }) => {
   const statusLabelsArr = [];
@@ -33,7 +33,7 @@ const ProjectRow = ({ project, status }) => {
         </td>
         {status.length > 0 && statusLabelsArr.length > 0
           ? statusLabelsArr.map(statusData => (
-              <td key={statusData.id}>
+              <td key={statusData.id} className={statusColumns}>
                 <LabelDropdown labels={statusData.labels} />
               </td>
             ))
