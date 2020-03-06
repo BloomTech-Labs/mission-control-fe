@@ -1,40 +1,20 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
-import React, { useState, useCallback, useContext } from 'react';
+import React, { useState } from 'react';
 import { bottomLinks, modalStyle, buttonStyle } from './Settings.module.scss';
 import { Button, Header, Modal } from 'semantic-ui-react';
-import { useMutation } from 'urql';
-import { CREATE_LABEL as createLabel } from '../Project/Queries';
 
-import LabelList from './LabelList';
-import CreateLabelForm from './CreateLabel';
-import { LabelContext } from '../../contexts/LabelContext';
+import ColumnSettings from './ColumnSettings/index';
 
 const Settings = () => {
-  const { label, setLabel } = useContext(LabelContext);
-
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
 
   const handleClose = () => setOpen(false);
 
-  const [, executeCreate] = useMutation(createLabel);
-
   const toggle = () => {
     handleClose();
-    setLabel({ id: '', color: '', name: '' });
   };
-
-  const disableTer = !label.color || !label.name;
-
-  const handleSubmit = useCallback(
-    e => {
-      e.preventDefault();
-      executeCreate(label);
-      toggle();
-    },
-    [executeCreate, label, toggle]
-  );
 
   return (
     <div className={bottomLinks}>
@@ -47,19 +27,12 @@ const Settings = () => {
         <Modal.Header>Settings</Modal.Header>
         <Modal.Content>
           <Modal.Description>
-            <Header>Create a Label</Header>
-            <CreateLabelForm toggle={toggle} />
-            <LabelList />
+            <Header>Edit Column View</Header>
+            <ColumnSettings />
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions className={buttonStyle}>
-          <Button
-            className="ui approve button"
-            disabled={disableTer}
-            onClick={handleSubmit}
-          >
-            Save
-          </Button>
+          <Button className="ui approve button">Save</Button>
           <Button className="ui cancel button" onClick={toggle}>
             Cancel
           </Button>
