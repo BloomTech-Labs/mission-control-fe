@@ -4,9 +4,20 @@
 
 .repoAlignment {
   display: flex;
-  .buttonAlign {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+    .button {
+      font-size: .8rem;
+      text-align: center;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      color:white;
+      background-color: red;
+      outline: none;
+    }
+}
+
+.buttonAlign {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

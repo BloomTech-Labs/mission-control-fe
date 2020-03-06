@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
-import { Grid, Button, Modal, Input, List, Icon } from 'semantic-ui-react';
-import { searchResult, repoAlignment, buttonAlign } from './Repos.module.scss';
+import { Grid, Button, Modal, Input, List } from 'semantic-ui-react';
+import {
+  searchResult,
+  repoAlignment,
+  buttonAlign,
+  button,
+} from './Repos.module.scss';
 import repos from './repoData';
 
 const ReposList = () => {
@@ -32,9 +37,11 @@ const ReposList = () => {
   };
 
   const deleteRepo = e => {
-    setRepoSelect(
-      repoSelected.filter(selected => selected.name !== e.target.value)
+    e.stopPropagation();
+    const removeRepo = repoSelected.filter(
+      selected => selected.name !== e.target.value
     );
+    setRepoSelect(removeRepo);
   };
 
   const { open, dimmer } = state;
@@ -46,7 +53,7 @@ const ReposList = () => {
       <Modal dimmer={dimmer} open={open} onClose={close}>
         <Modal.Header>Add Your GitHub Repos</Modal.Header>
         {/* add grid here to show two columns */}
-        <Modal.Content input>
+        <Modal.Content>
           <Modal.Description>
             <p>Search for exisitng Repos</p>
           </Modal.Description>
@@ -54,7 +61,7 @@ const ReposList = () => {
             <Grid.Row>
               <Grid.Column width={8}>
                 <Input
-                  icon="user"
+                  icon="github"
                   placeholder="Search..."
                   value={query}
                   onChange={handleChange}
@@ -63,9 +70,16 @@ const ReposList = () => {
                 <List selection verticalAlign="middle" className={searchResult}>
                   {searchResults.map(repo => (
                     <List.Item
-                      onClick={e => setRepoSelect([...repoSelected, repo])}
+                      onClick={() => setRepoSelect([...repoSelected, repo])}
                     >
-                      <List.Content>{repo.name}</List.Content>
+                      <List.Content className={buttonAlign} icon="github">
+                        {repo.name}
+                        <List.Icon
+                          name="github"
+                          size="small"
+                          verticalAlign="middle"
+                        />
+                      </List.Content>
                     </List.Item>
                   ))}
                 </List>
@@ -77,13 +91,16 @@ const ReposList = () => {
                     <List.Item className={repoAlignment}>
                       <List.Content className={buttonAlign}>
                         {repo.name}
-                        <Button
+                        <button
+                          type="submit"
+                          className={button}
                           value={repo.name}
-                          negative
-                          circular
-                          icon="delete"
+                          // negative
+                          // circular
                           onClick={deleteRepo}
-                        />
+                        >
+                          X
+                        </button>
                       </List.Content>
                     </List.Item>
                   ))}
