@@ -18,7 +18,7 @@ export const HEADER_QUERY = gql`
   query HeaderView($id: ID!) {
     project(id: $id) {
       id
-      projectState
+      projectActive
       name
     }
   }
@@ -183,8 +183,8 @@ export const DELETE_NOTE = gql`
 `;
 
 export const CREATE_LABEL = gql`
-  mutation CreateLabelMutation($name: String!, $color: String!) {
-    createLabel(name: $name, color: $color) {
+  mutation CreateLabelMutation($id: ID!, $name: String!, $color: String!) {
+    createLabel(id: $id, name: $name, color: $color) {
       name
       color
       id
@@ -202,6 +202,14 @@ export const UPDATE_LABEL = gql`
   }
 `;
 
+export const DELETE_LABEL = gql`
+  mutation DeleteLabelMutation($id: ID!) {
+    deleteLabel(id: $id) {
+      id
+    }
+  }
+`;
+
 export const GET_USER_ROLE = gql`
   query GetUserRole($email: String!) {
     person(email: "missioncontrolpm@gmail.com") {
@@ -210,6 +218,15 @@ export const GET_USER_ROLE = gql`
         name
         privateNote
       }
+    }
+  }
+`;
+
+export const CREATE_COLUMN = gql`
+  mutation createColumnMutation($id: ID!, $name: String!) {
+    createColumn(id: $id, name: $name) {
+      id
+      name
     }
   }
 `;

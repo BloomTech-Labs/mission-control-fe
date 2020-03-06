@@ -5,74 +5,10 @@
   margin-top: 10px !important;
 }
 
-.settingsButton {
-  padding: 0.5rem 1rem;
-  -webkit-transition: background 0.15s ease-in-out;
-  transition: background 0.15s ease-in-out;
-  -webkit-transition: color 0.1s ease-in-out;
-  transition: color 0.1s ease-in-out;
-  background: $accent;
-  border: 1px solid $accent;
-  border-radius: 3px;
-  color: $light;
-  font-family: $noto;
-  font-size: 1.2rem;
-  width: 8rem;
-  margin: 0 auto;
-
-  a {
-    color: $light;
-  }
-}
-
-.settingsButton:hover {
-  background: transparent;
-  color: $accent;
-  cursor: pointer;
-
-  a {
-    color: $accent;
-  }
-}
-
-.labelDesign {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding-top: 2px;
-  margin-bottom: 10px;
-  width: 100px;
-  height: 20px;
-  border-radius: 25px;
-  font-size: 0.8rem;
-}
-
-.labelPreviewDesign {
-  color: white;
-  text-align: center;
-  padding-top: 2px;
-  margin-bottom: 10px;
-  width: 120px;
-  height: 20px;
-  border-radius: 25px;
-  font-size: 0.8rem;
-}
-
 .modalStyle {
   position: relative !important;
   height: 325px !important;
   width: 500px !important;
-}
-
-.editModalStyle {
-  position: relative !important;
-  height: 225px !important;
-  width: 350px !important;
-}
-
-.labelListStyle {
-  position: relative;
-  height: 25px;
 }
 
 .buttonStyle {

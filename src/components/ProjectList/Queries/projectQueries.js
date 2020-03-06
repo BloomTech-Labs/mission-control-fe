@@ -2,32 +2,37 @@ import gql from 'graphql-tag';
 
 export const PROJECT_LIST_VIEW = gql`
   query {
-    projects {
-      id
+    programs {
       name
-      updatedAt
-      notes(orderBy: updatedAt_DESC) {
+      id
+      columns {
+        name
         id
-        updatedAt
-      }
-      projectActive
-      product {
-        grades {
-          grade
+        labels {
           name
-          link
+          color
+          id
         }
       }
-    }
-  }
-`;
-
-export const LABELS_QUERY = gql`
-  query {
-    labels {
-      id
-      name
-      color
+      products {
+        projects {
+          id
+          name
+          updatedAt
+          notes(orderBy: updatedAt_DESC) {
+            id
+            updatedAt
+          }
+          projectActive
+          product {
+            grades {
+              grade
+              name
+              link
+            }
+          }
+        }
+      }
     }
   }
 `;
@@ -35,5 +40,15 @@ export const LABELS_QUERY = gql`
 export const DUMMY_QUERY = gql`
   query {
     info
+  }
+`;
+
+export const SUBSCRIPTION = gql`
+  subscription {
+    newLabels {
+      id
+      name
+      color
+    }
   }
 `;
