@@ -86,3 +86,21 @@ export const PROGRAM_SUBSCRIPTION = gql`
     }
   }
 `;
+
+export const LABEL_LIST_VIEW = gql`
+  query {
+    programs {
+      name
+      id
+      columns {
+        name
+        id
+        labels {
+          name
+          color
+          id
+        }
+      }
+    }
+  }
+`;
