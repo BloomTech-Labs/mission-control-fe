@@ -9,7 +9,7 @@ import {
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 import { cacheExchange } from '@urql/exchange-graphcache';
 import { getToken } from '../utils';
-import { LABELS_QUERY } from '../components/ProjectList/Queries/projectQueries';
+import { PROJECT_LIST_VIEW } from '../components/ProjectList/Queries/projectQueries';
 
 // The @urql/exchange-graphcache dependency exposes a normalized cache
 // by default, the urql client comes pre-configured with a document cache.
@@ -17,7 +17,7 @@ const cache = cacheExchange({
   updates: {
     Mutation: {
       post: ({ post }, _args, cache) => {
-        cache.updateQuery({ query: LABELS_QUERY }, data => {
+        cache.updateQuery({ query: PROJECT_LIST_VIEW }, data => {
           console.log('URQL data', data);
           if (data !== null) {
             data.labels.unshift(post);
@@ -31,7 +31,7 @@ const cache = cacheExchange({
     },
     Subscription: {
       newLabel: ({ newLabel }, _args, cache) => {
-        cache.updateQuery({ query: LABELS_QUERY }, data => {
+        cache.updateQuery({ query: PROJECT_LIST_VIEW }, data => {
           console.log('URQL data', data);
           if (data !== null) {
             data.labels.unshift(newLabel);
