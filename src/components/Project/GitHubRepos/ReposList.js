@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Button, Modal, Input, List } from 'semantic-ui-react';
-// import {} from './Repos.module.scss';
+import { Grid, Button, Modal, Input, List, Icon } from 'semantic-ui-react';
+import { searchResult, repoAlignment, buttonAlign } from './Repos.module.scss';
 import repos from './repoData';
 
 const ReposList = () => {
   const [state, setState] = useState({ open: false });
   const [searchResults, setSearchResults] = useState([]);
   const [query, setQuery] = useState('');
+  const [repoSelected, setRepoSelect] = useState([]);
 
   const handleSearch = e => {
     e.stopPropagation();
@@ -30,6 +31,12 @@ const ReposList = () => {
     });
   };
 
+  const deleteRepo = e => {
+    setRepoSelect(
+      repoSelected.filter(selected => selected.name !== e.target.value)
+    );
+  };
+
   const { open, dimmer } = state;
 
   return (
@@ -38,26 +45,52 @@ const ReposList = () => {
 
       <Modal dimmer={dimmer} open={open} onClose={close}>
         <Modal.Header>Add Your GitHub Repos</Modal.Header>
+        {/* add grid here to show two columns */}
         <Modal.Content input>
           <Modal.Description>
             <p>Search for exisitng Repos</p>
           </Modal.Description>
-          <div>
-            <Input
-              icon="user"
-              placeholder="Search..."
-              value={query}
-              onChange={handleChange}
-            />
-            <Button onClick={handleSearch}>Search</Button>
-          </div>
-          <List selection verticalAlign="middle">
-            {searchResults.map(repo => (
-              <List.Item>
-                <List.Content>{repo.name}</List.Content>
-              </List.Item>
-            ))}
-          </List>
+          <Grid>
+            <Grid.Row>
+              <Grid.Column width={8}>
+                <Input
+                  icon="user"
+                  placeholder="Search..."
+                  value={query}
+                  onChange={handleChange}
+                />
+                <Button onClick={handleSearch}>Search</Button>
+                <List selection verticalAlign="middle" className={searchResult}>
+                  {searchResults.map(repo => (
+                    <List.Item
+                      onClick={e => setRepoSelect([...repoSelected, repo])}
+                    >
+                      <List.Content>{repo.name}</List.Content>
+                    </List.Item>
+                  ))}
+                </List>
+              </Grid.Column>
+              <Grid.Column width={8}>
+                <h3>Your repos selected</h3>
+                <List selection verticalAlign="middle" className={searchResult}>
+                  {repoSelected.map(repo => (
+                    <List.Item className={repoAlignment}>
+                      <List.Content className={buttonAlign}>
+                        {repo.name}
+                        <Button
+                          value={repo.name}
+                          negative
+                          circular
+                          icon="delete"
+                          onClick={deleteRepo}
+                        />
+                      </List.Content>
+                    </List.Item>
+                  ))}
+                </List>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
         </Modal.Content>
         <Modal.Actions>
           <Button color="black" onClick={close}>
