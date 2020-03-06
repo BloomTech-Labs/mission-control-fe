@@ -17,8 +17,8 @@ const ColumnSettings = () => {
       <div className={columnEditCont}>
         {columns
           ? columns.map(column => (
-              <div>
-                <EditColumns column={column} key={column.id} />
+              <div key={column.id}>
+                <EditColumns column={column} />
               </div>
             ))
           : ' '}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { rtd } from './projectListContainer.module.scss';
+import { rtd, rtc } from './projectListContainer.module.scss';
 
 const ProjectListContainer = ({ children, status }) => {
   const statusTitleArr = [];
@@ -18,7 +18,9 @@ const ProjectListContainer = ({ children, status }) => {
             <th className={rtd}>Last Updated</th>
             {status.length > 0 && statusTitleArr.length > 0
               ? statusTitleArr.map(statusData => (
-                  <th key={statusData.id}>{statusData.name}</th>
+                  <th className={rtc} key={statusData.id}>
+                    {statusData.name}
+                  </th>
                 ))
               : ''}
           </tr>

@@ -1,21 +1,25 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
+import { labelDesign, labels } from './LabelDropdown.module.scss';
 
 const LabelDropdown = props => {
   const labels = props.labels.map(label => ({
     key: label.name,
     value: label.color,
-    text: label.name,
+    text: (
+      <div className={labelDesign} style={{ background: `${label.color}` }}>
+        {label.name}
+      </div>
+    ),
+    content: (
+      <div className={labelDesign} style={{ background: `${label.color}` }}>
+        {label.name}
+      </div>
+    ),
   }));
 
   return (
-    <Dropdown
-      placeholder="Select Label"
-      fluid
-      search
-      selection
-      options={labels}
-    />
+    <Dropdown className={labels} placeholder="Select Label" options={labels} />
   );
 };
 
