@@ -43,12 +43,64 @@ export const DUMMY_QUERY = gql`
   }
 `;
 
-export const SUBSCRIPTION = gql`
-  subscription {
+export const LABELS_SUBSCRIPTION = gql`
+  subscription labelSubscription {
     newLabels {
       id
       name
       color
+    }
+  }
+`;
+
+export const LABELS_QUERY = gql`
+  query labelQuery {
+    labels {
+      id
+      name
+      color
+    }
+  }
+`;
+
+export const PROGRAM_SUBSCRIPTION = gql`
+  subscription programsubscription {
+    programs {
+      id
+      name
+      columns {
+        id
+        name
+        labels {
+          id
+          name
+          color
+        }
+      }
+      products {
+        projects {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
+
+export const LABEL_LIST_VIEW = gql`
+  query {
+    programs {
+      name
+      id
+      columns {
+        name
+        id
+        labels {
+          name
+          color
+          id
+        }
+      }
     }
   }
 `;
