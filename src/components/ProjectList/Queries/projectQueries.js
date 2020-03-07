@@ -10,13 +10,9 @@ export const PROJECT_LIST_VIEW = gql`
         id
         updatedAt
       }
-      projectStatus {
-        id
-        name
-        color
-      }
-      product{
-        grades{
+      projectActive
+      product {
+        grades {
           grade
           name
           link
