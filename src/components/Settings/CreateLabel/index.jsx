@@ -22,6 +22,7 @@ const CreateLabelForm = ({ column }) => {
   const handleSubmit = e => {
     e.preventDefault();
     executeCreate(label);
+    setLabel({ id: '', name: '', color: '' });
     console.log(label);
   };
 
