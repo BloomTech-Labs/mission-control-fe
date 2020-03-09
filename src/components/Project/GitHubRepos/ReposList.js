@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useQuery } from 'urql';
 import { Grid, Button, Modal, Input, List } from 'semantic-ui-react';
 import {
   searchResult,
@@ -6,26 +7,36 @@ import {
   buttonAlign,
   button,
 } from './Repos.module.scss';
-import repos from './repoData';
+// import repos from './repoData';
+import { GET_GITHUB_REPOS as query } from '../Queries';
+
+const initialQuery = '*///*oops'
 
 const ReposList = () => {
   const [state, setState] = useState({ open: false });
   const [searchResults, setSearchResults] = useState([]);
-  const [query, setQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [repoSelected, setRepoSelect] = useState([]);
-
+  const [results, executeQuery] = useQuery({
+    query,
+    variables: { search: searchQuery },
+  });
+  console.log({ results });
   const handleSearch = e => {
     e.stopPropagation();
-    setSearchResults(repos.filter(repo => repo.name.includes(query)));
+    executeQuery({
+      requestPolicy: 'network-only',
+    });
+    console.log({ results });
+    setSearchResults(results.data.GithubRepos);
   };
 
   const handleChange = e => {
-    setQuery(e.target.value);
+    setSearchQuery(e);
   };
 
-  const show = dimmer => () => {
+  const show = () => () => {
     setState({
-      dimmer,
       open: true,
     });
   };
@@ -44,13 +55,14 @@ const ReposList = () => {
     setRepoSelect(removeRepo);
   };
 
-  const { open, dimmer } = state;
+  const { data, fetching, error } = results;
+  const { open } = state;
 
   return (
     <div>
       <Button onClick={show(true)}>Add Your GitHub Repos</Button>
 
-      <Modal dimmer={dimmer} open={open} onClose={close}>
+      <Modal open={open} onClose={close}>
         <Modal.Header>Add Your GitHub Repos</Modal.Header>
         {/* add grid here to show two columns */}
         <Modal.Content>
@@ -63,25 +75,29 @@ const ReposList = () => {
                 <Input
                   icon="github"
                   placeholder="Search..."
-                  value={query}
-                  onChange={handleChange}
+                  value={searchQuery}
+                  onChange={e => handleChange(e.target.value)}
                 />
                 <Button onClick={handleSearch}>Search</Button>
                 <List selection verticalAlign="middle" className={searchResult}>
-                  {searchResults.map(repo => (
-                    <List.Item
-                      onClick={() => setRepoSelect([...repoSelected, repo])}
-                    >
-                      <List.Content className={buttonAlign} icon="github">
-                        {repo.name}
-                        <List.Icon
-                          name="github"
-                          size="small"
-                          verticalAlign="middle"
-                        />
-                      </List.Content>
-                    </List.Item>
-                  ))}
+                  {!fetching ? (
+                    searchResults.map(repo => (
+                      <List.Item
+                        onClick={() => setRepoSelect([...repoSelected, repo])}
+                      >
+                        <List.Content className={buttonAlign} icon="github">
+                          {repo.name}
+                          <List.Icon
+                            name="github"
+                            size="small"
+                            verticalAlign="middle"
+                          />
+                        </List.Content>
+                      </List.Item>
+                    ))
+                  ) : (
+                    <h3>Searching...</h3>
+                  )}
                 </List>
               </Grid.Column>
               <Grid.Column width={8}>
