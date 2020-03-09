@@ -34,33 +34,6 @@ const Note = ({ note, user, projectManagers, projectId }) => {
     person => person.email !== user.email
   );
 
-  //MAKE EDDIT MUTATION
-//  console.log(note.privateNote);
-  const addTodo = `
-  mutation AddTodo($text: String!) {
-    addTodo(text: $text) {
-      id
-      text
-    }
-  }
-  `;
-
-  const TodoForm = () => {
-    const [addTodoResult, addTodo] = useMutation(addTodo);
-    if (addTodoResult.error) {
-      return 'Oh no!';
-    }
-  }
-
-  const add = () => {
-  addTodo({ text: 'learn urql' })
-    .then(result => {
-      // You can do something here or use the result object on the useMutation
-    })
-    .catch(error => {
-      // You can do something here if it throws
-    })
-  } // some error here need to find before it can be linked to button
 
   return isEditing ? (
     <NoteEditor
