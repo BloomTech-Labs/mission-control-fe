@@ -21,14 +21,6 @@ export const PROJECT_LIST_VIEW = gql`
         }
       }
     }
-    SparkyBoy(owner: "Lambda-School-Labs", name:"mission-control-be"){
-      oid
-      message
-      additions
-      deletions
-      changedFiles
-      committedDate
-    }
   }
 `;
 
@@ -49,8 +41,8 @@ export const DUMMY_QUERY = gql`
 `;
 
 export const SPARKLINE = gql`
-  query{
-  SparkyBoy(owner: "Lambda-School-Labs", name:"mission-control-be"){
+  query Sparkline($name:String!) {
+  SparkyBoy(owner: "Lambda-School-Labs", name:$name){
     oid
     message
     additions
