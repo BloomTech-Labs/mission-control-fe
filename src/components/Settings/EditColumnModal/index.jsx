@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Button, Modal } from 'semantic-ui-react';
 import EditIcon from '@material-ui/icons/Edit';
 import { LabelContext } from '../../../contexts/LabelContext';

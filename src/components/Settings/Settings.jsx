@@ -32,7 +32,9 @@ const Settings = () => {
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions className={buttonStyle}>
-          <Button className="ui approve button">Save</Button>
+          <Button className="ui approve button" onClick={toggle}>
+            Save
+          </Button>
           <Button className="ui cancel button" onClick={toggle}>
             Cancel
           </Button>
