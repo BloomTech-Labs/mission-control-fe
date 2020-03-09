@@ -18,7 +18,6 @@ export const HEADER_QUERY = gql`
   query HeaderView($id: ID!) {
     project(id: $id) {
       id
-      
       name
     }
   }
@@ -29,7 +28,6 @@ export const NOTE_FEED_QUERY = gql`
     me {
       id
       email
-
     }
     project(id: $id) {
       projectManagers {
@@ -129,7 +127,7 @@ export const CREATE_NOTE = gql`
     $content: String!
     $attendedBy: [String!]!
     $rating: Int!
-    $privateNote:Boolean
+    $privateNote: Boolean
     $notification: Boolean
   ) {
     createNote(
@@ -226,6 +224,15 @@ export const TEST_QUERY = gql`
   query {
     me {
       email
+    }
+  }
+`;
+
+export const GET_GITHUB_REPOS = gql`
+  query githubrepos($search: String!, $org: String) {
+    GithubRepos(search: $search, org: $org) {
+      name
+      id
     }
   }
 `;
