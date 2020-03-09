@@ -1,8 +1,12 @@
 import React from 'react';
 import { Repo, Grade } from './letterGrade.module.scss';
+
+import Sparkline from '../GitHub/Sparkline.jsx'
+
 const LetterGrade = ({ repo, color }) => {
   return (
-    <p className={Repo}>
+    <>
+    <div className={Repo}>
       {repo.name}:{' '}
       <span
         style={{
@@ -17,7 +21,11 @@ const LetterGrade = ({ repo, color }) => {
           {repo.grade}
         </a>
       </span>
-    </p>
+      <div>
+      <Sparkline name={repo.name} />
+      </div>
+    </div>
+  </>
   );
 };
 
