@@ -56,9 +56,9 @@ const Project = props => {
     }
   }, [data]);
 
-  // console.log(user);
-  // console.log(killLoop);
-  // console.log('log');
+  console.log(user);
+  console.log(killLoop);
+  console.log('log');
 
   return data ? (
     <div className={parentProjectContainer}>
@@ -83,7 +83,7 @@ const Project = props => {
               />
             ) : null}
 
-            {/*<NotesFeed projectId={id} privateBol={user} />*/}
+            <NotesFeed projectId={id} privateBol={user} />
           </div>
           <div className={teamContainer}>
             <Team projectId={id} />
