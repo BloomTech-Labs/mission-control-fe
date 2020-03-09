@@ -4,21 +4,24 @@ import { SPARKLINE as query } from '../Queries/projectQueries';
 
 import { Sparkyline } from './Sparkline.module.scss'
 
+import SparkyChart from './Charts/SparkyChart'
+
 const Sparkline = ({ name }) => {
   
   const [state] = useQuery({ query, variables:{name: name} });
 
   const { data } = state;
 
-  console.log(data)
+ 
 
-  if (state.isFetching){
+  if (state.fetching){
       return <p>Loading Sparkline...</p>
-  }
+  } else
+
 
   return (
     <div className={Sparkyline}>
-        Sparkline
+      <SparkyChart data={data.SparkyBoy}/>
     </div>
   );
 };
