@@ -240,6 +240,14 @@ export const UPDATE_COLUMN = gql`
   }
 `;
 
+export const DELETE_COLUMN = gql`
+  mutation DeleteColumnMutation($id: ID!) {
+    deleteColumn(id: $id) {
+      id
+    }
+  }
+`;
+
 export const TEST_QUERY = gql`
   query {
     me {
