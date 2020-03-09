@@ -50,14 +50,14 @@ const Project = (props) => {
     if(result.data) {
       setUser(result.data.person.role.privateNote);
 
-      let hold = killLoop;
-      setKillLoop(hold + 1);
+      // let hold = killLoop;
+      // setKillLoop(hold + 1);
     }
-  },[data])
+  },[result.data])
 
-  console.log(user);
-  console.log(killLoop);
-  console.log("log");
+  // console.log(user);
+  // console.log(killLoop);
+  // console.log("log");
 
 
   return data ? (
@@ -72,7 +72,7 @@ const Project = (props) => {
             <Grade ccrepos={data.project.product.grades} />
           </div>
             <h2>Project Notes</h2>
-            {user == true ?
+            {user === true ?
               <NoteEditor
                 executeQuery={executeQuery}
                 user={data.me}
