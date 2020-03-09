@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { columnEditCont } from './ColumnSettings.module.scss';
 import { useQuery, useSubscription } from 'urql';
 import {
-  PROJECT_LIST_VIEW as query,
   LABEL_LIST_VIEW,
   PROGRAM_SUBSCRIPTION,
 } from '../../ProjectList/Queries/projectQueries';
@@ -11,7 +10,6 @@ import CreateColumn from '../CreateColumn/index';
 
 const ColumnSettings = () => {
   useSubscription({ query: PROGRAM_SUBSCRIPTION });
-  // const [state] = useQuery({ query, requestPolicy: 'cache-and-network' });
 
   const [state] = useQuery({
     query: LABEL_LIST_VIEW,

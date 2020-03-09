@@ -15,8 +15,6 @@ const LabelList = ({ column }) => {
   const { data } = state;
   const [id, setId] = useState(-1);
 
-  // console.log('column label id', id);
-  // console.log('column id', column.id);
   console.log('data program', data && data.programs[0].columns);
   useEffect(() => {
     setId(data && data.programs[0].columns.findIndex(c => c.id == column.id));
