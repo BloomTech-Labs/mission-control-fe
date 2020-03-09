@@ -1,5 +1,6 @@
 import React from 'react';
 import StarRatings from 'react-star-ratings';
+import { useMutation } from 'urql';
 
 import EditIcon from '@material-ui/icons/Edit';
 import { Label } from 'semantic-ui-react';
@@ -32,6 +33,35 @@ const Note = ({ note, user, projectManagers, projectId }) => {
   const displayedAttendees = attendedBy.filter(
     person => person.email !== user.email
   );
+
+  //MAKE EDDIT MUTATION
+//  console.log(note.privateNote);
+  const addTodo = `
+  mutation AddTodo($text: String!) {
+    addTodo(text: $text) {
+      id
+      text
+    }
+  }
+  `;
+
+  const TodoForm = () => {
+    const [addTodoResult, addTodo] = useMutation(addTodo);
+    if (addTodoResult.error) {
+      return 'Oh no!';
+    }
+  }
+
+  const add = () => {
+  addTodo({ text: 'learn urql' })
+    .then(result => {
+      // You can do something here or use the result object on the useMutation
+    })
+    .catch(error => {
+      // You can do something here if it throws
+    })
+  } // some error here need to find before it can be linked to button
+
   return isEditing ? (
     <NoteEditor
       projectId={projectId}
@@ -64,6 +94,8 @@ const Note = ({ note, user, projectManagers, projectId }) => {
               starDimension="20px"
               starSpacing=".5px"
             />
+            {note.privateNote ? "Private Note" : "PUBLIC NOTE!!!"}
+            <button>{note.id}</button>
           </div>
           <div className={noteBody}>{content}</div>
         </div>
