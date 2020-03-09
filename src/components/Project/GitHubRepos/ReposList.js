@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from 'urql';
 import { Grid, Button, Modal, Input, List } from 'semantic-ui-react';
 import {
@@ -9,29 +9,32 @@ import {
 } from './Repos.module.scss';
 // import repos from './repoData';
 import { GET_GITHUB_REPOS as query } from '../Queries';
+import getColor from '../../../utils/getColorFromCCGrade';
+import Grade from '../Grade';
 
-const initialQuery = '*///*oops'
+const initialQuery = '';
 
 const ReposList = () => {
   const [state, setState] = useState({ open: false });
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [repoSelected, setRepoSelect] = useState([]);
+  const [githubRepos, setGithubRepos] = useState([]);
   const [results, executeQuery] = useQuery({
     query,
     variables: { search: searchQuery },
-    // pause: true,
+    pause: true,
+    requestPolicy: 'network-only',
   });
-  console.log(1, { results });
-  const handleSearch = e => {
-    e.stopPropagation();
-    executeQuery();
-    console.log(2, { results });
-    setSearchResults(results.data.GithubRepos);
-  };
+
+  useEffect(() => {
+    setSearchResults(results.data ? results.data.GithubRepos : []);
+  }, [results]);
+
+  console.log(1, { repoSelected });
 
   const handleChange = e => {
-    setSearchQuery(e);
+    setSearchQuery(e.target.value);
   };
 
   const show = () => () => {
@@ -44,6 +47,19 @@ const ReposList = () => {
     setState({
       open: false,
     });
+    setSearchResults([]);
+    setSearchQuery(initialQuery);
+    setRepoSelect([]);
+  };
+
+  const handleAddRepos = () => {
+    const ghNames = githubRepos.map(repo => (repo.name ? repo.name : ''));
+    const filterRepos = repoSelected.filter(repo => {
+      if (!ghNames.includes(repo.name)) {
+        return repo;
+      }
+    });
+    setGithubRepos([...githubRepos, ...filterRepos]);
   };
 
   const deleteRepo = e => {
@@ -59,7 +75,7 @@ const ReposList = () => {
 
   return (
     <div>
-      <Button onClick={show(true)}>Add Your GitHub Repos</Button>
+      <Button onClick={show()}>Add Your GitHub Repos</Button>
 
       <Modal open={open} onClose={close}>
         <Modal.Header>Add Your GitHub Repos</Modal.Header>
@@ -71,18 +87,40 @@ const ReposList = () => {
           <Grid>
             <Grid.Row>
               <Grid.Column width={8}>
-                <Input
-                  icon="github"
-                  placeholder="Search..."
-                  value={searchQuery}
-                  onChange={e => handleChange(e.target.value)}
-                />
-                <Button onClick={handleSearch}>Search</Button>
+                <form
+                  onSubmit={e => {
+                    e.preventDefault();
+                    executeQuery();
+                  }}
+                >
+                  <Input
+                    icon="github"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={handleChange}
+                  />
+                  <Button type="submit">Search</Button>
+                </form>
                 <List selection verticalAlign="middle" className={searchResult}>
                   {!fetching ? (
                     searchResults.map(repo => (
                       <List.Item
-                        onClick={() => setRepoSelect([...repoSelected, repo])}
+                        key={repo.name}
+                        onClick={() =>
+                          setRepoSelect(
+                            repoSelected.includes(repo)
+                              ? repoSelected
+                              : [
+                                  ...repoSelected,
+                                  {
+                                    name: repo.name,
+                                    grade: 'a',
+                                    link:
+                                      'https://codeclimate.com/repos/5e619ee292b6f00107000693',
+                                  },
+                                ]
+                          )
+                        }
                       >
                         <List.Content className={buttonAlign} icon="github">
                           {repo.name}
@@ -102,23 +140,23 @@ const ReposList = () => {
               <Grid.Column width={8}>
                 <h3>Your repos selected</h3>
                 <List selection verticalAlign="middle" className={searchResult}>
-                  {repoSelected.map(repo => (
-                    <List.Item className={repoAlignment}>
-                      <List.Content className={buttonAlign}>
-                        {repo.name}
-                        <button
-                          type="submit"
-                          className={button}
-                          value={repo.name}
-                          // negative
-                          // circular
-                          onClick={deleteRepo}
-                        >
-                          X
-                        </button>
-                      </List.Content>
-                    </List.Item>
-                  ))}
+                  {repoSelected.map(repo => {
+                    return (
+                      <List.Item key={repo.name} className={repoAlignment}>
+                        <List.Content className={buttonAlign}>
+                          {repo.name}
+                          <button
+                            type="submit"
+                            className={button}
+                            value={repo.name}
+                            onClick={deleteRepo}
+                          >
+                            X
+                          </button>
+                        </List.Content>
+                      </List.Item>
+                    );
+                  })}
                 </List>
               </Grid.Column>
             </Grid.Row>
@@ -129,15 +167,21 @@ const ReposList = () => {
             Cancel
           </Button>
           <Button
-            disabled
+            disabled={!repoSelected.length}
             positive
             icon="checkmark"
             labelPosition="right"
             content="Save Repos"
-            onClick={close}
+            onClick={() => {
+              close();
+              handleAddRepos();
+            }}
           />
         </Modal.Actions>
       </Modal>
+      <div>
+        <Grade ccrepos={githubRepos} />
+      </div>
     </div>
   );
 };
