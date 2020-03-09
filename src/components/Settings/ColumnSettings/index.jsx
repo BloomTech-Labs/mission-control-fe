@@ -10,7 +10,6 @@ import CreateColumn from '../CreateColumn/index';
 
 const ColumnSettings = () => {
   useSubscription({ query: PROGRAM_SUBSCRIPTION });
-  // const [state] = useQuery({ query, requestPolicy: 'cache-and-network' });
 
   const [state] = useQuery({
     query: LABEL_LIST_VIEW,
