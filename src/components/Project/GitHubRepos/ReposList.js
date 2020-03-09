@@ -20,14 +20,13 @@ const ReposList = () => {
   const [results, executeQuery] = useQuery({
     query,
     variables: { search: searchQuery },
+    // pause: true,
   });
-  console.log({ results });
+  console.log(1, { results });
   const handleSearch = e => {
     e.stopPropagation();
-    executeQuery({
-      requestPolicy: 'network-only',
-    });
-    console.log({ results });
+    executeQuery();
+    console.log(2, { results });
     setSearchResults(results.data.GithubRepos);
   };
 
