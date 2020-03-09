@@ -18,7 +18,7 @@ import {
 } from './Project.module.scss';
 
 import { PROJECT_VIEW_QUERY as query } from './Queries';
-import { GET_USER_ROLE as userQuery } from './Queries';
+// import { GET_USER_ROLE as userQuery } from './Queries';
 
 const Project = (props) => {
 //  console.log(props)
@@ -72,7 +72,7 @@ const Project = (props) => {
             <Grade ccrepos={data.project.product.grades} />
           </div>
             <h2>Project Notes</h2>
-            {user == true ?
+            {user === true ?
               <NoteEditor
                 executeQuery={executeQuery}
                 user={data.me}
@@ -80,8 +80,8 @@ const Project = (props) => {
                 projectManagers={data.project.projectManagers}
               />
             : null }
-
-            <NotesFeed projectId={id} privateBol={user}/>
+s
+            <NotesFeed projectId={id} privateB={user}/>
           </div>
           <div className={teamContainer}>
             <Team projectId={id} />
