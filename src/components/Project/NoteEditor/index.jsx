@@ -86,6 +86,7 @@ const NoteEditor = ({
           topic,
           content,
           rating,
+          privateNote,
           // Extracts an array of emails from array of Person objects
           attendedBy: Array.from(attendees, ({ email }) => email),
           notification,
@@ -208,6 +209,7 @@ const NoteEditor = ({
                 )}
                 <SemanticButton
                   onClick={() => setPrivateNote(!privateNote)}
+                  type="button"
                 >
                   {privateNote ? "PRIVATE" : "PUBLIC"}
                 </SemanticButton>
