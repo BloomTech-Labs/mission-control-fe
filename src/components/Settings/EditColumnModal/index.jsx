@@ -7,6 +7,7 @@ import { useMutation } from 'urql';
 import CreateLabel from '../CreateLabel/index';
 import LabelList from '../LabelList/index';
 import { UPDATE_COLUMN } from '../../Project/Queries/index';
+import DeleteColumn from '../DeleteColumn';
 
 const EditColumnModal = ({ column }) => {
   const [updateColumn, setUpdateColumn] = useState({
@@ -43,10 +44,13 @@ const EditColumnModal = ({ column }) => {
       open={open}
       onClose={toggle}
       trigger={
-        <p onClick={handleOpen}>
-          {' '}
-          {column.name} <EditIcon />
-        </p>
+        <div>
+          <p>
+            {' '}
+            {column.name} <EditIcon onClick={handleOpen} />{' '}
+            <DeleteColumn column={column} />
+          </p>
+        </div>
       }
       className={modalStyle}
     >
