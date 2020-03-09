@@ -80,7 +80,6 @@ const Project = (props) => {
                 projectManagers={data.project.projectManagers}
               />
             : null }
-s
             <NotesFeed projectId={id} privateB={user}/>
           </div>
           <div className={teamContainer}>
