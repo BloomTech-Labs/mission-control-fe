@@ -4,7 +4,7 @@ import { labelDesign } from './LabelDropdown.module.scss';
 
 const LabelDropdown = props => {
   const labels = props.labels.map(label => ({
-    key: label.name,
+    key: label.id,
     value: label.color,
     text: (
       <div className={labelDesign} style={{ background: `${label.color}` }}>
