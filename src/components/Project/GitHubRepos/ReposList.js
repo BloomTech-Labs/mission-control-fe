@@ -7,9 +7,7 @@ import {
   buttonAlign,
   button,
 } from './Repos.module.scss';
-// import repos from './repoData';
 import { GET_GITHUB_REPOS as query } from '../Queries';
-import getColor from '../../../utils/getColorFromCCGrade';
 import Grade from '../Grade';
 
 const initialQuery = '';
