@@ -4,7 +4,6 @@ import mapTime from '../../../mappers/mapTime';
 import { useQuery } from 'urql';
 import { LABELS_QUERY as query } from '../Queries/projectQueries';
 import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
-import SparklineContainer from '../GitHub/SparklineContainer.jsx';
 import { title, rtd, rtc } from './projectListRow.module.scss';
 import { labelPreviewDesign } from '../../Settings/Settings.module.scss';
 
@@ -20,8 +19,6 @@ const ProjectRow = ({ project, sparkline }) => {
         </Link>
         <LetterGradeContainer
           ccrepos={project.product.grades}
-        />
-        <SparklineContainer sparkline={sparkline}
         />
       </td>
       <td className={rtd}>
