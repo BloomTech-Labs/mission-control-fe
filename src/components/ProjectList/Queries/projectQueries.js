@@ -21,6 +21,14 @@ export const PROJECT_LIST_VIEW = gql`
         }
       }
     }
+    SparkyBoy(owner: "Lambda-School-Labs", name:"mission-control-be"){
+      oid
+      message
+      additions
+      deletions
+      changedFiles
+      committedDate
+    }
   }
 `;
 

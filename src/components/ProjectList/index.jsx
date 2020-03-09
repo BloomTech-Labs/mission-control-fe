@@ -12,14 +12,16 @@ import ProjectListRow from './ProjectListRow';
 const ProjectListView = () => {
   const [state] = useQuery({ query });
   const { data } = state;
-
+  
+  
   if (data && data.projects.length) {
     const projects = data.projects;
+    const sparkline = data.SparkyBoy;
 
     return (
       <ProjectListContainer>
         {projects.map(project => (
-          <ProjectListRow key={project.id} project={project} />
+          <ProjectListRow key={project.id} project={project} sparkline={sparkline} />
         ))}
       </ProjectListContainer>
     );
