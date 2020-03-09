@@ -23,7 +23,6 @@ const EditColumnModal = ({ column }) => {
 
   const toggle = () => {
     handleClose();
-    setUpdateColumn({ id: '', color: '', name: '' });
   };
   const handleChanges = e => {
     e.preventDefault();
@@ -56,8 +55,16 @@ const EditColumnModal = ({ column }) => {
     >
       <Modal.Header>Edit Column</Modal.Header>
       <Modal.Content>
-        <input name="name" value={updateColumn.name} onChange={handleChanges} />
+        <label>
+          Name:
+          <input
+            name="name"
+            value={updateColumn.name}
+            onChange={handleChanges}
+          />
+        </label>
         <Modal.Description>
+          <CreateLabel column={column} />
           <LabelList column={column} />
         </Modal.Description>
       </Modal.Content>
