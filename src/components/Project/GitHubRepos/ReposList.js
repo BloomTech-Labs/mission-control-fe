@@ -78,7 +78,7 @@ const ReposList = () => {
         {/* add grid here to show two columns */}
         <Modal.Content>
           <Modal.Description>
-            <p>Search for exisitng Repos</p>
+            <p>Search for existing Repos</p>
           </Modal.Description>
           <Grid>
             <Grid.Row>
