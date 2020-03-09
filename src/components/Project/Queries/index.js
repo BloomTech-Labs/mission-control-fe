@@ -231,6 +231,15 @@ export const CREATE_COLUMN = gql`
   }
 `;
 
+export const UPDATE_COLUMN = gql`
+  mutation updateColumnMutation($id: ID!) {
+    updateColumn(id: $id) {
+      id
+      name
+    }
+  }
+`;
+
 export const TEST_QUERY = gql`
   query {
     me {
