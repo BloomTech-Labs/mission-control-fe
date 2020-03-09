@@ -4,10 +4,10 @@ import Note from './Note';
 
 import { NOTE_FEED_QUERY as query } from '../Queries/index';
 
-const NotesFeed = ({ projectId , privateB}) => {
+const NotesFeed = ({ projectId, privateBol }) => {
   const [state] = useQuery({
     query,
-    variables: { id: projectId, privatePerm: privateB },
+    variables: { id: projectId, privatePerm: privateBol },
     requestPolicy: 'cache-and-network',
   });
 
