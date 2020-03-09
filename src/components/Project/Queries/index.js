@@ -129,6 +129,7 @@ export const CREATE_NOTE = gql`
     $content: String!
     $attendedBy: [String!]!
     $rating: Int!
+    $privateNote:Boolean
     $notification: Boolean
   ) {
     createNote(
@@ -137,6 +138,7 @@ export const CREATE_NOTE = gql`
       attendedBy: $attendedBy
       id: $id
       rating: $rating
+      privateNote: $privateNote
       notification: $notification
     ) {
       content
@@ -146,6 +148,7 @@ export const CREATE_NOTE = gql`
       }
       id
       rating
+      privateNote
     }
   }
 `;
