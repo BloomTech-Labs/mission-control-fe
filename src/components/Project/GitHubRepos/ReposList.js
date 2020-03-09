@@ -31,8 +31,6 @@ const ReposList = () => {
     setSearchResults(results.data ? results.data.GithubRepos : []);
   }, [results]);
 
-  console.log(1, { repoSelected });
-
   const handleChange = e => {
     setSearchQuery(e.target.value);
   };
