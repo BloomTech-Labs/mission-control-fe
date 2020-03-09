@@ -10,7 +10,6 @@ export const PROJECT_LIST_VIEW = gql`
         id
         updatedAt
       }
-      projectActive
       product {
         grades {
           grade

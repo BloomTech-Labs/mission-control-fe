@@ -12,10 +12,9 @@ import ProjectListRow from './ProjectListRow';
 const ProjectListView = () => {
   const [state] = useQuery({ query });
   const { data } = state;
-
+  console.log(state);
   if (data && data.projects.length) {
     const projects = data.projects;
-
     return (
       <ProjectListContainer>
         {projects.map(project => (
