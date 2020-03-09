@@ -9,7 +9,10 @@ import LabelList from '../LabelList/index';
 import { UPDATE_COLUMN } from '../../Project/Queries/index';
 
 const EditColumnModal = ({ column }) => {
-  const [updateColumn, setUpdateColumn] = useState({ name: column.name });
+  const [updateColumn, setUpdateColumn] = useState({
+    name: column.name,
+    id: column.id,
+  });
   const [open, setOpen] = useState(false);
   const [, executeMutation] = useMutation(UPDATE_COLUMN);
 
@@ -27,6 +30,12 @@ const EditColumnModal = ({ column }) => {
       ...updateColumn,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    toggle();
+    executeMutation(updateColumn);
   };
 
   return (
@@ -49,6 +58,9 @@ const EditColumnModal = ({ column }) => {
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions className={buttonStyle}>
+        <Button className="ui button" onClick={handleSubmit}>
+          Save
+        </Button>
         <Button className="ui cancel button" onClick={toggle}>
           Cancel
         </Button>

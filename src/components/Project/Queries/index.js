@@ -232,8 +232,8 @@ export const CREATE_COLUMN = gql`
 `;
 
 export const UPDATE_COLUMN = gql`
-  mutation updateColumnMutation($id: ID!) {
-    updateColumn(id: $id) {
+  mutation updateColumnMutation($id: ID!, $name: String!) {
+    updateColumn(id: $id, name: $name) {
       id
       name
     }
