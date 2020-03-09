@@ -18,7 +18,7 @@ export const HEADER_QUERY = gql`
   query HeaderView($id: ID!) {
     project(id: $id) {
       id
-      projectState
+      
       name
     }
   }
@@ -29,7 +29,7 @@ export const NOTE_FEED_QUERY = gql`
     me {
       id
       email
-      
+
     }
     project(id: $id) {
       projectManagers {
