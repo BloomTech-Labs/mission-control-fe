@@ -157,6 +157,7 @@ export const UPDATE_NOTE = gql`
     $content: String!
     $attendedBy: [String!]!
     $rating: Int!
+    $privateNote: Boolean!
   ) {
     updateNote(
       topic: $topic
@@ -164,6 +165,7 @@ export const UPDATE_NOTE = gql`
       attendedBy: $attendedBy
       id: $id
       rating: $rating
+      privateNote: $privateNote
     ) {
       content
       topic
@@ -172,6 +174,7 @@ export const UPDATE_NOTE = gql`
       }
       id
       rating
+      privateNote
     }
   }
 `;

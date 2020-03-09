@@ -100,6 +100,7 @@ const NoteEditor = ({
           topic,
           content,
           rating,
+          privateNote,
           attendedBy: Array.from(attendees, ({ email }) => email),
         });
         setIsEditing(false);
@@ -108,6 +109,7 @@ const NoteEditor = ({
         resetForm();
     }
   };
+
 
   return (
     <div>
@@ -204,7 +206,11 @@ const NoteEditor = ({
                     />
                   </label>
                 )}
-                {privateNote ? "Private Note" : "PUBLIC NOTE!!!"}
+                <SemanticButton
+                  onClick={() => setPrivateNote(!privateNote)}
+                >
+                  {privateNote ? "PRIVATE" : "PUBLIC"}
+                </SemanticButton>
                 <SemanticButton
                   className={validated ? styles['save-btn'] : styles.disabled}
                   type="submit"
