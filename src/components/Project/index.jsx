@@ -50,8 +50,8 @@ const Project = (props) => {
     if(result.data) {
       setUser(result.data.person.role.privateNote);
 
-      let hold = killLoop;
-      setKillLoop(hold + 1);
+      // let hold = killLoop;
+      // setKillLoop(hold + 1);
     }
   },[data])
 /*
