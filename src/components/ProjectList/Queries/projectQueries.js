@@ -37,3 +37,17 @@ export const DUMMY_QUERY = gql`
     info
   }
 `;
+
+export const SPARKLINE = gql`
+  query{
+  SparkyBoy(owner: "Lambda-School-Labs", name:"mission-control-be"){
+    oid
+    message
+    additions
+    deletions
+    changedFiles
+    committedDate
+  }
+}
+`
+
