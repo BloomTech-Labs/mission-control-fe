@@ -221,3 +221,12 @@ export const TEST_QUERY = gql`
     }
   }
 `;
+
+export const GET_GITHUB_REPOS = gql`
+  query githubrepos($search: String!, $org: String) {
+    GithubRepos(search: $search, org: $org) {
+      name
+      id
+    }
+  }
+`;
