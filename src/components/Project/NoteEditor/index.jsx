@@ -45,6 +45,7 @@ const NoteEditor = ({
   const [topic, setTopic] = useState((note && note.topic) || '');
   const [content, setContent] = useState((note && note.content) || '');
   const [rating, setRating] = useState((note && note.rating) || 0);
+  const [privateNote, setPrivateNote] = useState((note && note.privateNote) || '');
   const [attendees, setAttendees] = useState((note && note.attendedBy) || []);
   const [expandedAttendees, setExpandedAttendees] = useState(false);
   const [expandedAbsent, setExpandedAbsent] = useState(false);
@@ -203,6 +204,7 @@ const NoteEditor = ({
                     />
                   </label>
                 )}
+                {privateNote ? "Private Note" : "PUBLIC NOTE!!!"}
                 <SemanticButton
                   className={validated ? styles['save-btn'] : styles.disabled}
                   type="submit"
