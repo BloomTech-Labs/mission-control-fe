@@ -4,6 +4,7 @@ import { PROJECT_LIST_VIEW as query } from './Queries/projectQueries';
 
 import ProjectListContainer from './ProjectListContainer';
 import ProjectListRow from './ProjectListRow';
+import Settings from '../Settings/Settings';
 
 // ProjectListView is the default view when a user signs into the application
 // The PROJECT_LIST_VIEW query matches against the currently authenticated user
@@ -24,11 +25,18 @@ const ProjectListView = () => {
 
   if (data && projects.length) {
     return (
-      <ProjectListContainer status={columns}>
-        {projects.map(project => (
-          <ProjectListRow key={project.id} project={project} status={columns} />
-        ))}
-      </ProjectListContainer>
+      <div>
+        <Settings />
+        <ProjectListContainer status={columns}>
+          {projects.map(project => (
+            <ProjectListRow
+              key={project.id}
+              project={project}
+              status={columns}
+            />
+          ))}
+        </ProjectListContainer>
+      </div>
     );
   }
   return <h1>loading</h1>;
