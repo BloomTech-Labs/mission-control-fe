@@ -54,6 +54,7 @@ export const NOTE_FEED_QUERY = gql`
           avatar
         }
         rating
+        privateNote
       }
     }
   }
