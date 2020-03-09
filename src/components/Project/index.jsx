@@ -54,11 +54,11 @@ const Project = (props) => {
       setKillLoop(hold + 1);
     }
   },[data])
-
+/*
   console.log(user);
   console.log(killLoop);
   console.log("log");
-
+*/
 
   return data ? (
     <div className={parentProjectContainer}>
