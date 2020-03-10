@@ -22,13 +22,7 @@ const Sparkline = ({ name }) => {
         return <p>Error: {state.error}</p>
     } else {
         if (data.SparkyBoy.length){
-            data.SparkyBoy.reverse().map(commit => {
-                return (
-                    additions.push(commit.additions),
-                    deletions.push(commit.deletions),
-                    changedFiles.push(commit.changedFiles)
-                )
-            });
+            ChartDatafier(data, additions, deletions, changedFiles)
         } else {
             return (
                 <>
