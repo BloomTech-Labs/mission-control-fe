@@ -25,6 +25,7 @@ export const PROJECT_LIST_VIEW = gql`
           }
           projectActive
           product {
+            id
             grades {
               grade
               name

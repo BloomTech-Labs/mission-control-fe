@@ -1,10 +1,11 @@
 .Maintainability{
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
+    flex-wrap: wrap;
+    margin-top: 5px;
 }
 .Repo{
-    margin: 0px 5px 0px 0px;
+    margin: 0px 10px 10px 0px;
     color: #A7A7A7;
     font-weight: 400;
 }
