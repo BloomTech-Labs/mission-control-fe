@@ -1,7 +1,7 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
-const PulseChart = ({ data, color }) => {
+const PulseChart = ({ data }) => {
     const options = {
         maintainAspectRatio: false,
         legend:{
@@ -14,7 +14,6 @@ const PulseChart = ({ data, color }) => {
         labels: ['Issue Count', 'Closed Issues', 'Open Issues', 'Closed PRs', 'Open PRs', 'Merged PRs', 'PR Count'],
         datasets: [
             {
-                label: 'Issue Count',
                 backgroundColor: ['#17D7EA','#176EEA','#2A17EA', '#9317EA', '#EA17D7', '#EA176E', 'chartreuse'],
                 borderColor: 'black',
                 borderWidth: 1,
