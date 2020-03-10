@@ -11,26 +11,23 @@ const ProjectRow = ({ project, status }) => {
   const statusLabelsArr = [];
   var i;
   if (status.length > 0) {
-    for (i = 0; i < 3 && !(i >= status.length); i++) {
+    for (i = 0; i < 4 && !(i >= status.length); i++) {
       statusLabelsArr.push(status[i]);
     }
     return (
       <tr>
-        <td>
-          <div></div>
-        </td>
         <td className={title}>
           <Link to={`/project/${project.id}`} className={title}>
             {project.name}
           </Link>
           <LetterGradeContainer ccrepos={project.product.grades} />
         </td>
-        <td className={rtd}>
+        {/* <td className={rtd}>
           {project.notes.length
             ? mapTime(project.notes[0].updatedAt)
             : mapTime(project.updatedAt)}{' '}
           ago
-        </td>
+        </td> */}
         {status.length > 0 && statusLabelsArr.length > 0
           ? statusLabelsArr.map(statusData => (
               <td key={statusData.id} className={statusColumns}>

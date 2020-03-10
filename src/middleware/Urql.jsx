@@ -12,6 +12,7 @@ import { getToken } from '../utils';
 import {
   PROJECT_LIST_VIEW,
   LABEL_LIST_VIEW,
+  LABEL_VIEWER,
 } from '../components/ProjectList/Queries/projectQueries';
 
 // The @urql/exchange-graphcache dependency exposes a normalized cache
