@@ -67,7 +67,7 @@ const EditColumnModal = ({ column }) => {
         </Modal.Description>
         <h3>Create Labels</h3>
         <CreateLabel column={column} />
-        <LabelList column={column} />
+        <LabelList column={column} columnId={column.id} />
       </Modal.Content>
       <Modal.Actions className={buttonStyle}>
         <Button className="ui button" onClick={handleSubmit}>
