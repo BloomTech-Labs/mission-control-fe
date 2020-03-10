@@ -1,11 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { labelListStyle } from './LabelList.module.scss';
 import StatusLabel from '../StatusLabel/index';
-import {
-  LABELS_SUBSCRIPTION,
-  LABEL_LIST_VIEW as query,
-} from '../../ProjectList/Queries/projectQueries';
-import { useQuery } from 'urql';
+import { LABEL_LIST_VIEW as query } from '../../ProjectList/Queries/projectQueries';
+import { useQuery, useSubscription } from 'urql';
 
 const LabelList = ({ column }) => {
   const [state] = useQuery({
@@ -14,6 +11,7 @@ const LabelList = ({ column }) => {
   });
   const { data } = state;
   const [id, setId] = useState(-1);
+  // useSubscription({ query });
 
   console.log('data program', data && data.programs[0].columns);
   useEffect(() => {
@@ -23,7 +21,7 @@ const LabelList = ({ column }) => {
 
   return (
     <div className={labelListStyle}>
-      {data && id !== -1
+      {data && data.programs.length && id !== -1
         ? data.programs[0].columns[id].labels.map(label => {
             return <StatusLabel label={label} key={label.id} />;
           })
