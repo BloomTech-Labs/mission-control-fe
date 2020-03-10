@@ -1,54 +1,43 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from 'urql';
 import { SPARKLINE as query } from '../Queries/projectQueries';
-
-import { Sparkyline } from './Sparkline.module.scss'
-
+import { Sparkyline } from './Sparkline.module.scss';
 import SparkyChart from './Charts/SparkyChart';
-import { useSparkyHook } from '../GitHub/Charts/hooks/SparkyHook';
-
-const initialValue = {
-    additions: [],
-    deletions: [],
-    changedFiles: [] 
-};
 
 const Sparkline = ({ name }) => {
   
-  const [state] = useQuery({ query, variables:{name: name} });
+    const [state] = useQuery({ query, variables:{name: name} });
+    const { data } = state; 
 
-  const { data } = state; 
+    const additions = [];
+    const deletions = [];
+    const changedFiles = [];
 
-  const additions = [];
-  const deletions = [];
-  const changedFiles = [];
-
-    
-
-
- 
-  if (state.fetching){
-      return <p>Loading Sparkline...</p>
-  } else{
-    
-    // console.log(data.length, data)
-
-    if (data.SparkyBoy.length){
-    
-        data.SparkyBoy.map(commit => {
+    if (state.fetching){
+        return <p>Loading Sparkline...</p>
+    } else if (state.error) {
+        return <p>Error: {state.error}</p>
+    } else {
+        if (data.SparkyBoy.length){
+            data.SparkyBoy.reverse().map(commit => {
+                return (
+                    additions.push(commit.additions),
+                    deletions.push(commit.deletions),
+                    changedFiles.push(commit.changedFiles)
+                )
+            });
+        } else {
             return (
-
-                additions.push(commit.additions),
-                deletions.push(commit.deletions),
-                changedFiles.push(commit.changedFiles)
+                <>
+                <p>Sparkline unavailable</p>
+                </>
             )
-        })
-    }
-  return (
-    <div className={Sparkyline}>
-      <SparkyChart additions={additions} deletions={deletions} changedFiles={changedFiles}/>
-    </div>
-  );
+        }
+    return (
+        <div className={Sparkyline}>
+            <SparkyChart additions={additions} deletions={deletions} changedFiles={changedFiles}/>
+        </div>
+    );
   }
 };
 
