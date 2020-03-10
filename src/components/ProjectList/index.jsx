@@ -12,7 +12,7 @@ import ProjectListRow from './ProjectListRow';
 const ProjectListView = () => {
   const [state] = useQuery({ query });
   const { data } = state;
-  console.log(state);
+
   if (data && data.projects.length) {
     const projects = data.projects;
     return (
@@ -23,7 +23,7 @@ const ProjectListView = () => {
       </ProjectListContainer>
     );
   }
-  return <h1>loading</h1>;
+  return <h1>Loading...</h1>;
 };
 
 export default ProjectListView;

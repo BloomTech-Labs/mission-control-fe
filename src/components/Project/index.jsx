@@ -7,7 +7,7 @@ import Team from './Team';
 
 import Header from './Header';
 import Grade from './Grade';
-import GitHubRepos from './GitHubRepos/ReposList';
+import GitHubRepos from './GitHubRepos';
 
 import {
   parentProjectContainer,
@@ -83,7 +83,7 @@ const Project = props => {
               />
             ) : null}
 
-            <NotesFeed projectId={id} privateBol={user} />
+            <NotesFeed projectId={id} privateBol={null} />
           </div>
           <div className={teamContainer}>
             <Team projectId={id} />
