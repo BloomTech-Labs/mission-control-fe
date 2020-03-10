@@ -7,7 +7,7 @@ import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
 import { title, rtd, rtc } from './projectListRow.module.scss';
 import { labelPreviewDesign } from '../../Settings/Settings.module.scss';
 
-const ProjectRow = ({ project, sparkline }) => {
+const ProjectRow = ({ project }) => {
   return (
     <tr>
       <td>
