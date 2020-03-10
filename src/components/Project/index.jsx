@@ -83,7 +83,7 @@ const Project = props => {
               />
             ) : null}
 
-            <NotesFeed projectId={id} privateBol={user} />
+            <NotesFeed projectId={id} privateBol={null} />
           </div>
           <div className={teamContainer}>
             <Team projectId={id} />
