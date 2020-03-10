@@ -116,15 +116,3 @@ export const LABEL_VIEW = gql`
     }
   }
 `;
-
-export const LABEL_VIEWER = gql`
-  query($id: ID!) {
-    column(id: $id) {
-      label {
-        id
-        name
-        color
-      }
-    }
-  }
-`;
