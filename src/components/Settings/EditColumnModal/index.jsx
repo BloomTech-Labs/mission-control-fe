@@ -55,18 +55,19 @@ const EditColumnModal = ({ column }) => {
     >
       <Modal.Header>Edit Column</Modal.Header>
       <Modal.Content>
-        <label>
-          Name:
-          <input
-            name="name"
-            value={updateColumn.name}
-            onChange={handleChanges}
-          />
-        </label>
         <Modal.Description>
-          <CreateLabel column={column} />
-          <LabelList column={column} />
+          <label>
+            Name:
+            <input
+              name="name"
+              value={updateColumn.name}
+              onChange={handleChanges}
+            />
+          </label>
         </Modal.Description>
+        <h3>Create Labels</h3>
+        <CreateLabel column={column} />
+        <LabelList column={column} />
       </Modal.Content>
       <Modal.Actions className={buttonStyle}>
         <Button className="ui button" onClick={handleSubmit}>
