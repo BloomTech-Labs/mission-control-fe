@@ -5,7 +5,7 @@ import { gradeCont, gradeBox, scsssux } from './Grade.module.scss';
 
 const Grade = props => {
   if (!props.ccrepos || !props.ccrepos.length) return null;
-  
+
   return (
     <div className={gradeCont}>
       {props.ccrepos.map(repo => {
