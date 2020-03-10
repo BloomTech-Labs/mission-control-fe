@@ -4,6 +4,9 @@ export const TEAM_QUERY = gql`
   query TeamView($id: ID!) {
     project(id: $id) {
       id
+      projectManagers {
+        name
+      }
       team {
         id
         name
