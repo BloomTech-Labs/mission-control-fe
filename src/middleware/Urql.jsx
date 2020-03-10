@@ -12,18 +12,22 @@ import { getToken } from '../utils';
 import {
   PROJECT_LIST_VIEW,
   LABEL_LIST_VIEW,
-  LABEL_VIEWER,
+  LABEL_VIEW,
 } from '../components/ProjectList/Queries/projectQueries';
 
 // The @urql/exchange-graphcache dependency exposes a normalized cache
 // by default, the urql client comes pre-configured with a document cache.
+
 const cache = cacheExchange({
   updates: {
     Mutation: {
       createLabel: ({ createLabel }, _args, cache) => {
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
           if (data !== null) {
-            data.programs[0].columns[0].labels.unshift(createLabel);
+            const columnIndex = data.programs[0].columns.findIndex(
+              c => c.id == _args.id
+            );
+            data.programs[0].columns[columnIndex].labels.unshift(createLabel);
             return data;
           } else {
             return null;
