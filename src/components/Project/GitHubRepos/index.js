@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery } from 'urql';
+import { useQuery, useMutation } from 'urql';
 import { Grid, Button, Modal, Input, List } from 'semantic-ui-react';
 import {
   searchResult,
@@ -7,23 +7,29 @@ import {
   buttonAlign,
   button,
 } from './Repos.module.scss';
-import { GET_GITHUB_REPOS as query } from '../Queries';
+import { GET_GITHUB_REPOS as query, CREATE_GHREPO as createRepo } from '../Queries';
 import Grade from '../Grade';
 
 const initialQuery = '';
 
-const ReposList = () => {
+const ReposList = ({ghrepos, productId}) => {
+  console.log({ghrepos});
   const [state, setState] = useState({ open: false });
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [repoSelected, setRepoSelect] = useState([]);
-  const [githubRepos, setGithubRepos] = useState([]);
+  const [githubRepos, setGithubRepos] = useState(ghrepos.map(repo => (
+    {...repo, grade: "A", link: "http://www.google.com"}
+  )
+    
+  ));
   const [results, executeQuery] = useQuery({
     query,
     variables: { search: searchQuery },
     pause: true,
     requestPolicy: 'network-only',
   });
+  const [addedRepoResult, addRepo] = useMutation(createRepo);
 
   useEffect(() => {
     setSearchResults(results.data ? results.data.GithubRepos : []);
@@ -57,8 +63,10 @@ const ReposList = () => {
         ...repoSelected,
         {
           name: repo.name,
-          grade: 'A',
-          link: 'https://codeclimate.com/repos/5e619ee292b6f00107000693',
+          repoId: repo.id,
+          owner: repo.owner,
+          ownerId: repo.ownerId,
+          id: productId,
         },
       ]);
     }
@@ -71,7 +79,19 @@ const ReposList = () => {
         return repo;
       }
     });
-    setGithubRepos([...githubRepos, ...filterRepos]);
+     Promise.all(filterRepos.map(repo => {
+       console.log({repo});
+      return addRepo({...repo})
+        .then(result => {
+          console.log({result})
+         return result.data.createGithubRepo
+     })
+        
+    }))
+    .then(res => {
+      setGithubRepos([...githubRepos, ...res])
+    })
+    // setGithubRepos([...githubRepos, ...filterRepos]);
   };
 
   const deleteRepo = e => {

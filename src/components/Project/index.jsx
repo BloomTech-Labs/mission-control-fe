@@ -56,7 +56,7 @@ const Project = props => {
         <div className={projectContainer}>
           <div className={editorFeedContainer}>
             <h2>Repos Code Health</h2>
-            <GitHubRepos />
+            <GitHubRepos ghrepos={data.project.product.GHRepos} productId={data.project.product.id} />
             <div className={gradeContainer}>
               <Grade ccrepos={data.project.product.grades} />
             </div>
@@ -70,7 +70,7 @@ const Project = props => {
               />
             ) : null}
 
-            <NotesFeed projectId={id} privateBol={user} />
+            <NotesFeed projectId={id} privateBol={null} />
           </div>
           <div className={teamContainer}>
             <Team projectId={id} />
