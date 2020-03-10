@@ -16,11 +16,11 @@ import {
 const Header = ({ projectId }) => {
   const [state] = useQuery({ query, variables: { id: projectId } });
   const { data, fetching } = state;
-
+  
   if (fetching) return <h1>Loading</h1>;
   if (data && data.project) {
     const {
-      project: { name, status },
+      project: { name },
     } = data;
 
     return (
