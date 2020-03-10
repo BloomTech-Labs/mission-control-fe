@@ -29,7 +29,7 @@ const Project = props => {
 
   const [user, setUser] = useState(false);
   const [killLoop, setKillLoop] = useState(1);
-
+/*
   const getUser = `
   query GetUser($email: String!) {
     person(email: $email) {
@@ -41,9 +41,9 @@ const Project = props => {
     }
   }
 `;
-
+*/
   const [result] = useQuery({
-    query: getUser,
+    query: userQuery,
     variables: { email: data ? data.me.email : '' },
   });
 
