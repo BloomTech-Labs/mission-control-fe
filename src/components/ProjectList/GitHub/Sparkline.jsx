@@ -20,22 +20,18 @@ const Sparkline = ({ name }) => {
         return <p>Loading Sparkline...</p>
     } else if (state.error) {
         return <p>Error: {state.error}</p>
+    } else if (data.SparkyBoy.length) {
+        ChartDatafier(data, additions, deletions, changedFiles)
+        return (
+            <div className={Sparkyline}>
+                <SparkyChart additions={additions} deletions={deletions} changedFiles={changedFiles}/>
+            </div>
+        );
     } else {
-        if (data.SparkyBoy.length){
-            ChartDatafier(data, additions, deletions, changedFiles)
-        } else {
-            return (
-                <>
-                <p>Sparkline unavailable</p>
-                </>
-            )
-        }
-    return (
-        <div className={Sparkyline}>
-            <SparkyChart additions={additions} deletions={deletions} changedFiles={changedFiles}/>
-        </div>
-    );
-  }
+        return (
+            <p>Sparkline unavailable</p>
+        )
+    }
 };
 
 export default Sparkline;
