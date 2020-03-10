@@ -12,5 +12,3 @@ render(
   </Middleware>,
   document.getElementById('root')
 );
-
-// initial test commit
