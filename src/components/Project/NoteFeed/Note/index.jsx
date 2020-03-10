@@ -1,5 +1,6 @@
 import React from 'react';
 import StarRatings from 'react-star-ratings';
+import { useMutation } from 'urql';
 
 import EditIcon from '@material-ui/icons/Edit';
 import { Label } from 'semantic-ui-react';
@@ -32,6 +33,8 @@ const Note = ({ note, user, projectManagers, projectId }) => {
   const displayedAttendees = attendedBy.filter(
     person => person.email !== user.email
   );
+
+
   return isEditing ? (
     <NoteEditor
       projectId={projectId}
@@ -64,6 +67,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
               starDimension="20px"
               starSpacing=".5px"
             />
+            {note.privateNote ? "Private Note" : "Public Note"}
           </div>
           <div className={noteBody}>{content}</div>
         </div>
