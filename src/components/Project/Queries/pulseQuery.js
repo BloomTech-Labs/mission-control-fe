@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const PULSE = gql`
-  query{
-    GithubPulse(owner: "Lambda-School-Labs", name:"mission-control-be"){
+  query Pulse($owner: String!, $name:String!){
+    GithubPulse(owner: $owner, name: $name){
         id
         issueCount
         closedIssues
