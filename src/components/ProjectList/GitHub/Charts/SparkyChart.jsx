@@ -5,11 +5,16 @@ import { Line } from 'react-chartjs-2';
   
 
 const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
-
-
-
+    const options ={
+        scales:{
+            xAxes: [{
+                display: false //this will remove all the x-axis grid lines
+            }]
+        }
+    }
+      
     const data2  = {
-        labels: ['', '', '', '', '', '', '','', '', '', '', '', '', '','', '', '', '', '', '', '','', '', '', '', '', '', '','', '', '', '', '', '', '','', '', '', '', '', '', '','', '', '', '', '', '', '','', '', '', '', '', '', '','', '', '', '', '', '', '','', '', '', '', '', '', '','', '', '', '', '', '', '','', '', '', '', '', '', '','', '', '', '', '', '', '','', '', '', '', '', '', '','', '', '', '', '', '', '',],
+        labels: additions,        
         datasets: [
           {
             label: 'Additions',
@@ -30,7 +35,7 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: additions
+            data: additions,
           },
           {
             label: 'Deletions',
@@ -79,7 +84,7 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
     // console.log(data);
     return(
         <div>
-            <Line data={data2}/>
+            <Line options={options}data={data2}/>
         </div>
     )
 }
