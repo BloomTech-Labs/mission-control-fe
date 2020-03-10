@@ -7,7 +7,7 @@ import Team from './Team';
 
 import Header from './Header';
 import Grade from './Grade';
-import GitHubRepos from './GitHubRepos/ReposList';
+import GitHubRepos from './GitHubRepos';
 
 import {
   parentProjectContainer,
