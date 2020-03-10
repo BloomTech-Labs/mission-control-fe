@@ -3,6 +3,7 @@ import { useQuery } from 'urql';
 import { SPARKLINE as query } from '../Queries/sparklineQuery';
 import { Sparkyline } from './Sparkline.module.scss';
 import SparkyChart from './Charts/SparkyChart';
+import { ChartDatafier } from './Charts/ChartDatafier';
 
 const Sparkline = ({ name }) => {
   
