@@ -11,16 +11,16 @@ const PulseChart = ({ data, color }) => {
     }
 
     const pulseData = {
-        labels: ['Issue Count', 'Closed Issues', 'Open Issues', 'PR Count', 'Closed PRs', 'Open PRs', 'Merged PRs'],
+        labels: ['Issue Count', 'Closed Issues', 'Open Issues', 'Closed PRs', 'Open PRs', 'Merged PRs', 'PR Count'],
         datasets: [
             {
                 label: 'Issue Count',
-                backgroundColor: ['#17D7EA','#176EEA','#2A17EA', 'chartreuse', '#9317EA', '#EA17D7', '#EA176E'],
+                backgroundColor: ['#17D7EA','#176EEA','#2A17EA', '#9317EA', '#EA17D7', '#EA176E', 'chartreuse'],
                 borderColor: 'black',
                 borderWidth: 1,
                 hoverBackgroundColor: 'pink',
                 hoverBorderColor: 'purple',
-                data: [data.issueCount, data.closedIssues, data.openIssues, data.prCount, data.closedPRs, data.openPRs, data.mergedPRs]
+                data: [data.issueCount, data.closedIssues, data.openIssues, data.closedPRs, data.openPRs, data.mergedPRs, data.prCount]
             }
         ]
     };
