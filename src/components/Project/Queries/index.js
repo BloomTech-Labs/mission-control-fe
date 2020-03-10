@@ -53,6 +53,7 @@ export const NOTE_FEED_QUERY = gql`
           avatar
         }
         rating
+        privateNote
       }
     }
   }
@@ -127,6 +128,7 @@ export const CREATE_NOTE = gql`
     $content: String!
     $attendedBy: [String!]!
     $rating: Int!
+    $privateNote: Boolean
     $notification: Boolean
   ) {
     createNote(
@@ -135,6 +137,7 @@ export const CREATE_NOTE = gql`
       attendedBy: $attendedBy
       id: $id
       rating: $rating
+      privateNote: $privateNote
       notification: $notification
     ) {
       content
@@ -144,6 +147,7 @@ export const CREATE_NOTE = gql`
       }
       id
       rating
+      privateNote
     }
   }
 `;
@@ -155,6 +159,7 @@ export const UPDATE_NOTE = gql`
     $content: String!
     $attendedBy: [String!]!
     $rating: Int!
+    $privateNote: Boolean!
   ) {
     updateNote(
       topic: $topic
@@ -162,6 +167,7 @@ export const UPDATE_NOTE = gql`
       attendedBy: $attendedBy
       id: $id
       rating: $rating
+      privateNote: $privateNote
     ) {
       content
       topic
@@ -170,6 +176,7 @@ export const UPDATE_NOTE = gql`
       }
       id
       rating
+      privateNote
     }
   }
 `;
@@ -212,7 +219,7 @@ export const DELETE_LABEL = gql`
 
 export const GET_USER_ROLE = gql`
   query GetUserRole($email: String!) {
-    person(email: "missioncontrolpm@gmail.com") {
+    person(email: $email) {
       name
       role {
         name
