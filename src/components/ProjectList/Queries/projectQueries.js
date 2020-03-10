@@ -40,16 +40,3 @@ export const DUMMY_QUERY = gql`
   }
 `;
 
-export const SPARKLINE = gql`
-  query Sparkline($name:String!) {
-  SparkyBoy(owner: "Lambda-School-Labs", name:$name){
-    id
-    message
-    additions
-    deletions
-    changedFiles
-    committedDate
-  }
-}
-`
-
