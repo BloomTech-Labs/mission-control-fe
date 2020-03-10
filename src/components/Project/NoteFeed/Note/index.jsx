@@ -22,6 +22,8 @@ import {
   expanded,
   miniAvatarContainer,
   collapsed,
+  notewraperPrivit,
+  notewraperPublic,
 } from './Notes.module.scss';
 
 const Note = ({ note, user, projectManagers, projectId }) => {
@@ -67,7 +69,9 @@ const Note = ({ note, user, projectManagers, projectId }) => {
               starDimension="20px"
               starSpacing=".5px"
             />
-            {note.privateNote ? "Private Note" : "Public Note"}
+            {note.privateNote ?
+              <div onClick={() => setIsEditing(true)} class={notewraperPrivit}>Private Note</div>
+              : <div class={notewraperPublic}>Public Note</div>}
           </div>
           <div className={noteBody}>{content}</div>
         </div>

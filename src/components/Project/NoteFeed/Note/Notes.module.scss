@@ -139,3 +139,17 @@ section:not(:last-child) {
 .deleteButton {
   margin: 0 0.5rem;
 }
+
+.notewraperPublic {
+  padding: 8px;
+}
+.notewraperPrivit {
+  padding: 8px;
+  background: rgb(245, 73, 135);
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+  }
+}
