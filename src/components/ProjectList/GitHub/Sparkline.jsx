@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from 'urql';
-import { SPARKLINE as query } from '../Queries/projectQueries';
+import { SPARKLINE as query } from '../Queries/sparklineQuery';
 import { Sparkyline } from './Sparkline.module.scss';
 import SparkyChart from './Charts/SparkyChart';
 
