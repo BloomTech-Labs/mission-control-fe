@@ -45,6 +45,7 @@ const NoteEditor = ({
   const [topic, setTopic] = useState((note && note.topic) || '');
   const [content, setContent] = useState((note && note.content) || '');
   const [rating, setRating] = useState((note && note.rating) || 0);
+  const [privateNote, setPrivateNote] = useState((note && note.privateNote) || false);
   const [attendees, setAttendees] = useState((note && note.attendedBy) || []);
   const [expandedAttendees, setExpandedAttendees] = useState(false);
   const [expandedAbsent, setExpandedAbsent] = useState(false);
@@ -85,6 +86,7 @@ const NoteEditor = ({
           topic,
           content,
           rating,
+          privateNote,
           // Extracts an array of emails from array of Person objects
           attendedBy: Array.from(attendees, ({ email }) => email),
           notification,
@@ -99,6 +101,7 @@ const NoteEditor = ({
           topic,
           content,
           rating,
+          privateNote,
           attendedBy: Array.from(attendees, ({ email }) => email),
         });
         setIsEditing(false);
@@ -107,6 +110,7 @@ const NoteEditor = ({
         resetForm();
     }
   };
+
 
   return (
     <div>
@@ -203,6 +207,12 @@ const NoteEditor = ({
                     />
                   </label>
                 )}
+                <SemanticButton
+                  onClick={() => setPrivateNote(!privateNote)}
+                  type="button"
+                >
+                  {privateNote ? "PRIVATE" : "PUBLIC"}
+                </SemanticButton>
                 <SemanticButton
                   className={validated ? styles['save-btn'] : styles.disabled}
                   type="submit"
