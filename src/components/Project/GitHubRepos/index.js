@@ -48,6 +48,22 @@ const ReposList = () => {
     setRepoSelect([]);
   };
 
+  const handleAddSelected = repo => {
+    const existingSelected = repoSelected.map(
+      existingRepo => existingRepo.name
+    );
+    if (!existingSelected.includes(repo.name)) {
+      setRepoSelect([
+        ...repoSelected,
+        {
+          name: repo.name,
+          grade: 'A',
+          link: 'https://codeclimate.com/repos/5e619ee292b6f00107000693',
+        },
+      ]);
+    }
+  };
+
   const handleAddRepos = () => {
     const ghNames = githubRepos.map(repo => (repo.name ? repo.name : ''));
     const filterRepos = repoSelected.filter(repo => {
@@ -102,21 +118,7 @@ const ReposList = () => {
                     searchResults.map(repo => (
                       <List.Item
                         key={repo.name}
-                        onClick={() =>
-                          setRepoSelect(
-                            repoSelected.includes(repo)
-                              ? repoSelected
-                              : [
-                                  ...repoSelected,
-                                  {
-                                    name: repo.name,
-                                    grade: 'a',
-                                    link:
-                                      'https://codeclimate.com/repos/5e619ee292b6f00107000693',
-                                  },
-                                ]
-                          )
-                        }
+                        onClick={() => handleAddSelected(repo)}
                       >
                         <List.Content className={buttonAlign} icon="github">
                           {repo.name}
