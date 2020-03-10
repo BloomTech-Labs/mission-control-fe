@@ -23,7 +23,9 @@ const Sparkline = ({ name }) => {
   const deletions = [];
   const changedFiles = [];
 
-  const [chartData, setChartData] = useState(initialValue);
+    
+
+
  
   if (state.fetching){
       return <p>Loading Sparkline...</p>
@@ -35,18 +37,16 @@ const Sparkline = ({ name }) => {
     
         data.SparkyBoy.map(commit => {
             return (
+
                 additions.push(commit.additions),
                 deletions.push(commit.deletions),
                 changedFiles.push(commit.changedFiles)
             )
         })
     }
-    
-    console.log('dataarraaaaaaaaaay', additions, deletions, changedFiles)
-
   return (
     <div className={Sparkyline}>
-      <SparkyChart additions={additions}/>
+      <SparkyChart additions={additions} deletions={deletions} changedFiles={changedFiles}/>
     </div>
   );
   }
