@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { columnEditCont } from './ColumnSettings.module.scss';
 import { useQuery, useSubscription } from 'urql';
 import {
