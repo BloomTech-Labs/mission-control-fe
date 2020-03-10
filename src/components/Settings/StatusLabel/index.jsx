@@ -6,7 +6,7 @@ import UpdateLabel from '../UpdateLabel/index';
 import DeleteLabel from '../DeleteLabel/DeleteLabel';
 import { UPDATE_LABEL as updateLabelMutation } from '../../Project/Queries';
 import { useMutation } from 'urql';
-const StatusLabel = props => {
+const StatusLabel = (props, { column }) => {
   const initState = {
     id: `${props.label.id}`,
     name: `${props.label.name}`,
@@ -42,7 +42,7 @@ const StatusLabel = props => {
   return (
     <div className={labelDesign} style={{ background: `${props.label.color}` }}>
       {props.label.name}
-      <DeleteLabel {...props} label={props.label} />
+      <DeleteLabel {...props} label={props.label} column={column} />
       <Modal
         open={open}
         onClose={toggle}

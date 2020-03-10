@@ -34,6 +34,29 @@ const cache = cacheExchange({
           }
         });
       },
+      createColumn: ({ createColumn }, _args, cache) => {
+        cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
+          if (data !== null) {
+            data.programs[0].columns.unshift(createColumn);
+            return data;
+          } else {
+            return null;
+          }
+        });
+      },
+      deleteColumn: ({ deleteColumn }, _args, cache) => {
+        cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
+          if (data !== null) {
+            const columnIndex = data.programs[0].columns.findIndex(
+              c => c.id == _args.id
+            );
+            data.programs[0].columns.splice(columnIndex, 1);
+            return data;
+          } else {
+            return null;
+          }
+        });
+      },
     },
     Subscription: {
       newLabel: ({ newLabel }, _args, cache) => {
