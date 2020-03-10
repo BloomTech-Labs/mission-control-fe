@@ -1,20 +1,29 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2';
 
-
-  
-
 const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
-    const options ={
+    const options = {
+        maintainAspectRatio: false,
         scales:{
             xAxes: [{
                 display: false //this will remove all the x-axis grid lines
-            }]
-        }
+            }],
+            yAxes: [{
+                display: false,
+                ticks: {
+                  beginAtZero: true,
+                  max: 1000, //Sets max value to display
+                }
+            }],
+        },
+        legend:{
+            display: false,
+            position: 'left'
+        },
     }
       
-    const data2  = {
-        labels: additions.reverse(),        
+    const data  = {
+        labels: additions,        
         datasets: [
           {
             label: 'Additions',
@@ -26,6 +35,7 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
             borderDash: [],
             borderDashOffset: 0.0,
             borderJoinStyle: 'miter',
+            borderWidth: 2,
             pointBorderColor: 'rgba(75,192,192,1)',
             pointBackgroundColor: '#fff',
             pointBorderWidth: 1,
@@ -35,7 +45,7 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: additions.reverse(),
+            data: additions,
           },
           {
             label: 'Deletions',
@@ -47,6 +57,7 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
             borderDash: [],
             borderDashOffset: 0.0,
             borderJoinStyle: 'miter',
+            borderWidth: 2,
             pointBorderColor: 'coral',
             pointBackgroundColor: '#fff',
             pointBorderWidth: 1,
@@ -56,7 +67,7 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: deletions.reverse()
+            data: deletions,
           },
           {
             label: 'Changed Files',
@@ -68,6 +79,7 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
             borderDash: [],
             borderDashOffset: 0.0,
             borderJoinStyle: 'miter',
+            borderWidth: 2,
             pointBorderColor: 'greenyellow',
             pointBackgroundColor: '#fff',
             pointBorderWidth: 1,
@@ -77,14 +89,14 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: changedFiles.reverse()
+            data: changedFiles
           },
         ]
       };
     // console.log(data);
     return(
         <div>
-            <Line options={options}data={data2}/>
+            <Line options={options} data={data} height={50}/>
         </div>
     )
 }

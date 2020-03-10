@@ -13,20 +13,18 @@ const ProjectListView = () => {
   const [state] = useQuery({ query });
   const { data } = state;
   
-  
   if (data && data.projects.length) {
     const projects = data.projects;
-    const sparkline = data.SparkyBoy;
 
     return (
       <ProjectListContainer>
         {projects.map(project => (
-          <ProjectListRow key={project.id} project={project} sparkline={sparkline} />
+          <ProjectListRow key={project.id} project={project} />
         ))}
       </ProjectListContainer>
     );
   }
-  return <h1>loading</h1>;
+  return <h1>Loading...</h1>;
 };
 
 export default ProjectListView;
