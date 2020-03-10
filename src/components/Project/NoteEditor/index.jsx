@@ -207,12 +207,26 @@ const NoteEditor = ({
                     />
                   </label>
                 )}
-                <SemanticButton
-                  onClick={() => setPrivateNote(!privateNote)}
-                  type="button"
-                >
-                  {privateNote ? "PRIVATE" : "PUBLIC"}
-                </SemanticButton>
+
+                {privateNote ?
+                  <SemanticButton
+                    onClick={() => setPrivateNote(!privateNote)}
+                    type="button"
+                    color="pink"
+                    variant="outlined"
+                  >
+                    PRIVATE
+                  </SemanticButton>
+                :
+                  <SemanticButton
+                    onClick={() => setPrivateNote(!privateNote)}
+                    type="button"
+                    className="ui pink basic button"
+                    variant="outlined"
+                  >
+                    PUBLIC
+                  </SemanticButton>
+                }
                 <SemanticButton
                   className={validated ? styles['save-btn'] : styles.disabled}
                   type="submit"
