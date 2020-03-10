@@ -19,7 +19,7 @@ const StatusLabel = props => {
 
   const handleClose = () => setOpen(false);
 
-  const [o, executeUpdate] = useMutation(updateLabelMutation);
+  const [, executeUpdate] = useMutation(updateLabelMutation);
 
   const toggle = () => {
     handleClose();
