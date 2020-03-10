@@ -16,8 +16,8 @@ const CreateColumn = ({ programId }) => {
   const handleClose = () => setOpen(false);
 
   const toggle = () => {
-    setColumn({ id: '', name: '' });
     handleClose();
+    setColumn({ name: '' });
   };
 
   const handleChanges = e => {
