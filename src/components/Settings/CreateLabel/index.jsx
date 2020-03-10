@@ -3,7 +3,6 @@ import { Button } from 'semantic-ui-react';
 import { useMutation } from 'urql';
 import { CREATE_LABEL as createLabel } from '../../Project/Queries/index';
 
-import { LabelContext } from '../../../contexts/LabelContext';
 import { labelPreviewDesign } from './CreateLabel.module.scss';
 import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
 
@@ -23,7 +22,7 @@ const CreateLabelForm = ({ column }) => {
     e.preventDefault();
     executeCreate(label);
     setLabel({ id: '', name: '', color: '' });
-    console.log(label);
+    console.log({ label });
   };
 
   const disableTer = !label.color || !label.name;

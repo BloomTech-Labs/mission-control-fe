@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { columnEditCont } from './ColumnSettings.module.scss';
 import { useQuery, useSubscription } from 'urql';
 import {
@@ -31,7 +31,7 @@ const ColumnSettings = () => {
             ))
           : ' '}
       </div>
-      <CreateColumn programId={programId} />
+      <CreateColumn programId={programId} column={data} />
     </div>
   );
 };
