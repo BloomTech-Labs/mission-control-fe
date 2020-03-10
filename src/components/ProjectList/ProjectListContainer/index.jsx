@@ -6,16 +6,15 @@ const ProjectListContainer = ({ children, status }) => {
   const statusTitleArr = [];
   var i;
   if (status.length > 0) {
-    for (i = 0; i < 3 && !(i >= status.length); i++) {
+    for (i = 0; i < 4 && !(i >= status.length); i++) {
       statusTitleArr.push(status[i]);
     }
     return (
       <table>
         <thead>
           <tr>
-            <th>Project Health</th>
             <th>Project Name</th>
-            <th className={rtd}>Last Updated</th>
+            {/* <th className={rtd}>Last Updated</th> */}
             {status.length > 0 && statusTitleArr.length > 0
               ? statusTitleArr.map(statusData => (
                   <th className={rtc} key={statusData.id}>

@@ -13,10 +13,8 @@ const LabelList = ({ column }) => {
   const [id, setId] = useState(-1);
   // useSubscription({ query });
 
-  console.log('data program', data && data.programs[0].columns);
   useEffect(() => {
     setId(data && data.programs[0].columns.findIndex(c => c.id == column.id));
-    console.log('this is column id', id);
   }, []);
 
   return (

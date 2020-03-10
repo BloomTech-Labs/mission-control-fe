@@ -56,10 +56,6 @@ const Project = props => {
     }
   }, [data]);
 
-  console.log(user);
-  console.log(killLoop);
-  console.log('log');
-
   return data ? (
     <div className={parentProjectContainer}>
       <div className={projectPageContents}>
