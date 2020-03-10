@@ -108,8 +108,8 @@ export const LABEL_LIST_VIEW = gql`
 
 export const LABEL_VIEW = gql`
   query($id: ID!) {
-    column {
-      label {
+    column(id: $id) {
+      labels {
         id
         name
         color
