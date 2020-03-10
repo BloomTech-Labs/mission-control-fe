@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Button, Modal } from 'semantic-ui-react';
 import EditIcon from '@material-ui/icons/Edit';
 import { LabelContext } from '../../../contexts/LabelContext';
@@ -55,7 +55,14 @@ const EditColumnModal = ({ column }) => {
     >
       <Modal.Header>Edit Column</Modal.Header>
       <Modal.Content>
-        <input name="name" value={updateColumn.name} onChange={handleChanges} />
+        <label>
+          Name:
+          <input
+            name="name"
+            value={updateColumn.name}
+            onChange={handleChanges}
+          />
+        </label>
         <Modal.Description>
           <CreateLabel column={column} />
           <LabelList column={column} />
