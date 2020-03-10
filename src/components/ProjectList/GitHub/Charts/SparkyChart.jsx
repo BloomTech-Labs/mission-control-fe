@@ -14,7 +14,7 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
     }
       
     const data2  = {
-        labels: additions,        
+        labels: additions.reverse(),        
         datasets: [
           {
             label: 'Additions',
@@ -35,7 +35,7 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: additions,
+            data: additions.reverse(),
           },
           {
             label: 'Deletions',
@@ -56,7 +56,7 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: deletions
+            data: deletions.reverse()
           },
           {
             label: 'Changed Files',
@@ -77,7 +77,7 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: changedFiles
+            data: changedFiles.reverse()
           },
         ]
       };
