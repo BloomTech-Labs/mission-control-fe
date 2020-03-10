@@ -142,6 +142,14 @@ section:not(:last-child) {
 
 .notewraperPublic {
   padding: 8px;
+  border: solid 1px rgb(245, 73, 135);
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+  }
+  width: 100px;
+  text-align: center;
+  color: rgb(245, 73, 135);
 }
 .notewraperPrivit {
   padding: 8px;
@@ -152,4 +160,6 @@ section:not(:last-child) {
   &:hover {
     cursor: pointer;
   }
+  width: 100px;
+  text-align: center;
 }

@@ -71,7 +71,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
             />
             {note.privateNote ?
               <div onClick={() => setIsEditing(true)} class={notewraperPrivit}>Private Note</div>
-              : <div class={notewraperPublic}>Public Note</div>}
+              : <div onClick={() => setIsEditing(true)} class={notewraperPublic}>Public Note</div>}
           </div>
           <div className={noteBody}>{content}</div>
         </div>
