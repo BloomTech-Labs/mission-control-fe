@@ -21,7 +21,7 @@ const LabelList = ({ column, columnId }) => {
     <div className={labelListStyle}>
       {data && data.programs.length && id !== -1
         ? data.programs[0].columns[id].labels.map(label => {
-            return <StatusLabel label={label} key={label.id} />;
+            return <StatusLabel column={column} label={label} key={label.id} />;
           })
         : ''}
     </div>
