@@ -22,26 +22,13 @@ import { PROJECT_VIEW_QUERY as query } from './Queries';
 import { GET_USER_ROLE as userQuery } from './Queries';
 
 const Project = props => {
-  //  console.log(props)
   const { id } = props.match.params;
   const [state, executeQuery] = useQuery({ query, variables: { id } });
   const { data, fetching } = state;
 
   const [user, setUser] = useState(false);
-  const [killLoop, setKillLoop] = useState(1);
-/*
-  const getUser = `
-  query GetUser($email: String!) {
-    person(email: $email) {
-      name
-      role {
-        name
-        privateNote
-      }
-    }
-  }
-`;
-*/
+  // const [killLoop, setKillLoop] = useState(1);
+
   const [result] = useQuery({
     query: userQuery,
     variables: { email: data ? data.me.email : '' },
@@ -51,14 +38,14 @@ const Project = props => {
     if (result.data) {
       setUser(result.data.person.role.privateNote);
 
-      let hold = killLoop;
-      setKillLoop(hold + 1);
+      // let hold = killLoop;
+      // setKillLoop(hold + 1);
     }
   }, [data]);
 
-  console.log(user);
-  console.log(killLoop);
-  console.log('log');
+  // console.log(user);
+  // console.log(killLoop);
+  // console.log('log');
 
   return data ? (
     <div className={parentProjectContainer}>
@@ -83,7 +70,7 @@ const Project = props => {
               />
             ) : null}
 
-            <NotesFeed projectId={id} privateBol={null} />
+            <NotesFeed projectId={id} privateBol={user} />
           </div>
           <div className={teamContainer}>
             <Team projectId={id} />
