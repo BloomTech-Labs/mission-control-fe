@@ -7,11 +7,11 @@ import { NOTE_FEED_QUERY as query } from '../Queries/index';
 const NotesFeed = ({ projectId, privateBol }) => {
   const [state] = useQuery({
     query,
-    variables: { id: projectId, privatePerm: privateBol },
+    variables: { id: projectId, privatePerm: null },
     requestPolicy: 'cache-and-network',
   });
 
-  const { data, fetching } = state;
+  const { data, fetching } = state; 
 
   if (fetching) return <h2>Loading</h2>;
   if (data && data.project.notes.length) {
