@@ -12,7 +12,7 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
                 display: false,
                 ticks: {
                   beginAtZero: true,
-                  max: 1000, //Sets max value to display
+                  // max: 1000, //Sets max value to display
                 }
             }],
         },
