@@ -8,7 +8,7 @@ import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
 
 const CreateLabelForm = ({ column }) => {
   const [label, setLabel] = useState('');
-  const [o, executeCreate] = useMutation(createLabel);
+  const [, executeCreate] = useMutation(createLabel);
   const handleChanges = e => {
     e.preventDefault();
     setLabel({
@@ -22,7 +22,6 @@ const CreateLabelForm = ({ column }) => {
     e.preventDefault();
     executeCreate(label);
     setLabel({ id: '', name: '', color: '' });
-    console.log({ label });
   };
 
   const disableTer = !label.color || !label.name;
