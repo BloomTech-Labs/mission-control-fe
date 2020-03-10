@@ -221,12 +221,12 @@ export const GET_USER_ROLE = gql`
 `;
 
 export const TEST_QUERY = gql`
-  query {
+  query TestQuery {
     me {
       email
     }
   }
-`;
+  `;
 
 export const GET_GITHUB_REPOS = gql`
   query githubrepos($search: String!, $org: String) {
