@@ -31,7 +31,7 @@ const ColumnSettings = () => {
             ))
           : ' '}
       </div>
-      <CreateColumn programId={programId} />
+      <CreateColumn programId={programId} column={data} />
     </div>
   );
 };
