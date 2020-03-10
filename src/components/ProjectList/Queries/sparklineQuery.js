@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const SPARKLINE = gql`
-  query Sparkline($name:String!) {
-  SparkyBoy(owner: "Lambda-School-Labs", name:$name){
+  query Sparkline($owner: String!, $name:String!) {
+  SparkyBoy(owner: $owner, name: $name){
     id
     message
     additions
@@ -11,4 +11,4 @@ export const SPARKLINE = gql`
     committedDate
   }
 }
-`
+`;

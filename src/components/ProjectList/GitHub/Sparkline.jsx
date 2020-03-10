@@ -6,7 +6,9 @@ import SparkyChart from './Charts/SparkyChart';
 
 const Sparkline = ({ name }) => {
   
-    const [state] = useQuery({ query, variables:{name: name} });
+    const [state] = useQuery({ query, variables:{
+        owner: 'Lambda-School-Labs',
+        name: name} });
     const { data } = state; 
 
     const additions = [];
