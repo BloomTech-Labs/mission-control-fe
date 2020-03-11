@@ -19,7 +19,6 @@
     "@okta/okta-signin-widget": "^3.4.2",
     "@urql/exchange-graphcache": "^2.0.0",
     "axios": "^0.19.0",
-    "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.1",
@@ -35,6 +34,7 @@
     "react-scripts": "^3.3.1",
     "react-star-ratings": "^2.3.0",
     "semantic-ui-react": "^0.88.2",
+    "subscriptions-transport-ws": "^0.9.16",
     "urql": "^1.8.2"
   },
   "scripts": {
