@@ -33,7 +33,7 @@ const Settings = () => {
         </Modal.Content>
         <Modal.Actions className={buttonStyle}>
           <Button className="ui cancel button" onClick={toggle}>
-            Cancel
+            Close
           </Button>
         </Modal.Actions>
       </Modal>

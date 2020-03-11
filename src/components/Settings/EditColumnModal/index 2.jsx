@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'semantic-ui-react';
 import EditIcon from '@material-ui/icons/Edit';
+import { LabelContext } from '../../../contexts/LabelContext';
 import { modalStyle, buttonStyle } from './EditColumnModal.module.scss';
-import { hover } from '../StatusLabel/StatusLabel.module.scss';
 import { useMutation } from 'urql';
 import CreateLabel from '../CreateLabel/index';
 import LabelList from '../LabelList/index';
-import { UPDATE_STATUS } from '../../Project/Queries/index';
+import { UPDATE_COLUMN } from '../../Project/Queries/index';
 import DeleteColumn from '../DeleteColumn';
 
 const EditColumnModal = ({ column }) => {
@@ -15,7 +15,7 @@ const EditColumnModal = ({ column }) => {
     id: column.id,
   });
   const [open, setOpen] = useState(false);
-  const [, executeMutation] = useMutation(UPDATE_STATUS);
+  const [, executeMutation] = useMutation(UPDATE_COLUMN);
 
   const handleOpen = () => setOpen(true);
 
@@ -34,6 +34,7 @@ const EditColumnModal = ({ column }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    toggle();
     executeMutation(updateColumn);
   };
 
@@ -45,7 +46,7 @@ const EditColumnModal = ({ column }) => {
         <div>
           <p>
             {' '}
-            {column.name} <EditIcon className={hover} onClick={handleOpen} />{' '}
+            {column.name} <EditIcon onClick={handleOpen} />{' '}
             <DeleteColumn column={column} />
           </p>
         </div>
@@ -63,19 +64,17 @@ const EditColumnModal = ({ column }) => {
               onChange={handleChanges}
             />
           </label>
-          <br />
-          <br />
-          <Button className="ui button" onClick={handleSubmit}>
-            Save
-          </Button>
         </Modal.Description>
         <h3>Create Labels</h3>
         <CreateLabel column={column} />
-        <LabelList column={column} columnId={column.id} />
+        <LabelList column={column} />
       </Modal.Content>
       <Modal.Actions className={buttonStyle}>
+        <Button className="ui button" onClick={handleSubmit}>
+          Save
+        </Button>
         <Button className="ui cancel button" onClick={toggle}>
-          Close
+          Cancel
         </Button>
       </Modal.Actions>
     </Modal>
