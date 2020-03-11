@@ -41,21 +41,18 @@ const ProjectRow = ({ project, status }) => {
   } else
     return (
       <tr>
-        <td>
-          <div></div>
-        </td>
         <td className={title}>
           <Link to={`/project/${project.id}`} className={title}>
             {project.name}
           </Link>
           <LetterGradeContainer ccrepos={project.product.grades} />
         </td>
-        <td className={rtd}>
+        {/* <td className={rtd}>
           {project.notes.length
             ? mapTime(project.notes[0].updatedAt)
             : mapTime(project.updatedAt)}{' '}
           ago
-        </td>
+        </td> */}
       </tr>
     );
 };
