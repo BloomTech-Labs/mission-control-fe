@@ -12,7 +12,6 @@ import { getToken } from '../utils';
 import {
   PROJECT_LIST_VIEW,
   LABEL_LIST_VIEW,
-  LABEL_VIEW,
 } from '../components/ProjectList/Queries/projectQueries';
 
 // The @urql/exchange-graphcache dependency exposes a normalized cache
@@ -57,6 +56,23 @@ const cache = cacheExchange({
           }
         });
       },
+      // deleteLabel: ({ deleteLabel }, _args, cache) => {
+      //   cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
+      //     if (data !== null) {
+      //       console.log('del', _args, deleteLabel);
+      //       const columnIndex = data.programs[0].columns.findIndex(
+      //         c => c.id == _args.columnId
+      //       );
+      //       const labelIndex = data.programs[0].columns[
+      //         columnIndex
+      //       ].labels.findIndex(l => l.id == _args.id);
+      //       data.programs[0].columns[columnIndex].labels.splice(labelIndex, 1);
+      //       return data;
+      //     } else {
+      //       return null;
+      //     }
+      //   });
+      // },
     },
     Subscription: {
       newLabel: ({ newLabel }, _args, cache) => {
