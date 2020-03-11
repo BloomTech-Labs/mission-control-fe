@@ -58,7 +58,7 @@ const Project = props => {
             <h2>Repos Code Health</h2>
             <GitHubRepos ghrepos={data.project.product.GHRepos} productId={data.project.product.id} />
             <div className={gradeContainer}>
-              <Grade ccrepos={data.project.product.grades} />
+              <Grade ghrepos={data.project.product.grades} />
             </div>
             <h2>Project Notes</h2>
             {user == true ? (
