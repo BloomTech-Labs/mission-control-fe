@@ -7,29 +7,33 @@ import {
   buttonAlign,
   button,
 } from './Repos.module.scss';
-import { GET_GITHUB_REPOS as query, CREATE_GHREPO as createRepo } from '../Queries';
+import {
+  GET_GITHUB_REPOS as query,
+  CREATE_GHREPO as createRepo,
+} from '../Queries';
 import Grade from '../Grade';
 
 const initialQuery = '';
 
-const ReposList = ({ghrepos, productId}) => {
-  console.log({ghrepos});
+const ReposList = ({ ghrepos, productId }) => {
   const [state, setState] = useState({ open: false });
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [repoSelected, setRepoSelect] = useState([]);
-  const [githubRepos, setGithubRepos] = useState(ghrepos.map(repo => (
-    {...repo, grade: "A", link: "http://www.google.com"}
-  )
-    
-  ));
+  const [githubRepos, setGithubRepos] = useState(
+    ghrepos.map(repo => ({
+      ...repo,
+      grade: 'A',
+      link: 'http://www.google.com',
+    }))
+  );
   const [results, executeQuery] = useQuery({
     query,
     variables: { search: searchQuery },
     pause: true,
     requestPolicy: 'network-only',
   });
-  const [addedRepoResult, addRepo] = useMutation(createRepo);
+  const [, addRepo] = useMutation(createRepo);
 
   useEffect(() => {
     setSearchResults(results.data ? results.data.GithubRepos : []);
@@ -79,19 +83,15 @@ const ReposList = ({ghrepos, productId}) => {
         return repo;
       }
     });
-     Promise.all(filterRepos.map(repo => {
-       console.log({repo});
-      return addRepo({...repo})
-        .then(result => {
-          console.log({result})
-         return result.data.createGithubRepo
-     })
-        
-    }))
-    .then(res => {
-      setGithubRepos([...githubRepos, ...res])
-    })
-    // setGithubRepos([...githubRepos, ...filterRepos]);
+    Promise.all(
+      filterRepos.map(repo => {
+        return addRepo({ ...repo }).then(result => {
+          return result.data.createGithubRepo;
+        });
+      })
+    ).then(res => {
+      setGithubRepos([...githubRepos, ...res]);
+    });
   };
 
   const deleteRepo = e => {
