@@ -58,8 +58,8 @@ const cache = cacheExchange({
       },
       deleteLabel: ({ deleteLabel }, _args, cache) => {
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
+          console.log('del', _args, data);
           if (data !== null) {
-            console.log('del', _args, deleteLabel);
             const columnIndex = data.programs[0].columns.findIndex(
               c => c.id == _args.columnId
             );
