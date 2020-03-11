@@ -213,7 +213,6 @@ export const DELETE_LABEL = gql`
   mutation DeleteLabelMutation($id: ID!, $columnId: String!) {
     deleteLabel(id: $id, columnId: $columnId) {
       id
-      columnId
     }
   }
 `;
