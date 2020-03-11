@@ -33,7 +33,6 @@ const EditColumnModal = ({ column }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    toggle();
     executeMutation(updateColumn);
   };
 
@@ -63,17 +62,19 @@ const EditColumnModal = ({ column }) => {
               onChange={handleChanges}
             />
           </label>
+          <br />
+          <br />
+          <Button className="ui button" onClick={handleSubmit}>
+            Save
+          </Button>
         </Modal.Description>
         <h3>Create Labels</h3>
         <CreateLabel column={column} />
         <LabelList column={column} columnId={column.id} />
       </Modal.Content>
       <Modal.Actions className={buttonStyle}>
-        <Button className="ui button" onClick={handleSubmit}>
-          Save
-        </Button>
         <Button className="ui cancel button" onClick={toggle}>
-          Cancel
+          Close
         </Button>
       </Modal.Actions>
     </Modal>
