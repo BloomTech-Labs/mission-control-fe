@@ -12,8 +12,6 @@ const RePulse = ({ owner, name }) => {
 
     const { data } = state;
 
-    console.log(data, "PulseChart");
-
     if (state.fetching){
         return <p>Detecting Pulse...</p>
     } else if (state.error) {
