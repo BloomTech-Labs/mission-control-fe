@@ -16,7 +16,6 @@ const ColumnSettings = () => {
     requestPolicy: 'cache-and-network',
   });
   const { data } = state;
-  console.log('column list query', data);
 
   const programId = data && data.programs[0].id;
 

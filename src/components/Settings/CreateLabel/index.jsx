@@ -41,22 +41,25 @@ const CreateLabelForm = ({ column }) => {
             />
           </label>
           <br />
-          {label.name && label.color ? (
-            <div
-              className={labelPreviewDesign}
-              style={{ background: `${label.color}` }}
-            >
-              {label.name}
-            </div>
-          ) : (
-            ''
-          )}
         </div>
+        <br />
         <CustomCirclePicker label={label} setLabel={setLabel} />
+        <br />
+        {label.name && label.color ? (
+          <div
+            className={labelPreviewDesign}
+            style={{ background: `${label.color}` }}
+          >
+            {label.name}
+          </div>
+        ) : (
+          ''
+        )}
       </div>
       <div>
         <Button content="Save" onClick={handleSubmit} disabled={disableTer} />
       </div>
+      <br />
     </form>
   );
 };
