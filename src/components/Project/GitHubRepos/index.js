@@ -123,6 +123,7 @@ const ReposList = ({ ghrepos, productId }) => {
                   onSubmit={e => {
                     e.preventDefault();
                     executeQuery();
+                    
                   }}
                 >
                   <Input
@@ -193,6 +194,7 @@ const ReposList = ({ ghrepos, productId }) => {
             onClick={() => {
               close();
               handleAddRepos();
+              window.location.reload();
             }}
           />
         </Modal.Actions>
