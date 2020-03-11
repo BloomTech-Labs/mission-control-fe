@@ -1,0 +1,19 @@
+@import '../../../styles/variables.scss';
+
+.editModalStyle {
+  position: relative !important;
+  height: 225px !important;
+  width: 350px !important;
+}
+
+.labelDesign {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding-top: 2px;
+  margin-bottom: 10px;
+  width: 100px;
+  height: 20px;
+  border-radius: 25px;
+  font-size: 0.8rem;
+}
