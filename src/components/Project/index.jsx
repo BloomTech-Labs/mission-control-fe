@@ -58,7 +58,7 @@ const Project = props => {
                 <Grade ccrepos={data.project.product.grades} />
               </div>
               <h2>Project Notes</h2>
-              {user == true ? (
+              {user === true ? (
                 <NoteEditor
                   executeQuery={executeQuery}
                   user={data.me}
