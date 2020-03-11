@@ -34,6 +34,7 @@ const Project = props => {
     variables: { email: data ? data.me.email : '' },
   });
 
+
   useEffect(() => {
     if (result.data) {
       setUser(result.data.person.role.privateNote);
@@ -42,6 +43,7 @@ const Project = props => {
       // setKillLoop(hold + 1);
     }
   }, [data]);
+  
 
   console.log(user);
   // console.log(killLoop);
@@ -56,7 +58,7 @@ const Project = props => {
         <div className={projectContainer}>
           <div className={editorFeedContainer}>
             <h2>Repos Code Health</h2>
-            <GitHubRepos ghrepos={data.project.product.GHRepos} productId={data.project.product.id} />
+            <GitHubRepos ghrepos={data.project.product.GHRepos} productId={data.project.product.id} executeQuery2={executeQuery}/>
             <div className={gradeContainer}>
               <Grade ghrepos={data.project.product.grades} />
             </div>

@@ -18,7 +18,7 @@ const ProjectRow = ({ project }) => {
           {project.name}
         </Link>
         <LetterGradeContainer
-          ccrepos={project.product.grades}
+          ghrepos={project.product.grades}
         />
       </td>
       <td className={rtd}>
