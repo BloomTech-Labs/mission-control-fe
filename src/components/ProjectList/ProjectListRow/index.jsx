@@ -48,7 +48,7 @@ const ProjectRow = ({ project, status }) => {
           <Link to={`/project/${project.id}`} className={title}>
             {project.name}
           </Link>
-          <LetterGradeContainer ccrepos={project.product.grades} />
+          <LetterGradeContainer ghrepos={project.product.grades} />
         </td>
         <td className={rtd}>
           {project.notes.length
