@@ -27,7 +27,6 @@ const Project = props => {
   const { data, fetching } = state;
 
   const [user, setUser] = useState(false);
-  // const [killLoop, setKillLoop] = useState(1);
 
   const [result] = useQuery({
     query: userQuery,
@@ -38,16 +37,9 @@ const Project = props => {
   useEffect(() => {
     if (result.data) {
       setUser(result.data.person.role.privateNote);
-
-      // let hold = killLoop;
-      // setKillLoop(hold + 1);
     }
   }, [data]);
   
-
-  console.log(user);
-  // console.log(killLoop);
-  console.log('log');
 
   return data ? (
     <div className={parentProjectContainer}>
