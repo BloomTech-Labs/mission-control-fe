@@ -1,11 +1,5 @@
 @import '../../../styles/variables.scss';
 
-.editModalStyle {
-  position: relative !important;
-  height: 225px !important;
-  width: 350px !important;
-}
-
 .labelDesign {
   display: inline-block;
   color: white;
@@ -16,9 +10,4 @@
   height: 20px;
   border-radius: 25px;
   font-size: 0.8rem;
-}
-
-.hover {
-  cursor: pointer;
-  pointer-events: auto;
 }

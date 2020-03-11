@@ -22,6 +22,7 @@ const ProjectRow = ({ project, status }) => {
           </Link>
           <LetterGradeContainer ccrepos={project.product.grades} />
         </td>
+        {/* We want to use this feature, but it's not quite where we want it to be just yet. Since we'd have to rip it out in multiple files, I decided to leave it in and comment it out for now. See ProjectListContainer */}
         {/* <td className={rtd}>
           {project.notes.length
             ? mapTime(project.notes[0].updatedAt)
