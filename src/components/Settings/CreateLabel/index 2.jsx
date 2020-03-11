@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import { Button } from 'semantic-ui-react';
 import { useMutation } from 'urql';
 import { CREATE_LABEL as createLabel } from '../../Project/Queries/index';
@@ -7,7 +7,7 @@ import { labelPreviewDesign } from './CreateLabel.module.scss';
 import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
 
 const CreateLabelForm = ({ column }) => {
-  const [label, setLabel] = useState({ name: '', color: '', id: '' });
+  const [label, setLabel] = useState('');
   const [, executeCreate] = useMutation(createLabel);
   const handleChanges = e => {
     e.preventDefault();
@@ -41,25 +41,22 @@ const CreateLabelForm = ({ column }) => {
             />
           </label>
           <br />
+          {label.name && label.color ? (
+            <div
+              className={labelPreviewDesign}
+              style={{ background: `${label.color}` }}
+            >
+              {label.name}
+            </div>
+          ) : (
+            ''
+          )}
         </div>
-        <br />
         <CustomCirclePicker label={label} setLabel={setLabel} />
-        <br />
-        {label.name && label.color ? (
-          <div
-            className={labelPreviewDesign}
-            style={{ background: `${label.color}` }}
-          >
-            {label.name}
-          </div>
-        ) : (
-          ''
-        )}
       </div>
       <div>
         <Button content="Save" onClick={handleSubmit} disabled={disableTer} />
       </div>
-      <br />
     </form>
   );
 };

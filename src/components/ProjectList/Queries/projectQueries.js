@@ -38,25 +38,9 @@ export const PROJECT_LIST_VIEW = gql`
   }
 `;
 
-export const DUMMY_QUERY = gql`
-  query {
-    info
-  }
-`;
-
 export const LABELS_SUBSCRIPTION = gql`
   subscription labelSubscription {
     newLabels {
-      id
-      name
-      color
-    }
-  }
-`;
-
-export const LABELS_QUERY = gql`
-  query labelQuery {
-    labels {
       id
       name
       color

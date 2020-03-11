@@ -31,6 +31,7 @@ export const NOTE_FEED_QUERY = gql`
       email
     }
     project(id: $id) {
+      id
       projectManagers {
         name
         id
@@ -220,8 +221,10 @@ export const DELETE_LABEL = gql`
 export const GET_USER_ROLE = gql`
   query GetUserRole($email: String!) {
     person(email: $email) {
+      id
       name
       role {
+        id
         name
         privateNote
       }
