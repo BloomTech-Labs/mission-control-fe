@@ -1,0 +1,13 @@
+@import '../../../styles/variables.scss';
+
+.modalStyle {
+  position: relative !important;
+  height: 500px !important;
+  width: 350px !important;
+}
+
+.buttonStyle {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
