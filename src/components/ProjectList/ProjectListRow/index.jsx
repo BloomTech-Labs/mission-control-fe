@@ -7,12 +7,12 @@ import LabelDropdown from '../LabelDropdown/index';
 
 import { title, rtd, statusColumns } from './projectListRow.module.scss';
 
-const ProjectRow = ({ project, status }) => {
+const ProjectRow = ({ project, statusColumn }) => {
   const statusLabelsArr = [];
   var i;
-  if (status.length > 0) {
-    for (i = 0; i < 4 && !(i >= status.length); i++) {
-      statusLabelsArr.push(status[i]);
+  if (statusColumn.length > 0) {
+    for (i = 0; i < 4 && !(i >= statusColumn.length); i++) {
+      statusLabelsArr.push(statusColumn[i]);
     }
     return (
       <tr>
@@ -28,7 +28,7 @@ const ProjectRow = ({ project, status }) => {
             : mapTime(project.updatedAt)}{' '}
           ago
         </td> */}
-        {status.length > 0 && statusLabelsArr.length > 0
+        {statusColumn.length > 0 && statusLabelsArr.length > 0
           ? statusLabelsArr.map(statusData => (
               <td key={statusData.id} className={statusColumns}>
                 <LabelDropdown labels={statusData.labels} />

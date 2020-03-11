@@ -2,12 +2,12 @@ import React from 'react';
 
 import { rtc } from './projectListContainer.module.scss';
 
-const ProjectListContainer = ({ children, status }) => {
+const ProjectListContainer = ({ children, statusColumn }) => {
   const statusTitleArr = [];
   var i;
-  if (status.length > 0) {
-    for (i = 0; i < 4 && !(i >= status.length); i++) {
-      statusTitleArr.push(status[i]);
+  if (statusColumn.length > 0) {
+    for (i = 0; i < 4 && !(i >= statusColumn.length); i++) {
+      statusTitleArr.push(statusColumn[i]);
     }
     return (
       <table>
@@ -15,7 +15,7 @@ const ProjectListContainer = ({ children, status }) => {
           <tr>
             <th>Project Name</th>
             {/* <th className={rtd}>Last Updated</th> */}
-            {status.length > 0 && statusTitleArr.length > 0
+            {statusColumn.length > 0 && statusTitleArr.length > 0
               ? statusTitleArr.map(statusData => (
                   <th className={rtc} key={statusData.id}>
                     {statusData.name}

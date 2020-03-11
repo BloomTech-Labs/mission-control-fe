@@ -210,8 +210,8 @@ export const UPDATE_LABEL = gql`
 `;
 
 export const DELETE_LABEL = gql`
-  mutation DeleteLabelMutation($id: ID!, $columnId: String!) {
-    deleteLabel(id: $id, columnId: $columnId) {
+  mutation DeleteLabelMutation($id: ID!) {
+    deleteLabel(id: $id) {
       id
     }
   }
@@ -229,27 +229,27 @@ export const GET_USER_ROLE = gql`
   }
 `;
 
-export const CREATE_COLUMN = gql`
-  mutation createColumnMutation($id: ID!, $name: String!) {
-    createColumn(id: $id, name: $name) {
+export const CREATE_STATUS = gql`
+  mutation createStatusMutation($id: ID!, $name: String!) {
+    createStatus(id: $id, name: $name) {
       id
       name
     }
   }
 `;
 
-export const UPDATE_COLUMN = gql`
-  mutation updateColumnMutation($id: ID!, $name: String!) {
-    updateColumn(id: $id, name: $name) {
+export const UPDATE_STATUS = gql`
+  mutation updateStatusMutation($id: ID!, $name: String!) {
+    updateStatus(id: $id, name: $name) {
       id
       name
     }
   }
 `;
 
-export const DELETE_COLUMN = gql`
-  mutation DeleteColumnMutation($id: ID!) {
-    deleteColumn(id: $id) {
+export const DELETE_STATUS = gql`
+  mutation DeleteStatusMutation($id: ID!) {
+    deleteStatus(id: $id) {
       id
     }
   }

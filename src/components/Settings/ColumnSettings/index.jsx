@@ -23,7 +23,7 @@ const ColumnSettings = () => {
     <div>
       <div className={columnEditCont}>
         {data
-          ? data.programs[0].columns.map(column => (
+          ? data.programs[0].statuses.map(column => (
               <div key={column.id}>
                 <EditColumns column={column} />
               </div>

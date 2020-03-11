@@ -5,7 +5,7 @@ export const PROJECT_LIST_VIEW = gql`
     programs {
       name
       id
-      columns {
+      statuses {
         name
         id
         labels {
@@ -69,7 +69,7 @@ export const PROGRAM_SUBSCRIPTION = gql`
     programs {
       id
       name
-      columns {
+      statuses {
         id
         name
         labels {
@@ -93,7 +93,7 @@ export const LABEL_LIST_VIEW = gql`
     programs {
       name
       id
-      columns {
+      statuses {
         name
         id
         labels {

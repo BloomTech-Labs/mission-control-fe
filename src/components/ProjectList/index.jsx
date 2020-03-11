@@ -21,18 +21,18 @@ const ProjectListView = () => {
       projects.push(product.projects[0])
     );
 
-  const columns = data && data.programs[0].columns;
+  const columns = data && data.programs[0].statuses;
 
   if (data && projects.length) {
     return (
       <div>
         <Settings />
-        <ProjectListContainer status={columns}>
+        <ProjectListContainer statusColumn={columns}>
           {projects.map(project => (
             <ProjectListRow
               key={project.id}
               project={project}
-              status={columns}
+              statusColumn={columns}
             />
           ))}
         </ProjectListContainer>
