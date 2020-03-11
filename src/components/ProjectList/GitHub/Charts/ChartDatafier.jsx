@@ -8,7 +8,10 @@ const maxValueCheck = (array, value, maxValue) =>{
 
 export const ChartDatafier = (data, additions, deletions, changedFiles) => {
     const maxValue = 1000
-    data.SparkyBoy.reverse().map(commit => {
+
+    const flippyBoy = data.SparkyBoy.slice().reverse();
+
+    flippyBoy.map(commit => {
         return (
             maxValueCheck(additions, commit.additions, maxValue),
             maxValueCheck(deletions, commit.deletions, maxValue),
