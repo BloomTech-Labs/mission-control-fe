@@ -5,7 +5,7 @@ import { modalStyle, buttonStyle } from './EditColumnModal.module.scss';
 import { useMutation } from 'urql';
 import CreateLabel from '../CreateLabel/index';
 import LabelList from '../LabelList/index';
-import { UPDATE_COLUMN } from '../../Project/Queries/index';
+import { UPDATE_STATUS } from '../../Project/Queries/index';
 import DeleteColumn from '../DeleteColumn';
 
 const EditColumnModal = ({ column }) => {
@@ -14,7 +14,7 @@ const EditColumnModal = ({ column }) => {
     id: column.id,
   });
   const [open, setOpen] = useState(false);
-  const [, executeMutation] = useMutation(UPDATE_COLUMN);
+  const [, executeMutation] = useMutation(UPDATE_STATUS);
 
   const handleOpen = () => setOpen(true);
 

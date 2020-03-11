@@ -2,14 +2,14 @@ import React, { useState, useCallback, useContext } from 'react';
 import { Button, Modal } from 'semantic-ui-react';
 import { modalStyle, buttonStyle } from './CreateColumn.module.scss';
 import { useMutation } from 'urql';
-import { CREATE_COLUMN as createColumn } from '../../Project/Queries/index';
+import { CREATE_STATUS as createStatus } from '../../Project/Queries/index';
 
 import { ColumnContext } from '../../../contexts/ColumnContext';
 
 const CreateColumn = ({ programId }) => {
   const { column, setColumn } = useContext(ColumnContext);
   const [open, setOpen] = useState(false);
-  const [, executeCreate] = useMutation(createColumn);
+  const [, executeCreate] = useMutation(createStatus);
 
   const handleOpen = () => setOpen(true);
 

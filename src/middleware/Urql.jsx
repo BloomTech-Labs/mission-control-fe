@@ -23,33 +23,33 @@ const cache = cacheExchange({
       createLabel: ({ createLabel }, _args, cache) => {
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
           if (data !== null) {
-            const columnIndex = data.programs[0].columns.findIndex(
+            const columnIndex = data.programs[0].statuses.findIndex(
               c => c.id === _args.id
             );
-            data.programs[0].columns[columnIndex].labels.unshift(createLabel);
+            data.programs[0].statuses[columnIndex].labels.unshift(createLabel);
             return data;
           } else {
             return null;
           }
         });
       },
-      createColumn: ({ createColumn }, _args, cache) => {
+      createStatus: ({ createStatus }, _args, cache) => {
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
           if (data !== null) {
-            data.programs[0].columns.unshift(createColumn);
+            data.programs[0].statuses.unshift(createStatus);
             return data;
           } else {
             return null;
           }
         });
       },
-      deleteColumn: ({ deleteColumn }, _args, cache) => {
+      deleteStatus: ({ deleteColumn }, _args, cache) => {
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
           if (data !== null) {
-            const columnIndex = data.programs[0].columns.findIndex(
+            const columnIndex = data.programs[0].statuses.findIndex(
               c => c.id === _args.id
             );
-            data.programs[0].columns.splice(columnIndex, 1);
+            data.programs[0].statuses.splice(columnIndex, 1);
             return data;
           } else {
             return null;
@@ -59,13 +59,13 @@ const cache = cacheExchange({
       deleteLabel: ({ deleteLabel }, _args, cache) => {
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
           if (data !== null) {
-            const columnIndex = data.programs[0].columns.findIndex(
+            const columnIndex = data.programs[0].statuses.findIndex(
               c => c.id === _args.columnId
             );
-            const labelIndex = data.programs[0].columns[
+            const labelIndex = data.programs[0].statuses[
               columnIndex
             ].labels.findIndex(l => l.id === _args.id);
-            data.programs[0].columns[columnIndex].labels.splice(labelIndex, 1);
+            data.programs[0].statuses[columnIndex].labels.splice(labelIndex, 1);
             return data;
           } else {
             return null;
