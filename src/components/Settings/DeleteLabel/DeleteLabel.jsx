@@ -4,22 +4,25 @@ import { Modal, Button } from 'semantic-ui-react';
 import { DELETE_LABEL as deleteLabel } from '../../Project/Queries/index';
 import { FaTrashAlt } from 'react-icons/fa';
 
-const DeleteLabel = (props, { column }) => {
+const DeleteLabel = ({ label, columnId }) => {
   const [open, setOpen] = useState(false);
   const [, executeDelete] = useMutation(deleteLabel);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const delObj = {
+    id: label.id,
+    columnId: columnId,
+  };
+
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
-      executeDelete(props.label, column.id);
+      executeDelete(delObj);
       handleClose();
     },
-    [executeDelete, props.label]
+    [executeDelete, delObj]
   );
-
-  console.log(props.label);
 
   return (
     <Modal
