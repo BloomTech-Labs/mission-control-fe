@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'semantic-ui-react';
 import EditIcon from '@material-ui/icons/Edit';
-import { LabelContext } from '../../../contexts/LabelContext';
 import { modalStyle, buttonStyle } from './EditColumnModal.module.scss';
 import { useMutation } from 'urql';
 import CreateLabel from '../CreateLabel/index';

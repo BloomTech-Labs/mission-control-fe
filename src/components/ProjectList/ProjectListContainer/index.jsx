@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { rtd, rtc } from './projectListContainer.module.scss';
+import { rtc } from './projectListContainer.module.scss';
 
 const ProjectListContainer = ({ children, status }) => {
   const statusTitleArr = [];
