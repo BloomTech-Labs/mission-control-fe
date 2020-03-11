@@ -24,7 +24,7 @@ const cache = cacheExchange({
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
           if (data !== null) {
             const columnIndex = data.programs[0].columns.findIndex(
-              c => c.id == _args.id
+              c => c.id === _args.id
             );
             data.programs[0].columns[columnIndex].labels.unshift(createLabel);
             return data;
@@ -47,7 +47,7 @@ const cache = cacheExchange({
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
           if (data !== null) {
             const columnIndex = data.programs[0].columns.findIndex(
-              c => c.id == _args.id
+              c => c.id === _args.id
             );
             data.programs[0].columns.splice(columnIndex, 1);
             return data;
@@ -61,11 +61,11 @@ const cache = cacheExchange({
           console.log('del', _args, data);
           if (data !== null) {
             const columnIndex = data.programs[0].columns.findIndex(
-              c => c.id == _args.columnId
+              c => c.id === _args.columnId
             );
             const labelIndex = data.programs[0].columns[
               columnIndex
-            ].labels.findIndex(l => l.id == _args.id);
+            ].labels.findIndex(l => l.id === _args.id);
             data.programs[0].columns[columnIndex].labels.splice(labelIndex, 1);
             return data;
           } else {
