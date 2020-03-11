@@ -219,8 +219,10 @@ export const UPDATE_LABEL = gql`
 export const GET_USER_ROLE = gql`
   query GetUserRole($email: String!) {
     person(email: $email) {
+      id
       name
       role {
+        id
         name
         privateNote
       }
