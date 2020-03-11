@@ -33,7 +33,7 @@ const ProjectListContainer = ({ children, status }) => {
       <table>
         <thead>
           <tr>
-            <th>Project Health</th>
+            {/* <th>Project Health</th> */}
             <th>Project Name</th>
           </tr>
         </thead>
