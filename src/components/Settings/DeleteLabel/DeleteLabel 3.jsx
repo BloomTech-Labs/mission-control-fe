@@ -5,24 +5,19 @@ import { DELETE_LABEL as deleteLabel } from '../../Project/Queries/index';
 import { FaTrashAlt } from 'react-icons/fa';
 import { hover } from '../StatusLabel/StatusLabel.module.scss';
 
-const DeleteLabel = ({ label, columnId }) => {
+const DeleteLabel = props => {
   const [open, setOpen] = useState(false);
   const [, executeDelete] = useMutation(deleteLabel);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const delObj = {
-    id: label.id,
-    columnId: columnId,
-  };
-
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
-      executeDelete(delObj);
+      executeDelete(props.label);
       handleClose();
     },
-    [executeDelete, delObj]
+    [executeDelete, props.label]
   );
 
   return (

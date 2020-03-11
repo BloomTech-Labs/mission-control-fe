@@ -14,6 +14,7 @@ const ProjectListContainer = ({ children, status }) => {
         <thead>
           <tr>
             <th>Project Name</th>
+            {/* We want to use this feature, but it's not quite where we want it to be just yet. Since we'd have to rip it out in multiple files, I decided to leave it in and comment it out for now. See ProjectListRow */}
             {/* <th className={rtd}>Last Updated</th> */}
             {status.length > 0 && statusTitleArr.length > 0
               ? statusTitleArr.map(statusData => (
