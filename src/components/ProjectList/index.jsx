@@ -1,7 +1,6 @@
 import React from 'react';
 import { useQuery } from 'urql';
 import { PROJECT_LIST_VIEW as query } from './Queries/projectQueries';
-
 import ProjectListContainer from './ProjectListContainer';
 import ProjectListRow from './ProjectListRow';
 import Settings from '../Settings/Settings';
@@ -13,14 +12,9 @@ import Settings from '../Settings/Settings';
 const ProjectListView = () => {
   const [state] = useQuery({ query });
   const { data, fetching, error } = state;
-
   const projects = [];
 
-  data &&
-    data.programs[0].products.map(product =>{
-      projects.push(product.projects[0])
-      }
-    );
+  data && data.programs[0].products.map(product =>{ projects.push(product.projects[0]) });
 
   const columns = data && data.programs[0].columns;
 
