@@ -4,7 +4,7 @@ import LetterGrade from './LetterGrade';
 import getColor from '../../../utils/getColorFromCCGrade';
 
 const LetterGradeContainer = props => {
-  if (!props.ccrepos || !props.ccrepos.length) return null;
+  if (!props.ccrepos || !props.ccrepos[0].grade) return null;
 
   return (
     <>
