@@ -11,14 +11,9 @@ const LabelDropdown = props => {
         {label.name}
       </div>
     ),
-    content: (
-      <div className={labelDesign} style={{ background: `${label.color}` }}>
-        {label.name}
-      </div>
-    ),
   }));
 
-  return <Dropdown placeholder="Select Label" options={labels} />;
+  return <Dropdown text="Select Label" options={labels} />;
 };
 
 export default LabelDropdown;
