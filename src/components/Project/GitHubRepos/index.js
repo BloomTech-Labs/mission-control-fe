@@ -70,7 +70,6 @@ const ReposList = () => {
       if (!ghNames.includes(repo.name)) {
         return repo;
       }
-      return null;
     });
     setGithubRepos([...githubRepos, ...filterRepos]);
   };
@@ -83,7 +82,7 @@ const ReposList = () => {
     setRepoSelect(removeRepo);
   };
 
-  const { fetching } = results;
+  const { data, fetching, error } = results;
   const { open } = state;
 
   return (
