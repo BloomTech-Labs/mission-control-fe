@@ -15,6 +15,7 @@ export const PROJECT_LIST_VIEW = gql`
         }
       }
       products {
+        id
         projects {
           id
           name
