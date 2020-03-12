@@ -84,7 +84,7 @@ const ReposList = () => {
     setRepoSelect(removeRepo);
   };
 
-  const { data, fetching, error } = results;
+  const { fetching } = results;
   const { open } = state;
 
   return (
