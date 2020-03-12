@@ -24,7 +24,7 @@ import { GET_USER_ROLE as userQuery } from './Queries';
 const Project = props => {
   const { id } = props.match.params;
   const [state, executeQuery] = useQuery({ query, variables: { id } });
-  const { data, fetching, error } = state;
+  const { data, fetching } = state;
 
   const [user, setUser] = useState(false);
 
@@ -37,48 +37,42 @@ const Project = props => {
     if (result.data) {
       setUser(result.data.person.role.privateNote);
     }
-  }, [result.data]);
+  }, [data]);
 
-  if (fetching){
-    return <p>Loading...</p>
-  } else if (error){
-    return <p>Error "PROJECT_VIEW_QUERY": {error}</p>
-  } else if (data){
-    return (
-      <div className={parentProjectContainer}>
-        <div className={projectPageContents}>
-          <div>
-            <Header projectId={id} />
+  return data ? (
+    <div className={parentProjectContainer}>
+      <div className={projectPageContents}>
+        <div>
+          <Header projectId={id} />
+        </div>
+        <div className={projectContainer}>
+          <div className={editorFeedContainer}>
+            <h2>Repos Code Health</h2>
+            <GitHubRepos />
+            <div className={gradeContainer}>
+              <Grade ccrepos={data.project.product.grades} />
+            </div>
+            <h2>Project Notes</h2>
+            {user == true ? (
+              <NoteEditor
+                executeQuery={executeQuery}
+                user={data.me}
+                projectId={id}
+                projectManagers={data.project.projectManagers}
+              />
+            ) : null}
+
+            <NotesFeed projectId={id} privateBol={user} />
           </div>
-          <div className={projectContainer}>
-            <div className={editorFeedContainer}>
-              <h2>Repos Code Health</h2>
-              <GitHubRepos />
-              <div className={gradeContainer}>
-                <Grade ccrepos={data.project.product.grades} />
-              </div>
-              <h2>Project Notes</h2>
-              {user === true ? (
-                <NoteEditor
-                  executeQuery={executeQuery}
-                  user={data.me}
-                  projectId={id}
-                  projectManagers={data.project.projectManagers}
-                />
-              ) : null}
-  
-              <NotesFeed projectId={id} privateBol={user} />
-            </div>
-            <div className={teamContainer}>
-              <Team projectId={id} />
-            </div>
+          <div className={teamContainer}>
+            <Team projectId={id} />
           </div>
         </div>
       </div>
-    )
-  } else {
-    return <p>End of line.</p>
-  }
+    </div>
+  ) : (
+    <h1>Loading</h1>
+  );
 };
 
 export default Project;
