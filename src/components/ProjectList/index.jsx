@@ -17,8 +17,9 @@ const ProjectListView = () => {
   const projects = [];
 
   data &&
-    data.programs[0].products.map(product =>
+    data.programs[0].products.map(product =>{
       projects.push(product.projects[0])
+      }
     );
 
   const columns = data && data.programs[0].columns;

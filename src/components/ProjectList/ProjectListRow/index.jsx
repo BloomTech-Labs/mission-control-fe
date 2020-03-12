@@ -10,6 +10,7 @@ import { title, rtd, statusColumns } from './projectListRow.module.scss';
 const ProjectRow = ({ project, status }) => {
   const statusLabelsArr = [];
   var i;
+  console.log(project)
   if (status.length > 0) {
     for (i = 0; i < 4 && !(i >= status.length); i++) {
       statusLabelsArr.push(status[i]);
