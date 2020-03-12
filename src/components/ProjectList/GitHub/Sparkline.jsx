@@ -3,7 +3,6 @@ import { useQuery } from 'urql';
 import { SPARKLINE as query } from '../Queries/sparklineQuery';
 import { Sparkyline } from './Sparkline.module.scss';
 import SparkyChart from './Charts/SparkyChart';
-import { ChartDatafier } from './Charts/ChartDatafier';
 
 const Sparkline = ({ name }) => {
   
@@ -11,11 +10,7 @@ const Sparkline = ({ name }) => {
         owner: 'Lambda-School-Labs',
         name: name} });
     const { data } = state; 
-
-    // const additions = [];
-    // const deletions = [];
-    // const changedFiles = [];
-
+    
     if (state.fetching){
         return <p>Loading Sparkline...</p>
     } else if (state.error) {
