@@ -211,8 +211,8 @@ export const UPDATE_LABEL = gql`
 `;
 
 export const DELETE_LABEL = gql`
-  mutation DeleteLabelMutation($id: ID!) {
-    deleteLabel(id: $id) {
+  mutation DeleteLabelMutation($id: ID!, $columnId: String!) {
+    deleteLabel(id: $id, columnId: $columnId) {
       id
     }
   }
