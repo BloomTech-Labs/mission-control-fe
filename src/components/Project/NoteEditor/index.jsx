@@ -93,6 +93,11 @@ const NoteEditor = ({
         });
         resetForm();
         executeQuery();
+        setTimeout(function () {
+          window.location.href = `/project/${projectId}`;
+          //history.push(`/project/${projectId}`);
+        }, 250);
+        //console.log(executeQuery().data);
         break;
       case 'update':
         e.preventDefault();
@@ -212,7 +217,8 @@ const NoteEditor = ({
                   <SemanticButton
                     onClick={() => setPrivateNote(!privateNote)}
                     type="button"
-                    color="pink"
+                    //color="pink"
+                    className={styles['privatetoggle-btn']}
                     variant="outlined"
                   >
                     PRIVATE

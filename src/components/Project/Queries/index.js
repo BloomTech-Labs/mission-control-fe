@@ -33,6 +33,7 @@ export const NOTE_FEED_QUERY = gql`
       email
     }
     project(id: $id) {
+      id
       projectManagers {
         name
         id

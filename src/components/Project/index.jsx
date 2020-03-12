@@ -69,7 +69,6 @@ const Project = props => {
                 projectManagers={data.project.projectManagers}
               />
             ) : null}
-
             <NotesFeed projectId={id} privateBol={user} />
           </div>
           <div className={teamContainer}>
