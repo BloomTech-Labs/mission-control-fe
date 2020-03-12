@@ -11,10 +11,14 @@ import ProjectListRow from './ProjectListRow';
 
 const ProjectListView = () => {
   const [state] = useQuery({ query });
-  const { data } = state;
+  const { data, fetching, error } = state;
 
-  if (data && data.projects.length) {
-    const projects = data.projects;
+  if (fetching){
+    return <p>Loading...</p>
+  } else if (error){
+    return <p>Error "PROJECT_LIST_VIEW": {error.name} {error.message}</p>
+  } else if (data.projects.length){
+    const projects = data.projects
     return (
       <ProjectListContainer>
         {projects.map(project => (
@@ -23,7 +27,6 @@ const ProjectListView = () => {
       </ProjectListContainer>
     );
   }
-  return <h1>Loading...</h1>;
 };
 
 export default ProjectListView;

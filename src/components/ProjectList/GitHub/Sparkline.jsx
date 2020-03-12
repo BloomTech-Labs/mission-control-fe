@@ -21,7 +21,6 @@ const Sparkline = ({ name }) => {
     } else if (state.error) {
         return <p>Error: {state.error}</p>
     } else if (data.SparkyBoy.length) {
-        // ChartDatafier(data, additions, deletions, changedFiles)
         return (
             <div className={Sparkyline}>
                 <SparkyChart data={data} maxValue={10000000000}/>
