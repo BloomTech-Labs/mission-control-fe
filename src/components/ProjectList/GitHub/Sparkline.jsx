@@ -12,19 +12,19 @@ const Sparkline = ({ name }) => {
         name: name} });
     const { data } = state; 
 
-    const additions = [];
-    const deletions = [];
-    const changedFiles = [];
+    // const additions = [];
+    // const deletions = [];
+    // const changedFiles = [];
 
     if (state.fetching){
         return <p>Loading Sparkline...</p>
     } else if (state.error) {
         return <p>Error: {state.error}</p>
     } else if (data.SparkyBoy.length) {
-        ChartDatafier(data, additions, deletions, changedFiles)
+        // ChartDatafier(data, additions, deletions, changedFiles)
         return (
             <div className={Sparkyline}>
-                <SparkyChart additions={additions} deletions={deletions} changedFiles={changedFiles}/>
+                <SparkyChart data={data} maxValue={10000000000}/>
             </div>
         );
     } else {
