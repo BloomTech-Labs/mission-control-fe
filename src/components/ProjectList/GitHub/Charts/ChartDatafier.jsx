@@ -6,8 +6,8 @@ const maxValueCheck = (array, value, maxValue) =>{
     };
 };
 
-export const ChartDatafier = (data, additions, deletions, changedFiles) => {
-    const maxValue = 1000
+export const ChartDatafier = (data, additions, deletions, changedFiles, maxValue) => {
+    console.log('chart datafire', data.SparkyBoy)
     data.SparkyBoy.reverse().map(commit => {
         return (
             maxValueCheck(additions, commit.additions, maxValue),
