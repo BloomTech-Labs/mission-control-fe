@@ -69,6 +69,8 @@ const ReposList = () => {
     const filterRepos = repoSelected.filter(repo => {
       if (!ghNames.includes(repo.name)) {
         return repo;
+      }else {
+        return null;
       }
     });
     setGithubRepos([...githubRepos, ...filterRepos]);
@@ -82,7 +84,7 @@ const ReposList = () => {
     setRepoSelect(removeRepo);
   };
 
-  const { data, fetching, error } = results;
+  const { fetching } = results;
   const { open } = state;
 
   return (

@@ -1,7 +1,9 @@
 import React from 'react';
 import getColor from '../../../utils/getColorFromCCGrade';
 
-import { gradeCont, gradeBox, scsssux } from './Grade.module.scss';
+import { gradeCont, gradeBox, scsssux, PulseBoy } from './Grade.module.scss';
+
+import RePulse from '../rePulse/Pulse';
 
 const Grade = props => {
   if (!props.ccrepos || !props.ccrepos.length) return null;
@@ -28,6 +30,9 @@ const Grade = props => {
               </a>
             </h3>
             <a href={repo.link}>Go to Analysis</a>
+            <div className={PulseBoy}>
+              <RePulse owner="Lambda-School-Labs" name={repo.name} />
+            </div>  
           </div>
         );
       })}
