@@ -23,7 +23,7 @@ const Sparkline = ({ name }) => {
     } else if (data.SparkyBoy.length) {
         return (
             <div className={Sparkyline}>
-                <SparkyChart data={data} maxValue={10000000000}/>
+                <SparkyChart data={data} maxValue={1000}/>
             </div>
         );
     } else {
