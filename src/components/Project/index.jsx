@@ -33,7 +33,6 @@ const Project = props => {
     variables: { email: data ? data.me.email : '' },
   });
 
-
   useEffect(() => {
     if (result.data) {
       setUser(result.data.person.role.privateNote);
