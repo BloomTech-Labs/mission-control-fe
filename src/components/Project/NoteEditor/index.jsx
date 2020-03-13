@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation, useQuery } from 'urql';
-import extractAvatar from '../../../utils/managers';
+// import extractAvatar from '../../../utils/managers';
 
 import Attendance from './Attendance';
 import DeleteNote from '../NoteFeed/Note/DeleteNote';
@@ -45,7 +45,9 @@ const NoteEditor = ({
   const [topic, setTopic] = useState((note && note.topic) || '');
   const [content, setContent] = useState((note && note.content) || '');
   const [rating, setRating] = useState((note && note.rating) || 0);
-  const [privateNote, setPrivateNote] = useState((note && note.privateNote) || false);
+  const [privateNote, setPrivateNote] = useState(
+    (note && note.privateNote) || false
+  );
   const [attendees, setAttendees] = useState((note && note.attendedBy) || []);
   const [expandedAttendees, setExpandedAttendees] = useState(false);
   const [expandedAbsent, setExpandedAbsent] = useState(false);
@@ -93,13 +95,13 @@ const NoteEditor = ({
         });
         resetForm();
         executeQuery();
-/*START OF FIX
+        /*START OF FIX
 (SEE PULL NOTES #244)
 */
-        setTimeout(function () {
+        setTimeout(function() {
           window.location.href = `/project/${projectId}`;
         }, 250);
-//END OF FIC
+        //END OF FIC
         break;
       case 'update':
         e.preventDefault();
@@ -118,13 +120,12 @@ const NoteEditor = ({
     }
   };
 
-
   return (
     <div>
       <div className={styles['main-container']}>
         <div className={styles['editor-container']}>
           <div className={styles['avatar-container']}>
-            <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
+            {/* <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} /> */}
           </div>
           <form
             onSubmit={e => {
@@ -215,7 +216,7 @@ const NoteEditor = ({
                   </label>
                 )}
 
-                {privateNote ?
+                {privateNote ? (
                   <SemanticButton
                     onClick={() => setPrivateNote(!privateNote)}
                     type="button"
@@ -225,7 +226,7 @@ const NoteEditor = ({
                   >
                     PRIVATE
                   </SemanticButton>
-                :
+                ) : (
                   <SemanticButton
                     onClick={() => setPrivateNote(!privateNote)}
                     type="button"
@@ -234,7 +235,7 @@ const NoteEditor = ({
                   >
                     PUBLIC
                   </SemanticButton>
-                }
+                )}
                 <SemanticButton
                   className={validated ? styles['save-btn'] : styles.disabled}
                   type="submit"
