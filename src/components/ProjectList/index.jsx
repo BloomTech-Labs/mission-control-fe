@@ -1,7 +1,6 @@
 import React from 'react';
 import { useQuery } from 'urql';
 import { PROJECT_LIST_VIEW as query } from './Queries/projectQueries';
-
 import ProjectListContainer from './ProjectListContainer';
 import ProjectListRow from './ProjectListRow';
 import Settings from '../Settings/Settings';
@@ -12,18 +11,18 @@ import Settings from '../Settings/Settings';
 
 const ProjectListView = () => {
   const [state] = useQuery({ query });
-  const { data } = state;
-
+  const { data, fetching, error } = state;
   const projects = [];
 
-  data &&
-    data.programs[0].products.map(product =>
-      projects.push(product.projects[0])
-    );
+  data && data.programs[0].products.map(product => projects.push(product.projects[0]) );
 
   const columns = data && data.programs[0].statuses;
 
-  if (data && projects.length) {
+  if (fetching){
+    return <p>Loading...</p>
+  } else if (error){
+    return <p>Error "PROJECT_LIST_VIEW": {error.name} {error.message}</p>
+  } else if (data && projects.length) {
     return (
       <div>
         <Settings />
@@ -39,7 +38,6 @@ const ProjectListView = () => {
       </div>
     );
   }
-  return <h1>Loading...</h1>;
 };
 
 export default ProjectListView;

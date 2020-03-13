@@ -15,6 +15,7 @@ export const PROJECT_LIST_VIEW = gql`
         }
       }
       products {
+        id
         projects {
           id
           name
@@ -27,6 +28,7 @@ export const PROJECT_LIST_VIEW = gql`
           product {
             id
             grades {
+              id
               grade
               name
               link
