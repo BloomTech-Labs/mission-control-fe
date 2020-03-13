@@ -78,6 +78,8 @@ const ReposList = ({ ghrepos, productId, executeQuery2 }) => {
     const filterRepos = repoSelected.filter(repo => {
       if (!ghNames.includes(repo.name)) {
         return repo;
+      }else {
+        return null;
       }
     });
     Promise.all(
@@ -99,7 +101,7 @@ const ReposList = ({ ghrepos, productId, executeQuery2 }) => {
     setRepoSelect(removeRepo);
   };
 
-  const { data, fetching, error } = results;
+  const { fetching } = results;
   const { open } = state;
 
   return (

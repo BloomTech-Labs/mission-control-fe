@@ -6,10 +6,8 @@ const maxValueCheck = (array, value, maxValue) =>{
     };
 };
 
-export const ChartDatafier = (data, additions, deletions, changedFiles) => {
-    const maxValue = 1000
-
-    const flippyBoy = data.SparkyBoy.slice().reverse();
+export const ChartDatafier = (data, additions, deletions, changedFiles, maxValue) => {
+     const flippyBoy = data.SparkyBoy.slice().reverse();
 
     flippyBoy.map(commit => {
         return (
