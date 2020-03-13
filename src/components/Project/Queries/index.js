@@ -21,6 +21,7 @@ export const HEADER_QUERY = gql`
   query HeaderView($id: ID!) {
     project(id: $id) {
       id
+      projectActive
       name
     }
   }
@@ -193,8 +194,8 @@ export const DELETE_NOTE = gql`
 `;
 
 export const CREATE_LABEL = gql`
-  mutation CreateLabelMutation($name: String!, $color: String!) {
-    createLabel(name: $name, color: $color) {
+  mutation CreateLabelMutation($id: ID!, $name: String!, $color: String!) {
+    createLabel(id: $id, name: $name, color: $color) {
       name
       color
       id
@@ -212,11 +213,21 @@ export const UPDATE_LABEL = gql`
   }
 `;
 
+export const DELETE_LABEL = gql`
+  mutation DeleteLabelMutation($id: ID!, $columnId: String!) {
+    deleteLabel(id: $id, columnId: $columnId) {
+      id
+    }
+  }
+`;
+
 export const GET_USER_ROLE = gql`
   query GetUserRole($email: String!) {
     person(email: $email) {
+      id
       name
       role {
+        id
         name
         privateNote
       }
@@ -224,13 +235,39 @@ export const GET_USER_ROLE = gql`
   }
 `;
 
+export const CREATE_COLUMN = gql`
+  mutation createColumnMutation($id: ID!, $name: String!) {
+    createColumn(id: $id, name: $name) {
+      id
+      name
+    }
+  }
+`;
+
+export const UPDATE_COLUMN = gql`
+  mutation updateColumnMutation($id: ID!, $name: String!) {
+    updateColumn(id: $id, name: $name) {
+      id
+      name
+    }
+  }
+`;
+
+export const DELETE_COLUMN = gql`
+  mutation DeleteColumnMutation($id: ID!) {
+    deleteColumn(id: $id) {
+      id
+    }
+  }
+`;
+
 export const TEST_QUERY = gql`
-  query TestQuery {
+  query {
     me {
       email
     }
   }
-  `;
+`;
 
 export const GET_GITHUB_REPOS = gql`
   query githubrepos($search: String!, $org: String) {
