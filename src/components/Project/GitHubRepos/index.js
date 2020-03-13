@@ -11,22 +11,19 @@ import {
   GET_GITHUB_REPOS as query,
   CREATE_GHREPO as createRepo,
 } from '../Queries';
-import Grade from '../Grade';
 
 const initialQuery = '';
 
-const ReposList = ({ ghrepos, productId }) => {
+const ReposList = ({ ghrepos, productId, executeQuery2 }) => {
   const [state, setState] = useState({ open: false });
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [repoSelected, setRepoSelect] = useState([]);
-  const [githubRepos, setGithubRepos] = useState(
-    ghrepos.map(repo => ({
-      ...repo,
-      grade: 'A',
-      link: 'http://www.google.com',
-    }))
-  );
+  const [githubRepos, setGithubRepos] = useState(ghrepos);
+
+  useEffect(() => {
+    setGithubRepos(ghrepos)
+  }, [ghrepos])
   const [results, executeQuery] = useQuery({
     query,
     variables: { search: searchQuery },
@@ -81,16 +78,18 @@ const ReposList = ({ ghrepos, productId }) => {
     const filterRepos = repoSelected.filter(repo => {
       if (!ghNames.includes(repo.name)) {
         return repo;
+      }else {
+        return null;
       }
     });
     Promise.all(
       filterRepos.map(repo => {
-        return addRepo({ ...repo }).then(result => {
-          return result.data.createGithubRepo;
-        });
+        return addRepo({ ...repo })
       })
     ).then(res => {
-      setGithubRepos([...githubRepos, ...res]);
+      executeQuery2({
+        requestPolicy: "network-only"
+      })
     });
   };
 
@@ -102,7 +101,7 @@ const ReposList = ({ ghrepos, productId }) => {
     setRepoSelect(removeRepo);
   };
 
-  const { data, fetching, error } = results;
+  const { fetching } = results;
   const { open } = state;
 
   return (
@@ -123,6 +122,7 @@ const ReposList = ({ ghrepos, productId }) => {
                   onSubmit={e => {
                     e.preventDefault();
                     executeQuery();
+                    
                   }}
                 >
                   <Input
@@ -197,9 +197,6 @@ const ReposList = ({ ghrepos, productId }) => {
           />
         </Modal.Actions>
       </Modal>
-      <div>
-        <Grade ccrepos={githubRepos} />
-      </div>
     </div>
   );
 };

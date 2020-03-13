@@ -1,9 +1,9 @@
 import React from 'react';
 import { useQuery } from 'urql';
 import { PROJECT_LIST_VIEW as query } from './Queries/projectQueries';
-
 import ProjectListContainer from './ProjectListContainer';
 import ProjectListRow from './ProjectListRow';
+import Settings from '../Settings/Settings';
 
 // ProjectListView is the default view when a user signs into the application
 // The PROJECT_LIST_VIEW query matches against the currently authenticated user
@@ -11,19 +11,33 @@ import ProjectListRow from './ProjectListRow';
 
 const ProjectListView = () => {
   const [state] = useQuery({ query });
-  const { data } = state;
+  const { data, fetching, error } = state;
+  const projects = [];
 
-  if (data && data.projects.length) {
-    const projects = data.projects;
+  data && data.programs[0].products.map(product => projects.push(product.projects[0]) );
+
+  const columns = data && data.programs[0].columns;
+
+  if (fetching){
+    return <p>Loading...</p>
+  } else if (error){
+    return <p>Error "PROJECT_LIST_VIEW": {error.name} {error.message}</p>
+  } else if (data && projects.length) {
     return (
-      <ProjectListContainer>
-        {projects.map(project => (
-          <ProjectListRow key={project.id} project={project} />
-        ))}
-      </ProjectListContainer>
+      <div>
+        <Settings />
+        <ProjectListContainer status={columns}>
+          {projects.map(project => (
+            <ProjectListRow
+              key={project.id}
+              project={project}
+              status={columns}
+            />
+          ))}
+        </ProjectListContainer>
+      </div>
     );
   }
-  return <h1>Loading...</h1>;
 };
 
 export default ProjectListView;
