@@ -16,7 +16,7 @@ const LetterGrade = ({ repo, color }) => {
           borderRadius: '5px'
         }}
       >
-        <a href={repo.link} className={Grade} style={{ color: 'white' }}>
+        <a href={repo.link} className={Grade} style={{ color: 'white' }} target="_blank">
           {' '}
           {repo.grade}
         </a>

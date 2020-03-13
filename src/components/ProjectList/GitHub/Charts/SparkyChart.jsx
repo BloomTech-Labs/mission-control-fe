@@ -1,5 +1,6 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2';
+import { ChartDatafier } from './ChartDatafier';
 
 const dataFiller = (label, color, array) => {
   return (
@@ -18,7 +19,8 @@ const dataFiller = (label, color, array) => {
   )
 }
 
-const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
+const SparkyChart = ({ data, maxValue }) =>  {
+
     const options = {
         maintainAspectRatio: false,
         scales:{
@@ -38,8 +40,14 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
             position: 'left'
         },
     }
-      
-    const data  = {
+
+    const additions = []
+    const deletions = []
+    const changedFiles = []
+
+    ChartDatafier(data, additions, deletions, changedFiles, maxValue)
+
+    const chartData  = {
         labels: additions,        
         datasets: [
             dataFiller('Additions', 'rgba(75,192,192,1)', additions),
@@ -47,9 +55,10 @@ const SparkyChart = ({ additions, deletions, changedFiles }) =>  {
             dataFiller('Changed Files', 'greenyellow', changedFiles)
         ]
       };
+
     return(
         <div>
-            <Line options={options} data={data} height={50}/>
+            <Line options={options} data={chartData} height={50}/>
         </div>
     )
 }
