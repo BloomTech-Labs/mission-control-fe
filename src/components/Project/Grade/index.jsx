@@ -25,12 +25,13 @@ const Grade = props => {
                   borderRadius: '3px',
                 }}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 {' '}
                 {repo.grade}
               </a>
             </h3>
-            <a href={repo.link} target="_blank">Go to Analysis</a>
+            <a href={repo.link} target="_blank" rel="noopener noreferrer">Go to Analysis</a>
             <div className={PulseBoy}>
               <RePulse owner="Lambda-School-Labs" name={repo.name} />
             </div>  
