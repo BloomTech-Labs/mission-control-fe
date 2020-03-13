@@ -53,7 +53,7 @@ const Project = props => {
           </div>
           <div className={projectContainer}>
             <div className={editorFeedContainer}>
-              <h2>Repos Code Health</h2>
+              <h2>Repository Statistics</h2>
               <GitHubRepos ghrepos={data.project.product.GHRepos} productId={data.project.product.id} executeQuery2={executeQuery}/>
               <div className={gradeContainer}>
                 <Grade ghrepos={data.project.product.grades} />
