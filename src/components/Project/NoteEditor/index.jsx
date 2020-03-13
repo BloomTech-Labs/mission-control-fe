@@ -93,11 +93,13 @@ const NoteEditor = ({
         });
         resetForm();
         executeQuery();
+/*START OF FIX
+(SEE PULL NOTES #244)
+*/
         setTimeout(function () {
           window.location.href = `/project/${projectId}`;
-          //history.push(`/project/${projectId}`);
         }, 250);
-        //console.log(executeQuery().data);
+//END OF FIC
         break;
       case 'update':
         e.preventDefault();
