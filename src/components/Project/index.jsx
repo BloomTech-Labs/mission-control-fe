@@ -42,7 +42,7 @@ const Project = (props) => {
 		[ result.data ]
 	);
 
-	if (fetching) {
+	if (fetching && !data ) {
 		return <p>Please Wait... Loading...</p>;
 	} else if (error) {
 		return (
