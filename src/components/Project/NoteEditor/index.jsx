@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation, useQuery } from 'urql';
+// import extractAvatar from '../../../utils/managers';
 
 import Attendance from './Attendance';
 import DeleteNote from '../NoteFeed/Note/DeleteNote';
@@ -94,6 +95,10 @@ const NoteEditor = ({
         });
         resetForm();
         executeQuery();
+        // Temp fix to re-render page, will reload the whole page to populate note after creation.
+        setTimeout(function() {
+          window.location.href = `/project/${projectId}`;
+        }, 350);
         break;
       case 'update':
         e.preventDefault();
@@ -116,7 +121,14 @@ const NoteEditor = ({
     <div>
       <div className={styles['main-container']}>
         <div className={styles['editor-container']}>
-          <div className={styles['avatar-container']}></div>
+          <div className={styles['avatar-container']}>
+            <img
+              src={
+                'https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png'
+              }
+              alt={`avatar of ${user.name}`}
+            />
+          </div>
           <form
             onSubmit={e => {
               if (note) {

@@ -6,6 +6,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { Label } from 'semantic-ui-react';
 
 import NoteEditor from '../../NoteEditor';
+// import extractAvatar from '../../../../utils/managers';
 
 import {
   edit,
@@ -45,6 +46,13 @@ const Note = ({ note, user, projectManagers, projectId }) => {
     />
   ) : (
     <section className={projectNote}>
+      <div className={avatarContainer}>
+        <img
+          src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
+          alt={`avatar of ${note.author.name}`}
+          className={avatar}
+        />
+      </div>
       <div className={noteContainer}>
         <div className={contentContainer}>
           <div className={noteHeader}>
@@ -71,6 +79,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
             {displayedAttendees.map(attendee => {
               return (
                 <div key={attendee.name} className={miniAvatarContainer}>
+                  <img src={''} alt={`avatar of ${attendee.name}`} />
                   <button type="button">
                     <Label disabled size="small">
                       {attendee.name}
