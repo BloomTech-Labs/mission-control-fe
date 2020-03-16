@@ -21,10 +21,12 @@ import {
 import { PROJECT_VIEW_QUERY as query } from './Queries';
 import { GET_USER_ROLE as userQuery } from './Queries';
 
-const Project = (props) => {
-	const { id } = props.match.params;
-	const [ state, executeQuery ] = useQuery({ query, variables: { id } });
-	const { data, fetching, error } = state;
+
+const Project = props => {
+  const { id } = props.match.params;
+  const [state, executeQuery] = useQuery({ query, variables: { id } });
+  const { data, fetching, error } = state;
+
 
 	const [ user, setUser ] = useState(false);
 
