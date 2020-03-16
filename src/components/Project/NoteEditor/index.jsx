@@ -45,7 +45,9 @@ const NoteEditor = ({
   const [topic, setTopic] = useState((note && note.topic) || '');
   const [content, setContent] = useState((note && note.content) || '');
   const [rating, setRating] = useState((note && note.rating) || 0);
-  const [privateNote, setPrivateNote] = useState((note && note.privateNote) || false);
+  const [privateNote, setPrivateNote] = useState(
+    (note && note.privateNote) || false
+  );
   const [attendees, setAttendees] = useState((note && note.attendedBy) || []);
   const [expandedAttendees, setExpandedAttendees] = useState(false);
   const [expandedAbsent, setExpandedAbsent] = useState(false);
@@ -93,6 +95,10 @@ const NoteEditor = ({
         });
         resetForm();
         executeQuery();
+        // Temp fix to re-render page, will reload the whole page to populate note after creation.
+        setTimeout(function() {
+          window.location.href = `/project/${projectId}`;
+        }, 350);
         break;
       case 'update':
         e.preventDefault();
@@ -111,13 +117,17 @@ const NoteEditor = ({
     }
   };
 
-
   return (
     <div>
       <div className={styles['main-container']}>
         <div className={styles['editor-container']}>
           <div className={styles['avatar-container']}>
-            <img src='https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png' alt={`avatar of ${user.name}`} />
+            <img
+              src={
+                'https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png'
+              }
+              alt={`avatar of ${user.name}`}
+            />
           </div>
           <form
             onSubmit={e => {
@@ -211,7 +221,7 @@ const NoteEditor = ({
                   onClick={() => setPrivateNote(!privateNote)}
                   type="button"
                 >
-                  {privateNote ? "PRIVATE" : "PUBLIC"}
+                  {privateNote ? 'PRIVATE' : 'PUBLIC'}
                 </SemanticButton>
                 <SemanticButton
                   className={validated ? styles['save-btn'] : styles.disabled}

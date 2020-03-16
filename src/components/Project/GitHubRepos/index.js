@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery, useMutation } from 'urql';
+import { useQuery } from 'urql';
 import { Grid, Button, Modal, Input, List } from 'semantic-ui-react';
 import {
   searchResult,
@@ -7,30 +7,23 @@ import {
   buttonAlign,
   button,
 } from './Repos.module.scss';
-import {
-  GET_GITHUB_REPOS as query,
-  CREATE_GHREPO as createRepo,
-} from '../Queries';
+import { GET_GITHUB_REPOS as query } from '../Queries';
+import Grade from '../Grade';
 
 const initialQuery = '';
 
-const ReposList = ({ ghrepos, productId, executeQuery2 }) => {
+const ReposList = () => {
   const [state, setState] = useState({ open: false });
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [repoSelected, setRepoSelect] = useState([]);
-  const [githubRepos, setGithubRepos] = useState(ghrepos);
-
-  useEffect(() => {
-    setGithubRepos(ghrepos)
-  }, [ghrepos])
+  const [githubRepos, setGithubRepos] = useState([]);
   const [results, executeQuery] = useQuery({
     query,
     variables: { search: searchQuery },
     pause: true,
     requestPolicy: 'network-only',
   });
-  const [, addRepo] = useMutation(createRepo);
 
   useEffect(() => {
     setSearchResults(results.data ? results.data.GithubRepos : []);
@@ -64,10 +57,8 @@ const ReposList = ({ ghrepos, productId, executeQuery2 }) => {
         ...repoSelected,
         {
           name: repo.name,
-          repoId: repo.id,
-          owner: repo.owner,
-          ownerId: repo.ownerId,
-          id: productId,
+          grade: 'A',
+          link: 'https://codeclimate.com/repos/5e619ee292b6f00107000693',
         },
       ]);
     }
@@ -78,19 +69,11 @@ const ReposList = ({ ghrepos, productId, executeQuery2 }) => {
     const filterRepos = repoSelected.filter(repo => {
       if (!ghNames.includes(repo.name)) {
         return repo;
-      }else {
+      } else {
         return null;
       }
     });
-    Promise.all(
-      filterRepos.map(repo => {
-        return addRepo({ ...repo })
-      })
-    ).then(res => {
-      executeQuery2({
-        requestPolicy: "network-only"
-      })
-    });
+    setGithubRepos([...githubRepos, ...filterRepos]);
   };
 
   const deleteRepo = e => {
@@ -122,7 +105,6 @@ const ReposList = ({ ghrepos, productId, executeQuery2 }) => {
                   onSubmit={e => {
                     e.preventDefault();
                     executeQuery();
-                    
                   }}
                 >
                   <Input
@@ -197,6 +179,9 @@ const ReposList = ({ ghrepos, productId, executeQuery2 }) => {
           />
         </Modal.Actions>
       </Modal>
+      <div>
+        <Grade ccrepos={githubRepos} />
+      </div>
     </div>
   );
 };
