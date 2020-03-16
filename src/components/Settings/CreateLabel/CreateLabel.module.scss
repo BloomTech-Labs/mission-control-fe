@@ -24,3 +24,9 @@
   box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1),
     0 0 3px 1px #cfebf3;
 }
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

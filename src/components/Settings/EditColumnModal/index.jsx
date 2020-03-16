@@ -8,7 +8,7 @@ import CreateLabel from '../CreateLabel/index';
 import LabelList from '../LabelList/index';
 import { UPDATE_STATUS } from '../../Project/Queries/index';
 import DeleteColumn from '../DeleteColumn';
-import { basicInput } from './EditColumnModal.module.scss';
+import { basicInput, form } from './EditColumnModal.module.scss';
 
 const EditColumnModal = ({ column }) => {
   const [updateColumn, setUpdateColumn] = useState({
@@ -56,24 +56,27 @@ const EditColumnModal = ({ column }) => {
       <Modal.Header>Edit Column</Modal.Header>
       <Modal.Content>
         <Modal.Description>
-          <label>
-            Name:
+          <div className={form}>
+            <label>Name:</label>
             <input
               name="name"
               value={updateColumn.name}
               onChange={handleChanges}
               className={basicInput}
             />
-          </label>
+            <Button
+              className="ui button"
+              onClick={handleSubmit}
+              size={'small'}
+              content="Save"
+            />
+          </div>
           <br />
           <br />
-          <Button className="ui button" onClick={handleSubmit} size={'small'}>
-            Save
-          </Button>
+          <h3>Create Labels</h3>
+          <CreateLabel column={column} />
+          <LabelList column={column} columnId={column.id} />
         </Modal.Description>
-        <h3>Create Labels</h3>
-        <CreateLabel column={column} />
-        <LabelList column={column} columnId={column.id} />
       </Modal.Content>
       <Modal.Actions className={buttonStyle}>
         <Button className="ui cancel button" onClick={toggle} size={'large'}>

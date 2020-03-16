@@ -3,7 +3,11 @@ import { Button } from 'semantic-ui-react';
 import { useMutation } from 'urql';
 import { CREATE_LABEL as createLabel } from '../../Project/Queries/index';
 
-import { labelPreviewDesign, basicInput } from './CreateLabel.module.scss';
+import {
+  labelPreviewDesign,
+  basicInput,
+  form,
+} from './CreateLabel.module.scss';
 import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
 
 const CreateLabelForm = ({ column }) => {
@@ -27,21 +31,25 @@ const CreateLabelForm = ({ column }) => {
   const disableTer = !label.color || !label.name;
 
   return (
-    <form>
+    <form className={form}>
       <div>
-        <div>
-          <label>
-            Label Name:
-            <input
-              name="name"
-              id="name"
-              placeholder="label..."
-              onChange={handleChanges}
-              value={label.name}
-              className={basicInput}
-            />
-          </label>
+        <div className={form}>
+          <label>Label Name:</label>
+          <input
+            name="name"
+            id="name"
+            placeholder="label..."
+            onChange={handleChanges}
+            value={label.name}
+            className={basicInput}
+          />
           <br />
+          <Button
+            content="Save"
+            size={'small'}
+            onClick={handleSubmit}
+            disabled={disableTer}
+          />
         </div>
         <br />
         <CustomCirclePicker label={label} setLabel={setLabel} />
@@ -56,14 +64,6 @@ const CreateLabelForm = ({ column }) => {
         ) : (
           ''
         )}
-      </div>
-      <div>
-        <Button
-          content="Save"
-          size={'small'}
-          onClick={handleSubmit}
-          disabled={disableTer}
-        />
       </div>
       <br />
     </form>
