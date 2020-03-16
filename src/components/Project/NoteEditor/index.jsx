@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation, useQuery } from 'urql';
-import extractAvatar from '../../../utils/managers';
+// import extractAvatar from '../../../utils/managers';
 
 import Attendance from './Attendance';
 import DeleteNote from '../NoteFeed/Note/DeleteNote';
@@ -117,7 +117,7 @@ const NoteEditor = ({
       <div className={styles['main-container']}>
         <div className={styles['editor-container']}>
           <div className={styles['avatar-container']}>
-            <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
+            <img src={"extractAvatar(user.email)"} alt={`avatar of ${user.name}`} />
           </div>
           <form
             onSubmit={e => {
