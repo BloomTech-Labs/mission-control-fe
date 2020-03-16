@@ -16,10 +16,10 @@ const cache = cacheExchange({
       createLabel: ({ createLabel }, _args, cache) => {
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
           if (data !== null) {
-            const columnIndex = data.programs[0].statuses.findIndex(
+            const statusIndex = data.programs[0].statuses.findIndex(
               c => c.id === _args.id
             );
-            data.programs[0].statuses[columnIndex].labels.unshift(createLabel);
+            data.programs[0].statuses[statusIndex].labels.unshift(createLabel);
             return data;
           } else {
             return null;
@@ -36,13 +36,13 @@ const cache = cacheExchange({
           }
         });
       },
-      deleteStatus: ({ deleteColumn }, _args, cache) => {
+      deleteStatus: ({ deleteStatus }, _args, cache) => {
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
           if (data !== null) {
-            const columnIndex = data.programs[0].statuses.findIndex(
+            const statusIndex = data.programs[0].statuses.findIndex(
               c => c.id === _args.id
             );
-            data.programs[0].statuses.splice(columnIndex, 1);
+            data.programs[0].statuses.splice(statusIndex, 1);
             return data;
           } else {
             return null;
@@ -52,13 +52,14 @@ const cache = cacheExchange({
       deleteLabel: ({ deleteLabel }, _args, cache) => {
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
           if (data !== null) {
-            const columnIndex = data.programs[0].statuses.findIndex(
+            const statusIndex = data.programs[0].statuses.findIndex(
               c => c.id === _args.columnId
             );
+            console.log('args columnId', _args);
             const labelIndex = data.programs[0].statuses[
-              columnIndex
+              statusIndex
             ].labels.findIndex(l => l.id === _args.id);
-            data.programs[0].statuses[columnIndex].labels.splice(labelIndex, 1);
+            data.programs[0].statuses[statusIndex].labels.splice(labelIndex, 1);
             return data;
           } else {
             return null;
