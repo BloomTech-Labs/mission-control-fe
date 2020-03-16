@@ -9,7 +9,7 @@ const LetterGradeContainer = props => {
   return (
     <>
       <div className={Maintainability}>
-        {props.ccrepos.map(repo => {
+        {props.ghrepos.map(repo => {
           const color = getColor(repo.grade);
           return <LetterGrade key={repo.id} color={color} repo={repo} />;
         })}
