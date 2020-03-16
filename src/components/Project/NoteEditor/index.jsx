@@ -2,80 +2,73 @@ import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation, useQuery } from 'urql';
-import extractAvatar from '../../../utils/managers';
+// import extractAvatar from '../../../utils/managers';
 
 import Attendance from './Attendance';
 import DeleteNote from '../NoteFeed/Note/DeleteNote';
 
-import {
-  CREATE_NOTE as createNote,
-  UPDATE_NOTE as updateNote,
-  NOTE_FEED_QUERY as query,
-} from '../Queries';
+import { CREATE_NOTE as createNote, UPDATE_NOTE as updateNote, NOTE_FEED_QUERY as query } from '../Queries';
 
 import styles from './NoteEditor.module.scss';
 
 const topicOptions = [
-  { key: 'gd', value: 'General Discussion', text: 'General Discussion' },
-  {
-    key: 'pca',
-    value: 'Product Cycle Approval',
-    text: 'Product Cycle Approval',
-  },
-  {
-    key: 'rca',
-    value: 'Release Canvas Approval',
-    text: 'Release Canvas Approval',
-  },
+	{ key: 'gd', value: 'General Discussion', text: 'General Discussion' },
+	{
+		key: 'pca',
+		value: 'Product Cycle Approval',
+		text: 'Product Cycle Approval'
+	},
+	{
+		key: 'rca',
+		value: 'Release Canvas Approval',
+		text: 'Release Canvas Approval'
+	}
 ];
 
-const NoteEditor = ({
-  projectManagers,
-  user,
-  projectId,
-  note,
-  setIsEditing,
-}) => {
-  const [, executeQuery] = useQuery({
-    query,
-    variables: { id: projectId },
-    requestPolicy: 'cache-and-network',
-  });
+const NoteEditor = ({ projectManagers, user, projectId, note, setIsEditing }) => {
+	const [ , executeQuery ] = useQuery({
+		query,
+		variables: { id: projectId },
+		requestPolicy: 'cache-and-network'
+	});
 
-  const [topic, setTopic] = useState((note && note.topic) || '');
-  const [content, setContent] = useState((note && note.content) || '');
-  const [rating, setRating] = useState((note && note.rating) || 0);
-  const [privateNote, setPrivateNote] = useState((note && note.privateNote) || false);
-  const [attendees, setAttendees] = useState((note && note.attendedBy) || []);
-  const [expandedAttendees, setExpandedAttendees] = useState(false);
-  const [expandedAbsent, setExpandedAbsent] = useState(false);
-  const [absentees, setAbsentees] = useState(projectManagers || []);
-  const [validated, setValidated] = useState(false);
-  const [notification, setNotification] = useState(false);
+	const [ topic, setTopic ] = useState((note && note.topic) || '');
+	const [ content, setContent ] = useState((note && note.content) || '');
+	const [ rating, setRating ] = useState((note && note.rating) || 0);
+	const [ privateNote, setPrivateNote ] = useState((note && note.privateNote) || false);
+	const [ attendees, setAttendees ] = useState((note && note.attendedBy) || []);
+	const [ expandedAttendees, setExpandedAttendees ] = useState(false);
+	const [ expandedAbsent, setExpandedAbsent ] = useState(false);
+	const [ absentees, setAbsentees ] = useState(projectManagers || []);
+	const [ validated, setValidated ] = useState(false);
+	const [ notification, setNotification ] = useState(false);
 
-  const [, executeCreate] = useMutation(createNote);
-  const [, executeUpdate] = useMutation(updateNote);
+	const [ , executeCreate ] = useMutation(createNote);
+	const [ , executeUpdate ] = useMutation(updateNote);
 
-  useEffect(() => {
-    if (topic && content && rating > 0) {
-      setValidated(true);
-    } else {
-      setValidated(false);
-    }
-  }, [topic, content, rating]);
+	useEffect(
+		() => {
+			if (topic && content && rating > 0) {
+				setValidated(true);
+			} else {
+				setValidated(false);
+			}
+		},
+		[ topic, content, rating ]
+	);
 
-  // resets the form, as form.reset doesn't seem to affect React state
-  const resetForm = () => {
-    setTopic('');
-    setContent('');
-    setRating(0);
-    setAttendees([]);
-    setAbsentees(projectManagers);
-    setExpandedAttendees(false);
-    setExpandedAbsent(false);
-    setValidated(false);
-    setNotification(false);
-  };
+	// resets the form, as form.reset doesn't seem to affect React state
+	const resetForm = () => {
+		setTopic('');
+		setContent('');
+		setRating(0);
+		setAttendees([]);
+		setAbsentees(projectManagers);
+		setExpandedAttendees(false);
+		setExpandedAbsent(false);
+		setValidated(false);
+		setNotification(false);
+	};
 
   const handleSubmit = async (e, type) => {
     switch (type) {
@@ -124,7 +117,7 @@ const NoteEditor = ({
       <div className={styles['main-container']}>
         <div className={styles['editor-container']}>
           <div className={styles['avatar-container']}>
-            <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
+            <img src={'https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png'} />
           </div>
           <form
             onSubmit={e => {

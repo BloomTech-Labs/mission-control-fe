@@ -6,7 +6,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { Label } from 'semantic-ui-react';
 
 import NoteEditor from '../../NoteEditor';
-import extractAvatar from '../../../../utils/managers';
+// import extractAvatar from '../../../../utils/managers';
 
 import {
   edit,
@@ -27,14 +27,12 @@ import {
 } from './Notes.module.scss';
 
 const Note = ({ note, user, projectManagers, projectId }) => {
-  const [expandedList, setExpandedList] = React.useState(false);
-  const [isEditing, setIsEditing] = React.useState(false);
-  const { topic, content, rating, attendedBy } = note;
+	const [ expandedList, setExpandedList ] = React.useState(false);
+	const [ isEditing, setIsEditing ] = React.useState(false);
+	const { topic, content, rating, attendedBy } = note;
 
-  // Removes redundant avatar of signed-in user
-  const displayedAttendees = attendedBy.filter(
-    person => person.email !== user.email
-  );
+	// Removes redundant avatar of signed-in user
+	const displayedAttendees = attendedBy.filter((person) => person.email !== user.email);
 
 
   return isEditing ? (
@@ -51,7 +49,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
     <section className={projectNote}>
       <div className={avatarContainer}>
         <img
-          src={extractAvatar(note.author.email)}
+          src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
           alt={`avatar of ${note.author.name}`}
           className={avatar}
         />
@@ -85,7 +83,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
               return (
                 <div key={attendee.name} className={miniAvatarContainer}>
                   <img
-                    src={extractAvatar(attendee.email)}
+                    src={''}
                     alt={`avatar of ${attendee.name}`}
                   />
                   <button type="button">
