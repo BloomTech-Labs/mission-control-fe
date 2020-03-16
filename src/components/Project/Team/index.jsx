@@ -20,7 +20,7 @@ const Team = ({ projectId }) => {
 
   if (data && data.project) {
     const {
-      project: { team },
+      project: { team, projectManagers },
     } = data;
 
     if (fetching) return <h1>Loading</h1>;
@@ -29,6 +29,19 @@ const Team = ({ projectId }) => {
       <aside className={teamContainer}>
         <h2 className={teamTitle}>Team</h2>
         <div className={memberContainer}>
+          <h3 className={teamMemberTitle}>Manager</h3>
+          {projectManagers.map(managers => {
+            return (
+              <section className={members} key={managers.name}>
+                <img
+                  src={checkNullAvatar(managers.avatar)}
+                  alt={managers.name}
+                  className={avatar}
+                />
+                <p className={teamNames}>{managers.name}</p>
+              </section>
+            );
+          })}
           <h3 className={teamMemberTitle}>Team</h3>
           {team.map(teammate => {
             return (
