@@ -2,6 +2,7 @@ import React from 'react';
 import { labelDesign } from './UpdateLabel.module.scss';
 
 import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
+import { basicInput } from './UpdateLabel.module.scss';
 const UpdateLabel = props => {
   const handleChanges = e => {
     e.preventDefault();
@@ -22,6 +23,7 @@ const UpdateLabel = props => {
               id="name"
               onChange={handleChanges}
               value={props.label.name}
+              className={basicInput}
             />
           </label>
           <br />

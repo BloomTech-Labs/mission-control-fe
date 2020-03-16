@@ -8,6 +8,7 @@ import CreateLabel from '../CreateLabel/index';
 import LabelList from '../LabelList/index';
 import { UPDATE_STATUS } from '../../Project/Queries/index';
 import DeleteColumn from '../DeleteColumn';
+import { basicInput } from './EditColumnModal.module.scss';
 
 const EditColumnModal = ({ column }) => {
   const [updateColumn, setUpdateColumn] = useState({
@@ -61,11 +62,12 @@ const EditColumnModal = ({ column }) => {
               name="name"
               value={updateColumn.name}
               onChange={handleChanges}
+              className={basicInput}
             />
           </label>
           <br />
           <br />
-          <Button className="ui button" onClick={handleSubmit}>
+          <Button className="ui button" onClick={handleSubmit} size={'small'}>
             Save
           </Button>
         </Modal.Description>
@@ -74,7 +76,7 @@ const EditColumnModal = ({ column }) => {
         <LabelList column={column} columnId={column.id} />
       </Modal.Content>
       <Modal.Actions className={buttonStyle}>
-        <Button className="ui cancel button" onClick={toggle}>
+        <Button className="ui cancel button" onClick={toggle} size={'large'}>
           Close
         </Button>
       </Modal.Actions>

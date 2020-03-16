@@ -32,7 +32,7 @@ const CustomCirclePicker = props => {
             <Button
               content="Choose Color"
               onClick={e => e.preventDefault()}
-              size={'tiny'}
+              size={'mini'}
             />
           }
         />

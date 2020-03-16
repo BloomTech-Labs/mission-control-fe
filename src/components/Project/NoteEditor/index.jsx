@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation, useQuery } from 'urql';
-import extractAvatar from '../../../utils/managers';
 
 import Attendance from './Attendance';
 import DeleteNote from '../NoteFeed/Note/DeleteNote';
@@ -45,7 +44,9 @@ const NoteEditor = ({
   const [topic, setTopic] = useState((note && note.topic) || '');
   const [content, setContent] = useState((note && note.content) || '');
   const [rating, setRating] = useState((note && note.rating) || 0);
-  const [privateNote, setPrivateNote] = useState((note && note.privateNote) || false);
+  const [privateNote, setPrivateNote] = useState(
+    (note && note.privateNote) || false
+  );
   const [attendees, setAttendees] = useState((note && note.attendedBy) || []);
   const [expandedAttendees, setExpandedAttendees] = useState(false);
   const [expandedAbsent, setExpandedAbsent] = useState(false);
@@ -111,14 +112,11 @@ const NoteEditor = ({
     }
   };
 
-
   return (
     <div>
       <div className={styles['main-container']}>
         <div className={styles['editor-container']}>
-          <div className={styles['avatar-container']}>
-            <img src={extractAvatar(user.email)} alt={`avatar of ${user.name}`} />
-          </div>
+          <div className={styles['avatar-container']}></div>
           <form
             onSubmit={e => {
               if (note) {
@@ -211,7 +209,7 @@ const NoteEditor = ({
                   onClick={() => setPrivateNote(!privateNote)}
                   type="button"
                 >
-                  {privateNote ? "PRIVATE" : "PUBLIC"}
+                  {privateNote ? 'PRIVATE' : 'PUBLIC'}
                 </SemanticButton>
                 <SemanticButton
                   className={validated ? styles['save-btn'] : styles.disabled}

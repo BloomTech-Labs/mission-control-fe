@@ -3,7 +3,7 @@ import { Button } from 'semantic-ui-react';
 import { useMutation } from 'urql';
 import { CREATE_LABEL as createLabel } from '../../Project/Queries/index';
 
-import { labelPreviewDesign } from './CreateLabel.module.scss';
+import { labelPreviewDesign, basicInput } from './CreateLabel.module.scss';
 import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
 
 const CreateLabelForm = ({ column }) => {
@@ -38,6 +38,7 @@ const CreateLabelForm = ({ column }) => {
               placeholder="label..."
               onChange={handleChanges}
               value={label.name}
+              className={basicInput}
             />
           </label>
           <br />
@@ -57,7 +58,12 @@ const CreateLabelForm = ({ column }) => {
         )}
       </div>
       <div>
-        <Button content="Save" onClick={handleSubmit} disabled={disableTer} />
+        <Button
+          content="Save"
+          size={'small'}
+          onClick={handleSubmit}
+          disabled={disableTer}
+        />
       </div>
       <br />
     </form>

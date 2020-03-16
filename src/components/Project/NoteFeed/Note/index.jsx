@@ -6,7 +6,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import { Label } from 'semantic-ui-react';
 
 import NoteEditor from '../../NoteEditor';
-import extractAvatar from '../../../../utils/managers';
 
 import {
   edit,
@@ -34,7 +33,6 @@ const Note = ({ note, user, projectManagers, projectId }) => {
     person => person.email !== user.email
   );
 
-
   return isEditing ? (
     <NoteEditor
       projectId={projectId}
@@ -47,13 +45,6 @@ const Note = ({ note, user, projectManagers, projectId }) => {
     />
   ) : (
     <section className={projectNote}>
-      <div className={avatarContainer}>
-        <img
-          src={extractAvatar(note.author.email)}
-          alt={`avatar of ${note.author.name}`}
-          className={avatar}
-        />
-      </div>
       <div className={noteContainer}>
         <div className={contentContainer}>
           <div className={noteHeader}>
@@ -67,7 +58,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
               starDimension="20px"
               starSpacing=".5px"
             />
-            {note.privateNote ? "Private Note" : "Public Note"}
+            {note.privateNote ? 'Private Note' : 'Public Note'}
           </div>
           <div className={noteBody}>{content}</div>
         </div>
@@ -80,10 +71,6 @@ const Note = ({ note, user, projectManagers, projectId }) => {
             {displayedAttendees.map(attendee => {
               return (
                 <div key={attendee.name} className={miniAvatarContainer}>
-                  <img
-                    src={extractAvatar(attendee.email)}
-                    alt={`avatar of ${attendee.name}`}
-                  />
                   <button type="button">
                     <Label disabled size="small">
                       {attendee.name}

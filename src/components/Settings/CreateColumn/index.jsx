@@ -5,6 +5,7 @@ import { useMutation } from 'urql';
 import { CREATE_STATUS as createStatus } from '../../Project/Queries/index';
 
 import { ColumnContext } from '../../../contexts/ColumnContext';
+import { basicInput } from './CreateColumn.module.scss';
 
 const CreateColumn = ({ programId }) => {
   const { column, setColumn } = useContext(ColumnContext);
@@ -56,6 +57,7 @@ const CreateColumn = ({ programId }) => {
                 name="name"
                 onChange={handleChanges}
                 placeholder="Status"
+                className={basicInput}
               />
             </form>
           </Modal.Description>
