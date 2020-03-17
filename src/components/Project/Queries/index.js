@@ -277,3 +277,21 @@ export const GET_GITHUB_REPOS = gql`
     }
   }
 `;
+
+export const GET_PROJECT_STATUS = gql`
+  query projectStatusQuery($id: ID!) {
+    project(id: $id) {
+      id
+      name
+      projectStatus {
+        id
+        name
+        labels {
+          id
+          name
+          color
+        }
+      }
+    }
+  }
+`;
