@@ -34,7 +34,6 @@
     "react-scripts": "^3.3.1",
     "react-star-ratings": "^2.3.0",
     "semantic-ui-react": "^0.88.2",
-    "subscriptions-transport-ws": "^0.9.16",
     "urql": "^1.8.2"
   },
   "scripts": {

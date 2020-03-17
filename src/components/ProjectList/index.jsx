@@ -14,24 +14,31 @@ const ProjectListView = () => {
   const { data, fetching, error } = state;
   const projects = [];
 
-  data && data.programs[0].products.map(product => projects.push(product.projects[0]) );
+  data &&
+    data.programs[0].products.map(product =>
+      projects.push(product.projects[0])
+    );
 
-  const columns = data && data.programs[0].columns;
+  const columns = data && data.programs[0].statuses;
 
-  if (fetching){
-    return <p>Loading...</p>
-  } else if (error){
-    return <p>Error "PROJECT_LIST_VIEW": {error.name} {error.message}</p>
+  if (fetching) {
+    return <p>Loading...</p>;
+  } else if (error) {
+    return (
+      <p>
+        Error "PROJECT_LIST_VIEW": {error.name} {error.message}
+      </p>
+    );
   } else if (data && projects.length) {
     return (
       <div>
         <Settings />
-        <ProjectListContainer status={columns}>
+        <ProjectListContainer statusColumn={columns}>
           {projects.map(project => (
             <ProjectListRow
               key={project.id}
               project={project}
-              status={columns}
+              statusColumn={columns}
             />
           ))}
         </ProjectListContainer>

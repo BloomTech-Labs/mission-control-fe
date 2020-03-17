@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from 'urql';
 import { Modal, Button } from 'semantic-ui-react';
-import { DELETE_COLUMN as deleteColumn } from '../../Project/Queries/index';
+import { DELETE_STATUS as deleteColumn } from '../../Project/Queries/index';
 import { FaTrashAlt } from 'react-icons/fa';
 import { hover } from '../StatusLabel/StatusLabel.module.scss';
 
