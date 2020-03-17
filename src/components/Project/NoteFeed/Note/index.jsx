@@ -22,6 +22,8 @@ import {
   expanded,
   miniAvatarContainer,
   collapsed,
+  notewrapperPrivate,
+  notewrapperPublic,
 } from './Notes.module.scss';
 
 const Note = ({ note, user, projectManagers, projectId }) => {
@@ -33,7 +35,6 @@ const Note = ({ note, user, projectManagers, projectId }) => {
   const displayedAttendees = attendedBy.filter(
     person => person.email !== user.email
   );
-
 
   return isEditing ? (
     <NoteEditor
@@ -49,7 +50,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
     <section className={projectNote}>
       <div className={avatarContainer}>
         <img
-          src='https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png'
+          src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
           alt={`avatar of ${note.author.name}`}
           className={avatar}
         />
@@ -67,7 +68,18 @@ const Note = ({ note, user, projectManagers, projectId }) => {
               starDimension="20px"
               starSpacing=".5px"
             />
-            {note.privateNote ? "Private Note" : "Public Note"}
+            {note.privateNote ? (
+              <div
+                onClick={() => setIsEditing(true)}
+                class={notewrapperPrivate}
+              >
+                Private Note
+              </div>
+            ) : (
+              <div onClick={() => setIsEditing(true)} class={notewrapperPublic}>
+                Public Note
+              </div>
+            )}
           </div>
           <div className={noteBody}>{content}</div>
         </div>
@@ -80,10 +92,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
             {displayedAttendees.map(attendee => {
               return (
                 <div key={attendee.name} className={miniAvatarContainer}>
-                  <img
-                    src='https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png'
-                    alt={`avatar of ${attendee.name}`}
-                  />
+                  <img src={''} alt={`avatar of ${attendee.name}`} />
                   <button type="button">
                     <Label disabled size="small">
                       {attendee.name}

@@ -45,7 +45,9 @@ const NoteEditor = ({
   const [topic, setTopic] = useState((note && note.topic) || '');
   const [content, setContent] = useState((note && note.content) || '');
   const [rating, setRating] = useState((note && note.rating) || 0);
-  const [privateNote, setPrivateNote] = useState((note && note.privateNote) || false);
+  const [privateNote, setPrivateNote] = useState(
+    (note && note.privateNote) || false
+  );
   const [attendees, setAttendees] = useState((note && note.attendedBy) || []);
   const [expandedAttendees, setExpandedAttendees] = useState(false);
   const [expandedAbsent, setExpandedAbsent] = useState(false);
@@ -93,6 +95,13 @@ const NoteEditor = ({
         });
         resetForm();
         executeQuery();
+        /*START OF FIX
+(SEE PULL NOTES #244)
+*/
+        setTimeout(function() {
+          window.location.href = `/project/${projectId}`;
+        }, 250);
+        //END OF FIC
         break;
       case 'update':
         e.preventDefault();
@@ -111,13 +120,16 @@ const NoteEditor = ({
     }
   };
 
-
   return (
     <div>
       <div className={styles['main-container']}>
         <div className={styles['editor-container']}>
           <div className={styles['avatar-container']}>
-            <img src='https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png' alt={`avatar of ${user.name}`} />
+            <img
+              src={
+                'https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png'
+              }
+            />
           </div>
           <form
             onSubmit={e => {
@@ -207,12 +219,27 @@ const NoteEditor = ({
                     />
                   </label>
                 )}
-                <SemanticButton
-                  onClick={() => setPrivateNote(!privateNote)}
-                  type="button"
-                >
-                  {privateNote ? "PRIVATE" : "PUBLIC"}
-                </SemanticButton>
+
+                {privateNote ? (
+                  <SemanticButton
+                    onClick={() => setPrivateNote(!privateNote)}
+                    type="button"
+                    //color="pink"
+                    className={styles['privatetoggle-btn']}
+                    variant="outlined"
+                  >
+                    PRIVATE
+                  </SemanticButton>
+                ) : (
+                  <SemanticButton
+                    onClick={() => setPrivateNote(!privateNote)}
+                    type="button"
+                    className="ui pink basic button"
+                    variant="outlined"
+                  >
+                    PUBLIC
+                  </SemanticButton>
+                )}
                 <SemanticButton
                   className={validated ? styles['save-btn'] : styles.disabled}
                   type="submit"
