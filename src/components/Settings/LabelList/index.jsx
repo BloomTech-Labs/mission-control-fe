@@ -13,13 +13,13 @@ const LabelList = ({ column, columnId }) => {
   const [id, setId] = useState(-1);
 
   useEffect(() => {
-    setId(data && data.programs[0].columns.findIndex(c => c.id === column.id));
+    setId(data && data.programs[0].statuses.findIndex(c => c.id === column.id));
   }, [column.id, data]);
 
   return (
     <div className={labelListStyle}>
       {data && data.programs.length && id !== -1
-        ? data.programs[0].columns[id].labels.map(label => {
+        ? data.programs[0].statuses[id].labels.map(label => {
             return (
               <StatusLabel columnId={columnId} label={label} key={label.id} />
             );
