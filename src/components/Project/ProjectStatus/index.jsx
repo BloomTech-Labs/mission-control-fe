@@ -1,6 +1,10 @@
 import React from 'react';
 import { useQuery } from 'urql';
 import LabelDropdown from '../../ProjectList/LabelDropdown/index';
+import {
+  projectStatusDropdown,
+  dropdownLabel,
+} from './ProjectStatus.module.scss';
 
 import { GET_PROJECT_STATUS as query } from '../Queries/index';
 
@@ -14,11 +18,11 @@ const ProjectStatus = ({ projectId }) => {
   const { data } = state;
 
   return (
-    <div>
+    <div className={projectStatusDropdown}>
       {data
         ? data.project.projectStatus.map(statuses => {
             return (
-              <div>
+              <div className={dropdownLabel}>
                 <p>{statuses.name}</p>
                 <LabelDropdown labels={statuses.labels} />
               </div>

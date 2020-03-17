@@ -1,0 +1,19 @@
+@import '../../../styles/variables.scss';
+
+.projectStatusDropdown {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.dropdownLabel {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  padding: 2rem;
+
+  p {
+    padding-right: 2rem;
+  }
+}
