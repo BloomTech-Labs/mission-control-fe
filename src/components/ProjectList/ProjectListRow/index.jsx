@@ -31,7 +31,7 @@ const ProjectRow = ({ project, statusColumn }) => {
         {statusColumn.length > 0 && statusLabelsArr.length > 0
           ? statusLabelsArr.map(statusData => (
               <td key={statusData.id} className={statusColumns}>
-                <LabelDropdown labels={statusData.labels} />
+                <LabelDropdown labels={statusData.labels} project={project} />
               </td>
             ))
           : ''}

@@ -2,10 +2,12 @@ import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import { labelDesign } from './LabelDropdown.module.scss';
 
-const LabelDropdown = props => {
-  const labels = props.labels.map(label => ({
+const LabelDropdown = ({ labels, project }) => {
+  console.log(labels, project);
+  const labelsN = labels.map(label => ({
     key: label.id,
     value: label.color,
+    selectedLabel: label.selected.id,
     text: (
       <div className={labelDesign} style={{ background: `${label.color}` }}>
         {label.name}
@@ -18,7 +20,29 @@ const LabelDropdown = props => {
     ),
   }));
 
-  return <Dropdown placeholder="Select Label" options={labels} />;
+  console.log(labelsN);
+
+  return (
+    <Dropdown
+      placeholder={
+        labelsN.selectedLabel
+          ? labelsN.map(label =>
+              label.selected.id === project.id ? (
+                <div
+                  className={labelDesign}
+                  style={{ background: `${label.selected.color}` }}
+                >
+                  {label.selected.name}
+                </div>
+              ) : (
+                ''
+              )
+            )
+          : 'Select Label'
+      }
+      options={labelsN}
+    />
+  );
 };
 
 export default LabelDropdown;

@@ -12,6 +12,10 @@ export const PROJECT_LIST_VIEW = gql`
           name
           color
           id
+          selected {
+            id
+            name
+          }
         }
       }
       products {
