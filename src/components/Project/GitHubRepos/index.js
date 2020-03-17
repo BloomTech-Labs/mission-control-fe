@@ -22,8 +22,8 @@ const ReposList = ({ ghrepos, productId, executeQuery2 }) => {
   const [githubRepos, setGithubRepos] = useState(ghrepos);
 
   useEffect(() => {
-    setGithubRepos(ghrepos)
-  }, [ghrepos])
+    setGithubRepos(ghrepos);
+  }, [ghrepos]);
   const [results, executeQuery] = useQuery({
     query,
     variables: { search: searchQuery },
@@ -78,18 +78,17 @@ const ReposList = ({ ghrepos, productId, executeQuery2 }) => {
     const filterRepos = repoSelected.filter(repo => {
       if (!ghNames.includes(repo.name)) {
         return repo;
-      }else {
-        return null;
       }
+      return null;
     });
     Promise.all(
       filterRepos.map(repo => {
-        return addRepo({ ...repo })
+        return addRepo({ ...repo });
       })
-    ).then(res => {
+    ).then(() => {
       executeQuery2({
-        requestPolicy: "network-only"
-      })
+        requestPolicy: 'network-only',
+      });
     });
   };
 
@@ -122,7 +121,6 @@ const ReposList = ({ ghrepos, productId, executeQuery2 }) => {
                   onSubmit={e => {
                     e.preventDefault();
                     executeQuery();
-                    
                   }}
                 >
                   <Input
