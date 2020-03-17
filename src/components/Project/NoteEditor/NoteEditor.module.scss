@@ -126,6 +126,18 @@ h2 {
           cursor: pointer;
         }
       }
+      .privatetoggle-btn {
+        background: $accent;
+        border-radius: 8%;
+        color: white;
+        width: 6.5rem;
+        text-align: center;
+        padding: 11px 15px;
+        border: none;
+        &:hover {
+          cursor: pointer;
+        }
+      }
       input {
         transform: scale(1.5);
       }
