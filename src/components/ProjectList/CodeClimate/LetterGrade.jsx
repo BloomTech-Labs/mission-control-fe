@@ -8,7 +8,7 @@ const LetterGrade = ({ repo, color }) => {
     <>
     <div className={Repo}>
       {repo.name}:{' '}
-      <span className={GradeCont}
+      <a  href={repo.link} className={GradeCont}
         style={{
           backgroundColor: color,
           padding: '0px 5px',
@@ -16,19 +16,20 @@ const LetterGrade = ({ repo, color }) => {
           borderRadius: '5px'
         }}
       >
-        <a href={repo.link} className={Grade} style={{ color: 'white' }} target="_blank" rel="noopener noreferrer">
+        <span href={repo.link} className={Grade} style={{ color: 'white' }} target="_blank" rel="noopener noreferrer">
           {' '}
           {repo.grade}
-        </a>
+        </span>
       <span className={Tip}>
-        {color === 'green' && <>Projects with Technical Debt Ratios below 5% are rated A</>}
-        {color === 'greenyellow' && <>Projects with Technical Debt Ratios between 5% and 10% are rated B</>}
-        {color === 'yellow' && <>Projects with Technical Debt Ratios between 10% and 20% are rated C</>}
-        {color === 'orange' && <>Projects with Technical Debt Ratios between 20% and 50% are rated D</>}
-        {color === 'red' && <>Projects with Technical Debt Ratios above 50% are rated F</>}
-        {color === 'black' && <>Grade not available!</>}
+        {repo.grade === 'A' && <>Projects with Technical Debt Ratios below 5% are rated A</>}
+        {repo.grade === 'B' && <>Projects with Technical Debt Ratios between 5% and 10% are rated B</>}
+        {repo.grade === 'C' && <>Projects with Technical Debt Ratios between 10% and 20% are rated C</>}
+        {repo.grade === 'D' && <>Projects with Technical Debt Ratios between 20% and 50% are rated D</>}
+        {repo.grade === 'F' && <>Projects with Technical Debt Ratios above 50% are rated F</>}
+        {repo.grade === 'N' && <>This repo hasn't received a Maintainability Rating.</>}
+        {repo.grade === '!' && <>This repo hasn't had a successful analysis for its default branch yet.</>}
       </span>
-      </span>
+      </a>
       
       <div>
       <Sparkline name={repo.name} />
