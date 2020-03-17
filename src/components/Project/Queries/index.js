@@ -91,7 +91,7 @@ export const PROJECT_VIEW_QUERY = gql`
           grade
           link
         }
-        GHRepos{
+        GHRepos {
           id
           repoId
           name
@@ -286,25 +286,24 @@ export const GET_GITHUB_REPOS = gql`
 
 export const CREATE_GHREPO = gql`
   mutation createGithubRepo(
-  $id: String!
-  $name: String!,
-  $owner: String!,
-  $ownerId: String!,
-  $repoId: String!
-) {
-  createGithubRepo(
-    id: $id
-    name: $name
-    owner: $owner
-    ownerId: $ownerId
-    repoId: $repoId
-    
-  ){
-    name
-    id
-    owner
-    ownerId
-    repoId
+    $id: String!
+    $name: String!
+    $owner: String!
+    $ownerId: String!
+    $repoId: String!
+  ) {
+    createGithubRepo(
+      id: $id
+      name: $name
+      owner: $owner
+      ownerId: $ownerId
+      repoId: $repoId
+    ) {
+      name
+      id
+      owner
+      ownerId
+      repoId
+    }
   }
-}
-`
+`;
