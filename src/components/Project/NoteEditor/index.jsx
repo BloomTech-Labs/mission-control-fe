@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation, useQuery } from 'urql';
-import extractAvatar from '../../../utils/managers';
+// import extractAvatar from '../../../utils/managers';
 
 import Attendance from './Attendance';
 import DeleteNote from '../NoteFeed/Note/DeleteNote';
@@ -95,6 +95,13 @@ const NoteEditor = ({
         });
         resetForm();
         executeQuery();
+        /*START OF FIX
+(SEE PULL NOTES #244)
+*/
+        setTimeout(function() {
+          window.location.href = `/project/${projectId}`;
+        }, 250);
+        //END OF FIC
         break;
       case 'update':
         e.preventDefault();
@@ -119,8 +126,9 @@ const NoteEditor = ({
         <div className={styles['editor-container']}>
           <div className={styles['avatar-container']}>
             <img
-              src={extractAvatar(user.email)}
-              alt={`avatar of ${user.name}`}
+              src={
+                'https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png'
+              }
             />
           </div>
           <form
@@ -211,12 +219,27 @@ const NoteEditor = ({
                     />
                   </label>
                 )}
-                <SemanticButton
-                  onClick={() => setPrivateNote(!privateNote)}
-                  type="button"
-                >
-                  {privateNote ? 'PRIVATE' : 'PUBLIC'}
-                </SemanticButton>
+
+                {privateNote ? (
+                  <SemanticButton
+                    onClick={() => setPrivateNote(!privateNote)}
+                    type="button"
+                    //color="pink"
+                    className={styles['privatetoggle-btn']}
+                    variant="outlined"
+                  >
+                    PRIVATE
+                  </SemanticButton>
+                ) : (
+                  <SemanticButton
+                    onClick={() => setPrivateNote(!privateNote)}
+                    type="button"
+                    className="ui pink basic button"
+                    variant="outlined"
+                  >
+                    PUBLIC
+                  </SemanticButton>
+                )}
                 <SemanticButton
                   className={validated ? styles['save-btn'] : styles.disabled}
                   type="submit"
