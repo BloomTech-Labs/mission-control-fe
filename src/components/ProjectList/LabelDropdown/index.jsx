@@ -13,16 +13,7 @@ const LabelDropdown = ({ labels }) => {
     ),
   }));
 
-  return (
-    <Dropdown
-      placeholder={
-        <div className={labelDesign} style={{ background: `black` }}>
-          Default
-        </div>
-      }
-      options={labelArr}
-    />
-  );
+  return <Dropdown placeholder="Select Label" options={labelArr} />;
 };
 
 export default LabelDropdown;
