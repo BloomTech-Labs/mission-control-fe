@@ -95,13 +95,10 @@ const NoteEditor = ({
         });
         resetForm();
         executeQuery();
-        /*START OF FIX
-(SEE PULL NOTES #244)
-*/
+        // Temp fix to re-render page, will reload the whole page to populate note after creation.
         setTimeout(function() {
           window.location.href = `/project/${projectId}`;
-        }, 250);
-        //END OF FIC
+        }, 350);
         break;
       case 'update':
         e.preventDefault();
@@ -129,6 +126,7 @@ const NoteEditor = ({
               src={
                 'https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png'
               }
+              alt={`avatar of ${user.name}`}
             />
           </div>
           <form
@@ -219,27 +217,12 @@ const NoteEditor = ({
                     />
                   </label>
                 )}
-
-                {privateNote ? (
-                  <SemanticButton
-                    onClick={() => setPrivateNote(!privateNote)}
-                    type="button"
-                    //color="pink"
-                    className={styles['privatetoggle-btn']}
-                    variant="outlined"
-                  >
-                    PRIVATE
-                  </SemanticButton>
-                ) : (
-                  <SemanticButton
-                    onClick={() => setPrivateNote(!privateNote)}
-                    type="button"
-                    className="ui pink basic button"
-                    variant="outlined"
-                  >
-                    PUBLIC
-                  </SemanticButton>
-                )}
+                <SemanticButton
+                  onClick={() => setPrivateNote(!privateNote)}
+                  type="button"
+                >
+                  {privateNote ? 'PRIVATE' : 'PUBLIC'}
+                </SemanticButton>
                 <SemanticButton
                   className={validated ? styles['save-btn'] : styles.disabled}
                   type="submit"
