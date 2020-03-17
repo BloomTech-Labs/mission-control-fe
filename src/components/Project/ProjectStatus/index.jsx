@@ -19,7 +19,7 @@ const ProjectStatus = ({ projectId }) => {
 
   return (
     <div className={projectStatusDropdown}>
-      {data
+      {data && data.project.projectStatus.length > 0
         ? data.project.projectStatus.map(statuses => {
             return (
               <div className={dropdownLabel}>
