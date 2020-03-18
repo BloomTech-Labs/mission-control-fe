@@ -45,7 +45,7 @@ const EditColumnModal = ({ column }) => {
         <div>
           <p onClick={handleOpen} className={hover}>
             {' '}
-            {column.name} <EditIcon />{' '}
+            <EditIcon fontSize={'small'} /> {column.name}{' '}
           </p>
         </div>
       }

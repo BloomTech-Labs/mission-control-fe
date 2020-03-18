@@ -5,6 +5,7 @@ import {
   modalStyle,
   buttonStyle,
   columnHeader,
+  buttonBreakLine,
 } from './Settings.module.scss';
 import { Button, Header, Modal } from 'semantic-ui-react';
 import { useQuery } from 'urql';
@@ -54,7 +55,9 @@ const Settings = () => {
           <Button className="ui cancel button" onClick={toggle}>
             Close
           </Button>
-          <CreateColumn programId={programId} column={data} />
+          <div className={buttonBreakLine}>
+            <CreateColumn programId={programId} column={data} />
+          </div>
         </Modal.Actions>
       </Modal>
     </div>
