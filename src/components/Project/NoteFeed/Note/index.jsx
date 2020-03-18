@@ -34,7 +34,6 @@ const Note = ({ note, user, projectManagers, projectId }) => {
     person => person.email !== user.email
   );
 
-
   return isEditing ? (
     <NoteEditor
       projectId={projectId}
@@ -49,7 +48,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
     <section className={projectNote}>
       <div className={avatarContainer}>
         <img
-          src='https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png'
+          src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
           alt={`avatar of ${note.author.name}`}
           className={avatar}
         />
@@ -67,7 +66,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
               starDimension="20px"
               starSpacing=".5px"
             />
-            {note.privateNote ? "Private Note" : "Public Note"}
+            {note.privateNote ? 'Private Note' : 'Public Note'}
           </div>
           <div className={noteBody}>{content}</div>
         </div>
@@ -81,7 +80,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
               return (
                 <div key={attendee.name} className={miniAvatarContainer}>
                   <img
-                    src='https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png'
+                    src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
                     alt={`avatar of ${attendee.name}`}
                   />
                   <button type="button">
