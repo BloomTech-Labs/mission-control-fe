@@ -6,11 +6,11 @@ import { gradeCont, gradeBox, scsssux, PulseBoy } from './Grade.module.scss';
 import RePulse from '../rePulse/Pulse';
 
 const Grade = props => {
-  if (!props.ccrepos || !props.ccrepos.length) return null;
+  if (!props.ghrepos || !props.ghrepos.length) return null;
 
   return (
     <div className={gradeCont}>
-      {props.ccrepos.map(repo => {
+      {props.ghrepos.map(repo => {
         const color = getColor(repo.grade);
         return (
           <div key={repo.name} className={scsssux}>
@@ -24,12 +24,14 @@ const Grade = props => {
                   padding: '0px 6px',
                   borderRadius: '3px',
                 }}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {' '}
                 {repo.grade}
               </a>
             </h3>
-            <a href={repo.link}>Go to Analysis</a>
+            <a href={repo.link} target="_blank" rel="noopener noreferrer">Go to Analysis</a>
             <div className={PulseBoy}>
               <RePulse owner="Lambda-School-Labs" name={repo.name} />
             </div>  
