@@ -1,9 +1,11 @@
 import React from 'react'
 
+import { deleteCont } from './Grade.module.scss';
+
 function DeleteRepo() {
     return (
-        <div>
-            Delete Button
+        <div className={ deleteCont }>
+            X
         </div>
     )
 }

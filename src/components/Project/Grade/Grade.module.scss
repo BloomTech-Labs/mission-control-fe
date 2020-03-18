@@ -5,7 +5,6 @@
     text-align: center;
 }
 
-
 .gradeBox {
     color: white;
     text-shadow: -1px 0 black, 0 .5px black, .5px 0 black, 0 -1px black;
@@ -35,14 +34,17 @@
 }
 
 .scsssux {
-    margin-top: 20px;
+    margin: 20px;
     padding: 10px;
     box-shadow: 3px 2px 3px 2px gainsboro;
     border-radius: 3px;
-    width: 330px;
-    height: 300px;
 }
 
 .PulseBoy {
     margin-top: 20px;
+}
+
+.deleteCont{
+    margin-bottom: -20px;
+    text-align: right;
 }
