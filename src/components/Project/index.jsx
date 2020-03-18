@@ -39,7 +39,11 @@ const Project = props => {
     }
   }, [result.data]);
 
+<<<<<<< HEAD
   if (fetching && !data) {
+=======
+  if (fetching) {
+>>>>>>> d623720805e7b7774ef016e7fb45fb69d8edaa70
     return <p>Please Wait... Loading...</p>;
   } else if (error) {
     return (
