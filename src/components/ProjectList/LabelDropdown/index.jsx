@@ -1,13 +1,17 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import { labelDesign } from './LabelDropdown.module.scss';
+import { UPDATE_SELECTED_LABEL as updateSelectedLabelMutation } from '../../Project/Queries/index';
+import { useMutation } from 'urql';
 
 const LabelDropdown = ({ labels, project }) => {
-  console.log(labels, project);
-  const labelsN = labels.map(label => ({
+  const [, executeUpdate] = useMutation(updateSelectedLabelMutation);
+
+  const labelsArr = labels.map(label => ({
     key: label.id,
-    value: label.color,
-    selectedLabel: label.selected.id,
+    value: label.id,
+    color: label.color,
+    name: label.name,
     text: (
       <div className={labelDesign} style={{ background: `${label.color}` }}>
         {label.name}
@@ -20,27 +24,43 @@ const LabelDropdown = ({ labels, project }) => {
     ),
   }));
 
-  console.log(labelsN);
+  const handleChange = (e, { value }) => {
+    e.preventDefault();
+    executeUpdate({ id: value, selected: project.id });
+    console.log('value', value);
+  };
+
+  console.log('labels', labels);
 
   return (
     <Dropdown
+      onChange={handleChange}
       placeholder={
-        labelsN.selectedLabel
-          ? labelsN.map(label =>
-              label.selected.id === project.id ? (
+        labels.length > 0
+          ? labels.map(label => {
+              const labelIndex = labels.findIndex(l => l.id === label.id);
+              const selectedIndex = label.selected.findIndex(
+                sA => sA.id === project.id
+              );
+              console.log(labelIndex, label);
+              console.log(project.id, project.name);
+              console.log('si', selectedIndex);
+              return project.id === labels &&
+                selectedIndex !== -1 &&
+                labels[labelIndex].selected[selectedIndex].id ? (
                 <div
                   className={labelDesign}
-                  style={{ background: `${label.selected.color}` }}
+                  style={{ background: `${label.color}` }}
                 >
-                  {label.selected.name}
+                  {label.name}
                 </div>
               ) : (
                 ''
-              )
-            )
+              );
+            })
           : 'Select Label'
       }
-      options={labelsN}
+      options={labelsArr}
     />
   );
 };

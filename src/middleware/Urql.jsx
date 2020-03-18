@@ -23,6 +23,20 @@ const cache = cacheExchange({
           }
         });
       },
+      updateSelectedLabel: ({ updateSelectedLabel }, _args, cache) => {
+        cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
+          if (data !== null) {
+            // const statusIndex = data.programs[0].statuses.findIndex(
+            //   c => c.id === _args.id
+            // );
+            // data.programs[0].statuses[statusIndex].labels.unshift(updateSelectedLabel);
+            console.log('args', _args, data.programs[0]);
+            return data;
+          } else {
+            return null;
+          }
+        });
+      },
       createStatus: ({ createStatus }, _args, cache) => {
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
           if (data !== null) {

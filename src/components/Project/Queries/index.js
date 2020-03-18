@@ -213,6 +213,18 @@ export const UPDATE_LABEL = gql`
   }
 `;
 
+export const UPDATE_SELECTED_LABEL = gql`
+  mutation UpdateSelectedLabelMutation($id: ID!, $selected: ID!) {
+    updateSelectedLabel(id: $id, selected: $selected) {
+      id
+      selected {
+        id
+        name
+      }
+    }
+  }
+`;
+
 export const DELETE_LABEL = gql`
   mutation DeleteLabelMutation($id: ID!, $columnId: String!) {
     deleteLabel(id: $id, columnId: $columnId) {
