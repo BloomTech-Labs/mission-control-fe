@@ -5,7 +5,10 @@ import {
   toggled,
   toggledCont,
   editColumnsDiv,
+  togglerContainer,
+  deleteIcon,
 } from './EditColumns.module.scss';
+import DeleteColumn from '../DeleteColumn';
 
 import EditColumnModal from '../EditColumnModal/index';
 
@@ -19,14 +22,19 @@ const EditColumns = ({ column, setColumns }) => {
 
   return (
     <div className={editColumnsDiv}>
-      <div
-        onClick={toggler}
-        className={toggleActive ? toggleCont : toggledCont}
-      >
-        <div className={toggleActive ? toggle : toggled} />
-      </div>
       <div>
         <EditColumnModal column={column} setColumns={setColumns} />
+      </div>
+      <div className={togglerContainer}>
+        <div
+          onClick={toggler}
+          className={toggleActive ? toggleCont : toggledCont}
+        >
+          <div className={toggleActive ? toggle : toggled} />
+        </div>
+        <div className={deleteIcon}>
+          <DeleteColumn column={column} />
+        </div>
       </div>
     </div>
   );

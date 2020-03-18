@@ -7,7 +7,6 @@ import { useMutation } from 'urql';
 import CreateLabel from '../CreateLabel/index';
 import LabelList from '../LabelList/index';
 import { UPDATE_STATUS } from '../../Project/Queries/index';
-import DeleteColumn from '../DeleteColumn';
 import { basicInput, form } from './EditColumnModal.module.scss';
 
 const EditColumnModal = ({ column }) => {
@@ -44,10 +43,9 @@ const EditColumnModal = ({ column }) => {
       onClose={toggle}
       trigger={
         <div>
-          <p>
+          <p onClick={handleOpen} className={hover}>
             {' '}
-            {column.name} <EditIcon className={hover} onClick={handleOpen} />{' '}
-            <DeleteColumn column={column} />
+            {column.name} <EditIcon />{' '}
           </p>
         </div>
       }

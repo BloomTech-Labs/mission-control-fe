@@ -59,6 +59,7 @@ const Project = props => {
           <div className={projectContainer}>
             <div className={editorFeedContainer}>
               <div className={projectStatusContainer}>
+                <h2>Project Status</h2>
                 <ProjectStatus projectId={id} />
               </div>
               <h2>Repos Code Health</h2>

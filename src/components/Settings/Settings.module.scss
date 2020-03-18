@@ -12,7 +12,11 @@
 }
 
 .buttonStyle {
-  position: fixed;
-  width: 100%;
+  display: flex;
+  flex-flow: row-reverse;
   bottom: 0;
+}
+
+.columnHeader {
+  text-align: center;
 }

@@ -3,7 +3,6 @@ import { columnEditCont } from './ColumnSettings.module.scss';
 import { useQuery } from 'urql';
 import { LABEL_LIST_VIEW } from '../../ProjectList/Queries/projectQueries';
 import EditColumns from '../EditColumns/index';
-import CreateColumn from '../CreateColumn/index';
 
 const ColumnSettings = () => {
   const [state] = useQuery({
@@ -11,8 +10,6 @@ const ColumnSettings = () => {
     requestPolicy: 'cache-and-network',
   });
   const { data } = state;
-
-  const programId = data && data.programs[0].id;
 
   return (
     <div>
@@ -25,7 +22,6 @@ const ColumnSettings = () => {
             ))
           : ' '}
       </div>
-      <CreateColumn programId={programId} column={data} />
     </div>
   );
 };
