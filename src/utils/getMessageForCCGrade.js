@@ -16,6 +16,8 @@ const getMessage = grade => {
       return <>This repo hasn't received a Maintainability Rating.</>;
     case '!':
       return <>This repo hasn't had a successful analysis for its default branch yet.</>;
+    default:
+      return <></>;
   };
 };
 
