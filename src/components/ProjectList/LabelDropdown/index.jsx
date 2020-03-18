@@ -44,7 +44,11 @@ const LabelDropdown = ({ labels, project }) => {
               );
               console.log(labelIndex, label);
               console.log(project.id, project.name);
-              console.log('si', selectedIndex);
+              console.log(
+                labels &&
+                  selectedIndex !== -1 &&
+                  labels[labelIndex].selected[selectedIndex].id
+              );
               return project.id === labels &&
                 selectedIndex !== -1 &&
                 labels[labelIndex].selected[selectedIndex].id ? (
