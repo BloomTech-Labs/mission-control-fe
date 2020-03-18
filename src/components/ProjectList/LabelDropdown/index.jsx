@@ -42,16 +42,23 @@ const LabelDropdown = ({ labels, project }) => {
               const selectedIndex = label.selected.findIndex(
                 sA => sA.id === project.id
               );
-              console.log(labelIndex, label);
-              console.log(project.id, project.name);
+              // console.log(labelIndex, label);
+              // console.log(project.id, project.name);
+              // console.log(
+              //   labels &&
+              //     selectedIndex !== -1 &&
+              //     labels[labelIndex].selected[selectedIndex].id
+              // );
               console.log(
+                'selected array',
+                project.id,
                 labels &&
                   selectedIndex !== -1 &&
                   labels[labelIndex].selected[selectedIndex].id
               );
-              return project.id === labels &&
+              return labels &&
                 selectedIndex !== -1 &&
-                labels[labelIndex].selected[selectedIndex].id ? (
+                labels[labelIndex].selected[selectedIndex].id === project.id ? (
                 <div
                   className={labelDesign}
                   style={{ background: `${label.color}` }}
