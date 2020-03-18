@@ -5,7 +5,7 @@ export const PROJECT_LIST_VIEW = gql`
     programs {
       name
       id
-      columns {
+      statuses {
         name
         id
         labels {
@@ -40,46 +40,12 @@ export const PROJECT_LIST_VIEW = gql`
   }
 `;
 
-export const LABELS_SUBSCRIPTION = gql`
-  subscription labelSubscription {
-    newLabels {
-      id
-      name
-      color
-    }
-  }
-`;
-
-export const PROGRAM_SUBSCRIPTION = gql`
-  subscription programsubscription {
-    programs {
-      id
-      name
-      columns {
-        id
-        name
-        labels {
-          id
-          name
-          color
-        }
-      }
-      products {
-        projects {
-          id
-          name
-        }
-      }
-    }
-  }
-`;
-
 export const LABEL_LIST_VIEW = gql`
   query {
     programs {
       name
       id
-      columns {
+      statuses {
         name
         id
         labels {
