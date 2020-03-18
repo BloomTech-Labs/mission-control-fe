@@ -8,7 +8,7 @@ const LetterGrade = ({ repo, color }) => {
     <>
       <div className={Repo}>
         {repo.name}:{' '}
-        <a  href={repo.link} className={GradeCont}
+        <a  href={repo.link} target="_blank" rel="noopener noreferrer" className={GradeCont}
           style={{
             backgroundColor: color,
             padding: '0px 5px',
@@ -16,7 +16,7 @@ const LetterGrade = ({ repo, color }) => {
             borderRadius: '5px'
           }}
         >
-          <span href={repo.link} className={Grade} style={{ color: 'white' }} target="_blank" rel="noopener noreferrer">
+          <span href={repo.link} className={Grade} style={{ color: 'white' }}>
             {' '}
             {repo.grade}
           </span>
