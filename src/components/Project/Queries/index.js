@@ -311,3 +311,7 @@ export const CREATE_GHREPO = gql`
     }
   }
 `;
+
+export const DELETE_REPO = gql`
+
+`;
