@@ -1,8 +1,13 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
-import { labelDesign } from './LabelDropdown.module.scss';
+import {
+  labelDesign,
+  hiddenDropdown,
+  normalDropdown,
+} from './LabelDropdown.module.scss';
 
-const LabelDropdown = ({ labels }) => {
+const LabelDropdown = ({ labels, statusData }) => {
+  console.log('statusData', statusData.display);
   const labelArr = labels.map(label => ({
     key: label.id,
     value: label.color,
@@ -12,8 +17,11 @@ const LabelDropdown = ({ labels }) => {
       </div>
     ),
   }));
-
-  return <Dropdown placeholder="Select Label" options={labelArr} />;
+  if (statusData.display == true) {
+    return <Dropdown placeholder="Select Label" options={labelArr} />;
+  } else {
+    return <div className={hiddenDropdown} />;
+  }
 };
 
 export default LabelDropdown;

@@ -8,6 +8,7 @@ export const PROJECT_LIST_VIEW = gql`
       statuses {
         name
         id
+        display
         labels {
           name
           color

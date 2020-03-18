@@ -5,9 +5,16 @@ import mapTime from '../../../mappers/mapTime';
 import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
 import LabelDropdown from '../LabelDropdown/index';
 
-import { title, rtd, statusColumns } from './projectListRow.module.scss';
+import {
+  title,
+  rtd,
+  statusColumns,
+  hiddenStatus,
+} from './projectListRow.module.scss';
 
-const ProjectRow = ({ project, statusColumn }) => {
+const ProjectRow = ({ project, statusColumn, statusDisplay }) => {
+  console.log('status display', statusColumn);
+  console.log('STATUSDISPLAY', statusDisplay);
   const statusLabelsArr = [];
   var i;
   if (statusColumn.length > 0) {
@@ -31,8 +38,16 @@ const ProjectRow = ({ project, statusColumn }) => {
         </td> */}
         {statusColumn.length > 0 && statusLabelsArr.length > 0
           ? statusLabelsArr.map(statusData => (
-              <td key={statusData.id} className={statusColumns}>
-                <LabelDropdown labels={statusData.labels} />
+              <td
+                key={statusData.id}
+                className={
+                  statusData.display === true ? statusColumns : hiddenStatus
+                }
+              >
+                <LabelDropdown
+                  labels={statusData.labels}
+                  statusData={statusData}
+                />
               </td>
             ))
           : ''}
