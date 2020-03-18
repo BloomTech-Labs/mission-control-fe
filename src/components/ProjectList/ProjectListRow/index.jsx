@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import mapTime from '../../../mappers/mapTime';
 import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
 import LabelDropdown from '../LabelDropdown/index';
 
-import { title, rtd, statusColumns } from './projectListRow.module.scss';
+import { title, statusColumns } from './projectListRow.module.scss';
 
 const ProjectRow = ({ project, statusColumn }) => {
   const statusLabelsArr = [];
