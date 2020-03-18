@@ -21,13 +21,12 @@ const LetterGrade = ({ repo, color }) => {
           {repo.grade}
         </span>
         <span className={Tip}>
-        {getMessage(repo.grade)}
+          {getMessage(repo.grade)}
         </span>
          
       </a>
-      
       <div>
-      <Sparkline name={repo.name} />
+        <Sparkline name={repo.name} />
       </div>
     </div>
   </>
