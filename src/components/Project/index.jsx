@@ -21,12 +21,10 @@ import {
 import { PROJECT_VIEW_QUERY as query } from './Queries';
 import { GET_USER_ROLE as userQuery } from './Queries';
 
-
-const Project = props => {
-  const { id } = props.match.params;
-  const [state, executeQuery] = useQuery({ query, variables: { id } });
-  const { data, fetching, error } = state;
-
+const Project = (props) => {
+	const { id } = props.match.params;
+	const [ state, executeQuery ] = useQuery({ query, variables: { id } });
+	const { data, fetching, error } = state;
 
 	const [ user, setUser ] = useState(false);
 
@@ -45,7 +43,7 @@ const Project = props => {
 	);
 
 	if (fetching) {
-		return <p>Loading...</p>;
+		return <p>Please Wait... Loading...</p>;
 	} else if (error) {
 		return (
 			<p>
@@ -61,10 +59,14 @@ const Project = props => {
 					</div>
 					<div className={projectContainer}>
 						<div className={editorFeedContainer}>
-							<h2>Repos Code Health</h2>
-							<GitHubRepos />
+							<h2>Repository Statistics</h2>
+							<GitHubRepos
+								ghrepos={data.project.product.GHRepos}
+								productId={data.project.product.id}
+								executeQuery2={executeQuery}
+							/>
 							<div className={gradeContainer}>
-								<Grade ccrepos={data.project.product.grades} />
+								<Grade ghrepos={data.project.product.grades} />
 							</div>
 							<h2>Project Notes</h2>
 							{user === true ? (
