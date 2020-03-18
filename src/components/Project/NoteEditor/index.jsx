@@ -116,7 +116,7 @@ const NoteEditor = ({ projectManagers, user, projectId, note, setIsEditing }) =>
 			<div className={styles['main-container']}>
 				<div className={styles['editor-container']}>
 					<div className={styles['avatar-container']}>
-						<img src={'https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png'} />
+						<img src={'https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png'} alt='Avatar' />
 					</div>
 					<form
 						onSubmit={(e) => {
