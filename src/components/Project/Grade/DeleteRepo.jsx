@@ -1,18 +1,22 @@
 import React, { useState } from 'react'
 import { Grid, Button, Modal, Input, List } from 'semantic-ui-react';
 import { deleteCont } from './Grade.module.scss';
+import { useMutation } from 'urql';
+import { DELETE_GHREPO as query } from '../Queries';
+  
 
 function DeleteRepo({ id }) {
     const [open, setOpen] = useState(false);
 
+    const [, deleteRepo] = useMutation(query);
+
     const show = () => () => {
-        console.log('before', open)
         setOpen(!open);
-        console.log('after', open)
       };
 
     const handleDeleteRepos = () => {
         console.log(id)
+        deleteRepo(id)
         setOpen(!open)
     }
 

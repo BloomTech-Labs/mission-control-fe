@@ -312,6 +312,10 @@ export const CREATE_GHREPO = gql`
   }
 `;
 
-export const DELETE_REPO = gql`
-
+export const DELETE_GHREPO = gql`
+  mutation deleteGithubRepo($id: ID!) {
+    deleteRepo(id:$id){
+      id
+    }
+  }
 `;
