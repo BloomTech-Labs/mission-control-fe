@@ -14,12 +14,12 @@ import getMessage from '../../../utils/getMessageForCCGrade';
 
 import DeleteRepo from './DeleteRepo';
 
-const Grade = props => {
-  if (!props.ghrepos || !props.ghrepos.length) return null;
+const Grade = ({ ghrepos }) => {
+  if (!ghrepos || !ghrepos.length) return null;
 
   return (
     <div className={gradeCont}>
-      {props.ghrepos.map(repo => {
+      {ghrepos.map(repo => {
         const color = getColor(repo.grade);
         return (
           <div key={repo.name} className={scsssux}>
