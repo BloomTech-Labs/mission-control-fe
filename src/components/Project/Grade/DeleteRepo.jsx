@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { Grid, Button, Modal, Input, List } from 'semantic-ui-react';
+import { Button, Modal } from 'semantic-ui-react';
 import { deleteCont } from './Grade.module.scss';
 import { useMutation } from 'urql';
 import { DELETE_GHREPO as query } from '../Queries';
-  
 
-function DeleteRepo({ id }) {
+function DeleteRepo({ id, name, executeQuery }) {
     const [open, setOpen] = useState(false);
 
     const [, deleteRepo] = useMutation(query);
@@ -15,9 +14,11 @@ function DeleteRepo({ id }) {
       };
 
     const handleDeleteRepos = () => {
-        console.log(id)
-        deleteRepo(id)
+        deleteRepo({ id })
         setOpen(!open)
+        executeQuery({
+            requestPolicy: 'network-only',
+          })
     }
 
     return (
@@ -25,10 +26,10 @@ function DeleteRepo({ id }) {
             <div className={ deleteCont } onClick={show()}>
                 X
             </div>
-            <Modal open={open} onClose={show()}>
+            <Modal size={'mini'} open={open} onClose={show()}>
             <Modal.Content>
                 <Modal.Description>
-                    <p>Are you sure you want to delete this repo?</p>
+                    <h4>Delete {name}?</h4>
                 </Modal.Description>
             </Modal.Content>
             <Modal.Actions>
