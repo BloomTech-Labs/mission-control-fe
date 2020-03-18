@@ -23,7 +23,7 @@ const Grade = ({ ghrepos }) => {
         const color = getColor(repo.grade);
         return (
           <div key={repo.name} className={scsssux}>
-            <DeleteRepo />
+            <DeleteRepo id={repo.id}/>
             <h3>
               {repo.name}:{' '}
               <a
