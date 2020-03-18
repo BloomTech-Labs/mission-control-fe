@@ -12,6 +12,8 @@ import {
 import RePulse from '../rePulse/Pulse';
 import getMessage from '../../../utils/getMessageForCCGrade';
 
+import DeleteRepo from './DeleteRepo';
+
 const Grade = props => {
   if (!props.ghrepos || !props.ghrepos.length) return null;
 
@@ -21,6 +23,7 @@ const Grade = props => {
         const color = getColor(repo.grade);
         return (
           <div key={repo.name} className={scsssux}>
+            <DeleteRepo />
             <h3>
               {repo.name}:{' '}
               <a
