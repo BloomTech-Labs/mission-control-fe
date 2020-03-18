@@ -1,6 +1,5 @@
 import React from 'react';
 import StarRatings from 'react-star-ratings';
-import { useMutation } from 'urql';
 
 import EditIcon from '@material-ui/icons/Edit';
 import { Label } from 'semantic-ui-react';
