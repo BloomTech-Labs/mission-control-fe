@@ -5,6 +5,7 @@ export const TEAM_QUERY = gql`
     project(id: $id) {
       id
       projectManagers {
+        id
         name
       }
       team {
