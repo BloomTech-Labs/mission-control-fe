@@ -66,11 +66,11 @@ const Note = ({ note, user, projectManagers, projectId }) => {
 							starSpacing=".5px"
 						/>
 						{note.privateNote ? (
-							<div onClick={() => setIsEditing(true)} class={notewrapperPrivate}>
+							<div onClick={() => setIsEditing(true)} className={notewrapperPrivate}>
 								Private Note
 							</div>
 						) : (
-							<div onClick={() => setIsEditing(true)} class={notewrapperPublic}>
+							<div onClick={() => setIsEditing(true)} className={notewrapperPublic}>
 								Public Note
 							</div>
 						)}
