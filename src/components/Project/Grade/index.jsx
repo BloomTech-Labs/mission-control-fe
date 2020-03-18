@@ -14,7 +14,7 @@ import getMessage from '../../../utils/getMessageForCCGrade';
 
 import DeleteRepo from './DeleteRepo';
 
-const Grade = ({ ghrepos }) => {
+const Grade = ({ ghrepos, executeQuery }) => {
   if (!ghrepos || !ghrepos.length) return null;
 
   return (
@@ -23,7 +23,7 @@ const Grade = ({ ghrepos }) => {
         const color = getColor(repo.grade);
         return (
           <div key={repo.name} className={scsssux}>
-            <DeleteRepo id={repo.id}/>
+            <DeleteRepo id={repo.GHRepoId} name={repo.name} executeQuery={executeQuery} />
             <h3>
               {repo.name}:{' '}
               <a
