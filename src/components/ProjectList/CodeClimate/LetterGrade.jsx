@@ -4,7 +4,7 @@ import getMessage from '../../../utils/getMessageForCCGrade'
 import Sparkline from '../GitHub/Sparkline.jsx'
 import { getThemeProps } from '@material-ui/styles';
 
-const LetterGrade = ({ currentIndex, setCurrentIndex, repo, color, projectName, ccrepos, repoIndex, handleSparkClick }) => {
+const LetterGrade = ({ currentIndex, setCurrentIndex, repo, color, projectName, ghrepos, repoIndex, handleSparkClick }) => {
   return (
     <>
       <div className={Repo}>
@@ -27,7 +27,7 @@ const LetterGrade = ({ currentIndex, setCurrentIndex, repo, color, projectName, 
         </a>
         <div>
           <Sparkline
-            ccrepos={ccrepos}
+            ghrepos={ghrepos}
             repoIndex={repoIndex}
             name={repo.name}
             projectName={projectName}
