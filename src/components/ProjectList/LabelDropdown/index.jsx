@@ -7,7 +7,6 @@ import {
 } from './LabelDropdown.module.scss';
 
 const LabelDropdown = ({ labels, statusData }) => {
-  console.log('statusData', statusData.display);
   const labelArr = labels.map(label => ({
     key: label.id,
     value: label.color,

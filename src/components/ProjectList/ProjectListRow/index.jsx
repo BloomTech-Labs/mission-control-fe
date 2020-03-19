@@ -12,8 +12,6 @@ import {
 } from './projectListRow.module.scss';
 
 const ProjectRow = ({ project, statusColumn, statusDisplay }) => {
-  console.log('status display', statusColumn);
-  console.log('STATUSDISPLAY', statusDisplay);
   const statusLabelsArr = [];
   var i;
   if (statusColumn.length > 0) {

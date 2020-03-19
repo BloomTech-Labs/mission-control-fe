@@ -23,9 +23,9 @@ const EditColumns = ({ column, id }) => {
   const toggler = e => {
     e.preventDefault();
     setStatusDisplay(!statusDisplay);
-    executeUpdateDisplay(variables);
+    executeUpdateDisplay({ id, display: !statusDisplay });
   };
-  console.log('column', statusDisplay);
+  console.log('status display column trigger', statusDisplay);
 
   return (
     <div className={editColumnsDiv}>
