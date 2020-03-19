@@ -126,7 +126,7 @@ const NoteEditor = ({
               src={
                 'https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png'
               }
-              alt={`avatar of ${user.name}`}
+              alt="Avatar"
             />
           </div>
           <form
@@ -217,12 +217,27 @@ const NoteEditor = ({
                     />
                   </label>
                 )}
-                <SemanticButton
-                  onClick={() => setPrivateNote(!privateNote)}
-                  type="button"
-                >
-                  {privateNote ? 'PRIVATE' : 'PUBLIC'}
-                </SemanticButton>
+
+                {privateNote ? (
+                  <SemanticButton
+                    onClick={() => setPrivateNote(!privateNote)}
+                    type="button"
+                    //color="pink"
+                    className={styles['privatetoggle-btn']}
+                    variant="outlined"
+                  >
+                    PRIVATE
+                  </SemanticButton>
+                ) : (
+                  <SemanticButton
+                    onClick={() => setPrivateNote(!privateNote)}
+                    type="button"
+                    className="ui pink basic button"
+                    variant="outlined"
+                  >
+                    PUBLIC
+                  </SemanticButton>
+                )}
                 <SemanticButton
                   className={validated ? styles['save-btn'] : styles.disabled}
                   type="submit"
