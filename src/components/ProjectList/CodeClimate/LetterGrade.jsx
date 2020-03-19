@@ -35,7 +35,7 @@ const LetterGrade = ({ currentIndex, setCurrentIndex, repo, color, projectName, 
             handleSparkClick={handleSparkClick} />
         </div>
       </div>
-    </>
+  </>
   );
 };
 

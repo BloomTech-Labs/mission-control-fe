@@ -1,21 +1,23 @@
-import React from 'react';
+import React from 'react'
 import { Line } from 'react-chartjs-2';
 import { ChartDatafier } from './ChartDatafier';
 
 const dataFiller = (label, color, array) => {
-  return {
-    label: label,
-    fill: false,
-    lineTension: 0.1,
-    borderColor: color,
-    borderWidth: 2,
-    pointBorderWidth: 1,
-    pointHoverRadius: 5,
-    pointRadius: 1,
-    pointHitRadius: 10,
-    data: array,
-  };
-};
+  return (
+    {
+      label: label,
+      fill: false,
+      lineTension: 0.1,
+      borderColor: color,
+      borderWidth: 2,
+      pointBorderWidth: 1,
+      pointHoverRadius: 5,
+      pointRadius: 1,
+      pointHitRadius: 10,
+      data: array,
+    }
+  )
+}
 
 const SparkyChart = ({ data, height, legend, layout, maxValue, tooltips }) => {
   const options = {
@@ -58,4 +60,4 @@ const SparkyChart = ({ data, height, legend, layout, maxValue, tooltips }) => {
   )
 }
 
-export default SparkyChart;
+export default SparkyChart

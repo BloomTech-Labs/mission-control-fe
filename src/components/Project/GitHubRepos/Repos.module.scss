@@ -4,6 +4,10 @@
 
 .repoAlignment {
   display: flex;
+    .button {
+      border: none;
+      background-color: rgba($color: #FFFFFF, $alpha: 0.0);
+    }
 }
 
 .buttonAlign {
