@@ -94,6 +94,7 @@ export const PROJECT_VIEW_QUERY = gql`
           name
           grade
           link
+          GHRepoId
         }
         GHRepos {
           id
@@ -308,6 +309,14 @@ export const CREATE_GHREPO = gql`
       owner
       ownerId
       repoId
+    }
+  }
+`;
+
+export const DELETE_GHREPO = gql`
+  mutation deleteGithubRepo($id: ID!) {
+    deleteGithubRepo(id: $id){
+      id
     }
   }
 `;
