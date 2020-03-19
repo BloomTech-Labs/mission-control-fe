@@ -214,8 +214,28 @@ export const UPDATE_LABEL = gql`
 `;
 
 export const UPDATE_SELECTED_LABEL = gql`
-  mutation UpdateSelectedLabelMutation($id: ID!, $selected: ID!) {
-    updateSelectedLabel(id: $id, selected: $selected) {
+  mutation UpdateSelectedLabelMutation(
+    $id: ID!
+    $selected: ID!
+    $columnId: String!
+  ) {
+    updateSelectedLabel(id: $id, selected: $selected, columnId: $columnId) {
+      id
+      selected {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export const DISCONNECT_SELECTED_LABEL = gql`
+  mutation DisconnectSelectedLabelMutation(
+    $id: ID!
+    $selected: ID!
+    $columnId: String!
+  ) {
+    disconnectSelectedLabel(id: $id, selected: $selected, columnId: $columnId) {
       id
       selected {
         id
