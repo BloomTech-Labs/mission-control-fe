@@ -17,7 +17,7 @@ const LabelDropdown = ({ labels, statusData }) => {
       </div>
     ),
   }));
-  if (statusData.display == true) {
+  if (statusData.display === true) {
     return <Dropdown placeholder="Select Label" options={labelArr} />;
   } else {
     return <div className={hiddenDropdown} />;
