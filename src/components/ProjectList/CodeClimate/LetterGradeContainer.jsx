@@ -18,7 +18,7 @@ const LetterGradeContainer = props => {
     setCurrentIndex(repoIndex)
   }
   return (
-    <React.Fragment>
+    <>
       <ChartDialog
         ghrepos={props.ghrepos}
         name={props.ghrepos[currentIndex].name}
@@ -43,7 +43,7 @@ const LetterGradeContainer = props => {
             handleSparkClick={handleSparkClick} />
         })}
       </div>
-    </React.Fragment>
+    </>
   );
 };
 export default LetterGradeContainer;
