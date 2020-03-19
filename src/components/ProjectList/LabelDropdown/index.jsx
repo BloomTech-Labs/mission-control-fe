@@ -15,7 +15,6 @@ const LabelDropdown = ({ labels, project }) => {
   const labelsArr = labels.map(label => ({
     key: label.id,
     value: label,
-    columnid: label.status.id,
     color: label.color,
     name: label.name,
     text: (
@@ -30,7 +29,7 @@ const LabelDropdown = ({ labels, project }) => {
     ),
   }));
 
-  const handleChange = (e, { value, columnid }) => {
+  const handleChange = (e, { value }) => {
     e.preventDefault();
     labels &&
       labels.map(label =>
