@@ -66,8 +66,8 @@ prisma deploy
 * All developers on Mission Control should have prettier installed, and make use of the included ```.prettierrc.json``` standards.
 * All other reformat on save tools should be turned off while working on Mission Control.
 * The name of Components, variables, state, etcetera should be self-explanatory.
-### EXSAMPLE
-Make a Compnent that will render a list of cat breeds.
+### Example 
+Make a Component that will render a list of cat breeds.
 #### Bad Naming
 ```
 index.js == list of cat breeds
@@ -83,7 +83,8 @@ Cat + Breed + List == CatBreedList.js == list of cat breeds
 * Every line of code changed should be to the end of adding new funtinality.
 
 
-### EXSAMPLE
+### Example 
+Every line of code changed should be about adding to the code, and idealy not just reformating the code.
 #### Original Code
 ```
   useEffect(() => {
@@ -91,15 +92,6 @@ Cat + Breed + List == CatBreedList.js == list of cat breeds
       setCat(cat);
     }
   }, [result.data]);
-
-```
-#### Good Change
-```
-  useEffect(() => {
-    if (cat && codependant) {
-      setCat(cat);
-    }
-  }, [cat && codependant]);
 ```
 #### Bad Change
 ```
@@ -112,22 +104,36 @@ Cat + Breed + List == CatBreedList.js == list of cat breeds
 		[ cat && codependant ]
 	);
 ```
+#### Good Change
+```
+  useEffect(() => {
+    if (cat && codependant) {
+      setCat(cat);
+    }
+  }, [cat && codependant]);
+```
 In most cases how code is formated can be arbitrary, but changes that are solely about respacing code should be avoided to prevent unneeded git conflicts. The exception is when converting legacy code to agreed to standards. This will help reviewers and your fellow developers see the lines of code you changed rather than need to sort through many lines of reformated code and risk overlooking your contributions.
 
 
 ## Sass Tree Best Practices
-* import ```App.sass``` to ```App.js```
+* import ```App.scss``` to ```App.js```
 ```
 import './App.scss';
 ```
-* import component styles in a ```Component.sass``` named after that component to ```App.sass```.
+* import component styles in a ```Component.scss``` named after that component to ```App.scss```.
 ```
 @import 'Component';
 @import 'Component2';
 ```
-* wrap the parent component top of the tree in a ```<div className="parentComponetContainer">``` see temp componet exsample code
-* do not deconstruct sass files classes, this adds a level of obscurity that confuses when a className is hardcoded Vs dynamic JS
-* LINK TO SASS DOCUMENTATION
+* wrap the parent component top of the tree in a ```<div className="parentComponentContainer">```.
+```
+.parentComponentContainer {
+  div {
+    
+  }
+}
+```
+* [SASS Documentation](https://sass-lang.com/)
 
 ## Component Tree
 ### New Tree:
@@ -142,7 +148,7 @@ src >
             SubComponentName.test.js
             SubComponenetName >
 ```
-### Old Componet Tree
+### Old Component Tree
 ```
 src >
     components >
@@ -154,7 +160,7 @@ src >
                 SubComponenetName.module.scss
 ```
 * This change is to address many compopnets being named ```index.jsx```
-* And based on the Orgnisation > Program > PRoduct > Project causeing old sub compnents to now be shared componets.
+* And based on the Orgnisation > Program > PRoduct > Project causeing old sub components to now be shared Components.
 
 ## Query Tree
-* One Query per Compnent Tree
+* One Query per Component Tree
