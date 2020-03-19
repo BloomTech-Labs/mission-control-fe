@@ -11,16 +11,18 @@ import {
 
 import RePulse from '../rePulse/Pulse';
 import getMessage from '../../../utils/getMessageForCCGrade';
+import DeleteRepo from './DeleteRepo';
 
-const Grade = props => {
-  if (!props.ghrepos || !props.ghrepos.length) return null;
+const Grade = ({ ghrepos, executeQuery }) => {
+  if (!ghrepos || !ghrepos.length) return null;
 
   return (
     <div className={gradeCont}>
-      {props.ghrepos.map(repo => {
+      {ghrepos.map(repo => {
         const color = getColor(repo.grade);
         return (
           <div key={repo.name} className={scsssux}>
+            <DeleteRepo id={repo.GHRepoId} name={repo.name} executeQuery={executeQuery} />
             <h3>
               {repo.name}:{' '}
               <a
