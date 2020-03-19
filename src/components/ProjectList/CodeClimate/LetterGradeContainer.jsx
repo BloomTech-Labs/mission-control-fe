@@ -9,37 +9,31 @@ const LetterGradeContainer = props => {
   const [dialogOpen, setDialogOpen] = useState({
     'sparkChart': false,
   })
-
-  if (!props.ccrepos || !props.ccrepos.length) return null;
-
-
+  if (!Array.isArray(props.ghrepos) || !props.ghrepos.length) return null;
   const toggleDialog = name => {
     setDialogOpen({ ...dialogOpen, [name]: !dialogOpen[name] })
   }
-
   const handleSparkClick = (repoIndex) => {
     toggleDialog('sparkChart')
     setCurrentIndex(repoIndex)
   }
-
   return (
-    <>
+    <React.Fragment>
       <ChartDialog
-        ccrepos={props.ccrepos}
-        name={props.ccrepos[currentIndex].name}
+        ghrepos={props.ghrepos}
+        name={props.ghrepos[currentIndex].name}
         open={dialogOpen['sparkChart']}
         toggleDialog={toggleDialog}
         onClose={() => toggleDialog('sparkChart')}
         projectName={props.name}
         setCurrentIndex={setCurrentIndex}
         currentIndex={currentIndex} />
-
       <div className={Maintainability}>
-        {props.ccrepos.map((repo, index) => {
+        {props.ghrepos.map((repo, index) => {
           const color = getColor(repo.grade);
           return <LetterGrade
             key={repo.name}
-            ccrepos={props.ccrepos}
+            ghrepos={props.ghrepos}
             color={color}
             repo={repo}
             repoIndex={index}
@@ -49,8 +43,7 @@ const LetterGradeContainer = props => {
             handleSparkClick={handleSparkClick} />
         })}
       </div>
-    </>
+    </React.Fragment>
   );
 };
-
 export default LetterGradeContainer;
