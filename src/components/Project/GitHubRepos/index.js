@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery } from 'urql';
+import { useQuery, useMutation } from 'urql';
 import { Grid, Button, Modal, Input, List } from 'semantic-ui-react';
 import {
   searchResult,
@@ -7,23 +7,30 @@ import {
   buttonAlign,
   button,
 } from './Repos.module.scss';
-import { GET_GITHUB_REPOS as query } from '../Queries';
-import Grade from '../Grade';
+import {
+  GET_GITHUB_REPOS as query,
+  CREATE_GHREPO as createRepo,
+} from '../Queries';
 
 const initialQuery = '';
 
-const ReposList = () => {
+const ReposList = ({ ghrepos, productId, executeQuery2 }) => {
   const [state, setState] = useState({ open: false });
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [repoSelected, setRepoSelect] = useState([]);
-  const [githubRepos, setGithubRepos] = useState([]);
+  const [githubRepos, setGithubRepos] = useState(ghrepos);
+
+  useEffect(() => {
+    setGithubRepos(ghrepos);
+  }, [ghrepos]);
   const [results, executeQuery] = useQuery({
     query,
     variables: { search: searchQuery },
     pause: true,
     requestPolicy: 'network-only',
   });
+  const [, addRepo] = useMutation(createRepo);
 
   useEffect(() => {
     setSearchResults(results.data ? results.data.GithubRepos : []);
@@ -57,8 +64,10 @@ const ReposList = () => {
         ...repoSelected,
         {
           name: repo.name,
-          grade: 'A',
-          link: 'https://codeclimate.com/repos/5e619ee292b6f00107000693',
+          repoId: repo.id,
+          owner: repo.owner,
+          ownerId: repo.ownerId,
+          id: productId,
         },
       ]);
     }
@@ -66,14 +75,18 @@ const ReposList = () => {
 
   const handleAddRepos = () => {
     const ghNames = githubRepos.map(repo => (repo.name ? repo.name : ''));
-    const filterRepos = repoSelected.filter(repo => {
-      if (!ghNames.includes(repo.name)) {
-        return repo;
-      }else {
-        return null;
-      }
+    const filterRepos = repoSelected.filter(
+      repo => !ghNames.includes(repo.name)
+    );
+    Promise.all(
+      filterRepos.map(repo => {
+        return addRepo({ ...repo });
+      })
+    ).then(() => {
+      executeQuery2({
+        requestPolicy: 'network-only',
+      });
     });
-    setGithubRepos([...githubRepos, ...filterRepos]);
   };
 
   const deleteRepo = e => {
@@ -179,9 +192,6 @@ const ReposList = () => {
           />
         </Modal.Actions>
       </Modal>
-      <div>
-        <Grade ccrepos={githubRepos} />
-      </div>
     </div>
   );
 };
