@@ -1,6 +1,6 @@
 import React from 'react';
-import { Repo, Grade } from './letterGrade.module.scss';
-
+import { Repo, Grade, GradeCont,Tip } from './letterGrade.module.scss';
+import getMessage from '../../../utils/getMessageForCCGrade'
 import Sparkline from '../GitHub/Sparkline.jsx'
 
 const LetterGrade = ({ repo, color }) => {
@@ -8,7 +8,7 @@ const LetterGrade = ({ repo, color }) => {
     <>
     <div className={Repo}>
       {repo.name}:{' '}
-      <span
+      <a  href={repo.link} className={GradeCont}
         style={{
           backgroundColor: color,
           padding: '0px 5px',
@@ -16,13 +16,17 @@ const LetterGrade = ({ repo, color }) => {
           borderRadius: '5px'
         }}
       >
-        <a href={repo.link} className={Grade} style={{ color: 'white' }}>
+        <span href={repo.link} className={Grade} style={{ color: 'white' }} target="_blank" rel="noopener noreferrer">
           {' '}
           {repo.grade}
-        </a>
-      </span>
+        </span>
+        <span className={Tip}>
+          {getMessage(repo.grade)}
+        </span>
+         
+      </a>
       <div>
-      <Sparkline name={repo.name} />
+        <Sparkline name={repo.name} />
       </div>
     </div>
   </>
