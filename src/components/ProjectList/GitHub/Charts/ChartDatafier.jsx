@@ -1,14 +1,14 @@
-const maxValueCheck = (array, value, maxValue) =>{
-    if (value > maxValue ){
+const maxValueCheck = (array, value, maxValue) => {
+    if (value > maxValue) {
         array.push(maxValue);
     } else {
         array.push(value);
     };
 };
 
-export const ChartDatafier = (data, additions, deletions, changedFiles) => {
-    const maxValue = 1000
-    data.SparkyBoy.reverse().map(commit => {
+export const ChartDatafier = (data, additions, deletions, changedFiles, maxValue) => {
+    const chartData = data.SparkyBoy.slice().reverse()
+    chartData.map(commit => {
         return (
             maxValueCheck(additions, commit.additions, maxValue),
             maxValueCheck(deletions, commit.deletions, maxValue),

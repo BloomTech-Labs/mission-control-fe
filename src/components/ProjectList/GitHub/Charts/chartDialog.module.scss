@@ -1,0 +1,26 @@
+.sparklineModalContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modalHeader {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    span {
+        color: black;
+    }
+}
+
+.leftModalArrow {
+    position: relative;
+}
+
+.rightModalArrow {
+}
+
+.chartContainer {
+    width: 90%;
+}

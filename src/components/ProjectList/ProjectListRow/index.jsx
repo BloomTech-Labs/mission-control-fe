@@ -31,10 +31,10 @@ const ProjectRow = ({ project, status }) => {
         </td> */}
         {status.length > 0 && statusLabelsArr.length > 0
           ? statusLabelsArr.map(statusData => (
-              <td key={statusData.id} className={statusColumns}>
-                <LabelDropdown labels={statusData.labels} />
-              </td>
-            ))
+            <td key={statusData.id} className={statusColumns}>
+              <LabelDropdown labels={statusData.labels} />
+            </td>
+          ))
           : ''}
       </tr>
     );
@@ -45,7 +45,7 @@ const ProjectRow = ({ project, status }) => {
           <Link to={`/project/${project.id}`} className={title}>
             {project.name}
           </Link>
-          <LetterGradeContainer ccrepos={project.product.grades} />
+          <LetterGradeContainer ccrepos={project.product.grades} name={project.name} />
         </td>
         {/* <td className={rtd}>
           {project.notes.length
