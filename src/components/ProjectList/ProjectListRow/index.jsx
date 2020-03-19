@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import mapTime from '../../../mappers/mapTime';
 import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
 import LabelDropdown from '../LabelDropdown/index';
 
-import { title, rtd, statusColumns } from './projectListRow.module.scss';
+import { title, statusColumns } from './projectListRow.module.scss';
 
 const ProjectRow = ({ project, statusColumn }) => {
   const statusLabelsArr = [];
@@ -20,7 +19,7 @@ const ProjectRow = ({ project, statusColumn }) => {
           <Link to={`/project/${project.id}`} className={title}>
             {project.name}
           </Link>
-          <LetterGradeContainer ccrepos={project.product.grades} />
+          <LetterGradeContainer ghrepos={project.product.grades} />
         </td>
         {/* We want to use this feature, but it's not quite where we want it to be just yet. Since we'd have to rip it out in multiple files, I decided to leave it in and comment it out for now. See ProjectListContainer */}
         {/* <td className={rtd}>
@@ -45,7 +44,7 @@ const ProjectRow = ({ project, statusColumn }) => {
           <Link to={`/project/${project.id}`} className={title}>
             {project.name}
           </Link>
-          <LetterGradeContainer ccrepos={project.product.grades} />
+          <LetterGradeContainer ghrepos={project.product.grades} />
         </td>
         {/* <td className={rtd}>
           {project.notes.length
