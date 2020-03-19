@@ -1,67 +1,67 @@
 @import '../../../styles/variables.scss';
 
 .header {
-  border-bottom: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
 }
 
 .headerContainer {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 .allProducts {
-  font-family: $fira;
-  color: $accent;
-  font-weight: 500;
-  margin-left: -0.7rem;
-  &:hover {
+    font-family: $fira;
     color: $accent;
-  }
+    font-weight: 500;
+    margin-left: -0.7rem;
+    &:hover {
+        color: $accent;
+    }
 }
 
 .projectName {
-  font-family: $noto;
-  color: $dark;
-  font-weight: 700;
-  font-size: 2.5rem;
-  padding: 0.5rem 0 1rem;
+    font-family: $noto;
+    color: $dark;
+    font-weight: 700;
+    font-size: 2.5rem;
+    padding: 0.5rem 0 1rem;
 }
 
 .statusContainer {
-  margin-right: 2.5rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-family: $fira;
-
-  span {
-    font-size: 3rem;
-  }
-
-  p {
+    margin-right: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     font-family: $fira;
-    font-weight: 500;
-    color: $dark;
-    font-size: 1.3rem;
-    padding-left: 1rem;
-    line-height: 1.1;
-  }
+
+    span {
+        font-size: 3rem;
+    }
+
+    p {
+        font-family: $fira;
+        font-weight: 500;
+        color: $dark;
+        font-size: 1.3rem;
+        padding-left: 1rem;
+        line-height: 1.1;
+    }
 }
 
 .projectNav {
-  padding-bottom: 0.4rem;
-  width: fit-content;
+    padding-bottom: 0.4rem;
+    width: fit-content;
 
-  a {
-    font-family: $noto;
-    &:hover {
-      color: $dark;
+    a {
+        font-family: $noto;
+        &:hover {
+            color: $dark
+        }
     }
-  }
 }
 
 .activeLink {
-  font-weight: 500;
-  border-bottom: 2px solid $accent;
-  padding-bottom: 0.4rem;
+    font-weight: 500;
+    border-bottom: 2px solid $accent;
+    padding-bottom: 0.4rem;
 }

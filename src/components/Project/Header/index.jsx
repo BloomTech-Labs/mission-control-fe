@@ -16,7 +16,7 @@ import {
 const Header = ({ projectId }) => {
   const [state] = useQuery({ query, variables: { id: projectId } });
   const { data, fetching } = state;
-
+  
   if (fetching) return <h1>Loading</h1>;
   if (data && data.project) {
     const {
@@ -41,7 +41,8 @@ const Header = ({ projectId }) => {
             </div>
           </div>
 
-          <div className={statusContainer}></div>
+          <div className={statusContainer}>
+          </div>
         </div>
 
         <nav className={projectNav}>
