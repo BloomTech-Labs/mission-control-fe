@@ -14,7 +14,7 @@ const Sparkline = ({ name }) => {
     if (state.fetching){
         return <p>Loading Sparkline...</p>
     } else if (state.error) {
-        return <p>Error: {state.error}</p>
+        return <p>Error: Sparkline Unavailable.</p>
     } else if (data.SparkyBoy.length) {
         return (
             <div className={Sparkyline}>
