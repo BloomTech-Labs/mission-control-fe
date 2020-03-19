@@ -11,6 +11,7 @@ import {
 
 import RePulse from '../rePulse/Pulse';
 import getMessage from '../../../utils/getMessageForCCGrade';
+
 import DeleteRepo from './DeleteRepo';
 
 const Grade = ({ ghrepos, executeQuery }) => {
