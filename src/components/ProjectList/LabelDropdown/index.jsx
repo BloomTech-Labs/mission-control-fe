@@ -46,33 +46,32 @@ const LabelDropdown = ({ labels, project }) => {
     });
   };
 
-  const UpdatedPlaceholder =
-    labels.length > 0
-      ? labels.map(label => {
-          const labelIndex = labels.findIndex(l => l.id === label.id);
-          const selectedIndex = label.selected.findIndex(
-            sA => sA.id === project.id
-          );
-          return labels &&
-            selectedIndex !== -1 &&
-            labels[labelIndex].selected[selectedIndex].id === project.id ? (
-            <div
-              key={label.id}
-              className={labelDesign}
-              style={{ background: `${label.color}` }}
-            >
-              {label.name}
-            </div>
-          ) : (
-            ''
-          );
-        })
-      : 'Select Label';
+  const UpdatedPlaceholder = labels.map(label => {
+    const labelIndex = labels.findIndex(l => l.id === label.id);
+    const selectedIndex = label.selected.findIndex(sA => sA.id === project.id);
+    return labels &&
+      selectedIndex !== -1 &&
+      labels[labelIndex].selected[selectedIndex].id === project.id ? (
+      <div
+        key={label.id}
+        className={labelDesign}
+        style={{ background: `${label.color}` }}
+      >
+        {label.name}
+      </div>
+    ) : (
+      ''
+    );
+  });
+
+  const pH = UpdatedPlaceholder.filter(phArr => phArr !== '');
+
+  const newPh = pH[0] ? pH[0] : 'Select Label';
 
   return (
     <Dropdown
       onChange={handleChange}
-      placeholder={UpdatedPlaceholder}
+      placeholder={labels.length < 1 ? 'No Labels' : newPh}
       options={labelsArr}
     />
   );
