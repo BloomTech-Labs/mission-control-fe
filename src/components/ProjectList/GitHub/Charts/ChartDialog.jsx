@@ -5,8 +5,8 @@ import Dialog from '@material-ui/core/Dialog'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import ArrowForward from '@material-ui/icons/ArrowForward'
-import { useQuery } from 'urql';
-import { SPARKLINE as query } from '../../Queries/sparklineQuery';
+// import { useQuery } from 'urql';
+// import { SPARKLINE as query } from '../../Queries/sparklineQuery';
 import { title } from '../../ProjectListRow/projectListRow.module.scss'
 import { chartContainer, sparklineModalContainer, rightModalArrow, leftModalArrow, modalChart, modalHeader, closeButton } from './chartDialog.module.scss'
 
@@ -16,17 +16,18 @@ const useStyles = makeStyles({
     }
 })
 
-export default props => {
+export default (props) => {
+    
     const classes = useStyles()
 
-    const [state] = useQuery({
-        query, variables: {
-            owner: 'Lambda-School-Labs',
-            name: props.name
-        }
-    });
+    // const [state] = useQuery({
+    //     query, variables: {
+    //         owner: 'Lambda-School-Labs',
+    //         name: props.name
+    //     }
+    // });
 
-    const { data } = state;
+    // const { data } = state;
 
     const legend = {
         display: true,
@@ -65,17 +66,17 @@ export default props => {
                     return (props.currentIndex + 1)
                 }
             }
-            default:{
-                return null
-            }
+            // default:{
+            //     break
+            // }
         }
     }
 
-    if (state.fetching) {
+    if (props.state.fetching) {
         return <p>Loading Sparkline...</p>
-    } else if (state.error) {
+    } else if (props.state.error) {
         return <p>Error: Sparkline unavailable.</p>
-    } else if (data.SparkyBoy.length) {
+    } else if (props.data.SparkyBoy.length) {
         return (
             <Dialog
                 open={props.open}
@@ -95,14 +96,14 @@ export default props => {
                 <div className={sparklineModalContainer}>
                     <ArrowBack className={leftModalArrow} onClick={() => { props.setCurrentIndex(changeIndex('decrement')) }} />
                     <div className={chartContainer}>
-                        {data ?
+                        {props.data ?
                             <SparkyChart
                                 className={modalChart}
                                 border={1}
                                 legend={legend}
                                 layout={layout}
                                 tooltips={tooltips}
-                                data={data}
+                                data={props.data}
                                 height={200}
                                 maxValue={10000000} />
                             : <p>"Loading..."</p>}

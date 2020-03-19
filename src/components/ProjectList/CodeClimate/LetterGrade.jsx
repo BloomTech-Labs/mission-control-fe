@@ -1,7 +1,7 @@
 import React from 'react';
 import { Repo, Grade, GradeCont,Tip } from './letterGrade.module.scss';
 import getMessage from '../../../utils/getMessageForCCGrade'
-import Sparkline from '../GitHub/Sparkline.jsx'
+import SparklineContainer from '../GitHub/SparklineContainer.jsx'
 
 const LetterGrade = ({ currentIndex, setCurrentIndex, repo, color, projectName, ghrepos, repoIndex, handleSparkClick }) => {
   return (
@@ -25,14 +25,10 @@ const LetterGrade = ({ currentIndex, setCurrentIndex, repo, color, projectName, 
           </span>
         </a>
         <div>
-          <Sparkline
+          <SparklineContainer
             ghrepos={ghrepos}
             repoIndex={repoIndex}
-            name={repo.name}
-            projectName={projectName}
-            currentIndex={currentIndex}
-            setCurrentIndex={setCurrentIndex}
-            handleSparkClick={handleSparkClick} />
+            name={repo.name}/>
         </div>
       </div>
     </>

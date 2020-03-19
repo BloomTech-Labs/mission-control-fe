@@ -1,18 +1,13 @@
-import React from 'react';
-import { useQuery } from 'urql';
-import { SPARKLINE as query } from '../Queries/sparklineQuery';
+import React, { useState } from 'react';
+// import { useQuery } from 'urql';
+// import { SPARKLINE as query } from '../Queries/sparklineQuery';
 import { Sparkyline } from './Sparkline.module.scss';
 import SparkyChart from './Charts/SparkyChart';
+import ChartDialog from '../GitHub/Charts/ChartDialog'
 
-const Sparkline = ({ name, repoIndex, handleSparkClick }) => {
-
-    const [state] = useQuery({
-        query, variables: {
-            owner: 'Lambda-School-Labs',
-            name: name
-        }
-    });
-    const { data } = state;
+const Sparkline = ({ name, ghrepos, repoIndex, data, state } ) => {
+  
+    if (!Array.isArray(ghrepos) || !ghrepos.length) return null;
 
     if (state.fetching) {
         return <p>Loading Sparkline...</p>
@@ -21,9 +16,7 @@ const Sparkline = ({ name, repoIndex, handleSparkClick }) => {
     } else if (data.SparkyBoy.length) {
         return (
             <>
-                <div className={Sparkyline} onClick={() => handleSparkClick(repoIndex)}>
-                    <SparkyChart data={data} tooltips={{ enabled: false }} maxValue={1000} />
-                </div>
+                <SparkyChart data={data} tooltips={{ enabled: false }} maxValue={1000} />
             </>
         );
     } else {
