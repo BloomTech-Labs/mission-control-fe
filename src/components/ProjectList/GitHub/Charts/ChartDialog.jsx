@@ -2,16 +2,10 @@ import React from 'react'
 import SparkyChart from './SparkyChart'
 import { makeStyles } from '@material-ui/core/styles'
 import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import ArrowForward from '@material-ui/icons/ArrowForward'
 import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
-import Box from '@material-ui/core/Box'
-import Icon from '@material-ui/core/Icon'
-import { ChartDatafier } from './ChartDatafier'
 import { useQuery } from 'urql';
 import { SPARKLINE as query } from '../../Queries/sparklineQuery';
 import { title } from '../../ProjectListRow/projectListRow.module.scss'
@@ -21,12 +15,9 @@ const useStyles = makeStyles({
     dialogPaper: {
         minHeight: '32vh'
     }
-
-
 })
 
 export default props => {
-    console.log(props)
     const classes = useStyles()
 
     const [state] = useQuery({
@@ -37,10 +28,6 @@ export default props => {
     });
 
     const { data } = state;
-
-    const additions = [];
-    const deletions = [];
-    const changedFiles = [];
 
     const legend = {
         display: true,
@@ -71,7 +58,6 @@ export default props => {
                     return (props.currentIndex - 1)
                 }
             }
-
             case 'increment': {
                 if (props.currentIndex === maxLength) {
                     return 0
@@ -79,6 +65,9 @@ export default props => {
                 else {
                     return (props.currentIndex + 1)
                 }
+            }
+            default:{
+                return null
             }
         }
     }
@@ -107,7 +96,7 @@ export default props => {
                             data={data}
                             height={200}
                             maxValue={10000000} />
-                        : <p>"Loading.."</p>}
+                        : <p>"Loading..."</p>}
                 </div>
                 <ArrowForward className={rightModalArrow} onClick={() => { props.setCurrentIndex(changeIndex('increment')) }} />
             </div>
