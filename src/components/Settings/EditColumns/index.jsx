@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   toggleCont,
   toggle,
@@ -15,17 +15,12 @@ import DeleteColumn from '../DeleteColumn';
 import EditColumnModal from '../EditColumnModal/index';
 
 const EditColumns = ({ column, id }) => {
-  const [toggleActive, setToggleActive] = useState(false);
-  const [statusDisplay, setStatusDisplay] = useState(column.display);
   const [, executeUpdateDisplay] = useMutation(updateDisplay);
-  const variables = { id, display: statusDisplay };
 
   const toggler = e => {
     e.preventDefault();
-    setStatusDisplay(!statusDisplay);
-    executeUpdateDisplay({ id, display: !statusDisplay });
+    executeUpdateDisplay({ id, display: !column.display });
   };
-  console.log('status display column trigger', statusDisplay);
 
   return (
     <div className={editColumnsDiv}>
@@ -35,9 +30,9 @@ const EditColumns = ({ column, id }) => {
       <div className={togglerContainer}>
         <div
           onClick={toggler}
-          className={statusDisplay ? toggledCont : toggleCont}
+          className={column.display ? toggledCont : toggleCont}
         >
-          <div className={statusDisplay ? toggled : toggle} />
+          <div className={column.display ? toggled : toggle} />
         </div>
         <div className={deleteIcon}>
           <DeleteColumn column={column} />

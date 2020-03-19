@@ -22,7 +22,7 @@ const ProjectStatus = ({ projectId, label }) => {
       {data && data.project.projectStatus.length > 0
         ? data.project.projectStatus.map(statuses => {
             return (
-              <div className={dropdownLabel}>
+              <div className={dropdownLabel} key={statuses.id}>
                 <h3>{statuses.name}</h3>
                 <ProjectStatusLabel
                   statuses={statuses}
