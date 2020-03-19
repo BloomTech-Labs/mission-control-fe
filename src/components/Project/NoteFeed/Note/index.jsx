@@ -1,38 +1,36 @@
 import React from 'react';
 import StarRatings from 'react-star-ratings';
-import { useMutation } from 'urql';
 
 import EditIcon from '@material-ui/icons/Edit';
 import { Label } from 'semantic-ui-react';
 
 import NoteEditor from '../../NoteEditor';
-// import extractAvatar from '../../../../utils/managers';
 
 import {
-	edit,
-	projectNote,
-	avatarContainer,
-	avatar,
-	contentContainer,
-	noteContainer,
-	noteHeader,
-	starRating,
-	noteBody,
-	noteFooter,
-	expanded,
-	miniAvatarContainer,
-	collapsed,
-	notewrapperPrivate,
-	notewrapperPublic
+  edit,
+  projectNote,
+  avatarContainer,
+  avatar,
+  contentContainer,
+  noteContainer,
+  noteHeader,
+  starRating,
+  noteBody,
+  noteFooter,
+  expanded,
+  miniAvatarContainer,
+  collapsed,
 } from './Notes.module.scss';
 
 const Note = ({ note, user, projectManagers, projectId }) => {
-	const [ expandedList, setExpandedList ] = React.useState(false);
-	const [ isEditing, setIsEditing ] = React.useState(false);
-	const { topic, content, rating, attendedBy } = note;
+  const [expandedList, setExpandedList] = React.useState(false);
+  const [isEditing, setIsEditing] = React.useState(false);
+  const { topic, content, rating, attendedBy } = note;
 
-	// Removes redundant avatar of signed-in user
-	const displayedAttendees = attendedBy.filter((person) => person.email !== user.email);
+  // Removes redundant avatar of signed-in user
+  const displayedAttendees = attendedBy.filter(
+    person => person.email !== user.email
+  );
 
 	return isEditing ? (
 		<NoteEditor
@@ -67,11 +65,11 @@ const Note = ({ note, user, projectManagers, projectId }) => {
 							starSpacing=".5px"
 						/>
 						{note.privateNote ? (
-							<div onClick={() => setIsEditing(true)} class={notewrapperPrivate}>
+							<div onClick={() => setIsEditing(true)} className={notewrapperPrivate}>
 								Private Note
 							</div>
 						) : (
-							<div onClick={() => setIsEditing(true)} class={notewrapperPublic}>
+							<div onClick={() => setIsEditing(true)} className={notewrapperPublic}>
 								Public Note
 							</div>
 						)}

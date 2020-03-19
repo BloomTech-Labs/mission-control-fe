@@ -2,10 +2,7 @@ import React from 'react';
 import { Provider, Client, dedupExchange, fetchExchange } from 'urql';
 import { cacheExchange } from '@urql/exchange-graphcache';
 import { getToken } from '../utils';
-import {
-  PROJECT_LIST_VIEW,
-  LABEL_LIST_VIEW,
-} from '../components/ProjectList/Queries/projectQueries';
+import { LABEL_LIST_VIEW } from '../components/ProjectList/Queries/projectQueries';
 
 // The @urql/exchange-graphcache dependency exposes a normalized cache
 // by default, the urql client comes pre-configured with a document cache.
