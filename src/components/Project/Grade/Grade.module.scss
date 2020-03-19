@@ -1,17 +1,18 @@
 .gradeCont {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  text-align: center;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    text-align: center;
 }
 
+
 .gradeBox {
-  color: white;
-  text-shadow: -1px 0 black, 0 0.5px black, 0.5px 0 black, 0 -1px black;
-  &:hover {
     color: white;
-  }
-  font-weight: 900;
+    text-shadow: -1px 0 black, 0 .5px black, .5px 0 black, 0 -1px black;
+    &:hover{
+        color: white;
+    } 
+    font-weight: 900;
 }
 .gradeBox .Tip{
     visibility: hidden;
@@ -34,19 +35,14 @@
 }
 
 .scsssux {
-    margin: 10px;
+    margin-top: 20px;
     padding: 10px;
     box-shadow: 3px 2px 3px 2px gainsboro;
     border-radius: 3px;
     width: 330px;
+    height: 300px;
 }
 
 .PulseBoy {
     margin-top: 20px;
-}
-
-.deleteCont{
-    margin-bottom: -20px;
-    text-align: right;
-    cursor: pointer;
 }
