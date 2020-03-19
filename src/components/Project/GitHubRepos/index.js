@@ -75,9 +75,12 @@ const ReposList = ({ ghrepos, productId, executeQuery2 }) => {
 
   const handleAddRepos = () => {
     const ghNames = githubRepos.map(repo => (repo.name ? repo.name : ''));
-    const filterRepos = repoSelected.filter(
-      repo => !ghNames.includes(repo.name)
-    );
+    const filterRepos = repoSelected.filter(repo => {
+      if (!ghNames.includes(repo.name)) {
+        return repo;
+      }
+      return null;
+    });
     Promise.all(
       filterRepos.map(repo => {
         return addRepo({ ...repo });
