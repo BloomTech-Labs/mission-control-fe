@@ -9,14 +9,18 @@ const LetterGradeContainer = props => {
   const [dialogOpen, setDialogOpen] = useState({
     'sparkChart': false,
   })
+
   if (!Array.isArray(props.ghrepos) || !props.ghrepos.length) return null;
+  
   const toggleDialog = name => {
     setDialogOpen({ ...dialogOpen, [name]: !dialogOpen[name] })
   }
+
   const handleSparkClick = (repoIndex) => {
     toggleDialog('sparkChart')
     setCurrentIndex(repoIndex)
   }
+  
   return (
     <>
       <ChartDialog

@@ -1,6 +1,6 @@
 .sparklineModalContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -8,20 +8,31 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
-
-    span {
-        color: black;
-    }
 }
 
 .leftModalArrow {
-    position: relative;
+    margin-top: -50px;
+    &:hover{
+        cursor: pointer;
+    }
 }
 
 .rightModalArrow {
-    position: relative;
+    margin-top: -50px;
+    &:hover{
+        cursor: pointer;
+    }
 }
 
 .chartContainer {
-    width: 90%;
+    width: 85%;
+}
+
+.closeButton{
+    color: black;
+    margin-top: -12px;
+    margin-right: -15px;
+    &:hover{
+        cursor: pointer;
+    }
 }
