@@ -15,7 +15,7 @@ git checkout -b feature/"YOUR-FEATURE-NAME"
 ### Work Flow
 * Be mindful of GitHub updates and announcements posted to the Slack channel.
 * Strive to keep individual contributions under 500 changed lines. 
-* Update Draft Pull Request description to include a detailed description of the new feature or bug fix is added.
+* Update Draft Pull Request description to include a detailed description of the new feature or bug fix that being is added.
 * Provide relevant in code comments to clarify changes when needed 
 * Update appropriate ```Readme.md```
 * Update QA Feature Checklist to reflect changes
@@ -37,7 +37,7 @@ git pull origin master
 # QA Flow
 * Maintain a list of current app features so a reviewer knows what functionality to check for.
 ### Review
-* Download the branch and test localy that all features work. Remeber to update the Prisma data and seed:
+* Download the branch and test localy that all features work. Remember to update the Prisma data and seed:
 ```
 npm run reseed
 ```
@@ -55,7 +55,7 @@ prisma deploy
 # Rejected Pull Request & Feedback Flow
 * GitHub comments should be code-centric and professional at all times.
 * If rejecting a pull request for the failure of QA or not following Code Standards, the specific error should be referenced in that rejection so the developer can correct it and resubmit.
-* If a developer is seeking an exception to a more arbitrary code style standard; when responding to the comments or decline of the pull request the developer should explain why the exception is needed in this case.
+* If a developer is seeking an exception to a more arbitrary code style standard; when responding to the comments or decline of the pull request, the developer should explain why the exception is needed in this case.
 * It is best practice to submit the pull request outlining these exceptions so the reviewer can take them into account while doing the first review.
 * If code is rejected for being more than 150 lines in a component, the reviewer should reference what lines of code could become a sub-component.
 * **This is not a punitive PASS/FAIL** it is a form of communication to make sure code merged to master is justified and productive for the whole team at all times.
@@ -64,7 +64,7 @@ prisma deploy
 # Code Clarity Best Practices
 * Maintain a set of sample code for best practices.
 * All developers on Mission Control should have prettier installed, and make use of the included ```.prettierrc.json``` standards.
-* All other reformat on save tools should be turned off while working on Mission Control.
+* All other reformat on save tools (such as Beautify) should be turned off while working on Mission Control.
 * The name of Components, variables, state, etcetera should be self-explanatory.
 ### Example 
 Make a Component that will render a list of cat breeds.
@@ -80,8 +80,7 @@ List.js == list of cat breeds
 Cat + Breed + List == CatBreedList.js == list of cat breeds
 ```
 * Component more than 150 lines of code should be challenged. (See Rejected Pull Request & Feedback Flow)
-* Every line of code changed should be to the end of adding new funtinality.
-
+* Every line of code changed should be to the end of adding new functionality.
 
 ### Example 
 Every line of code changed should be about adding to the code, and idealy not just reformating the code.
@@ -112,7 +111,7 @@ Every line of code changed should be about adding to the code, and idealy not ju
     }
   }, [cat && codependant]);
 ```
-In most cases how code is formated can be arbitrary, but changes that are solely about respacing code should be avoided to prevent unneeded git conflicts. The exception is when converting legacy code to agreed to standards. This will help reviewers and your fellow developers see the lines of code you changed rather than need to sort through many lines of reformated code and risk overlooking your contributions.
+In most cases how code is formated can be arbitrary, but changes that are solely about respacing code should be avoided to prevent unneeded git conflicts. The exception is when converting legacy code to meet standards. This will help reviewers and your fellow developers see the lines of code you changed, rather than need to sort through many lines of reformated code and risk overlooking your contributions.
 
 
 ## Sass Tree Best Practices
@@ -159,8 +158,8 @@ src >
                 index.js
                 SubComponenetName.module.scss
 ```
-* This change is to address many compopnets being named ```index.jsx```
-* And based on the Orgnisation > Program > PRoduct > Project causeing old sub components to now be shared Components.
+* This change is to address many components being named ```index.jsx```
+* And based on the Organization > Program > Product > Project causing old sub-components to now be shared Components.
 
 ## Query Tree
 * One Query per Component Tree
