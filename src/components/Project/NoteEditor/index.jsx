@@ -79,6 +79,44 @@ const NoteEditor = ({
     setNotification(false);
   };
 
+  const handleSubmit = async (e, type) => {
+    switch (type) {
+      case 'create':
+        e.preventDefault();
+        executeCreate({
+          id: projectId,
+          topic,
+          content,
+          rating,
+          privateNote,
+          // Extracts an array of emails from array of Person objects
+          attendedBy: Array.from(attendees, ({ email }) => email),
+          notification,
+        });
+        resetForm();
+        executeQuery();
+        // Temp fix to re-render page, will reload the whole page to populate note after creation.
+        setTimeout(function() {
+          window.location.href = `/project/${projectId}`;
+        }, 350);
+        break;
+      case 'update':
+        e.preventDefault();
+        executeUpdate({
+          id: note.id,
+          topic,
+          content,
+          rating,
+          privateNote,
+          attendedBy: Array.from(attendees, ({ email }) => email),
+        });
+        setIsEditing(false);
+        break;
+      default:
+        resetForm();
+    }
+  };
+
   return (
     <div>
       <div className={styles['main-container']}>
