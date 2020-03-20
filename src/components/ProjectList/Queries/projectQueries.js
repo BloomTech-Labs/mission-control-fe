@@ -8,6 +8,7 @@ export const PROJECT_LIST_VIEW = gql`
       statuses {
         name
         id
+        display
         labels {
           name
           color
@@ -32,14 +33,18 @@ export const PROJECT_LIST_VIEW = gql`
             updatedAt
           }
           projectActive
+          projectStatus {
+            id
+            name
+            display
+            labels {
+              id
+              name
+              color
+            }
+          }
           product {
             id
-            grades {
-              id
-              grade
-              name
-              link
-            }
           }
         }
       }
@@ -55,6 +60,7 @@ export const LABEL_LIST_VIEW = gql`
       statuses {
         name
         id
+        display
         labels {
           name
           color

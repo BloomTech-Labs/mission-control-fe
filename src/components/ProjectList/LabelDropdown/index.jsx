@@ -1,13 +1,13 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
-import { labelDesign } from './LabelDropdown.module.scss';
+import { labelDesign, hiddenDropdown } from './LabelDropdown.module.scss';
 import {
   UPDATE_SELECTED_LABEL,
   DISCONNECT_SELECTED_LABEL,
 } from '../../Project/Queries/index';
 import { useMutation } from 'urql';
 
-const LabelDropdown = ({ labels, project }) => {
+const LabelDropdown = ({ labels, project, statusData }) => {
   const [, executeUpdate] = useMutation(UPDATE_SELECTED_LABEL);
 
   const [, executeDisconnect] = useMutation(DISCONNECT_SELECTED_LABEL);
@@ -18,11 +18,6 @@ const LabelDropdown = ({ labels, project }) => {
     color: label.color,
     name: label.name,
     text: (
-      <div className={labelDesign} style={{ background: `${label.color}` }}>
-        {label.name}
-      </div>
-    ),
-    content: (
       <div className={labelDesign} style={{ background: `${label.color}` }}>
         {label.name}
       </div>
@@ -67,14 +62,17 @@ const LabelDropdown = ({ labels, project }) => {
   const pH = UpdatedPlaceholder.filter(phArr => phArr !== '');
 
   const newPh = pH[0] ? pH[0] : 'Select Label';
-
-  return (
-    <Dropdown
-      onChange={handleChange}
-      placeholder={labels.length < 1 ? 'No Labels' : newPh}
-      options={labelsArr}
-    />
-  );
+  if (statusData.display === true) {
+    return (
+      <Dropdown
+        onChange={handleChange}
+        placeholder={labels.length < 1 ? 'No Labels' : newPh}
+        options={labelsArr}
+      />
+    );
+  } else {
+    return <div className={hiddenDropdown} />;
+  }
 };
 
 export default LabelDropdown;

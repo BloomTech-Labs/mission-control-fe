@@ -1,0 +1,35 @@
+@import '../../../styles/variables.scss';
+
+.projectStatusDropdown {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+  text-align: center;
+  padding: 0.5rem 0 0;
+  width: 80%;
+}
+
+.dropdownLabel {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 0.2rem;
+  box-shadow: 1.1px 1px 1.1px 1px gainsboro;
+  border-radius: 3px;
+  width: 11rem;
+  max-height: 10rem;
+}
+
+.labelDesign {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  align-content: center;
+  margin-bottom: 10px;
+  width: 100px;
+  height: 20px;
+  border-radius: 25px;
+  font-size: 0.8rem;
+}

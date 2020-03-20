@@ -8,6 +8,7 @@ import Team from './Team';
 import Header from './Header';
 import Grade from './Grade';
 import GitHubRepos from './GitHubRepos';
+import ProjectStatus from './ProjectStatus/index';
 
 import {
   parentProjectContainer,
@@ -16,6 +17,7 @@ import {
   editorFeedContainer,
   teamContainer,
   gradeContainer,
+  projectStatusContainer,
 } from './Project.module.scss';
 
 import { PROJECT_VIEW_QUERY as query } from './Queries';
@@ -56,6 +58,13 @@ const Project = props => {
           </div>
           <div className={projectContainer}>
             <div className={editorFeedContainer}>
+              <div className={projectStatusContainer}>
+                <h2>Project Status</h2>
+                <ProjectStatus
+                  projectId={id}
+                  label={data.project.projectStatus.labels}
+                />
+              </div>
               <h2>Repository Statistics</h2>
               <GitHubRepos
                 ghrepos={data.project.product.GHRepos}
@@ -63,7 +72,11 @@ const Project = props => {
                 executeQuery2={executeQuery}
               />
               <div className={gradeContainer}>
-                <Grade ghrepos={data.project.product.grades} />
+                <Grade
+                  ghrepos={data.project.product.grades}
+                  reposId={data.project.product.GHRepos}
+                  executeQuery={executeQuery}
+                />
               </div>
               <h2>Project Notes</h2>
               {user === true ? (

@@ -4,9 +4,14 @@ import { Link } from 'react-router-dom';
 import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
 import LabelDropdown from '../LabelDropdown/index';
 
-import { title, statusColumns } from './projectListRow.module.scss';
+import {
+  title,
+  rtd,
+  statusColumns,
+  hiddenStatus,
+} from './projectListRow.module.scss';
 
-const ProjectRow = ({ project, statusColumn }) => {
+const ProjectRow = ({ project, statusColumn, statusDisplay }) => {
   const statusLabelsArr = [];
   var i;
   if (statusColumn.length > 0) {
@@ -31,8 +36,17 @@ const ProjectRow = ({ project, statusColumn }) => {
         {statusColumn.length > 0 && statusLabelsArr.length > 0
           ? statusLabelsArr.map(statusData => {
               return (
-                <td key={statusData.id} className={statusColumns}>
-                  <LabelDropdown labels={statusData.labels} project={project} />
+                <td
+                  key={statusData.id}
+                  className={
+                    statusData.display === true ? statusColumns : hiddenStatus
+                  }
+                >
+                  <LabelDropdown
+                    labels={statusData.labels}
+                    project={project}
+                    statusData={statusData}
+                  />
                 </td>
               );
             })

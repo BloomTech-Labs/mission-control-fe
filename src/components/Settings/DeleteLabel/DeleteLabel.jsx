@@ -27,6 +27,7 @@ const DeleteLabel = ({ label, columnId }) => {
 
   return (
     <Modal
+      size={'tiny'}
       open={open}
       onClose={handleClose}
       trigger={<FaTrashAlt className={hover} onClick={handleOpen} />}
