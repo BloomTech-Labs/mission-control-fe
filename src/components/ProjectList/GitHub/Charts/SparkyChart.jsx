@@ -29,14 +29,17 @@ const SparkyChart = ({ data, height, legend, layout, maxValue, tooltips }) => {
       yAxes: [{
         display: false,
         ticks: {
-          beginAtZero: true,
-          // max: 1000, //Sets max value to display
+          beginAtZero: true, // max: 1000, //Sets max value to display
         }
       }],
     },
     legend: legend,
     layout: layout,
-    tooltips: tooltips
+    tooltips: tooltips,
+    title: {
+      display: false,
+      text: "Last 100 commits:"
+    }
   }
 
   const additions = []
