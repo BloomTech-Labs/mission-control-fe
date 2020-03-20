@@ -2,6 +2,8 @@ import React from 'react';
 import { dropdownLabel, labelDesign } from './ProjectStatus.module.scss';
 
 const ProjectStatusLabel = ({ statuses, labels }) => {
+  console.log(labels);
+
   if (labels.length > 0) {
     return (
       <div>

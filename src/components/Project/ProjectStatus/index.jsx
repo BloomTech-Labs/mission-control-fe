@@ -27,6 +27,8 @@ const ProjectStatus = ({ projectId, label }) => {
                 <ProjectStatusLabel
                   statuses={statuses}
                   labels={statuses.labels}
+                  project={data.project}
+                  statusId={statuses.id}
                   key={statuses.id}
                 />
               </div>
