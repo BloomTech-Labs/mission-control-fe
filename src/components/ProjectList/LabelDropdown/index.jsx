@@ -64,8 +64,6 @@ const LabelDropdown = ({ labels, project }) => {
     );
   });
 
-  //Test
-
   const pH = UpdatedPlaceholder.filter(phArr => phArr !== '');
 
   const newPh = pH[0] ? pH[0] : 'Select Label';
