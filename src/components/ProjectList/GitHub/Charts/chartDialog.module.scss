@@ -26,6 +26,12 @@
 
 .chartContainer {
     width: 85%;
+    .chartTitle{
+        text-align: center;
+        color: #a7a7a7;
+        font-weight: 500;
+        margin-bottom: -15px;
+    }
 }
 
 .closeButton{

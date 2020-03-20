@@ -8,7 +8,7 @@ import ArrowForward from '@material-ui/icons/ArrowForward'
 import { useQuery } from 'urql';
 import { SPARKLINE as query } from '../../Queries/sparklineQuery';
 import { title } from '../../ProjectListRow/projectListRow.module.scss'
-import { chartContainer, sparklineModalContainer, rightModalArrow, leftModalArrow, modalChart, modalHeader, closeButton } from './chartDialog.module.scss'
+import { chartContainer, chartTitle, sparklineModalContainer, rightModalArrow, leftModalArrow, modalChart, modalHeader, closeButton } from './chartDialog.module.scss'
 
 const useStyles = makeStyles({
     dialogPaper: {
@@ -95,6 +95,7 @@ export default props => {
                 <div className={sparklineModalContainer}>
                     <ArrowBack className={leftModalArrow} onClick={() => { props.setCurrentIndex(changeIndex('decrement')) }} />
                     <div className={chartContainer}>
+                        <p className={chartTitle}>Last 100 commits</p>
                         {data ?
                             <SparkyChart
                                 className={modalChart}
