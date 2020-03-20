@@ -12,12 +12,9 @@ export const PROJECT_LIST_VIEW = gql`
           name
           color
           id
+          selected
           status {
             id
-          }
-          selected {
-            id
-            name
           }
         }
       }
