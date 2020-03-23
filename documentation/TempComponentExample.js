@@ -1,7 +1,7 @@
-//React Tools and Dependancies
+//React Tools and Dependencies
 
 
-//Global Componets as Sub Components
+//Global Components as Sub Components
 
 
 //Grouped Sub Components
@@ -13,10 +13,10 @@
 //Query or Data or State imports
 
 
-const Componet = () => {
-    //useContext() of relavance
-    
-    //useState() of relavance
+const Component = () => {
+    //useContext() of relevance
+
+    //useState() of relevance
 
     //useQuery() and or useMutation()
 
@@ -33,14 +33,14 @@ const Componet = () => {
             </div>
         );
     } else {
-        return <p>Page Logic Test of Componet Failed.</p>
+        return <p>Page Logic Test of Component Failed.</p>
     }
 };
 
-export default Componet;
+export default Component;
 
 
 // ??? What should the export standard be?
-// eport is what vs temp defults to? 
+// eport is what vs temp defaults to? 
 
-// ??? where should props and prop decocstruntion go
+// ??? where should props and prop deconstruction go
