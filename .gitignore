@@ -20,6 +20,8 @@ package-lock.json
 .env.development.local
 .env.test.local
 .env.production.local
+src/utils/managers.js
+managers.js
 
 npm-debug.log*
 yarn-debug.log*
