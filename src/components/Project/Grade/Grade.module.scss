@@ -1,52 +1,52 @@
 .gradeCont {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    text-align: center;
-  }
-  
-  .gradeBox {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.gradeBox {
+  color: white;
+  text-shadow: -1px 0 black, 0 0.5px black, 0.5px 0 black, 0 -1px black;
+  &:hover {
     color: white;
-    text-shadow: -1px 0 black, 0 0.5px black, 0.5px 0 black, 0 -1px black;
-    &:hover {
-      color: white;
-    }
-    font-weight: 900;
   }
-  .gradeBox .Tip{
-      visibility: hidden;
-      width: 180px;
-      background-color: rgba(43, 43, 43, 0.91);
-      color: #fff;
-      font-weight: 400;
-      font-size: 0.8rem;
-      text-align: center;
-      border-radius: 6px;
-      padding: 5px;
-      margin-top: 25px;
-      margin-left: -92.5px;
-      position: absolute;
-      z-index: 1;
-  }
-  
-  .gradeBox:hover .Tip{
-      visibility: visible;
-  }
-  
-  .scsssux {
-      margin: 10px;
-      padding: 10px;
-      box-shadow: 3px 2px 3px 2px gainsboro;
-      border-radius: 3px;
-      width: 330px;
-  }
-  
-  .PulseBoy {
-      margin-top: 20px;
-  }
-  
-  .deleteCont{
-      margin-bottom: -20px;
-      text-align: right;
-      cursor: pointer;
-  }
+  font-weight: 900;
+}
+.gradeBox .Tip {
+  visibility: hidden;
+  width: 180px;
+  background-color: rgba(43, 43, 43, 0.91);
+  color: #fff;
+  font-weight: 400;
+  font-size: 0.8rem;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  margin-top: 25px;
+  margin-left: -92.5px;
+  position: absolute;
+  z-index: 1;
+}
+
+.gradeBox:hover .Tip {
+  visibility: visible;
+}
+
+.scsssux {
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 3px 2px 3px 2px gainsboro;
+  border-radius: 3px;
+  width: 330px;
+}
+
+.PulseBoy {
+  margin-top: 20px;
+}
+
+.deleteCont {
+  margin-bottom: -20px;
+  text-align: right;
+  cursor: pointer;
+}
