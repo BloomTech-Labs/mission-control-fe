@@ -12,7 +12,7 @@
 <center>
 
 | Name | GitHub |  Linkedin |
-|----------|:-------------:|:-------------:|-------------:|
+|----------|:-------------:|-------------:|
 | Ronny S Alvarado | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/RonnySAlvarado) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
 | Devin Warrick | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/DevWarr) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
 | Bernard Johnson | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Trip4077) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
