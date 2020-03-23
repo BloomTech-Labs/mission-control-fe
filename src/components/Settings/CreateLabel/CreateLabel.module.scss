@@ -27,6 +27,23 @@
 
 .form {
   display: flex;
+  flex-flow: column;
   align-items: center;
   justify-content: space-around;
+}
+
+.createContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-flow: wrap row;
+}
+
+.labelNameContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.labelPreviewCont {
+  padding-top: 1rem;
 }

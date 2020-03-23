@@ -288,10 +288,16 @@ export const GET_USER_ROLE = gql`
 `;
 
 export const CREATE_STATUS = gql`
-  mutation createStatusMutation($id: ID!, $name: String!) {
-    createStatus(id: $id, name: $name) {
+  mutation createStatusMutation(
+    $id: ID!
+    $name: String!
+    $display: Boolean
+    $labels: [String]
+  ) {
+    createStatus(id: $id, name: $name, display: $display, labels: $labels) {
       id
       name
+      display
     }
   }
 `;

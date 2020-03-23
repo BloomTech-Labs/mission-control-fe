@@ -6,7 +6,7 @@ import { hover } from '../StatusLabel/StatusLabel.module.scss';
 import { useMutation } from 'urql';
 import CreateLabel from '../CreateLabel/index';
 import LabelList from '../LabelList/index';
-import { UPDATE_STATUS } from '../../Project/Queries/index';
+import { UPDATE_STATUS, CREATE_LABEL } from '../../Project/Queries/index';
 import { basicInput, form } from './EditColumnModal.module.scss';
 
 const EditColumnModal = ({ column }) => {
@@ -14,8 +14,10 @@ const EditColumnModal = ({ column }) => {
     name: column.name,
     id: column.id,
   });
+  const [label, setLabel] = useState({ name: '', color: '' });
   const [open, setOpen] = useState(false);
   const [, executeMutation] = useMutation(UPDATE_STATUS);
+  const [, executeCreateLabel] = useMutation(CREATE_LABEL);
 
   const handleOpen = () => setOpen(true);
 
@@ -35,6 +37,8 @@ const EditColumnModal = ({ column }) => {
   const handleSubmit = e => {
     e.preventDefault();
     executeMutation(updateColumn);
+    executeCreateLabel(label);
+    setLabel({ id: '', name: '', color: '' });
   };
 
   return (
@@ -62,17 +66,10 @@ const EditColumnModal = ({ column }) => {
               onChange={handleChanges}
               className={basicInput}
             />
-            <Button
-              className="ui button"
-              onClick={handleSubmit}
-              size={'small'}
-              content="Save"
-            />
           </div>
           <br />
-          <br />
           <h3>Create Labels</h3>
-          <CreateLabel column={column} />
+          <CreateLabel column={column} label={label} setLabel={setLabel} />
           <LabelList column={column} columnId={column.id} />
         </Modal.Description>
       </Modal.Content>
@@ -80,6 +77,12 @@ const EditColumnModal = ({ column }) => {
         <Button className="ui cancel button" onClick={toggle} size={'large'}>
           Close
         </Button>
+        <Button
+          onClick={handleSubmit}
+          content="Save"
+          size={'large'}
+          className="ui button"
+        />
       </Modal.Actions>
     </Modal>
   );

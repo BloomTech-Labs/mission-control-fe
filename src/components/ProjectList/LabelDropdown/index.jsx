@@ -14,7 +14,7 @@ const LabelDropdown = ({ labels, project, statusData }) => {
 
   const labelsArr = labels.map(label => ({
     key: label.id,
-    value: label,
+    value: label.id,
     color: label.color,
     name: label.name,
     text: (
@@ -31,13 +31,13 @@ const LabelDropdown = ({ labels, project, statusData }) => {
         executeDisconnect({
           id: label.id,
           selected: project.id,
-          columnId: label.status.id,
+          columnId: statusData.id,
         })
       );
     executeUpdate({
-      id: value.id,
+      id: value,
       selected: project.id,
-      columnId: value.status.id,
+      columnId: statusData.id,
     });
   };
 
