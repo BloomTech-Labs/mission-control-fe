@@ -6,7 +6,6 @@ import {
   DISCONNECT_SELECTED_LABEL,
 } from '../../Project/Queries/index';
 import { useMutation } from 'urql';
-//test
 
 const LabelDropdown = ({ labels, project }) => {
   const [, executeUpdate] = useMutation(UPDATE_SELECTED_LABEL);
