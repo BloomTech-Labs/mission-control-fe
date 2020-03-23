@@ -27,7 +27,7 @@ git checkout -b feature/"YOUR-FEATURE-NAME"
 ```
 git pull origin master
 ```
-* Let your TL know your taking this out of draft.
+* Let your TL know you are taking the pull out of draft.
 
 ### Pull Reqest Review
 * 2 reviews are required to merge code to master. (One revew must be by a TL)
@@ -62,7 +62,7 @@ prisma deploy
 
 # 
 # Code Clarity Best Practices
-* Maintain a set of sample code for best practices.
+* Maintain a set of sample code for best practices. [TempComponentExample](https://github.com/Lambda-School-Labs/mission-control-fe/blob/document/guidlines/documentation/TempComponentExample.js)
 * All developers on Mission Control should have prettier installed, and make use of the included ```.prettierrc.json``` standards.
 * All other reformat on save tools (such as Beautify) should be turned off while working on Mission Control.
 * The name of Components, variables, state, etcetera should be self-explanatory.
@@ -79,7 +79,7 @@ List.js == list of cat breeds
 ```
 Cat + Breed + List == CatBreedList.js == list of cat breeds
 ```
-* Component more than 150 lines of code should be challenged. (See Rejected Pull Request & Feedback Flow)
+* Components more than 150 lines of code should be challenged. (See Rejected Pull Request & Feedback Flow)
 * Every line of code changed should be to the end of adding new functionality.
 
 ### Example 
