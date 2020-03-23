@@ -7,56 +7,6 @@
 
 </center>
 
-## Contributers
-
-<center>
-
-| Name | GitHub |  Linkedin |
-|----------|:-------------:|-------------:|
-| Ronny S Alvarado | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/RonnySAlvarado) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Devin Warrick | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/DevWarr) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Bernard Johnson | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Trip4077) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Todd Murphy | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/toddmurphy) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Bryan Adams | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/BryanKAdams) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Jacob Washburn | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JacobWashburn) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-</center>
-
-@toddmurphy	toddmurphy toddmurphy
-@BryanKAdams	BryanKAdams BryanKAdams
-@Trip4077	Trip4077 Trip4077
-@RonnySAlvarado	RonnySAlvarado RonnySAlvarado
-@JacobWashburn	JacobWashburn JacobWashburn
-@seabayley	seabayley seabayley
-@jiangeyre	jiangeyre jiangeyre
-@RobertDGordon	RobertDGordon RobertDGordon
-
-## OLD TEAM
-|[Kevin Afable](https://github.com/KAfable)                                          |                                          [Nicholas Gebhart](http://github.com/gebhartn)                                           |                                             [Dakotah Huey](https://github.com/frescocodes)                                             |
-| :--------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: |
-|      [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULJ1MK9GT-17419b760e18-512" width = "200" />](https://github.com/)       |         [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXHMK9PY-013dd2da8dd8-512" width = "200" />](https://github.com/)         |             [<img src="https://avatars0.githubusercontent.com/u/50816478?s=400&v=4" width = "200" />](https://github.com/)             |
-|                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/KAfable)                     |                       [<img src="https://github.com/favicon.ico" width="15"> ](http://github.com/gebhartn)                        |                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/frescocodes)                        |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kevinafable/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nicholas-gebhart/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/dakotah-huey-76439583/) |
-
-|                                              [Tony Kovar](https://github.com/tonyrkovar)                                              |                                     [Roy Wakumelo Jr.](https://github.com/roywakumelojr)                                      |                                  [Tommy Coleman](https://github.com/tommycoleman87)                                   |
-| :-----------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: |
-|           [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXJ07DJS-d95403332534-512" width = "200" />](https://github.com/)           |       [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXALGWPR-90c177b51aa7-512" width = "200" />](https://github.com/)       |   [<img src="https://ca.slack-edge.com/T4JUEB3ME-UHXNFRBFE-b1accb251340-512" width = "200" />](https://github.com/)   |
-|                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tonyrkovar)                        |                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/roywakumelojr)                   |              [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tommycoleman87)              |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/tony-kovar-772295136/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/roywakumelojr) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://github.com/tommycoleman87) |
-
-
-
-
 ## Project Overview
 
 Mission Control is a system that provisions, tracks, monitors and controls all of the IT resources (virtual, physical, non-physical and logical) for every product built and maintained by your organization. It allows you to keep tabs on deadlines, team members, costs, and everything you need to push your product across the finish line.
@@ -156,3 +106,57 @@ See [Backend Documentation](https://github.com/Lambda-School-Labs/mission-contro
 
 
 ## Contributors
+<center>
+
+| Name | GitHub |  Linkedin |
+|----------|:-------------:|-------------:|
+| Ronny S Alvarado | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/RonnySAlvarado) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Devin Warrick | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/DevWarr) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Bernard Johnson | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Trip4077) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Todd Murphy | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/toddmurphy) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Bryan Adams | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/BryanKAdams) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Jacob Washburn | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JacobWashburn) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Christopher Bailey | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/seabayley) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Lexie Jiang | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jiangeyre) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Robert Gordon | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/RobertDGordon) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Ami Scott | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Memitaru) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Danny Finkelstein | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/D-Fink) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Robbie Porter | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Hammurobbie) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Ethan Hoover | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Cireimu) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Abdi Farah | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/abdirahmanfarah) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Joseph Graham | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/oofiksoo) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Richard Lawson | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/lawsonarichard) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Caleb Allard | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/CalebAllard) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| thesoundfromthesky | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/thesoundfromthesky) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Robin Warden | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Code4Blessings) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Aaron Shawn Soler | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AaronShawnSoler) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Russ Hacker | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/newbi462) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Kevin Afable | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/KAfable) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kevinafable/) |
+| Nicholas Gebhart | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/gebhartn) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nicholas-gebhart/) |
+| Dakotah Huey | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/frescocodes) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/dakotah-huey-76439583/) |
+| Tony Kovar | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tonyrkovar) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/tony-kovar-772295136/) |
+| Roy Wakumelo Jr | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/roywakumelojr) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/roywakumelojr) |
+| Tommy Coleman | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tommycoleman87) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://github.com/tommycoleman87) |
+| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+</center>
+
+
+
+
+## OLD TEAM
+|[Kevin Afable](https://github.com/KAfable)                                          |                                          [Nicholas Gebhart](http://github.com/gebhartn)                                           |                                             [Dakotah Huey](https://github.com/frescocodes)                                             |
+| :--------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: |
+|      [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULJ1MK9GT-17419b760e18-512" width = "200" />](https://github.com/)       |         [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXHMK9PY-013dd2da8dd8-512" width = "200" />](https://github.com/)         |             [<img src="https://avatars0.githubusercontent.com/u/50816478?s=400&v=4" width = "200" />](https://github.com/)             |
+|                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/KAfable)                     |                       [<img src="https://github.com/favicon.ico" width="15"> ](http://github.com/gebhartn)                        |                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/frescocodes)                        |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kevinafable/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nicholas-gebhart/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/dakotah-huey-76439583/) |
+
+|                                              [Tony Kovar](https://github.com/tonyrkovar)                                              |                                     [Roy Wakumelo Jr.](https://github.com/roywakumelojr)                                      |                                  [Tommy Coleman](https://github.com/tommycoleman87)                                   |
+| :-----------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: |
+|           [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXJ07DJS-d95403332534-512" width = "200" />](https://github.com/)           |       [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXALGWPR-90c177b51aa7-512" width = "200" />](https://github.com/)       |   [<img src="https://ca.slack-edge.com/T4JUEB3ME-UHXNFRBFE-b1accb251340-512" width = "200" />](https://github.com/)   |
+|                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tonyrkovar)                        |                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/roywakumelojr)                   |              [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tommycoleman87)              |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/tony-kovar-772295136/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/roywakumelojr) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://github.com/tommycoleman87) |
+
+
+
+
