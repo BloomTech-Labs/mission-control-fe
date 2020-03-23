@@ -4,9 +4,45 @@
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-16.12.0-blue)
 [![code style: prettier](https://img.shields.io/badge/code%20style-prettier-ff69b4)](https://github.com/prettier/prettier)
+
 </center>
 
-|                                          [Kevin Afable](https://github.com/KAfable)                                          |                                          [Nicholas Gebhart](http://github.com/gebhartn)                                           |                                             [Dakotah Huey](https://github.com/frescocodes)                                             |
+## Contributers
+
+<center>
+
+| Name | GitHub |  Linkedin |
+|----------|:-------------:|:-------------:|-------------:|
+| Ronny S Alvarado | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/RonnySAlvarado) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Devin Warrick | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/DevWarr) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Bernard Johnson | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Trip4077) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Todd Murphy | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/toddmurphy) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Bryan Adams | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/BryanKAdams) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Jacob Washburn | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JacobWashburn) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+</center>
+
+@toddmurphy	toddmurphy toddmurphy
+@BryanKAdams	BryanKAdams BryanKAdams
+@Trip4077	Trip4077 Trip4077
+@RonnySAlvarado	RonnySAlvarado RonnySAlvarado
+@JacobWashburn	JacobWashburn JacobWashburn
+@seabayley	seabayley seabayley
+@jiangeyre	jiangeyre jiangeyre
+@RobertDGordon	RobertDGordon RobertDGordon
+
+## OLD TEAM
+|[Kevin Afable](https://github.com/KAfable)                                          |                                          [Nicholas Gebhart](http://github.com/gebhartn)                                           |                                             [Dakotah Huey](https://github.com/frescocodes)                                             |
 | :--------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: |
 |      [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULJ1MK9GT-17419b760e18-512" width = "200" />](https://github.com/)       |         [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXHMK9PY-013dd2da8dd8-512" width = "200" />](https://github.com/)         |             [<img src="https://avatars0.githubusercontent.com/u/50816478?s=400&v=4" width = "200" />](https://github.com/)             |
 |                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/KAfable)                     |                       [<img src="https://github.com/favicon.ico" width="15"> ](http://github.com/gebhartn)                        |                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/frescocodes)                        |
@@ -22,7 +58,6 @@
 
 
 ## Project Overview
-
 
 Mission Control is a system that provisions, tracks, monitors and controls all of the IT resources (virtual, physical, non-physical and logical) for every product built and maintained by your organization. It allows you to keep tabs on deadlines, team members, costs, and everything you need to push your product across the finish line.
 
