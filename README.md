@@ -128,7 +128,7 @@ See [Backend Documentation](https://github.com/Lambda-School-Labs/mission-contro
 | Richard Lawson | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/lawsonarichard) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
 | Caleb Allard | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/CalebAllard) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
 | thesoundfromthesky | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/thesoundfromthesky) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
-| Robin Warden | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Code4Blessings) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
+| Robin Warden | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Code4Blessings) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/robin-warden-7126b054/) |
 | Aaron Shawn Soler | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AaronShawnSoler) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
 | Russ Hacker | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/newbi462) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
 | Name | [<img src="https://github.com/favicon.ico" width="15"> ]() | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ]() |
