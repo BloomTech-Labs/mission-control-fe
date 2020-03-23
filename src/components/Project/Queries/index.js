@@ -93,6 +93,9 @@ export const PROJECT_VIEW_QUERY = gql`
           id
           name
           color
+          selected {
+            id
+          }
         }
       }
       product {
@@ -342,6 +345,9 @@ export const GET_PROJECT_STATUS = gql`
           id
           name
           color
+          selected {
+            id
+          }
         }
       }
     }

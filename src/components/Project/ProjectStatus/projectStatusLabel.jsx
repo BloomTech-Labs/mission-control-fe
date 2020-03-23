@@ -1,20 +1,27 @@
 import React from 'react';
 import { dropdownLabel, labelDesign } from './ProjectStatus.module.scss';
 
-const ProjectStatusLabel = ({ statuses, labels }) => {
-  console.log(labels);
-
+const ProjectStatusLabel = ({ statuses, labels, project }) => {
   if (labels.length > 0) {
     return (
       <div>
-        {statuses && labels.length > 0
-          ? labels.map(statusLabels => {
+        {statuses
+          ? labels.map(statusLabel => {
               return (
-                <div
-                  className={labelDesign}
-                  style={{ background: `${statusLabels.color}` }}
-                >
-                  {statusLabels.name}
+                <div key={statusLabel.id}>
+                  {statusLabel &&
+                    statusLabel.selected.map(selected =>
+                      selected.id === project.id ? (
+                        <div
+                          className={labelDesign}
+                          style={{ background: `${statusLabel.color}` }}
+                        >
+                          {statusLabel.name}
+                        </div>
+                      ) : (
+                        ''
+                      )
+                    )}
                 </div>
               );
             })
