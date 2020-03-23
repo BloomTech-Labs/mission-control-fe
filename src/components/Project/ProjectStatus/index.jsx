@@ -7,8 +7,6 @@ import {
 import ProjectStatusDropdown from './projectStatusDropdown';
 
 import { GET_PROJECT_STATUS as query } from '../Queries/index';
-import ProjectStatusLabel from './projectStatusLabel';
-
 const ProjectStatus = ({ projectId, label }) => {
   const [state] = useQuery({
     query,

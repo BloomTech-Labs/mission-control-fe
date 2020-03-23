@@ -34,19 +34,22 @@ const ProjectRow = ({ project, statusColumn, statusDisplay }) => {
           ago
         </td> */}
         {statusColumn.length > 0 && statusLabelsArr.length > 0
-          ? statusLabelsArr.map(statusData => (
-              <td
-                key={statusData.id}
-                className={
-                  statusData.display === true ? statusColumns : hiddenStatus
-                }
-              >
-                <LabelDropdown
-                  labels={statusData.labels}
-                  statusData={statusData}
-                />
-              </td>
-            ))
+          ? statusLabelsArr.map(statusData => {
+              return (
+                <td
+                  key={statusData.id}
+                  className={
+                    statusData.display === true ? statusColumns : hiddenStatus
+                  }
+                >
+                  <LabelDropdown
+                    labels={statusData.labels}
+                    project={project}
+                    statusData={statusData}
+                  />
+                </td>
+              );
+            })
           : ''}
       </tr>
     );
