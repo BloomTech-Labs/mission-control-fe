@@ -32,7 +32,11 @@ const ProjectRow = ({ project, statusColumn }) => {
           ? statusLabelsArr.map(statusData => {
               return (
                 <td key={statusData.id} className={statusColumns}>
-                  <LabelDropdown labels={statusData.labels} project={project} />
+                  <LabelDropdown
+                    labels={statusData.labels}
+                    project={project}
+                    statusData={statusData}
+                  />
                 </td>
               );
             })

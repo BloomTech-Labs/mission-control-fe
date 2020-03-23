@@ -7,14 +7,14 @@ import {
 } from '../../Project/Queries/index';
 import { useMutation } from 'urql';
 
-const LabelDropdown = ({ labels, project }) => {
+const LabelDropdown = ({ labels, project, statusData }) => {
   const [, executeUpdate] = useMutation(UPDATE_SELECTED_LABEL);
 
   const [, executeDisconnect] = useMutation(DISCONNECT_SELECTED_LABEL);
 
   const labelsArr = labels.map(label => ({
     key: label.id,
-    value: label,
+    value: label.id,
     color: label.color,
     name: label.name,
     text: (
@@ -36,13 +36,13 @@ const LabelDropdown = ({ labels, project }) => {
         executeDisconnect({
           id: label.id,
           selected: project.id,
-          columnId: label.status.id,
+          columnId: statusData.id,
         })
       );
     executeUpdate({
-      id: value.id,
+      id: value,
       selected: project.id,
-      columnId: value.status.id,
+      columnId: statusData.id,
     });
   };
 
