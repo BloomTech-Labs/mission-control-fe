@@ -15,7 +15,7 @@ const getMessage = grade => {
     case 'N':
       return <>Code Climate Maintainability: This repo has not received a Maintainability Rating.</>;
     case '!':
-      return <>Code Climate Maintainability: This repo has not yet had a successful analysis for it's default branch.</>;
+      return <>Code Climate Maintainability: This repo has not yet had a successful analysis for it&apos;s default branch.</>;
     default:
       return <></>;
   };
