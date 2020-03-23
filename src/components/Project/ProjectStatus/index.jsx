@@ -6,8 +6,7 @@ import {
 } from './ProjectStatus.module.scss';
 
 import { GET_PROJECT_STATUS as query } from '../Queries/index';
-import ProjectStatusLabel from './projectStatusLabel';
-
+import ProjectStatusDropdown from './projectStatusDropdown';
 const ProjectStatus = ({ projectId, label }) => {
   const [state] = useQuery({
     query,
@@ -24,9 +23,10 @@ const ProjectStatus = ({ projectId, label }) => {
             return (
               <div className={dropdownLabel} key={statuses.id}>
                 <h3>{statuses.name}</h3>
-                <ProjectStatusLabel
-                  statuses={statuses}
+                <ProjectStatusDropdown
+                  statusData={statuses}
                   labels={statuses.labels}
+                  project={data.project}
                   key={statuses.id}
                 />
               </div>

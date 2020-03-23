@@ -373,6 +373,9 @@ export const GET_PROJECT_STATUS = gql`
           id
           name
           color
+          selected {
+            id
+          }
         }
       }
     }
