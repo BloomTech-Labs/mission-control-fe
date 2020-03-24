@@ -38,7 +38,11 @@ const EditColumnModal = ({ column }) => {
   const handleSubmit = e => {
     e.preventDefault();
     executeMutation(updateColumn);
-    executeCreateLabel(label);
+    if (label.name.length > 0 && label.color.length > 0) {
+      executeCreateLabel(label);
+    } else {
+      return null;
+    }
     setLabel({ name: '', color: '' });
   };
 
