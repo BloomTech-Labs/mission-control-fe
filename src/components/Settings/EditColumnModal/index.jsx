@@ -38,7 +38,7 @@ const EditColumnModal = ({ column }) => {
     e.preventDefault();
     executeMutation(updateColumn);
     executeCreateLabel(label);
-    setLabel({ name: '', color: '' });
+    setLabel({ id: '', name: '', color: '' });
   };
 
   return (
