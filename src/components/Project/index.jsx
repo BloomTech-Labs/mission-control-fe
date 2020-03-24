@@ -63,7 +63,7 @@ const Project = props => {
                 executeQuery2={executeQuery}
               />
               <div className={gradeContainer}>
-                <Grade ghrepos={data.project.product.grades} />
+                <Grade ghrepos={data.project.product.grades} executeQuery={executeQuery} />
               </div>
               <h2>Project Notes</h2>
               {user === true ? (
