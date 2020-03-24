@@ -22,11 +22,17 @@ const ProjectRow = ({ project, statusColumn }) => {
           <LetterGradeContainer ghrepos={project.product.grades} />
         </td>
         {statusColumn.length > 0 && statusLabelsArr.length > 0
-          ? statusLabelsArr.map(statusData => (
-            <td key={statusData.id} className={statusColumns}>
-              <LabelDropdown labels={statusData.labels} />
-            </td>
-          ))
+          ? statusLabelsArr.map(statusData => {
+              return (
+                <td key={statusData.id} className={statusColumns}>
+                  <LabelDropdown
+                    labels={statusData.labels}
+                    project={project}
+                    statusData={statusData}
+                  />
+                </td>
+              );
+            })
           : ''}
       </tr>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Repo, Grade, GradeCont,Tip } from './letterGrade.module.scss';
-import getMessage from '../../../utils/getMessageForCCGrade'
-import Sparkline from '../GitHub/Sparkline.jsx'
+import { Repo, Grade, GradeCont, Tip } from './letterGrade.module.scss';
+import getMessage from '../../../utils/getMessageForCCGrade';
+import Sparkline from '../GitHub/Sparkline.jsx';
 
 const LetterGrade = ({ currentIndex, setCurrentIndex, repo, color, projectName, ghrepos, repoIndex, handleSparkClick }) => {
   return (
