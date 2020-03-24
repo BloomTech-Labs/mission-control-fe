@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { labelListStyle } from './LabelList.module.scss';
+import { labelListStyle, labelListCont } from './LabelList.module.scss';
 import StatusLabel from '../StatusLabel/index';
 import { LABEL_LIST_VIEW as query } from '../../ProjectList/Queries/projectQueries';
 import { useQuery } from 'urql';

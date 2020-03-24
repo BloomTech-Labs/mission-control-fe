@@ -67,6 +67,7 @@ export const NOTE_FEED_QUERY = gql`
 export const ATTENDANCE_QUERY = gql`
   query attendance($id: ID!) {
     project(id: $id) {
+      id
       projectManagers {
         name
         id
@@ -106,6 +107,7 @@ export const PROJECT_VIEW_QUERY = gql`
           name
           grade
           link
+          GHRepoId
         }
         GHRepos {
           id
@@ -167,6 +169,7 @@ export const CREATE_NOTE = gql`
       content
       topic
       attendedBy {
+        id
         name
       }
       id
@@ -196,6 +199,7 @@ export const UPDATE_NOTE = gql`
       content
       topic
       attendedBy {
+        id
         name
       }
       id
@@ -219,6 +223,9 @@ export const CREATE_LABEL = gql`
       name
       color
       id
+      selected {
+        id
+      }
     }
   }
 `;
@@ -293,11 +300,6 @@ export const CREATE_STATUS = gql`
       id
       name
       display
-      labels {
-        id
-        name
-        color
-      }
     }
   }
 `;
