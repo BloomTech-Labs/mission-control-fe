@@ -46,7 +46,8 @@ const EditColumnModal = ({ column }) => {
     setLabel({ name: '', color: '' });
   };
 
-  const disableTer = label.name.length > 0 && !label.color;
+  const disableTer =
+    (label.name.length > 0 && !label.color) || (label.color && !label.name);
   console.log(disableTer);
   return (
     <Modal
