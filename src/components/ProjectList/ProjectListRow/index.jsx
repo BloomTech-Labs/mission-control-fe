@@ -11,7 +11,7 @@ import {
   hiddenStatus,
 } from './projectListRow.module.scss';
 
-const ProjectRow = ({ project, statusColumn, statusDisplay }) => {
+const ProjectRow = ({ project, statusColumn }) => {
   const statusLabelsArr = [];
   var i;
   if (statusColumn.length > 0) {
