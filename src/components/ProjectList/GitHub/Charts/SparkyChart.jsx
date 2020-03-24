@@ -19,48 +19,48 @@ const dataFiller = (label, color, array) => {
   )
 }
 
-const SparkyChart = ({ data, maxValue }) =>  {
-
-    const options = {
-        maintainAspectRatio: false,
-        scales:{
-            xAxes: [{
-                display: false //this will remove all the x-axis grid lines
-            }],
-            yAxes: [{
-                display: false,
-                ticks: {
-                  beginAtZero: true,
-                  // max: 1000, //Sets max value to display
-                }
-            }],
-        },
-        legend:{
-            display: false,
-            position: 'left'
-        },
+const SparkyChart = ({ data, height, legend, layout, maxValue, tooltips }) => {
+  const options = {
+    maintainAspectRatio: false,
+    scales: {
+      xAxes: [{
+        display: false //this will remove all the x-axis grid lines
+      }],
+      yAxes: [{
+        display: false,
+        ticks: {
+          beginAtZero: true, // max: 1000, //Sets max value to display
+        }
+      }],
+    },
+    legend: legend,
+    layout: layout,
+    tooltips: tooltips,
+    title: {
+      display: false,
+      text: "Last 100 commits:"
     }
+  }
 
-    const additions = []
-    const deletions = []
-    const changedFiles = []
+  const additions = []
+  const deletions = []
+  const changedFiles = []
 
-    ChartDatafier(data, additions, deletions, changedFiles, maxValue)
+  ChartDatafier(data, additions, deletions, changedFiles, maxValue)
 
-    const chartData  = {
-        labels: additions,        
-        datasets: [
-            dataFiller('Additions', 'rgba(75,192,192,1)', additions),
-            dataFiller('Deletions', 'coral', deletions),
-            dataFiller('Changed Files', 'greenyellow', changedFiles)
-        ]
-      };
-
-    return(
-        <div>
-            <Line options={options} data={chartData} height={50}/>
-        </div>
-    )
+  const chartData = {
+    labels: additions,
+    datasets: [
+      dataFiller('Additions', 'rgba(75,192,192,1)', additions),
+      dataFiller('Deletions', 'coral', deletions),
+      dataFiller('Changed Files', 'greenyellow', changedFiles)
+    ]
+  };
+  return (
+    <div>
+      <Line options={options} data={chartData} height={height || 50} />
+    </div>
+  )
 }
 
 export default SparkyChart
