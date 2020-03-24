@@ -74,7 +74,6 @@ const Project = props => {
               <div className={gradeContainer}>
                 <Grade
                   ghrepos={data.project.product.grades}
-                  reposId={data.project.product.GHRepos}
                   executeQuery={executeQuery}
                 />
               </div>
