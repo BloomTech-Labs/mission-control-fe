@@ -219,6 +219,9 @@ export const CREATE_LABEL = gql`
       name
       color
       id
+      selected {
+        id
+      }
     }
   }
 `;

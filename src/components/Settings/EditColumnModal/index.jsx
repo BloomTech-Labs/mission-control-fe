@@ -25,6 +25,7 @@ const EditColumnModal = ({ column }) => {
 
   const toggle = () => {
     handleClose();
+    setLabel({ name: '', color: '' });
   };
   const handleChanges = e => {
     e.preventDefault();
@@ -38,9 +39,11 @@ const EditColumnModal = ({ column }) => {
     e.preventDefault();
     executeMutation(updateColumn);
     executeCreateLabel(label);
-    setLabel({ id: '', name: '', color: '' });
+    setLabel({ name: '', color: '' });
   };
 
+  const disableTer = label.name.length > 0 && !label.color;
+  console.log(disableTer);
   return (
     <Modal
       open={open}
@@ -82,6 +85,7 @@ const EditColumnModal = ({ column }) => {
           content="Save"
           size={'large'}
           className="ui button"
+          disabled={disableTer}
         />
       </Modal.Actions>
     </Modal>
