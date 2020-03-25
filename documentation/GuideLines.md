@@ -69,7 +69,7 @@ prisma deploy
 # Rejected Pull Request & Feedback Flow
 * GitHub comments should be code-centric and professional at all times.
 
-#### Scenario: After merging the present master locally your feature branch is no longer running.  
+#### Scenario:   
 bad
 ```
 When you merged it the code broke
@@ -79,7 +79,7 @@ good
 After that merge we are having (this problem), can we get help or clarity with what needs to change?
 ```
 #
-#### Scenario: The reviewer finds a problem with your pull request while following the Git/QA Flow.
+#### Scenario: 
 bad
 ```
 It works on my system
