@@ -67,6 +67,7 @@ export const NOTE_FEED_QUERY = gql`
 export const ATTENDANCE_QUERY = gql`
   query attendance($id: ID!) {
     project(id: $id) {
+      id
       projectManagers {
         name
         id
@@ -156,6 +157,7 @@ export const CREATE_NOTE = gql`
       content
       topic
       attendedBy {
+        id
         name
       }
       id
@@ -185,6 +187,7 @@ export const UPDATE_NOTE = gql`
       content
       topic
       attendedBy {
+        id
         name
       }
       id
@@ -218,6 +221,38 @@ export const UPDATE_LABEL = gql`
       id
       name
       color
+    }
+  }
+`;
+
+export const UPDATE_SELECTED_LABEL = gql`
+  mutation UpdateSelectedLabelMutation(
+    $id: ID!
+    $selected: ID!
+    $columnId: String!
+  ) {
+    updateSelectedLabel(id: $id, selected: $selected, columnId: $columnId) {
+      id
+      selected {
+        id
+        name
+      }
+    }
+  }
+`;
+
+export const DISCONNECT_SELECTED_LABEL = gql`
+  mutation DisconnectSelectedLabelMutation(
+    $id: ID!
+    $selected: ID!
+    $columnId: String!
+  ) {
+    disconnectSelectedLabel(id: $id, selected: $selected, columnId: $columnId) {
+      id
+      selected {
+        id
+        name
+      }
     }
   }
 `;
@@ -315,7 +350,7 @@ export const CREATE_GHREPO = gql`
 
 export const DELETE_GHREPO = gql`
   mutation deleteGithubRepo($id: ID!) {
-    deleteGithubRepo(id: $id){
+    deleteGithubRepo(id: $id) {
       id
     }
   }

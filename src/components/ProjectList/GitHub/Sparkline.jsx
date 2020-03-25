@@ -4,7 +4,7 @@ import { SPARKLINE as query } from '../Queries/sparklineQuery';
 import { Sparkyline } from './Sparkline.module.scss';
 import SparkyChart from './Charts/SparkyChart';
 
-const Sparkline = ({ name }) => {
+const Sparkline = ({ name, repoIndex, handleSparkClick }) => {
   const [state] = useQuery({
     query,
     variables: {
@@ -17,13 +17,18 @@ const Sparkline = ({ name }) => {
   if (state.fetching) {
     return <p>Loading Sparkline...</p>;
   } else if (state.error) {
-    console.log(state.error);
-    return <p>Error: Sparkline Unavailable</p>;
+    return <p>Error: Sparkline unavailable.</p>;
   } else if (data.SparkyBoy.length) {
     return (
-      <div className={Sparkyline}>
-        <SparkyChart data={data} maxValue={1000} />
-      </div>
+      <>
+        <div className={Sparkyline} onClick={() => handleSparkClick(repoIndex)}>
+          <SparkyChart
+            data={data}
+            tooltips={{ enabled: false }}
+            maxValue={1000}
+          />
+        </div>
+      </>
     );
   } else {
     return <p>Sparkline unavailable</p>;
