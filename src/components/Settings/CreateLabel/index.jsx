@@ -1,4 +1,5 @@
 import React from 'react';
+import { Segment } from 'semantic-ui-react';
 
 import {
   labelPreviewDesign,
@@ -7,6 +8,7 @@ import {
   createContainer,
   labelNameContainer,
   labelPreviewCont,
+  labelPreviewText,
 } from './CreateLabel.module.scss';
 import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
 
@@ -38,7 +40,8 @@ const CreateLabelForm = ({ column, label, setLabel }) => {
             />
             <CustomCirclePicker label={label} setLabel={setLabel} />
           </div>
-          <div className={labelPreviewCont}>
+          <Segment className={labelPreviewCont}>
+            <p className={labelPreviewText}>Label Preview:</p>
             {label.name && label.color ? (
               <div
                 className={labelPreviewDesign}
@@ -49,7 +52,7 @@ const CreateLabelForm = ({ column, label, setLabel }) => {
             ) : (
               ''
             )}
-          </div>
+          </Segment>
         </div>
       </div>
       <br />

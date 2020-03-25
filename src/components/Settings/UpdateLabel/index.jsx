@@ -1,5 +1,10 @@
 import React from 'react';
-import { labelDesign } from './UpdateLabel.module.scss';
+import { Segment } from 'semantic-ui-react';
+import {
+  labelDesign,
+  labelPreviewCont,
+  labelPreviewText,
+} from './UpdateLabel.module.scss';
 
 import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
 import { basicInput, form } from './UpdateLabel.module.scss';
@@ -27,21 +32,24 @@ const UpdateLabel = props => {
             />
           </div>
           <br />
-          {props.label.name && props.label.color ? (
-            <div
-              className={labelDesign}
-              style={{ background: `${props.label.color}` }}
-            >
-              {props.label.name}
-            </div>
-          ) : (
-            ''
-          )}
           <CustomCirclePicker
             {...props}
             label={props.label}
             setLabel={props.setLabel}
           />
+          <Segment className={labelPreviewCont}>
+            <p className={labelPreviewText}>Label Preview:</p>
+            {props.label.name && props.label.color ? (
+              <div
+                className={labelDesign}
+                style={{ background: `${props.label.color}` }}
+              >
+                {props.label.name}
+              </div>
+            ) : (
+              ''
+            )}
+          </Segment>
         </div>
       </div>
     </form>

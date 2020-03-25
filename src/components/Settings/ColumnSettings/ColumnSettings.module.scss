@@ -3,5 +3,7 @@
 .columnEditCont {
   display: flex;
   flex-direction: column;
-  height: 125px;
+  padding-top: 10px;
+  height: 130px;
+  overflow: auto;
 }

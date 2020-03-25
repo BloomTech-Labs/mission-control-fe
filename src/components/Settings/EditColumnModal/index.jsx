@@ -67,7 +67,7 @@ const EditColumnModal = ({ column }) => {
       <Modal.Content>
         <Modal.Description>
           <div className={form}>
-            <label>Name:</label>
+            <label>Column name:</label>
             <input
               name="name"
               value={updateColumn.name}

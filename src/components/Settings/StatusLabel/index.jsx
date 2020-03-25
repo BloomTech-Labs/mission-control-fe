@@ -52,7 +52,6 @@ const StatusLabel = ({ label, columnId }) => {
         <Modal.Header>Edit Label</Modal.Header>
         <Modal.Content>
           <Modal.Description>
-            <Header>Update Label</Header>
             <UpdateLabel
               label={updateLabel}
               setLabel={setUpdateLabel}

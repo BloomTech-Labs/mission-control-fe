@@ -2,8 +2,12 @@
 
 .modalStyle {
   position: relative !important;
-  height: 500px !important;
-  width: 350px !important;
+  height: 450px !important;
+  width: 375px !important;
+  h3 {
+    text-align: center;
+    margin: 10px 0 20px 0 !important;
+  }
 }
 
 .buttonStyle {
@@ -31,4 +35,5 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin: 0 30px;
 }

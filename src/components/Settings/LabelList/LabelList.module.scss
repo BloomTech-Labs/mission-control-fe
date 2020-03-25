@@ -4,5 +4,6 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  height: 25px;
+  height: 75px;
+  overflow: auto;
 }

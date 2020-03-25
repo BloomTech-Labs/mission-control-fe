@@ -7,7 +7,16 @@
 }
 
 .toggleCont {
-  background: #f9f9f9;
+  background: #f3f3f3;
+  border-radius: 50px;
+  border: 1px solid #d3d3d3;
+  height: 20px;
+  position: relative;
+  width: 40px;
+}
+
+.toggledCont {
+  background: #fff3fb;
   border-radius: 50px;
   border: 1px solid #d3d3d3;
   height: 20px;
@@ -20,7 +29,7 @@
 }
 
 .toggle {
-  background: #39b7cd;
+  background: #b6b6b6;
   border-radius: 50px;
   height: 18px;
   left: 18px;
@@ -37,14 +46,6 @@
   position: absolute;
   transition: 0.2s;
   width: 20px;
-}
-.toggledCont {
-  background: #ffcccb;
-  border-radius: 50px;
-  border: 1px solid #d3d3d3;
-  height: 20px;
-  position: relative;
-  width: 40px;
 }
 
 .editColumnsDiv {

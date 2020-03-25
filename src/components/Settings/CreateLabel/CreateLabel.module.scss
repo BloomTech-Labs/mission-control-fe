@@ -45,5 +45,13 @@
 }
 
 .labelPreviewCont {
-  padding-top: 1rem;
+  display: flex;
+  padding-top: 10px !important;
+  margin: 20px !important;
+  height: 45px;
+  width: 225px;
+}
+
+.labelPreviewText {
+  padding-right: 5px;
 }
