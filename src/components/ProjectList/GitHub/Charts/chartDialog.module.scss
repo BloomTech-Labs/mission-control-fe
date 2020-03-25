@@ -1,0 +1,44 @@
+.sparklineModalContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.modalHeader {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.leftModalArrow {
+  margin-top: -50px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.rightModalArrow {
+  margin-top: -50px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.chartContainer {
+  width: 85%;
+  .chartTitle {
+    text-align: center;
+    color: #a7a7a7;
+    font-weight: 500;
+    margin-bottom: -15px;
+  }
+}
+
+.closeButton {
+  color: black;
+  margin-top: -12px;
+  margin-right: -15px;
+  &:hover {
+    cursor: pointer;
+  }
+}
