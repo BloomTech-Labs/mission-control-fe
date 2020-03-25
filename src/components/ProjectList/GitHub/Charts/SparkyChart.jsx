@@ -2,6 +2,7 @@ import React from 'react'
 import { Line } from 'react-chartjs-2';
 import { ChartDatafier } from './ChartDatafier';
 
+//Fills out data sets using similar options and settings
 const dataFiller = (label, color, array) => {
   return (
     {
@@ -19,6 +20,8 @@ const dataFiller = (label, color, array) => {
   )
 }
 
+
+// This is the actual chart
 const SparkyChart = ({ data, height, legend, layout, maxValue, tooltips }) => {
   const options = {
     maintainAspectRatio: false,
@@ -37,7 +40,7 @@ const SparkyChart = ({ data, height, legend, layout, maxValue, tooltips }) => {
     layout: layout,
     tooltips: tooltips,
     title: {
-      display: false,
+      display: false, //set to false, using seperate component to display chart titles
       text: "Last 100 commits:"
     }
   }
