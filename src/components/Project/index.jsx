@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'urql';
+import { Accordion } from 'semantic-ui-react';
 
 import NoteEditor from './NoteEditor';
 import NotesFeed from './NoteFeed';
@@ -58,13 +59,10 @@ const Project = props => {
           </div>
           <div className={projectContainer}>
             <div className={editorFeedContainer}>
-              <div className={projectStatusContainer}>
-                <h2>Project Status</h2>
-                <ProjectStatus
-                  projectId={id}
-                  label={data.project.projectStatus.labels}
-                />
-              </div>
+              <ProjectStatus
+                projectId={id}
+                label={data.project.projectStatus.labels}
+              />
               <h2>Repository Statistics</h2>
               <GitHubRepos
                 ghrepos={data.project.product.GHRepos}

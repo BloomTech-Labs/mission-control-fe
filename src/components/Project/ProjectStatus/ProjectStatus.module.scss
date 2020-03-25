@@ -45,3 +45,11 @@
   border-radius: 25px;
   font-size: 0.8rem;
 }
+
+.projectStatusContainer {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: left;
+  justify-content: space-around;
+  padding: 1rem 0 0;
+}
