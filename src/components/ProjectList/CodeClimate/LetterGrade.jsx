@@ -3,6 +3,7 @@ import { Repo, Grade, GradeCont, Tip } from './letterGrade.module.scss';
 import getMessage from '../../../utils/getMessageForCCGrade';
 import Sparkline from '../GitHub/Sparkline.jsx';
 
+//this component gets passed a specific repository and displays the Letter grade, tooltip message based on the grade and renders the sparkline component with the specific repositories information.
 const LetterGrade = ({ currentIndex, setCurrentIndex, repo, color, projectName, ghrepos, repoIndex, handleSparkClick }) => {
   return (
     <>

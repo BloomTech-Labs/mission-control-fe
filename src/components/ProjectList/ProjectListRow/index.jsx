@@ -5,7 +5,7 @@ import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
 import LabelDropdown from '../LabelDropdown/index';
 
 import { title, statusColumns } from './projectListRow.module.scss';
-
+//this component renders the letter grade container underneath the specific project it's associated with.
 const ProjectRow = ({ project, statusColumn }) => {
   const statusLabelsArr = [];
   var i;
