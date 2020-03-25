@@ -44,10 +44,10 @@ const CreateColumn = ({ programId }) => {
       <Modal
         open={open}
         onClose={toggle}
-        trigger={<Button onClick={handleOpen}>Create Column</Button>}
+        trigger={<Button onClick={handleOpen}>Add Column</Button>}
         className={modalStyle}
       >
-        <Modal.Header>Create Column</Modal.Header>
+        <Modal.Header>Add Column</Modal.Header>
         <Modal.Content>
           <Modal.Description>
             <form className={form}>
