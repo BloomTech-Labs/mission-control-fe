@@ -1,6 +1,9 @@
 @import '../../../styles/variables.scss';
 
 .labelListStyle {
-  position: relative;
-  height: 25px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  height: 75px;
+  overflow: auto;
 }

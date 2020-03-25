@@ -10,3 +10,48 @@
   border-radius: 25px;
   font-size: 0.8rem;
 }
+.basicInput {
+  border: none;
+  border-radius: 5px;
+  padding: 3px 5px;
+  width: 40%;
+  color: #333;
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.basicInput:focus {
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1),
+    0 0 3px 1px #cfebf3;
+}
+
+.form {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.createContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-flow: wrap row;
+}
+
+.labelNameContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.labelPreviewCont {
+  display: flex;
+  padding-top: 10px !important;
+  margin: 20px !important;
+  height: 45px;
+  width: 225px;
+}
+
+.labelPreviewText {
+  padding-right: 5px;
+}

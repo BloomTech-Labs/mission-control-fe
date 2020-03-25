@@ -1,32 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   toggleCont,
   toggle,
   toggled,
   toggledCont,
   editColumnsDiv,
+  togglerContainer,
+  deleteIcon,
 } from './EditColumns.module.scss';
+import { useMutation } from 'urql';
+import { UPDATE_STATUS_DISPLAY as updateDisplay } from '../../Project/Queries/index';
+import DeleteColumn from '../DeleteColumn';
 
 import EditColumnModal from '../EditColumnModal/index';
 
-const EditColumns = ({ column, setColumns }) => {
-  const [toggleActive, setToggleActive] = useState(false);
+const EditColumns = ({ column, id }) => {
+  const [, executeUpdateDisplay] = useMutation(updateDisplay);
 
   const toggler = e => {
-    e.stopPropagation();
-    setToggleActive(!toggleActive);
+    e.preventDefault();
+    executeUpdateDisplay({ id, display: !column.display });
   };
 
   return (
     <div className={editColumnsDiv}>
-      <div
-        onClick={toggler}
-        className={toggleActive ? toggleCont : toggledCont}
-      >
-        <div className={toggleActive ? toggle : toggled} />
-      </div>
       <div>
-        <EditColumnModal column={column} setColumns={setColumns} />
+        <EditColumnModal column={column} />
+      </div>
+      <div className={togglerContainer}>
+        <div
+          onClick={toggler}
+          className={column.display ? toggledCont : toggleCont}
+        >
+          <div className={column.display ? toggled : toggle} />
+        </div>
+        <div className={deleteIcon}>
+          <DeleteColumn column={column} />
+        </div>
       </div>
     </div>
   );

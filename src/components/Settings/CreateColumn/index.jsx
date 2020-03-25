@@ -5,11 +5,16 @@ import { useMutation } from 'urql';
 import { CREATE_STATUS as createStatus } from '../../Project/Queries/index';
 
 import { ColumnContext } from '../../../contexts/ColumnContext';
+import { basicInput, form } from './CreateColumn.module.scss';
 
-const CreateColumn = ({ programId }) => {
+const CreateColumn = ({ programId, statuses }) => {
   const { column, setColumn } = useContext(ColumnContext);
   const [open, setOpen] = useState(false);
   const [, executeCreate] = useMutation(createStatus);
+
+  let displayFiltered = statuses.filter(function(e) {
+    return e.display === true;
+  });
 
   const handleOpen = () => setOpen(true);
 
@@ -32,7 +37,11 @@ const CreateColumn = ({ programId }) => {
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
-      executeCreate(column);
+      if (displayFiltered.length >= 4) {
+        executeCreate({ id: programId, name: column.name, display: false });
+      } else {
+        executeCreate(column);
+      }
       toggle();
     },
     [executeCreate, column, toggle]
@@ -43,19 +52,20 @@ const CreateColumn = ({ programId }) => {
       <Modal
         open={open}
         onClose={toggle}
-        trigger={<Button onClick={handleOpen}>Create Column</Button>}
+        trigger={<Button onClick={handleOpen}>Add Column</Button>}
         className={modalStyle}
       >
-        <Modal.Header>Create Column</Modal.Header>
+        <Modal.Header>Add Column</Modal.Header>
         <Modal.Content>
           <Modal.Description>
-            <form>
+            <form className={form}>
               <label> Column Name: </label>
               <input
                 value={column.name}
                 name="name"
                 onChange={handleChanges}
                 placeholder="Status"
+                className={basicInput}
               />
             </form>
           </Modal.Description>

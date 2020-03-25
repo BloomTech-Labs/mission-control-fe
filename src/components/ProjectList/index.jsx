@@ -19,7 +19,10 @@ const ProjectListView = () => {
       projects.push(product.projects[0])
     );
 
-  const columns = data && data.programs[0].statuses;
+  const columns =
+    data &&
+    data.programs[0].statuses &&
+    data.programs[0].statuses.filter(status => status.display);
 
   if (fetching) {
     return <p>Loading...</p>;

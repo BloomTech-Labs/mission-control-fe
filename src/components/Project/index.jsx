@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'urql';
+import { Accordion } from 'semantic-ui-react';
 
 import NoteEditor from './NoteEditor';
 import NotesFeed from './NoteFeed';
@@ -8,6 +9,7 @@ import Team from './Team';
 import Header from './Header';
 import Grade from './Grade';
 import GitHubRepos from './GitHubRepos';
+import ProjectStatus from './ProjectStatus/index';
 
 import {
   parentProjectContainer,
@@ -16,6 +18,7 @@ import {
   editorFeedContainer,
   teamContainer,
   gradeContainer,
+  projectStatusContainer,
 } from './Project.module.scss';
 
 import { PROJECT_VIEW_QUERY as query } from './Queries';
@@ -56,6 +59,10 @@ const Project = props => {
           </div>
           <div className={projectContainer}>
             <div className={editorFeedContainer}>
+              <ProjectStatus
+                projectId={id}
+                label={data.project.projectStatus.labels}
+              />
               <h2>Repository Statistics</h2>
               <GitHubRepos
                 ghrepos={data.project.product.GHRepos}
@@ -63,7 +70,10 @@ const Project = props => {
                 executeQuery2={executeQuery}
               />
               <div className={gradeContainer}>
-                <Grade ghrepos={data.project.product.grades} />
+                <Grade
+                  ghrepos={data.project.product.grades}
+                  executeQuery={executeQuery}
+                />
               </div>
               <h2>Project Notes</h2>
               {user === true ? (

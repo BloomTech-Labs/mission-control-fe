@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-import { Button } from 'semantic-ui-react';
-import { useMutation } from 'urql';
-import { CREATE_LABEL as createLabel } from '../../Project/Queries/index';
+import React from 'react';
+import { Segment } from 'semantic-ui-react';
 
-import { labelPreviewDesign } from './CreateLabel.module.scss';
+import {
+  labelPreviewDesign,
+  basicInput,
+  form,
+  createContainer,
+  labelNameContainer,
+  labelPreviewCont,
+  labelPreviewText,
+} from './CreateLabel.module.scss';
 import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
 
-const CreateLabelForm = ({ column }) => {
-  const [label, setLabel] = useState({ name: '', color: '', id: '' });
-  const [, executeCreate] = useMutation(createLabel);
+const CreateLabelForm = ({ column, label, setLabel }) => {
   const handleChanges = e => {
     e.preventDefault();
     setLabel({
@@ -18,46 +22,38 @@ const CreateLabelForm = ({ column }) => {
     });
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    executeCreate(label);
-    setLabel({ id: '', name: '', color: '' });
-  };
-
   const disableTer = !label.color || !label.name;
 
   return (
-    <form>
+    <form className={form}>
       <div>
-        <div>
-          <label>
-            Label Name:
+        <div className={createContainer}>
+          <div className={labelNameContainer}>
+            <label>Label Name:</label>
             <input
               name="name"
               id="name"
               placeholder="label..."
               onChange={handleChanges}
               value={label.name}
+              className={basicInput}
             />
-          </label>
-          <br />
-        </div>
-        <br />
-        <CustomCirclePicker label={label} setLabel={setLabel} />
-        <br />
-        {label.name && label.color ? (
-          <div
-            className={labelPreviewDesign}
-            style={{ background: `${label.color}` }}
-          >
-            {label.name}
+            <CustomCirclePicker label={label} setLabel={setLabel} />
           </div>
-        ) : (
-          ''
-        )}
-      </div>
-      <div>
-        <Button content="Save" onClick={handleSubmit} disabled={disableTer} />
+          <Segment className={labelPreviewCont}>
+            <p className={labelPreviewText}>Label Preview:</p>
+            {label.name && label.color ? (
+              <div
+                className={labelPreviewDesign}
+                style={{ background: `${label.color}` }}
+              >
+                {label.name}
+              </div>
+            ) : (
+              ''
+            )}
+          </Segment>
+        </div>
       </div>
       <br />
     </form>

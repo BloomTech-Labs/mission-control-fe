@@ -67,6 +67,7 @@ export const NOTE_FEED_QUERY = gql`
 export const ATTENDANCE_QUERY = gql`
   query attendance($id: ID!) {
     project(id: $id) {
+      id
       projectManagers {
         name
         id
@@ -86,6 +87,18 @@ export const PROJECT_VIEW_QUERY = gql`
     project(id: $id) {
       id
       name
+      projectStatus {
+        id
+        name
+        labels {
+          id
+          name
+          color
+          selected {
+            id
+          }
+        }
+      }
       product {
         id
         name
@@ -94,6 +107,7 @@ export const PROJECT_VIEW_QUERY = gql`
           name
           grade
           link
+          GHRepoId
         }
         GHRepos {
           id
@@ -155,6 +169,7 @@ export const CREATE_NOTE = gql`
       content
       topic
       attendedBy {
+        id
         name
       }
       id
@@ -184,6 +199,7 @@ export const UPDATE_NOTE = gql`
       content
       topic
       attendedBy {
+        id
         name
       }
       id
@@ -207,6 +223,9 @@ export const CREATE_LABEL = gql`
       name
       color
       id
+      selected {
+        id
+      }
     }
   }
 `;
@@ -276,10 +295,11 @@ export const GET_USER_ROLE = gql`
 `;
 
 export const CREATE_STATUS = gql`
-  mutation createStatusMutation($id: ID!, $name: String!) {
-    createStatus(id: $id, name: $name) {
+  mutation createStatusMutation($id: ID!, $name: String!, $display: Boolean) {
+    createStatus(id: $id, name: $name, display: $display) {
       id
       name
+      display
     }
   }
 `;
@@ -340,6 +360,45 @@ export const CREATE_GHREPO = gql`
       owner
       ownerId
       repoId
+    }
+  }
+`;
+
+export const DELETE_GHREPO = gql`
+  mutation deleteGithubRepo($id: ID!) {
+    deleteGithubRepo(id: $id) {
+      id
+    }
+  }
+`;
+
+export const GET_PROJECT_STATUS = gql`
+  query projectStatusQuery($id: ID!) {
+    project(id: $id) {
+      id
+      name
+      projectStatus {
+        id
+        name
+        labels {
+          id
+          name
+          color
+          selected {
+            id
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const UPDATE_STATUS_DISPLAY = gql`
+  mutation updateStatusMutation($id: ID!, $display: Boolean) {
+    updateStatus(id: $id, display: $display) {
+      id
+      name
+      display
     }
   }
 `;
