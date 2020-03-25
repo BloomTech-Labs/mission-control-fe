@@ -7,10 +7,14 @@ import { CREATE_STATUS as createStatus } from '../../Project/Queries/index';
 import { ColumnContext } from '../../../contexts/ColumnContext';
 import { basicInput, form } from './CreateColumn.module.scss';
 
-const CreateColumn = ({ programId }) => {
+const CreateColumn = ({ programId, statuses }) => {
   const { column, setColumn } = useContext(ColumnContext);
   const [open, setOpen] = useState(false);
   const [, executeCreate] = useMutation(createStatus);
+
+  let displayFiltered = statuses.filter(function(e) {
+    return e.display === true;
+  });
 
   const handleOpen = () => setOpen(true);
 
@@ -33,7 +37,11 @@ const CreateColumn = ({ programId }) => {
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
-      executeCreate(column);
+      if (displayFiltered.length >= 4) {
+        executeCreate({ id: programId, name: column.name, display: false });
+      } else {
+        executeCreate(column);
+      }
       toggle();
     },
     [executeCreate, column, toggle]

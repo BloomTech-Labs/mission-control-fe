@@ -56,7 +56,11 @@ const Settings = () => {
             Close
           </Button>
           <div className={buttonBreakLine}>
-            <CreateColumn programId={programId} column={data} />
+            <CreateColumn
+              programId={programId}
+              column={data}
+              statuses={data.programs[0].statuses}
+            />
           </div>
         </Modal.Actions>
       </Modal>

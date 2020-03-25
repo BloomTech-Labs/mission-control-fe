@@ -295,8 +295,8 @@ export const GET_USER_ROLE = gql`
 `;
 
 export const CREATE_STATUS = gql`
-  mutation createStatusMutation($id: ID!, $name: String!) {
-    createStatus(id: $id, name: $name) {
+  mutation createStatusMutation($id: ID!, $name: String!, $display: Boolean) {
+    createStatus(id: $id, name: $name, display: $display) {
       id
       name
       display
