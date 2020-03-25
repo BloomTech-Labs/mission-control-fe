@@ -2,6 +2,8 @@ import React from 'react';
 
 import { rtc, hiddenName } from './projectListContainer.module.scss';
 
+import CreateColumn from '../../Settings/CreateColumn';
+
 const ProjectListContainer = ({ children, statusColumn }) => {
   const statusTitleArr = [];
   var i;

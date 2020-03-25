@@ -42,12 +42,9 @@ const Settings = () => {
         trigger={<Button onClick={handleOpen}>Settings</Button>}
         className={modalStyle}
       >
-        <Modal.Header>Settings</Modal.Header>
+        <Modal.Header className={columnHeader}>Manage Columns</Modal.Header>
         <Modal.Content>
           <Modal.Description>
-            <Header size={'huge'} className={columnHeader}>
-              Column View
-            </Header>
             <ColumnSettings />
           </Modal.Description>
         </Modal.Content>
