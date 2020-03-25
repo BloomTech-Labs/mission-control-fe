@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import {
   bottomLinks,
   modalStyle,
-  buttonStyle,
-  columnHeader,
-  buttonBreakLine,
+  headerDiv,
+  closeButton,
 } from './Settings.module.scss';
 import { Button, Header, Modal } from 'semantic-ui-react';
 import { useQuery } from 'urql';
@@ -42,24 +41,22 @@ const Settings = () => {
         trigger={<Button onClick={handleOpen}>Settings</Button>}
         className={modalStyle}
       >
-        <Modal.Header className={columnHeader}>Manage Columns</Modal.Header>
+        <Header className={headerDiv}>
+          <button className={closeButton} onClick={toggle}>
+            x
+          </button>
+          Manage Columns
+          <CreateColumn
+            programId={programId}
+            column={data}
+            statuses={data.programs[0].statuses}
+          />
+        </Header>
         <Modal.Content>
           <Modal.Description>
             <ColumnSettings />
           </Modal.Description>
         </Modal.Content>
-        <Modal.Actions className={buttonStyle}>
-          <Button className="ui cancel button" onClick={toggle}>
-            Close
-          </Button>
-          <div className={buttonBreakLine}>
-            <CreateColumn
-              programId={programId}
-              column={data}
-              statuses={data.programs[0].statuses}
-            />
-          </div>
-        </Modal.Actions>
       </Modal>
     </div>
   );

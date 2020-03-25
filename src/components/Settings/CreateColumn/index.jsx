@@ -1,11 +1,16 @@
 import React, { useState, useCallback, useContext } from 'react';
 import { Button, Modal } from 'semantic-ui-react';
-import { modalStyle, buttonStyle } from './CreateColumn.module.scss';
+import {
+  modalStyle,
+  buttonStyle,
+  basicInput,
+  form,
+  addColumnButton,
+} from './CreateColumn.module.scss';
 import { useMutation } from 'urql';
 import { CREATE_STATUS as createStatus } from '../../Project/Queries/index';
 
 import { ColumnContext } from '../../../contexts/ColumnContext';
-import { basicInput, form } from './CreateColumn.module.scss';
 
 const CreateColumn = ({ programId, statuses }) => {
   const { column, setColumn } = useContext(ColumnContext);
@@ -52,7 +57,11 @@ const CreateColumn = ({ programId, statuses }) => {
       <Modal
         open={open}
         onClose={toggle}
-        trigger={<Button onClick={handleOpen}>Add Column</Button>}
+        trigger={
+          <button className={addColumnButton} onClick={handleOpen}>
+            Add Column
+          </button>
+        }
         className={modalStyle}
       >
         <Modal.Header>Add Column</Modal.Header>

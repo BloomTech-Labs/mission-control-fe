@@ -32,3 +32,17 @@
   align-items: center;
   justify-content: space-around;
 }
+
+.addColumnButton {
+  color: #f54987;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  pointer-events: auto;
+  outline: none;
+}
+
+button:hover {
+  color: gray;
+}
