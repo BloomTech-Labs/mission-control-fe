@@ -23,14 +23,6 @@ const ProjectStatus = ({ projectId, label }) => {
             return (
               <div className={dropdownLabel} key={statuses.id}>
                 <h3>{statuses.name}</h3>
-                {/* <ProjectStatusLabel
-                  statuses={statuses}
-                  labels={statuses.labels}
-                  project={data.project}
-                  statusId={statuses.id}
-                  key={statuses.id}
-                  project={data.project}
-                /> */}
                 <ProjectStatusDropdown
                   statusData={statuses}
                   labels={statuses.labels}
