@@ -8,11 +8,26 @@
 .modalStyle {
   position: relative !important;
   height: 350px !important;
-  width: 500px !important;
+  width: 550px !important;
 }
 
-.buttonStyle {
-  position: fixed;
-  width: 100%;
-  bottom: 0;
+.headerDiv {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: lightgray;
+  font-size: 1.5rem;
+  font-weight: 100;
+  padding-right: 90px;
+  cursor: pointer;
+  pointer-events: auto;
+  outline: none;
+  &hover {
+    color: gray;
+  }
 }

@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { useMutation } from 'urql';
 import { Modal, Button } from 'semantic-ui-react';
 import { DELETE_STATUS as deleteColumn } from '../../Project/Queries/index';
-import { FaTrashAlt } from 'react-icons/fa';
-import { hover } from '../StatusLabel/StatusLabel.module.scss';
-import { deleteColumnModal } from './DeleteColumn.module.scss';
+import { FaTrash } from 'react-icons/fa';
+import { deleteColumnModal, trashIcon } from './DeleteColumn.module.scss';
 
 const DeleteColumn = ({ column }) => {
   const [open, setOpen] = useState(false);
@@ -22,7 +21,7 @@ const DeleteColumn = ({ column }) => {
       open={open}
       onClose={handleClose}
       className={deleteColumnModal}
-      trigger={<FaTrashAlt className={hover} onClick={handleOpen} />}
+      trigger={<FaTrash className={trashIcon} onClick={handleOpen} />}
       size={'tiny'}
     >
       <Modal.Header>Delete Status "{column.name}"?</Modal.Header>
