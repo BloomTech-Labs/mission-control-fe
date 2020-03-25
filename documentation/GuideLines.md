@@ -11,11 +11,25 @@ git pull master
 ```
 git checkout -b feature/"YOUR-FEATURE-NAME"
 ```
+### Example 
+Your canvas task is to add a list of cat breeds.
+#### Bad 
+```
+git checkout -b feature/new-list
+git checkout -b feature/canvas3
+```
+#### Good 
+```
+git checkout -b feature/cat-breed-list
+git checkout -b feature/map-cats-for-list
+git checkout -b feature/get-cat-data
+```
+The goal is for your feature name to be discriptive enough that at a glance any one knows what this feature is, and what the code will do. 
 
 ### Work Flow
 * Be mindful of GitHub updates and announcements posted to the Slack channel.
 * Strive to keep individual contributions under 500 changed lines. 
-* Update Draft Pull Request description to include a detailed description of the new feature or bug fix that being is added.
+* Update Draft Pull Request description to include a detailed description of the new feature or bug fix that being is added. An exsample can be found [here]().
 * Provide relevant in code comments to clarify changes when needed 
 * Update appropriate ```Readme.md```
 * Update QA Feature Checklist to reflect changes
@@ -54,6 +68,17 @@ prisma deploy
 # 
 # Rejected Pull Request & Feedback Flow
 * GitHub comments should be code-centric and professional at all times.
+```
+it would be good to provide a good example or link to a great comment
+```
+#### Bad 
+```
+example
+```
+#### Good 
+```
+example
+```
 * If rejecting a pull request for the failure of QA or not following Code Standards, the specific error should be referenced in that rejection so the developer can correct it and resubmit.
 * If a developer is seeking an exception to a more arbitrary code style standard; when responding to the comments or decline of the pull request, the developer should explain why the exception is needed in this case.
 * It is best practice to submit the pull request outlining these exceptions so the reviewer can take them into account while doing the first review.
