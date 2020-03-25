@@ -6,16 +6,18 @@ import { hover } from '../StatusLabel/StatusLabel.module.scss';
 import { useMutation } from 'urql';
 import CreateLabel from '../CreateLabel/index';
 import LabelList from '../LabelList/index';
-import { UPDATE_STATUS } from '../../Project/Queries/index';
-import DeleteColumn from '../DeleteColumn';
+import { UPDATE_STATUS, CREATE_LABEL } from '../../Project/Queries/index';
+import { basicInput, form } from './EditColumnModal.module.scss';
 
 const EditColumnModal = ({ column }) => {
   const [updateColumn, setUpdateColumn] = useState({
     name: column.name,
     id: column.id,
   });
+  const [label, setLabel] = useState({ name: '', color: '' });
   const [open, setOpen] = useState(false);
   const [, executeMutation] = useMutation(UPDATE_STATUS);
+  const [, executeCreateLabel] = useMutation(CREATE_LABEL);
 
   const handleOpen = () => setOpen(true);
 
@@ -35,6 +37,8 @@ const EditColumnModal = ({ column }) => {
   const handleSubmit = e => {
     e.preventDefault();
     executeMutation(updateColumn);
+    executeCreateLabel(label);
+    setLabel({ id: '', name: '', color: '' });
   };
 
   return (
@@ -43,10 +47,9 @@ const EditColumnModal = ({ column }) => {
       onClose={toggle}
       trigger={
         <div>
-          <p>
+          <p onClick={handleOpen} className={hover}>
             {' '}
-            {column.name} <EditIcon className={hover} onClick={handleOpen} />{' '}
-            <DeleteColumn column={column} />
+            <EditIcon fontSize={'small'} /> {column.name}{' '}
           </p>
         </div>
       }
@@ -55,28 +58,31 @@ const EditColumnModal = ({ column }) => {
       <Modal.Header>Edit Column</Modal.Header>
       <Modal.Content>
         <Modal.Description>
-          <label>
-            Name:
+          <div className={form}>
+            <label>Name:</label>
             <input
               name="name"
               value={updateColumn.name}
               onChange={handleChanges}
+              className={basicInput}
             />
-          </label>
+          </div>
           <br />
-          <br />
-          <Button className="ui button" onClick={handleSubmit}>
-            Save
-          </Button>
+          <h3>Create Labels</h3>
+          <CreateLabel column={column} label={label} setLabel={setLabel} />
+          <LabelList column={column} columnId={column.id} />
         </Modal.Description>
-        <h3>Create Labels</h3>
-        <CreateLabel column={column} />
-        <LabelList column={column} columnId={column.id} />
       </Modal.Content>
       <Modal.Actions className={buttonStyle}>
-        <Button className="ui cancel button" onClick={toggle}>
+        <Button className="ui cancel button" onClick={toggle} size={'large'}>
           Close
         </Button>
+        <Button
+          onClick={handleSubmit}
+          content="Save"
+          size={'large'}
+          className="ui button"
+        />
       </Modal.Actions>
     </Modal>
   );

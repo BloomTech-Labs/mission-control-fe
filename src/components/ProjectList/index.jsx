@@ -39,6 +39,7 @@ const ProjectListView = () => {
               key={project.id}
               project={project}
               statusColumn={columns}
+              statusDisplay={columns.display}
             />
           ))}
         </ProjectListContainer>
