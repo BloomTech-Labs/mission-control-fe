@@ -11,7 +11,7 @@ git pull master
 ```
 git checkout -b feature/"YOUR-FEATURE-NAME"
 ```
-### Example 
+#### Example Feature
 Your canvas task is to add a list of cat breeds.
 #### Bad 
 ```
@@ -29,7 +29,7 @@ The goal is for your feature name to be discriptive enough that at a glance any 
 ### Work Flow
 * Be mindful of GitHub updates and announcements posted to the Slack channel.
 * Strive to keep individual contributions under 500 changed lines. 
-* Update Draft Pull Request description to include a detailed description of the new feature or bug fix that being is added. An exsample can be found [here]().
+* Update Draft Pull Request description to include a detailed description of the new feature or bug fix that being is added. An exsample can be found [here](https://github.com/Lambda-School-Labs/mission-control-fe/pull/244).
 * Provide relevant in code comments to clarify changes when needed 
 * Update appropriate ```Readme.md```
 * Update QA Feature Checklist to reflect changes
@@ -68,22 +68,55 @@ prisma deploy
 # 
 # Rejected Pull Request & Feedback Flow
 * GitHub comments should be code-centric and professional at all times.
+
+#### Scenario: After merging the present master locally your feature branch is no longer running.  
+bad
 ```
-it would be good to provide a good example or link to a great comment
+When you merged it the code broke
 ```
-#### Bad 
+good
 ```
-example
+After that merge we are having (this problem), can we get help or clarity with what needs to change?
 ```
-#### Good 
+#
+#### Scenario: The reviewer finds a problem with your pull request while following the Git/QA Flow.
+bad
 ```
-example
+It works on my system
 ```
+Good
+```
+I am not getting that error here, can you provide where you are seeing it? Maybe a screenshot?
+```
+#
+bad
+```
+It looks good.
+```
+good
+```
+It was helpful that you made comments on the CatList.js. It will help others follow your code.
+```
+#
+bad
+```
+this is dope
+this sucks
+best or worst...
+```
+Ask your self does the comment you are leaving help to communicate something that needs to change or communicate a good practice that should be repeated to your fellow developer? If this is not the case, it is probably not a comment that should be on the repo/project.
+
+Comments should be "solution-oriented", and at times a degree of "positive intent" can be helpful. 
+
 * If rejecting a pull request for the failure of QA or not following Code Standards, the specific error should be referenced in that rejection so the developer can correct it and resubmit.
 * If a developer is seeking an exception to a more arbitrary code style standard; when responding to the comments or decline of the pull request, the developer should explain why the exception is needed in this case.
 * It is best practice to submit the pull request outlining these exceptions so the reviewer can take them into account while doing the first review.
 * If code is rejected for being more than 150 lines in a component, the reviewer should reference what lines of code could become a sub-component.
 * **This is not a punitive PASS/FAIL** it is a form of communication to make sure code merged to master is justified and productive for the whole team at all times.
+
+# 
+# Reverting Merges Flow
+Coming Soon
 
 # 
 # Code Clarity Best Practices
