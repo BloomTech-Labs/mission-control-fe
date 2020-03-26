@@ -46,6 +46,7 @@ const Settings = () => {
             x
           </button>
           Manage Columns
+          {/* statues grabs the first and only program index in programs, might need to be reworked to use a query with a id variable*/}
           <CreateColumn
             programId={programId}
             column={data}

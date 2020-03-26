@@ -3,7 +3,6 @@ import {
   labelListStyle,
   labelListDiv,
   itemsContainer,
-  deleteIcon,
 } from './LabelList.module.scss';
 import StatusLabel from '../StatusLabel/index';
 import DeleteLabel from '../DeleteLabel/DeleteLabel';

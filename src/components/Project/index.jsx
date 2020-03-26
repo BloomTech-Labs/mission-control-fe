@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'urql';
-import { Accordion } from 'semantic-ui-react';
 
 import NoteEditor from './NoteEditor';
 import NotesFeed from './NoteFeed';
@@ -18,7 +17,6 @@ import {
   editorFeedContainer,
   teamContainer,
   gradeContainer,
-  projectStatusContainer,
 } from './Project.module.scss';
 
 import { PROJECT_VIEW_QUERY as query } from './Queries';

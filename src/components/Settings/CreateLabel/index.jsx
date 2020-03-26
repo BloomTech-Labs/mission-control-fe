@@ -25,8 +25,6 @@ const CreateLabelForm = ({ column, label, setLabel }) => {
     setAddLabel(!addLabel);
   };
 
-  const disableTer = !label.color || !label.name;
-
   return (
     <div className={addLabelCont}>
       <button

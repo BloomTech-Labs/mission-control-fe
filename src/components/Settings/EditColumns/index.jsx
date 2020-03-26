@@ -23,8 +23,6 @@ const EditColumns = ({ column, id, statuses }) => {
 
   const disabledTer = displayFiltered.length >= 4 && !column.display;
 
-  console.log('display', disabledTer);
-
   const toggler = e => {
     e.preventDefault();
     return disabledTer

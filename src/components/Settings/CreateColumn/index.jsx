@@ -29,10 +29,10 @@ const CreateColumn = ({ programId, statuses }) => {
 
   const handleClose = () => setOpen(false);
 
-  const toggle = () => {
+  const toggle = useCallback(() => {
     handleClose();
     setColumn({ name: '' });
-  };
+  }, [setColumn]);
 
   const handleChanges = e => {
     e.preventDefault();
@@ -53,7 +53,7 @@ const CreateColumn = ({ programId, statuses }) => {
       }
       toggle();
     },
-    [executeCreate, column, toggle]
+    [executeCreate, column, toggle, programId, displayFiltered.length]
   );
 
   return (

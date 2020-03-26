@@ -26,7 +26,6 @@ const ProjectStatus = ({ projectId, label }) => {
     setAccordion({ activeIndex: newIndex });
   };
 
-  console.log(handleClick);
   const { data } = state;
 
   const { activeIndex } = accordion;
@@ -46,6 +45,7 @@ const ProjectStatus = ({ projectId, label }) => {
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 0}>
           <div className={projectStatusDropdown}>
+            {/* Data check to keep the map from crashing, also checks to make sure that there's anything in the array to map over */}
             {data && data.project.projectStatus.length > 0
               ? data.project.projectStatus.map(statuses => {
                   return (
