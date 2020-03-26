@@ -1,0 +1,31 @@
+@import '../../../styles/variables.scss';
+
+.deleteColumnModal {
+  width: 500px !important;
+  p {
+    font-size: 1.2rem;
+  }
+  h3 {
+    text-align: center;
+    color: #f54987;
+  }
+}
+
+.trashIcon {
+  color: lightgray;
+  cursor: pointer;
+  pointer-events: auto;
+  :hover {
+    color: gray;
+  }
+}
+
+.button {
+  background: #f87da9 !important;
+  color: #fee5ee !important;
+}
+
+.button:hover {
+  background: #f54987 !important;
+  color: white !important;
+}

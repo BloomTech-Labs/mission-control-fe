@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { labelListStyle } from './LabelList.module.scss';
+import {
+  labelListStyle,
+  labelListDiv,
+  itemsContainer,
+} from './LabelList.module.scss';
 import StatusLabel from '../StatusLabel/index';
+import DeleteLabel from '../DeleteLabel/DeleteLabel';
+import UpdateLabelModal from '../UpdateLabelModal/index';
 import { LABEL_LIST_VIEW as query } from '../../ProjectList/Queries/projectQueries';
 import { useQuery } from 'urql';
 const LabelList = ({ column, columnId }) => {
@@ -21,7 +27,15 @@ const LabelList = ({ column, columnId }) => {
       {data && data.programs.length && id !== -1
         ? data.programs[0].statuses[id].labels.map(label => {
             return (
-              <StatusLabel columnId={columnId} label={label} key={label.id} />
+              <div className={labelListDiv} key={label.id}>
+                <div className={itemsContainer}>
+                  <StatusLabel columnId={columnId} label={label} />
+                </div>
+                <div className={itemsContainer}>
+                  <UpdateLabelModal label={label} />
+                  <DeleteLabel label={label} columnId={columnId} />
+                </div>
+              </div>
             );
           })
         : ''}

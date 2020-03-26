@@ -6,7 +6,7 @@
   justify-content: space-around;
   text-align: center;
   padding: 0.5rem 0 0;
-  width: 80%;
+  width: 100%;
 }
 
 .dropdownLabel {
@@ -44,4 +44,22 @@
   height: 20px;
   border-radius: 25px;
   font-size: 0.8rem;
+}
+
+.projectStatusContainer {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: left;
+  justify-content: space-around;
+  padding: 1rem 0 0;
+}
+
+.accordIcon {
+  color: #f54987;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.accordIcon:hover {
+  color: #f87da9;
 }

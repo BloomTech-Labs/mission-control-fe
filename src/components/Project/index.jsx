@@ -17,7 +17,6 @@ import {
   editorFeedContainer,
   teamContainer,
   gradeContainer,
-  projectStatusContainer,
 } from './Project.module.scss';
 
 import { PROJECT_VIEW_QUERY as query } from './Queries';
@@ -58,13 +57,10 @@ const Project = props => {
           </div>
           <div className={projectContainer}>
             <div className={editorFeedContainer}>
-              <div className={projectStatusContainer}>
-                <h2>Project Status</h2>
-                <ProjectStatus
-                  projectId={id}
-                  label={data.project.projectStatus.labels}
-                />
-              </div>
+              <ProjectStatus
+                projectId={id}
+                label={data.project.projectStatus.labels}
+              />
               <h2>Repository Statistics</h2>
               <GitHubRepos
                 ghrepos={data.project.product.GHRepos}

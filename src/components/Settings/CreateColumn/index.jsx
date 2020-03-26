@@ -1,25 +1,38 @@
 import React, { useState, useCallback, useContext } from 'react';
 import { Button, Modal } from 'semantic-ui-react';
-import { modalStyle, buttonStyle } from './CreateColumn.module.scss';
+import {
+  modalStyle,
+  buttonStyle,
+  basicInput,
+  form,
+  addColumnButton,
+  headerDiv,
+  closeButton,
+  modalCont,
+  button,
+} from './CreateColumn.module.scss';
 import { useMutation } from 'urql';
 import { CREATE_STATUS as createStatus } from '../../Project/Queries/index';
 
 import { ColumnContext } from '../../../contexts/ColumnContext';
-import { basicInput, form } from './CreateColumn.module.scss';
 
-const CreateColumn = ({ programId }) => {
+const CreateColumn = ({ programId, statuses }) => {
   const { column, setColumn } = useContext(ColumnContext);
   const [open, setOpen] = useState(false);
   const [, executeCreate] = useMutation(createStatus);
+
+  let displayFiltered = statuses.filter(function(e) {
+    return e.display === true;
+  });
 
   const handleOpen = () => setOpen(true);
 
   const handleClose = () => setOpen(false);
 
-  const toggle = () => {
+  const toggle = useCallback(() => {
     handleClose();
     setColumn({ name: '' });
-  };
+  }, [setColumn]);
 
   const handleChanges = e => {
     e.preventDefault();
@@ -33,10 +46,14 @@ const CreateColumn = ({ programId }) => {
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
-      executeCreate(column);
+      if (displayFiltered.length >= 4) {
+        executeCreate({ id: programId, name: column.name, display: false });
+      } else {
+        executeCreate(column);
+      }
       toggle();
     },
-    [executeCreate, column, toggle]
+    [executeCreate, column, toggle, programId, displayFiltered.length]
   );
 
   return (
@@ -44,30 +61,35 @@ const CreateColumn = ({ programId }) => {
       <Modal
         open={open}
         onClose={toggle}
-        trigger={<Button onClick={handleOpen}>Create Column</Button>}
+        trigger={
+          <button className={addColumnButton} onClick={handleOpen}>
+            Add Column
+          </button>
+        }
         className={modalStyle}
       >
-        <Modal.Header>Create Column</Modal.Header>
-        <Modal.Content>
-          <Modal.Description>
-            <form className={form}>
-              <label> Column Name: </label>
-              <input
-                value={column.name}
-                name="name"
-                onChange={handleChanges}
-                placeholder="Status"
-                className={basicInput}
-              />
-            </form>
-          </Modal.Description>
+        <Modal.Header className={headerDiv}>
+          {' '}
+          <button className={closeButton} onClick={toggle}>
+            x
+          </button>
+          Add Column
+        </Modal.Header>
+        <Modal.Content className={modalCont}>
+          <form className={form}>
+            <label> Column Name </label>
+            <input
+              value={column.name}
+              name="name"
+              onChange={handleChanges}
+              placeholder="Status"
+              className={basicInput}
+            />
+          </form>
         </Modal.Content>
         <Modal.Actions className={buttonStyle}>
-          <Button className="ui approve button" onClick={handleSubmit}>
+          <Button className={button} onClick={handleSubmit}>
             Save
-          </Button>
-          <Button className="ui cancel button" onClick={toggle}>
-            Cancel
           </Button>
         </Modal.Actions>
       </Modal>

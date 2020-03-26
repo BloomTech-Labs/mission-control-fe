@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import {
   bottomLinks,
   modalStyle,
-  buttonStyle,
-  columnHeader,
-  buttonBreakLine,
+  headerDiv,
+  closeButton,
 } from './Settings.module.scss';
 import { Button, Header, Modal } from 'semantic-ui-react';
 import { useQuery } from 'urql';
@@ -42,23 +41,21 @@ const Settings = () => {
         trigger={<Button onClick={handleOpen}>Settings</Button>}
         className={modalStyle}
       >
-        <Modal.Header>Settings</Modal.Header>
+        <Header className={headerDiv}>
+          <button className={closeButton} onClick={toggle}>
+            x
+          </button>
+          Manage Columns
+          {/* statues grabs the first and only program index in programs, might need to be reworked to use a query with a id variable*/}
+          <CreateColumn
+            programId={programId}
+            column={data}
+            statuses={data.programs[0].statuses}
+          />
+        </Header>
         <Modal.Content>
-          <Modal.Description>
-            <Header size={'huge'} className={columnHeader}>
-              Column View
-            </Header>
-            <ColumnSettings />
-          </Modal.Description>
+          <ColumnSettings />
         </Modal.Content>
-        <Modal.Actions className={buttonStyle}>
-          <Button className="ui cancel button" onClick={toggle}>
-            Close
-          </Button>
-          <div className={buttonBreakLine}>
-            <CreateColumn programId={programId} column={data} />
-          </div>
-        </Modal.Actions>
       </Modal>
     </div>
   );

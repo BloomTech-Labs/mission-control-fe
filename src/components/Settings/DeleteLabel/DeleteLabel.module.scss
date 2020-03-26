@@ -1,0 +1,25 @@
+@import '../../../styles/variables.scss';
+
+.deleteLabelModal {
+  width: 350px !important;
+}
+
+.button {
+  background: #f87da9 !important;
+  color: #fee5ee !important;
+}
+
+.button:hover {
+  background: #f54987 !important;
+  color: white !important;
+}
+
+.trashIcon {
+  color: lightgray;
+  cursor: pointer;
+  pointer-events: auto;
+  margin-top: 3px;
+  :hover {
+    color: gray;
+  }
+}

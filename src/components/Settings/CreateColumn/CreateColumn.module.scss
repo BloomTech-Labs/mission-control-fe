@@ -2,8 +2,12 @@
 
 .modalStyle {
   position: relative !important;
-  height: 200px !important;
+  height: 240px !important;
   width: 350px !important;
+}
+.modalCont {
+  padding-left: 20% !important;
+  padding-right: 20% !important;
 }
 
 .buttonStyle {
@@ -15,20 +19,70 @@
 .basicInput {
   border: none;
   border-radius: 5px;
+  height: 35px;
+  margin: 10px 0 10px 0;
   padding: 3px 5px;
-  width: 40%;
+  width: 100%;
   color: #333;
+  background: #f0f0f0;
   box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
 .basicInput:focus {
   outline: none;
   box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1),
-    0 0 3px 1px #cfebf3;
+    0 0 3px 1px #fccbdd;
 }
 
 .form {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-around;
+  label {
+    font-weight: 900;
+  }
+}
+
+.addColumnButton {
+  color: #f54987;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  pointer-events: auto;
+  outline: none;
+}
+
+button:hover {
+  color: gray;
+}
+
+.headerDiv {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: lightgray;
+  font-size: 1.5rem;
+  font-weight: 100;
+  margin-right: 75px;
+  cursor: pointer;
+  pointer-events: auto;
+  outline: none;
+  &hover {
+    color: gray;
+  }
+}
+
+.button {
+  background: #f87da9 !important;
+  color: #fee5ee !important;
+}
+
+.button:hover {
+  background: #f54987 !important;
+  color: white !important;
 }

@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
-  labelPreviewDesign,
   basicInput,
   form,
-  createContainer,
-  labelNameContainer,
-  labelPreviewCont,
+  addLabelButton,
+  addLabelCont,
+  disAddLabelButton,
+  disForm,
 } from './CreateLabel.module.scss';
 import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
 
 const CreateLabelForm = ({ column, label, setLabel }) => {
+  const [addLabel, setAddLabel] = useState(false);
   const handleChanges = e => {
     e.preventDefault();
     setLabel({
@@ -20,40 +21,31 @@ const CreateLabelForm = ({ column, label, setLabel }) => {
     });
   };
 
-  const disableTer = !label.color || !label.name;
+  const handleOpen = () => {
+    setAddLabel(!addLabel);
+  };
 
   return (
-    <form className={form}>
-      <div>
-        <div className={createContainer}>
-          <div className={labelNameContainer}>
-            <label>Label Name:</label>
-            <input
-              name="name"
-              id="name"
-              placeholder="label..."
-              onChange={handleChanges}
-              value={label.name}
-              className={basicInput}
-            />
-            <CustomCirclePicker label={label} setLabel={setLabel} />
-          </div>
-          <div className={labelPreviewCont}>
-            {label.name && label.color ? (
-              <div
-                className={labelPreviewDesign}
-                style={{ background: `${label.color}` }}
-              >
-                {label.name}
-              </div>
-            ) : (
-              ''
-            )}
-          </div>
-        </div>
-      </div>
-      <br />
-    </form>
+    <div className={addLabelCont}>
+      <button
+        className={!addLabel ? addLabelButton : disAddLabelButton}
+        onClick={handleOpen}
+      >
+        + Add label
+      </button>
+      <form className={addLabel ? form : disForm}>
+        <label>Label Name:</label>
+        <input
+          name="name"
+          id="name"
+          placeholder="label..."
+          onChange={handleChanges}
+          value={label.name}
+          className={basicInput}
+        />
+        <CustomCirclePicker label={label} setLabel={setLabel} />
+      </form>
+    </div>
   );
 };
 

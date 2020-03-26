@@ -17,7 +17,11 @@ const ColumnSettings = () => {
         {data
           ? data.programs[0].statuses.map(column => (
               <div key={column.id}>
-                <EditColumns column={column} id={column.id} />
+                <EditColumns
+                  column={column}
+                  id={column.id}
+                  statuses={data.programs[0].statuses}
+                />
               </div>
             ))
           : ' '}

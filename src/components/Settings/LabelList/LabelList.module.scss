@@ -1,6 +1,27 @@
 @import '../../../styles/variables.scss';
 
 .labelListStyle {
-  position: relative;
-  height: 25px;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  overflow: auto;
+}
+
+.labelListDiv {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 0 10px 0;
+  padding: 10px 0 0px 0;
+  border-top: 1px solid lightgray;
+  font-weight: 600;
+  width: 100%;
+}
+
+.itemsContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.deleteIcon {
+  padding: 4% 10%;
 }

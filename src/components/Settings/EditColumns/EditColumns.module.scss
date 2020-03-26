@@ -1,62 +1,87 @@
 @import '../../../styles/variables.scss';
 
-.modalStyle {
-  position: relative !important;
-  height: 325px !important;
-  width: 500px !important;
+.toggleCont {
+  background: #b6b6b6;
+  border-radius: 50px;
+  top: 3px;
+  height: 15px;
+  position: relative;
+  width: 30px;
+  margin-right: 7px;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
-.toggleCont {
-  background: #f9f9f9;
+.toggledCont {
+  background: $accent;
   border-radius: 50px;
-  border: 1px solid #d3d3d3;
-  height: 20px;
+  top: 3px;
+  height: 15px;
   position: relative;
-  width: 40px;
+  width: 30px;
+  margin-right: 7px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.hiddenTogCont {
+  display: none;
+}
+
+.hiddenDisToggle {
+  display: none;
+}
+
+.hiddenTog {
+  display: none;
+}
+
+.disToggle {
+  margin: 2px 16px 0px 7px;
+  color: lightgray;
+  :hover {
+    color: gray;
+  }
+}
+
+.toggle {
+  background: white;
+  border-radius: 50px;
+  height: 13px;
+  top: 1px;
+  left: 14px;
+  position: absolute;
+  transition: 0.2s;
+  width: 15px;
+}
+
+.toggled {
+  background: white;
+  border-radius: 50px;
+  height: 13px;
+  top: 1px;
+  left: 1px;
+  position: absolute;
+  transition: 0.2s;
+  width: 15px;
 }
 
 .toggledColumn {
   visibility: hidden;
 }
 
-.toggle {
-  background: #39b7cd;
-  border-radius: 50px;
-  height: 18px;
-  left: 18px;
-  position: absolute;
-  transition: 0.2s;
-  width: 20px;
-}
-
-.toggled {
-  background: $accent;
-  border-radius: 50px;
-  height: 18px;
-  left: 0;
-  position: absolute;
-  transition: 0.2s;
-  width: 20px;
-}
-.toggledCont {
-  background: #ffcccb;
-  border-radius: 50px;
-  border: 1px solid #d3d3d3;
-  height: 20px;
-  position: relative;
-  width: 40px;
-}
-
 .editColumnsDiv {
   display: flex;
   justify-content: space-between;
-  padding: 0 20% 0 20%;
-  height: 30px;
+  margin: 0px 5% 10px 5%;
+  padding: 10px 0 10px 0;
+  border-bottom: 1px solid lightgray;
+  font-weight: 600;
 }
 
-.togglerContainer {
+.itemsContainer {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .deleteIcon {

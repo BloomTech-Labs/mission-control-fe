@@ -65,6 +65,8 @@ const LabelDropdown = ({ labels, project, statusData }) => {
   if (statusData.display === true) {
     return (
       <Dropdown
+        scrolling
+        downward="true"
         onChange={handleChange}
         placeholder={labels.length < 1 ? 'No Labels' : newPh}
         options={labelsArr}
