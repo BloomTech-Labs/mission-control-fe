@@ -7,6 +7,8 @@
   text-align: center;
   padding: 0.5rem 0 0;
   width: 80%;
+  height: 250px;
+  overflow: auto;
 }
 
 .dropdownLabel {
@@ -52,4 +54,14 @@
   align-items: left;
   justify-content: space-around;
   padding: 1rem 0 0;
+}
+
+.accordIcon {
+  color: #f54987;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.accordIcon:hover {
+  color: #f87da9;
 }

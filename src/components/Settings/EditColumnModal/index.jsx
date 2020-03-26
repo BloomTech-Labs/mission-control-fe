@@ -10,9 +10,6 @@ import {
   headerDiv,
   closeButton,
   button,
-  editColumnsDiv,
-  itemsContainer,
-  deleteIcon,
 } from './EditColumnModal.module.scss';
 import { useMutation } from 'urql';
 import CreateLabel from '../CreateLabel/index';
@@ -91,17 +88,8 @@ const EditColumnModal = ({ column }) => {
           </div>
           <br />
           <h3>Labels</h3>
-          <div className={editColumnsDiv}>
-            <div className={itemsContainer}>
-              <div>{column.name}</div>
-            </div>
-            <div className={itemsContainer}>
-              <div>
-                <EditColumnModal column={column} />
-              </div>
-              <div className={deleteIcon}></div>
-            </div>
-          </div>
+          <CreateLabel column={column} label={label} setLabel={setLabel} />
+          <LabelList column={column} columnId={column.id} />
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions className={buttonStyle}>

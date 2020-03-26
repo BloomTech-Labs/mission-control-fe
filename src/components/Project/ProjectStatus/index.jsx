@@ -4,9 +4,10 @@ import {
   projectStatusDropdown,
   dropdownLabel,
   projectStatusContainer,
+  accordIcon,
 } from './ProjectStatus.module.scss';
 import ProjectStatusDropdown from './projectStatusDropdown';
-import { Accordion } from 'semantic-ui-react';
+import { Accordion, Icon } from 'semantic-ui-react';
 
 import { GET_PROJECT_STATUS as query } from '../Queries/index';
 const ProjectStatus = ({ projectId, label }) => {
@@ -38,7 +39,10 @@ const ProjectStatus = ({ projectId, label }) => {
           active={activeIndex === 0}
           index={0}
         >
-          <h2>Project Status</h2>
+          <h2>
+            Project Status
+            <Icon className={accordIcon} name="dropdown" />
+          </h2>
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 0}>
           <div className={projectStatusDropdown}>
