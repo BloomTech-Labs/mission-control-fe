@@ -16,12 +16,12 @@ const CustomCirclePicker = props => {
             <CirclePicker
               color={props.label.color}
               colors={[
-                '#75a9b6',
-                '#575a7b',
-                '#27213d',
-                '#2c6049',
-                '#d19c18',
-                '#d42c08',
+                '#10B4DC',
+                '#F6C104',
+                '#2DA602',
+                '#8210DC',
+                '#DC4110',
+                '#F8A529',
               ]}
               onChange={handleColorChanges}
               width="130px"

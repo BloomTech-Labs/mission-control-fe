@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'semantic-ui-react';
-import EditIcon from '@material-ui/icons/Edit';
-import { modalStyle, buttonStyle } from './EditColumnModal.module.scss';
-import { hover } from '../StatusLabel/StatusLabel.module.scss';
+import {
+  modalStyle,
+  buttonStyle,
+  basicInput,
+  form,
+  editColumnButton,
+} from './EditColumnModal.module.scss';
 import { useMutation } from 'urql';
 import CreateLabel from '../CreateLabel/index';
 import LabelList from '../LabelList/index';
 import { UPDATE_STATUS, CREATE_LABEL } from '../../Project/Queries/index';
-import { basicInput, form } from './EditColumnModal.module.scss';
 
 const EditColumnModal = ({ column }) => {
   const [updateColumn, setUpdateColumn] = useState({
@@ -55,10 +58,9 @@ const EditColumnModal = ({ column }) => {
       onClose={toggle}
       trigger={
         <div>
-          <p onClick={handleOpen} className={hover}>
-            {' '}
-            <EditIcon fontSize={'small'} /> {column.name}{' '}
-          </p>
+          <button onClick={handleOpen} className={editColumnButton}>
+            Edit
+          </button>
         </div>
       }
       className={modalStyle}
