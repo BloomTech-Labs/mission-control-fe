@@ -7,6 +7,7 @@ import {
 } from './LabelList.module.scss';
 import StatusLabel from '../StatusLabel/index';
 import DeleteLabel from '../DeleteLabel/DeleteLabel';
+import UpdateLabelModal from '../UpdateLabelModal/index';
 import { LABEL_LIST_VIEW as query } from '../../ProjectList/Queries/projectQueries';
 import { useQuery } from 'urql';
 const LabelList = ({ column, columnId }) => {
@@ -32,6 +33,7 @@ const LabelList = ({ column, columnId }) => {
                   <StatusLabel columnId={columnId} label={label} />
                 </div>
                 <div className={itemsContainer}>
+                  <UpdateLabelModal label={label} />
                   <DeleteLabel label={label} columnId={columnId} />
                 </div>
               </div>
