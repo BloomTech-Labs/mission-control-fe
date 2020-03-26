@@ -1,3 +1,4 @@
+//this function takes in a lettter for grades and returns a string for the tooltip
 import React from 'react';
 
 const getMessage = grade => {

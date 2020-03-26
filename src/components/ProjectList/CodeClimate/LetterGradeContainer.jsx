@@ -3,7 +3,7 @@ import { Maintainability } from './letterGrade.module.scss';
 import LetterGrade from './LetterGrade';
 import getColor from '../../../utils/getColorFromCCGrade';
 import ChartDialog from '../GitHub/Charts/ChartDialog'
-
+// this component checks if the ghrepos prop is an array and has length to it and if it does it renders and passes down the full array of ghrepos to ChartDialog and maps over each repo and renders the name and grade on screen
 const LetterGradeContainer = props => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [dialogOpen, setDialogOpen] = useState({
