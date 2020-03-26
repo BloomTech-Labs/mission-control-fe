@@ -14,12 +14,22 @@ import DeleteColumn from '../DeleteColumn';
 
 import EditColumnModal from '../EditColumnModal/index';
 
-const EditColumns = ({ column, id }) => {
+const EditColumns = ({ column, id, statuses }) => {
   const [, executeUpdateDisplay] = useMutation(updateDisplay);
+
+  let displayFiltered = statuses.filter(function(e) {
+    return e.display === true;
+  });
+
+  const disabledTer = displayFiltered.length >= 4 && !column.display;
+
+  console.log('display', disabledTer);
 
   const toggler = e => {
     e.preventDefault();
-    executeUpdateDisplay({ id, display: !column.display });
+    return disabledTer
+      ? null
+      : executeUpdateDisplay({ id, display: !column.display });
   };
 
   return (

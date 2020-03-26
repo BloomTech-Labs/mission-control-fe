@@ -27,13 +27,9 @@ const LabelList = ({ column, columnId }) => {
       {data && data.programs.length && id !== -1
         ? data.programs[0].statuses[id].labels.map(label => {
             return (
-              <div className={labelListDiv}>
+              <div className={labelListDiv} key={label.id}>
                 <div className={itemsContainer}>
-                  <StatusLabel
-                    columnId={columnId}
-                    label={label}
-                    key={label.id}
-                  />
+                  <StatusLabel columnId={columnId} label={label} />
                 </div>
                 <div className={itemsContainer}>
                   <DeleteLabel label={label} columnId={columnId} />
