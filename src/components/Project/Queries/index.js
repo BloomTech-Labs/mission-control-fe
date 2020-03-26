@@ -87,6 +87,18 @@ export const PROJECT_VIEW_QUERY = gql`
     project(id: $id) {
       id
       name
+      projectStatus {
+        id
+        name
+        labels {
+          id
+          name
+          color
+          selected {
+            id
+          }
+        }
+      }
       product {
         id
         name
@@ -284,6 +296,12 @@ export const CREATE_STATUS = gql`
     createStatus(id: $id, name: $name) {
       id
       name
+      display
+      labels {
+        id
+        name
+        color
+      }
     }
   }
 `;
@@ -352,6 +370,37 @@ export const DELETE_GHREPO = gql`
   mutation deleteGithubRepo($id: ID!) {
     deleteGithubRepo(id: $id) {
       id
+    }
+  }
+`;
+
+export const GET_PROJECT_STATUS = gql`
+  query projectStatusQuery($id: ID!) {
+    project(id: $id) {
+      id
+      name
+      projectStatus {
+        id
+        name
+        labels {
+          id
+          name
+          color
+          selected {
+            id
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const UPDATE_STATUS_DISPLAY = gql`
+  mutation updateStatusMutation($id: ID!, $display: Boolean) {
+    updateStatus(id: $id, display: $display) {
+      id
+      name
+      display
     }
   }
 `;

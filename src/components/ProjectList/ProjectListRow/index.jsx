@@ -4,9 +4,14 @@ import { Link } from 'react-router-dom';
 import LetterGradeContainer from '../CodeClimate/LetterGradeContainer.jsx';
 import LabelDropdown from '../LabelDropdown/index';
 
-import { title, statusColumns } from './projectListRow.module.scss';
-//this component renders the letter grade container underneath the specific project it's associated with.
-const ProjectRow = ({ project, statusColumn }) => {
+import {
+  title,
+  rtd,
+  statusColumns,
+  hiddenStatus,
+} from './projectListRow.module.scss';
+
+const ProjectRow = ({ project, statusColumn, statusDisplay }) => {
   const statusLabelsArr = [];
   var i;
   if (statusColumn.length > 0) {
@@ -24,7 +29,12 @@ const ProjectRow = ({ project, statusColumn }) => {
         {statusColumn.length > 0 && statusLabelsArr.length > 0
           ? statusLabelsArr.map(statusData => {
               return (
-                <td key={statusData.id} className={statusColumns}>
+                <td
+                  key={statusData.id}
+                  className={
+                    statusData.display === true ? statusColumns : hiddenStatus
+                  }
+                >
                   <LabelDropdown
                     labels={statusData.labels}
                     project={project}
@@ -43,7 +53,10 @@ const ProjectRow = ({ project, statusColumn }) => {
           <Link to={`/project/${project.id}`} className={title}>
             {project.name}
           </Link>
-          <LetterGradeContainer ghrepos={project.product.grades} name={project.name} />
+          <LetterGradeContainer
+            ghrepos={project.product.grades}
+            name={project.name}
+          />
         </td>
       </tr>
     );
