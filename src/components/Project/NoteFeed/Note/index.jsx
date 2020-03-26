@@ -54,8 +54,8 @@ const Note = ({ note, user, projectManagers, projectId }) => {
 			</div>
 			<div className={noteContainer}>
 				<div className={contentContainer}>
-						<div data-testid='note' className={noteHeader}>
-						<h2 data-testid='topic' >{topic}</h2>
+						<div className={noteHeader}>
+						<h2>{topic}</h2>
 						<StarRatings
 							numberOfStars={3}
 							rating={rating}
@@ -75,7 +75,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
 							</div>
 						)}
 					</div>
-					<div data-testid='content' className={noteBody}>{content}</div>
+					<div className={noteBody}>{content}</div>
 				</div>
 				<div className={noteFooter}>
 					<div

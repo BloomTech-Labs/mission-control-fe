@@ -36,10 +36,11 @@
     "semantic-ui-react": "^0.88.2",
     "urql": "^1.8.2"
   },
+  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --watch",
     "eject": "react-scripts eject",
     "eslint": "eslint --fix ./src"
   },
