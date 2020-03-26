@@ -6,7 +6,6 @@ import LabelDropdown from '../LabelDropdown/index';
 
 import {
   title,
-  rtd,
   statusColumns,
   hiddenStatus,
 } from './projectListRow.module.scss';

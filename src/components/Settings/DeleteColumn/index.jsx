@@ -36,7 +36,7 @@ const DeleteColumn = ({ column }) => {
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        <Button color="gray" onClick={handleClose}>
+        <Button color="grey" onClick={handleClose}>
           Cancel
         </Button>
         <Button
