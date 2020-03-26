@@ -12,12 +12,19 @@
   font-size: 0.8rem;
 }
 
+.modalCont {
+  padding: 0 10% 3% 10%;
+}
+
 .basicInput {
   border: none;
   border-radius: 5px;
+  height: 35px;
+  margin: 5px 0 10px 0;
   padding: 3px 5px;
-  width: 40%;
+  width: 100%;
   color: #333;
+  background: #f0f0f0;
   box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -29,18 +36,27 @@
 
 .form {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-around;
+  label {
+    font-size: 1.1rem;
+    font-weight: 900;
+  }
 }
 
 .labelPreviewCont {
   display: flex;
-  padding-top: 10px !important;
-  margin-top: 20px !important;
-  height: 45px;
-  width: 225px;
+  justify-content: center;
+  height: 47px;
+  width: 250px;
 }
 
 .labelPreviewText {
-  padding-right: 5px;
+  padding-right: 15px;
+  color: gray;
+  font-weight: 800;
+}
+
+label {
+  font-weight: 800;
 }

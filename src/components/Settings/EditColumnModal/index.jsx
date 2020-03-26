@@ -88,8 +88,8 @@ const EditColumnModal = ({ column }) => {
           </div>
           <br />
           <h3>Labels</h3>
-          <CreateLabel column={column} label={label} setLabel={setLabel} />
           <LabelList column={column} columnId={column.id} />
+          <CreateLabel column={column} label={label} setLabel={setLabel} />
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions className={buttonStyle}>

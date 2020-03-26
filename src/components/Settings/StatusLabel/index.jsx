@@ -2,15 +2,14 @@ import React, { useState, useCallback } from 'react';
 import {
   labelDesign,
   editModalStyle,
-  hover,
   headerDiv,
   closeButton,
+  editLabelButton,
   button,
 } from './StatusLabel.module.scss';
 import { Modal, Header, Button } from 'semantic-ui-react';
 import { FaRegEdit } from 'react-icons/fa';
 import UpdateLabel from '../UpdateLabel/index';
-import DeleteLabel from '../DeleteLabel/DeleteLabel';
 import { UPDATE_LABEL as updateLabelMutation } from '../../Project/Queries';
 import { useMutation } from 'urql';
 const StatusLabel = ({ label, columnId }) => {
@@ -49,12 +48,15 @@ const StatusLabel = ({ label, columnId }) => {
   return (
     <div className={labelDesign} style={{ background: `${label.color}` }}>
       {label.name}
-      <DeleteLabel label={label} columnId={columnId} />
       <Modal
         open={open}
         onClose={toggle}
         className={editModalStyle}
-        trigger={<FaRegEdit className={hover} onClick={handleOpen} />}
+        trigger={
+          <button className={editLabelButton} onClick={handleOpen}>
+            Edit
+          </button>
+        }
       >
         <Header className={headerDiv}>
           <button className={closeButton} onClick={toggle}>

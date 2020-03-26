@@ -1,18 +1,17 @@
-import React from 'react';
-import { Segment } from 'semantic-ui-react';
+import React, { useState } from 'react';
 
 import {
-  labelPreviewDesign,
   basicInput,
   form,
-  createContainer,
-  labelNameContainer,
-  labelPreviewCont,
-  labelPreviewText,
+  addLabelButton,
+  addLabelCont,
+  disAddLabelButton,
+  disForm,
 } from './CreateLabel.module.scss';
 import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
 
 const CreateLabelForm = ({ column, label, setLabel }) => {
+  const [addLabel, setAddLabel] = useState(false);
   const handleChanges = e => {
     e.preventDefault();
     setLabel({
@@ -22,41 +21,33 @@ const CreateLabelForm = ({ column, label, setLabel }) => {
     });
   };
 
+  const handleOpen = () => {
+    setAddLabel(!addLabel);
+  };
+
   const disableTer = !label.color || !label.name;
 
   return (
-    <form className={form}>
-      <div>
-        <div className={createContainer}>
-          <div className={labelNameContainer}>
-            <label>Label Name:</label>
-            <input
-              name="name"
-              id="name"
-              placeholder="label..."
-              onChange={handleChanges}
-              value={label.name}
-              className={basicInput}
-            />
-            <CustomCirclePicker label={label} setLabel={setLabel} />
-          </div>
-          <Segment className={labelPreviewCont}>
-            <p className={labelPreviewText}>Label Preview:</p>
-            {label.name && label.color ? (
-              <div
-                className={labelPreviewDesign}
-                style={{ background: `${label.color}` }}
-              >
-                {label.name}
-              </div>
-            ) : (
-              ''
-            )}
-          </Segment>
-        </div>
-      </div>
-      <br />
-    </form>
+    <div className={addLabelCont}>
+      <button
+        className={!addLabel ? addLabelButton : disAddLabelButton}
+        onClick={handleOpen}
+      >
+        + Add label
+      </button>
+      <form className={addLabel ? form : disForm}>
+        <label>Label Name:</label>
+        <input
+          name="name"
+          id="name"
+          placeholder="label..."
+          onChange={handleChanges}
+          value={label.name}
+          className={basicInput}
+        />
+        <CustomCirclePicker label={label} setLabel={setLabel} />
+      </form>
+    </div>
   );
 };
 

@@ -4,6 +4,7 @@ import {
   labelDesign,
   labelPreviewCont,
   labelPreviewText,
+  modalCont,
 } from './UpdateLabel.module.scss';
 
 import CustomCirclePicker from '../StatusLabel/ColorPicker/CustomColorPicker';
@@ -18,41 +19,42 @@ const UpdateLabel = props => {
   };
 
   return (
-    <form>
-      <div>
+    <div className={modalCont}>
+      <form>
         <div>
-          <div className={form}>
-            <label>Label name:</label>
-            <input
-              name="name"
-              id="name"
-              onChange={handleChanges}
-              value={props.label.name}
-              className={basicInput}
+          <div>
+            <div className={form}>
+              <label>Label name</label>
+              <input
+                name="name"
+                id="name"
+                onChange={handleChanges}
+                value={props.label.name}
+                className={basicInput}
+              />
+            </div>
+            <CustomCirclePicker
+              {...props}
+              label={props.label}
+              setLabel={props.setLabel}
             />
+            <Segment className={labelPreviewCont}>
+              <p className={labelPreviewText}>Label Preview</p>
+              {props.label.name && props.label.color ? (
+                <div
+                  className={labelDesign}
+                  style={{ background: `${props.label.color}` }}
+                >
+                  {props.label.name}
+                </div>
+              ) : (
+                ''
+              )}
+            </Segment>
           </div>
-          <br />
-          <CustomCirclePicker
-            {...props}
-            label={props.label}
-            setLabel={props.setLabel}
-          />
-          <Segment className={labelPreviewCont}>
-            <p className={labelPreviewText}>Label Preview:</p>
-            {props.label.name && props.label.color ? (
-              <div
-                className={labelDesign}
-                style={{ background: `${props.label.color}` }}
-              >
-                {props.label.name}
-              </div>
-            ) : (
-              ''
-            )}
-          </Segment>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 export default UpdateLabel;

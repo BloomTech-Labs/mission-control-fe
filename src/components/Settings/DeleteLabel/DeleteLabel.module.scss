@@ -13,3 +13,12 @@
   background: #f54987 !important;
   color: white !important;
 }
+
+.trashIcon {
+  color: lightgray;
+  cursor: pointer;
+  pointer-events: auto;
+  :hover {
+    color: gray;
+  }
+}

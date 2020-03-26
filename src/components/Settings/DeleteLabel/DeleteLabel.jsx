@@ -2,9 +2,8 @@ import React, { useState, useCallback } from 'react';
 import { useMutation } from 'urql';
 import { Modal, Button } from 'semantic-ui-react';
 import { DELETE_LABEL as deleteLabel } from '../../Project/Queries/index';
-import { FaTrashAlt } from 'react-icons/fa';
-import { hover } from '../StatusLabel/StatusLabel.module.scss';
-import { deleteLabelModal, button } from './DeleteLabel.module.scss';
+import { FaTrash } from 'react-icons/fa';
+import { deleteLabelModal, button, trashIcon } from './DeleteLabel.module.scss';
 
 const DeleteLabel = ({ label, columnId }) => {
   const [open, setOpen] = useState(false);
@@ -31,7 +30,7 @@ const DeleteLabel = ({ label, columnId }) => {
       className={deleteLabelModal}
       open={open}
       onClose={handleClose}
-      trigger={<FaTrashAlt className={hover} onClick={handleOpen} />}
+      trigger={<FaTrash className={trashIcon} onClick={handleOpen} />}
     >
       <Modal.Header>Delete Label?</Modal.Header>
       <Modal.Actions>

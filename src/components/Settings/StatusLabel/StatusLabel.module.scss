@@ -11,7 +11,6 @@
   color: white;
   text-align: center;
   padding-top: 2px;
-  margin-bottom: 10px;
   width: 100px;
   height: 20px;
   border-radius: 25px;
@@ -41,6 +40,18 @@
   &hover {
     color: gray;
   }
+}
+
+.editLabelButton {
+  color: #f54987;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  pointer-events: auto;
+  outline: none;
+  margin-left: 230px;
+  margin-bottom: 200px !important;
 }
 
 .button {
