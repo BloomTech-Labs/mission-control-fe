@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
-import { labelDesign } from './ProjectStatus.module.scss';
+import { labelDesign, dropdownCont } from './ProjectStatus.module.scss';
 import {
   UPDATE_SELECTED_LABEL,
   DISCONNECT_SELECTED_LABEL,
@@ -64,6 +64,7 @@ const ProjectStatusDropdown = ({ labels, project, statusData }) => {
   const newPh = pH[0] ? pH[0] : 'Select Label';
   return (
     <Dropdown
+      className={dropdownCont}
       onChange={handleChange}
       placeholder={labels.length < 1 ? 'No Labels' : newPh}
       options={labelsArr}
