@@ -65,7 +65,7 @@ const ProjectStatusDropdown = ({ labels, project, statusData }) => {
   return (
     <Dropdown
       scrolling
-      downward
+      downward="true"
       onChange={handleChange}
       placeholder={labels.length < 1 ? 'No Labels' : newPh}
       options={labelsArr}
