@@ -6,6 +6,10 @@ import {
   basicInput,
   form,
   addColumnButton,
+  headerDiv,
+  closeButton,
+  modalCont,
+  button,
 } from './CreateColumn.module.scss';
 import { useMutation } from 'urql';
 import { CREATE_STATUS as createStatus } from '../../Project/Queries/index';
@@ -64,27 +68,28 @@ const CreateColumn = ({ programId, statuses }) => {
         }
         className={modalStyle}
       >
-        <Modal.Header>Add Column</Modal.Header>
-        <Modal.Content>
-          <Modal.Description>
-            <form className={form}>
-              <label> Column Name: </label>
-              <input
-                value={column.name}
-                name="name"
-                onChange={handleChanges}
-                placeholder="Status"
-                className={basicInput}
-              />
-            </form>
-          </Modal.Description>
+        <Modal.Header className={headerDiv}>
+          {' '}
+          <button className={closeButton} onClick={toggle}>
+            x
+          </button>
+          Add Column
+        </Modal.Header>
+        <Modal.Content className={modalCont}>
+          <form className={form}>
+            <label> Column Name </label>
+            <input
+              value={column.name}
+              name="name"
+              onChange={handleChanges}
+              placeholder="Status"
+              className={basicInput}
+            />
+          </form>
         </Modal.Content>
         <Modal.Actions className={buttonStyle}>
-          <Button className="ui approve button" onClick={handleSubmit}>
+          <Button className={button} onClick={handleSubmit}>
             Save
-          </Button>
-          <Button className="ui cancel button" onClick={toggle}>
-            Cancel
           </Button>
         </Modal.Actions>
       </Modal>

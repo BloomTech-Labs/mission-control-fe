@@ -1,5 +1,12 @@
 import React, { useState, useCallback } from 'react';
-import { labelDesign, editModalStyle, hover } from './StatusLabel.module.scss';
+import {
+  labelDesign,
+  editModalStyle,
+  hover,
+  headerDiv,
+  closeButton,
+  button,
+} from './StatusLabel.module.scss';
 import { Modal, Header, Button } from 'semantic-ui-react';
 import { FaRegEdit } from 'react-icons/fa';
 import UpdateLabel from '../UpdateLabel/index';
@@ -49,7 +56,12 @@ const StatusLabel = ({ label, columnId }) => {
         className={editModalStyle}
         trigger={<FaRegEdit className={hover} onClick={handleOpen} />}
       >
-        <Modal.Header>Edit Label</Modal.Header>
+        <Header className={headerDiv}>
+          <button className={closeButton} onClick={toggle}>
+            x
+          </button>
+          Edit Label
+        </Header>
         <Modal.Content>
           <Modal.Description>
             <UpdateLabel
@@ -60,7 +72,9 @@ const StatusLabel = ({ label, columnId }) => {
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-          <Button onClick={handleSubmit}>Save Changes</Button>
+          <Button className={button} onClick={handleSubmit}>
+            Save Changes
+          </Button>
         </Modal.Actions>
       </Modal>
     </div>

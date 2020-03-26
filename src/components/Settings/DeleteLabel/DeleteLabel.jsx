@@ -4,7 +4,7 @@ import { Modal, Button } from 'semantic-ui-react';
 import { DELETE_LABEL as deleteLabel } from '../../Project/Queries/index';
 import { FaTrashAlt } from 'react-icons/fa';
 import { hover } from '../StatusLabel/StatusLabel.module.scss';
-import { deleteLabelModal } from './DeleteLabel.module.scss';
+import { deleteLabelModal, button } from './DeleteLabel.module.scss';
 
 const DeleteLabel = ({ label, columnId }) => {
   const [open, setOpen] = useState(false);
@@ -35,11 +35,11 @@ const DeleteLabel = ({ label, columnId }) => {
     >
       <Modal.Header>Delete Label?</Modal.Header>
       <Modal.Actions>
-        <Button color="black" onClick={handleClose}>
+        <Button color="gray" onClick={handleClose}>
           Cancel
         </Button>
         <Button
-          positive
+          className={button}
           icon="checkmark"
           labelPosition="right"
           content="Confirm"

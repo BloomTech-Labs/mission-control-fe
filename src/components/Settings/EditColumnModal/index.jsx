@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'semantic-ui-react';
 import {
   modalStyle,
+  modalCont,
   buttonStyle,
   basicInput,
   form,
   editColumnButton,
+  headerDiv,
+  closeButton,
+  button,
+  editColumnsDiv,
+  itemsContainer,
+  deleteIcon,
 } from './EditColumnModal.module.scss';
 import { useMutation } from 'urql';
 import CreateLabel from '../CreateLabel/index';
@@ -65,11 +72,16 @@ const EditColumnModal = ({ column }) => {
       }
       className={modalStyle}
     >
-      <Modal.Header>Edit Column</Modal.Header>
-      <Modal.Content>
+      <Modal.Header className={headerDiv}>
+        <button className={closeButton} onClick={toggle}>
+          x
+        </button>
+        Edit Column
+      </Modal.Header>
+      <Modal.Content className={modalCont}>
         <Modal.Description>
           <div className={form}>
-            <label>Column name:</label>
+            <label>Column name</label>
             <input
               name="name"
               value={updateColumn.name}
@@ -78,20 +90,26 @@ const EditColumnModal = ({ column }) => {
             />
           </div>
           <br />
-          <h3>Create Labels</h3>
-          <CreateLabel column={column} label={label} setLabel={setLabel} />
-          <LabelList column={column} columnId={column.id} />
+          <h3>Labels</h3>
+          <div className={editColumnsDiv}>
+            <div className={itemsContainer}>
+              <div>{column.name}</div>
+            </div>
+            <div className={itemsContainer}>
+              <div>
+                <EditColumnModal column={column} />
+              </div>
+              <div className={deleteIcon}></div>
+            </div>
+          </div>
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions className={buttonStyle}>
-        <Button className="ui cancel button" onClick={toggle} size={'large'}>
-          Close
-        </Button>
         <Button
+          className={button}
           onClick={handleSubmit}
           content="Save"
           size={'large'}
-          className="ui button"
           disabled={disableTer}
         />
       </Modal.Actions>

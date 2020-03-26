@@ -3,7 +3,11 @@ import { useMutation } from 'urql';
 import { Modal, Button } from 'semantic-ui-react';
 import { DELETE_STATUS as deleteColumn } from '../../Project/Queries/index';
 import { FaTrash } from 'react-icons/fa';
-import { deleteColumnModal, trashIcon } from './DeleteColumn.module.scss';
+import {
+  deleteColumnModal,
+  trashIcon,
+  button,
+} from './DeleteColumn.module.scss';
 
 const DeleteColumn = ({ column }) => {
   const [open, setOpen] = useState(false);
@@ -28,15 +32,15 @@ const DeleteColumn = ({ column }) => {
       <Modal.Content>
         <Modal.Description>
           <h3>WARNING</h3>{' '}
-          <p>Deleting this column will also delete all coresponding labels</p>
+          <p>Deleting this column will also delete all corresponding labels</p>
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
-        <Button color="black" onClick={handleClose}>
+        <Button color="gray" onClick={handleClose}>
           Cancel
         </Button>
         <Button
-          positive
+          className={button}
           icon="checkmark"
           labelPosition="right"
           content="Confirm"

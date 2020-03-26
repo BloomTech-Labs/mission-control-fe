@@ -1,5 +1,15 @@
 @import '../../../styles/variables.scss';
 
 .deleteLabelModal {
-  width: 400px !important;
+  width: 350px !important;
+}
+
+.button {
+  background: #f87da9 !important;
+  color: #fee5ee !important;
+}
+
+.button:hover {
+  background: #f54987 !important;
+  color: white !important;
 }

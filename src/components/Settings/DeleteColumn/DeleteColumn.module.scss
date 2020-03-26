@@ -6,6 +6,7 @@
   }
   h3 {
     text-align: center;
+    color: #f54987;
   }
 }
 
@@ -16,4 +17,14 @@
   :hover {
     color: gray;
   }
+}
+
+.button {
+  background: #f87da9 !important;
+  color: #fee5ee !important;
+}
+
+.button:hover {
+  background: #f54987 !important;
+  color: white !important;
 }

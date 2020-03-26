@@ -3,47 +3,51 @@
 .toggleCont {
   background: #b6b6b6;
   border-radius: 50px;
-  // border: 1px solid #d3d3d3;
-  height: 20px;
+  top: 3px;
+  height: 15px;
   position: relative;
-  width: 40px;
-  margin-right: 5px;
+  width: 30px;
+  margin-right: 7px;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .toggledCont {
   background: $accent;
   border-radius: 50px;
-  // border: 1px solid #d3d3d3;
-  height: 20px;
+  top: 3px;
+  height: 15px;
   position: relative;
-  width: 40px;
-  margin-right: 5px;
-}
-
-.toggledColumn {
-  visibility: hidden;
+  width: 30px;
+  margin-right: 7px;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .toggle {
   background: white;
   border-radius: 50px;
-  height: 18px;
+  height: 13px;
   top: 1px;
-  left: 19px;
+  left: 14px;
   position: absolute;
   transition: 0.2s;
-  width: 20px;
+  width: 15px;
 }
 
 .toggled {
   background: white;
   border-radius: 50px;
-  height: 18px;
+  height: 13px;
   top: 1px;
   left: 1px;
   position: absolute;
   transition: 0.2s;
-  width: 20px;
+  width: 15px;
+}
+
+.toggledColumn {
+  visibility: hidden;
 }
 
 .editColumnsDiv {
