@@ -23,10 +23,10 @@ const DeleteColumn = ({ column }) => {
       trigger={<FaTrashAlt className={hover} onClick={handleOpen} />}
       size={'tiny'}
     >
-      <Modal.Header>DeleteColumn</Modal.Header>
+      <Modal.Header>Delete Status</Modal.Header>
       <Modal.Content>
         <Modal.Description>
-          <h1>WARNING: THIS ACTION CAN'T BE REVERSED</h1>
+          <h1>Delete the status "{column.name}"?</h1>
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>

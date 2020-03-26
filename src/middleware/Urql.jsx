@@ -52,7 +52,6 @@ const cache = cacheExchange({
             const statusIndex = data.programs[0].statuses.findIndex(
               c => c.id === _args.columnId
             );
-            console.log('args columnId', _args);
             const labelIndex = data.programs[0].statuses[
               statusIndex
             ].labels.findIndex(l => l.id === _args.id);

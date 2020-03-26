@@ -15,6 +15,10 @@
   width: 40px;
 }
 
+.toggledColumn {
+  visibility: hidden;
+}
+
 .toggle {
   background: #39b7cd;
   border-radius: 50px;
@@ -48,4 +52,13 @@
   justify-content: space-between;
   padding: 0 20% 0 20%;
   height: 30px;
+}
+
+.togglerContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.deleteIcon {
+  padding: 4% 10%;
 }
