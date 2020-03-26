@@ -1,27 +1,23 @@
 @import '../../../styles/variables.scss';
 
-.modalStyle {
-  position: relative !important;
-  height: 325px !important;
-  width: 500px !important;
-}
-
 .toggleCont {
-  background: #f3f3f3;
+  background: #b6b6b6;
   border-radius: 50px;
-  border: 1px solid #d3d3d3;
+  // border: 1px solid #d3d3d3;
   height: 20px;
   position: relative;
   width: 40px;
+  margin-right: 5px;
 }
 
 .toggledCont {
-  background: #fff3fb;
+  background: $accent;
   border-radius: 50px;
-  border: 1px solid #d3d3d3;
+  // border: 1px solid #d3d3d3;
   height: 20px;
   position: relative;
   width: 40px;
+  margin-right: 5px;
 }
 
 .toggledColumn {
@@ -29,20 +25,22 @@
 }
 
 .toggle {
-  background: #b6b6b6;
+  background: white;
   border-radius: 50px;
   height: 18px;
-  left: 18px;
+  top: 1px;
+  left: 19px;
   position: absolute;
   transition: 0.2s;
   width: 20px;
 }
 
 .toggled {
-  background: $accent;
+  background: white;
   border-radius: 50px;
   height: 18px;
-  left: 0;
+  top: 1px;
+  left: 1px;
   position: absolute;
   transition: 0.2s;
   width: 20px;
@@ -51,13 +49,15 @@
 .editColumnsDiv {
   display: flex;
   justify-content: space-between;
-  padding: 0 20% 0 20%;
-  height: 30px;
+  margin: 0px 5% 10px 5%;
+  padding: 10px 0 10px 0;
+  border-bottom: 1px solid lightgray;
+  font-weight: 600;
 }
 
-.togglerContainer {
+.itemsContainer {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .deleteIcon {

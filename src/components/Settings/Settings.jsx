@@ -53,9 +53,7 @@ const Settings = () => {
           />
         </Header>
         <Modal.Content>
-          <Modal.Description>
-            <ColumnSettings />
-          </Modal.Description>
+          <ColumnSettings />
         </Modal.Content>
       </Modal>
     </div>

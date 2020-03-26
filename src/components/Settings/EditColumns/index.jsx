@@ -5,7 +5,7 @@ import {
   toggled,
   toggledCont,
   editColumnsDiv,
-  togglerContainer,
+  itemsContainer,
   deleteIcon,
 } from './EditColumns.module.scss';
 import { useMutation } from 'urql';
@@ -24,15 +24,18 @@ const EditColumns = ({ column, id }) => {
 
   return (
     <div className={editColumnsDiv}>
-      <div>
-        <EditColumnModal column={column} />
-      </div>
-      <div className={togglerContainer}>
+      <div className={itemsContainer}>
         <div
           onClick={toggler}
           className={column.display ? toggledCont : toggleCont}
         >
           <div className={column.display ? toggled : toggle} />
+        </div>
+        <div>{column.name}</div>
+      </div>
+      <div className={itemsContainer}>
+        <div>
+          <EditColumnModal column={column} />
         </div>
         <div className={deleteIcon}>
           <DeleteColumn column={column} />
