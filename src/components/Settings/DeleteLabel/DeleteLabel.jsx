@@ -34,9 +34,7 @@ const DeleteLabel = ({ label, columnId }) => {
     >
       <Modal.Header>Delete Label?</Modal.Header>
       <Modal.Actions>
-        <Button color="grey" onClick={handleClose}>
-          Cancel
-        </Button>
+        <Button onClick={handleClose}>Cancel</Button>
         <Button
           className={button}
           icon="checkmark"

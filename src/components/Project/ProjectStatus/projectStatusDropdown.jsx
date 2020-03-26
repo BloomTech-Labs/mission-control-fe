@@ -64,6 +64,8 @@ const ProjectStatusDropdown = ({ labels, project, statusData }) => {
   const newPh = pH[0] ? pH[0] : 'Select Label';
   return (
     <Dropdown
+      scrolling
+      downward="true"
       onChange={handleChange}
       placeholder={labels.length < 1 ? 'No Labels' : newPh}
       options={labelsArr}
