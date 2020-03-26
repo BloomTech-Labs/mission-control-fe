@@ -8,7 +8,7 @@ const Sparkline = ({ name, repoIndex, handleSparkClick }) => {
   const [state] = useQuery({
     query,
     variables: {
-      owner: 'Lambda-School-Labs',
+      owner: 'Lambda-School-Labs',  //Needs to be set dynamically when user onboarding is added to app
       name: name,
     },
   });

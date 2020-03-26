@@ -31,7 +31,7 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 ### Key Features
 
 - Not just for products - we also track your projects, allowing for a top-level view of your organization
-- For admins - the ability to view every single product and project in your organization w/ related KPIs
+- For admins - the ability to view every single product and project in your organization w/ related APIs
 - For users - the ability to see the projects that they themselves are attached to, allowing for a seamless and lightweight environment
 - Simple user promotion - admins can promote and demote other users in a snap
 - Sync with your data - simply sign up with your work email address, and your data will sync automatically with your database

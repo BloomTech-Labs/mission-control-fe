@@ -1,3 +1,4 @@
+//this function gets passed in a letter for grades and returns a color for styling
 const getColor = grade => {
   switch (grade) {
     case 'A':
