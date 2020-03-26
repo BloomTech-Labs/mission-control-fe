@@ -24,6 +24,26 @@
   pointer-events: auto;
 }
 
+.hiddenTogCont {
+  display: none;
+}
+
+.hiddenDisToggle {
+  display: none;
+}
+
+.hiddenTog {
+  display: none;
+}
+
+.disToggle {
+  margin: 2px 16px 0px 7px;
+  color: lightgray;
+  :hover {
+    color: gray;
+  }
+}
+
 .toggle {
   background: white;
   border-radius: 50px;

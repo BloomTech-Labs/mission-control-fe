@@ -8,11 +8,10 @@ import {
   button,
 } from './StatusLabel.module.scss';
 import { Modal, Header, Button } from 'semantic-ui-react';
-import { FaRegEdit } from 'react-icons/fa';
 import UpdateLabel from '../UpdateLabel/index';
 import { UPDATE_LABEL as updateLabelMutation } from '../../Project/Queries';
 import { useMutation } from 'urql';
-const StatusLabel = ({ label, columnId }) => {
+const StatusLabel = ({ label }) => {
   const initState = {
     id: `${label.id}`,
     name: `${label.name}`,
