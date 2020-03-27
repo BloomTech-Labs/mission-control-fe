@@ -14,10 +14,8 @@ import {
 import { useMutation } from 'urql';
 import { CREATE_STATUS as createStatus } from '../../Project/Queries/index';
 
-import { ColumnContext } from '../../../contexts/ColumnContext';
-
 const CreateColumn = ({ programId, statuses }) => {
-  const { column, setColumn } = useContext(ColumnContext);
+  const [column, setColumn] = useState({ id: '', name: '', display: true });
   const [open, setOpen] = useState(false);
   const [, executeCreate] = useMutation(createStatus);
 
