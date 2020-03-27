@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { Provider } from "urql";
-import Project from './index'
+import Project from '../NoteFeed/index'
 
 
 //Mock Testing to make sure the urql client is rendering
@@ -11,13 +11,13 @@ const mockClient = {
   executeSubscription: jest.fn()
 };
 
-// it("renders", () => {
-//   const wrapper = mount(
-//     <Provider value={mockClient}>
-//         <Project />
-//     </Provider>
-//   );
-// });
+it("renders", () => {
+  const wrapper = mount(
+    <Provider value={mockClient}>
+        <Project />
+    </Provider>
+  );
+});
 
 //Test Mutations
 it("triggers a mutation", () => {
