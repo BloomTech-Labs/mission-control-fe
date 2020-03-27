@@ -43,6 +43,7 @@ const CreateLabelForm = ({ column, label, setLabel }) => {
           value={label.name}
           className={basicInput}
         />
+        {/* A destructured color picker component, you can change color options if you so choose */}
         <CustomCirclePicker label={label} setLabel={setLabel} />
       </form>
     </div>

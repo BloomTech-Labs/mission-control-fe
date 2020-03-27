@@ -27,6 +27,8 @@ const EditColumns = ({ column, id, statuses }) => {
     return e.display === true;
   });
 
+  // Disables the toggle button and mutation if there are 4 display values at true
+  // and will disable the button and mutation if it's already set to false
   const disabledTer = displayFiltered.length >= 4 && !column.display;
 
   const toggler = e => {

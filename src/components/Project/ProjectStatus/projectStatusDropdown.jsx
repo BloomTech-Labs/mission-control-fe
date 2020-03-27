@@ -7,6 +7,7 @@ import {
 } from '../../Project/Queries/index';
 import { useMutation } from 'urql';
 
+//Uses much of the same code as the projectList labelDropdown, but now passes down projectStatus instead of status
 const ProjectStatusDropdown = ({ labels, project, statusData }) => {
   const [, executeUpdate] = useMutation(UPDATE_SELECTED_LABEL);
 

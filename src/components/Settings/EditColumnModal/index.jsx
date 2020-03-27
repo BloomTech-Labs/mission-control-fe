@@ -42,6 +42,8 @@ const EditColumnModal = ({ column }) => {
     });
   };
 
+  // handleSubmit handles both the update column status name and createLabel mutations
+  // If there is no name or color data provided then it will not fire the createLabel mutation
   const handleSubmit = e => {
     e.preventDefault();
     executeMutation(updateColumn);
@@ -53,6 +55,8 @@ const EditColumnModal = ({ column }) => {
     setLabel({ name: '', color: '' });
   };
 
+  // Checks to see if either there's text in the name label input but with no colour, or if there's color but no name,
+  // if either are true the save button will be disabled until both fields are filled
   const disableTer =
     (label.name.length > 0 && !label.color) || (label.color && !label.name);
   return (

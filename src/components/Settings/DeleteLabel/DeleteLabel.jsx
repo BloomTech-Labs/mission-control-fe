@@ -11,6 +11,7 @@ const DeleteLabel = ({ label, columnId }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  // columnId must be provided for the corresponding urql cacheExchange to function as expected upon label deletion
   const delObj = {
     id: label.id,
     columnId: columnId,

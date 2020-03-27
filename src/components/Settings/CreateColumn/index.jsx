@@ -17,6 +17,8 @@ import { CREATE_STATUS as createStatus } from '../../Project/Queries/index';
 import { ColumnContext } from '../../../contexts/ColumnContext';
 
 const CreateColumn = ({ programId, statuses }) => {
+  // Context is not really being used to max potential
+  // Might want to rework to use it or scrap it
   const { column, setColumn } = useContext(ColumnContext);
   const [open, setOpen] = useState(false);
   const [, executeCreate] = useMutation(createStatus);
@@ -46,6 +48,8 @@ const CreateColumn = ({ programId, statuses }) => {
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
+      // If there are 4 statuses that are toggled with display value true
+      // Created statuses will be created with a default value of false
       if (displayFiltered.length >= 4) {
         executeCreate({ id: programId, name: column.name, display: false });
       } else {

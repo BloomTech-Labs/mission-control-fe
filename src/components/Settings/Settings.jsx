@@ -13,6 +13,8 @@ import CreateColumn from './CreateColumn/index';
 
 import ColumnSettings from './ColumnSettings/index';
 
+// Top layer of the settings component
+// Holds the main settings modal which contains the createColumn and column settings modals
 const Settings = () => {
   const [open, setOpen] = useState(false);
 
@@ -46,7 +48,7 @@ const Settings = () => {
             x
           </button>
           Manage Columns
-          {/* statues grabs the first and only program index in programs, might need to be reworked to use a query with a id variable*/}
+          {/* statues grabs the first and only program index in programs, might want to rework it to use a query with an id variable*/}
           <CreateColumn
             programId={programId}
             column={data}
