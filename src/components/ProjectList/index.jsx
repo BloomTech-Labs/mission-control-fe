@@ -30,7 +30,7 @@ const ProjectListView = () => {
 		return (
 			<div>
 				<Settings />
-				<h1>Stage 2</h1>
+				<h1>Stage 2 Auto Deploy Test</h1>
 				<ProjectListContainer statusColumn={columns}>
 					{projects.map((project) => (
 						<ProjectListRow
