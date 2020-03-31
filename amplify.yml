@@ -1,8 +1,8 @@
 version: 0.1
 env:
   variables:
-    REACT_APP_URQL_URL: https://apollo.stage2.missionctrl.dev
-    REACT_APP_URQL_WS: wss://apollo.stage2.missionctrl.dev/graphql
+    REACT_APP_URQL_URL: https://apollo.stage.missionctrl.dev
+    REACT_APP_URQL_WS: wss://apollo.stage.missionctrl.dev/graphql
 frontend:
   phases:
     preBuild:
