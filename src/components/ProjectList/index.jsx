@@ -30,8 +30,8 @@ const ProjectListView = () => {
 		return (
 			<div>
 				<Settings />
+				<h1>Stage 2</h1>
 				<ProjectListContainer statusColumn={columns}>
-					<h1>Stage 2</h1>
 					{projects.map((project) => (
 						<ProjectListRow
 							key={project.id}

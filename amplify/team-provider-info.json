@@ -1,0 +1,15 @@
+{
+    "deva": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-mission-control-fe-deva-175240-authRole",
+            "UnauthRoleArn": "arn:aws:iam::576275871595:role/amplify-mission-control-fe-deva-175240-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::576275871595:role/amplify-mission-control-fe-deva-175240-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-mission-control-fe-deva-175240-deployment",
+            "UnauthRoleName": "amplify-mission-control-fe-deva-175240-unauthRole",
+            "StackName": "amplify-mission-control-fe-deva-175240",
+            "StackId": "arn:aws:cloudformation:us-east-1:576275871595:stack/amplify-mission-control-fe-deva-175240/ef0bb610-72e9-11ea-83dc-0a90b7832da7",
+            "AmplifyAppId": "dgcngxoy4v95a"
+        }
+    }
+}
