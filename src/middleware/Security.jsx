@@ -3,7 +3,7 @@ import { Security as SecurityProvider } from '@okta/okta-react';
 
 const config = {
 	issuer: `${process.env.REACT_APP_OKTA_URL}/oauth2/default`,
-	redirectUri: 'https://stage.missionctrl.dev/implicit/callback',
+	redirectUri: `${window.location.origin}/implicit/callback`,
 	clientId: `${process.env.REACT_APP_CLIENT_ID}`,
 	pkce: true
 };
