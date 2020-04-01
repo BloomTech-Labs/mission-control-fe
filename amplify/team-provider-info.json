@@ -1,0 +1,23 @@
+{
+    "production": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-missioncontrol-production-101142-authRole",
+            "UnauthRoleArn": "arn:aws:iam::888115460547:role/amplify-missioncontrol-production-101142-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::888115460547:role/amplify-missioncontrol-production-101142-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-missioncontrol-production-101142-deployment",
+            "UnauthRoleName": "amplify-missioncontrol-production-101142-unauthRole",
+            "StackName": "amplify-missioncontrol-production-101142",
+            "StackId": "arn:aws:cloudformation:us-east-1:888115460547:stack/amplify-missioncontrol-production-101142/b7988e80-7422-11ea-80ea-12b94cd95a93",
+            "AmplifyAppId": "d22wmxdzm8c42w"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d22wmxdzm8c42w",
+                    "type": "cicd"
+                }
+            }
+        }
+    }
+}
