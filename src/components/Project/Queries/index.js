@@ -2,17 +2,38 @@ import gql from 'graphql-tag';
 
 export const TEAM_QUERY = gql`
   query TeamView($id: ID!) {
-    project(id: $id) {
+    project(where: { id: $id }) {
       id
-      projectManagers {
-        id
-        name
+      name
+      teamMembers: assignments(
+        where: { role: { name_not_in: ["Section Lead", "Team Lead"] } }
+      ) {
+        assignmentId: id
+        person {
+          id
+          name
+          email
+          avatar
+        }
+        role {
+          id
+          name
+        }
       }
-      team {
-        id
-        name
-        email
-        avatar
+      teamManagers: assignments(
+        where: { role: { name_in: ["Section Lead", "Team Lead"] } }
+      ) {
+        assignmentId: id
+        person {
+          id
+          name
+          email
+          avatar
+        }
+        role {
+          id
+          name
+        }
       }
     }
   }
@@ -20,29 +41,29 @@ export const TEAM_QUERY = gql`
 
 export const HEADER_QUERY = gql`
   query HeaderView($id: ID!) {
-    project(id: $id) {
+    project(where: { id: $id }) {
       id
-      projectActive
+      active
       name
     }
   }
 `;
 
 export const NOTE_FEED_QUERY = gql`
-  query NoteFeed($id: ID!, $privatePerm: Boolean) {
+  query NoteFeed($id: ID!, $private: Boolean) {
     me {
       id
       email
     }
-    project(id: $id) {
+    project(where: { id: $id }) {
       id
-      projectManagers {
-        name
-        id
-        email
-        avatar
-      }
-      notes(orderBy: updatedAt_DESC, privatePerm: $privatePerm) {
+      # projectManagers {
+      #   name
+      #   id
+      #   email
+      #   avatar
+      # }
+      notes(where: { private: $private }, orderBy: updatedAt_DESC) {
         id
         topic
         content
@@ -50,15 +71,16 @@ export const NOTE_FEED_QUERY = gql`
           id
           email
           name
-        }
-        attendedBy {
-          id
-          name
-          email
           avatar
         }
+        # attendedBy {
+        #   id
+        #   name
+        #   email
+        #   avatar
+        # }
         rating
-        privateNote
+        private
       }
     }
   }
@@ -66,7 +88,7 @@ export const NOTE_FEED_QUERY = gql`
 
 export const ATTENDANCE_QUERY = gql`
   query attendance($id: ID!) {
-    project(id: $id) {
+    project(where: { id: $id }) {
       id
       projectManagers {
         name
@@ -84,49 +106,64 @@ export const PROJECT_VIEW_QUERY = gql`
       id
       email
     }
-    project(id: $id) {
+    project(where: { id: $id }) {
       id
       name
-      projectStatus {
+      status {
         id
-        name
-        labels {
+        project {
+          id
+        }
+        category {
           id
           name
-          color
-          selected {
+          valueOptions {
             id
+            label
+            color
           }
         }
+        value {
+          id
+          label
+          color
+        }
+        # name
+        # labels {
+        #   id
+        #   name
+        #   color
+        #   # selected {
+        #   #   id
+        #   # }
+        # }
       }
       product {
         id
         name
-        grades {
+        githubRepos {
           id
-          name
-          grade
-          link
-          GHRepoId
-        }
-        GHRepos {
-          id
-          repoId
-          name
+          url
           owner
-          ownerId
+          name
+          # ownerId
+          grade {
+            id
+            url
+            value
+          }
         }
       }
-      team {
-        id
-        name
-      }
-      projectManagers {
-        name
-        id
-        email
-        avatar
-      }
+      # team {
+      #   id
+      #   name
+      # }
+      # projectManagers {
+      #   name
+      #   id
+      #   email
+      #   avatar
+      # }
       notes(orderBy: updatedAt_DESC) {
         id
         topic
@@ -136,11 +173,11 @@ export const PROJECT_VIEW_QUERY = gql`
           email
           name
         }
-        attendedBy {
-          id
-          name
-          email
-        }
+        # attendedBy {
+        #   id
+        #   name
+        #   email
+        # }
         rating
       }
     }
@@ -152,29 +189,29 @@ export const CREATE_NOTE = gql`
     $id: ID!
     $topic: String!
     $content: String!
-    $attendedBy: [String!]!
+    # $attendedBy: [String!]!
     $rating: Int!
-    $privateNote: Boolean
+    $private: Boolean
     $notification: Boolean
   ) {
     createNote(
       topic: $topic
       content: $content
-      attendedBy: $attendedBy
+      # attendedBy: $attendedBy
       id: $id
       rating: $rating
-      privateNote: $privateNote
+      private: $private
       notification: $notification
     ) {
       content
       topic
-      attendedBy {
-        id
-        name
-      }
+      # attendedBy {
+      #   id
+      #   name
+      # }
       id
       rating
-      privateNote
+      private
     }
   }
 `;
@@ -184,27 +221,27 @@ export const UPDATE_NOTE = gql`
     $id: ID!
     $topic: String!
     $content: String!
-    $attendedBy: [String!]!
+    # $attendedBy: [String!]!
     $rating: Int!
-    $privateNote: Boolean!
+    $private: Boolean!
   ) {
     updateNote(
       topic: $topic
       content: $content
-      attendedBy: $attendedBy
+      # attendedBy: $attendedBy
       id: $id
       rating: $rating
-      privateNote: $privateNote
+      private: $private
     ) {
       content
       topic
-      attendedBy {
-        id
-        name
-      }
+      # attendedBy {
+      #   id
+      #   name
+      # }
       id
       rating
-      privateNote
+      private
     }
   }
 `;
@@ -240,18 +277,30 @@ export const UPDATE_LABEL = gql`
   }
 `;
 
-export const UPDATE_SELECTED_LABEL = gql`
-  mutation UpdateSelectedLabelMutation(
-    $id: ID!
-    $selected: ID!
-    $columnId: String!
+export const UPDATE_PROJECT_STATUS_ELEMENT_VALUE = gql`
+  mutation UpdateProjectStatusElementValue(
+    $projectId: ID!
+    $projectStatusElementId: ID!
+    $projectStatusValue: ID!
   ) {
-    updateSelectedLabel(id: $id, selected: $selected, columnId: $columnId) {
-      id
-      selected {
-        id
-        name
+    updateProject(
+      # Select the project
+      where: { id: $projectId }
+      data: {
+        # We want to update the status
+        status: {
+          update: {
+            # Select the element being updated
+            where: { id: $projectStatusElementId }
+            data: {
+              # Connect the element to the new value option
+              value: { connect: { id: $projectStatusValue } }
+            }
+          }
+        }
       }
+    ) {
+      id
     }
   }
 `;
@@ -282,14 +331,14 @@ export const DELETE_LABEL = gql`
 
 export const GET_USER_ROLE = gql`
   query GetUserRole($email: String!) {
-    person(email: $email) {
+    person(where: { email: $email }) {
       id
       name
-      role {
-        id
-        name
-        privateNote
-      }
+      # role {
+      #   id
+      #   name
+      #   private
+      # }
     }
   }
 `;
@@ -332,39 +381,39 @@ export const TEST_QUERY = gql`
 export const GET_GITHUB_REPOS = gql`
   query githubrepos($search: String!, $org: String) {
     GithubRepos(search: $search, org: $org) {
-      name
       id
-      ownerId
       owner
+      name
+      # ownerId
     }
   }
 `;
 
-export const CREATE_GHREPO = gql`
+export const CREATE_GITHUB_REPO = gql`
   mutation createGithubRepo(
     $id: String!
     $name: String!
-    $owner: String!
-    $ownerId: String!
+    # $owner: String!
+    # $ownerId: String!
     $repoId: String!
   ) {
     createGithubRepo(
       id: $id
       name: $name
-      owner: $owner
-      ownerId: $ownerId
+      # owner: $owner
+      # ownerId: $ownerId
       repoId: $repoId
     ) {
       name
       id
-      owner
-      ownerId
+      # owner
+      # ownerId
       repoId
     }
   }
 `;
 
-export const DELETE_GHREPO = gql`
+export const DELETE_GITHUB_REPO = gql`
   mutation deleteGithubRepo($id: ID!) {
     deleteGithubRepo(id: $id) {
       id
@@ -374,19 +423,19 @@ export const DELETE_GHREPO = gql`
 
 export const GET_PROJECT_STATUS = gql`
   query projectStatusQuery($id: ID!) {
-    project(id: $id) {
+    project(where: { id: $id }) {
       id
       name
-      projectStatus {
+      status {
         id
         name
         labels {
           id
           name
           color
-          selected {
-            id
-          }
+          # selected {
+          #   id
+          # }
         }
       }
     }
