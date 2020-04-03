@@ -1,5 +1,6 @@
-import React, { useState, useCallback, useContext } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Button, Modal } from 'semantic-ui-react';
+import { useMutation } from 'urql';
 import {
   modalStyle,
   buttonStyle,
@@ -11,7 +12,6 @@ import {
   modalCont,
   button,
 } from './CreateColumn.module.scss';
-import { useMutation } from 'urql';
 import { CREATE_STATUS as createStatus } from '../../Project/Queries/index';
 
 const CreateColumn = ({ programId, statuses }) => {
@@ -19,7 +19,7 @@ const CreateColumn = ({ programId, statuses }) => {
   const [open, setOpen] = useState(false);
   const [, executeCreate] = useMutation(createStatus);
 
-  let displayFiltered = statuses.filter(function(e) {
+  const displayFiltered = statuses.filter(function(e) {
     return e.display === true;
   });
 
