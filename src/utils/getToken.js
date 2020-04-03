@@ -1,7 +1,7 @@
 export default () => {
   const token = localStorage.getItem('okta-token-storage');
   const {
-    accessToken: { accessToken },
+    idToken: { idToken },
   } = JSON.parse(token);
-  return accessToken;
+  return idToken;
 };
