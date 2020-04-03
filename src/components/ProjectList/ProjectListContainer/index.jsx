@@ -4,11 +4,11 @@ import { rtc, hiddenName } from './projectListContainer.module.scss';
 
 const ProjectListContainer = ({ children, statusColumn }) => {
   const statusTitleArr = [];
-  var i;
-  if (statusColumn.length > 0) {
-    for (i = 0; i < 4 && !(i >= statusColumn.length); i++) {
+  if (statusColumn && statusColumn.length > 0) {
+    for (let i = 0; i < 4 && !(i >= statusColumn.length); i += 1) {
       statusTitleArr.push(statusColumn[i]);
     }
+
     return (
       <table>
         <thead>
@@ -31,17 +31,18 @@ const ProjectListContainer = ({ children, statusColumn }) => {
         <tbody>{children}</tbody>
       </table>
     );
-  } else
-    return (
-      <table>
-        <thead>
-          <tr>
-            <th>Project Name</th>
-          </tr>
-        </thead>
-        <tbody>{children}</tbody>
-      </table>
-    );
+  }
+
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Project Name</th>
+        </tr>
+      </thead>
+      <tbody>{children}</tbody>
+    </table>
+  );
 };
 
 export default ProjectListContainer;
