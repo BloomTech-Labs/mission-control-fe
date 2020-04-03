@@ -11,10 +11,17 @@ const NotesFeed = ({ projectId, privateBol }) => {
     requestPolicy: 'cache-and-network',
   });
 
-  const { data, fetching } = state;
+  const { data, fetching, error } = state;
 
-  if (fetching) return <h2>Loading</h2>;
-  if (data && data.project.notes.length) {
+  if (error) {
+    return <p>Error</p>;
+  }
+
+  if (fetching) {
+    return <p>Loading...</p>;
+  }
+
+  if (data && data.project && data.project.notes) {
     return (
       <div>
         {data.project.notes.map(note => {
@@ -31,7 +38,8 @@ const NotesFeed = ({ projectId, privateBol }) => {
       </div>
     );
   }
-  return <h2>There Are No Notes</h2>;
+
+  return <p>There Are No Notes</p>;
 };
 
 export default NotesFeed;

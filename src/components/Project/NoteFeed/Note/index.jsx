@@ -5,7 +5,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { Label } from 'semantic-ui-react';
 
 import NoteEditor from '../../NoteEditor';
-// import extractAvatar from '../../../../utils/managers';
+import { checkNullAvatar } from '../../../../utils';
 
 import {
   edit,
@@ -31,9 +31,9 @@ const Note = ({ note, user, projectManagers, projectId }) => {
   const { topic, content, rating, attendedBy } = note;
 
   // Removes redundant avatar of signed-in user
-  const displayedAttendees = attendedBy.filter(
-    person => person.email !== user.email
-  );
+  // const displayedAttendees = attendedBy.filter(
+  //   person => person.email !== user.email
+  // );
 
   return isEditing ? (
     <NoteEditor
@@ -49,11 +49,12 @@ const Note = ({ note, user, projectManagers, projectId }) => {
     <section className={projectNote}>
       <div className={avatarContainer}>
         <img
-          src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
-          alt={`avatar of ${note.author.name}`}
+          src={checkNullAvatar(note.author.avatar)}
+          alt={note.author.name}
           className={avatar}
         />
       </div>
+
       <div className={noteContainer}>
         <div className={contentContainer}>
           <div className={noteHeader}>
@@ -67,7 +68,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
               starDimension="20px"
               starSpacing=".5px"
             />
-            {note.privateNote ? (
+            {note.private ? (
               <div
                 onClick={() => setIsEditing(true)}
                 className={notewrapperPrivate}
@@ -91,7 +92,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
             onClick={() => setExpandedList(!expandedList)}
             role="presentation"
           >
-            {displayedAttendees.map(attendee => {
+            {/* {displayedAttendees.map(attendee => {
               return (
                 <div key={attendee.name} className={miniAvatarContainer}>
                   <img src={''} alt={`avatar of ${attendee.name}`} />
@@ -102,7 +103,7 @@ const Note = ({ note, user, projectManagers, projectId }) => {
                   </button>
                 </div>
               );
-            })}
+            })} */}
           </div>
           {note.author.email === user.email ? (
             <EditIcon onClick={() => setIsEditing(true)} className={edit} />

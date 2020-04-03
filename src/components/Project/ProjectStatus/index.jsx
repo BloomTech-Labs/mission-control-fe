@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useQuery } from 'urql';
+import { Accordion, Icon } from 'semantic-ui-react';
 import {
   projectStatusDropdown,
   dropdownLabel,
@@ -7,15 +7,8 @@ import {
   accordIcon,
 } from './ProjectStatus.module.scss';
 import ProjectStatusDropdown from './projectStatusDropdown';
-import { Accordion, Icon } from 'semantic-ui-react';
 
-import { GET_PROJECT_STATUS as query } from '../Queries/index';
-const ProjectStatus = ({ projectId, label }) => {
-  const [state] = useQuery({
-    query,
-    variables: { id: projectId },
-    requestPolicy: 'cache-and-network',
-  });
+const ProjectStatus = ({ projectStatus }) => {
   const [accordion, setAccordion] = useState({ activeIndex: 1 });
 
   const handleClick = (e, titleProps) => {
@@ -26,10 +19,9 @@ const ProjectStatus = ({ projectId, label }) => {
     setAccordion({ activeIndex: newIndex });
   };
 
-  const { data } = state;
-
   const { activeIndex } = accordion;
 
+  //console.log('PROJECT_STATUS DATA: %O', projectStatus);
   return (
     <div className={projectStatusContainer}>
       <Accordion>
@@ -43,18 +35,19 @@ const ProjectStatus = ({ projectId, label }) => {
             <Icon className={accordIcon} name="dropdown" />
           </h2>
         </Accordion.Title>
+
         <Accordion.Content active={activeIndex === 0}>
           <div className={projectStatusDropdown}>
-            {/* Data check to keep the map from crashing, also checks to make sure that there's anything in the array to map over */}
-            {data && data.project.projectStatus.length > 0
-              ? data.project.projectStatus.map(statuses => {
+            {projectStatus && projectStatus.length
+              ? projectStatus.map(projectStatusElement => {
                   return (
-                    <div className={dropdownLabel} key={statuses.id}>
-                      <h3>{statuses.name}</h3>
+                    <div
+                      className={dropdownLabel}
+                      key={projectStatusElement.id}
+                    >
+                      <h3>{projectStatusElement.category.name}</h3>
                       <ProjectStatusDropdown
-                        statusData={statuses}
-                        labels={statuses.labels}
-                        project={data.project}
+                        projectStatusElement={projectStatusElement}
                       />
                     </div>
                   );
