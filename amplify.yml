@@ -3,8 +3,6 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Temporarily delete node_modules before building
-        # - rm -rf node_modules
         - yarn install
     build:
       commands:
