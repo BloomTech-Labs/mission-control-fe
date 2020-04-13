@@ -1,74 +1,65 @@
 import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
+import { useMutation } from 'urql';
 import { labelDesign } from './ProjectStatus.module.scss';
 import {
-  UPDATE_SELECTED_LABEL,
-  DISCONNECT_SELECTED_LABEL,
-} from '../../Project/Queries/index';
-import { useMutation } from 'urql';
+  UPDATE_PROJECT_STATUS_ELEMENT_VALUE,
+} from '../Queries/index';
 
-const ProjectStatusDropdown = ({ labels, project, statusData }) => {
-  const [, executeUpdate] = useMutation(UPDATE_SELECTED_LABEL);
+const ProjectStatusDropdown = ({ projectStatusElement }) => {
+  //console.log('PROJECT_STATUS_DROPDOWN DATA: %O', projectStatusElement);
 
-  const [, executeDisconnect] = useMutation(DISCONNECT_SELECTED_LABEL);
+  const [
+    projectStatusElementValue,
+    setProjectStatusElementValue,
+  ] = React.useState(projectStatusElement.value.id);
 
-  const labelsArr = labels.map(label => ({
-    key: label.id,
-    value: label,
-    color: label.color,
-    name: label.name,
-    text: (
-      <div className={labelDesign} style={{ background: `${label.color}` }}>
-        {label.name}
-      </div>
-    ),
-  }));
+  const [, executeUpdateProjectStatusElementValue] = useMutation(
+    UPDATE_PROJECT_STATUS_ELEMENT_VALUE
+  );
 
-  const handleChange = (e, { value }) => {
+  const labelOptions = projectStatusElement.category.valueOptions.map(
+    valueOption => ({
+      key: valueOption.id,
+      value: valueOption.id,
+      text: (
+        <div
+          className={labelDesign}
+          style={{ background: `${valueOption.color}` }}
+        >
+          {valueOption.label}
+        </div>
+      ),
+    })
+  );
+
+  const handleChange = async (e, { value }) => {
     e.preventDefault();
-    labels &&
-      labels.map(label =>
-        executeDisconnect({
-          id: label.id,
-          selected: project.id,
-          columnId: statusData.id,
-        })
-      );
-    executeUpdate({
-      id: value.id,
-      selected: project.id,
-      columnId: statusData.id,
+
+    //console.log(
+    //   'PROJECT_STATUS_DROPDOWN UPDATE: %O - %O - %O',
+    //   projectStatusElement.project.id,
+    //   projectStatusElement.id,
+    //   value
+    // );
+
+    // setProjectStatusElementValue(
+    await executeUpdateProjectStatusElementValue({
+      projectId: projectStatusElement.project.id,
+      projectStatusElementId: projectStatusElement.id,
+      projectStatusValue: value,
     });
+
+    setProjectStatusElementValue(value);
   };
 
-  const UpdatedPlaceholder = labels.map(label => {
-    const labelIndex = labels.findIndex(l => l.id === label.id);
-    const selectedIndex = label.selected.findIndex(sA => sA.id === project.id);
-    return labels &&
-      selectedIndex !== -1 &&
-      labels[labelIndex].selected[selectedIndex].id === project.id ? (
-      <div
-        key={label.id}
-        className={labelDesign}
-        style={{ background: `${label.color}` }}
-      >
-        {label.name}
-      </div>
-    ) : (
-      ''
-    );
-  });
-
-  const pH = UpdatedPlaceholder.filter(phArr => phArr !== '');
-
-  const newPh = pH[0] ? pH[0] : 'Select Label';
   return (
     <Dropdown
       scrolling
       downward="true"
       onChange={handleChange}
-      placeholder={labels.length < 1 ? 'No Labels' : newPh}
-      options={labelsArr}
+      value={projectStatusElementValue}
+      options={labelOptions}
     />
   );
 };

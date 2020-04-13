@@ -9,27 +9,29 @@ import {
 } from './Repos.module.scss';
 import {
   GET_GITHUB_REPOS as query,
-  CREATE_GHREPO as createRepo,
+  CREATE_GITHUB_REPO as createRepo,
 } from '../Queries';
 
 const initialQuery = '';
 
-const ReposList = ({ ghrepos, productId, executeQuery2 }) => {
+const ReposList = ({ githubRepos, productId, executeQuery2 }) => {
   const [state, setState] = useState({ open: false });
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [repoSelected, setRepoSelect] = useState([]);
-  const [githubRepos, setGithubRepos] = useState(ghrepos);
+  const [ghRepos, setGithubRepos] = useState(githubRepos);
 
   useEffect(() => {
-    setGithubRepos(ghrepos);
-  }, [ghrepos]);
+    setGithubRepos(githubRepos);
+  }, [githubRepos]);
+
   const [results, executeQuery] = useQuery({
     query,
     variables: { search: searchQuery },
     pause: true,
     requestPolicy: 'network-only',
   });
+
   const [, addRepo] = useMutation(createRepo);
 
   useEffect(() => {

@@ -14,20 +14,25 @@ import getMessage from '../../../utils/getMessageForCCGrade';
 
 import DeleteRepo from './DeleteRepo';
 
-const Grade = ({ ghrepos, executeQuery }) => {
-  if (!ghrepos || !ghrepos.length) return null;
+const Grade = ({ githubRepos, executeQuery }) => {
+  if (!githubRepos || !githubRepos.length) return null;
 
+  console.log('GRADE DATA: %O', githubRepos);
   return (
     <div className={gradeCont}>
-      {ghrepos.map(repo => {
-        const color = getColor(repo.grade);
+      {githubRepos.map(githubRepo => {
+        const color = getColor(githubRepo.grade.value);
         return (
-          <div key={repo.name} className={scsssux}>
-            <DeleteRepo id={repo.GHRepoId} name={repo.name} executeQuery={executeQuery} />
+          <div key={githubRepo.name} className={scsssux}>
+            <DeleteRepo
+              id={githubRepo.id}
+              name={githubRepo.name}
+              executeQuery={executeQuery}
+            />
             <h3>
-              {repo.name}:{' '}
+              {githubRepo.name}:{' '}
               <a
-                href={repo.link}
+                href={githubRepo.url}
                 className={gradeBox}
                 style={{
                   backgroundColor: color,
@@ -38,15 +43,21 @@ const Grade = ({ ghrepos, executeQuery }) => {
                 rel="noopener noreferrer"
               >
                 {' '}
-                {repo.grade}
-                <span className={Tip}>{getMessage(repo.grade)}</span>
+                {githubRepo.grade.value}
+                <span className={Tip}>
+                  {getMessage(githubRepo.grade.value)}
+                </span>
               </a>
             </h3>
-            <a href={repo.link} target="_blank" rel="noopener noreferrer">
+            <a
+              href={githubRepo.grade.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Go to Analysis
             </a>
             <div className={PulseBoy}>
-              <RePulse owner="Lambda-School-Labs" name={repo.name} />
+              <RePulse owner={githubRepo.owner} name={githubRepo.name} />
             </div>
           </div>
         );

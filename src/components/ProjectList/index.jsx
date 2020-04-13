@@ -12,43 +12,39 @@ import Settings from '../Settings/Settings';
 const ProjectListView = () => {
   const [state] = useQuery({ query });
   const { data, fetching, error } = state;
-  const projects = [];
 
-  data &&
-    data.programs[0].products.map(product =>
-      projects.push(product.projects[0])
-    );
-
-  const columns =
-    data &&
-    data.programs[0].statuses &&
-    data.programs[0].statuses.filter(status => status.display);
-
-  if (fetching) {
-    return <p>Loading...</p>;
-  } else if (error) {
+  if (error) {
     return (
       <p>
         Error "PROJECT_LIST_VIEW": {error.name} {error.message}
       </p>
     );
-  } else if (data && projects.length) {
-    return (
-      <div>
-        <Settings />
-        <ProjectListContainer statusColumn={columns}>
-          {projects.map(project => (
-            <ProjectListRow
-              key={project.id}
-              project={project}
-              statusColumn={columns}
-              statusDisplay={columns.display}
-            />
-          ))}
-        </ProjectListContainer>
-      </div>
-    );
   }
+
+  if (fetching) {
+    return <p>Loading...</p>;
+  }
+
+  // const columns =
+  //   data && data.programs[0].statuses && data.programs[0].statuses; // .filter(status => status.display);
+
+  //console.log('PROJECT_DATA: %O', data);
+  return (
+    <div>
+      <Settings />
+      <ProjectListContainer>
+        {/* statusColumn={columns}> */}
+        {data.projects.map(project => (
+          <ProjectListRow
+            key={project.id}
+            project={project}
+            // statusColumn={columns}
+            // statusDisplay={columns.display}
+          />
+        ))}
+      </ProjectListContainer>
+    </div>
+  );
 };
 
 export default ProjectListView;

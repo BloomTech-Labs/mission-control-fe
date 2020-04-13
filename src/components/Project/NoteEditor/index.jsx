@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { Dropdown, Button as SemanticButton } from 'semantic-ui-react';
 import { useMutation, useQuery } from 'urql';
-// import extractAvatar from '../../../utils/managers';
 
 import Attendance from './Attendance';
 import DeleteNote from '../NoteFeed/Note/DeleteNote';
@@ -45,9 +44,7 @@ const NoteEditor = ({
   const [topic, setTopic] = useState((note && note.topic) || '');
   const [content, setContent] = useState((note && note.content) || '');
   const [rating, setRating] = useState((note && note.rating) || 0);
-  const [privateNote, setPrivateNote] = useState(
-    (note && note.privateNote) || false
-  );
+  const [isPrivate, setIsPrivate] = useState((note && note.private) || false);
   const [attendees, setAttendees] = useState((note && note.attendedBy) || []);
   const [expandedAttendees, setExpandedAttendees] = useState(false);
   const [expandedAbsent, setExpandedAbsent] = useState(false);
@@ -88,7 +85,7 @@ const NoteEditor = ({
           topic,
           content,
           rating,
-          privateNote,
+          isPrivate,
           // Extracts an array of emails from array of Person objects
           attendedBy: Array.from(attendees, ({ email }) => email),
           notification,
@@ -107,7 +104,7 @@ const NoteEditor = ({
           topic,
           content,
           rating,
-          privateNote,
+          isPrivate,
           attendedBy: Array.from(attendees, ({ email }) => email),
         });
         setIsEditing(false);
@@ -123,9 +120,7 @@ const NoteEditor = ({
         <div className={styles['editor-container']}>
           <div className={styles['avatar-container']}>
             <img
-              src={
-                'https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png'
-              }
+              src="https://cdn4.iconfinder.com/data/icons/political-elections/50/48-512.png"
               alt="Avatar"
             />
           </div>
@@ -218,11 +213,10 @@ const NoteEditor = ({
                   </label>
                 )}
 
-                {privateNote ? (
+                {isPrivate ? (
                   <SemanticButton
-                    onClick={() => setPrivateNote(!privateNote)}
+                    onClick={() => setIsPrivate(!isPrivate)}
                     type="button"
-                    //color="pink"
                     className={styles['privatetoggle-btn']}
                     variant="outlined"
                   >
@@ -230,7 +224,7 @@ const NoteEditor = ({
                   </SemanticButton>
                 ) : (
                   <SemanticButton
-                    onClick={() => setPrivateNote(!privateNote)}
+                    onClick={() => setIsPrivate(!isPrivate)}
                     type="button"
                     className="ui pink basic button"
                     variant="outlined"
