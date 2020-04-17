@@ -2,55 +2,36 @@ import gql from 'graphql-tag';
 
 export const PROJECT_LIST_VIEW = gql`
   query {
-    programs {
-      name
+    projects {
       id
-      statuses {
-        name
+      name
+      active
+      updatedAt
+      notes(orderBy: updatedAt_DESC) {
         id
-        display
-        labels {
-          name
-          color
-          id
-          status {
-            id
-          }
-          selected {
-            id
-            name
-          }
-        }
+        updatedAt
       }
-      products {
+      status {
         id
-        projects {
+        # category {
+        #   id
+        #   name
+        # }
+        # display
+        # labels {
+        #   id
+        #   name
+        #   color
+        # }
+      }
+      product {
+        id
+        githubRepos {
           id
-          name
-          updatedAt
-          notes(orderBy: updatedAt_DESC) {
+          grade {
             id
-            updatedAt
-          }
-          projectActive
-          projectStatus {
-            id
-            name
-            display
-            labels {
-              id
-              name
-              color
-            }
-          }
-          product {
-            id
-            grades {
-              id
-              grade
-              name
-              link
-            }
+            url
+            value
           }
         }
       }
@@ -61,22 +42,8 @@ export const PROJECT_LIST_VIEW = gql`
 export const LABEL_LIST_VIEW = gql`
   query {
     programs {
-      name
       id
-      statuses {
-        name
-        id
-        display
-        labels {
-          name
-          color
-          id
-          selected {
-            id
-            name
-          }
-        }
-      }
+      name
     }
   }
 `;

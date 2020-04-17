@@ -1,28 +1,20 @@
-<center>
-
 # Mission Control
+
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-16.12.0-blue)
 [![code style: prettier](https://img.shields.io/badge/code%20style-prettier-ff69b4)](https://github.com/prettier/prettier)
-</center>
 
-|                                          [Kevin Afable](https://github.com/KAfable)                                          |                                          [Nicholas Gebhart](http://github.com/gebhartn)                                           |                                             [Dakotah Huey](https://github.com/frescocodes)                                             |
-| :--------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: |
-|      [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULJ1MK9GT-17419b760e18-512" width = "200" />](https://github.com/)       |         [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXHMK9PY-013dd2da8dd8-512" width = "200" />](https://github.com/)         |             [<img src="https://avatars0.githubusercontent.com/u/50816478?s=400&v=4" width = "200" />](https://github.com/)             |
-|                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/KAfable)                     |                       [<img src="https://github.com/favicon.ico" width="15"> ](http://github.com/gebhartn)                        |                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/frescocodes)                        |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kevinafable/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/nicholas-gebhart/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/dakotah-huey-76439583/) |
+|[Kevin Afable](https://github.com/KAfable)|[Nicholas Gebhart](http://github.com/gebhartn)|[Dakotah Huey](https://github.com/frescocodes)|
+|:-:|:-:|:-:|
+|<img src="https://ca.slack-edge.com/T4JUEB3ME-ULJ1MK9GT-17419b760e18-512" width = "150" />|<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXHMK9PY-013dd2da8dd8-512" width = "150" />|<img src="https://avatars0.githubusercontent.com/u/50816478?s=400&v=4" width = "150" />|
+|![https://github.com/KAfable][github-logo] ![https://www.linkedin.com/in/kevinafable/][linkedin-logo]|![http://github.com/gebhartn][github-logo] ![https://www.linkedin.com/in/nicholas-gebhart/][linkedin-logo]|![https://github.com/frescocodes][github-logo] ![https://www.linkedin.com/in/dakotah-huey-76439583/][linkedin-logo]|
 
-|                                              [Tony Kovar](https://github.com/tonyrkovar)                                              |                                     [Roy Wakumelo Jr.](https://github.com/roywakumelojr)                                      |                                  [Tommy Coleman](https://github.com/tommycoleman87)                                   |
-| :-----------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------: |
-|           [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXJ07DJS-d95403332534-512" width = "200" />](https://github.com/)           |       [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXALGWPR-90c177b51aa7-512" width = "200" />](https://github.com/)       |   [<img src="https://ca.slack-edge.com/T4JUEB3ME-UHXNFRBFE-b1accb251340-512" width = "200" />](https://github.com/)   |
-|                        [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tonyrkovar)                        |                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/roywakumelojr)                   |              [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tommycoleman87)              |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/tony-kovar-772295136/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/roywakumelojr) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://github.com/tommycoleman87) |
-
-
-
+|[Tony Kovar](https://github.com/tonyrkovar)|[Roy Wakumelo Jr.](https://github.com/roywakumelojr)|[Tommy Coleman](https://github.com/tommycoleman87)|
+|:-:|:-:|:-:|
+|<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXJ07DJS-d95403332534-512" width = "150" />|<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXALGWPR-90c177b51aa7-512" width = "150" />|<img src="https://ca.slack-edge.com/T4JUEB3ME-UHXNFRBFE-b1accb251340-512" width = "150" />|
+|![https://github.com/tonyrkovar][github-logo] ![https://www.linkedin.com/in/tony-kovar-772295136/][linkedin-logo]|![https://github.com/roywakumelojr][github-logo] ![https://www.linkedin.com/in/roywakumelojr][linkedin-logo]|![https://github.com/tommycoleman87][github-logo] ![https://github.com/tommycoleman87][linkedin-logo]|
 
 ## Project Overview
-
 
 Mission Control is a system that provisions, tracks, monitors and controls all of the IT resources (virtual, physical, non-physical and logical) for every product built and maintained by your organization. It allows you to keep tabs on deadlines, team members, costs, and everything you need to push your product across the finish line.
 
@@ -38,37 +30,36 @@ When operating at scale, it's easy to get lost in a sea of information. Mission 
 
 ## Tech Stack
 
-### Front end built using:
-
-#### React
+### React
 
 - React is a fantastic choice for building dynamic, interactive UIs. Mission Control is a complex website with a nested component structure, and has demanding relationships with multiple APIs. React allows us to meet the platform's needs efficiently, and helps keep everything organized behind the scenes.
 
-#### urql
+### urql
 
 - urql is a lightweight, powerful, and easy to use alternative to bulky GraphQL clients. urql helps you to rapidly use GraphQL in your apps without complex configuration or large API overhead. urql's API is intuitive to use, with full support for GraphQL Queries, Mutations and Subscriptions.
 
-#### Sass/SCSS
+### Sass/SCSS
 
 - Nested CSS is a must when styling your application. SCSS not only allows us as developers to write CSS quickly, but also creates an intuitive flow for later revisions. Add in variables, mixins, and functions, and CSS (arguably) is elevated to a production level.
 
-#### React Router
+### React Router
 
 - Single page applications have special needs, particularly when it comes to routing the user from page-to-page. React router allows for the easy transport of the site's users whilst retaining SPA functionality. And with the new React Router hooks, we can do all of this inside of the functional programming paradigm.
 
-#### OKTA
+### OKTA
 
 - OKTA provides cloud software that helps us manage and secure user authentication into modern applications, and for developers to build identity controls into applications, website web services and devices.
 
-
-# Environment Variables
+## Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-    *  REACT_APP_ROLE_KEY - this is the encryption key for the user's role (determines what dashboard they have access to). Choose a secure key (can be anything you want), and set up as a variable in your local application. The production key can be found in the AWS Amplify application
-    *  REACT_APP_MISSION_CONTROL_ENDPOINT - can be found in the AWS Amplify application. This is the authentication API
+    *  REACT_APP_CLIENT_ID
+    *  REACT_APP_GOOGLE_ANALYTICS_KEY
+    *  REACT_APP_OKTA_URL
+    *  REACT_APP_URQL_URL
 
-# Installation Instructions
+## Installation
 
 Clone this repo into your local, and run `yarn` to install your dependencies.
 
@@ -78,7 +69,7 @@ Clone this repo into your local, and run `yarn` to install your dependencies.
     * start - `yarn start`
     * test - `yarn test`
 
-# Contributing
+## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
@@ -115,9 +106,9 @@ Remember that this project is licensed under the MIT license, and by submitting 
 
 These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
 
-## Documentation
+## Backend Documentation
 
 See [Backend Documentation](https://github.com/Lambda-School-Labs/mission-control-be) for details on the backend of our project.
 
-
-## Contributors
+[github-logo]: https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Github-desktop-logo-symbol.svg/32px-Github-desktop-logo-symbol.svg.png "GitHub"
+[linkedin-logo]: https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/32px-LinkedIn_logo_initials.png "LinkedIn"

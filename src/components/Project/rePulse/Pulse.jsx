@@ -1,32 +1,42 @@
 import React from 'react';
 import { useQuery } from 'urql';
-import { PULSE as query } from '../Queries/pulseQuery';
+import query from '../Queries/pulseQuery';
 import PulseChart from './Charts/PulseChart';
 
 const RePulse = ({ owner, name }) => {
-    
-    const [state] = useQuery({ query, variables: {
-        owner: owner,
-        name: name
-    }});
+  const [state] = useQuery({
+    query,
+    variables: {
+      owner,
+      name,
+    },
+  });
 
-    const { data } = state;
+  const { data, fetching, error } = state;
 
-    if (state.fetching){
-        return <p>Detecting Pulse...</p>
-    } else if (state.error) {
-        return <p>No pulse detected __________________ : {state.error}</p>
-    } else if (data.GithubPulse) {
-        return (
-            <div>
-                <PulseChart data={data.GithubPulse} />
-            </div>
-        );
-    } else {
-        return (
-            <p>Pulse not detected. Deceased.</p>
-        )
-    }
+  if (error) {
+    //console.log('Pulse Error: %O', error);
+
+    return <p>Error</p>;
+  }
+
+  if (fetching) {
+    return <p>Detecting Pulse...</p>;
+  }
+
+  //   if (state.error) {
+  //     return <p>No pulse detected __________________ : {state.error}</p>;
+  //   }
+
+  //   if (data.GithubPulse) {
+  //     return (
+  //       <div>
+  //         <PulseChart data={data.GithubPulse} />
+  //       </div>
+  //     );
+  //   }
+
+  return <p>Pulse not detected. Deceased.</p>;
 };
 
 export default RePulse;

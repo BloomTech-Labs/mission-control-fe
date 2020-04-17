@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'semantic-ui-react';
-import { deleteCont } from './Grade.module.scss';
 import { useMutation } from 'urql';
-import { DELETE_GHREPO as query } from '../Queries';
-//this component is passed the id and name of a repo as well as the executeQuery function which allows the page to rerender when it's invoked in the handleDeleteRepos
+import { deleteCont } from './Grade.module.scss';
+import { DELETE_GITHUB_REPO as query } from '../Queries';
+
+// this component is passed the id and name of a repo as well as the executeQuery function which allows the page to rerender when it's invoked in the handleDeleteRepos
 function DeleteRepo({ id, name, executeQuery }) {
   const [open, setOpen] = useState(false);
 
@@ -26,7 +27,7 @@ function DeleteRepo({ id, name, executeQuery }) {
       <div className={deleteCont} onClick={show()}>
         X
       </div>
-      <Modal size={'mini'} open={open} onClose={show()}>
+      <Modal size="mini" open={open} onClose={show()}>
         <Modal.Content>
           <Modal.Description>
             <h4>Delete {name}?</h4>

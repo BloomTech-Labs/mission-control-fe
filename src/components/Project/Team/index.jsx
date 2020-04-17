@@ -18,40 +18,46 @@ const Team = ({ projectId }) => {
 
   const { data, fetching } = state;
 
+  if (fetching) {
+    return <h1>Loading...</h1>;
+  }
+
   if (data && data.project) {
     const {
-      project: { team, projectManagers },
+      project: { teamMembers, teamManagers },
     } = data;
-
-    if (fetching) return <h1>Loading</h1>;
 
     return (
       <aside className={teamContainer}>
         <h2 className={teamTitle}>Team</h2>
         <div className={memberContainer}>
-          <h3 className={teamMemberTitle}>Manager</h3>
-          {projectManagers.map(managers => {
+          <h3 className={teamMemberTitle}>Managers</h3>
+          {teamManagers.map(teamManager => {
             return (
-              <section className={members} key={managers.name}>
+              <section className={members} key={teamManager.person.name}>
                 <img
-                  src={checkNullAvatar(managers.avatar)}
-                  alt={managers.name}
+                  src={checkNullAvatar(teamManager.person.avatar)}
+                  alt={teamManager.person.name}
                   className={avatar}
                 />
-                <p className={teamNames}>{managers.name}</p>
+                <p className={teamNames}>
+                  {teamManager.person.name} ({teamManager.role.name})
+                </p>
               </section>
             );
           })}
-          <h3 className={teamMemberTitle}>Team</h3>
-          {team.map(teammate => {
+          <h3 className={teamMemberTitle}>Members</h3>
+          {teamMembers.map(teamMember => {
             return (
-              <section className={members} key={teammate.name}>
+              <section className={members} key={teamMember.person.name}>
                 <img
-                  src={checkNullAvatar(teammate.avatar)}
-                  alt={teammate.name}
+                  src={checkNullAvatar(teamMember.person.avatar)}
+                  alt={teamMember.person.name}
                   className={avatar}
                 />
-                <p className={teamNames}>{teammate.name}</p>
+                <p className={teamNames}>
+                  {teamMember.person.name} ({teamMember.role.name})
+                </p>
               </section>
             );
           })}
@@ -59,6 +65,7 @@ const Team = ({ projectId }) => {
       </aside>
     );
   }
+
   return <h1>No team found</h1>;
 };
 
