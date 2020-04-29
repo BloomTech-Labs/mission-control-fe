@@ -1,0 +1,59 @@
+//this will contain existing tags/search terms
+form{
+  width: 50%;
+  margin: 0 auto;
+}
+
+.inputCont{
+  box-sizing: border-box;
+  padding: 8px 10px;
+  width: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #ccc;
+
+  .hide{
+    display: none;
+  }
+
+  .tag{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+    background-color: #ccc;
+
+    .closeTag{
+      font-size: 0.7rem;
+      display: flex;
+      margin-left: 5px;
+      justify-content: center;
+      align-items: center;
+      padding: 1px 3px;
+      border-radius: 25%;
+      background-color: lightBlue;
+      opacity: 0.8;
+
+      &:hover{
+        cursor: pointer;
+        color: #ccc;
+        opacity: 0.6;
+        background-color: Blue;
+      }
+    }
+
+  }//end tag
+
+}//end formCont
+
+input{
+  border: none;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 5px;
+  font-size: 1.3rem;
+  outline: none;
+}

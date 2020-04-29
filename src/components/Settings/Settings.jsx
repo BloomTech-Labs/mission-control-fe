@@ -13,6 +13,8 @@ import CreateColumn from './CreateColumn/index';
 
 import ColumnSettings from './ColumnSettings/index';
 
+import FilterBar from '../FilterBar/FilterBar';
+
 const Settings = () => {
   const [open, setOpen] = useState(false);
 
@@ -35,6 +37,7 @@ const Settings = () => {
 
   return (
     <div className={bottomLinks}>
+      <FilterBar />
       <Modal
         open={open}
         onClose={handleClose}
