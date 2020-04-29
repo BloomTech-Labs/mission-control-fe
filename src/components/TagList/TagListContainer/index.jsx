@@ -29,7 +29,7 @@ const TagListContainer = ({ children, statusColumn }) => {
               : ''}
           </tr>
         </thead>
-        <tbody>{children}</tbody>
+        <tbody>{children} </tbody>
       </table>
     );
   }
