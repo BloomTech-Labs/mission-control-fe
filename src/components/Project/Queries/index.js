@@ -275,7 +275,7 @@ export const UPDATE_LABEL = gql`
       color
     }
   }
-`;
+`
 
 export const UPDATE_PROJECT_STATUS_ELEMENT_VALUE = gql`
   mutation UpdateProjectStatusElementValue(
@@ -451,3 +451,4 @@ export const UPDATE_STATUS_DISPLAY = gql`
     }
   }
 `;
+

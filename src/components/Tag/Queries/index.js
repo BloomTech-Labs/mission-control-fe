@@ -8,6 +8,7 @@ export const HEADER_QUERY = gql`
     tag(where: { id: $id }) {
       id
       name
+      createdAt
       isUsed
     }
   }
@@ -18,6 +19,7 @@ query TagView($id: ID!) {
     tag(where: { id: $id }) {
       id
       name
+      createdAt
       isUsed
     }
 }`
