@@ -1,19 +1,15 @@
+import React, { useState, createContext } from 'react';
 
+export const TagContext = createContext();
 
-import React from 'react';
-import { tagReducer, tagState } from '../reducers';
-
-export const TagStateContext = React.createContext();
-export const TagDispatchContext = React.createContext();
-
-export const TagProvider = ({ children }) => {
-  const [state, dispatch] = React.useReducer(tagReducer, tagState);
-
+export const TagProvider = props => {
+  const [tag, setTag] = useState({ id: '', name: '', isUsed:false });
+  const [tagArray, setTagArray] = useState([]);
   return (
-    <TagStateContext.Provider value={state}>
-      <TagDispatchContext.Provider value={dispatch}>
-        {children}
-      </TagDispatchContext.Provider>
-    </TagStateContext.Provider>
+    <TagContext.Provider
+      value={{ tag, setTag, tagArray, setTagArray }}
+    >
+      {props.children}
+    </TagContext.Provider>
   );
 };

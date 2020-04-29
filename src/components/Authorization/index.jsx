@@ -51,13 +51,14 @@ export default withAuth(({ auth }) => {
             />
           )}
         />
+
+//LAB23-T1
         <SecureRoute
           exact
           path="/tags"
           
-          render={props => (
-           
-//LAB23-T1
+          render={props => (       
+
             <TagList
               {...props}
               logout={invokeOktaLogout}

@@ -23,6 +23,8 @@ const cache = cacheExchange({
           }
         });
       },
+
+
       createStatus: ({ createStatus }, _args, cache) => {
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
           if (data !== null) {
@@ -49,7 +51,7 @@ const cache = cacheExchange({
       deleteLabel: ({ deleteLabel }, _args, cache) => {
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
           if (data !== null) {
-            const statusIndex = data.programs[0].statuses.findIndex(
+            const statusIndex = data.programs[0].status6es.findIndex(
               c => c.id === _args.columnId
             );
             const labelIndex = data.programs[0].statuses[

@@ -31,9 +31,9 @@ const Sidebar = ({ logout }) => {
             Projects
           </NavLink>
           <NavLink
-            to="/tag"
+            to="/tags"
             className={link}
-            activeClassName={location.pathname === '/tag' ? current : ''}
+            activeClassName={location.pathname === '/tags' ? current : ''}
           >
             Tags
           </NavLink>
