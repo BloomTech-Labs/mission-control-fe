@@ -6,6 +6,9 @@ import Layout from '../Layout';
 import Project from '../Project';
 import ProjectList from '../ProjectList';
 
+import Tag from '../Tag';
+import TagList from '../TagList';
+
 // OKTA authentication widget, invokes implicit callback to login
 // if the user attempts to access a protected view.
 // isAuthenticated peers into storage for a valid token upon PKCE
@@ -36,11 +39,26 @@ export default withAuth(({ auth }) => {
     <Layout logout={invokeOktaLogout}>
       <Switch>
         <SecureRoute path="/project/:id" component={Project} />
+        <SecureRoute path="/tags/:id" component={Tag} />
         <SecureRoute
           exact
-          path="/"
+          path="/"  
           render={props => (
             <ProjectList
+              {...props}
+              logout={invokeOktaLogout}
+              getAccessToken={getAccessToken}
+            />
+          )}
+        />
+        <SecureRoute
+          exact
+          path="/tags"
+          
+          render={props => (
+           
+//LAB23-T1
+            <TagList
               {...props}
               logout={invokeOktaLogout}
               getAccessToken={getAccessToken}

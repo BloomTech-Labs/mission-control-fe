@@ -30,6 +30,13 @@ const Sidebar = ({ logout }) => {
           >
             Projects
           </NavLink>
+          <NavLink
+            to="/tag"
+            className={link}
+            activeClassName={location.pathname === '/tag' ? current : ''}
+          >
+            Tags
+          </NavLink>
         </div>
         <div className={bottomLinks}>
           <button type="button" className={logoutButton}>
