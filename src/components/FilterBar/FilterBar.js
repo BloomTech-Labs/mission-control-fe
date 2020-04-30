@@ -13,16 +13,12 @@ import './FilterBar.scss';
 // })
 
 const FEED_SEARCH = gql`
-  query FeedSearchQuery($filter: String!) {
-    # feed(filter: $filter) {
-    #   id
-    #   name
-    #   description
-    # }
-      products{
-        id
-        name
-      }
+
+  query filterQuery($filter: ProjectWhereInput!){
+    project(where: $filter){
+      id
+      name
+    }
 }
 `
 
@@ -33,7 +29,7 @@ const FilterBar = () => {
 
   const [result, executeQuery] = useQuery({
     query: FEED_SEARCH,
-    variables: { filter },
+    variables: {filter} ,
     pause: true
   })
 
@@ -68,9 +64,9 @@ const FilterBar = () => {
     setFilter('');
   }//end handleSubmit
 
-  const removeTag= (item) => {
+  const removeTag = (item) => {
     console.log("Remove tag from backend query");
-    let newFilterList= filterList.filter( ele => {
+    let newFilterList = filterList.filter(ele => {
       return ele !== item;
     })
     // console.log('newList: ', newFilterList);
@@ -101,18 +97,18 @@ const FilterBar = () => {
   }, [filter])
 
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit} autoComplete='off'>
         <div className='inputCont'>
           {
             filterList.map(filterItem => {
               return (
                 <span className='tag'
-                  key= {`${filterItem}_{Math.random()}`}
-                  >
+                  key={`${filterItem}_{Math.random()}`}
+                >
                   {`${filterItem}`}
                   <span className='closeTag'
-                    onClick= {() => {removeTag(`${filterItem}`)}}
+                    onClick={() => { removeTag(`${filterItem}`) }}
                   >X
                   </span>
                 </span>
@@ -132,14 +128,14 @@ const FilterBar = () => {
           />
           <i className="fas fa-search"></i>
         </div>
-        {/* <button type= 'submit'>submit</button> */}
-      </form>
-      {/* {console.log('filterList: ', filterList)} */}
 
-      {projects.map((project, index) => (
+      </form>
+
+
+      {/* {projects.map((project, index) => (
         <Project key={project.id} project={project} index={index} />
-      ))}
-    </div>
+      ))} */}
+    </>
   )
 }
 
