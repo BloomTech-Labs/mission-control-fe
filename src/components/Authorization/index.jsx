@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { withAuth, SecureRoute } from '@okta/okta-react';
 import { Switch } from 'react-router-dom';
 
+import FilterBar from '../../components/FilterBar/FilterBar';
+
 import Layout from '../Layout';
 import Project from '../Project';
 import ProjectList from '../ProjectList';
@@ -40,11 +42,14 @@ export default withAuth(({ auth }) => {
           exact
           path="/"
           render={props => (
-            <ProjectList
-              {...props}
-              logout={invokeOktaLogout}
-              getAccessToken={getAccessToken}
-            />
+            <>
+              <FilterBar />
+              <ProjectList
+                {...props}
+                logout={invokeOktaLogout}
+                getAccessToken={getAccessToken}
+              />
+            </>
           )}
         />
       </Switch>

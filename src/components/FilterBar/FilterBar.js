@@ -12,32 +12,32 @@ import './FilterBar.scss';
 //   }
 // })
 
-const FEED_SEARCH = gql`
+// const FEED_SEARCH = gql`
 
-  query filterQuery($filter: ProjectWhereInput!){
-    project(where: $filter){
-      id
-      name
-    }
-}
-`
+//   query filterQuery($filter: ProjectWhereInput!){
+//     project(where: $filter){
+//       id
+//       name
+//     }
+// }
+// `
 
 const FilterBar = () => {
   // const classes = useStyles();
-  const [filter, setFilter] = useState('');
+  const [searchFilter, setSearchFilter] = useState('');
   const [filterList, setFilterList] = useState([]);
 
-  const [result, executeQuery] = useQuery({
-    query: FEED_SEARCH,
-    variables: {filter} ,
-    pause: true
-  })
+  // const [result, executeQuery] = useQuery({
+  //   query: FEED_SEARCH,
+  //   variables: {searchFilter} ,
+  //   pause: true
+  // })
 
-  const execSearch = React.useCallback(() => {
-    executeQuery();
-  }, [executeQuery])
+  // const execSearch = React.useCallback(() => {
+  //   executeQuery();
+  // }, [executeQuery])
 
-  const projects = result.data ? result.data.feed : [];
+  // const projects = result.data ? result.data.feed : [];
 
   //initialize the timer var
   let timer;
@@ -45,7 +45,7 @@ const FilterBar = () => {
     //reset timer on each key stroke
     e.persist();
     window.clearTimeout(timer);
-    setFilter(e.target.value);
+    setSearchFilter(e.target.value);
   }//end handleChange
 
   const handleSubmit = e => {
@@ -53,15 +53,15 @@ const FilterBar = () => {
     e && e.preventDefault();
     //clear the submit timer and submit form
     window.clearTimeout(timer);
-    if (filter !== '') {
+    if (searchFilter !== '') {
       console.log('send new or update query to BE')
       setFilterList([
         ...filterList,
-        filter
+        searchFilter
       ])
     }//end if
-    execSearch();
-    setFilter('');
+    // execSearch();
+    setSearchFilter('');
   }//end handleSubmit
 
   const removeTag = (item) => {
@@ -87,14 +87,14 @@ const FilterBar = () => {
   }//end handleFocus
 
 
-  useEffect(() => {
-    //delay then submit form/or hit enter to submit immediately
-    //eslint-disable-next-line
-    timer = window.setTimeout(() => {
-      // execSearch();
-      handleSubmit();
-    }, 2000)
-  }, [filter])
+  // useEffect(() => {
+  //   //delay then submit form/or hit enter to submit immediately
+  //   //eslint-disable-next-line
+  //   timer = window.setTimeout(() => {
+  //     // execSearch();
+  //     handleSubmit();
+  //   }, 2000)
+  // }, [SearchFilter])
 
   return (
     <>
@@ -124,7 +124,7 @@ const FilterBar = () => {
             name='search'
             id='search'
             placeholder='Search'
-            value={filter}
+            value={searchFilter}
           />
           <i className="fas fa-search"></i>
         </div>
