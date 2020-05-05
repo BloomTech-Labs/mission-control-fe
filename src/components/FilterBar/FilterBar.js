@@ -63,6 +63,8 @@ const FilterBar = () => {
     window.clearTimeout(timer);
     if (searchFilter !== '') {
       console.log('send new or update query to BE')
+      //Setting searchTerm in projectSearchContext to value of searchFilter
+      //so it's accessible to "ProjectList/index.jsx"
       projectSearchContext.setSearchTerm(searchFilter);
       setFilterList([
         ...filterList,
@@ -70,8 +72,9 @@ const FilterBar = () => {
       ])
     }//end if
     // execSearch();
+
     setSearchFilter('');
-    projectSearchContext.setSearchTerm(searchFilter);
+
 
   }//end handleSubmit
 
@@ -81,6 +84,7 @@ const FilterBar = () => {
       return ele !== item;
     })
     // console.log('newList: ', newFilterList);
+    // Setting searchTerm back to an empty string
     projectSearchContext.setSearchTerm(searchFilter);
     return setFilterList(newFilterList);
   }//end removeTag

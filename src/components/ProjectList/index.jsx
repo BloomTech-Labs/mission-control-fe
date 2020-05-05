@@ -16,10 +16,14 @@ const ProjectListView = () => {
  
   const projectSearchContext = useContext(ProjectSearchContext);
 
+  // Currently using this test state to query data. Applies the filter no matter what,
+  // though initially the search term is an empty string, leading to all projects being shown.
+
+  
   const [myTestState] =  useQuery({
     query: newQuery,
     variables: { filter: {
-        name_contains: projectSearchContext.contains
+        name_contains: projectSearchContext.searchTerm
     }}
   })
 
