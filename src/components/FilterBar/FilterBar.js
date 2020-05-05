@@ -1,4 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { FILTERED_DATA as newQuery } from './filterBarQueries';
+import {ProjectSearchContext} from '../../contexts/labs23-t1-filterbar-context';
+
+
 import { useQuery } from "urql";
 import gql from "graphql-tag";
 // import { makeStyles } from '@material-ui/core';
@@ -26,6 +30,10 @@ const FilterBar = () => {
   // const classes = useStyles();
   const [searchFilter, setSearchFilter] = useState('');
   const [filterList, setFilterList] = useState([]);
+  
+
+  const projectSearchContext = useContext(ProjectSearchContext);
+
 
   // const [result, executeQuery] = useQuery({
   //   query: FEED_SEARCH,
@@ -55,6 +63,7 @@ const FilterBar = () => {
     window.clearTimeout(timer);
     if (searchFilter !== '') {
       console.log('send new or update query to BE')
+      projectSearchContext.setSearchTerm(searchFilter);
       setFilterList([
         ...filterList,
         searchFilter
@@ -62,6 +71,8 @@ const FilterBar = () => {
     }//end if
     // execSearch();
     setSearchFilter('');
+    projectSearchContext.setSearchTerm(searchFilter);
+
   }//end handleSubmit
 
   const removeTag = (item) => {
@@ -70,6 +81,7 @@ const FilterBar = () => {
       return ele !== item;
     })
     // console.log('newList: ', newFilterList);
+    projectSearchContext.setSearchTerm(searchFilter);
     return setFilterList(newFilterList);
   }//end removeTag
 

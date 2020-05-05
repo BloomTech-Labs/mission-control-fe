@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import { useQuery } from 'urql';
 import { PROJECT_LIST_VIEW as query } from './Queries/projectQueries';
+import {ProjectSearchContext} from '../../contexts/labs23-t1-filterbar-context';
+import { FILTERED_DATA as newQuery } from '../FilterBar/filterBarQueries';
 import ProjectListContainer from './ProjectListContainer';
 import ProjectListRow from './ProjectListRow';
 import Settings from '../Settings/Settings';
@@ -10,8 +12,18 @@ import Settings from '../Settings/Settings';
 // and returns a list of projects that they are authorized to view.
 
 const ProjectListView = () => {
-  const [state] = useQuery({ query });
-  const { data, fetching, error } = state;
+  //const [state] = useQuery({ query });
+ 
+  const projectSearchContext = useContext(ProjectSearchContext);
+
+  const [myTestState] =  useQuery({
+    query: newQuery,
+    variables: { filter: {
+        name_contains: projectSearchContext.contains
+    }}
+  })
+
+  const { data, fetching, error } = myTestState;
 
   if (error) {
     return (
@@ -23,7 +35,10 @@ const ProjectListView = () => {
 
   if (fetching) {
     return <p>Loading...</p>;
+  } else {
+    console.log(data)
   }
+
 
   // const columns =
   //   data && data.programs[0].statuses && data.programs[0].statuses; // .filter(status => status.display);
