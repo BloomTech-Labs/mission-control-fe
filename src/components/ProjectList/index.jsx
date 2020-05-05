@@ -12,22 +12,21 @@ import Settings from '../Settings/Settings';
 // and returns a list of projects that they are authorized to view.
 
 const ProjectListView = () => {
-  //const [state] = useQuery({ query });
  
   const projectSearchContext = useContext(ProjectSearchContext);
 
   // Currently using this test state to query data. Applies the filter no matter what,
   // though initially the search term is an empty string, leading to all projects being shown.
 
-  
-  const [myTestState] =  useQuery({
+
+  const [state] =  useQuery({
     query: newQuery,
     variables: { filter: {
         name_contains: projectSearchContext.searchTerm
     }}
   })
 
-  const { data, fetching, error } = myTestState;
+  const { data, fetching, error } = state;
 
   if (error) {
     return (

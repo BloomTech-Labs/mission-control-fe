@@ -5,26 +5,10 @@ import {ProjectSearchContext} from '../../contexts/labs23-t1-filterbar-context';
 
 import { useQuery } from "urql";
 import gql from "graphql-tag";
-// import { makeStyles } from '@material-ui/core';
-// import Autocomplete from '@material-ui/lab/Autocomplete';
+
 import Project from "./Project";
 import './FilterBar.scss';
 
-// const useStyles = makeStyles({
-//   root: {
-//     margin: "2% auto"
-//   }
-// })
-
-// const FEED_SEARCH = gql`
-
-//   query filterQuery($filter: ProjectWhereInput!){
-//     project(where: $filter){
-//       id
-//       name
-//     }
-// }
-// `
 
 const FilterBar = () => {
   // const classes = useStyles();
@@ -33,19 +17,6 @@ const FilterBar = () => {
   
 
   const projectSearchContext = useContext(ProjectSearchContext);
-
-
-  // const [result, executeQuery] = useQuery({
-  //   query: FEED_SEARCH,
-  //   variables: {searchFilter} ,
-  //   pause: true
-  // })
-
-  // const execSearch = React.useCallback(() => {
-  //   executeQuery();
-  // }, [executeQuery])
-
-  // const projects = result.data ? result.data.feed : [];
 
   //initialize the timer var
   let timer;
@@ -102,16 +73,6 @@ const FilterBar = () => {
     })
   }//end handleFocus
 
-
-  // useEffect(() => {
-  //   //delay then submit form/or hit enter to submit immediately
-  //   //eslint-disable-next-line
-  //   timer = window.setTimeout(() => {
-  //     // execSearch();
-  //     handleSubmit();
-  //   }, 2000)
-  // }, [SearchFilter])
-
   return (
     <>
       <form onSubmit={handleSubmit} autoComplete='off'>
@@ -144,13 +105,7 @@ const FilterBar = () => {
           />
           <i className="fas fa-search"></i>
         </div>
-
       </form>
-
-
-      {/* {projects.map((project, index) => (
-        <Project key={project.id} project={project} index={index} />
-      ))} */}
     </>
   )
 }
