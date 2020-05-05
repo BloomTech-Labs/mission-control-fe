@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useLocation, Route } from 'react-router-dom';
 import { SecureRoute, ImplicitCallback } from '@okta/okta-react';
+import { ProjectSearchProvider} from '../contexts/labs23-t1-filterbar-context';
+
 
 import initializeAnalytics from '../utils/initializeAnalytics';
 
@@ -18,8 +20,10 @@ const App = () => {
   return [
     <LabelProvider>
       <ColumnProvider>
+      <ProjectSearchProvider>
         <Route path="/implicit/callback" component={ImplicitCallback} />
         <SecureRoute path="/" component={Authorization} />
+        </ProjectSearchProvider>
       </ColumnProvider>
     </LabelProvider>,
   ];

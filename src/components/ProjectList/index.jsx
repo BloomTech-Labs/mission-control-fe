@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import { useQuery } from 'urql';
 import { PROJECT_LIST_VIEW as query } from './Queries/projectQueries';
+import {ProjectSearchContext} from '../../contexts/labs23-t1-filterbar-context';
+import { FILTERED_DATA as newQuery } from '../FilterBar/filterBarQueries';
 import ProjectListContainer from './ProjectListContainer';
 import ProjectListRow from './ProjectListRow';
 import Settings from '../Settings/Settings';
@@ -10,7 +12,20 @@ import Settings from '../Settings/Settings';
 // and returns a list of projects that they are authorized to view.
 
 const ProjectListView = () => {
-  const [state] = useQuery({ query });
+ 
+  const projectSearchContext = useContext(ProjectSearchContext);
+
+  // Currently using this test state to query data. Applies the filter no matter what,
+  // though initially the search term is an empty string, leading to all projects being shown.
+
+
+  const [state] =  useQuery({
+    query: newQuery,
+    variables: { filter: {
+        name_contains: projectSearchContext.searchTerm
+    }}
+  })
+
   const { data, fetching, error } = state;
 
   if (error) {
@@ -23,7 +38,10 @@ const ProjectListView = () => {
 
   if (fetching) {
     return <p>Loading...</p>;
+  } else {
+    console.log(data)
   }
+
 
   // const columns =
   //   data && data.programs[0].statuses && data.programs[0].statuses; // .filter(status => status.display);
