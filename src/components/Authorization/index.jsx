@@ -8,6 +8,7 @@ import ProjectList from '../ProjectList';
 
 import Tag from '../Tag';
 import TagList from '../TagList';
+import FilterBar from '../FilterBar/FilterBar';
 
 // OKTA authentication widget, invokes implicit callback to login
 // if the user attempts to access a protected view.
@@ -44,11 +45,15 @@ export default withAuth(({ auth }) => {
           exact
           path="/"  
           render={props => (
+      <>
+      <FilterBar/>
+  
             <ProjectList
               {...props}
               logout={invokeOktaLogout}
               getAccessToken={getAccessToken}
             />
+            </>
           )}
         />
 
