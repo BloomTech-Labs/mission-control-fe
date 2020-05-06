@@ -47,8 +47,8 @@ const Tag = props => {
       <div className={tagPageContents}>
         <div>
           <Header tagId={id} />
+     
         </div>
-
       </div>
     </div>
   );

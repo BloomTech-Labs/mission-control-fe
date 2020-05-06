@@ -3,6 +3,7 @@
 import React from 'react';
 import { rtc, hiddenName } from './tagListContainer.module.scss';
 
+
 const TagListContainer = ({ children, statusColumn }) => {
   const statusTitleArr = [];
   if (statusColumn && statusColumn.length > 0) {
@@ -14,7 +15,9 @@ const TagListContainer = ({ children, statusColumn }) => {
       <table>
         <thead>
           <tr>
+   
             <th>Tag Name</th>
+     
             {/* We want to use this feature, but it's not quite where we want it to be just yet. Since we'd have to rip it out in multiple files, I decided to leave it in and comment it out for now. See ProjectListRow */}
             {/* <th className={rtd}>Last Updated</th> */}
             {statusColumn.length > 0 && statusTitleArr.length > 0
@@ -24,12 +27,13 @@ const TagListContainer = ({ children, statusColumn }) => {
                     key={tagData.id}
                   >
                     {tagData.name}
+                   
                   </th>
                 ))
               : ''}
           </tr>
         </thead>
-        <tbody>{children} </tbody>
+        <tbody>{children}</tbody>
       </table>
     );
   }
@@ -41,7 +45,8 @@ const TagListContainer = ({ children, statusColumn }) => {
           <th>Tag Name</th>
         </tr>
       </thead>
-      <tbody>{children}</tbody>
+      <tbody>{children}
+      </tbody>
     </table>
   );
 };

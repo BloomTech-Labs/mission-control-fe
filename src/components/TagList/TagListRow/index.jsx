@@ -23,60 +23,7 @@ const TagRow = ({ tag, content, id, name, handleOnClick, handleOnEdit, handleOnD
         <td className={title}>
           <Link to={`/tag/${tag.id}`} className={title}>
             {tag.name}
-            extra={
-              <Fragment>
-                <span className='pointer'
-                onClick={() => 
-                handleOnEdit({id, name, isUsed})}>
-  
-                <EditOutlined
-                style={{
-                  fontSize: `1.25rem`,
-                  color: '#08c',
-                  marginRight: '0.625rem'
-                }}
-                type='edit'/>
-         </span>
-  
-         <Popconfirm
-              title="Are you sure delete this tag?"
-              onConfirm={() =>
-                handleOnDelete({
-                  id,
-                  name
-                })
-              }
-              okText="Yes"
-              cancelText="No"
-            >
-              <span className='pointer'>
-                <DeleteOutlined
-                style={{
-                  fontSize:'1.25rem',
-                  color:'#08c',
-                  marginRight:'0.625rem'
-                }}
-                type='delete'
-                />
-              </span>
-              </Popconfirm>
-              <span className="pointer">
-              <EyeOutlined
-                style={{
-                  fontSize: '1.25rem',
-                  color: '#08c'
-                }}
-                type="eye"
-                onClick={() => handleOnClick(id)}
-              />
-            </span>
-              </Fragment>
-            } style={{
-              marginBottom:'0.625rem'
-            }}
-
-          >
-            {content}
+          
 
           </Link>
         </td>
@@ -86,8 +33,9 @@ const TagRow = ({ tag, content, id, name, handleOnClick, handleOnEdit, handleOnD
                 <td
                   key={tag.id}
                   tag={tag}
+                  
                 >
-        
+           
                 </td>
               );
             })
@@ -104,8 +52,17 @@ const TagRow = ({ tag, content, id, name, handleOnClick, handleOnEdit, handleOnD
         <Link to={`/tag/${tag.id}`} className={title}>
           {tag.name}
         </Link>
+  
 
       </td>
+{/* KS Updated  */}
+      <Link to={`/`} className={title}>
+          <p>Edit</p>
+        </Link>
+
+      <Link to={`/`} className={title}>
+          <p>Delete</p>
+        </Link>
     </tr>
   );
 };
