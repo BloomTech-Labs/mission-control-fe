@@ -31,7 +31,7 @@ const Settings = () => {
 
   const { data } = state;
 
-  const programId = data && data.programs[0].id;
+  // const programId = data && data.programs[0].id;
 
   return (
     <div className={bottomLinks}>
@@ -48,8 +48,8 @@ const Settings = () => {
           Manage Columns
           {/* statuses grabs the first and only program index in programs, might need to be reworked to use a query with a id variable */}
           <CreateColumn
-            programId={programId}
-            column={data}
+            // programId={programId}
+            // column={data}
             //statuses={data.programs[0].statuses}
           />
         </Header>
