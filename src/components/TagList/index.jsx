@@ -7,7 +7,9 @@ import TagListRow from './TagListRow';
 import Settings from '../Settings/Settings'
 import { Link } from 'react-router-dom';
 
+import ModalAdd from '../Modal/ModalAdd'
 import AddTagBtn from '../Tag/AddTagBtn';
+
 
 
 // TagListView is the default view when a user signs into the application
@@ -35,6 +37,7 @@ console.log(`TAG_DATA:%0`, data)
   return (
     <div>
 <AddTagBtn/>
+
       <TagListContainer>
         {/* statusColumn={columns}> */}
      

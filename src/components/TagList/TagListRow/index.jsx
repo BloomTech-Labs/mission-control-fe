@@ -55,7 +55,7 @@ const TagRow = ({ tag, content, id, name, handleOnClick, handleOnEdit, handleOnD
   
 
       </td>
-{/* KS Updated  */}
+{/* KS */}
       <Link to={`/`} className={title}>
           <p>Edit</p>
         </Link>
