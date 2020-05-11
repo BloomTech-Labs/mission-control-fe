@@ -1,0 +1,44 @@
+.tags-container {
+    display: flex;
+    width: 100%;
+    padding: 2%;
+
+    border: solid pink 2px;
+    flex-flow: row wrap;
+    justify-content: space-between;
+
+
+.tag{
+
+    display: flex;
+    font-size: 1rem;
+    align-items: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-right: 2%;
+    border-radius: 5%;
+    background-color: #ccc;
+
+    .closeTag{
+      font-size: 0.4rem;
+      display: flex;
+      margin-left: 5px;
+      justify-content: center;
+      align-items: center;
+      padding: 1px 3px;
+      border-radius: 25%;
+      background-color: lightBlue;
+      opacity: 0.8;
+
+      &:hover{
+        cursor: pointer;
+        color: #ccc;
+        opacity: 0.6;
+        background-color: Blue;
+      }
+    }
+}
+
+  }//end tag

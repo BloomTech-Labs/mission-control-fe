@@ -3,6 +3,7 @@ import { Provider, Client, dedupExchange, fetchExchange } from 'urql';
 import { cacheExchange } from '@urql/exchange-graphcache';
 import { getToken } from '../utils';
 import { LABEL_LIST_VIEW } from '../components/ProjectList/Queries/projectQueries';
+import { CREATE_TAG} from '../components/Project/Queries/TagQueries';
 
 // The @urql/exchange-graphcache dependency exposes a normalized cache
 // by default, the urql client comes pre-configured with a document cache.
@@ -10,6 +11,21 @@ import { LABEL_LIST_VIEW } from '../components/ProjectList/Queries/projectQuerie
 const cache = cacheExchange({
   updates: {
     Mutation: {
+        /*
+      createTag: ({ createTag }, _args, cache) => {
+        cache.createTag({ query: CREATE_TAG }, data => {
+          if (data !== null) {
+            const tagsIndex = data.tags[0].s.findIndex(
+              c => c.id === _args.id
+            );
+            data.tags.unshift(createTag);
+            return data;
+          } else {
+            return null;
+          }
+        });
+      },*/
+
       createLabel: ({ createLabel }, _args, cache) => {
         cache.updateQuery({ query: LABEL_LIST_VIEW }, data => {
           if (data !== null) {

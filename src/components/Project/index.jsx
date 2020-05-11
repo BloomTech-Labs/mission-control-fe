@@ -9,6 +9,7 @@ import Header from './Header';
 import Grade from './Grade';
 import GitHubRepos from './GitHubRepos';
 import ProjectStatus from './ProjectStatus/index';
+import Tags from './Tags/index';
 
 import {
   parentProjectContainer,
@@ -72,6 +73,7 @@ const Project = props => {
       <div className={projectPageContents}>
         <div>
           <Header projectId={id} />
+          <Tags />
         </div>
         <div className={projectContainer}>
           <div className={editorFeedContainer}>
