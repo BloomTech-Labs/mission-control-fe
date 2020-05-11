@@ -3,6 +3,7 @@ import { useQuery, useMutation, refetchQueries} from 'urql';
 
 import { GET_ALL_TAGS as getTagsQuery } from '../Queries/TagQueries';
 import { CREATE_TAG as createTagQuery} from '../Queries/TagQueries';
+import { DELETE_TAG as deleteTagQuery} from '../Queries/TagQueries';
 
 //Basic Styling
 import {
@@ -13,6 +14,7 @@ import {
 const Tags = ({ projectId }) => {
 
 const [state, reexecuteQuery] = useQuery({ query: getTagsQuery });
+const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery)
 const [tagName, setTagName] = useState('');
 const [addTagResults, addTag] =  useMutation(createTagQuery);
 
@@ -29,21 +31,30 @@ const handleChange = e => {
     if (tagName !== '') {
       console.log('send new or update query to BE');
       //Using create tag mutation
-      addTag({name: tagName
+      addTag({tag: {name: tagName}
         }).then(() => {
           // Refetch the query and skip the cache
         reexecuteQuery({ requestPolicy: 'network-only' });
         }
-
-        )
-
-
+      )
 
     }//end if
-    //reset searchFilter to empty str
+    //reset to empty str
     setTagName('');
   
   }//end handleSubmit
+
+
+  const handleDelete = (id) => {
+
+    //Using delete tag mutation
+    deleteTag({tag: {id: id}
+      }).then(() => {
+        // Refetch the query and skip the cache
+      reexecuteQuery({ requestPolicy: 'network-only' });
+      }
+    )
+    }
 
   const { data, fetching, error } = state;
 
@@ -75,7 +86,7 @@ const handleChange = e => {
 
             <div className='tags-container'>
             {data.tags.map(element => (
-                                <div className='tag'>{element.name}</div>
+                                <div className='tag'><button onClick={() => handleDelete(element.id)}> X </button> {element.name}</div>
             ))}
             </div>
         </>
