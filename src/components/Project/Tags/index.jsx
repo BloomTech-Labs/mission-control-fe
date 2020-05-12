@@ -18,15 +18,21 @@ import LinearProgress from '@material-ui/core/LinearProgress';
     root:{
 
     },
+    container: {
+      display: "flex",
+      flexFlow: "row wrap",
+      width: "50%",
+      
+    },
   
     tags:{
       border: "solid 1px pink",
-      width:"70%",
+      width:"30%",
       margin:"2% auto",
+      paddingLeft: "2%",
       textAlign:"center",
       display:"flex",
-    
-      justifyContent:"space-evenly",
+      justifyContent:"space-between",
       alignContent:"center"
     },
     tagInput:{
@@ -111,7 +117,7 @@ const handleChange = e => {
 
             <h3> Current Tags </h3>
 
-            <div className={classes.tagsContainer}>
+            <div className={classes.container}>
             {data.tags.map(element => (
                                 <Card className={classes.tags}> {element.name}<DeleteIcon color="secondary"  onClick={() => handleDelete(element.id)} /></Card>
             ))}
