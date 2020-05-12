@@ -4,15 +4,39 @@ import { useQuery, useMutation, refetchQueries} from 'urql';
 import { GET_ALL_TAGS as getTagsQuery } from '../Queries/TagQueries';
 import { CREATE_TAG as createTagQuery} from '../Queries/TagQueries';
 import { DELETE_TAG as deleteTagQuery} from '../Queries/TagQueries';
+import { TextField, Button, Card, makeStyles } from "@material-ui/core"
+import DeleteIcon from '@material-ui/icons/Delete';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 
 //Basic Styling
-import {
-    tag
-  } from './tags.scss';
+// import {
+//     tag
+//   } from './tags.scss';
+
+  const useStyles = makeStyles({
+    root:{
+
+    },
+  
+    tags:{
+      border: "solid 1px pink",
+      width:"70%",
+      margin:"2% auto",
+      textAlign:"center",
+      display:"flex",
+    
+      justifyContent:"space-evenly",
+      alignContent:"center"
+    },
+    tagInput:{
+      margin:"3% 0",
+    }
+  })
 
 
 const Tags = ({ projectId }) => {
-
+const classes = useStyles()
 const [state, reexecuteQuery] = useQuery({ query: getTagsQuery });
 const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery)
 const [tagName, setTagName] = useState('');
@@ -58,9 +82,8 @@ const handleChange = e => {
 
   const { data, fetching, error } = state;
 
-  if (fetching) {
-    return <h1>Loading...</h1>;
-  }
+  if (fetching) return <LinearProgress color="secondary" />;
+
 
   if (error) {
       console.log(error)
@@ -72,21 +95,25 @@ const handleChange = e => {
 
     return (
         <>
-            <input
+            <TextField
+            variant="outlined"
+            color="secondary"
+            className={classes.tagInput}
             onChange={handleChange}
             type='text'
-            name='search'
-            id='search'
-            placeholder='Search'
+            name='tagname'
+            id='tagname'
+            placeholder='Tag Name'
             value={tagName}
           />
-            <button onClick={handleSubmit}> Create tag </button>
+          <br />
+            <Button variant="outlined" color="secondary" onClick={handleSubmit}> Create tag </Button>
 
-            <h3> Tags </h3>
+            <h3> Current Tags </h3>
 
-            <div className='tags-container'>
+            <div className={classes.tagsContainer}>
             {data.tags.map(element => (
-                                <div className='tag'><button onClick={() => handleDelete(element.id)}> X </button> {element.name}</div>
+                                <Card className={classes.tags}> {element.name}<DeleteIcon color="secondary"  onClick={() => handleDelete(element.id)} /></Card>
             ))}
             </div>
         </>

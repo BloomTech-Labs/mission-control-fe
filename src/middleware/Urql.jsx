@@ -91,9 +91,9 @@ const client = new Client({
 
 //TODO uncomment for deployment
 
-    const token = getToken();
+    // const token = getToken();
 
-    //const token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTg4NDQ1NTE2LCJleHAiOjE1ODkwNTAzMTZ9.WMDbUVzoMMH6xAQenlicMDVn4Nq1d2eA5zSFZeJyT5o' || getToken();
+    const token ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJkZWZhdWx0QGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTg5MjM2MTQzLCJleHAiOjE1ODk4NDA5NDN9.F_ctrdrciDehxBioA-yiToS8g2MssoQq5e-TBlJKO2Y' || getToken();
     return {
       headers: { authorization: `Bearer ${token}` },
     };

@@ -6,9 +6,10 @@ import TagListContainer from './TagListContainer';
 import TagListRow from './TagListRow';
 import Settings from '../Settings/Settings'
 import { Link } from 'react-router-dom';
-
+import MODAL from "../Project/Tags/TagModel"
 import ModalAdd from '../Modal/ModalAdd'
-import AddTagBtn from '../Tag/AddTagBtn';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 
 
 
@@ -30,13 +31,14 @@ const TagListView = () => {
   }
 
   if (fetching) {
-    return <p>Loading...</p>;
+    return <LinearProgress color="secondary" />
   }
 
 console.log(`TAG_DATA:%0`, data)
   return (
     <div>
-<AddTagBtn/>
+    <MODAL />
+   
 
       <TagListContainer>
         {/* statusColumn={columns}> */}
