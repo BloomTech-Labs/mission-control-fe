@@ -3,10 +3,27 @@ import { useQuery, useMutation, refetchQueries} from 'urql';
 
 import { GET_ALL_TAGS as getTagsQuery } from '../Queries/TagQueries';
 import { CREATE_TAG as createTagQuery} from '../Queries/TagQueries';
+import { UPDATE_TAG as editTagQuery} from '../Queries/TagQueries';
 import { DELETE_TAG as deleteTagQuery} from '../Queries/TagQueries';
 import { TextField, Button, Card, makeStyles } from "@material-ui/core"
 import DeleteIcon from '@material-ui/icons/Delete';
+import CheckIcon from '@material-ui/icons/Check';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import EditIcon from '@material-ui/icons/Edit';
+
+import {
+  modalStyle,
+  modalCont,
+  buttonStyle,
+  basicInput,
+  form,
+  editColumnButton,
+  headerDiv,
+  closeButton,
+  button,
+} from '../../Settings/EditColumnModal/EditColumnModal.module.scss'
+
+import { columnEditCont } from '../../Settings/ColumnSettings/ColumnSettings.module.scss';
 
 
 //Basic Styling
@@ -24,12 +41,16 @@ import LinearProgress from '@material-ui/core/LinearProgress';
       width: "50%",
       
     },
+    icon: {
+      '&:hover': {
+        cursor: 'pointer'
+      }
+    },
   
     tags:{
       border: "solid 1px pink",
       width:"30%",
       margin:"2% auto",
-      paddingLeft: "2%",
       textAlign:"center",
       display:"flex",
       justifyContent:"space-between",
@@ -47,6 +68,67 @@ const [state, reexecuteQuery] = useQuery({ query: getTagsQuery });
 const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery)
 const [tagName, setTagName] = useState('');
 const [addTagResults, addTag] =  useMutation(createTagQuery);
+const [updateTagResults, updateTag] = useMutation(editTagQuery);
+
+const [edit, setEdit] = useState({
+  active: false,
+  id: '',
+  oldName: '',
+  newName: ''
+});
+
+
+
+const editTag = (element) => {
+  if (edit.active) {
+    if (edit.id === element.id) {
+    return (
+      <>
+    <CheckIcon className={classes.icon} color="secondary" onClick={submitUpdatedTag} />
+    <input
+    variant="outlined"
+    color="secondary"
+    className={classes.tagInput}
+    onChange={handleEditTag}
+    type='text'
+    name='tagname'
+    id='tagname'
+    placeholder={element.name}
+    value={edit.newName}
+  /></>)} else {
+    return (
+      <>
+      <EditIcon className={classes.icon} color='secondary' onClick={() => startEdit(element)} />
+      {element.name}
+      </>
+    )
+    }
+  } else {
+    return (<><EditIcon className={classes.icon} color='secondary' onClick={() => startEdit(element)}/>{element.name } </>)
+  }
+}
+const startEdit = (element) => {
+  setEdit({...edit, active: true, id: element.id, oldName: element.name})
+}
+
+const handleEditTag = e => {
+      //reset timer on each key stroke
+      e.persist();
+      setEdit({...edit, newName: e.target.value});
+}
+
+let submitUpdatedTag = e => {
+  e && e.preventDefault();
+  if (edit.newName !== '') {
+    updateTag({tag: {id: edit.id}, data: { name: edit.newName}
+    }).then(() => {
+                // Refetch the query and skip the cache
+                setEdit({id: '', active: false, oldName: '', newName: ''});
+                reexecuteQuery({ requestPolicy: 'network-only' });
+    })
+  }
+
+}
 
 const handleChange = e => {
     //reset timer on each key stroke
@@ -119,7 +201,7 @@ const handleChange = e => {
 
             <div className={classes.container}>
             {data.tags.map(element => (
-                                <Card className={classes.tags}> {element.name}<DeleteIcon color="secondary"  onClick={() => handleDelete(element.id)} /></Card>
+                                <Card className={classes.tags}>{editTag(element)}<DeleteIcon className={classes.icon} color="secondary"  onClick={() => handleDelete(element.id)} /> </Card>
             ))}
             </div>
         </>
