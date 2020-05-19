@@ -1,11 +1,15 @@
 import gql from 'graphql-tag';
 
 export const GET_ALL_TAGS = gql`
-  query {
-    tags {
-      id
+query getProjectTags($projectId: ID!) {
+  project(where: {id: $projectId}) {
+   tags { 
+    tag {
       name
+      id
     }
+  }
+  }
 }
 `;
 export const CREATE_TAG = gql`
@@ -14,6 +18,15 @@ export const CREATE_TAG = gql`
         id
         name
      }
+    }`;
+
+export const CONNECT_TO_PROJECT = gql`
+    mutation connectTagToProject($data: ProjectTagElementCreateInput!) {
+      createProjectTagElement(data: $data 
+          )
+          {
+        id
+      }
     }`;
 export const DELETE_TAG = gql`
     mutation deleteThisTag($tag: TagWhereUniqueInput!) {
