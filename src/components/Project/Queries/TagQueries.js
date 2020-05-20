@@ -4,6 +4,7 @@ export const GET_ALL_TAGS = gql`
 query getProjectTags($projectId: ID!) {
   project(where: {id: $projectId}) {
    tags { 
+     id
     tag {
       name
       id
@@ -24,6 +25,13 @@ export const CONNECT_TO_PROJECT = gql`
     mutation connectTagToProject($data: ProjectTagElementCreateInput!) {
       createProjectTagElement(data: $data 
           )
+          {
+        id
+      }
+    }`;
+export const DISCONNECT_FROM_PROJECT = gql`
+    mutation disconnectTagFromProject($id: ID!) {
+      deleteProjectTagElement(where: {id: $id})
           {
         id
       }

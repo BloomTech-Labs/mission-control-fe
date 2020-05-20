@@ -6,6 +6,7 @@ import { CREATE_TAG as createTagQuery} from '../Queries/TagQueries';
 import {CONNECT_TO_PROJECT as connectToProjectQuery} from '../Queries/TagQueries';
 import { UPDATE_TAG as editTagQuery} from '../Queries/TagQueries';
 import { DELETE_TAG as deleteTagQuery} from '../Queries/TagQueries';
+import { DISCONNECT_FROM_PROJECT as disconnect} from '../Queries/TagQueries';
 import { TextField, Button, Card, makeStyles } from "@material-ui/core"
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
@@ -63,15 +64,37 @@ import { columnEditCont } from '../../Settings/ColumnSettings/ColumnSettings.mod
   })
 
 
-const Tags = ({ projectId, projectName, projectTags, executeQuery }) => {
+const Tags = ({ projectId, projectName }) => {
   const classes = useStyles()
 
   const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery)
   const [tagName, setTagName] = useState('');
-  const [paused, setPaused] = useState(false);
-  const data = projectTags;
+  const [paused, setPaused] = useState();
+  //const [tagComponentData, setTagComponentData] = useState(projectTags)
+  let id = useRef(projectId)
+  const [state, reexecuteQuery] = useQuery({query: getTagsQuery, variables: {projectId: projectId}, pause: true})
+  let {data, fetching, error} = state;
+  //console.log(state)
+  //console.log(reexecuteQuery({ requestPolicy: 'network-only' }))
+
+  let testData = useRef(data);
+
+
+ 
+ /* 
+  useEffect(() => {
+    //if (!testData.current) {
+      //reexecuteQuery({requestPolicy: 'network-only'})
+    //} 
+    //setPaused(false)
+  }, [])
+*/
+  //const [getUpdatedResults, reexecuteQuery] = useQuery({query: getTagsQuery, variables: {projectId: projectId}})
+  //const tagComponentData = projectTags;
+  
   const [addTagResults, addTag] =  useMutation(createTagQuery);
   const [connectTagResults, connectTag] = useMutation(connectToProjectQuery);
+  const [disconnectTagResults, disconnectTag] = useMutation(disconnect);
   const [updateTagResults, updateTag] = useMutation(editTagQuery);
   
   const [edit, setEdit] = useState({
@@ -126,7 +149,7 @@ const Tags = ({ projectId, projectName, projectTags, executeQuery }) => {
       }).then(() => {
                   // Refetch the query and skip the cache
                   setEdit({id: '', active: false, oldName: '', newName: ''});
-                  executeQuery({ requestPolicy: 'network-only' });
+                  reexecuteQuery({ requestPolicy: 'network-only' });
       })
     }
   }
@@ -168,7 +191,9 @@ const Tags = ({ projectId, projectName, projectTags, executeQuery }) => {
               }
           )}).then((results) => {
               // Refetch the query and skip the cache
-              executeQuery({ requestPolicy: 'network-only' });
+              //setTagComponentData(state.data)
+              reexecuteQuery({ requestPolicy: 'network-only' });
+              
               //setPaused(true);
 
             })
@@ -179,61 +204,58 @@ const Tags = ({ projectId, projectName, projectTags, executeQuery }) => {
   
     const handleDelete = (id) => {
        //Using delete tag mutation
-      deleteTag({tag: {id: id}
+       console.log(id)
+      disconnectTag({id: id
         }).then(() => {
           // Refetch the query and skip the cache
-        //reexecuteQuery({ requestPolicy: 'network-only' });
+        reexecuteQuery({ requestPolicy: 'network-only' });
         }
       )
       }
-/*
       if (fetching) {
-       // if (!paused) {
-         // setPaused(true);
-        //}
        return <LinearProgress color="secondary" />;
-      }
+      } /*else {
+        testData.current = data
+      }*/
       if (error) {
-     //   if (!paused) {
-       //   setPaused(true);
-        //}
         console.log(error)
         return <h1>There was an error getting your tags</h1>;
     }
-    if (data) {
-      if (!paused) {
-        setPaused(true);
-      }*/
-    return (
-        <>
-            <TextField
-            variant="outlined"
-            color="secondary"
-            className={classes.tagInput}
-            onChange={handleChange}
-            type='text'
-            name='tagname'
-            id='tagname'
-            placeholder='Tag Name'
-            value={tagName}
-          />
-          <br />
-            <Button variant="outlined" color="secondary" onClick={handleSubmit}> Create tag </Button>
+    
+    if (!data) {
+      console.log("I should really get some data, huh...")
+      //reexecuteQuery({ requestPolicy: 'network-only' })
+      //testData.current = data
+      return <h1> Loading...</h1>
+            } else {
+              return (
+                <>
+                    <TextField
+                    variant="outlined"
+                    color="secondary"
+                    className={classes.tagInput}
+                    onChange={handleChange}
+                    type='text'
+                    name='tagname'
+                    id='tagname'
+                    placeholder='Tag Name'
+                    value={tagName}
+                  />
+                  <br />
+                    <Button variant="outlined" color="secondary" onClick={handleSubmit}> Create tag </Button>
+        
+                    <h3> Current Tags </h3>
+        
+                    <div className={classes.container}>
+                    {data.project.tags.map(element => (
+                                        <Card className={classes.tags}>{editTag(element.tag)}{console.log(element)}<DeleteIcon className={classes.icon} color="secondary"  onClick={() => handleDelete(element.id)} /> </Card>
+                    ))}
+        
+                    </div>
+                </>
+            );
 
-            <h3> Current Tags </h3>
-
-            <div className={classes.container}>
-            {data.map(element => (
-                                <Card className={classes.tags}>{editTag(element.tag)}<DeleteIcon className={classes.icon} color="secondary"  onClick={() => handleDelete(element.tag.id)} /> </Card>
-            ))}
-
-            </div>
-        </>
-    );
-
-} /*else {
-  return <h1>Loading...</h1>
-}
-}*/;
+            } 
+};
 
 export default Tags;

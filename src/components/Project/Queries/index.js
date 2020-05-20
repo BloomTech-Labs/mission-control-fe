@@ -109,12 +109,6 @@ export const PROJECT_VIEW_QUERY = gql`
     project(where: { id: $id }) {
       id
       name
-      tags {
-        tag {
-          id
-          name
-        }
-      }
       status {
         id
         project {

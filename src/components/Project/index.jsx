@@ -27,9 +27,11 @@ import {
 
 const Project = props => {
   const { id } = props.match.params;
+//  const [paused, setPaused] = useState(false);
   const [state, executeQuery] = useQuery({
     query: projectViewQuery,
-    variables: { id },
+    variables: { id }
+    //pause: paused
   });
   const { data, fetching, error } = state;
 
@@ -73,9 +75,9 @@ const Project = props => {
       <div className={projectPageContents}>
         <div>
           <Header projectId={id} />
-          <Tags projectId={id} projectName={data.project.name} projectTags={data.project.tags} executeQuery={executeQuery} />
+          <Tags projectId={id} projectName={data.project.name}  />
         </div>
-        {/* <div className={projectContainer}>
+        <div className={projectContainer}>
           <div className={editorFeedContainer}>
             <ProjectStatus projectStatus={data.project.status} />
             <h2>Repository Statistics</h2>
@@ -104,7 +106,8 @@ const Project = props => {
           </div>
           <div className={teamContainer}>
             <Team projectId={id} />
-          </div> */}
+          </div> 
+          </div>
       </div>
     </div>
   );
