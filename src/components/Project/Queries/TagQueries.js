@@ -11,8 +11,7 @@ query getProjectTags($projectId: ID!) {
     }
   }
   }
-}
-`;
+}`;
 export const CREATE_TAG = gql`
     mutation createTag($tag: TagCreateInput!) {
 	    createTag(data: $tag) {

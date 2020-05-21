@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { useQuery, useMutation, refetchQueries} from 'urql';
 
-import { GET_ALL_TAGS as getTagsQuery } from '../Queries/TagQueries';
+import { GET_ALL_TAGS as query } from '../Queries/TagQueries';
 import { CREATE_TAG as createTagQuery} from '../Queries/TagQueries';
 import {CONNECT_TO_PROJECT as connectToProjectQuery} from '../Queries/TagQueries';
 import { UPDATE_TAG as editTagQuery} from '../Queries/TagQueries';
@@ -26,12 +26,6 @@ import {
 } from '../../Settings/EditColumnModal/EditColumnModal.module.scss'
 
 import { columnEditCont } from '../../Settings/ColumnSettings/ColumnSettings.module.scss';
-
-
-//Basic Styling
-// import {
-//     tag
-//   } from './tags.scss';
 
   const useStyles = makeStyles({
     root:{
@@ -64,34 +58,24 @@ import { columnEditCont } from '../../Settings/ColumnSettings/ColumnSettings.mod
   })
 
 
-const Tags = ({ projectId, projectName }) => {
+const Tags = ({ projectId }) => {
   const classes = useStyles()
+  //Trying to just get the projectId directly from the URL, so useQuery wouldn't think
+  //it was constantly updating. Didn't work.
+  //var url = window.location.pathname;
+  //var projectId = url.substring(url.lastIndexOf('/') + 1);
+  var idObj = {projectId: projectId};
 
+  // Not using delete tag for the time being, just disconnecting tags from projects.
   const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery)
   const [tagName, setTagName] = useState('');
-  const [paused, setPaused] = useState();
-  //const [tagComponentData, setTagComponentData] = useState(projectTags)
-  let id = useRef(projectId)
-  const [state, reexecuteQuery] = useQuery({query: getTagsQuery, variables: {projectId: projectId}, pause: true})
-  let {data, fetching, error} = state;
-  //console.log(state)
-  //console.log(reexecuteQuery({ requestPolicy: 'network-only' }))
+  // Attempting to use this state "paused" to control how many times the useQuery would get called
+  const [paused, setPaused] = useState(false);
 
-  let testData = useRef(data);
+  const [state, reexecuteQuery] = useQuery({query, variables: idObj, pause: paused})
+  const {data, fetching, error} = state;
+  console.log(state)
 
-
- 
- /* 
-  useEffect(() => {
-    //if (!testData.current) {
-      //reexecuteQuery({requestPolicy: 'network-only'})
-    //} 
-    //setPaused(false)
-  }, [])
-*/
-  //const [getUpdatedResults, reexecuteQuery] = useQuery({query: getTagsQuery, variables: {projectId: projectId}})
-  //const tagComponentData = projectTags;
-  
   const [addTagResults, addTag] =  useMutation(createTagQuery);
   const [connectTagResults, connectTag] = useMutation(connectToProjectQuery);
   const [disconnectTagResults, disconnectTag] = useMutation(disconnect);
@@ -109,12 +93,12 @@ const Tags = ({ projectId, projectName }) => {
       if (edit.id === element.id) {
       return (
         <>
-      <CheckIcon className={classes.icon} color="secondary" onClick={submitUpdatedTag} />
+      <CheckIcon className={classes.icon} color="secondary" onClick={() => submitUpdatedTag()} />
       <input
       variant="outlined"
       color="secondary"
       className={classes.tagInput}
-      onChange={() => handleEditTag}
+      onChange={() => handleEditTag()}
       type='text'
       name='tagname'
       id='tagname'
@@ -149,7 +133,7 @@ const Tags = ({ projectId, projectName }) => {
       }).then(() => {
                   // Refetch the query and skip the cache
                   setEdit({id: '', active: false, oldName: '', newName: ''});
-                  reexecuteQuery({ requestPolicy: 'network-only' });
+                  //reexecuteQuery({ requestPolicy: 'network-only' });
       })
     }
   }
@@ -158,7 +142,7 @@ const Tags = ({ projectId, projectName }) => {
   
   const handleChange = e => {
       //reset timer on each key stroke
-      //e.persist();
+      e.persist();
       setTagName(e.target.value);
     }//end handleChange
 
@@ -170,7 +154,6 @@ const Tags = ({ projectId, projectName }) => {
       //clear the submit timer and submit form automatically
       if (tagName !== '') {
         console.log('send new or update query to BE');
-        console.log(projectName)
         //Using create tag mutation
         addTag({tag: {name: tagName}
           }).then((results) => {
@@ -191,11 +174,8 @@ const Tags = ({ projectId, projectName }) => {
               }
           )}).then((results) => {
               // Refetch the query and skip the cache
-              //setTagComponentData(state.data)
-              reexecuteQuery({ requestPolicy: 'network-only' });
-              
-              //setPaused(true);
-
+              //setPaused(false)
+              //reexecuteQuery({ requestPolicy: 'network-only'});
             })
             setTagName('');
       }//end if
@@ -208,54 +188,70 @@ const Tags = ({ projectId, projectName }) => {
       disconnectTag({id: id
         }).then(() => {
           // Refetch the query and skip the cache
-        reexecuteQuery({ requestPolicy: 'network-only' });
+        //reexecuteQuery({ requestPolicy: 'network-only' });
         }
       )
       }
-      if (fetching) {
+      if (fetching ) {
        return <LinearProgress color="secondary" />;
-      } /*else {
-        testData.current = data
-      }*/
+      } 
       if (error) {
         console.log(error)
         return <h1>There was an error getting your tags</h1>;
     }
-    
     if (!data) {
-      console.log("I should really get some data, huh...")
-      //reexecuteQuery({ requestPolicy: 'network-only' })
-      //testData.current = data
-      return <h1> Loading...</h1>
-            } else {
-              return (
-                <>
-                    <TextField
-                    variant="outlined"
-                    color="secondary"
-                    className={classes.tagInput}
-                    onChange={handleChange}
-                    type='text'
-                    name='tagname'
-                    id='tagname'
-                    placeholder='Tag Name'
-                    value={tagName}
-                  />
-                  <br />
-                    <Button variant="outlined" color="secondary" onClick={handleSubmit}> Create tag </Button>
-        
-                    <h3> Current Tags </h3>
-        
-                    <div className={classes.container}>
-                    {data.project.tags.map(element => (
-                                        <Card className={classes.tags}>{editTag(element.tag)}{console.log(element)}<DeleteIcon className={classes.icon} color="secondary"  onClick={() => handleDelete(element.id)} /> </Card>
-                    ))}
-        
-                    </div>
-                </>
-            );
+      return <h1> hmmm, no data...</h1>
+    }
 
-            } 
+      /*if ( data && !paused) {
+        setPaused(true)
+      }*/
+
+      //if (data && paused) {
+      if (data) {
+        return (
+          <>
+              <TextField
+              variant="outlined"
+              color="secondary"
+              className={classes.tagInput}
+              onChange={handleChange}
+              type='text'
+              name='tagname'
+              id='tagname'
+              placeholder='Tag Name'
+              value={tagName}
+            />
+            <br />
+              <Button 
+              variant="outlined" 
+              color="secondary" 
+              onClick={handleSubmit}> 
+                Create tag 
+              </Button>
+  
+              <h3> Current Tags </h3>
+  
+              <div className={classes.container}>
+              {data.project.tags.map(element => (
+                                  <Card className={classes.tags}>
+                                    hi
+                                    {/*{editTag(element.tag)}
+                                    {console.log(element)}
+                                    <DeleteIcon 
+                                    className={classes.icon}
+                                    color="secondary"  
+                                    onClick={() => handleDelete(element.id)} 
+              /> */}
+                                  </Card>
+              ))}
+  
+              </div>
+          </>
+      ); 
+
+      }
+
 };
 
 export default Tags;
