@@ -12,6 +12,13 @@ query getProjectTags($projectId: ID!) {
   }
   }
 }`;
+
+export const GET_TAG = gql`
+query getTag($name: String!) {
+  tag(where: {name: $name}) {
+    id
+  }
+}`;
 export const CREATE_TAG = gql`
     mutation createTag($tag: TagCreateInput!) {
 	    createTag(data: $tag) {

@@ -170,20 +170,24 @@ const Tags = ({ projectId }) => {
         addTag({tag: {name: tagName}
           }).then((results) => {
             //get results of add tag for tag id
-            connectTag({data: {
-              project: {
-                connect: {
-                  id: projectId
-                }
-              },
-              tag: {
-                    connect: {
-                      id: results.data.createTag.id
+            console.log(results)
+            if (results.error) {
+              console.log(results.error)
+            } else {
+              connectTag({data: {
+                project: {
+                  connect: {
+                    id: projectId
+                  }
+                },
+                tag: {
+                      connect: {
+                        id: results.data.createTag.id
+                      }
                     }
                   }
                 }
-              }
-          )}).then((results) => {
+            )}}).then((results) => {
               // Refetch the query and skip the cache
               setPaused(false)
               reexecuteQuery({ requestPolicy: 'network-only'});
@@ -213,12 +217,6 @@ const Tags = ({ projectId }) => {
     if (!data) {
       return <h1> hmmm, no data...</h1>
     }
-
-      /*if ( data && !paused) {
-        setPaused(true)
-      }*/
-
-      //if (data && paused) {
       if (data) {
         return (
           <>
