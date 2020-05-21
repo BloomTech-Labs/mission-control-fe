@@ -67,14 +67,15 @@ const Tags = ({ projectId }) => {
   var idObj = {projectId: projectId};
 
   // Not using delete tag for the time being, just disconnecting tags from projects.
-  const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery)
+  // const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery)
   const [tagName, setTagName] = useState('');
   // Attempting to use this state "paused" to control how many times the useQuery would get called
   const [paused, setPaused] = useState(false);
-
+ // let tagData;
   const [state, reexecuteQuery] = useQuery({query, variables: idObj, pause: paused})
   const {data, fetching, error} = state;
-  console.log(state)
+  //console.log(state)
+ // tagData = useRef(data)
 
   const [addTagResults, addTag] =  useMutation(createTagQuery);
   const [connectTagResults, connectTag] = useMutation(connectToProjectQuery);
@@ -88,17 +89,27 @@ const Tags = ({ projectId }) => {
     newName: ''
   });
 
+  useEffect(() => {
+    if (data) {
+      if (!paused) {
+        setPaused(true)
+      }
+    }
+
+  }, [data])
+
+
   const editTag = (element) => {
     if (edit.active) {
       if (edit.id === element.id) {
       return (
         <>
-      <CheckIcon className={classes.icon} color="secondary" onClick={() => submitUpdatedTag()} />
+      <CheckIcon className={classes.icon} color="secondary" onClick={submitUpdatedTag} />
       <input
       variant="outlined"
       color="secondary"
       className={classes.tagInput}
-      onChange={() => handleEditTag()}
+      onChange={handleEditTag}
       type='text'
       name='tagname'
       id='tagname'
@@ -121,7 +132,6 @@ const Tags = ({ projectId }) => {
   }
   
   const handleEditTag = e => {
-        //reset timer on each key stroke
         e.persist();
         setEdit({...edit, newName: e.target.value});
   }
@@ -132,8 +142,13 @@ const Tags = ({ projectId }) => {
       updateTag({tag: {id: edit.id}, data: { name: edit.newName}
       }).then(() => {
                   // Refetch the query and skip the cache
+                  // Using both setPaused and reexecuteQuery, since currently when 
+                  // just using reexecuteQuery it querys an infinite number of times.
+                  // When using just setPaused, it can sometimes lead to viewing
+                  // stale tag data.
+                  setPaused(false);
+                  reexecuteQuery({ requestPolicy: 'network-only' });
                   setEdit({id: '', active: false, oldName: '', newName: ''});
-                  //reexecuteQuery({ requestPolicy: 'network-only' });
       })
     }
   }
@@ -141,24 +156,20 @@ const Tags = ({ projectId }) => {
   // Handling adding new tag input field changes
   
   const handleChange = e => {
-      //reset timer on each key stroke
       e.persist();
       setTagName(e.target.value);
     }//end handleChange
 
   // Handling submit of new tag input field
     const handleSubmit = e => {
-      //hitting enter key submits immediately
       e && e.preventDefault();
       console.log({projectId})
-      //clear the submit timer and submit form automatically
       if (tagName !== '') {
         console.log('send new or update query to BE');
         //Using create tag mutation
         addTag({tag: {name: tagName}
           }).then((results) => {
             //get results of add tag for tag id
-            console.log(results)
             connectTag({data: {
               project: {
                 connect: {
@@ -174,8 +185,8 @@ const Tags = ({ projectId }) => {
               }
           )}).then((results) => {
               // Refetch the query and skip the cache
-              //setPaused(false)
-              //reexecuteQuery({ requestPolicy: 'network-only'});
+              setPaused(false)
+              reexecuteQuery({ requestPolicy: 'network-only'});
             })
             setTagName('');
       }//end if
@@ -184,11 +195,11 @@ const Tags = ({ projectId }) => {
   
     const handleDelete = (id) => {
        //Using delete tag mutation
-       console.log(id)
       disconnectTag({id: id
         }).then(() => {
           // Refetch the query and skip the cache
-        //reexecuteQuery({ requestPolicy: 'network-only' });
+        setPaused(false)
+        reexecuteQuery({ requestPolicy: 'network-only' });
         }
       )
       }
@@ -235,14 +246,12 @@ const Tags = ({ projectId }) => {
               <div className={classes.container}>
               {data.project.tags.map(element => (
                                   <Card className={classes.tags}>
-                                    hi
-                                    {/*{editTag(element.tag)}
-                                    {console.log(element)}
+                                    {editTag(element.tag)}
                                     <DeleteIcon 
                                     className={classes.icon}
                                     color="secondary"  
                                     onClick={() => handleDelete(element.id)} 
-              /> */}
+              /> 
                                   </Card>
               ))}
   
