@@ -10,4 +10,11 @@ export const TAG_LIST_VIEW = gql`
     }    
   }
 `;
-
+export const GET_ALL_TAGS = gql`
+  query {
+    tags {
+      id
+      name
+    }
+}
+`;

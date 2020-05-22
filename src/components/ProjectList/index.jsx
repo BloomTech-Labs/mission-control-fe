@@ -21,9 +21,11 @@ const ProjectListView = () => {
   const [state] =  useQuery({
     query: newQuery,
     variables: { filter: {
-        name_contains: projectSearchContext.searchTerm
+        name_contains: projectSearchContext.searchTerm.toLowerCase(),
     }}
   })
+
+
 
   const { data, fetching, error } = state;
 
@@ -41,6 +43,11 @@ const ProjectListView = () => {
     console.log(data)
   }
 
+  const projectList = { ...data.projects };
+
+  console.log(projectList.name)
+  console.log("data")
+
   // const columns =
   //   data && data.programs[0].statuses && data.programs[0].statuses; // .filter(status => status.display);
 
@@ -51,6 +58,7 @@ const ProjectListView = () => {
       <ProjectListContainer>
         {/* statusColumn={columns}> */}
         {data.projects.map(project => (
+          
           <ProjectListRow
             key={project.id}
             project={project}
