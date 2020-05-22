@@ -52,6 +52,7 @@ export const DELETE_TAG = gql`
 export const UPDATE_TAG = gql`
     mutation updateThisTag($tag: TagWhereUniqueInput!, $data: TagUpdateInput!) {
 	    updateTag(where: $tag, data: $data) {
+        id
         name
      }
     }`;

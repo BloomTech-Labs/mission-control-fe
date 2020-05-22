@@ -1,21 +1,28 @@
 import React, { useState } from 'react';
-import { useQuery, useMutation } from 'urql';
+import { useQuery, useMutation, Query } from 'urql';
+import { GET_ALL_TAGS as getTagsQuery } from '../TagList/Queries/tagQueries';
+import { TAG_LIST_VIEW as getTagsList } from '../TagList/Queries/tagQueries';
 import { UPDATE_TAG as editTagQuery } from '../Project/Queries/TagQueries';
+import gql from 'graphql-tag';
+
+const GET_TAG = gql`
+  query getTag($name: String!) {
+    tag(where: { name: $name }) {
+      id
+    }
+  }
+`;
+
+const UPDATE_TAG = gql`
+  mutation updateThisTag($tag: TagWhereUniqueInput!, $data: TagUpdateInput!) {
+    updateTag(where: $tag, data: $data) {
+      id
+      name
+    }
+  }
+`;
+
 const TagEditor = props => {
-  console.log(props.tag);
-
-  const tagID = props.tag.id
-  const tagNameProps = props.tag.name
-
-  console.log(tagID)
-
-
-  const [updateTagResults, updateTag] = useMutation(editTagQuery);
-
-  // const [state, reexecuteQuery] = useQuery({ query: getTagsQuery });
-  const [tagName, setTagName] = useState('');
-  
-
   // TODO Tags Edit State
   const [edit, setEdit] = useState({
     active: false,
@@ -24,43 +31,64 @@ const TagEditor = props => {
     newName: '',
   });
 
-  // TODO Del Chandged from handleEditTag
+  const [loading, error, data, reexecuteQuery] = useQuery({
+    query: getTagsQuery,
+  });
+  const [updateTag] = useMutation(editTagQuery);
+
+  console.log({ getTagsList });
+
+  const [tagToEdit, setTagToEdit] = useState(props);
+  const [editing, setEditing] = useState(false);
+  const [tagName, setTagName] = useState(tagToEdit.tag.name);
+  const [tagID] = useState(tagToEdit.tag.id);
+
+  console.log('data');
+
+  console.log(tagName);
+
+  // TODO OnChange Edit
   const onChangeEditTag = e => {
     e.persist();
-    setEdit({ ...edit, newName: e.target.value });
+    setEdit({ ...edit, [e.target.name]: e.target.value });
+
+    console.log([e.target.name]);
+    console.log([e.target.value]);
+    console.log([e.target.id]);
+  };
+
+  const handleEditing = el => {
+    setEdit({ ...edit, active: true, id: el.id, currentName: el.name });
   };
 
   // TODO Tag update submit submitUpdatedTag
-  const submitUpdatedTag = e => {
+  const submitEditTag = e => {
     e.preventDefault();
     if (edit.newName !== '') {
-      updateTag({
-        tag: { id: edit.tagID },
-        data: { name: edit.newName },
-        
-      }).then(() => {
-        // Refetch the query and skip the cache
-        // setEdit({ id: '', active: false, currentName: '', newName: '' });
-        props.toggleEdit();
-      });
+      UPDATE_TAG({ tag: { id: edit.id }, data: { name: edit.newName } }).then(
+        () => {
+          setEdit({ id: '', active: false, currentName: '', newName: '' });
+          reexecuteQuery({ requestPolicy: 'network-only' });
+        }
+      );
     }
   };
 
+
+
   return (
     <div>
-      <form>
-      <input
-        variant="outlined"
-        color="secondary"
-        onChange={onChangeEditTag}
-        type="text"
-        name="tagname"
-        id="tagname"
-        placeholder={tagNameProps}
-        value={edit.newName}
-      />
-
-      <button type={"submit"} onClick={submitUpdatedTag}>Save</button>
+      <form onSubmit={submitEditTag}>
+        <input
+          variant="outlined"
+          color="secondary"
+          onChange={handleEditing}
+          type="text"
+          name="tagName"
+          id={tagID}
+          placeholder={tagName}
+        />
+        <button type="submit">Save</button>
       </form>
     </div>
   );

@@ -36,7 +36,7 @@ axios
           console.log(res);
 
           const filterQuery = res.data.results.filter(location =>
-            location.name.toLowerCase().includes(filterTerm.toLowerCase())
+            location.name(filterTerm)
           );
           setFilterList(filterQuery);
         })

@@ -21,7 +21,7 @@ const ProjectListView = () => {
   const [state] =  useQuery({
     query: newQuery,
     variables: { filter: {
-        name_contains: projectSearchContext.searchTerm.toLowerCase(),
+        name_contains: projectSearchContext.searchTerm,
     }}
   })
 

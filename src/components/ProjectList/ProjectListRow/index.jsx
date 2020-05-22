@@ -14,8 +14,9 @@ const ProjectRow = ({ project, statusColumn }) => {
   const statusLabelsArr = [];
 
 //TODO KS Returning lower case project list  
-  const projectName = project.name.toLowerCase();
-  // console.log(projectName)
+  const projectName = project.name
+  console.log(`ProjectListRow line 19 ${projectName}`)
+  console.log(projectName)
   
 
   // Display status indicators if present
