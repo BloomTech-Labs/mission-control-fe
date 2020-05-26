@@ -15,6 +15,7 @@ export const GET_ALL_TAGS = gql`
     }
   }
 `;
+
 export const CREATE_TAG = gql`
   mutation createTag($tag: TagCreateInput!) {
     createTag(data: $tag) {
@@ -49,6 +50,14 @@ export const VIEW_ALL_TAGS = gql`
           id
         }
       }
+    }
+  }
+`;
+
+export const ADD_TAG_TO_PROJECT = gql`
+  mutation connectTagToProject($data: ProjectTagElementCreateInput!) {
+    createProjectTagElement(data: $data) {
+      id
     }
   }
 `;

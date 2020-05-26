@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, refetchQueries } from 'urql';
 
 import { GET_ALL_TAGS as getTagsQuery } from './Queries';
-import { CREATE_TAG as createTagQuery } from './Queries';
+import { ADD_TAG_TO_PROJECT as createTagQuery } from './Queries';
 import { UPDATE_TAG as editTagQuery } from './Queries';
 import { DELETE_TAG as deleteTagQuery } from './Queries';
 import { TextField, Button, Card, makeStyles } from '@material-ui/core';
@@ -10,7 +10,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import EditIcon from '@material-ui/icons/Edit';
-
 
 const useStyles = makeStyles({
   root: {},
@@ -39,10 +38,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Tags = props  => {
-
-
-
+const Tags = ({ projectId }) => {
   const classes = useStyles();
   const [state, executeGetTagQuery] = useQuery({ query: getTagsQuery });
   const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery);
@@ -56,24 +52,6 @@ const Tags = props  => {
     currentName: '',
     updatedName: '',
   });
-
-  const{ id } = props.match.params;
-  const [tagState, executeQuery] = useQuery({
-    query:getTagsQuery,
-    variables:{ id },
-  })
-
-
-
-  const { data, fetching, error } = state;
-  if (fetching) return <LinearProgress color="secondary" />;
-
-  if (error) {
-    console.log(error);
-    return <h1>There was an error getting your tags</h1>;
-  }
-
-  console.log(data)
 
   const editTag = el => {
     if (edit.active) {
@@ -170,6 +148,13 @@ const Tags = props  => {
       executeGetTagQuery({ requestPolicy: 'network-only' });
     });
   };
+  const { data, fetching, error } = state;
+  if (fetching) return <LinearProgress color="secondary" />;
+
+  if (error) {
+    console.log(error);
+    return <h1>There was an error getting your tags</h1>;
+  }
 
   if (data && data.tags) {
     return (
@@ -204,7 +189,6 @@ const Tags = props  => {
               />{' '}
             </Card>
           ))}
-
         </div>
       </>
     );

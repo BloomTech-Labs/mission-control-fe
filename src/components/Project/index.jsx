@@ -69,6 +69,8 @@ const Project = props => {
   }
 
   console.log('PROJECT_VIEW_QUERY DATA: %O', data);
+
+  console.log({...data.project.tags})
   return (
     <div className={parentProjectContainer}>
       <div className={projectPageContents}>

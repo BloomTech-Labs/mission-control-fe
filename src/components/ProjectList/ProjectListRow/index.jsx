@@ -13,11 +13,10 @@ import {
 const ProjectRow = ({ project, statusColumn }) => {
   const statusLabelsArr = [];
 
-//TODO KS Returning lower case project list  
-  const projectName = project.name;
-  console.log(`ProjectListRow line 19 ${projectName}`)
-  console.log(projectName)
-  
+//TODO case sensitivity RETURNS NAME IN LIST VIEW 
+  // const projectName = project.name
+  // console.log(`ProjectListRow line 19 ${projectName}`)
+  // console.log(projectName)
 
   // Display status indicators if present
   if (statusColumn && statusColumn.length > 0) {
@@ -54,9 +53,7 @@ const ProjectRow = ({ project, statusColumn }) => {
       </tr>
     );
   }
-
   //console.log("PROJECT: %O", project)
-
 
   return (
     <tr>
