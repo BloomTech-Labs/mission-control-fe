@@ -61,3 +61,17 @@ export const ADD_TAG_TO_PROJECT = gql`
     }
   }
 `;
+
+
+export const GET_PROJECT_TAGS = gql`
+query getProjectTags($projectId: ID!) {
+  project(where: {id: $projectId}) {
+   tags { 
+     id
+    tag {
+      name
+      id
+    }
+  }
+  }
+}`;

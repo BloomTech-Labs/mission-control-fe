@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, refetchQueries } from 'urql';
 
 import { GET_ALL_TAGS as getTagsQuery } from './Queries';
-import { ADD_TAG_TO_PROJECT as createTagQuery } from './Queries';
+import { CREATE_TAG as createTagQuery } from './Queries';
+import { GET_PROJECT_TAGS as query } from './Queries';
+import { ADD_TAG_TO_PROJECT as connectTagProject } from './Queries';
 import { UPDATE_TAG as editTagQuery } from './Queries';
 import { DELETE_TAG as deleteTagQuery } from './Queries';
-import { CONNECT_TAG_TO_PROJECT as connectTagToProject } from './Queries';
 import { TextField, Button, Card, makeStyles } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
@@ -39,27 +40,23 @@ const useStyles = makeStyles({
   },
 });
 
-const Tags = ({ projectId }) => {
+const ProjectTag = ({ projectId }) => {
   const classes = useStyles();
 
-
-  const [state, executeGetTagQuery] = useQuery({ query: getTagsQuery });
-  const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery);
+  let idProject = { projectId: projectId };
   const [tagName, setTagName] = useState('');
-  const [addTagResults, addTag] = useMutation(createTagQuery);
-  const [addTagResults, connectTag] = useMutation(connectTagToProject);
-  const [updateTagResults, updateTag] = useMutation(editTagQuery);
 
-  const projectId = {projectId: projectId}
-
-  
-  const [state, reexecuteQuery] = useQuery({
+  const [state, executeGetTagQuery] = useQuery({
     query,
-    variables: projectId,
- 
+    variables: idProject,
   });
-  const { data, fetching, error } = state;
 
+  const { data, fetching, error } = state;
+    const {connectTagResults, connectTag} = useMutation(connectTagProject)
+  const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery);
+
+  const [addTagResults, addTag] = useMutation(createTagQuery);
+  const [updateTagResults, updateTag] = useMutation(editTagQuery);
 
   const [edit, setEdit] = useState({
     active: false,
@@ -67,6 +64,15 @@ const Tags = ({ projectId }) => {
     currentName: '',
     updatedName: '',
   });
+
+  if (fetching) return <LinearProgress color="secondary" />;
+
+  if (error) {
+    console.log(error);
+    return <h1>There was an error getting your tags</h1>;
+  }
+
+  console.log(data);
 
   const editTag = el => {
     if (edit.active) {
@@ -122,7 +128,6 @@ const Tags = ({ projectId }) => {
     setEdit({ ...edit, updatedName: e.target.value });
   };
 
-
   const submitUpdatedTag = e => {
     e.preventDefault();
     if (edit.updatedName !== '') {
@@ -146,30 +151,35 @@ const Tags = ({ projectId }) => {
     e.preventDefault();
     if (tagName !== '') {
       console.log('send new or update query to BE');
+      // Using create tag mutation
       addTag({ tag: { name: tagName } })
-      .then(results => {
-          if(results.error) {
-              console.log(results.error)
+        .then(results => {
+          if (results.error) {
+            console.log(results.log);
           } else {
-              connectTag({
-                  data:{
-                      project: {
-                          connect: {
-                              id: projectId,
-                          },
-                      },
-                      tag: {
-                          connect: {
-                              id: restults.data.createTag,
-                          },
-                      },
+            connectTagProject({
+              data: {
+                project: {
+                  connect: {
+                    id: projectId,
                   },
-              })
-              .then(results => {
-                  reexecuteQuery({requestPolicy: 'network-only'})
-              })    
-    setTagName('');
-  }
+                },
+                tag: {
+                  connect: {
+                    id: results.data.createTagQuery.id,
+                  },
+                },
+              },
+            });
+          }
+        })
+        .then(res => {
+          executeGetTagQuery({ requestPolicy: 'network-only' });
+        });
+
+      setTagName('');
+    }
+  };
 
   const handleDelete = id => {
     // Using delete tag mutation
@@ -178,13 +188,6 @@ const Tags = ({ projectId }) => {
       executeGetTagQuery({ requestPolicy: 'network-only' });
     });
   };
-  const { data, fetching, error } = state;
-  if (fetching) return <LinearProgress color="secondary" />;
-
-  if (error) {
-    console.log(error);
-    return <h1>There was an error getting your tags</h1>;
-  }
 
   if (data && data.tags) {
     return (
@@ -224,4 +227,4 @@ const Tags = ({ projectId }) => {
     );
   }
 };
-export default Tags;
+export default ProjectTag;
