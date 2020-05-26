@@ -44,10 +44,11 @@ const ProjectListView = () => {
     console.log(data)
   }
 
-  const projectList = { ...data.projects };
 
-  console.log(projectList.name)
-  console.log("data")
+    //<=====  Lab23 Notes 5/26/2020 ====>
+  //<===== Uncommented after engineer manger's refactoring ====>
+  //<=====  Not uncommented in other dir files in recent version ====>
+
 
   // const columns =
   //   data && data.programs[0].statuses && data.programs[0].statuses; // .filter(status => status.display);
