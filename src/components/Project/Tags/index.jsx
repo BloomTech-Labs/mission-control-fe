@@ -1,31 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useQuery, useMutation, refetchQueries } from 'urql';
 
-import { GET_ALL_TAGS as query } from "../Queries/TagQueries";
-import { CREATE_TAG as createTagQuery } from "../Queries/TagQueries";
-import { CONNECT_TO_PROJECT as connectToProjectQuery } from "../Queries/TagQueries";
-import { UPDATE_TAG as editTagQuery } from "../Queries/TagQueries";
-import { DELETE_TAG as deleteTagQuery } from "../Queries/TagQueries";
-import { DISCONNECT_FROM_PROJECT as disconnect } from "../Queries/TagQueries";
+import { GET_ALL_TAGS as query } from '../Queries/TagQueries';
+import { CREATE_TAG as createTagQuery } from '../Queries/TagQueries';
+import { CONNECT_TO_PROJECT as connectToProjectQuery } from '../Queries/TagQueries';
+import { UPDATE_TAG as editTagQuery } from '../Queries/TagQueries';
+import { DELETE_TAG as deleteTagQuery } from '../Queries/TagQueries';
+import { DISCONNECT_FROM_PROJECT as disconnect } from '../Queries/TagQueries';
 import { TextField, Button, Card, makeStyles } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import EditIcon from '@material-ui/icons/Edit';
-
-import {
-  modalStyle,
-  modalCont,
-  buttonStyle,
-  basicInput,
-  form,
-  editColumnButton,
-  headerDiv,
-  closeButton,
-  button,
-} from '../../Settings/EditColumnModal/EditColumnModal.module.scss';
-
-import { columnEditCont } from '../../Settings/ColumnSettings/ColumnSettings.module.scss';
 
 const useStyles = makeStyles({
   root: {},
@@ -60,7 +46,7 @@ const Tags = ({ projectId }) => {
   // it was constantly updating. Didn't work.
   // var url = window.location.pathname;
   // var projectId = url.substring(url.lastIndexOf('/') + 1);
-  var idObj = { projectId: projectId };
+  var idObj = { projectId };
 
   // Not using delete tag for the time being, just disconnecting tags from projects.
   // const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery)
@@ -68,14 +54,12 @@ const Tags = ({ projectId }) => {
   // Attempting to use this state "paused" to control how many times the useQuery would get called
   const [paused, setPaused] = useState(false);
   // let tagData;
-  const [state, reexecuteQuery] = useQuery({
+  const [state, executeQuery] = useQuery({
     query,
     variables: idObj,
-    pause: paused,
   });
   const { data, fetching, error } = state;
-  // console.log(state)
-  // tagData = useRef(data)
+
 
   const [addTagResults, addTag] = useMutation(createTagQuery);
   const [connectTagResults, connectTag] = useMutation(connectToProjectQuery);
@@ -145,12 +129,11 @@ const Tags = ({ projectId }) => {
   };
 
   let submitUpdatedTag = e => {
-   e.preventDefault();
+    e.preventDefault();
     if (edit.newName !== '') {
       updateTag({ tag: { id: edit.id }, data: { name: edit.newName } }).then(
         () => {
-          setPaused(false);
-          reexecuteQuery({ requestPolicy: 'network-only' });
+          executeQuery({ requestPolicy: 'network-only' });
           setEdit({ id: '', active: false, oldName: '', newName: '' });
         }
       );
@@ -195,32 +178,30 @@ const Tags = ({ projectId }) => {
           }
         })
         .then(results => {
-          reexecuteQuery({ requestPolicy: 'network-only' });
+          executeQuery({ requestPolicy: 'network-only' });
         });
       setTagName('');
-    } // end if
+    }
     // reset to empty str
-  }; // end handleSubmit
+  };
 
   const handleDelete = id => {
     // disconnectTag deletes tag from project object but not from the tags indepent object
-    disconnectTag({ id: id }).then(() => {
-      // Refetch the query and skip the cache
-      // setPaused(false);
-      reexecuteQuery({ requestPolicy: 'network-only' });
+    disconnectTag({ id }).then(() => {
+      executeQuery({ requestPolicy: 'network-only' });
     });
   };
   if (fetching) {
     return <LinearProgress color="secondary" />;
   }
-  if (error) {
-    console.log(error);
-    return <h1>There was an error getting your tags</h1>;
-  }
+
   if (!data) {
-    return <h1> hmmm, no data...</h1>;
-  }
-  if (data) {
+    return (
+      <h2>
+        <span role="img">Sorry Project Tag Not Found 🤷‍♂️</span>
+      </h2>
+    );
+  } else {
     return (
       <>
         <TextField
