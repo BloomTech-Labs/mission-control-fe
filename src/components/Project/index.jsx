@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'urql';
-
+import LinearProgress from '@material-ui/core/LinearProgress';
 import NoteEditor from './NoteEditor';
 import NotesFeed from './NoteFeed';
 import Team from './Team';
-
 import Header from './Header';
 import Grade from './Grade';
 import GitHubRepos from './GitHubRepos';
 import ProjectStatus from './ProjectStatus/index';
 import Tags from './Tags/index';
-
 
 import {
   parentProjectContainer,
@@ -57,7 +55,19 @@ const Project = props => {
   }
 
   if (fetching) {
-    return <p>Please Wait... Loading...</p>;
+    return (
+      <p>
+        Please Wait...
+        <span>
+          <LinearProgress
+            variant="determinate"
+            value={0}
+            valueBuffer={100}
+            color="primary"
+          />
+        </span>
+      </p>
+    );
   }
 
   if (!data || !data.project) {
@@ -76,7 +86,7 @@ const Project = props => {
           <Header projectId={id} />
           <Tags projectId={id} />
         </div>
-         <div className={projectContainer}>
+        <div className={projectContainer}>
           <div className={editorFeedContainer}>
             <ProjectStatus projectStatus={data.project.status} />
             <h2>Repository Statistics</h2>
@@ -104,8 +114,8 @@ const Project = props => {
           </div>
           <div className={teamContainer}>
             <Team projectId={id} />
-          </div> 
-      </div>
+          </div>
+        </div>
       </div>
     </div>
   );

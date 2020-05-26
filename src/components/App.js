@@ -7,8 +7,7 @@ import initializeAnalytics from '../utils/initializeAnalytics';
 import Authorization from './Authorization';
 import { LabelProvider } from '../contexts/LabelContext';
 import { ColumnProvider } from '../contexts/ColumnContext';
-import { ProjectSearchProvider} from '../contexts/FilterBarContext';
-
+import { ProjectSearchProvider } from '../contexts/FilterBarContext';
 
 const App = () => {
   const location = useLocation();
@@ -20,10 +19,10 @@ const App = () => {
   return [
     <LabelProvider>
       <ColumnProvider>
-      <ProjectSearchProvider>
-        <Route path="/implicit/callback" component={ImplicitCallback} />
-        <SecureRoute path="/" component={Authorization} />
-      </ProjectSearchProvider>
+        <ProjectSearchProvider>
+          <Route path="/implicit/callback" component={ImplicitCallback} />
+          <SecureRoute path="/" component={Authorization} />
+        </ProjectSearchProvider>
       </ColumnProvider>
     </LabelProvider>,
   ];

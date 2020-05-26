@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { useQuery } from 'urql';
 import { PROJECT_LIST_VIEW as query } from './Queries/tagQueries';
 import TagListContainer from './TagListContainer';
@@ -34,7 +35,12 @@ const TagListView = () => {
   }
 
   if (fetching) {
-    return <p>Loading...</p>;
+    return       <LinearProgress
+    variant="determinate"
+    value={0}
+    valueBuffer={100}
+    color="primary"
+  />
   } else {
     console.log(data);
   }
@@ -53,7 +59,7 @@ const TagListView = () => {
       <TagListContainer>
         {/* statusColumn={columns}> */}
         {data.tags.map(tag => (
-          <TagListRow
+          gListRow
             key={tag.id}
             tag={tag}
             // statusColumn={columns}

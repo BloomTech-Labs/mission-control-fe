@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, refetchQueries } from 'urql';
 
 import { GET_ALL_TAGS as getTagsQuery } from './Queries';
@@ -10,7 +10,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import EditIcon from '@material-ui/icons/Edit';
-
 
 const useStyles = makeStyles({
   root: {},
@@ -39,10 +38,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Tags = props  => {
-
-
-
+const Tags = props => {
   const classes = useStyles();
   const [state, executeGetTagQuery] = useQuery({ query: getTagsQuery });
   const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery);
@@ -57,18 +53,9 @@ const Tags = props  => {
     updatedName: '',
   });
 
-
-
-
-  const { data, fetching, error } = state;
-  if (fetching) return <LinearProgress color="secondary" />;
-
-  if (error) {
-    console.log(error);
-    return <h1>There was an error getting your tags</h1>;
-  }
-
-  console.log(data)
+  useEffect(() => {
+    executeGetTagQuery({ requestPolicy: 'network-only' });
+  }, []);
 
   const editTag = el => {
     if (edit.active) {
@@ -124,7 +111,6 @@ const Tags = props  => {
     setEdit({ ...edit, updatedName: e.target.value });
   };
 
-
   const submitUpdatedTag = e => {
     e.preventDefault();
     if (edit.updatedName !== '') {
@@ -166,6 +152,13 @@ const Tags = props  => {
     });
   };
 
+  const { data, fetching, error } = state;
+  if (fetching) return <LinearProgress color="primary" />;
+
+  if (error) {
+    console.log(error);
+    return <h1>There was an error getting your tags</h1>;
+  }
   if (data && data.tags) {
     return (
       <>
@@ -199,7 +192,6 @@ const Tags = props  => {
               />{' '}
             </Card>
           ))}
-
         </div>
       </>
     );

@@ -13,7 +13,7 @@ import {
 const ProjectRow = ({ project, statusColumn }) => {
   const statusLabelsArr = [];
 
-//TODO case sensitivity RETURNS NAME IN LIST VIEW 
+  //TODO case sensitivity RETURNS NAME IN LIST VIEW
   // const projectName = project.name
   // console.log(`ProjectListRow line 19 ${projectName}`)
   // console.log(projectName)
@@ -53,7 +53,6 @@ const ProjectRow = ({ project, statusColumn }) => {
       </tr>
     );
   }
-  //console.log("PROJECT: %O", project)
 
   return (
     <tr>

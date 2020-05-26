@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useQuery, useMutation, refetchQueries } from 'urql';
 
-import { GET_ALL_TAGS as query } from '../Queries/TagQueries';
-import { CREATE_TAG as createTagQuery } from '../Queries/TagQueries';
-import { CONNECT_TO_PROJECT as connectToProjectQuery } from '../Queries/TagQueries';
-import { UPDATE_TAG as editTagQuery } from '../Queries/TagQueries';
-import { DELETE_TAG as deleteTagQuery } from '../Queries/TagQueries';
-import { DISCONNECT_FROM_PROJECT as disconnect } from '../Queries/TagQueries';
+import { GET_ALL_TAGS as query } from "../Queries/TagQueries";
+import { CREATE_TAG as createTagQuery } from "../Queries/TagQueries";
+import { CONNECT_TO_PROJECT as connectToProjectQuery } from "../Queries/TagQueries";
+import { UPDATE_TAG as editTagQuery } from "../Queries/TagQueries";
+import { DELETE_TAG as deleteTagQuery } from "../Queries/TagQueries";
+import { DISCONNECT_FROM_PROJECT as disconnect } from "../Queries/TagQueries";
 import { TextField, Button, Card, makeStyles } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
@@ -46,7 +46,7 @@ const Tags = ({ projectId }) => {
   // it was constantly updating. Didn't work.
   // var url = window.location.pathname;
   // var projectId = url.substring(url.lastIndexOf('/') + 1);
-  var idObj = { projectId };
+  var idObj = { projectId: projectId };
 
   // Not using delete tag for the time being, just disconnecting tags from projects.
   // const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery)
@@ -54,12 +54,13 @@ const Tags = ({ projectId }) => {
   // Attempting to use this state "paused" to control how many times the useQuery would get called
   const [paused, setPaused] = useState(false);
   // let tagData;
-  const [state, executeQuery] = useQuery({
+  const [state, reexecuteQuery] = useQuery({
     query,
     variables: idObj,
   });
   const { data, fetching, error } = state;
-
+  // console.log(state)
+  // tagData = useRef(data)
 
   const [addTagResults, addTag] = useMutation(createTagQuery);
   const [connectTagResults, connectTag] = useMutation(connectToProjectQuery);
@@ -129,11 +130,11 @@ const Tags = ({ projectId }) => {
   };
 
   let submitUpdatedTag = e => {
-    e.preventDefault();
+e &&  e.preventDefault();
     if (edit.newName !== '') {
       updateTag({ tag: { id: edit.id }, data: { name: edit.newName } }).then(
         () => {
-          executeQuery({ requestPolicy: 'network-only' });
+          reexecuteQuery({ requestPolicy: 'network-only' });
           setEdit({ id: '', active: false, oldName: '', newName: '' });
         }
       );
@@ -154,45 +155,55 @@ const Tags = ({ projectId }) => {
     if (tagName !== '') {
       console.log('send new or update query to BE');
       // Using create tag mutation
-      addTag({ tag: { name: tagName } })
-        .then(results => {
-          // get results of add tag for tag id
-          console.log(results);
-          if (results.error) {
-            console.log(results.error);
-          } else {
-            connectTag({
-              data: {
-                project: {
-                  connect: {
-                    id: projectId,
-                  },
-                },
-                tag: {
-                  connect: {
-                    id: results.data.createTag.id,
-                  },
+      addTag({ tag: { name: tagName } }).then(results => {
+        // get results of add tag for tag id
+        reexecuteQuery({ requestPolicy: 'network-only' });
+        console.log(results);
+        if (results.error) {
+          console.log(results.error);
+        } else {
+          connectTag({
+            data: {
+              project: {
+                connect: {
+                  id: projectId,
                 },
               },
-            });
-          }
-        })
-        .then(results => {
-          executeQuery({ requestPolicy: 'network-only' });
-        });
-      setTagName('');
-    }
+              tag: {
+                connect: {
+                  id: results.data.createTag.id,
+                  
+                },
+              },
+            },
+            
+          })
+          reexecuteQuery({ requestPolicy: 'network-only' });
+        }
+      });
+    } // end if
     // reset to empty str
+    
+    setTagName('')
   };
 
   const handleDelete = id => {
     // disconnectTag deletes tag from project object but not from the tags indepent object
-    disconnectTag({ id }).then(() => {
-      executeQuery({ requestPolicy: 'network-only' });
+    disconnectTag({ id: id }).then(() => {
+      reexecuteQuery({ requestPolicy: 'network-only' });
     });
   };
+  
   if (fetching) {
-    return <LinearProgress color="secondary" />;
+    return (
+      <LinearProgress
+        variant="determinate"
+        value={0}
+        valueBuffer={100}
+        color="primary"
+      />
+    );
+    
   }
 
   if (!data) {
@@ -201,7 +212,7 @@ const Tags = ({ projectId }) => {
         <span role="img">Sorry Project Tag Not Found 🤷‍♂️</span>
       </h2>
     );
-  } else {
+  } else if (data) {
     return (
       <>
         <TextField

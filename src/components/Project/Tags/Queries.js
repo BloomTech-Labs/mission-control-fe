@@ -63,15 +63,25 @@ export const ADD_TAG_TO_PROJECT = gql`
 `;
 
 
-export const GET_PROJECT_TAGS = gql`
-query getProjectTags($projectId: ID!) {
-  project(where: {id: $projectId}) {
-   tags { 
-     id
-    tag {
-      name
+
+
+
+export const HEADER_QUERY = gql`
+  query HeaderView($id: ID!) {
+    tag(where: { id: $id }) {
       id
+      name
+      createdAt
+      isUsed
     }
   }
-  }
-}`;
+`
+export const TAG_VIEW_QUERY = gql`
+query TagView($id: ID!) {
+    tag(where: { id: $id }) {
+      id
+      name
+      createdAt
+      isUsed
+    }
+}`

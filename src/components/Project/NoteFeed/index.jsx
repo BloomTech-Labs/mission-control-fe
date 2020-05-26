@@ -1,4 +1,5 @@
 import React from 'react';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { useQuery } from 'urql';
 import Note from './Note';
 
@@ -18,7 +19,12 @@ const NotesFeed = ({ projectId, privateBol }) => {
   }
 
   if (fetching) {
-    return <p>Loading...</p>;
+    return       <LinearProgress
+    variant="determinate"
+    value={0}
+    valueBuffer={100}
+    color="primary"
+  />
   }
 
   if (data && data.project && data.project.notes) {

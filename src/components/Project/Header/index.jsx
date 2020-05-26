@@ -1,4 +1,5 @@
 import React from 'react';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { Link, NavLink } from 'react-router-dom';
 import { useQuery } from 'urql';
 import { HEADER_QUERY as query } from '../Queries';
@@ -17,7 +18,15 @@ const Header = ({ projectId }) => {
   const [state] = useQuery({ query, variables: { id: projectId } });
   const { data, fetching } = state;
 
-  if (fetching) return <h1>Loading</h1>;
+  if (fetching)
+    return (
+      <LinearProgress
+        variant="determinate"
+        value={0}
+        valueBuffer={100}
+        color="primary"
+      />
+    );
   if (data && data.project) {
     const {
       project: { name },

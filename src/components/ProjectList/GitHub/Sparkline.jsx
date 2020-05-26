@@ -1,4 +1,5 @@
 import React from 'react';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { useQuery } from 'urql';
 import { SPARKLINE as query } from '../Queries/sparklineQuery';
 import { Sparkyline } from './Sparkline.module.scss';
@@ -15,7 +16,7 @@ const Sparkline = ({ name, repoIndex, handleSparkClick }) => {
   const { data } = state;
 
   if (state.fetching) {
-    return <p>Loading Sparkline...</p>;
+    return <LinearProgress color="secondary" />;
   } else if (state.error) {
     return <p>Error: Sparkline unavailable.</p>;
   } else if (data.SparkyBoy.length) {

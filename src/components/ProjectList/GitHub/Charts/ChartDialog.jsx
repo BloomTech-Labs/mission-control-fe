@@ -1,4 +1,5 @@
 import React from 'react';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import SparkyChart from './SparkyChart';
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
@@ -80,7 +81,7 @@ export default props => {
   };
 
   if (state.fetching) {
-    return <p>Loading Sparkline...</p>;
+    return <LinearProgress color="secondary" />;
   } else if (state.error) {
     return <p>Error: Sparkline unavailable.</p>;
   } else if (data.SparkyBoy.length) {
@@ -125,7 +126,7 @@ export default props => {
                 maxValue={10000000}
               />
             ) : (
-              <p>"Loading..."</p>
+              <LinearProgress variant="determinate" value="100" color="secondary" />
             )}
           </div>
           <ArrowForward

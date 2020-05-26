@@ -1,4 +1,5 @@
 import React from 'react';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { useQuery } from 'urql';
 import { TEAM_QUERY as query } from '../Queries';
 
@@ -19,7 +20,7 @@ const Team = ({ projectId }) => {
   const { data, fetching } = state;
 
   if (fetching) {
-    return <h1>Loading...</h1>;
+    return <LinearProgress color="secondary" />;
   }
 
   if (data && data.project) {

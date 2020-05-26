@@ -1,32 +1,29 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
+import LinearProgress from '@material-ui/core/LinearProgress';
 import { useQuery } from 'urql';
 import { PROJECT_LIST_VIEW as query } from './Queries/projectQueries';
 import ProjectListContainer from './ProjectListContainer';
 import ProjectListRow from './ProjectListRow';
 import Settings from '../Settings/Settings';
 
-
 import { FILTERED_DATA as newQuery } from '../FilterBar/FilterBarQueries';
-import {ProjectSearchContext} from '../../contexts/FilterBarContext';
+import { ProjectSearchContext } from '../../contexts/FilterBarContext';
 
 // ProjectListView is the default view when a user signs into the application
 // The PROJECT_LIST_VIEW query matches against the currently authenticated user
 // and returns a list of projects that they are authorized to view.
 
 const ProjectListView = () => {
- 
-
-
   const projectSearchContext = useContext(ProjectSearchContext);
- 
-  const [state] =  useQuery({
+
+  const [state] = useQuery({
     query: newQuery,
-    variables: { filter: {
+    variables: {
+      filter: {
         name_contains: projectSearchContext.searchTerm,
-    }}
-  })
-
-
+      },
+    },
+  });
 
   const { data, fetching, error } = state;
 
@@ -39,16 +36,14 @@ const ProjectListView = () => {
   }
 
   if (fetching) {
-    return <p>Loading...</p>;
+ return <LinearProgress style={{width:'70%', height:'8px', margin:'35px auto'}} variant='buffer' value={0} valueBuffer={100} color="primary" />;
   } else {
-    console.log(data)
+    console.log(data);
   }
 
-
-    //<=====  Lab23 Notes 5/26/2020 ====>
+  //<=====  Lab23 Notes 5/26/2020 ====>
   //<===== Uncommented after engineer manger's refactoring ====>
   //<=====  Not uncommented in other dir files in recent version ====>
-
 
   // const columns =
   //   data && data.programs[0].statuses && data.programs[0].statuses; // .filter(status => status.display);
@@ -57,11 +52,10 @@ const ProjectListView = () => {
   return (
     <div>
       <Settings />
-     
+
       <ProjectListContainer>
         {/* statusColumn={columns}> */}
         {data.projects.map(project => (
-          
           <ProjectListRow
             key={project.id}
             project={project}
