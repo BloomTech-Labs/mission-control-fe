@@ -6,11 +6,9 @@ import Layout from '../Layout';
 import Project from '../Project';
 import ProjectList from '../ProjectList';
 
-import Tag from '../Tag';
-import TagList from '../TagList';
+import Tags from '../Project/Tags/Tags';
 import FilterBar from '../FilterBar/FilterBar';
-import ModalEdit from '../Modal/ModalEdit';
-import Modal from '../Modal/Modal'
+import Modal from '../Modal/Modal';
 
 // OKTA authentication widget, invokes implicit callback to login
 // if the user attempts to access a protected view.
@@ -42,45 +40,28 @@ export default withAuth(({ auth }) => {
     <Layout logout={invokeOktaLogout}>
       <Switch>
         <SecureRoute path="/project/:id" component={Project} />
-        <SecureRoute path="/tags/:id" component={Tag} />
-        <SecureRoute path="/editTag" component={Modal} />
+
         <SecureRoute
           exact
-          path="/"  
+          path="/"
           render={props => (
-      <>
-      <FilterBar/>
-  
-            <ProjectList
-              {...props}
-              logout={invokeOktaLogout}
-              getAccessToken={getAccessToken}
-            />
+            <>
+              <FilterBar />
+
+              <ProjectList
+                {...props}
+                logout={invokeOktaLogout}
+                getAccessToken={getAccessToken}
+              />
             </>
           )}
         />
-
-//LAB23-T1
+        //LAB23-T1
         <SecureRoute
           exact
           path="/tags"
-          
-          render={props => (       
-
-            <TagList
-              {...props}
-              logout={invokeOktaLogout}
-              getAccessToken={getAccessToken}
-            />
-          )}
-        />
-        <SecureRoute
-          exact
-          path="/editTag"
-          
-          render={props => (       
-
-            <Modal
+          render={props => (
+            <Tags
               {...props}
               logout={invokeOktaLogout}
               getAccessToken={getAccessToken}

@@ -1,28 +1,28 @@
 import React, {useContext} from 'react';
 import { useQuery } from 'urql';
-import { PROJECT_LIST_VIEW as query } from './Queries/projectQueries';
-import ProjectListContainer from './ProjectListContainer';
-import ProjectListRow from './ProjectListRow';
+import { TAG_LIST_VIEW as query } from './Queries';
+import TagListContainer from './TagListContainer';
+import TagListRow from './TagListRow';
 import Settings from '../Settings/Settings';
 
 
 import { FILTERED_DATA as newQuery } from '../FilterBar/FilterBarQueries';
-import {ProjectSearchContext} from '../../contexts/FilterBarContext';
+// import {SearchContext} from '../../contexts/FilterBarContext';
 
-// ProjectListView is the default view when a user signs into the application
+// TagListView is the default view when a user signs into the application
 // The PROJECT_LIST_VIEW query matches against the currently authenticated user
-// and returns a list of projects that they are authorized to view.
+// and returns a list of tags that they are authorized to view.
 
-const ProjectListView = () => {
+const TagListView = () => {
  
 
 
-  const projectSearchContext = useContext(ProjectSearchContext);
+  const tagSearchContext = useContext(TagSearchContext);
  
   const [state] =  useQuery({
     query: newQuery,
     variables: { filter: {
-        name_contains: projectSearchContext.searchTerm,
+        name_contains: tagSearchContext.searchTerm,
     }}
   })
 
@@ -44,9 +44,9 @@ const ProjectListView = () => {
     console.log(data)
   }
 
-  const projectList = { ...data.projects };
+  const tagList = { ...data.tags };
 
-  console.log(projectList.name)
+  console.log(tagList.name)
   console.log("data")
 
   // const columns =
@@ -55,22 +55,22 @@ const ProjectListView = () => {
   //console.log('PROJECT_DATA: %O', data);
   return (
     <div>
-      <Settings />
+ 
      
-      <ProjectListContainer>
+      <TagListContainer>
         {/* statusColumn={columns}> */}
-        {data.projects.map(project => (
+        {data.tags.map(tag => (
           
-          <ProjectListRow
-            key={project.id}
-            project={project}
+          <TagListRow
+            key={tag.id}
+            tag={tag}
             // statusColumn={columns}
             // statusDisplay={columns.display}
           />
         ))}
-      </ProjectListContainer>
+      </TagListContainer>
     </div>
   );
 };
 
-export default ProjectListView;
+export default TagListView;

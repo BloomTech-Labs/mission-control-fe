@@ -1,31 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { useQuery, useMutation, refetchQueries } from 'urql';
 
-import { GET_ALL_TAGS as query } from "../Queries/TagQueries";
-import { CREATE_TAG as createTagQuery } from "../Queries/TagQueries";
-import { CONNECT_TO_PROJECT as connectToProjectQuery } from "../Queries/TagQueries";
-import { UPDATE_TAG as editTagQuery } from "../Queries/TagQueries";
-import { DELETE_TAG as deleteTagQuery } from "../Queries/TagQueries";
-import { DISCONNECT_FROM_PROJECT as disconnect } from "../Queries/TagQueries";
+import { GET_ALL_TAGS as getTagsQuery } from './Queries';
+import { CREATE_TAG as createTagQuery } from './Queries';
+import { UPDATE_TAG as editTagQuery } from './Queries';
+import { DELETE_TAG as deleteTagQuery } from './Queries';
 import { TextField, Button, Card, makeStyles } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import EditIcon from '@material-ui/icons/Edit';
-
-import {
-  modalStyle,
-  modalCont,
-  buttonStyle,
-  basicInput,
-  form,
-  editColumnButton,
-  headerDiv,
-  closeButton,
-  button,
-} from '../../Settings/EditColumnModal/EditColumnModal.module.scss';
-
-import { columnEditCont } from '../../Settings/ColumnSettings/ColumnSettings.module.scss';
 
 const useStyles = makeStyles({
   root: {},
@@ -56,30 +40,10 @@ const useStyles = makeStyles({
 
 const Tags = ({ projectId }) => {
   const classes = useStyles();
-  // Trying to just get the projectId directly from the URL, so useQuery wouldn't think
-  // it was constantly updating. Didn't work.
-  // var url = window.location.pathname;
-  // var projectId = url.substring(url.lastIndexOf('/') + 1);
-  var idObj = { projectId: projectId };
-
-  // Not using delete tag for the time being, just disconnecting tags from projects.
-  // const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery)
+  const [state, reexecuteQuery] = useQuery({ query: getTagsQuery });
+  const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery);
   const [tagName, setTagName] = useState('');
-  // Attempting to use this state "paused" to control how many times the useQuery would get called
-  const [paused, setPaused] = useState(false);
-  // let tagData;
-  const [state, reexecuteQuery] = useQuery({
-    query,
-    variables: idObj,
-    pause: paused,
-  });
-  const { data, fetching, error } = state;
-  // console.log(state)
-  // tagData = useRef(data)
-
   const [addTagResults, addTag] = useMutation(createTagQuery);
-  const [connectTagResults, connectTag] = useMutation(connectToProjectQuery);
-  const [disconnectTagResults, disconnectTag] = useMutation(disconnect);
   const [updateTagResults, updateTag] = useMutation(editTagQuery);
 
   const [edit, setEdit] = useState({
@@ -88,15 +52,6 @@ const Tags = ({ projectId }) => {
     oldName: '',
     newName: '',
   });
-
-  // TODO Delete unneed code
-  useEffect(() => {
-    if (data) {
-      if (!paused) {
-        setPaused(true);
-      }
-    }
-  }, [data]);
 
   const editTag = element => {
     if (edit.active) {
@@ -121,7 +76,7 @@ const Tags = ({ projectId }) => {
             />
           </>
         );
-      } 
+      } else  {
         return (
           <>
             <EditIcon
@@ -132,8 +87,8 @@ const Tags = ({ projectId }) => {
             {element.name}
           </>
         );
-      
-    } else {
+      }
+    } else  {
       return (
         <>
           <EditIcon
@@ -149,92 +104,59 @@ const Tags = ({ projectId }) => {
   const startEdit = element => {
     setEdit({ ...edit, active: true, id: element.id, oldName: element.name });
   };
-
   const handleEditTag = e => {
+    //reset timer on each key stroke
     e.persist();
     setEdit({ ...edit, newName: e.target.value });
   };
-
   let submitUpdatedTag = e => {
     e && e.preventDefault();
     if (edit.newName !== '') {
       updateTag({ tag: { id: edit.id }, data: { name: edit.newName } }).then(
         () => {
-          setPaused(false);
-          reexecuteQuery({ requestPolicy: 'network-only' });
+          // Refetch the query and skip the cache
           setEdit({ id: '', active: false, oldName: '', newName: '' });
+          reexecuteQuery({ requestPolicy: 'network-only' });
         }
       );
     }
   };
-
-  // Handling adding new tag input field changes
-
   const handleChange = e => {
+    //reset timer on each key stroke
     e.persist();
     setTagName(e.target.value);
-  }; // end handleChange
-
-  // Handling submit of new tag input field
+  }; //end handleChange
   const handleSubmit = e => {
-    e.preventDefault();
-    console.log({ projectId });
+    //hitting enter key submits immediately
+    e && e.preventDefault();
+    //clear the submit timer and submit form automatically
     if (tagName !== '') {
       console.log('send new or update query to BE');
-      // Using create tag mutation
-      addTag({ tag: { name: tagName } })
-        .then(results => {
-          // get results of add tag for tag id
-          console.log(results);
-          if (results.error) {
-            console.log(results.error);
-          } else {
-            connectTag({
-              data: {
-                project: {
-                  connect: {
-                    id: projectId,
-                  },
-                },
-                tag: {
-                  connect: {
-                    id: results.data.createTag.id,
-                  },
-                },
-              },
-            });
-          }
-        })
-        .then(results => {
-          // Refetch the query and skip the cache
-          // setPaused(false);
-          reexecuteQuery({ requestPolicy: 'network-only' });
-        });
-      setTagName('');
-    } // end if
-    // reset to empty str
-  }; // end handleSubmit
-
+      //Using create tag mutation
+      addTag({ tag: { name: tagName } }).then(() => {
+        // Refetch the query and skip the cache
+        reexecuteQuery({ requestPolicy: 'network-only' });
+      });
+    } //end if
+    //reset to empty str
+    setTagName('');
+  }; //end handleSubmit
   const handleDelete = id => {
-
-// disconnectTag deletes tag from project object but not from the tags indepent object
-    disconnectTag({ id: id }).then(() => {
+    //Using delete tag mutation
+    deleteTag({ tag: { id: id } }).then(() => {
       // Refetch the query and skip the cache
-      // setPaused(false);
       reexecuteQuery({ requestPolicy: 'network-only' });
     });
   };
-  if (fetching) {
-    return <LinearProgress color="secondary" />;
-  }
+  const { data, fetching, error } = state;
+  if (fetching) return <LinearProgress color="secondary" />;
+
   if (error) {
     console.log(error);
     return <h1>There was an error getting your tags</h1>;
   }
-  if (!data) {
-    return <h1> hmmm, no data...</h1>;
-  }
-  if (data) {
+
+  if (data && data.tags) {
     return (
       <>
         <TextField
@@ -250,20 +172,21 @@ const Tags = ({ projectId }) => {
         />
         <br />
         <Button variant="outlined" color="secondary" onClick={handleSubmit}>
-          Create tag
+          {' '}
+          Create tag{' '}
         </Button>
 
         <h3> Current Tags </h3>
 
         <div className={classes.container}>
-          {data.project.tags.map(element => (
+          {data.tags.map(element => (
             <Card className={classes.tags}>
-              {editTag(element.tag)}
+              {editTag(element)}
               <DeleteIcon
                 className={classes.icon}
                 color="secondary"
                 onClick={() => handleDelete(element.id)}
-              />
+              />{' '}
             </Card>
           ))}
         </div>
@@ -271,5 +194,4 @@ const Tags = ({ projectId }) => {
     );
   }
 };
-
 export default Tags;

@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const FILTERED_DATA = gql`
-  query ($filter: ProjectWhereInput!) {
+  query($filter: ProjectWhereInput!) {
     projects(where: $filter) {
       id
       name
