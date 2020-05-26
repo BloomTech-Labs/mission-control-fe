@@ -9,7 +9,7 @@ import Header from './Header';
 import Grade from './Grade';
 import GitHubRepos from './GitHubRepos';
 import ProjectStatus from './ProjectStatus/index';
-import Tags from './Tags/index';
+import Tags from './Tags/Tags';
 
 
 import {
@@ -69,8 +69,6 @@ const Project = props => {
   }
 
   console.log('PROJECT_VIEW_QUERY DATA: %O', data);
-
-  console.log({...data.project.tags})
   return (
     <div className={parentProjectContainer}>
       <div className={projectPageContents}>

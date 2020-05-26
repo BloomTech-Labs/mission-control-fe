@@ -57,11 +57,6 @@ const Tags = props  => {
     updatedName: '',
   });
 
-  const{ id } = props.match.params;
-  const [tagState, executeQuery] = useQuery({
-    query:getTagsQuery,
-    variables:{ id },
-  })
 
 
 

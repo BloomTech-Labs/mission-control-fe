@@ -60,7 +60,7 @@ const Tags = ({ projectId }) => {
   // it was constantly updating. Didn't work.
   // var url = window.location.pathname;
   // var projectId = url.substring(url.lastIndexOf('/') + 1);
-  const idObj = { projectId: projectId };
+  var idObj = { projectId: projectId };
 
   // Not using delete tag for the time being, just disconnecting tags from projects.
   // const [deleteTagResults, deleteTag] = useMutation(deleteTagQuery)
@@ -90,13 +90,13 @@ const Tags = ({ projectId }) => {
   });
 
   // TODO Delete unneed code
-  useEffect(() => {
-    if (data) {
-      if (!paused) {
-        setPaused(true);
-      }
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     if (!paused) {
+  //       setPaused(true);
+  //     }
+  //   }
+  // }, [data]);
 
   const editTag = element => {
     if (edit.active) {
@@ -181,8 +181,6 @@ const Tags = ({ projectId }) => {
     console.log({ projectId });
     if (tagName !== '') {
       console.log('send new or update query to BE');
-
-      
       // Using create tag mutation
       addTag({ tag: { name: tagName } })
         .then(results => {
