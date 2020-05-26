@@ -14,7 +14,7 @@ const ProjectRow = ({ project, statusColumn }) => {
   const statusLabelsArr = [];
 
 //TODO KS Returning lower case project list  
-  const projectName = project.tags.tag.name;
+  const projectName = project.name;
   console.log(`ProjectListRow line 19 ${projectName}`)
   console.log(projectName)
   
