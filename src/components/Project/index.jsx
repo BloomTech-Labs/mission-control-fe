@@ -9,7 +9,7 @@ import Header from './Header';
 import Grade from './Grade';
 import GitHubRepos from './GitHubRepos';
 import ProjectStatus from './ProjectStatus/index';
-import Tags from './Tags/ProjectTag';
+import Tags from './Tags/index';
 
 
 import {

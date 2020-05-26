@@ -89,15 +89,6 @@ const Tags = ({ projectId }) => {
     newName: '',
   });
 
-  // TODO Delete unneed code
-  // useEffect(() => {
-  //   if (data) {
-  //     if (!paused) {
-  //       setPaused(true);
-  //     }
-  //   }
-  // }, [data]);
-
   const editTag = element => {
     if (edit.active) {
       if (edit.id === element.id) {
@@ -114,26 +105,14 @@ const Tags = ({ projectId }) => {
               className={classes.tagInput}
               onChange={handleEditTag}
               type="text"
-              name="tagname"
-              id="tagname"
+              name="tagName"
+              id="tagName"
               placeholder={element.name}
               value={edit.newName}
             />
           </>
         );
-      } 
-        return (
-          <>
-            <EditIcon
-              className={classes.icon}
-              color="secondary"
-              onClick={() => startEdit(element)}
-            />
-            {element.name}
-          </>
-        );
-      
-    } else {
+      }
       return (
         <>
           <EditIcon
@@ -141,10 +120,20 @@ const Tags = ({ projectId }) => {
             color="secondary"
             onClick={() => startEdit(element)}
           />
-          {element.name}{' '}
+          {element.name}
         </>
       );
     }
+    return (
+      <>
+        <EditIcon
+          className={classes.icon}
+          color="secondary"
+          onClick={() => startEdit(element)}
+        />
+        {element.name}{' '}
+      </>
+    );
   };
   const startEdit = element => {
     setEdit({ ...edit, active: true, id: element.id, oldName: element.name });
@@ -156,7 +145,7 @@ const Tags = ({ projectId }) => {
   };
 
   let submitUpdatedTag = e => {
-    e && e.preventDefault();
+   e.preventDefault();
     if (edit.newName !== '') {
       updateTag({ tag: { id: edit.id }, data: { name: edit.newName } }).then(
         () => {
@@ -206,8 +195,6 @@ const Tags = ({ projectId }) => {
           }
         })
         .then(results => {
-          // Refetch the query and skip the cache
-          // setPaused(false);
           reexecuteQuery({ requestPolicy: 'network-only' });
         });
       setTagName('');
@@ -216,8 +203,7 @@ const Tags = ({ projectId }) => {
   }; // end handleSubmit
 
   const handleDelete = id => {
-
-// disconnectTag deletes tag from project object but not from the tags indepent object
+    // disconnectTag deletes tag from project object but not from the tags indepent object
     disconnectTag({ id: id }).then(() => {
       // Refetch the query and skip the cache
       // setPaused(false);
