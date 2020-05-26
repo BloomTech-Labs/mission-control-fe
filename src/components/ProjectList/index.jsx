@@ -36,7 +36,7 @@ const ProjectListView = () => {
   }
 
   if (fetching) {
- return <LinearProgress style={{width:'70%', height:'8px', margin:'35px auto'}} variant='buffer' value={0} valueBuffer={100} color="primary" />;
+ return <LinearProgress style={{width:'70%', height:'8px', margin:'35px auto'}}  color="primary" />;
   } else {
     console.log(data);
   }

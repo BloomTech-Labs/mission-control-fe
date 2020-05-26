@@ -21,10 +21,7 @@ const Header = ({ projectId }) => {
   if (fetching)
     return (
       <LinearProgress
-        variant="determinate"
-        value={0}
-        valueBuffer={100}
-        color="primary"
+        color="secondary"
       />
     );
   if (data && data.project) {

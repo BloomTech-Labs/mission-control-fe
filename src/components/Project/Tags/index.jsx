@@ -62,6 +62,12 @@ const Tags = ({ projectId }) => {
   // console.log(state)
   // tagData = useRef(data)
 
+
+  useEffect(() => {
+    reexecuteQuery({ requestPolicy: 'network-only' });
+  }, []);
+
+
   const [addTagResults, addTag] = useMutation(createTagQuery);
   const [connectTagResults, connectTag] = useMutation(connectToProjectQuery);
   const [disconnectTagResults, disconnectTag] = useMutation(disconnect);
@@ -157,7 +163,7 @@ e &&  e.preventDefault();
       // Using create tag mutation
       addTag({ tag: { name: tagName } }).then(results => {
         // get results of add tag for tag id
-        reexecuteQuery({ requestPolicy: 'network-only' });
+
         console.log(results);
         if (results.error) {
           console.log(results.error);
@@ -195,13 +201,15 @@ e &&  e.preventDefault();
   };
   
   if (fetching) {
+    
     return (
+      <p> Loading Tags...
+        <span>
       <LinearProgress
-        variant="determinate"
-        value={0}
-        valueBuffer={100}
-        color="primary"
+        color="secondary"
       />
+      </span>
+      </p>
     );
     
   }

@@ -57,13 +57,10 @@ const Project = props => {
   if (fetching) {
     return (
       <p>
-        Please Wait...
+        Project Loading...
         <span>
-          <LinearProgress
-            variant="determinate"
-            value={0}
-            valueBuffer={100}
-            color="primary"
+          <LinearProgress     
+            color="secondary"
           />
         </span>
       </p>
