@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import { useQuery } from 'urql';
-import { TAG_LIST_VIEW as query } from './Queries';
+import {  as query } from './Queries';
 import TagListContainer from './TagListContainer';
 import TagListRow from './TagListRow';
 import Settings from '../Settings/Settings';
