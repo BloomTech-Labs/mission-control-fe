@@ -76,6 +76,9 @@ const NoteEditor = ({
     setNotification(false);
   };
 
+
+  // TODO Created throw and catch statement to fix deployment error of and unhandled promise
+  // line 94 and 117
   const handleSubmit = async (e, type) => {
     switch (type) {
       case 'create':
@@ -89,6 +92,10 @@ const NoteEditor = ({
           // Extracts an array of emails from array of Person objects
           attendedBy: Array.from(attendees, ({ email }) => email),
           notification,
+        }).catch(error => {
+          console.log(
+            `Error from noteEditor handleSubmit() with async(unhandled promise): ${error} line 94`
+          );
         });
         resetForm();
         executeQuery();
@@ -106,6 +113,10 @@ const NoteEditor = ({
           rating,
           isPrivate,
           attendedBy: Array.from(attendees, ({ email }) => email),
+        }).catch(error => {
+          console.log(
+            `Error from noteEditor handleSubmit() with async(unhandled promise): ${error} line 117`
+          );
         });
         setIsEditing(false);
         break;

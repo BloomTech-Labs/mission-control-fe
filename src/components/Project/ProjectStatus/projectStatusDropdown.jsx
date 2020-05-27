@@ -33,6 +33,11 @@ const ProjectStatusDropdown = ({ projectStatusElement }) => {
     })
   );
 
+
+  
+
+  // TODO Created throw and catch statement to fix deployment error of and unhandled promise
+  // line 5
   const handleChange = async (e, { value }) => {
     e.preventDefault();
 
@@ -48,6 +53,10 @@ const ProjectStatusDropdown = ({ projectStatusElement }) => {
       projectId: projectStatusElement.project.id,
       projectStatusElementId: projectStatusElement.id,
       projectStatusValue: value,
+    }).catch(error => {
+      console.log(
+        `Error projectStatusDropdown.jsx handleChange() with async(unhandled promise): ${error} line 53`
+      );
     });
 
     setProjectStatusElementValue(value);

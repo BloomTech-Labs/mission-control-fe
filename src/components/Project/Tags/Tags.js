@@ -53,9 +53,14 @@ const Tags = props => {
     updatedName: '',
   });
 
+  console.log(props);
+
+  const { data, fetching, error } = state;
   useEffect(() => {
+
     executeGetTagQuery({ requestPolicy: 'network-only' });
   }, []);
+
 
   const editTag = el => {
     if (edit.active) {
@@ -125,6 +130,16 @@ const Tags = props => {
     }
   };
 
+  if (fetching) {
+    return (<LinearProgress color="primary" />) 
+  }
+
+
+  if (error) {
+    console.log(error);
+    return <h1>There was an error getting your tags</h1>;
+  }
+
   const handleChange = e => {
     e.persist();
     setTagName(e.target.value);
@@ -133,12 +148,18 @@ const Tags = props => {
   const handleSubmit = e => {
     e.preventDefault();
     if (tagName !== '') {
-      console.log('send new or update query to BE');
+      console.log(`send new or update query to BE ${tagName}`);
       // Using create tag mutation
-      addTag({ tag: { name: tagName } }).then(() => {
-        // Refetch the query and skip the cache
-        executeGetTagQuery({ requestPolicy: 'network-only' });
-      });
+      addTag({ tag: { name: tagName } })
+        .then(() => {
+          // Refetch the query and skip the cache
+          executeGetTagQuery({ requestPolicy: 'network-only' });
+        })
+        .catch(error => {
+          console.log(
+            `Error from project/tags/tag.js handleChange() with async(unhandled promise): ${error} line 94`
+          );
+        });
     } // end if
     // reset to empty str
     setTagName('');
@@ -146,19 +167,18 @@ const Tags = props => {
 
   const handleDelete = id => {
     // Using delete tag mutation
-    deleteTag({ tag: { id: id } }).then(() => {
-      // Refetch the query and skip the cache
-      executeGetTagQuery({ requestPolicy: 'network-only' });
-    });
+    deleteTag({ tag: { id: id } })
+      .then(() => {
+        // Refetch the query and skip the cache
+        executeGetTagQuery({ requestPolicy: 'network-only' });
+      })
+      .catch(error => {
+        console.log(
+          `Error from noteEditor handleSubmit() with async(unhandled promise): ${error} line 94`
+        );
+      });
   };
 
-  const { data, fetching, error } = state;
-  if (fetching) return <LinearProgress color="primary" />;
-
-  if (error) {
-    console.log(error);
-    return <h1>There was an error getting your tags</h1>;
-  }
   if (data && data.tags) {
     return (
       <>

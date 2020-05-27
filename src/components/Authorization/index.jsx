@@ -23,7 +23,7 @@ export default withAuth(({ auth }) => {
   const checkAuthentication = useCallback(async () => {
     const authenticated = await isAuthenticated();
     if (authenticated !== authState) {
-      setAuthState(authenticated);
+      setAuthState(authenticated)
     }
   }, [authState, isAuthenticated]);
 
