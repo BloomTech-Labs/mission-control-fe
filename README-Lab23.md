@@ -1,55 +1,34 @@
 <center>
 
 # Mission Control
-
-<center>
-
-# Mission Control
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 
-[![build compiler: prismatopia](https://img.shields.io/badge/build%20compiler-prismatopia-ff69b4)](https://github.com/Lambda-School-Labs/prismatopia)
-[![BE container: docker](https://img.shields.io/badge/BE%20container-docker-%232496ED)](https://www.docker.com/?utm_source=google&utm_medium=cpc&utm_campaign=dockerhomepage&utm_content=namer&utm_term=dockerhomepage&utm_budget=growth&gclid=Cj0KCQjwn7j2BRDrARIsAHJkxmyiNdM3GTvsO9RY9gmMf-0Rql-Nq_cQZVxCYDqMm_Joo2KcMYPWIpsaAvEXEALw_wcB)
-[![styling: sass](https://img.shields.io/badge/styling-sass-%23CC6699)](https://sass-lang.com/)
-[![server-side: apollo](https://img.shields.io/badge/client--side-apollo--graphql-%23311C87)](https://www.apollographql.com/docs/apollo-server/)
-[![run cmd: make files](https://img.shields.io/badge/run%20cmd-makes%20files-%23FF7100)](https://www.tutorialspoint.com/unix_commands/make.htm)
-[![data-model: prisma](https://img.shields.io/badge/data--model-prisma-%23E10098)](https://www.prisma.io/)
-[![deployment: aws amplify](https://img.shields.io/badge/deployment-aws%20amplify-%23232F3E)](https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html)
-[![windows termial extension: wsl](https://img.shields.io/badge/windows%20os%20terminal%20extension-WSL-%23FCC624)](https://ubuntu.com/wsl)
-# Mission Control API Documentation
-
-<center>
-
-# Mission Control
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-
-[![build compiler: prismatopia](https://img.shields.io/badge/build%20compiler-prismatopia-ff69b4)](https://github.com/Lambda-School-Labs/prismatopia)
-[![BE container: docker](https://img.shields.io/badge/BE%20container-docker-%232496ED)](https://www.docker.com/?utm_source=google&utm_medium=cpc&utm_campaign=dockerhomepage&utm_content=namer&utm_term=dockerhomepage&utm_budget=growth&gclid=Cj0KCQjwn7j2BRDrARIsAHJkxmyiNdM3GTvsO9RY9gmMf-0Rql-Nq_cQZVxCYDqMm_Joo2KcMYPWIpsaAvEXEALw_wcB)
-[![styling: sass](https://img.shields.io/badge/styling-sass-%23CC6699)](https://sass-lang.com/)
-# Mission Control API Documentation
-
-<center>
-
-# Mission Control
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-
+## Compilers
 [![build compiler: prismatopia](https://img.shields.io/badge/build%20compiler-prismatopia-ff69b4)](https://github.com/Lambda-School-Labs/prismatopia)
 [![BE container: docker](https://img.shields.io/badge/BE%20container-docker-%232496ED)](https://www.docker.com/?utm_source=google&utm_medium=cpc&utm_campaign=dockerhomepage&utm_content=namer&utm_term=dockerhomepage&utm_budget=growth&gclid=Cj0KCQjwn7j2BRDrARIsAHJkxmyiNdM3GTvsO9RY9gmMf-0Rql-Nq_cQZVxCYDqMm_Joo2KcMYPWIpsaAvEXEALw_wcB)
 
+## Backend Tech Stack
 [![SDL: graphql](https://img.shields.io/badge/SDL-graphql-%23E10098)](https://graphql.org/)
 [![server: apollo](https://img.shields.io/badge/server-apollo--graphql-%23311C87)](https://www.apollographql.com/docs/apollo-server/)
 [![data-model: prisma](https://img.shields.io/badge/data--model-prisma-%230B2C4A)](https://www.prisma.io/)
 
+## Command Backend Setup
 [![run cmd: make files](https://img.shields.io/badge/run%20cmd-makes%20files-%23FF7100)](https://www.tutorialspoint.com/unix_commands/make.htm)
 [![windows termial extension: wsl](https://img.shields.io/badge/windows%20os%20terminal%20extension-WSL-%23FCC624)](https://ubuntu.com/wsl)
 
+## Deployment Service
 [![deployment: aws amplify](https://img.shields.io/badge/deployment-aws%20amplify-%23232F3E)](https://docs.aws.amazon.com/amplify/latest/userguide/welcome.html)
 
+## Frontend Management
 [![UI build](https://img.shields.io/badge/UI%20build-create--react--app-%2361DAFB)](https://reactjs.org/docs/create-a-new-react-app.html)
 [![state manager](https://img.shields.io/badge/state%20manager-useContext-%CA4245)](https://reactjs.org/docs/legacy-context.html#how-to-use-context)
 
+
+## Styling
 [![styling: sass](https://img.shields.io/badge/styling-sass-%23CC6699)](https://sass-lang.com/)
 [![UI framework: semantic UI](https://img.shields.io/badge/UI%20framework-semantic%20ui-%2306D6A9)](https://semantic-ui.com/)
 [![code formatter: prettier](https://img.shields.io/badge/code%20formatter-prettier-%23F7B93E)](https://github.com/prettier/prettier)
+
 </center>
 <center>
 
