@@ -1,6 +1,6 @@
 import React from 'react';
-import { columnEditCont } from './ColumnSettings.module.scss';
 import { useQuery } from 'urql';
+import { columnEditCont } from './ColumnSettings.module.scss';
 import { LABEL_LIST_VIEW } from '../../ProjectList/Queries/projectQueries';
 import EditColumns from '../EditColumns/index';
 

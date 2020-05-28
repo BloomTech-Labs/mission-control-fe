@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery, useMutation, refetchQueries } from 'urql';
+import { useQuery, useMutation } from 'urql';
 
-import { GET_ALL_TAGS as getTagsQuery } from './Queries';
-import { CREATE_TAG as createTagQuery } from './Queries';
-import { UPDATE_TAG as editTagQuery } from './Queries';
-import { DELETE_TAG as deleteTagQuery } from './Queries';
 import { TextField, Button, Card, makeStyles } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CheckIcon from '@material-ui/icons/Check';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import EditIcon from '@material-ui/icons/Edit';
+import {
+  GET_ALL_TAGS as getTagsQuery,
+  CREATE_TAG as createTagQuery,
+  UPDATE_TAG as editTagQuery,
+  DELETE_TAG as deleteTagQuery,
+} from './Queries';
 
 const useStyles = makeStyles({
   root: {},
@@ -53,14 +55,15 @@ const Tags = props => {
     updatedName: '',
   });
 
-  console.log(props);
-
   const { data, fetching, error } = state;
   useEffect(() => {
-
     executeGetTagQuery({ requestPolicy: 'network-only' });
-  }, []);
+  }, [executeGetTagQuery]);
 
+  const handleChange = e => {
+    e.persist();
+    setTagName(e.target.value);
+  };
 
   const editTag = el => {
     if (edit.active) {
@@ -131,19 +134,15 @@ const Tags = props => {
   };
 
   if (fetching) {
-    return (<LinearProgress color="primary" />) 
+    return <LinearProgress color="primary" />;
   }
-
 
   if (error) {
     console.log(error);
     return <h1>There was an error getting your tags</h1>;
   }
 
-  const handleChange = e => {
-    e.persist();
-    setTagName(e.target.value);
-  };
+
 
   const handleSubmit = e => {
     e.preventDefault();

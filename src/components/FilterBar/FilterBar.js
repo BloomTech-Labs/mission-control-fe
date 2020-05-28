@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useQuery } from 'urql';
-import gql from 'graphql-tag';
-import { FILTERED_DATA as newQuery } from './FilterBarQueries';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { useState, useContext } from 'react';
 import { ProjectSearchContext } from '../../contexts/FilterBarContext';
 import './FilterBar.scss';
 
@@ -12,38 +11,41 @@ const FilterBar = () => {
 
   const projectSearchContext = useContext(ProjectSearchContext);
 
-  //initialize the timer var
+  // initialize the timer var
   let timer;
   const handleChange = e => {
-    //reset timer on each key stroke
+    // reset timer on each key stroke
     e.persist();
     window.clearTimeout(timer);
     setSearchFilter(e.target.value);
-  }; //end handleChange
+  }; // end handleChange
 
   const handleSubmit = e => {
-    //hitting enter key submits immediately
+    // hitting enter key submits immediately
+    // eslint-disable-next-line no-unused-expressions
     e && e.preventDefault();
-    //clear the submit timer and submit form automatically
+    // clear the submit timer and submit form automatically
     window.clearTimeout(timer);
     if (searchFilter !== '') {
+      // eslint-disable-next-line no-console
       console.log('send new or update query to BE');
       projectSearchContext.setSearchTerm(searchFilter);
       setFilterList([...filterList, searchFilter]);
-    } //end if
-    //reset searchFilter to empty str
+    } // end if
+    // reset searchFilter to empty str
     setSearchFilter('');
-  }; //end handleSubmit
+  }; // end handleSubmit
 
   const removeTag = item => {
+    // eslint-disable-next-line no-console
     console.log('Remove tag from backend query');
-    let newFilterList = filterList.filter(ele => {
+    const newFilterList = filterList.filter(ele => {
       return ele !== item;
     });
     // console.log('newList: ', newFilterList);
     projectSearchContext.setSearchTerm(searchFilter);
     return setFilterList(newFilterList);
-  }; //end removeTag
+  }; // end removeTag
 
   const handleFocus = () => {
     // handles the search icon
@@ -56,7 +58,7 @@ const FilterBar = () => {
     searchInput.addEventListener('blur', () => {
       icon.classList.remove('hide');
     });
-  }; //end handleFocus
+  }; // end handleFocus
 
   return (
     <>
@@ -88,7 +90,7 @@ const FilterBar = () => {
             placeholder="Search"
             value={searchFilter}
           />
-          <i className="fas fa-search"></i>
+          <i className="fas fa-search" />
         </div>
       </form>
     </>

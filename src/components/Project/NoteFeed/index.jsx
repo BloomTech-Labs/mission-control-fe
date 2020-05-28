@@ -19,12 +19,14 @@ const NotesFeed = ({ projectId, privateBol }) => {
   }
 
   if (fetching) {
-    return       <LinearProgress
-    variant="determinate"
-    value={0}
-    valueBuffer={100}
-    color="primary"
-  />
+    return (
+      <LinearProgress
+        variant="determinate"
+        value={0}
+        valueBuffer={100}
+        color="primary"
+      />
+    );
   }
 
   if (data && data.project && data.project.notes) {

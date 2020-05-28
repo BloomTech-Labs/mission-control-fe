@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import gql from 'graphql-tag';
 
 export const FILTERED_DATA = gql`
@@ -13,16 +14,16 @@ export const FILTERED_DATA = gql`
       }
       status {
         id
-        # category {
-        #   id
-        #   name
-        # }
-        # display
-        # labels {
-        #   id
-        #   name
-        #   color
-        # }
+        category {
+          id
+          name
+        }
+        display
+        labels {
+          id
+          name
+          color
+        }
       }
       product {
         id

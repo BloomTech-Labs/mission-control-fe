@@ -1,0 +1,217 @@
+
+
+#
+# Important Notes
+#   - For list fields, the [Field!]! notation is required: https://bit.ly/3aLOuBK
+#
+
+type Program {
+  id: ID! @id
+  name: String! @unique
+
+  codeClimateToken: String
+
+  # Zero or more products associated with this particular program
+  products: [Product!]! @relation(name: "ProductsByProgram")
+
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Product {
+  id: ID! @id
+  name: String!
+  program: Program! @relation(name: "ProductsByProgram")
+  #* Is the product currently active?
+  active: Boolean @default(value: false)
+  projects: [Project!]! @relation(name: "ProjectsByProduct")
+  githubRepos: [GithubRepo!]! @relation(name: "GitHubReposByProduct")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+#TODO BEGINNING OF Project Type
+#* A Project is a group of people doing work related to a specific product for a period of time
+type Project {
+  id: ID! @id
+  name: String!
+  #* The product associated with this project
+  product: Product! @relation(name: "ProjectsByProduct")
+  #* The project status is composed of zero or more ProjectStatus records
+  status: [ProjectStatusElement!]! @relation(name: "ProjectStatusesByProject")
+  #* Is the project currently active?
+  active: Boolean @default(value: false)
+
+  #* People are assigned roles on a project, this links people to a project _through_ a role
+  assignments: [ProjectRoleAssignment!]! @relation(name: "ProjectRoleAssignmentsByProject")
+  #* Captures project specific notes
+  notes: [Note!]! @relation(name: "NotesByProject")
+  tags: [ProjectTagElement]! @relation(name: "TagsByProject")
+
+  #TODO New tag value in project to indicate array
+
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+
+#* A ProjectStatusElement record maintains the current value of a status element to a status category for the project
+#* Remember, overall project status is composed of zero or more ProjectStatusElements. These objects represent the
+#*   state of one element of the overall project status.
+type ProjectStatusElement {
+  id: ID! @id
+
+  # The project this status element is part of
+  project: Project! @relation(name: "ProjectStatusesByProject")
+
+  #* The category of this status element
+  category: StatusCategory!
+
+  #* The current value of this status element; may be null
+  value: StatusValueOption
+
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+# Following logic of status element code
+
+type StatusCategory {
+  id: ID! @id
+  name: String!
+  # The set of possible values for this status category
+  valueOptions: [StatusValueOption!]!
+
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+# A possible value for a status category
+type StatusValueOption {
+  id: ID! @id
+
+  #* A label for the value
+  label: String!
+
+  #* A color for the value
+  color: String!
+
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type GithubRepo {
+  id: ID! @id
+
+  owner: String!
+  name: String!
+
+  repoId: String!
+
+  #* A URL that leads to the details of the repo
+  url: String!
+  #* ownerId: String!
+  product: Product! @relation(name: "GitHubReposByProduct")
+  grade: GithubRepoGrade @relation(name: "GitHubRepoGradesByGitHubRepo", link: "INLINE")
+
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type GithubRepoGrade {
+  id: ID! @id
+  githubRepo: GithubRepo! @relation(name: "GitHubRepoGradesByGitHubRepo")
+  #* The current value of the grade
+  value: LetterGrade
+  #* A URL that leads to the details of the grade
+  url: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+enum LetterGrade {
+  A
+  B
+  C
+  D
+  F
+}
+
+type Note {
+  id: ID! @id
+  topic: String!
+  content: String!
+  private: Boolean! @default(value: false)
+  author: Person! @relation(name: "NotesByAuthor")
+  #* attendedBy: [Person] @relation(name: "MeetingAttendee")
+  project: Project! @relation(name: "NotesByProject")
+  rating: Int!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Person {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  avatar: String
+  # role: Role!
+  notes: [Note!]! @relation(name: "NotesByAuthor")
+  # All of the meetings attended by this person
+  attended: [Note!]! @relation(name: "NoteAttendee")
+  # All of the project roles assigned to this person
+  projectRoleAssignments: [ProjectRoleAssignment!]! @relation(name: "ProjectRoleAssignmentsByPerson")
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+# Maps a person to a project by giving them a specific role on the project
+type ProjectRoleAssignment {
+  id: ID! @id
+  # The person
+  person: Person! @relation(name: "ProjectRoleAssignmentsByPerson")
+  # The project
+  project: Project! @relation(name: "ProjectRoleAssignmentsByProject")
+  # The person's role on the project
+  role: Role!
+}
+
+type Role {
+  id: ID! @id
+  name: String!
+
+  privateNote: Boolean! @default(value: false)
+  viewProducts: Boolean! @default(value: false)
+
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+#  CHANGED NAMING AND FORMAT
+#type ProjectTagElement {
+#  id: ID! @id
+# The project this tag element is part of
+#  project: Project! @relation(name: "ProjectTagsByProject")
+# The current value of this tag element; may be null
+# tag: Tag! @relation(name: "TagElement")}
+
+
+
+type ProjectTagElement {
+  id: ID! @id
+  project: Project! @unique @relation(link: INLINE, name: "TagsByProject")
+  tag: Tag! @unique @relation(link: INLINE, name: "TagElement")
+
+}
+
+
+#Tag type with relation to ProjectTagElement to connect it to Projects
+#LAB23-T1 Tag and Connect Map
+type Tag {
+  id: ID! @id
+  name: String! @unique
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  isUsed: Boolean! @default(value: false)
+  projects: [ProjectTagElement] @relation(name: "TagElement")
+}
+
